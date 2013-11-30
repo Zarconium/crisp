@@ -1,0 +1,89 @@
+.center{
+text-align: center;
+}
+
+.full{
+position:absolute;
+top:20;
+left:0; 
+right:0;
+margin:auto;
+height:240px;
+width:70%;
+}
+
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"]{
+float: center;
+}
+
+.avoid-me{
+margin-bottom: 15%;
+}
+
+.nav-me{
+width: 11%;
+}
+
+.navbar{
+border-radius: 0px;
+}
+
+.area{
+height: 80%;
+margin-right: 3%;
+padding: 1%;
+}
+
+.graph{
+font-size: 200%;
+text-align: center;
+padding-top: 3%;
+padding-bottom: 3%;
+background-color: #f8f8f8;
+border: solid 1px #e7e7e7;
+}
+
+.table-area  tr th:nth-child(1), .table-area  tr td:nth-child(1){
+text-align: center;
+}
+
+.table-area{
+margin-top: 2%;
+}
+
+.searching{
+background-color: #efefef;
+padding: 1%;
+}
+
+#programs{
+padding-left: 8%;
+}
+
+.files{
+margin-top: 2%;
+}
+
+.searching{
+margin-top: 2%;
+}
+
+.info-form{
+padding: 3%;
+}
+
+legend{
+margin-top: 2%;
+}
+
+.form-group{
+margin-right: 1% !important;
+}
+
+.submit-button{
+text-align: center;
+}
+
+.tab-content{
+margin-top: 3%;
+}
