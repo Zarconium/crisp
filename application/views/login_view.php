@@ -12,7 +12,7 @@
       <div class="row">
         <div class="col-md-3 col-md-offset-4">
           <a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>images/logo.jpg" class="img-responsive logo avoid-me"/></a>
-          <?php echo validation_errors(); ?>
+          <div class="text-danger"><?php echo validation_errors(); ?></div>
           <?php echo form_open('verifylogin'); ?>
           <form role="form">
             <div class="form-group">
@@ -24,11 +24,11 @@
               <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
             </div>
             <div class="center">
-              <div class="checkbox">
+              <!-- <div class="checkbox">
                 <label>
                   <input type="checkbox"> Remember Me
                 </label>
-              </div>
+              </div> -->
               <button type="submit" class="login btn btn-default"><a>Submit</a></button>
             </div>
           </form>
