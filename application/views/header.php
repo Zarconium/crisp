@@ -1,9 +1,10 @@
 <HTML>
 <head>
 	<title>CRISP</title>
-	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>css/customize.css">
-	<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.js"></script>
+	<link rel="stylesheet" href="<?php echo base_url('css/bootstrap.css'); ?>">
+	<link rel="stylesheet" href="<?php echo base_url('css/customize.css'); ?>">
+	<link rel="stylesheet" href="<?php echo base_url('css/style.css'); ?>">
+	<script type="text/javascript" src="<?php echo base_url('js/jquery.js'); ?>"></script>
 </head>
 
 <body>
@@ -23,10 +24,10 @@
 			<div class="col-md-2">
 				<div class="bs-sidebar">
 					<ul class="nav bs-sidenav">
-						<li><a href="<?php echo base_url(); ?>home">Home</a></li>
-						<li><a href="<?php echo base_url(); ?>dbms">DBMS</a></li>
-						<li><a href="<?php echo base_url(); ?>reports">Reports</a></li>
-						<?php if($type == 'admin') {echo '<li><a href="' . base_url() . 'usermanagement">User Management</a></li>';} ?>
+						<li><a href="<?php echo base_url('home'); ?>">Home</a></li>
+						<li><a href="<?php echo base_url('dbms'); ?>">DBMS</a></li>
+						<li><a href="<?php echo base_url('reports'); ?>">Reports</a></li>
+						<?php if($type == 'admin') {echo '<li><a href="' . base_url('usermanagement') . '">User Management</a></li>';} ?>
 					</ul>
 				</div>
 			</div>

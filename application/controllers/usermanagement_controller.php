@@ -31,12 +31,24 @@ class UserManagement_Controller extends CI_Controller {
     }
   }
 
-  function edit($id)
+  function add_user()
+  {
+    if($this->input->post('new_button_submit'))
+    {
+      redirect('usermanagement');
+    }
+    elseif ($this->input->post('new_button_cancel'))
+    {
+      redirect('usermanagement');
+    }
+  }
+
+  function edit_user($id)
   {
     redirect('usermanagement');
   }
 
-  function delete($id)
+  function delete_user($id)
   {
     //$this->user->deleteUserById($id);
     redirect('usermanagement');

@@ -2,16 +2,16 @@
 <HTML xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title>CRISP Login</title>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/customize.css">
-    <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url('css/bootstrap.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('css/customize.css'); ?>">
+    <script type="text/javascript" src="<?php echo base_url('js/jquery.js'); ?>"></script>
   </head>
 
   <body>
     <div class="wrapper full">
       <div class="row">
         <div class="col-md-3 col-md-offset-4">
-          <a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>images/logo.jpg" class="img-responsive logo avoid-me"/></a>
+          <a href="<?php echo base_url(); ?>"><img src="<?php echo base_url('images/logo.jpg'); ?>" class="img-responsive logo avoid-me"/></a>
           <div class="text-danger"><?php echo validation_errors(); ?></div>
           <?php echo form_open('verifylogin'); ?>
           <form role="form">

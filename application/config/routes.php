@@ -42,8 +42,11 @@ $route['default_controller'] = "login";
 $route['404_override'] = '';
 $route['home'] = 'home';
 $route['dbms'] = 'dbms_controller';
+$route['dbms/(:any)'] = 'dbms_controller/$1';
 $route['reports'] = 'reports_controller';
+$route['reports/(:any)'] = 'reports_controller/$1';
 $route['usermanagement'] = 'usermanagement_controller';
+$route['usermanagement/(:any)'] = 'usermanagement_controller/$1';
 
 
 /* End of file routes.php */
