@@ -4,7 +4,6 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title" id="add_user_form_label">Add New User</h4>
 			</div>
 			<div class="modal-body">
@@ -62,14 +61,13 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title" id="edit_user_form_label">Edit Existing User</h4>
 			</div>
 			<div class="modal-body">
 				<?php
 					echo form_open('/usermanagement/edit_user');
 
-					foreach ($user as $u)
+					foreach ($user_to_edit as $u)
 					{
 						echo form_hidden('edit_id', $u->id);
 
@@ -125,25 +123,63 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title" id="delete_user_form_label">Delete User</h4>
 			</div>
 			<div class="modal-body">
 				<?php
-					$u;
+					$u_id = 0;
+					$u_username = "";
+
 					if(isset($user_to_delete))
 					{
 						foreach($user_to_delete as $user)
 						{
-							$u = $user;
+							$u_id = $user->id;
+							$u_username = $user->username;
 						}
 					}
 				?>
-				Delete <?php echo $u->username; ?>?
+				Delete <?php echo $u_username; ?>?
 			</div>
 			<div class="modal-footer">
-				<a href="<?php echo base_url('usermanagement/delete_user/' . $u->id); ?>"><button type="button" class="btn btn-primary">OK</button></a>
-        		<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+				<a href="<?php echo base_url('usermanagement/delete_user/' . $u_id); ?>"><button type="button" class="btn btn-primary">OK</button></a>
+        		<a href="<?php echo base_url('usermanagement'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal" id="delete_multiple_users_dialog" tabindex="-1" role="dialog" aria-labelledby="delete_multiple_users_dialog_label" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="delete_multiple_users_dialog_label">Delete Users</h4>
+			</div>
+			<div class="modal-body">
+				<?php
+					echo form_open('usermanagement/delete_multiple');
+
+					if(isset($user_ids_to_delete))
+					{
+						echo 'The following users will be deleted:';
+						echo '<ul>';
+						foreach($user_ids_to_delete as $user)
+						{
+							foreach ($user as $u)
+							{
+								echo form_hidden('users_to_delete[]', $u->id);
+							 	echo '<li>' . $u->username . '</li>';
+							}
+						}
+						echo '</ul>';
+						echo 'Continue?';
+					}
+				?>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary" name="delete_multiple_users_button_submit" value="delete_multiple_users_button_submit">OK</button>
+        		<a href="<?php echo base_url('usermanagement'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
+        		<?php echo form_close(); ?>
 			</div>
 		</div>
 	</div>
@@ -154,11 +190,12 @@
 		<div class="header">
 			<h1>User Management</h1>
 		</div>
+		<?php echo form_open('/usermanagement/delete_multiple'); ?>
 		<div class="menu-menu">
-			<button type="button" class="btn btn-primary" id="add" data-toggle="modal" data-target="#add_user_form">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_user_form" data-keyboard="false">
 				Add
 			</button>
-			<button type="button" class="btn btn-danger" id="delete" data-toggle="modal" data-target="#delete_user_dialog">
+			<button type="submit" class="btn btn-danger" name="delete_multiple_button_submit" value="delete_multiple_button_submit">
 				Delete
 			</button>
 			<button type="button" class="btn btn-info">
@@ -176,47 +213,57 @@
 			</tr>
 			<?php foreach ($users as $row): ?>
 			<tr>
-				<td><input type="checkbox"></td>
+				<td><?php echo form_checkbox('user_ids_to_delete[]', $row->id); ?></td>
 				<td><?php echo anchor('usermanagement/edit/' . $row->id, 'Edit'); ?> | <?php echo anchor('usermanagement/delete/' . $row->id, 'Delete'); ?></td>
 				<td><?php echo $row->username; ?></td>
 				<td><?php echo $row->first_name; ?></td>
 				<td><?php echo $row->last_name; ?></td>
 				<td><?php echo $row->type; ?></td>
 			</tr>
-		<?php endforeach; ?>
+			<?php endforeach; ?>
 		</table>
+		<?php echo form_close(); ?>
 	</div>
 </div>
 <?php
-	if(validation_errors() || isset($user))
+	if(validation_errors() || isset($user_to_edit))
 	{
 		if(isset($errant_form))
 		{
 			if($errant_form == 'add_user')
 			{
 				echo '<script type="text/javascript">
-				window.onload=function() { $(\'#add_user_form\').modal(\'show\'); }
+				window.onload = function() { $(\'#add_user_form\').modal({show: true, keyboard: false}); }
 				</script>';
 			}
 			elseif ($errant_form == 'edit_user')
 			{
 				echo '<script type="text/javascript">
-				window.onload=function() { $(\'#edit_user_form\').modal(\'show\'); }
+				window.onload = function() { $(\'#edit_user_form\').modal({show: true, keyboard: false}); }
 				</script>';
 			}
 		}
-		elseif (isset($user))
+		elseif (isset($user_to_edit))
 		{
 			echo '<script type="text/javascript">
-			window.onload=function() { $(\'#edit_user_form\').modal(\'show\'); }
+			window.onload = function() { $(\'#edit_user_form\').modal({show: true, keyboard: false}); }
 			</script>';
 		}
 	}
+
 	if(isset($user_to_delete))
 	{
 		echo '<script type="text/javascript">
-			window.onload=function() { $(\'#delete_user_dialog\').modal(\'show\'); }
+			window.onload = function() { $(\'#delete_user_dialog\').modal({show: true, keyboard: false}); }
+			</script>';
+	}
+
+	if(isset($user_ids_to_delete))
+	{
+		echo '<script type="text/javascript">
+			window.onload = function() { $(\'#delete_multiple_users_dialog\').modal({show: true, keyboard: false}); }
 			</script>';
 	}
 ?>
+
 <?php include('footer.php'); ?>

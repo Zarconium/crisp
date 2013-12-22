@@ -66,7 +66,7 @@ class UserManagement_Controller extends CI_Controller {
   function edit($id)
   {
     $session_data = $this->session_data();
-    $session_data['user'] = $this->user->getUserById($id);
+    $session_data['user_to_edit'] = $this->user->getUserById($id);
 
     $this->load->view('usermanagement', $session_data);
   }
@@ -85,7 +85,7 @@ class UserManagement_Controller extends CI_Controller {
       {
         $session_data = $this->session_data();
         $session_data['errant_form'] = 'edit_user';
-        $session_data['user'] = $this->user->getUserById($this->input->post('edit_id'));
+        $session_data['user_to_edit'] = $this->user->getUserById($this->input->post('edit_id'));
 
         $this->load->view('usermanagement', $session_data);
       }
@@ -123,6 +123,44 @@ class UserManagement_Controller extends CI_Controller {
   {
     $this->user->deleteUserById($id);
     redirect('usermanagement');
+  }
+
+  function delete_multiple()
+  {
+    if($this->input->post('delete_multiple_button_submit'))
+    {
+      $this->form_validation->set_rules('user_ids_to_delete[]', 'Users', 'trim|required|xss_clean');
+
+      if($this->form_validation->run() == FALSE)
+      {
+        $session_data = $this->session_data();
+
+        redirect('usermanagement', $session_data);
+      }
+      else
+      {
+        $data = array();
+
+        foreach ($this->input->post('user_ids_to_delete') as $id)
+        {
+          $data[] = $this->user->getUserById($id);
+        }
+
+        $session_data = $this->session_data();
+        $session_data['user_ids_to_delete'] = $data;
+
+        $this->load->view('usermanagement', $session_data);
+      }
+    }
+    elseif ($this->input->post('delete_multiple_users_button_submit'))
+    {
+      foreach ($this->input->post('users_to_delete') as $id)
+      {
+        $this->user->deleteUserById($id);
+      }
+      
+      redirect('usermanagement');
+    }
   }
 
   function session_data()
