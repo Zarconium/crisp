@@ -163,6 +163,12 @@ class UserManagement_Controller extends CI_Controller {
     }
   }
 
+  function print_all_users()
+  {
+    $session_data['users'] = $this->user->getAllUsers();
+    $this->load->view('print_all_users', $session_data);
+  }
+
   function session_data()
   {
     $session_data = $this->session->userdata('logged_in');

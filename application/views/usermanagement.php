@@ -1,5 +1,7 @@
 <?php include('header.php'); ?>
 
+<!-- Start Hidden Modals -->
+<!-- Add User Modal -->
 <div class="modal" id="add_user_form" tabindex="-1" role="dialog" aria-labelledby="add_user_form_label" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -57,6 +59,7 @@
 	</div>
 </div>
 
+<!-- Edit User Modal -->
 <div class="modal" id="edit_user_form" tabindex="-1" role="dialog" aria-labelledby="edit_user_form_label" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -119,6 +122,7 @@
 	</div>
 </div>
 
+<!-- Delete User Modal -->
 <div class="modal" id="delete_user_dialog" tabindex="-1" role="dialog" aria-labelledby="delete_user_form_label" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -149,6 +153,7 @@
 	</div>
 </div>
 
+<!-- Delete Multiple Users Modal -->
 <div class="modal" id="delete_multiple_users_dialog" tabindex="-1" role="dialog" aria-labelledby="delete_multiple_users_dialog_label" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -184,7 +189,9 @@
 		</div>
 	</div>
 </div>
+<!-- End Hidden Modals -->
 
+<!-- Start Page Content -->
 <div class="col-md-10">
 	<div class="area">
 		<div class="header">
@@ -198,9 +205,9 @@
 			<button type="submit" class="btn btn-danger" name="delete_multiple_button_submit" value="delete_multiple_button_submit">
 				Delete
 			</button>
-			<button type="button" class="btn btn-info">
+			<a href="<?php echo base_url('usermanagement/print_all_users'); ?>" target="_blank"><button type="button" class="btn btn-info">
 				Print List
-			</button>
+			</button></a>
 		</div>
 		<table class="table table-area">
 			<tr>
@@ -265,5 +272,5 @@
 			</script>';
 	}
 ?>
-
+<!-- End Page Content -->
 <?php include('footer.php'); ?>
