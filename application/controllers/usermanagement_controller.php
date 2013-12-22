@@ -15,18 +15,11 @@ class UserManagement_Controller extends CI_Controller {
       {
         redirect('home');
       }
-
-      $session_data = $this->session->userdata('logged_in');
-      $data['id'] = $session_data['id'];
-      $data['username'] = $session_data['username'];
-      $data['type'] = $session_data['type'];
-      $data['users'] = $this->user->getAllUsers();
       
-      $this->load->view('usermanagement', $data);
+      $this->load->view('usermanagement', $this->session_data());
     }
     else
     {
-      //If no session, redirect to login page
       redirect('login', 'refresh');
     }
   }
@@ -35,7 +28,34 @@ class UserManagement_Controller extends CI_Controller {
   {
     if($this->input->post('new_button_submit'))
     {
-      redirect('usermanagement');
+      $this->form_validation->set_rules('new_username', 'Username', 'trim|required|xss_clean|is_unique[users.username]');
+      $this->form_validation->set_rules('new_first_name', 'First Name', 'trim|required|xss_clean');
+      $this->form_validation->set_rules('new_last_name', 'Last Name', 'trim|required|xss_clean');
+      $this->form_validation->set_rules('new_password', 'Password', 'trim|required|xss_clean|md5');
+      $this->form_validation->set_rules('new_type', 'Account Type', 'trim|required|xss_clean');
+
+      if($this->form_validation->run() == FALSE)
+      {
+        $session_data = $this->session_data();
+        $session_data['errant_form'] = 'add_user';
+
+        $this->load->view('usermanagement', $session_data);
+      }
+      else
+      {
+        $data = array
+        (
+          'username' => $this->input->post('new_username'),
+          'first_name' => $this->input->post('new_first_name'),
+          'last_name' => $this->input->post('new_last_name'),
+          'password' => $this->input->post('new_password'),
+          'type' => $this->input->post('new_type')
+        );
+
+        $this->user->addUser($data);
+
+        $this->load->view('usermanagement', $this->session_data());
+      }
     }
     elseif ($this->input->post('new_button_cancel'))
     {
@@ -43,15 +63,77 @@ class UserManagement_Controller extends CI_Controller {
     }
   }
 
-  function edit_user($id)
+  function edit($id)
   {
-    redirect('usermanagement');
+    $session_data = $this->session_data();
+    $session_data['user'] = $this->user->getUserById($id);
+
+    $this->load->view('usermanagement', $session_data);
+  }
+
+  function edit_user()
+  {
+    if($this->input->post('edit_button_submit'))
+    {
+      $this->form_validation->set_rules('edit_username', 'Username', 'trim|required|xss_clean');
+      $this->form_validation->set_rules('edit_first_name', 'First Name', 'trim|required|xss_clean');
+      $this->form_validation->set_rules('edit_last_name', 'Last Name', 'trim|required|xss_clean');
+      $this->form_validation->set_rules('edit_password', 'Password', 'trim|required|xss_clean|md5');
+      $this->form_validation->set_rules('edit_type', 'Account Type', 'trim|required|xss_clean');
+
+      if($this->form_validation->run() == FALSE)
+      {
+        $session_data = $this->session_data();
+        $session_data['errant_form'] = 'edit_user';
+        $session_data['user'] = $this->user->getUserById($this->input->post('edit_id'));
+
+        $this->load->view('usermanagement', $session_data);
+      }
+      else
+      {
+        $data = array
+        (
+          'username' => $this->input->post('edit_username'),
+          'first_name' => $this->input->post('edit_first_name'),
+          'last_name' => $this->input->post('edit_last_name'),
+          'password' => $this->input->post('edit_password'),
+          'type' => $this->input->post('edit_type')
+        );
+
+        $this->user->editUserById($this->input->post('edit_id'), $data);
+
+        $this->load->view('usermanagement', $this->session_data());
+      }
+    }
+    elseif ($this->input->post('edit_button_cancel'))
+    {
+      redirect('usermanagement');
+    }
+  }
+
+  function delete($id)
+  {
+    $session_data = $this->session_data();
+    $session_data['user_to_delete'] = $this->user->getUserById($id);
+
+    $this->load->view('usermanagement', $session_data);
   }
 
   function delete_user($id)
   {
-    //$this->user->deleteUserById($id);
+    $this->user->deleteUserById($id);
     redirect('usermanagement');
+  }
+
+  function session_data()
+  {
+    $session_data = $this->session->userdata('logged_in');
+    $data['id'] = $session_data['id'];
+    $data['username'] = $session_data['username'];
+    $data['type'] = $session_data['type'];
+    $data['users'] = $this->user->getAllUsers();
+
+    return $data;
   }
 }
 

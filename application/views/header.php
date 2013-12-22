@@ -14,7 +14,7 @@
 				<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo "$username ($type)"; ?>&nbsp;<b class="caret"></b></a>
 				<ul class="dropdown-menu">
-					<li><a href="home/logout">Logout</a></li>
+					<li><a href="<?php echo base_url('home/logout'); ?>">Logout</a></li>
 				</ul>
 			</li>
 			</ul>
@@ -25,7 +25,7 @@
 				<div class="bs-sidebar">
 					<ul class="nav bs-sidenav">
 						<li><a href="<?php echo base_url('home'); ?>">Home</a></li>
-						<li><a href="<?php echo base_url('dbms'); ?>">DBMS</a></li>
+						<?php if($type != 'guest') {echo '<li><a href="' . base_url('dbms') . '">DBMS</a></li>';} ?>
 						<li><a href="<?php echo base_url('reports'); ?>">Reports</a></li>
 						<?php if($type == 'admin') {echo '<li><a href="' . base_url('usermanagement') . '">User Management</a></li>';} ?>
 					</ul>
