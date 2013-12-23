@@ -1,6 +1,94 @@
-<?php include('header.php'); ?>
+<!-- Start Page Content -->
+<div class="col-md-10">
+	<div class="area">
+		<div class="header">
+			<h1>User Management</h1>
+		</div>
+		<?php echo form_open('/usermanagement/delete_multiple'); ?>
+		<div class="menu-menu">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_user_form" data-backdrop="static" data-keyboard="false">
+				Add
+			</button>
+			<button type="submit" class="btn btn-danger" name="delete_multiple_button_submit" value="delete_multiple_button_submit">
+				Delete
+			</button>
+			<a href="<?php echo base_url('usermanagement/print_all_users'); ?>" target="_blank"><button type="button" class="btn btn-info">
+				Print List
+			</button></a>
+		</div>
+		<table class="table table-area">
+			<tr>
+				<th>Check</th>
+				<th>Action</th>
+				<th>Username</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Privileges</th>
+				<th>Assigned School</th>
+			</tr>
+			<?php foreach ($users as $row): ?>
+			<tr>
+				<td><?php echo form_checkbox('user_ids_to_delete[]', $row->id); ?></td>
+				<td><?php echo anchor('usermanagement/edit/' . $row->id, 'Edit'); ?> | <?php echo anchor('usermanagement/delete/' . $row->id, 'Delete'); ?></td>
+				<td><?php echo $row->username; ?></td>
+				<td><?php echo $row->first_name; ?></td>
+				<td><?php echo $row->last_name; ?></td>
+				<td><?php echo $row->type; ?></td>
+				<td><?php if($row->type == 'encoder') { echo $row->school; } else {	echo 'All'; } ?></td>
+			</tr>
+			<?php endforeach; ?>
+		</table>
+		<?php echo form_close(); ?>
+	</div>
+</div>
+
+<?php
+	if(validation_errors() || isset($user_to_edit))
+	{
+		if(isset($errant_form))
+		{
+			if($errant_form == 'add_user')
+			{
+				echo '<script type="text/javascript">
+				window.onload = function() { $(\'#add_user_form\').modal({backdrop: \'static\', keyboard: false}); }
+				</script>';
+			}
+			elseif ($errant_form == 'edit_user')
+			{
+				echo '<script type="text/javascript">
+				window.onload = function() { $(\'#edit_user_form\').modal({backdrop: \'static\', keyboard: false}); }
+				</script>';
+			}
+		}
+		elseif (isset($user_to_edit))
+		{
+			echo '<script type="text/javascript">
+			window.onload = function() { $(\'#edit_user_form\').modal({backdrop: \'static\', keyboard: false}); }
+			</script>';
+		}
+	}
+
+	if(isset($user_to_delete))
+	{
+		echo '<script type="text/javascript">
+			window.onload = function() { $(\'#delete_user_dialog\').modal({backdrop: \'static\', keyboard: false}); }
+			</script>';
+	}
+
+	if(isset($user_ids_to_delete))
+	{
+		echo '<script type="text/javascript">
+			window.onload = function() { $(\'#delete_multiple_users_dialog\').modal({backdrop: \'static\', keyboard: false}); }
+			</script>';
+	}
+?>
+<!-- End Page Content -->
 
 <!-- Start Hidden Modals -->
+<?php //Dropdown options for global use
+	$input_type_options = array('admin' => 'Administrator', 'encoder' => 'Encoder', 'guest' => 'Guest');
+	$input_school_options = array('Ateneo de Manila University' => 'Ateneo de Manila University', 'De La Salle University' => 'De La Salle University', 'University of Santo Tomas' => 'University of Santo Tomas', 'University of the Philippines' => 'University of the Philippines');
+?>
 <!-- Add User Modal -->
 <div class="modal" id="add_user_form" tabindex="-1" role="dialog" aria-labelledby="add_user_form_label" aria-hidden="true">
 	<div class="modal-dialog">
@@ -37,10 +125,15 @@
 					echo '</div>';
 
 					echo '<div class="form-group">';
-					$input_type_options = array('admin' => 'Administrator', 'encoder' => 'Encoder', 'guest' => 'Guest');
 					echo form_label('Account Type', 'new_type');
 					echo form_dropdown('new_type', $input_type_options, 'guest', 'class="form-control"');
 					echo form_error('new_type', '<div class="text-danger">', '</div>');
+					echo '</div>';
+
+					echo '<div class="form-group">';
+					echo form_label('Assigned School', 'new_school');
+					echo form_dropdown('new_school', $input_school_options, 'admu', 'class="form-control"');
+					echo form_error('new_school', '<div class="text-danger">', '</div>');
 					echo '</div>';
 				?>
 			</div>
@@ -70,40 +163,48 @@
 				<?php
 					echo form_open('/usermanagement/edit_user');
 
-					foreach ($user_to_edit as $u)
+					if(isset($user_to_edit))
 					{
-						echo form_hidden('edit_id', $u->id);
+						foreach ($user_to_edit as $u)
+						{
+							echo form_hidden('edit_id', $u->id);
 
-						echo '<div class="form-group">';
-						echo form_label('Username', 'edit_username');
-						echo form_input('edit_username', $u->username, 'class="form-control"');
-						echo form_error('edit_username', '<div class="text-danger">', '</div>');
-						echo '</div>';
+							echo '<div class="form-group">';
+							echo form_label('Username', 'edit_username');
+							echo form_input('edit_username', $u->username, 'class="form-control"');
+							echo form_error('edit_username', '<div class="text-danger">', '</div>');
+							echo '</div>';
 
-						echo '<div class="form-group">';
-						echo form_label('First Name', 'edit_first_name');
-						echo form_input('edit_first_name', $u->first_name, 'class="form-control"');
-						echo form_error('edit_first_name', '<div class="text-danger">', '</div>');
-						echo '</div>';
+							echo '<div class="form-group">';
+							echo form_label('First Name', 'edit_first_name');
+							echo form_input('edit_first_name', $u->first_name, 'class="form-control"');
+							echo form_error('edit_first_name', '<div class="text-danger">', '</div>');
+							echo '</div>';
 
-						echo '<div class="form-group">';
-						echo form_label('Last Name', 'edit_last_name');
-						echo form_input('edit_last_name', $u->last_name, 'class="form-control"');
-						echo form_error('edit_last_name', '<div class="text-danger">', '</div>');
-						echo '</div>';
+							echo '<div class="form-group">';
+							echo form_label('Last Name', 'edit_last_name');
+							echo form_input('edit_last_name', $u->last_name, 'class="form-control"');
+							echo form_error('edit_last_name', '<div class="text-danger">', '</div>');
+							echo '</div>';
 
-						echo '<div class="form-group">';
-						echo form_label('Password', 'edit_password');
-						echo form_password('edit_password', '', 'class="form-control"');
-						echo form_error('edit_password', '<div class="text-danger">', '</div>');
-						echo '</div>';
+							echo '<div class="form-group">';
+							echo form_label('Password', 'edit_password');
+							echo form_password('edit_password', '', 'class="form-control"');
+							echo form_error('edit_password', '<div class="text-danger">', '</div>');
+							echo '</div>';
 
-						echo '<div class="form-group">';
-						$input_type_options = array('admin' => 'Administrator', 'encoder' => 'Encoder', 'guest' => 'Guest');
-						echo form_label('Account Type', 'edit_type');
-						echo form_dropdown('edit_type', $input_type_options, $u->type, 'class="form-control"');
-						echo form_error('edit_type', '<div class="text-danger">', '</div>');
-						echo '</div>';
+							echo '<div class="form-group">';
+							echo form_label('Account Type', 'edit_type');
+							echo form_dropdown('edit_type', $input_type_options, $u->type, 'class="form-control"');
+							echo form_error('edit_type', '<div class="text-danger">', '</div>');
+							echo '</div>';
+
+							echo '<div class="form-group">';
+							echo form_label('Assigned School', 'edit_school');
+							echo form_dropdown('edit_school', $input_school_options, $u->school, 'class="form-control"');
+							echo form_error('edit_school', '<div class="text-danger">', '</div>');
+							echo '</div>';
+						}
 					}
 				?>
 			</div>
@@ -190,87 +291,3 @@
 	</div>
 </div>
 <!-- End Hidden Modals -->
-
-<!-- Start Page Content -->
-<div class="col-md-10">
-	<div class="area">
-		<div class="header">
-			<h1>User Management</h1>
-		</div>
-		<?php echo form_open('/usermanagement/delete_multiple'); ?>
-		<div class="menu-menu">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_user_form" data-keyboard="false">
-				Add
-			</button>
-			<button type="submit" class="btn btn-danger" name="delete_multiple_button_submit" value="delete_multiple_button_submit">
-				Delete
-			</button>
-			<a href="<?php echo base_url('usermanagement/print_all_users'); ?>" target="_blank"><button type="button" class="btn btn-info">
-				Print List
-			</button></a>
-		</div>
-		<table class="table table-area">
-			<tr>
-				<th>Check</th>
-				<th>Action</th>
-				<th>Username</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Privileges</th>
-			</tr>
-			<?php foreach ($users as $row): ?>
-			<tr>
-				<td><?php echo form_checkbox('user_ids_to_delete[]', $row->id); ?></td>
-				<td><?php echo anchor('usermanagement/edit/' . $row->id, 'Edit'); ?> | <?php echo anchor('usermanagement/delete/' . $row->id, 'Delete'); ?></td>
-				<td><?php echo $row->username; ?></td>
-				<td><?php echo $row->first_name; ?></td>
-				<td><?php echo $row->last_name; ?></td>
-				<td><?php echo $row->type; ?></td>
-			</tr>
-			<?php endforeach; ?>
-		</table>
-		<?php echo form_close(); ?>
-	</div>
-</div>
-<?php
-	if(validation_errors() || isset($user_to_edit))
-	{
-		if(isset($errant_form))
-		{
-			if($errant_form == 'add_user')
-			{
-				echo '<script type="text/javascript">
-				window.onload = function() { $(\'#add_user_form\').modal({show: true, keyboard: false}); }
-				</script>';
-			}
-			elseif ($errant_form == 'edit_user')
-			{
-				echo '<script type="text/javascript">
-				window.onload = function() { $(\'#edit_user_form\').modal({show: true, keyboard: false}); }
-				</script>';
-			}
-		}
-		elseif (isset($user_to_edit))
-		{
-			echo '<script type="text/javascript">
-			window.onload = function() { $(\'#edit_user_form\').modal({show: true, keyboard: false}); }
-			</script>';
-		}
-	}
-
-	if(isset($user_to_delete))
-	{
-		echo '<script type="text/javascript">
-			window.onload = function() { $(\'#delete_user_dialog\').modal({show: true, keyboard: false}); }
-			</script>';
-	}
-
-	if(isset($user_ids_to_delete))
-	{
-		echo '<script type="text/javascript">
-			window.onload = function() { $(\'#delete_multiple_users_dialog\').modal({show: true, keyboard: false}); }
-			</script>';
-	}
-?>
-<!-- End Page Content -->
-<?php include('footer.php'); ?>

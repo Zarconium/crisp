@@ -4,24 +4,22 @@ class Reports_Controller extends CI_Controller {
   function __construct()
   {
     parent::__construct();
+
+    if($this->session->userdata('logged_in'))
+    {
+
+    }
+    else
+    {
+      redirect('login', 'refresh');
+    }
   }
 
   function index()
   {
-    if($this->session->userdata('logged_in'))
-    {
-      $session_data = $this->session->userdata('logged_in');
-      $data['id'] = $session_data['id'];
-      $data['username'] = $session_data['username'];
-      $data['type'] = $session_data['type'];
-      $this->load->view('report', $data);
-    }
-    else
-    {
-      //If no session, redirect to login page
-      redirect('login', 'refresh');
-    }
+    $this->load->view('header');
+    $this->load->view('report');
+    $this->load->view('footer');
   }
 }
-
 ?>

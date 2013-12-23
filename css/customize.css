@@ -29,7 +29,6 @@ border-radius: 0px;
 }
 
 .area{
-height: 80%;
 margin-right: 3%;
 padding: 1%;
 }
@@ -69,7 +68,6 @@ margin-top: 2%;
 }
 
 .info-form{
-padding: 3%;
 }
 
 legend{
@@ -86,4 +84,43 @@ text-align: center;
 
 .tab-content{
 margin-top: 3%;
+}
+
+.subtitle{
+width: 10%;
+}
+
+.comment{
+font-weight: normal;
+font-size: 90%;
+margin-bottom: 3%;
+}
+
+.customize-btn-group{
+margin-bottom: 1%;
+}
+
+.save{
+bottom: 10px;
+right: 10px;
+position: fixed;
+}
+
+.top{
+right: 4%;
+position: fixed;
+}
+
+.student-button-groups > button{
+display: block;
+margin-top: 1%;
+width: 100%;
+}
+
+#footer{
+width: 100%;
+text-align: center;
+color: #fff;
+padding: 1%;
+background-color: #000;
 }
