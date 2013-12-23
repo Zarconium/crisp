@@ -20,14 +20,16 @@ class Dbms_Controller extends CI_Controller {
 
 	function index()
 	{
+		$data['students'] = $this->student->getAllStudentsFormatted();
+
 		$this->load->view('header');
-		$this->load->view('dbms');
+		$this->load->view('dbms', $data);
 		$this->load->view('footer');
 	}
 
 	function form_student()
 	{
-		if($this->input->post('submit'))
+		if($this->input->post())
 		{
 			$this->form_validation->set_rules('id_number', 'ID Number', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|xss_clean');
@@ -65,28 +67,41 @@ class Dbms_Controller extends CI_Controller {
 			$this->form_validation->set_rules('program[]', 'Programs', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('work', 'Work', 'trim|required|xss_clean');
 
-			if($this->form_validation->run() == FALSE)
+			if($this->input->post('submit'))
 			{
-				$this->load->view('header');
-				$this->load->view('forms/form-student');
-				$this->load->view('footer');
+				if($this->form_validation->run() == FALSE)
+				{
+					$this->load->view('header');
+					$this->load->view('forms/form-student');
+					$this->load->view('footer');
+				}
+				else
+				{
+					$data = array
+					(
+						/*'username' => $this->input->post('username'),
+						'first_name' => $this->input->post('first_name'),
+						'last_name' => $this->input->post('last_name'),
+						'password' => $this->input->post('password'),
+						'type' => $this->input->post('type'),
+						'school' => $this->input->post('school')*/
+					);
+
+					//$this->user->addUser($data);
+
+					$this->load->view('header');
+					$this->load->view('forms/form-student');
+					$this->load->view('footer');
+				}
 			}
-			else
+			elseif($this->input->post('save_draft'))
 			{
-				$data = array
-				(
-					'username' => $this->input->post('username'),
-					'first_name' => $this->input->post('first_name'),
-					'last_name' => $this->input->post('last_name'),
-					'password' => $this->input->post('password'),
-					'type' => $this->input->post('type'),
-					'school' => $this->input->post('school')
-				);
+				$this->form_validation->run();
 
-				//$this->user->addUser($data);
+				$data['draft_saved'] = TRUE;
 
 				$this->load->view('header');
-				$this->load->view('forms/form-student');
+				$this->load->view('forms/form-student', $data);
 				$this->load->view('footer');
 			}
 		}

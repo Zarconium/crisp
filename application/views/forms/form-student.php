@@ -1,4 +1,6 @@
 <div class="info-form">
+	<?php if (isset($draft_saved)) { echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Draft saved.</div>';} ?>
+
 	<h1>Student Form</h1>
 	
 	<legend>Personal Information</legend>
@@ -6,7 +8,7 @@
 	<?php echo form_open('/dbms/form_student'); ?>
 		<div class="save">
 			<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
-			<button type="button" class="btn btn-success" onclick="history.go(0);">Save Draft</button>
+			<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
 			<button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
 			<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
 		</div>
@@ -40,7 +42,7 @@
 			
 			<div class="form-group">
 				<label>Middle Initial</label>
-				<input type="text" class="form-control" name="middle_initial"  value="<?php echo set_value('middle_initial'); ?>">
+				<input type="text" class="form-control" name="middle_initial" value="<?php echo set_value('middle_initial'); ?>">
 				<?php echo form_error('middle_initial', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -76,7 +78,7 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Birth Day</label>
-				<input type="date" class="form-control"  name="birthday" value="<?php echo set_value('birthday'); ?>">
+				<input type="date" class="form-control" name="birthday" value="<?php echo set_value('birthday'); ?>">
 				<?php echo form_error('birthday', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -142,12 +144,12 @@
 			</div>
 
 			<div class="form-group"><label>Street Name</label>
-				<input type="text" class="form-control" name="alternate_street_name"  value="<?php echo set_value('alternate_street_name'); ?>">
+				<input type="text" class="form-control" name="alternate_street_name" value="<?php echo set_value('alternate_street_name'); ?>">
 				<?php echo form_error('alternate_street_name', '<div class="text-danger">', '</div>'); ?>
 			</div>
 
 			<div class="form-group"><label>City</label>
-				<input type="text" class="form-control" name="alternate_city"  value="<?php echo set_value('alternate_city'); ?>">
+				<input type="text" class="form-control" name="alternate_city" value="<?php echo set_value('alternate_city'); ?>">
 				<?php echo form_error('alternate_city', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -208,7 +210,7 @@
 			
 			<div class="form-group">
 				<label>Degree</label>
-				<input class="form-control" type="text"  name="degree" value="<?php echo set_value('degree'); ?>">
+				<input class="form-control" type="text" name="degree" value="<?php echo set_value('degree'); ?>">
 				<?php echo form_error('degree', '<div class="text-danger">', '</div>'); ?>
 			</div>
 			
@@ -222,7 +224,7 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>School</label>
-				<input type="text" class="form-control" name="school"  value="<?php echo set_value('school'); ?>">
+				<input type="text" class="form-control" name="school" value="<?php echo set_value('school'); ?>">
 				<?php echo form_error('school', '<div class="text-danger">', '</div>'); ?>
 			</div>
 
@@ -234,7 +236,7 @@
 
 			<div class="form-group">
 				<label>Expected Year of Graduation</label>
-				<input type="text" class="form-control"  name="expected_year_of_graduation" value="<?php echo set_value('expected_year_of_graduation'); ?>">
+				<input type="text" class="form-control" name="expected_year_of_graduation" value="<?php echo set_value('expected_year_of_graduation'); ?>">
 				<?php echo form_error('expected_year_of_graduation', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
