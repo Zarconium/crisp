@@ -1,0 +1,104 @@
+<HTML>
+<HEAD>
+    <SCRIPT language="javascript">
+        function addRow(tableID) {
+ 
+            var table = document.getElementById(tableID);
+ 
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount);
+ 
+            var colCount = table.rows[0].cells.length;
+ 
+            for(var i=0; i<colCount; i++) {
+ 
+                var newcell = row.insertCell(i);
+
+                newcell.innerHTML = table.rows[1].cells[i].innerHTML;
+                //alert(newcell.childNodes);
+                switch(newcell.childNodes[0].type) {
+                    case "text":
+                            newcell.childNodes[0].value = "";
+                            break;
+                    case "checkbox":
+                            newcell.childNodes[0].checked = false;
+                            break;
+                    case "select-one":
+                            newcell.childNodes[0].selectedIndex = 0;
+                            break;
+                     
+                }
+            }
+            
+        }
+ 
+        function deleteRow(tableID) {
+            try {
+            var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+ 
+            for(var i=0; i<rowCount; i++) {
+                var row = table.rows[i];
+                var chkbox = row.cells[0].childNodes[0];
+                if(null != chkbox && true == chkbox.checked) {
+                    if(rowCount <= 1) {
+                        alert("Cannot delete all the rows.");
+                        break;
+                    }
+                    table.deleteRow(i);
+                    rowCount--;
+                    i--;
+                }
+ 
+ 
+            }
+            }catch(e) {
+                alert(e);
+            }
+        }
+ 
+    </SCRIPT>
+</HEAD>
+<BODY>
+    <fieldset>
+    <legend><h1><B> AdEPT Student Tracker </h1></B></legend>
+    <INPUT type="button" value="Add Row" onclick="addRow('dataTable')" />
+ 
+    <INPUT type="button" value="Delete Row" onclick="deleteRow('dataTable')" />
+ 
+    <TABLE id="dataTable" width="350px" border="1">
+        <TR>
+        <TD><B>  </B></TD>
+        <TD><B> Last Name: </B></TD>
+        <TD><B> First Name: </B></TD>
+        <TD><B> Middle Initial: </B></TD>
+        <TD><B> Student Number: </B></TD>
+        <TD><B> Contract?: </B></TD>
+        <TD><B> CD?: </B></TD>
+        <TD><B> Status: </B></TD>
+        <TD><B> Remarks: </B></TD>
+        </TR>
+        <TR>
+           
+            <TD><INPUT type="checkbox" name="chk"/></TD>
+            <TD> <INPUT type="text" /> </TD>
+            <TD> <INPUT type="text" /> </TD>
+            <TD> <INPUT type="text" /> </TD>
+            <TD> <INPUT type="text" /> </TD>    
+            <TD><center><INPUT type="checkbox" name="chk"/></center></TD>
+            <TD><center><INPUT type="checkbox" name="chk"/></center></TD>  
+            <TD> <SELECT name="Status">
+                    <OPTION value="P">Passed</OPTION>
+                    <OPTION value="F">Fail</OPTION>
+                    <OPTION value="INC">Incomplete</OPTION>
+                    <OPTION value="C">Currently Taking</OPTION>
+                    <OPTION value="DR">Dropped</OPTION>
+                </SELECT> 
+        </TD>
+        <TD> <INPUT type="text" /> </TD>
+            
+        </TR>
+    </TABLE>
+    </fieldset>
+</BODY>
+</HTML>

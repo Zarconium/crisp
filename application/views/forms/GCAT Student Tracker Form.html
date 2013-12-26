@@ -1,0 +1,197 @@
+<HTML>
+<HEAD>
+	<title>GCAT Student Tracker Form</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/customize.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+    <SCRIPT language="javascript">
+        function addRow(tableID) {
+ 
+            var table = document.getElementById(tableID);
+ 
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount);
+ 
+            var colCount = table.rows[0].cells.length;
+ 
+            for(var i=0; i<colCount; i++) {
+ 
+                var newcell = row.insertCell(i);
+
+                newcell.innerHTML = table.rows[1].cells[i].innerHTML;
+                //alert(newcell.childNodes);
+                switch(newcell.childNodes[0].type) {
+                    case "text":
+                            newcell.childNodes[0].value = "";
+                            break;
+                     
+                }
+            }
+            
+        }
+ 
+        function deleteRow(tableID) {
+            try {
+            var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+ 
+            for(var i=0; i<rowCount; i++) {
+                var row = table.rows[i];
+                var chkbox = row.cells[0].childNodes[0];
+                if(null != chkbox && true == chkbox.checked) {
+                    if(rowCount <= 1) {
+                        alert("Cannot delete all the rows.");
+                        break;
+                    }
+                    table.deleteRow(i);
+                    rowCount--;
+                    i--;
+                }
+ 
+ 
+            }
+            }catch(e) {
+                alert(e);
+            }
+        }
+ 
+    </SCRIPT>
+</HEAD>
+<BODY>
+<div class="info-form">
+    
+    <h3>GCAT Student Tracker</h3>
+    <legend>Tracker Information</legend>
+	
+    <form class="form-inline">
+
+    <div class="form-group"><label for="Proctor">Proctor</label><span class="help-block">Last Name, First Name, Middle Initial</span>
+     <input class="form-control" type="text" name="proctor_name" value="" maxlength="250" />
+	</div><br/>
+
+    <div class="form-group"><label for="Name">School</label>
+     <input class="form-control" type="text" name="Name" value="" maxlength="250" />
+	</div>
+
+    <div class="form-group"><label for="Branch">Campus</label>
+     <input class="form-control" type="text" name="Branch" value="" maxlength="250" />
+	</div>
+
+    <div class="form-group"><label for="Subject">Subject</label>
+    <SELECT class="form-control" name="Subject">
+                    <OPTION value="BEST">BEST</OPTION>
+                    <OPTION value="AdEPT">AdEPT</OPTION>
+                    <OPTION value="BPO101">BPO101</OPTION>
+                    <OPTION value="BPO102">BPO102</OPTION>
+                    <OPTION value="Service_Culture">Service Culture</OPTION>
+                    <OPTION value="Systems_Thinking">Systems Thinking</OPTION>
+                    <OPTION value="GCAT">GCAT</OPTION>
+                </SELECT>
+	</div>
+
+    <div class="form-group"><label for="Semester">Semester</label>
+     <input class="form-control" type="text" name="Semester" value="" maxlength="10" />
+	</div>
+
+    <div class="form-group"><label for="Year">Year</label>
+     <input class="form-control" type="text" name="year" value="" maxlength="4" />
+	</div>
+
+    <div class="form-group"><label for="Section">Section</label>
+     <input class="form-control" type="text" name="section" value="" maxlength="4" />
+	</div>
+    </form>
+
+	<legend>Student List</legend>
+	
+	<div class="col-md-3">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				Add to List
+			</div>
+			<div class="panel-body">
+				<form class="form">
+					<div class="form-group">
+						<label>Last Name</label>
+						<input class="form-control" type="text">
+					</div>
+					<div class="form-group">
+						<label>First Name</label>
+						<input class="form-control" type="text">
+					</div>
+					<div class="form-group">
+						<label>Middle Initial</label>
+						<input class="form-control" type="text">
+					</div>
+					<div class="form-group">
+						<label>Student Number</label>
+						<input class="form-control" type="text">
+					</div>
+					<div class="form-group">
+						<label>Session ID</label>
+						<input class="form-control" type="text">
+					</div>
+					<div class="form-group">
+						<label>Test Date</label>
+						<input class="form-control" type="date">
+					</div>
+				
+					<div class="form-group">
+						<label>Status</label>
+						<input class="form-control" type="text">
+					</div>
+					
+					<div class="form-group">
+						<label>Remarks</label>
+						<input class="form-control" type="text">
+					</div>
+				
+					<div class="submit-button">
+						<button class="btn btn-primary" name="submit">Add to List</button>
+					</div>
+				</form>	
+			</div>
+		</div>
+	</div>
+	
+		
+  		
+	
+	<div class="col-md-9">
+		<h3>List of Students</h3>	
+		<div class="customize-btn-group">
+			<button type="button" class="btn btn-danger">Delete</button>
+			<button type="button" class="btn btn-success">Refresh</button>
+		</div>
+		<table class="table">
+        <TR>
+        <TH></TH>
+        <TH>Action</TH>
+        <TH>Full Name</TH>
+        <TH>Student Number</TH>
+        <TH>Session ID</TH>
+        <TH>Test Date</TH>
+        <TH>Status</TH>
+        <TH>Remarks</TH>
+        </TR>
+        <TR>
+			<td><input type="checkbox" ></td>
+			<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
+			<td>Simon, Dayanara F.</td>
+			<td>103523</td>
+			<td>101010</td>
+			<td>11-21-2013</td>
+			<td>Passed</td>
+			<td>Pretty girl</td>
+		</table>
+           
+        </TR>
+		<div class="customize-btn-group">
+			<button type="button" class="btn btn-danger">Delete</button>
+			<button type="button" class="btn btn-success">Refresh</button>
+		</div>
+	</div>
+</div>
+</BODY>
+</HTML>
+
