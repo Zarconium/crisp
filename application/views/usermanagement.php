@@ -34,7 +34,24 @@
 				<td><?php echo $row->first_name; ?></td>
 				<td><?php echo $row->last_name; ?></td>
 				<td><?php echo $row->type; ?></td>
-				<td><?php if($row->type == 'encoder') { echo $row->school; } else {	echo 'All'; } ?></td>
+				<td>
+					<?php
+						if($row->type == 'encoder')
+						{
+							foreach($schools as $school)
+							{
+								if($row->school == $school->School_ID)
+								{
+									echo $school->Name;
+								}
+							}
+						}
+						else
+						{
+							echo 'All';
+						}
+					?>
+				</td>
 			</tr>
 			<?php endforeach; ?>
 		</table>
@@ -87,7 +104,11 @@
 <!-- Start Hidden Modals -->
 <?php //Dropdown options for global use
 	$input_type_options = array('admin' => 'Administrator', 'encoder' => 'Encoder', 'guest' => 'Guest');
-	$input_school_options = array('Ateneo de Manila University' => 'Ateneo de Manila University', 'De La Salle University' => 'De La Salle University', 'University of Santo Tomas' => 'University of Santo Tomas', 'University of the Philippines' => 'University of the Philippines');
+	//$input_school_options = array('Ateneo de Manila University' => 'Ateneo de Manila University', 'De La Salle University' => 'De La Salle University', 'University of Santo Tomas' => 'University of Santo Tomas', 'University of the Philippines' => 'University of the Philippines');
+	foreach ($schools as $school)
+	{
+		$input_school_options[$school->School_ID] = $school->Name;
+	}
 ?>
 <!-- Add User Modal -->
 <div class="modal" id="add_user_form" tabindex="-1" role="dialog" aria-labelledby="add_user_form_label" aria-hidden="true">

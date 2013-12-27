@@ -4,7 +4,6 @@ class UserManagement_Controller extends CI_Controller {
   function __construct()
   {
     parent::__construct();
-    $this->load->model('user','',TRUE);
 
     if($this->session->userdata('logged_in'))
     {
@@ -60,9 +59,7 @@ class UserManagement_Controller extends CI_Controller {
 
         $this->user->addUser($data);
 
-        $this->load->view('header');
-        $this->load->view('usermanagement', $this->session_data());
-        $this->load->view('footer');
+        redirect('usermanagement');
       }
     }
     elseif ($this->input->post('new_button_cancel'))
@@ -115,10 +112,8 @@ class UserManagement_Controller extends CI_Controller {
         );
 
         $this->user->editUserById($this->input->post('edit_id'), $data);
-
-        $this->load->view('header');
-        $this->load->view('usermanagement', $this->session_data());
-        $this->load->view('footer');
+        
+        redirect('usermanagement');
       }
     }
     elseif ($this->input->post('edit_button_cancel'))
@@ -193,6 +188,7 @@ class UserManagement_Controller extends CI_Controller {
   {
     $session_data = $this->session->userdata('logged_in');
     $data['users'] = $this->user->getAllUsers();
+    $data['schools'] = $this->school->getAllSchools();
 
     return $data;
   }

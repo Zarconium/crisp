@@ -32,5 +32,10 @@ Class Student extends CI_Model
 			return false;
 		}	
 	}
+
+	function addStudent($data)
+	{
+		$this->db->insert('student', $data);
+	}
 }
 ?>

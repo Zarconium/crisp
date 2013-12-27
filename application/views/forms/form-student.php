@@ -6,6 +6,7 @@
 	<legend>Personal Information</legend>
 
 	<?php echo form_open('/dbms/form_student'); ?>
+		<!-- BUTTONS DIV -->
 		<div class="save">
 			<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
 			<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
@@ -13,6 +14,7 @@
 			<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
 		</div>
 
+		<!-- Start Fields -->
 		<div class="form-inline">
 			<div class="form-group">
 				<label>ID Number</label>
@@ -49,19 +51,10 @@
 
 		<div class="form-inline">
 			<div class="form-group">
-				<label>Are you a new applicant?</label><br/>
-				<input type="radio" name="applicant" value="yes"> Yes
-				<input type="radio" name="applicant" value="no"> No
-				<?php echo form_error('applicant', '<div class="text-danger">', '</div>'); ?>
-			</div>
-		</div>
-
-		<div class="form-inline">
-			<div class="form-group">
-				<label>If no, do you want to update your information (Do we even need this here)</label><br/>
-				<input type="radio" name="update" value="yes"> Yes
-				<input type="radio" name="update" value="no" > No
-				<?php echo form_error('update', '<div class="text-danger">', '</div>'); ?>
+				<label>Gender</label><br/>
+				<input type="radio" name="gender" value="male"> Male
+				<input type="radio" name="gender" value="female"> Female
+				<?php echo form_error('gender', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
 
@@ -77,9 +70,17 @@
 
 		<div class="form-inline">
 			<div class="form-group">
-				<label>Birth Day</label>
+				<label>Birthdate</label>
 				<input type="date" class="form-control" name="birthday" value="<?php echo set_value('birthday'); ?>">
 				<?php echo form_error('birthday', '<div class="text-danger">', '</div>'); ?>
+			</div>
+		</div>
+
+		<div class="form-inline">
+			<div class="form-group">
+				<label>Birthplace</label>
+				<input type="text" class="form-control" name="birthplace" value="<?php echo set_value('birthplace'); ?>">
+				<?php echo form_error('birthplace', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
 
@@ -138,39 +139,10 @@
 
 		<div class="form-inline">
 			<div class="form-group">
-				<label>Street Number</label>
-				<input type="text" class="form-control" name="alternate_street_number" value="<?php echo set_value('alternate_street_number'); ?>">
-				<?php echo form_error('alternate_street_number', '<div class="text-danger">', '</div>'); ?>
+				<label>Address</label>
+				<input type="text" class="form-control" name="alternate_address" value="<?php echo set_value('alternate_address'); ?>">
+				<?php echo form_error('alternate_address', '<div class="text-danger">', '</div>'); ?>
 			</div>
-
-			<div class="form-group"><label>Street Name</label>
-				<input type="text" class="form-control" name="alternate_street_name" value="<?php echo set_value('alternate_street_name'); ?>">
-				<?php echo form_error('alternate_street_name', '<div class="text-danger">', '</div>'); ?>
-			</div>
-
-			<div class="form-group"><label>City</label>
-				<input type="text" class="form-control" name="alternate_city" value="<?php echo set_value('alternate_city'); ?>">
-				<?php echo form_error('alternate_city', '<div class="text-danger">', '</div>'); ?>
-			</div>
-		</div>
-
-		<div class="form-inline">
-			<div class="form-group">
-				<label>Province</label>
-				<select class="form-control" name="alternate_province">
-					<option value="Manila">Manila</option>
-				</select>
-				<?php echo form_error('alternate_province', '<div class="text-danger">', '</div>'); ?>
-			</div>
-
-			<div class="form-group">
-				<label>Region</label>
-				<select class="form-control" name="alternate_region">
-					<option value="NCR">NCR</option>
-				</select>
-				<?php echo form_error('alternate_region', '<div class="text-danger">', '</div>'); ?>
-			</div>
-		</div>
 
 		<legend>Contact Details</legend>	
 
@@ -224,14 +196,12 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>School</label>
-				<input type="text" class="form-control" name="school" value="<?php echo set_value('school'); ?>">
+				<select class="form-control" name="school">
+				<?php foreach ($schools as $school): ?>
+					<option value="<?php echo $school->School_ID ?>"><?php echo $school->Name ?></option>
+				<?php endforeach; ?>
+				</select>
 				<?php echo form_error('school', '<div class="text-danger">', '</div>'); ?>
-			</div>
-
-			<div class="form-group">
-				<label>Branch</label>
-				<input type="text" class="form-control" name="branch" value="<?php echo set_value('branch'); ?>">
-				<?php echo form_error('branch', '<div class="text-danger">', '</div>'); ?>
 			</div>
 
 			<div class="form-group">
@@ -257,31 +227,47 @@
 				<input type="radio" name="scholar" value="No"> No
 				<?php echo form_error('scholar', '<div class="text-danger">', '</div>'); ?>
 			</div>
-			<br/>
-			<div class="form-group">
-				<label>Scholarship</label>
-				<input type="text" class="form-control" name="scholarship" value="<?php echo set_value('scholarship'); ?>">
-				<?php echo form_error('scholarship', '<div class="text-danger">', '</div>'); ?>
-			</div>
 		</div>
-			
+
 		<div class="form-inline">
 			<div class="form-group">
 				<label>What BPAP-CHED intervention program has been taken previously?</label><br/>
-				<input type="checkbox" name="program[]" value="best"> AdEPT<br/>
-				<input type="checkbox" name="program[]" value="adept"> BEST<br/>
-				<input type="checkbox" name="program[]" value="smp"> SMP<br/>
-				<input type="checkbox" name="program[]" value="gcat"> GCAT<br/>
-				<?php echo form_error('program[]', '<div class="text-danger">', '</div>'); ?>
+				<input type="checkbox" name="previous_program[]" value="best"> AdEPT<br/>
+				<input type="checkbox" name="previous_program[]" value="adept"> BEST<br/>
+				<input type="checkbox" name="previous_program[]" value="smp"> SMP<br/>
+				<input type="checkbox" name="previous_program[]" value="gcat"> GCAT<br/>
+				<?php echo form_error('previous_program[]', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
 
 		<div class="form-inline">
 			<div class="form-group">
-				<label>Are you willing to work for the IT-BPO sector</label><br/>
+				<label>Are you willing to work for the IT-BPO sector?</label><br/>
 				<input type="radio" name="work" value="yes"> Yes
 				<input type="radio" name="work" value="No"> No
 				<?php echo form_error('work', '<div class="text-danger">', '</div>'); ?>
+			</div>
+		</div>
+
+		<div class="form-inline">
+			<div class="form-group">
+				<label>Submitted the contract?</label><br/>
+				<input type="radio" name="contract" value="yes"> Yes
+				<input type="radio" name="contract" value="No"> No
+				<?php echo form_error('contract', '<div class="text-danger">', '</div>'); ?>
+			</div>
+		</div>
+
+		<legend>Application</legend>
+
+		<div class="form-inline">
+			<div class="form-group">
+				<label>Applying for which programs?</label><br/>
+				<input type="checkbox" name="new_program[]" value="best"> AdEPT<br/>
+				<input type="checkbox" name="new_program[]" value="adept"> BEST<br/>
+				<input type="checkbox" name="new_program[]" value="smp"> SMP<br/>
+				<input type="checkbox" name="new_program[]" value="gcat"> GCAT<br/>
+				<?php echo form_error('new_program[]', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
 	</form>
