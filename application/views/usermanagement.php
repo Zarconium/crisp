@@ -42,7 +42,7 @@
 							{
 								if($row->school == $school->School_ID)
 								{
-									echo $school->Name;
+									echo $school->Name . " - " . $school->Branch;
 								}
 							}
 						}
@@ -107,7 +107,7 @@
 	//$input_school_options = array('Ateneo de Manila University' => 'Ateneo de Manila University', 'De La Salle University' => 'De La Salle University', 'University of Santo Tomas' => 'University of Santo Tomas', 'University of the Philippines' => 'University of the Philippines');
 	foreach ($schools as $school)
 	{
-		$input_school_options[$school->School_ID] = $school->Name;
+		$input_school_options[$school->School_ID] = $school->Name . " - " . $school->Branch;
 	}
 ?>
 <!-- Add User Modal -->

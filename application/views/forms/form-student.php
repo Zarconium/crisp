@@ -198,7 +198,7 @@
 				<label>School</label>
 				<select class="form-control" name="school">
 				<?php foreach ($schools as $school): ?>
-					<option value="<?php echo $school->School_ID ?>"><?php echo $school->Name ?></option>
+					<option value="<?php echo $school->School_ID ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
 				<?php endforeach; ?>
 				</select>
 				<?php echo form_error('school', '<div class="text-danger">', '</div>'); ?>
