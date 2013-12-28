@@ -1,0 +1,8 @@
+<div class="col-md-10">
+	<div class="area">
+		<div class="header">
+			<h1>Test Page</h1>
+		</div>
+		<p>Supot si Evan</p>
+	</div>
+</div>

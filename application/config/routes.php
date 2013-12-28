@@ -47,7 +47,8 @@ $route['reports'] = 'reports_controller';
 $route['reports/(:any)'] = 'reports_controller/$1';
 $route['usermanagement'] = 'usermanagement_controller';
 $route['usermanagement/(:any)'] = 'usermanagement_controller/$1';
-
+$route['test'] = 'test_controller';
+$route['test/(:any)'] = 'test_controller/$1';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
