@@ -285,5 +285,33 @@ class Dbms_Controller extends CI_Controller {
 			$this->load->view('footer');
 		}	
 	}
+
+	function form_studentlist()
+	{
+		$this->load->view('header');
+		$this->load->view('forms/form-student-studentlist');
+		$this->load->view('footer');
+	}
+
+	function form_teacher_best_attendance()
+	{
+		$this->load->view('header');
+		$this->load->view('forms/form-teacher-best-attendance');
+		$this->load->view('footer');
+	}
+
+	function form_student_best_adept_product()
+	{
+		$this->load->view('header');
+		$this->load->view('forms/form-tracker-best-adept-encoder');
+		$this->load->view('footer');
+	}
+
+	function form_teacher_best_adept_product()
+	{
+		$this->load->view('header');
+		$this->load->view('forms/form-tracker-best-adept-teacher');
+		$this->load->view('footer');
+	}
 }
 ?>
