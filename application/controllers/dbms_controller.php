@@ -105,12 +105,12 @@ class Dbms_Controller extends CI_Controller {
 						'Expected_Year_of_Graduation' => $this->input->post('expected_year_of_graduation'),
 						'DOST_Scholar?' => $this->input->post('DOSTscholar'),
 						'Scholar?' => $this->input->post('scholar'),
-						//'Previous_program[]' => $this->input->post('previous_program[]'),//X
+						//'Previous_program[]' => $this->input->post('previous_program[]'),//Other table?
 						'Interested_In_IT-BPO?' => $this->input->post('work'),
 						'Own_A_Computer?' => $this->input->post('computer'),
 						'Internet_Access?' => $this->input->post('internet'),
 						//'Contract' => $this->input->post('contract'),//not in DB
-						//'New_program[]' => $this->input->post('new_program[]'),//X
+						//'New_program[]' => $this->input->post('new_program[]'),//Other table?
 						'Code' => $this->input->post('school') . $this->input->post('id_number')//concatenate school id and student id
 					);
 
