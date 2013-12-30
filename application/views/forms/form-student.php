@@ -251,6 +251,24 @@
 
 		<div class="form-inline">
 			<div class="form-group">
+				<label>Do you own a computer?</label><br/>
+				<input type="radio" name="computer" value="yes"> Yes
+				<input type="radio" name="computer" value="No"> No
+				<?php echo form_error('computer', '<div class="text-danger">', '</div>'); ?>
+			</div>
+		</div>
+
+		<div class="form-inline">
+			<div class="form-group">
+				<label>Do you have Internet access?</label><br/>
+				<input type="radio" name="internet" value="yes"> Yes
+				<input type="radio" name="internet" value="No"> No
+				<?php echo form_error('internet', '<div class="text-danger">', '</div>'); ?>
+			</div>
+		</div>
+
+		<div class="form-inline">
+			<div class="form-group">
 				<label>Submitted the contract?</label><br/>
 				<input type="radio" name="contract" value="yes"> Yes
 				<input type="radio" name="contract" value="No"> No
