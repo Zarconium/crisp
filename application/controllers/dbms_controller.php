@@ -34,30 +34,30 @@ class Dbms_Controller extends CI_Controller {
 		if($this->input->post())
 		{
 			$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|xss_clean');
-			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|xss_clean');
-			$this->form_validation->set_rules('id_number', 'ID Number', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('civil', 'Civil', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim||max_length[4]xss_clean');
+			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|max_length[5]|xss_clean');
+			$this->form_validation->set_rules('id_number', 'ID Number', 'trim|required|max_length[10]|xss_clean');
+			$this->form_validation->set_rules('civil', 'Civil', 'trim|required|max_length[9]|xss_clean');
 			$this->form_validation->set_rules('birthday', 'Birthday', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('birthplace', 'Birthplace', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('nationality', 'Nationality', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('current_street_number', 'Street Number', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('current_street_name', 'Street Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('current_city', 'City', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('current_province', 'Province', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('current_region', 'Region', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('alternate_address', 'Alternate Address', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('birthplace', 'Birthplace', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|exact_length[1]|xss_clean');
+			$this->form_validation->set_rules('nationality', 'Nationality', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('current_street_number', 'Street Number', 'trim|required|max_length[5]|xss_clean');
+			$this->form_validation->set_rules('current_street_name', 'Street Name', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('current_city', 'City', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('current_province', 'Province', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('current_region', 'Region', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('alternate_address', 'Alternate Address', 'trim|xss_clean');
+			$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|max_length[13]|xss_clean');
+			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|max_length[9]|xss_clean');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|xss_clean');
 			$this->form_validation->set_rules('degree_type', 'AB/BS', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('degree', 'Degree', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('year', 'Year', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('expected_year_of_graduation', 'Expected Year of Graduation', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('degree', 'Degree', 'trim|required|max_length[97]|xss_clean');
+			$this->form_validation->set_rules('year', 'Year', 'trim|required|integer|xss_clean');
+			$this->form_validation->set_rules('expected_year_of_graduation', 'Expected Year of Graduation', 'trim|required|integer|xss_clean');
 			$this->form_validation->set_rules('DOSTscholar', 'DOST Scholar', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('scholar', 'Scholar', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('previous_program[]', 'Previous Programs', 'trim|required|xss_clean');
@@ -77,7 +77,7 @@ class Dbms_Controller extends CI_Controller {
 				}
 				else
 				{
-					$data_array = array
+					$student = array
 					(
 						'School_ID' => $this->input->post('school'),
 						'Last_Name' => $this->input->post('last_name'),
@@ -114,7 +114,7 @@ class Dbms_Controller extends CI_Controller {
 						'Code' => $this->input->post('school') . $this->input->post('id_number')//concatenate school id and student id
 					);
 
-					$this->student->addStudent($data_array);
+					$this->student->addStudent($student);
 
 					$this->load->view('header');
 					$this->load->view('forms/form-student', $data);
