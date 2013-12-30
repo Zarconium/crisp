@@ -139,5 +139,78 @@ class Dbms_Controller extends CI_Controller {
 			$this->load->view('footer');
 		}
 	}
+
+	function form_proctor_application()
+	{
+		if($this->input->post())
+		{
+			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|xss_clean');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('civil', 'Civil Status', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('birthdate', 'Birthdate', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('mobile_number', 'Mobile Numver', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('company_name', 'Company Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('position', 'position', 'trim|required|xss_clean');
+
+			if($this->input->post('submit'))
+			{
+				if($this->form_validation->run() == FALSE)
+				{
+					$this->load->view('header');
+					$this->load->view('forms/form-proctor-application');
+					$this->load->view('footer');
+				}
+				else
+				{
+					$data_array = array
+					(
+						'Name_Suffix' => $this->input->post('name_suffix'),
+						'Last_Name' => $this->input->post('last_name'),
+						'First_Name' => $this->input->post('first_name'),
+						'Middle_Initial' => $this->input->post('middle_initial'),
+						'Gender' => $this->input->post('gender'),
+						'Civil_Status' => $this->input->post('civil'),
+						'Birthdate' => $this->input->post('birthday'),
+						'Mobile_Number' => $this->input->post('mobile_number'),
+						'Landline' => $this->input->post('landline'),
+						'Email' => $this->input->post('email'),
+						'Facebook' => $this->input->post('facebook'),
+						'Company_Name' => $this->input->post('company_name'),
+						'Company_Address' => $this->input->post('company_address'),
+						'Position' => $this->input->post('position'),
+					);
+
+					//$this->student->addStudent($data_array);
+
+					$this->load->view('header');
+					$this->load->view('forms/form-proctor-application');
+					$this->load->view('footer');
+				}
+			}
+			elseif($this->input->post('save_draft'))
+			{
+				$this->form_validation->run();
+
+				$data['draft_saved'] = TRUE;
+
+				$this->load->view('header');
+				$this->load->view('forms/form-proctor-application');
+				$this->load->view('footer');
+			}
+		}
+		else
+		{
+			$this->load->view('header');
+			$this->load->view('forms/form-proctor-application');
+			$this->load->view('footer');
+		}	
+	}
 }
 ?>
