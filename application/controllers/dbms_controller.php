@@ -60,7 +60,6 @@ class Dbms_Controller extends CI_Controller {
 			$this->form_validation->set_rules('expected_year_of_graduation', 'Expected Year of Graduation', 'trim|required|integer|xss_clean');
 			$this->form_validation->set_rules('DOSTscholar', 'DOST Scholar', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('scholar', 'Scholar', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('previous_program[]', 'Previous Programs', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('work', 'Work', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('computer', 'Computer', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('internet', 'Internet', 'trim|required|xss_clean');
@@ -105,7 +104,6 @@ class Dbms_Controller extends CI_Controller {
 						'Expected_Year_of_Graduation' => $this->input->post('expected_year_of_graduation'),
 						'DOST_Scholar?' => $this->input->post('DOSTscholar'),
 						'Scholar?' => $this->input->post('scholar'),
-						//'Previous_program[]' => $this->input->post('previous_program[]'),//Other table?
 						'Interested_In_IT-BPO?' => $this->input->post('work'),
 						'Own_A_Computer?' => $this->input->post('computer'),
 						'Internet_Access?' => $this->input->post('internet'),
@@ -115,6 +113,16 @@ class Dbms_Controller extends CI_Controller {
 					);
 
 					$this->student->addStudent($student);
+
+					$student_application = array
+					(
+						'Answer_1' => $this->input->post(''),
+						'Answer_2' => $this->input->post(''),
+						'Contract?' => $this->input->post(''),
+						'Student_ID' => $this->input->post(''),
+						'Project_ID' => $this->input->post(''),
+						'Subject_ID' => $this->input->post('')
+					);
 
 					$this->load->view('header');
 					$this->load->view('forms/form-student', $data);

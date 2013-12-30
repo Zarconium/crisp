@@ -231,17 +231,6 @@
 
 		<div class="form-inline">
 			<div class="form-group">
-				<label>What BPAP-CHED intervention program has been taken previously?</label><br/>
-				<input type="checkbox" name="previous_program[]" value="best"> AdEPT<br/>
-				<input type="checkbox" name="previous_program[]" value="adept"> BEST<br/>
-				<input type="checkbox" name="previous_program[]" value="smp"> SMP<br/>
-				<input type="checkbox" name="previous_program[]" value="gcat"> GCAT<br/>
-				<?php echo form_error('previous_program[]', '<div class="text-danger">', '</div>'); ?>
-			</div>
-		</div>
-
-		<div class="form-inline">
-			<div class="form-group">
 				<label>Are you willing to work for the IT-BPO sector?</label><br/>
 				<input type="radio" name="work" value="yes"> Yes
 				<input type="radio" name="work" value="No"> No
@@ -281,10 +270,12 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Applying for which programs?</label><br/>
-				<input type="checkbox" name="new_program[]" value="best"> AdEPT<br/>
-				<input type="checkbox" name="new_program[]" value="adept"> BEST<br/>
-				<input type="checkbox" name="new_program[]" value="smp"> SMP<br/>
-				<input type="checkbox" name="new_program[]" value="gcat"> GCAT<br/>
+				<input type="checkbox" name="new_program[]" value="smp_ched"> SMP-CHED<br/>
+				<input type="checkbox" name="new_program[]" value="gcat_ched"> GCAT-CHED<br/>
+				<input type="checkbox" name="new_program[]" value="best_ched"> BEST-CHED<br/>
+				<input type="checkbox" name="new_program[]" value="adept_ched"> AdEPT-CHED<br/>
+				<input type="checkbox" name="new_program[]" value="best_sei"> BEST-SEI<br/>
+				<input type="checkbox" name="new_program[]" value="adept_sei"> ADEPT-SEI<br/>
 				<?php echo form_error('new_program[]', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>

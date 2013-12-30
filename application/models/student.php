@@ -37,5 +37,10 @@ Class Student extends CI_Model
 	{
 		$this->db->insert('student', $data);
 	}
+
+	function addStudentApplication($data)
+	{
+		$this->db->insert('student_application', $data);
+	}
 }
 ?>
