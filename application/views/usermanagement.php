@@ -260,15 +260,24 @@
 					{
 						foreach($user_to_delete as $user)
 						{
-							$u_id = $user->id;
-							$u_username = $user->username;
+							if($this->session->userdata('logged_in')['id'] != $user->id)
+							{
+								$u_id = $user->id;
+								$u_username = $user->username;
+								echo "Delete $u_username?";
+							}
+							else
+							{
+								$u_id = $user->id;
+								$u_username = $user->username;
+								echo "Cannot delete self.";
+							}
 						}
 					}
 				?>
-				Delete <?php echo $u_username; ?>?
 			</div>
 			<div class="modal-footer">
-				<a href="<?php echo base_url('usermanagement/delete_user/' . $u_id); ?>"><button type="button" class="btn btn-primary">OK</button></a>
+				<?php if ($this->session->userdata('logged_in')['id'] != $u_id) { echo '<a href="' . base_url("usermanagement/delete_user/" . $u_id) . '"><button type="button" class="btn btn-primary">OK</button></a>'; }	?>
         		<a href="<?php echo base_url('usermanagement'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
 			</div>
 		</div>

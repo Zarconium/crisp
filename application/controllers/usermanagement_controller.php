@@ -171,7 +171,10 @@ class UserManagement_Controller extends CI_Controller {
 		{
 			foreach ($this->input->post('users_to_delete') as $id)
 			{
-				$this->user->deleteUserById($id);
+				if ($this->session->userdata('logged_in')['id'] != $id)
+				{
+					$this->user->deleteUserById($id);
+				}
 			}
 			
 			redirect('usermanagement');
