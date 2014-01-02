@@ -37,7 +37,7 @@
 							<?php foreach ($students as $student): ?>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td><a href="form-student-edit.php">View</a> | <a href="#">Delete</a></td>
+								<td><a href="<?php echo base_url('dbms/form_student_profile'); ?>">View</a> | <a href="#">Delete</a></td>
 								<td><?php echo $student->Full_Name; ?></td>
 								<td><?php echo $student->School_Name; ?></td>
 								<td>GCAT, SMP, BEST</td>
@@ -207,18 +207,20 @@
 							<tr>
 								<th>Check</th>
 								<th>Action</th>
-								<th>Date</th>
-								<th>School</th>
-								<th>Campus</th>
-								<th>List of Students</th>
+								<th>ID Number</th>
+								<th>Name</th>
+								<th>Year</th>
+								<th>Course</th>
+								<th>Subjects</th>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td><a href="<?php echo base_url('dbms/form_program_best_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
-								<td>11/21/2013</td>
-								<td>Ateneo de Manila University</td>
-								<td>Quezon City</td>
-								<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfStudents">View List</button></td>
+								<td><a href="<?php echo base_url('dbms/form_program_smp_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
+								<td>103523</td>
+								<td>Simon, Dayanara F.</td>
+								<td>4</td>
+								<td>BS Management Information Systems</td>
+								<td><button class="btn btn-default" data-toggle="modal" data-target="#viewSMPSubjects">View List</button></td>
 							</tr>
 						</table>
 						
@@ -229,7 +231,7 @@
 						<div class="button-groups">
 							<a href="<?php echo base_url('dbms/form_program_gcat_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 							<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-							<button class="btn btn-warning" data-toggle="modal" data-target="#searchSMP">Search</button>
+							<button class="btn btn-warning" data-toggle="modal" data-target="#searchGCAT">Search</button>
 							<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 							<button class="btn btn-success">Refresh</button>
 						</div>
@@ -237,21 +239,25 @@
 							<tr>
 								<th>Check</th>
 								<th>Action</th>
-								<th>Date</th>
+								<th>Proctor</th>
 								<th>School</th>
 								<th>Campus</th>
 								<th>Subject</th>
-								<th>Proctor</th>
+								<th>Semester</th>
+								<th>Year</th>
+								<th>Section</th>
 								<th>List of Students</th>
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
 								<td><a href="<?php echo base_url('dbms/form_program_gcat_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
-								<td>11/21/2013</td>
+								<td>Pulan, Max</td>
 								<td>Ateneo de Manila University</td>
 								<td>Quezon City</td>
 								<td>ITM</td>
-								<td>Pulan, Max</td>
+								<td>1st</td>
+								<td>2</td>
+								<td>AA</td>
 								<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfStudents">View List</button></td>
 							</tr>
 						</table>
@@ -262,7 +268,7 @@
 						<div class="button-groups">
 							<a href="<?php echo base_url('dbms/form_program_best_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 							<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-							<button class="btn btn-warning" data-toggle="modal" data-target="#searchSMP">Search</button>
+							<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 							<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 							<button class="btn btn-success">Refresh</button>
 						</div>
@@ -287,6 +293,31 @@
 					</div>
 					
 					<div class="tab-pane fade" id="adept">
+						<div class="button-groups">
+							<a href="<?php echo base_url('dbms/form_program_adept_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
+							<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+							<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
+							<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
+							<button class="btn btn-success">Refresh</button>
+						</div>
+						<table class="table table-area">
+							<tr>
+								<th>Check</th>
+								<th>Action</th>
+								<th>Date</th>
+								<th>School</th>
+								<th>Campus</th>
+								<th>List of Students</th>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td><a href="<?php echo base_url('dbms/form_program_adept_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
+								<td>11/21/2013</td>
+								<td>Ateneo de Manila University</td>
+								<td>Quezon City</td>
+								<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfStudents">View List</button></td>
+							</tr>
+						</table>
 					</div>
 					
 					
@@ -488,6 +519,47 @@
   </div>
 </div>
 
+<div class="modal fade" id="searchBestAdept" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Filter Search</h4>
+      </div>
+      <div class="modal-body">
+		<div class="student-button-groups">
+		
+						
+				<form class="form" role="form">
+					<div class="form-group">
+						<label for="name">Date</label>
+						<input type="date" class="form-control" id="name">
+					</div>
+					<div class="form-group">
+						<label for="name">School</label>
+						<input type="text" class="form-control" id="name">
+					</div>
+					<div class="form-group">
+						<label for="school">Branch</label>
+						<input type="text" class="form-control" id="school">
+					</div>
+					<div class="form-group">
+						<label for="school">Students <span class="help-block">separated by a comma</span></label>
+						<input type="text" class="form-control" id="school">
+					</div>
+				</form>
+						
+
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="viewListOfStudents" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -500,6 +572,129 @@
 			This has the list of all the students in the class.
 		</div>
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="searchGCAT" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Filter Search</h4>
+      </div>
+      <div class="modal-body">
+		<div class="student-button-groups">
+		
+						
+				<form class="form" role="form">
+					<div class="form-group">
+						<label for="name">Proctor</label>
+						<input type="text" class="form-control" id="name">
+					</div>
+					<div class="form-group">
+						<label for="school">School</label>
+						<input type="text" class="form-control" id="school">
+					</div>
+					<div class="form-group">
+						<label for="school">Campus</label>
+						<input type="text" class="form-control" id="school">
+					</div>
+					<div class="form-group">
+						<label for="school">Subject</label>
+						<input type="text" class="form-control" id="school">
+					</div>
+					<div class="form-group">
+						<label for="school">Semester</label>
+						<input type="number" class="form-control" id="school">
+					</div>
+					<div class="form-group">
+						<label for="school">Year</label>
+						<input type="number" class="form-control" id="school">
+					</div>
+					<div class="form-group">
+						<label for="school">Section</label>
+						<input type="number" class="form-control" id="school">
+					</div>
+					<div class="form-group">
+						<label for="school">Students <span class="help-block">separated by a comma</span></label>
+						<input type="text" class="form-control" id="school">
+					</div>
+				</form>
+						
+
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="viewSMPSubjects" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">SMP Subjects</h4>
+      </div>
+      <div class="modal-body">
+		Taken by <span class="highlight">Dayanara Simon</span>.
+		<table class="table">
+			<tr>
+				<th>Subject</th>
+				<th>Year Taken</th>
+				<th>Semester</th>
+				<th>Status</th>
+				<th>Grade Received</th>
+				<th>No. of Times Taken</th>
+			</tr>
+			<tr>
+				<td>Business Communication</td>
+				<td>1</td>
+				<td>2</td>
+				<td>Passed</td>
+				<td>90</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>BPO101</td>
+				<td>1</td>
+				<td>2</td>
+				<td>Passed</td>
+				<td>90</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>BPO102</td>
+				<td>1</td>
+				<td>2</td>
+				<td>Passed</td>
+				<td>90</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>Service Culture</td>
+				<td>1</td>
+				<td>2</td>
+				<td>Passed</td>
+				<td>90</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>Systems Thinking</td>
+				<td>1</td>
+				<td>2</td>
+				<td>Passed</td>
+				<td>90</td>
+				<td>1</td>
+			</tr>
+		</table>
+	  </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
       </div>

@@ -7,7 +7,7 @@
 	
     <form class="form-inline">
 
-    <div class="form-group"><label for="Proctor">Proctor</label><span class="help-block">Last Name, First Name, Middle Initial</span>
+    <div class="form-group"><label for="Proctor">Proctor's Name</label><span class="help-block">Last Name, First Name, Middle Initial (ex: "Simon, Dayanara F.")</span>
      <input class="form-control" type="text" name="proctor_name" value="" maxlength="250" />
 	</div><br/>
 
@@ -129,10 +129,6 @@
 		</table>
            
         </TR>
-		<div class="customize-btn-group">
-			<button type="button" class="btn btn-danger">Delete</button>
-			<button type="button" class="btn btn-success">Refresh</button>
-		</div>
 	</div>
 </div>
 	

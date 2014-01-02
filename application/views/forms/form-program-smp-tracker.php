@@ -59,219 +59,173 @@
 					
 					</form>
 					
-					<legend>Business Communication</legend>
+					<legend>Subjects</legend>
 					<form class="form" role="form">
-
-						<div class="form-group">	
-						<label>Year Taken</label>
-						<select class="form-control" name="bizcom_year" value="<?php echo set_value('bizcom_year'); ?>">
-							<option>Option1</option>
-							<option>Option2</option>
-							<option>Option3</option>
-						</select>
-				<?php echo form_error('bizcom_year', '<div class="text-danger">', '</div>'); ?>
-						</div>
-						
-						<div class="form-group">	
-						<label>Semester</label>
-							<input class="form-control" type="number" name="bizcom_semester" value="<?php echo set_value('bizcom_semester'); ?>">
-				<?php echo form_error('bizcom_semester', '<div class="text-danger">', '</div>'); ?>
-						</div>
-						
-						<div class="form-group">							
-						<label>Status</label>
-						<select class="form-control" name="bizcom_status" value="<?php echo set_value('bizcom_status'); ?>">
-							<option>Option1</option>
-							<option>Option2</option>
-							<option>Option3</option>
-						</select>
-				<?php echo form_error('bizcom_status', '<div class="text-danger">', '</div>'); ?>
-						</div>
-						
-						<div class="form-group">	
-						<label>Grade Received</label>
-							<input class="form-control" type="text" name="bizcom_grade" value="<?php echo set_value('bizcom_grade'); ?>">
-				<?php echo form_error('bizcom_grade', '<div class="text-danger">', '</div>'); ?>			
-						</div>
-						
-						<div class="form-group">	
-						<label>No. of Times Taken</label>
-							<input class="form-control" type="number" name="bizcom_times_taken" value="<?php echo set_value('bizcom_times_taken'); ?>">
-				<?php echo form_error('bizcom_times_taken', '<div class="text-danger">', '</div>'); ?>
-						</div>
-					
-					</form>
-					
-					<legend>BPO101</legend>
-					<form class="form" role="form">
-
-						<div class="form-group">	
-						<label>Year Taken</label>
-						<select class="form-control" name="bpo101_year" value="<?php echo set_value('bpo101_year'); ?>">
-							<option>Option1</option>
-							<option>Option2</option>
-							<option>Option3</option>
-						</select>
-				<?php echo form_error('bpo101_year', '<div class="text-danger">', '</div>'); ?>
-						</div>
-						
-						<div class="form-group">	
-						<label>Semester</label>
-							<input class="form-control" type="number" name="bpo101_semester" value="<?php echo set_value('bpo101_semester'); ?>">
-				<?php echo form_error('bpo101_semester', '<div class="text-danger">', '</div>'); ?>
-						</div>
-						
-						<div class="form-group">							
-						<label>Status</label>
-						<select class="form-control" name="bpo101_status" value="<?php echo set_value('bpo101_status'); ?>">
-							<option>Option1</option>
-							<option>Option2</option>
-							<option>Option3</option>
-						</select>
-				<?php echo form_error('bpo101_status', '<div class="text-danger">', '</div>'); ?>
-						</div>
-						
-						<div class="form-group">	
-						<label>Grade Received</label>
-							<input class="form-control" type="text" name="bpo101_grade" value="<?php echo set_value('bpo101_grade'); ?>">
-				<?php echo form_error('bpo101_grade', '<div class="text-danger">', '</div>'); ?>			
-						</div>
-						
-						<div class="form-group">	
-						<label>No. of Times Taken</label>
-							<input class="form-control" type="number" name="bpo101_times_taken" value="<?php echo set_value('bpo101_times_taken'); ?>">
-				<?php echo form_error('bpo101_times_taken', '<div class="text-danger">', '</div>'); ?>
-						</div>
-					
-					</form>
-					
-					<legend>BPO102</legend>
-					<form class="form" role="form">
-
-						<div class="form-group">	
-						<label>Year Taken</label>
-						<select class="form-control" name="bpo102_year" value="<?php echo set_value('bpo102_year'); ?>">
-							<option>Option1</option>
-							<option>Option2</option>
-							<option>Option3</option>
-						</select>
-				<?php echo form_error('bpo102_year', '<div class="text-danger">', '</div>'); ?>
-						</div>
-						
-						<div class="form-group">	
-						<label>Semester</label>
-							<input class="form-control" type="number" name="bpo102_semester" value="<?php echo set_value('bpo102_semester'); ?>">
-				<?php echo form_error('bpo102_semester', '<div class="text-danger">', '</div>'); ?>
-						</div>
-						
-						<div class="form-group">							
-						<label>Status</label>
-						<select class="form-control" name="bpo102_status" value="<?php echo set_value('bpo102_status'); ?>">
-							<option>Option1</option>
-							<option>Option2</option>
-							<option>Option3</option>
-						</select>
-				<?php echo form_error('bpo102_status', '<div class="text-danger">', '</div>'); ?>
-						</div>
-						
-						<div class="form-group">	
-						<label>Grade Received</label>
-							<input class="form-control" type="text" name="bpo102_grade" value="<?php echo set_value('bpo102_grade'); ?>">
-				<?php echo form_error('bpo102_grade', '<div class="text-danger">', '</div>'); ?>			
-						</div>
-						
-						<div class="form-group">	
-						<label>No. of Times Taken</label>
-							<input class="form-control" type="number" name="bpo102_times_taken" value="<?php echo set_value('bpo102_times_taken'); ?>">
-				<?php echo form_error('bpo102_times_taken', '<div class="text-danger">', '</div>'); ?>
-						</div>
-					
-					</form>
-					
-					<legend>Service Culture</legend>
-					<form class="form" role="form">
-
-						<div class="form-group">	
-						<label>Year Taken</label>
-						<select class="form-control" name="sc101_year" value="<?php echo set_value('sc101_year'); ?>">
-							<option>Option1</option>
-							<option>Option2</option>
-							<option>Option3</option>
-						</select>
-				<?php echo form_error('sc101_year', '<div class="text-danger">', '</div>'); ?>
-						</div>
-						
-						<div class="form-group">	
-						<label>Semester</label>
-							<input class="form-control" type="number" name="sc101_semester" value="<?php echo set_value('sc101_semester'); ?>">
-				<?php echo form_error('sc101_semester', '<div class="text-danger">', '</div>'); ?>
-						</div>
-						
-						<div class="form-group">							
-						<label>Status</label>
-						<select class="form-control" name="sc101_status" value="<?php echo set_value('sc101_status'); ?>">
-							<option>Option1</option>
-							<option>Option2</option>
-							<option>Option3</option>
-						</select>
-				<?php echo form_error('sc101_status', '<div class="text-danger">', '</div>'); ?>
-						</div>
-						
-						<div class="form-group">	
-						<label>Grade Received</label>
-							<input class="form-control" type="text" name="sc101_grade" value="<?php echo set_value('sc101_grade'); ?>">
-				<?php echo form_error('sc101_grade', '<div class="text-danger">', '</div>'); ?>			
-						</div>
-						
-						<div class="form-group">	
-						<label>No. of Times Taken</label>
-							<input class="form-control" type="number" name="sc101_times_taken" value="<?php echo set_value('sc101_times_taken'); ?>">
-				<?php echo form_error('sc101_times_taken', '<div class="text-danger">', '</div>'); ?>
-						</div>
-					
-					</form>
-					
-					<legend>Systems Thinking</legend>
-					<form class="form" role="form">
-
-						<div class="form-group">	
-						<label>Year Taken</label>
-						<select class="form-control" name="bpo101_year" value="<?php echo set_value('bpo101_year'); ?>">
-							<option>Option1</option>
-							<option>Option2</option>
-							<option>Option3</option>
-						</select>
-				<?php echo form_error('bpo101_year', '<div class="text-danger">', '</div>'); ?>
-						</div>
-						
-						<div class="form-group">	
-						<label>Semester</label>
-							<input class="form-control" type="number" name="systh101_semester" value="<?php echo set_value('systh101_semester'); ?>">
-				<?php echo form_error('systh101_semester', '<div class="text-danger">', '</div>'); ?>
-						</div>
-						
-						<div class="form-group">							
-						<label>Status</label>
-						<select class="form-control" name="systh101_status" value="<?php echo set_value('systh101_status'); ?>">
-							<option>Option1</option>
-							<option>Option2</option>
-							<option>Option3</option>
-						</select>
-				<?php echo form_error('systh101_status', '<div class="text-danger">', '</div>'); ?>
-						</div>
-						
-						<div class="form-group">	
-						<label>Grade Received</label>
-							<input class="form-control" type="text" name="systh101_grade" value="<?php echo set_value('systh101_grade'); ?>">
-				<?php echo form_error('systh101_grade', '<div class="text-danger">', '</div>'); ?>			
-						</div>
-						
-						<div class="form-group">	
-						<label>No. of Times Taken</label>
-							<input class="form-control" type="number" name="systh101_times_taken" value="<?php echo set_value('systh101_times_taken'); ?>">
-				<?php echo form_error('systh01_times_taken', '<div class="text-danger">', '</div>'); ?>
-						</div>
-					
+						<table class="table">
+							<tr>
+								<th>Subject</th>
+								<th>Year Taken</th>
+								<th>Semester</th>
+								<th>Status</th>
+								<th>Grade Received</th>
+								<th>No. of Times Taken</th>
+							</tr>
+							<tr>
+								<td>Business Communication</td>
+								<td>
+									<select class="form-control" name="bizcom_year" value="<?php echo set_value('bizcom_year'); ?>">
+										<option>Option1</option>
+										<option>Option2</option>
+										<option>Option3</option>
+									</select>
+									<?php echo form_error('bizcom_year', '<div class="text-danger">', '</div>'); ?>
+								</td>
+								<td>
+									<input class="form-control" type="number" name="bizcom_semester" value="<?php echo set_value('bizcom_semester'); ?>">
+									<?php echo form_error('bizcom_semester', '<div class="text-danger">', '</div>'); ?>
+								</td>
+								<td>
+									<select class="form-control" name="bizcom_status" value="<?php echo set_value('bizcom_status'); ?>">
+										<option>Option1</option>
+										<option>Option2</option>
+										<option>Option3</option>
+									</select>
+									<?php echo form_error('bizcom_status', '<div class="text-danger">', '</div>'); ?>
+								</td>
+								<td>
+									<input class="form-control" type="text" name="bizcom_grade" value="<?php echo set_value('bizcom_grade'); ?>">
+									<?php echo form_error('bizcom_grade', '<div class="text-danger">', '</div>'); ?>	
+								</td>
+								<td>
+									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php echo set_value('bizcom_times_taken'); ?>">
+									<?php echo form_error('bizcom_times_taken', '<div class="text-danger">', '</div>'); ?>
+								</td>
+							</tr>	
+							<tr>
+								<td>BPO101</td>
+								<td>
+									<select class="form-control" name="bizcom_year" value="<?php echo set_value('bpo101_year'); ?>">
+										<option>Option1</option>
+										<option>Option2</option>
+										<option>Option3</option>
+									</select>
+									<?php echo form_error('bpo101_year', '<div class="text-danger">', '</div>'); ?>
+								</td>
+								<td>
+									<input class="form-control" type="number" name="bizcom_semester" value="<?php echo set_value('bpo101_semester'); ?>">
+									<?php echo form_error('bpo101_semester', '<div class="text-danger">', '</div>'); ?>
+								</td>
+								<td>
+									<select class="form-control" name="bizcom_status" value="<?php echo set_value('bpo101_status'); ?>">
+										<option>Option1</option>
+										<option>Option2</option>
+										<option>Option3</option>
+									</select>
+									<?php echo form_error('bpo101_status', '<div class="text-danger">', '</div>'); ?>
+								</td>
+								<td>
+									<input class="form-control" type="text" name="bizcom_grade" value="<?php echo set_value('bpo101_grade'); ?>">
+									<?php echo form_error('bpo101_grade', '<div class="text-danger">', '</div>'); ?>	
+								</td>
+								<td>
+									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php echo set_value('bpo101_times_taken'); ?>">
+									<?php echo form_error('bpo101_times_taken', '<div class="text-danger">', '</div>'); ?>
+								</td>
+							</tr>
+							<tr>
+								<td>BPO102</td>
+								<td>
+									<select class="form-control" name="bizcom_year" value="<?php echo set_value('bpo102_year'); ?>">
+										<option>Option1</option>
+										<option>Option2</option>
+										<option>Option3</option>
+									</select>
+									<?php echo form_error('bpo102_year', '<div class="text-danger">', '</div>'); ?>
+								</td>
+								<td>
+									<input class="form-control" type="number" name="bizcom_semester" value="<?php echo set_value('bpo102_semester'); ?>">
+									<?php echo form_error('bpo102_semester', '<div class="text-danger">', '</div>'); ?>
+								</td>
+								<td>
+									<select class="form-control" name="bizcom_status" value="<?php echo set_value('bpo102_status'); ?>">
+										<option>Option1</option>
+										<option>Option2</option>
+										<option>Option3</option>
+									</select>
+									<?php echo form_error('bpo102_status', '<div class="text-danger">', '</div>'); ?>
+								</td>
+								<td>
+									<input class="form-control" type="text" name="bizcom_grade" value="<?php echo set_value('bpo102_grade'); ?>">
+									<?php echo form_error('bpo102_grade', '<div class="text-danger">', '</div>'); ?>	
+								</td>
+								<td>
+									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php echo set_value('bpo102_times_taken'); ?>">
+									<?php echo form_error('bpo102_times_taken', '<div class="text-danger">', '</div>'); ?>
+								</td>
+							</tr>
+							<tr>
+								<td>Service Culture</td>
+								<td>
+									<select class="form-control" name="bizcom_year" value="<?php echo set_value('sc_year'); ?>">
+										<option>Option1</option>
+										<option>Option2</option>
+										<option>Option3</option>
+									</select>
+									<?php echo form_error('sc_year', '<div class="text-danger">', '</div>'); ?>
+								</td>
+								<td>
+									<input class="form-control" type="number" name="bizcom_semester" value="<?php echo set_value('sc_semester'); ?>">
+									<?php echo form_error('sc_semester', '<div class="text-danger">', '</div>'); ?>
+								</td>
+								<td>
+									<select class="form-control" name="bizcom_status" value="<?php echo set_value('sc_status'); ?>">
+										<option>Option1</option>
+										<option>Option2</option>
+										<option>Option3</option>
+									</select>
+									<?php echo form_error('sc_status', '<div class="text-danger">', '</div>'); ?>
+								</td>
+								<td>
+									<input class="form-control" type="text" name="bizcom_grade" value="<?php echo set_value('sc_grade'); ?>">
+									<?php echo form_error('sc_grade', '<div class="text-danger">', '</div>'); ?>	
+								</td>
+								<td>
+									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php echo set_value('sc_times_taken'); ?>">
+									<?php echo form_error('sc_times_taken', '<div class="text-danger">', '</div>'); ?>
+								</td>
+							</tr>
+							<tr>
+								<td>Systems Thinking</td>
+								<td>
+									<select class="form-control" name="bizcom_year" value="<?php echo set_value('st_year'); ?>">
+										<option>Option1</option>
+										<option>Option2</option>
+										<option>Option3</option>
+									</select>
+									<?php echo form_error('st_year', '<div class="text-danger">', '</div>'); ?>
+								</td>
+								<td>
+									<input class="form-control" type="number" name="bizcom_semester" value="<?php echo set_value('st_semester'); ?>">
+									<?php echo form_error('st_semester', '<div class="text-danger">', '</div>'); ?>
+								</td>
+								<td>
+									<select class="form-control" name="bizcom_status" value="<?php echo set_value('st_status'); ?>">
+										<option>Option1</option>
+										<option>Option2</option>
+										<option>Option3</option>
+									</select>
+									<?php echo form_error('st_status', '<div class="text-danger">', '</div>'); ?>
+								</td>
+								<td>
+									<input class="form-control" type="text" name="bizcom_grade" value="<?php echo set_value('st_grade'); ?>">
+									<?php echo form_error('st_grade', '<div class="text-danger">', '</div>'); ?>	
+								</td>
+								<td>
+									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php echo set_value('st_times_taken'); ?>">
+									<?php echo form_error('st_times_taken', '<div class="text-danger">', '</div>'); ?>
+								</td>
+							</tr>
+						</table>
 					</form>
 					
 					<legend>Internship</legend>

@@ -2,7 +2,7 @@
 
 	<?php if (isset($draft_saved)) { echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Draft saved.</div>';} ?>
 	
-	<h1>BEST Product Tracker Encoder</h1>
+	<h1>ADEPT Product Tracker Encoder</h1>
 	
 	<legend>General Information</legend>
 	<form class="form-inline" role="form"> <!-- This is the start of the blocked fields -->
