@@ -34,6 +34,7 @@
 								<th>School</th>
 								<th>Programs</th>
 							</tr>
+<<<<<<< HEAD
 						<?php foreach ($students as $student): ?>
 						<tr>
 							<td><input type="checkbox"></td>
@@ -43,6 +44,15 @@
 							<td>GCAT, SMP, BEST</td>
 						</tr>
 						<?php endforeach; ?>
+=======
+							<tr>
+								<td><input type="checkbox"></td>
+								<td><a href="<?php echo base_url('dbms/form_student_profile'); ?>">View</a> | <a href="#">Delete</a></td>
+								<td>Simon, Dayanara</td>
+								<td>Ateneo de Manila University</td>
+								<td>GCAT, SMP, BEST </td>
+							</tr>
+>>>>>>> 96ad1a94cc752ac856fdb43eeaf93bbbb1d323b0
 						</table>
 				  </div>
 				  
@@ -71,7 +81,7 @@
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td><a href="form-teacher-edit.php">View</a> | <a href="#">Delete</a></td>
+								<td><a href="<?php echo base_url('dbms/form_teacher_profile'); ?>">View</a> | <a href="#">Delete</a></td>
 								<td>Raymond, Cruz</td>
 								<td>Ateneo de Manila University</td>
 								<td>ADEPT</td>
@@ -103,7 +113,7 @@
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td><a href="form-proctor-edit.php">View</a> | <a href="#">Delete</a></td>
+								<td><a href="<?php echo base_url('dbms/form_proctor_profile'); ?>">View</a> | <a href="#">Delete</a></td>
 								<td>Uygongco, Glu</td>
 								<td>Ateneo de Manila University</td>
 								<td>BEST</td>
@@ -135,7 +145,7 @@
 					</tr>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td><a href="form-mastertrainer.php">View</a> | <a href="#">Delete</a></td>
+								<td><a href="<?php echo base_url('dbms/form_mastertrainer_profile'); ?>">View</a> | <a href="#">Delete</a></td>
 						<td>Peralta, Philip</td>
 						<td>Ateneo de Manila University</td>
 						<td>GCAT</td>
@@ -193,6 +203,34 @@
 					</div>
 					
 					<div class="tab-pane fade" id="smp">
+						<div class="button-groups">
+							<a href="<?php echo base_url('dbms/form_program_smp_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
+							<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+							<button class="btn btn-info" data-toggle="modal" data-target="#batchSMP">
+							  Batch Upload
+							</button>
+							<button class="btn btn-warning" data-toggle="modal" data-target="#searchSMP">Search</button>
+							<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
+							<button class="btn btn-success">Refresh</button>
+						</div>
+						<table class="table table-area">
+							<tr>
+								<th>Check</th>
+								<th>Action</th>
+								<th>Date</th>
+								<th>School</th>
+								<th>Campus</th>
+								<th>List of Students</th>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td><a href="<?php echo base_url('dbms/form_program_best_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
+								<td>11/21/2013</td>
+								<td>Ateneo de Manila University</td>
+								<td>Quezon City</td>
+								<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfStudents">View List</button></td>
+							</tr>
+						</table>
 						
 					</div>
 					
@@ -218,7 +256,7 @@
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td><a href="form-student-studentlist.php">View</a> | <a href="#">Delete</a></td>
+								<td><a href="<?php echo base_url('dbms/form_program_gcat_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
 								<td>11/21/2013</td>
 								<td>Ateneo de Manila University</td>
 								<td>Quezon City</td>
@@ -249,7 +287,7 @@
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td><a href="form-student-studentlist.php">View</a> | <a href="#">Delete</a></td>
+								<td><a href="<?php echo base_url('dbms/form_program_best_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
 								<td>11/21/2013</td>
 								<td>Ateneo de Manila University</td>
 								<td>Quezon City</td>
@@ -268,7 +306,8 @@
 		  
 		
 
-<!-- Modal -->
+<!-- Dialogs and Stuff -->
+
 <div class="modal fade" id="batchStudent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -287,9 +326,9 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
+</div>
 
 <div class="modal fade" id="batchTeacher" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -351,9 +390,9 @@
         <button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
+</div>
 	
 	
 <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -392,9 +431,9 @@
         <button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
+</div>
 
 <div class="modal fade" id="searchClass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">

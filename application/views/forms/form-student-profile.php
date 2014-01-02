@@ -1,9 +1,9 @@
-<?php include('header.php') ?>
-<?php include('menu-save-draft.php') ?>
-
 <div class="info-form">
+
+	<?php if (isset($draft_saved)) { echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Draft saved.</div>';} ?>
+	
 	<h1>
-		Student Information
+		Student Profile
 	</h1>
 	
 	<ul class="nav nav-tabs">
@@ -15,41 +15,42 @@
 	
 	
 	<div class="tab-content">
-	  <div class="tab-pane active" id="basic">
+		<div class="tab-pane active" id="basic">
 			<legend>Personal Information</legend>
 			
 					<form class="form-inline" role="form">
 						<div class="form-group">
 							<label>ID Number</label>
 							<input type="text" class="form-control" name="id_number" value="<?php echo set_value('id_number'); ?>">
-				<?php echo form_error('id_number', '<div class="text-danger">', '</div>'); ?>
-				</div>
+							<?php echo form_error('id_number', '<div class="text-danger">', '</div>'); ?>
+						</div>
 						
 					</form>
 					<form class="form-inline" role="form">
 						<div class="form-group">		
 							<label>Name Suffix</label>			
 							<input class="form-control" type="text" name="name_suffix" value="<?php echo set_value('name_suffix'); ?>">
-				<?php echo form_error('name_suffix', '<div class="text-danger">', '</div>'); ?>
-			</div>
+							<?php echo form_error('name_suffix', '<div class="text-danger">', '</div>'); ?>
+						</div>
 						
 						<div class="form-group">
 							<label>Last Name</label>
 							<input type="text" class="form-control" name="last_name" value="<?php echo set_value('last_name'); ?>">
-				<?php echo form_error('last_name', '<div class="text-danger">', '</div>'); ?>
-			</div>
+							<?php echo form_error('last_name', '<div class="text-danger">', '</div>'); ?>
+						</div>
 						
 						<div class="form-group">
 							<label>First Name</label>
 							<input type="text" class="form-control" name="first_name" value="<?php echo set_value('first_name'); ?>">
-				<?php echo form_error('first_name', '<div class="text-danger">', '</div>'); ?>
-			</div>
+							<?php echo form_error('first_name', '<div class="text-danger">', '</div>'); ?>
+						</div>
 						
 						<div class="form-group">
 							<label>Middle Initial</label>
 							<input type="text" class="form-control" name="middle_initial" value="<?php echo set_value('middle_initial'); ?>">
-				<?php echo form_error('middle_initial', '<div class="text-danger">', '</div>'); ?>
-			</div>
+							<?php echo form_error('middle_initial', '<div class="text-danger">', '</div>'); ?>
+						</div>
+						
 					</form>
 					
 					<form class="form-inline" role="form">
@@ -776,5 +777,3 @@
 	  
 	</div>
 </div>
-
-<?php include('footer.php') ?>

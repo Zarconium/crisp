@@ -26,6 +26,36 @@ class Dbms_Controller extends CI_Controller {
 		$this->load->view('dbms', $data);
 		$this->load->view('footer');
 	}
+	
+	function form_student_profile()
+	{
+		$this->load->view('header');
+		$this->load->view('forms/form-student-profile');
+		$this->load->view('footer');
+	}
+	
+	
+	function form_teacher_profile()
+	{
+		$this->load->view('header');
+		$this->load->view('forms/form-teacher-profile');
+		$this->load->view('footer');
+	}
+	
+	function form_proctor_profile()
+	{
+		$this->load->view('header');
+		$this->load->view('forms/form-proctor-profile');
+		$this->load->view('footer');
+	}
+	
+	function form_mastertrainer_profile()
+	{
+		$this->load->view('header');
+		$this->load->view('forms/form-mastertrainer-profile');
+		$this->load->view('footer');
+	}
+
 
 	function form_student_application()
 	{
@@ -294,12 +324,6 @@ class Dbms_Controller extends CI_Controller {
 		}	
 	}
 
-	function form_studentlist()
-	{
-		$this->load->view('header');
-		$this->load->view('forms/form-student-studentlist');
-		$this->load->view('footer');
-	}
 
 	function form_teacher_best_attendance()
 	{
@@ -363,6 +387,8 @@ class Dbms_Controller extends CI_Controller {
 		$this->load->view('forms/form-program-smp-tracker');
 		$this->load->view('footer');
 	}
+	
+	
 	
 
 }

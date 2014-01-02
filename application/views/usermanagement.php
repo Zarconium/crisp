@@ -1,5 +1,4 @@
 <!-- Start Page Content -->
-<div class="col-md-10">
 	<div class="area">
 		<div class="header">
 			<h1>User Management</h1>
@@ -57,7 +56,6 @@
 		</table>
 		<?php echo form_close(); ?>
 	</div>
-</div>
 
 <?php
 	if(validation_errors() || isset($user_to_edit))

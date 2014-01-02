@@ -76,6 +76,7 @@
 	
 	<legend>List of Students</legend>
 	
+		<button class="btn btn-info">Batch Upload</button>
 		<button class="btn btn-danger">Delete</button>
 		<button class="btn btn-success">Refresh</button>
 		<button class="btn btn-info">Print List</button>
@@ -102,9 +103,6 @@
 				<td>asimon</td>
 			</tr>
 		</table>
-
-		<button class="btn btn-danger">Delete</button>
-		<button class="btn btn-success">Refresh</button>
-		<button class="btn btn-info">Print List</button>
+		
 	</div>
 </div>	
