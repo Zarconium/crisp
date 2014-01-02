@@ -349,7 +349,7 @@ class Dbms_Controller extends CI_Controller {
 	function form_teacher_application()
 	{
 		$this->load->view('header');
-		$this->load->view('forms/form-teacher');
+		$this->load->view('forms/form-teacher-application');
 		$this->load->view('footer');
 	}
 	
