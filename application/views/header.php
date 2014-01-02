@@ -11,7 +11,8 @@
 
 <body>
 	<div class="wrapper">
-		<nav class="navbar navbar-inverse" role="navigation">
+	
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $this->session->userdata('logged_in')['username'] . ' (' . $this->session->userdata('logged_in')['type'] . ')'; ?>&nbsp;<b class="caret"></b></a>
@@ -22,16 +23,17 @@
 			</ul>
 		</nav>
 
-		<div class="row">
+		<div class="main-area">
 			<div class="col-md-2">
-				<div class="bs-sidebar">
-					<ul class="nav bs-sidenav">
+			<div class="bs-sidebar fixed">
+				<ul class="nav">
 						<li><a href="<?php echo base_url('home'); ?>">Home</a></li>
 						<?php if($this->session->userdata('logged_in')['type'] != 'guest') {echo '<li><a href="' . base_url('dbms') . '">Manage Participants</a></li>';} ?>
 						<li><a href="<?php echo base_url('reports'); ?>">Reports</a></li>
 						<?php if($this->session->userdata('logged_in')['type'] == 'admin') {echo '<li><a href="' . base_url('usermanagement') . '">User Management</a></li>';} ?>
 						<li><a href="<?php echo base_url('test'); ?>">Test</a></li>
-					</ul>
-				</div>
+				</ul>	
 			</div>
-			<div class="col-md-10">
+			</div>
+			<div class="col-md-10 main-page">
+

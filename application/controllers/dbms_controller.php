@@ -27,7 +27,7 @@ class Dbms_Controller extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	function form_student()
+	function form_student_application()
 	{
 		$data['schools'] = $this->school->getAllSchools();
 
@@ -321,5 +321,49 @@ class Dbms_Controller extends CI_Controller {
 		$this->load->view('forms/form-tracker-best-adept-teacher');
 		$this->load->view('footer');
 	}
+	
+	function form_teacher_application()
+	{
+		$this->load->view('header');
+		$this->load->view('forms/form-teacher');
+		$this->load->view('footer');
+	}
+	
+	function form_class_add()
+	{
+		$this->load->view('header');
+		$this->load->view('forms/form-class-add');
+		$this->load->view('footer');
+	}
+	
+	function form_program_gcat_tracker()
+	{
+		$this->load->view('header');
+		$this->load->view('forms/form-program-gcat-tracker');
+		$this->load->view('footer');
+	}
+	
+	function form_program_best_tracker()
+	{
+		$this->load->view('header');
+		$this->load->view('forms/form-program-best-tracker');
+		$this->load->view('footer');
+	}
+	
+	function form_program_adept_tracker()
+	{
+		$this->load->view('header');
+		$this->load->view('forms/form-program-adept-tracker');
+		$this->load->view('footer');
+	}
+	
+	function form_program_smp_tracker()
+	{
+		$this->load->view('header');
+		$this->load->view('forms/form-program-smp-tracker');
+		$this->load->view('footer');
+	}
+	
+
 }
 ?>

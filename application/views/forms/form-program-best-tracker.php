@@ -1,49 +1,35 @@
-<HTML>
-<head>
-	<title>BEST Product Tracker Encoder</title>
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/customize.css">
-	<script type="text/javascript" src="js/jquery.js"></script>
-
-</head>
-<BODY>
 <div class="info-form">
-	<h3>BEST Product Tracker Encoder</h3>
+
+	<?php if (isset($draft_saved)) { echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Draft saved.</div>';} ?>
 	
-	<div class="col-md-3">
-		
-		<ul class="nav nav-tabs" id="myTab">
-			<li class="active"><a href="#details" data-toggle="tab">Details</a></li>
-			<li><a href="#student" data-toggle="tab">Add or Edit Student</a></li>
-		</ul>	
-		
-		<div class="tab-content">
-			<div class="tab-pane fade in active" id="details">
-
-				<form class="form-inline" role="form"> <!-- This is the start of the blocked fields -->
-									
-					<div class="form-group">
-						<label>Date</label><!-- This is the start where you put the label -->
-						<input type="text" class="form-control" id="school"><!-- The input field. Don't forget the id -->
-					</div>
-
-					<div class="form-group">
-						<label>School</label><!-- This is the start where you put the label -->
-						<input type="text" class="form-control" id="school"><!-- The input field. Don't forget the id -->
-					</div>
+	<h1>BEST Product Tracker Encoder</h1>
+	
+	<legend>General Information</legend>
+	<form class="form-inline" role="form"> <!-- This is the start of the blocked fields -->
 						
-					<div class="form-group">
-						<label>Branch</label><!-- This is the another label -->
-						<input type="text" class="form-control" id="branch">
-					</div>
-						
-				</form>
+		<div class="form-group">
+			<label>Date</label><!-- This is the start where you put the label -->
+			<input type="text" class="form-control" id="school"><!-- The input field. Don't forget the id -->
+		</div>
+
+		<div class="form-group">
+			<label>School</label><!-- This is the start where you put the label -->
+			<input type="text" class="form-control" id="school"><!-- The input field. Don't forget the id -->
+		</div>
 			
-			</div>
-		
-
-			<div class="tab-pane fade" id="student">
-				<form class="form" role="form">
+		<div class="form-group">
+			<label>Branch</label><!-- This is the another label -->
+			<input type="text" class="form-control" id="branch">
+		</div>
+			
+	</form>
+				
+	<legend>Student List</legend>
+	<div class="col-md-3">
+			<div class="panel panel-info">
+			<div class="panel-heading">Add or Edit Student</div>
+			<div class="panel-body">
+			<form class="form" role="form">
 					<div class="form-group">		
 						<label>Last Name</label>			
 						<input class="form-control" type="text" id="lname">
@@ -77,23 +63,14 @@
 						<input type="text" class="form-control" id="username">
 					</div>
 
+					<div class="submit-button">
+						<button class="btn btn-primary" name="submit">Add to List</button>
+					</div>
 				</form>
 		
-				<div class="submit-button">
-					<button class="btn btn-primary" name="submit">Submit</button>
-				</div>
-
 			</div>
-			
-			
-		<script type="text/javascript">
-			jQuery(document).ready(function ($) {
-				$('#myTab').tab();
-			});
-		</script>
-		
+			</div>
 		</div>
-	</div>
 	
 	<div class="col-md-9">
 	
@@ -131,8 +108,3 @@
 		<button class="btn btn-info">Print List</button>
 	</div>
 </div>	
-
-<script type="text/javascript" src="js/bootstrap.js"></script>
-</BODY>
-
-</HTML>

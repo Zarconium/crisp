@@ -1,66 +1,8 @@
-<HTML>
-<HEAD>
-	<title>GCAT Student Tracker Form</title>
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/customize.css">
-	<script type="text/javascript" src="js/jquery.js"></script>
-    <SCRIPT language="javascript">
-        function addRow(tableID) {
- 
-            var table = document.getElementById(tableID);
- 
-            var rowCount = table.rows.length;
-            var row = table.insertRow(rowCount);
- 
-            var colCount = table.rows[0].cells.length;
- 
-            for(var i=0; i<colCount; i++) {
- 
-                var newcell = row.insertCell(i);
-
-                newcell.innerHTML = table.rows[1].cells[i].innerHTML;
-                //alert(newcell.childNodes);
-                switch(newcell.childNodes[0].type) {
-                    case "text":
-                            newcell.childNodes[0].value = "";
-                            break;
-                     
-                }
-            }
-            
-        }
- 
-        function deleteRow(tableID) {
-            try {
-            var table = document.getElementById(tableID);
-            var rowCount = table.rows.length;
- 
-            for(var i=0; i<rowCount; i++) {
-                var row = table.rows[i];
-                var chkbox = row.cells[0].childNodes[0];
-                if(null != chkbox && true == chkbox.checked) {
-                    if(rowCount <= 1) {
-                        alert("Cannot delete all the rows.");
-                        break;
-                    }
-                    table.deleteRow(i);
-                    rowCount--;
-                    i--;
-                }
- 
- 
-            }
-            }catch(e) {
-                alert(e);
-            }
-        }
- 
-    </SCRIPT>
-</HEAD>
-<BODY>
 <div class="info-form">
+
+	<?php if (isset($draft_saved)) { echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Draft saved.</div>';} ?>
     
-    <h3>GCAT Student Tracker</h3>
+    <h1>GCAT Student Tracker</h1>
     <legend>Tracker Information</legend>
 	
     <form class="form-inline">
@@ -192,6 +134,6 @@
 		</div>
 	</div>
 </div>
-</BODY>
-</HTML>
+	
+	
 
