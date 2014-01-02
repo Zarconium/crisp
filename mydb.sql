@@ -1572,7 +1572,7 @@ CREATE TABLE IF NOT EXISTS `crisp`.`Users` (
   `Last_Name` VARCHAR(255) NULL,
   `Password` VARCHAR(255) NULL,
   `Type` VARCHAR(255) NULL,
-  `School_ID` INT NOT NULL,
+  `School_ID` INT NULL,
   PRIMARY KEY (`User_ID`),
   INDEX `fk_User_School1` (`School_ID` ASC),
   CONSTRAINT `fk_User_School1`
@@ -2475,14 +2475,14 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `crisp`;
-INSERT INTO `crisp`.`Users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password`, `Type`, `School_ID`) VALUES (1, 'rcruz', 'Raymond', 'Cruz', '9a73055b9e5a5edbf80c34198e05f0d1', 'admin', NULL),
-INSERT INTO `crisp`.`Users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password`, `Type`, `School_ID`) VALUES (2, 'pluces', 'Paolo', 'Luces', '1532136b72115a3f2c6fcd81bf80e7f4', 'admin', NULL),
-INSERT INTO `crisp`.`Users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password`, `Type`, `School_ID`) VALUES (3, 'jfederico', 'Joy', 'Federico', 'c2c8e798aecbc26d86e4805114b03c51', 'admin', NULL),
-INSERT INTO `crisp`.`Users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password`, `Type`, `School_ID`) VALUES (4, 'pperalta', 'Phil', 'Peralta', 'd14ffd41334ec4b4b3f2c0d55c38be6f', 'admin', NULL),
-INSERT INTO `crisp`.`Users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password`, `Type`, `School_ID`) VALUES (5, 'ffajardo', 'Francis', 'Fajardo', 'd0ab7fe6c314f4fe5b6c18a0157c96b4', 'admin', NULL),
-INSERT INTO `crisp`.`Users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password`, `Type`, `School_ID`) VALUES (6, 'ABC11', 'Aaron', 'Casurao', '65079b006e85a7e798abecb99e47c154', 'admin', NULL),
-INSERT INTO `crisp`.`Users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password`, `Type`, `School_ID`) VALUES (7, 'marmario', 'Mitch', 'Armario', 'fae53351b9effc708e764e871bef3119', 'admin', NULL),
-INSERT INTO `crisp`.`Users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password`, `Type`, `School_ID`) VALUES (8, 'guest', 'Guest', 'User', '084e0343a0486ff05530df6c705c8bb4', 'guest', NULL),
+INSERT INTO `crisp`.`Users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password`, `Type`, `School_ID`) VALUES (1, 'rcruz', 'Raymond', 'Cruz', '9a73055b9e5a5edbf80c34198e05f0d1', 'admin', NULL);
+INSERT INTO `crisp`.`Users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password`, `Type`, `School_ID`) VALUES (2, 'pluces', 'Paolo', 'Luces', '1532136b72115a3f2c6fcd81bf80e7f4', 'admin', NULL);
+INSERT INTO `crisp`.`Users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password`, `Type`, `School_ID`) VALUES (3, 'jfederico', 'Joy', 'Federico', 'c2c8e798aecbc26d86e4805114b03c51', 'admin', NULL);
+INSERT INTO `crisp`.`Users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password`, `Type`, `School_ID`) VALUES (4, 'pperalta', 'Phil', 'Peralta', 'd14ffd41334ec4b4b3f2c0d55c38be6f', 'admin', NULL);
+INSERT INTO `crisp`.`Users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password`, `Type`, `School_ID`) VALUES (5, 'ffajardo', 'Francis', 'Fajardo', 'd0ab7fe6c314f4fe5b6c18a0157c96b4', 'admin', NULL);
+INSERT INTO `crisp`.`Users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password`, `Type`, `School_ID`) VALUES (6, 'ABC11', 'Aaron', 'Casurao', '65079b006e85a7e798abecb99e47c154', 'admin', NULL);
+INSERT INTO `crisp`.`Users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password`, `Type`, `School_ID`) VALUES (7, 'marmario', 'Mitch', 'Armario', 'fae53351b9effc708e764e871bef3119', 'admin', NULL);
+INSERT INTO `crisp`.`Users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password`, `Type`, `School_ID`) VALUES (8, 'guest', 'Guest', 'User', '084e0343a0486ff05530df6c705c8bb4', 'guest', NULL);
 INSERT INTO `crisp`.`Users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password`, `Type`, `School_ID`) VALUES (9, 'mandogs', 'Manolo', 'Valena', '3c3662bcb661d6de679c636744c66b62', 'encoder', 1);
 
 COMMIT;
