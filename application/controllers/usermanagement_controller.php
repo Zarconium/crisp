@@ -49,13 +49,18 @@ class UserManagement_Controller extends CI_Controller {
 			{
 				$data = array
 				(
-					'username' => $this->input->post('new_username'),
-					'first_name' => $this->input->post('new_first_name'),
-					'last_name' => $this->input->post('new_last_name'),
-					'password' => $this->input->post('new_password'),
-					'type' => $this->input->post('new_type'),
-					'school' => $this->input->post('new_school')
-					);
+					'Username' => $this->input->post('new_username'),
+					'First_Name' => $this->input->post('new_first_name'),
+					'Last_Name' => $this->input->post('new_last_name'),
+					'Password' => $this->input->post('new_password'),
+					'Type' => $this->input->post('new_type'),
+					'School_ID' => NULL
+				);
+
+				if($this->input->post('new_type') == 'encoder')
+				{
+					$data['School_ID'] = $this->input->post('new_school');
+				}
 
 				$this->user->addUser($data);
 
@@ -103,13 +108,18 @@ class UserManagement_Controller extends CI_Controller {
 			{
 				$data = array
 				(
-					'username' => $this->input->post('edit_username'),
-					'first_name' => $this->input->post('edit_first_name'),
-					'last_name' => $this->input->post('edit_last_name'),
-					'password' => $this->input->post('edit_password'),
-					'type' => $this->input->post('edit_type'),
-					'school' => $this->input->post('edit_school')
-					);
+					'Username' => $this->input->post('edit_username'),
+					'First_Name' => $this->input->post('edit_first_name'),
+					'Last_Name' => $this->input->post('edit_last_name'),
+					'Password' => $this->input->post('edit_password'),
+					'Type' => $this->input->post('edit_type'),
+					'School_ID' => NULL
+				);
+
+				if($this->input->post('edit_type') == 'encoder')
+				{
+					$data['School_ID'] = $this->input->post('edit_school');
+				}
 
 				$this->user->editUserById($this->input->post('edit_id'), $data);
 				

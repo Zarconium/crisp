@@ -16,10 +16,10 @@
 			</tr>
 			<?php foreach ($users as $row): ?>
 			<tr>
-				<td><?php echo $row->username; ?></td>
-				<td><?php echo $row->first_name; ?></td>
-				<td><?php echo $row->last_name; ?></td>
-				<td><?php echo $row->type; ?></td>
+				<td><?php echo $row->Username; ?></td>
+				<td><?php echo $row->First_Name; ?></td>
+				<td><?php echo $row->Last_Name; ?></td>
+				<td><?php echo $row->Type; ?></td>
 			</tr>
 			<?php endforeach; ?>
 		</table>

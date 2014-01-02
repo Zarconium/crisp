@@ -34,13 +34,15 @@
 								<th>School</th>
 								<th>Programs</th>
 							</tr>
+							<?php foreach ($students as $student): ?>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td><a href="<?php echo base_url('dbms/form_student_profile'); ?>">View</a> | <a href="#">Delete</a></td>
-								<td>Simon, Dayanara</td>
-								<td>Ateneo de Manila University</td>
-								<td>GCAT, SMP, BEST </td>
+								<td><a href="form-student-edit.php">View</a> | <a href="#">Delete</a></td>
+								<td><?php echo $student->Full_Name; ?></td>
+								<td><?php echo $student->School_Name; ?></td>
+								<td>GCAT, SMP, BEST</td>
 							</tr>
+							<?php endforeach; ?>
 						</table>
 				  </div>
 				  
