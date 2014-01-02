@@ -102,6 +102,7 @@
 	<div class="col-md-9">
 		<h3>List of Students</h3>	
 		<div class="customize-btn-group">
+			<button class="btn btn-info">Batch Upload</button>
 			<button type="button" class="btn btn-danger">Delete</button>
 			<button type="button" class="btn btn-success">Refresh</button>
 		</div>

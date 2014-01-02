@@ -98,6 +98,7 @@
 	<div class="col-md-9">
 	<legend>List of Students</legend>
 	<div class="customize-btn-group">
+		<button class="btn btn-info">Batch Upload</button>
 		<button class="btn btn-danger">Delete</button>
 		<button class="btn btn-success">Refresh</button>
 		<button class="btn btn-info">Print List</button>

@@ -1,5 +1,4 @@
-<div class="col-md-10">
-	<div class="area">
+
 		<div class="header">
 			<h1>Notifications</h1>
 		</div>
@@ -15,5 +14,3 @@
 				<td>Added Student Joy Federico</td>
 			</tr>
 		</table>
-	</div>
-</div>
