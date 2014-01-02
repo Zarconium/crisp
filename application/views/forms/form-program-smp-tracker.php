@@ -1,28 +1,52 @@
+
 <div class="info-form">
+	<?php if (isset($draft_saved)) { echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Draft saved.</div>';} ?>
 	<h1>SMP Tracker</h1>
 	<legend>General Information</legend>
+
+	<?php echo form_open('/dbms/form_program_smp_tracker'); ?>
 					
+					<div class="save">
+			<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
+			<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
+			<button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
+			<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
+			</div>
+
 					<form class="form-inline" role="form">
 						<div class="form-group">
 							<label>ID Number</label>
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" name="id_number" value="<?php echo set_value('id_number'); ?>">
+				<?php echo form_error('id_number', '<div class="text-danger">', '</div>'); ?>
 						</div>
+
 						<div class="form-group">
 							<label>Name</label>
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" name="name" value="<?php echo set_value('name'); ?>">
+				<?php echo form_error('name', '<div class="text-danger">', '</div>'); ?>
 						</div>
+
 						<div class="form-group">
-							<label>State University</label>
-							<input type="text" class="form-control">
+							<label>School</label>
+						<select class="form-control" name="school">
+						<?php foreach ($schools as $school): ?>
+							<option value="<?php echo $school->School_ID ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
+						<?php endforeach; ?>
+						</select>
+						<?php echo form_error('school', '<div class="text-danger">', '</div>'); ?>
 						</div>
+
 						<div class="form-group">
 							<label>Year</label>
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" name="year" value="<?php echo set_value('year'); ?>">
+				<?php echo form_error('year', '<div class="text-danger">', '</div>'); ?>
 						</div>
 						<div class="form-group">
 							<label>Course</label>
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" name="course" value="<?php echo set_value('course'); ?>">
+				<?php echo form_error('course', '<div class="text-danger">', '</div>'); ?>
 						</div>
+
 						<div class="form-group">						
 							<label>Taking SMP as</label>
 							<select class="form-control" name="smp" value="<?php echo set_value('smp'); ?>">
@@ -356,10 +380,6 @@
 							</select>
 				<?php echo form_error('intern_stat', '<div class="text-danger">', '</div>'); ?>				
 				
-	<form>
-
+	</form>
 	
 </div>	
-</BODY>
-
-</HTML>
