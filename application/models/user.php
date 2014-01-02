@@ -5,8 +5,8 @@ Class User extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('users');
-		$this->db->where('username', $username);
-		$this->db->where('password', MD5($password));
+		$this->db->where('Username', $username);
+		$this->db->where('Password', MD5($password));
 		$this->db->limit(1);
 		
 		$query = $this->db->get();
@@ -39,7 +39,7 @@ Class User extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('users');
-		$this->db->where('id', $id);
+		$this->db->where('User_ID', $id);
 		
 		$query = $this->db->get();
 		
@@ -60,13 +60,13 @@ Class User extends CI_Model
 
 	function editUserById($id, $data)
 	{
-		$this->db->where('id', $id);
+		$this->db->where('User_ID', $id);
 		$this->db->update('users', $data);
 	}
 
 	function deleteUserById($id)
 	{
-		$this->db->where('id', $id);
+		$this->db->where('User_ID', $id);
 		$this->db->delete('users');
 	}
 }

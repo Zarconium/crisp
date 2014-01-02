@@ -28,19 +28,19 @@
 			</tr>
 			<?php foreach ($users as $row): ?>
 			<tr>
-				<td><?php echo form_checkbox('user_ids_to_delete[]', $row->id); ?></td>
-				<td><?php echo anchor('usermanagement/edit/' . $row->id, 'Edit'); ?> | <?php echo anchor('usermanagement/delete/' . $row->id, 'Delete'); ?></td>
-				<td><?php echo $row->username; ?></td>
-				<td><?php echo $row->first_name; ?></td>
-				<td><?php echo $row->last_name; ?></td>
-				<td><?php echo $row->type; ?></td>
+				<td><?php echo form_checkbox('user_ids_to_delete[]', $row->User_ID); ?></td>
+				<td><?php echo anchor('usermanagement/edit/' . $row->User_ID, 'Edit'); ?> | <?php echo anchor('usermanagement/delete/' . $row->User_ID, 'Delete'); ?></td>
+				<td><?php echo $row->Username; ?></td>
+				<td><?php echo $row->First_Name; ?></td>
+				<td><?php echo $row->Last_Name; ?></td>
+				<td><?php echo $row->Type; ?></td>
 				<td>
 					<?php
-						if($row->type == 'encoder')
+						if($row->Type == 'encoder')
 						{
 							foreach($schools as $school)
 							{
-								if($row->school == $school->School_ID)
+								if($row->School_ID == $school->School_ID)
 								{
 									echo $school->Name . " - " . $school->Branch;
 								}
@@ -104,7 +104,6 @@
 <!-- Start Hidden Modals -->
 <?php //Dropdown options for global use
 	$input_type_options = array('admin' => 'Administrator', 'encoder' => 'Encoder', 'guest' => 'Guest');
-	//$input_school_options = array('Ateneo de Manila University' => 'Ateneo de Manila University', 'De La Salle University' => 'De La Salle University', 'University of Santo Tomas' => 'University of Santo Tomas', 'University of the Philippines' => 'University of the Philippines');
 	foreach ($schools as $school)
 	{
 		$input_school_options[$school->School_ID] = $school->Name . " - " . $school->Branch;
@@ -188,23 +187,23 @@
 					{
 						foreach ($user_to_edit as $u)
 						{
-							echo form_hidden('edit_id', $u->id);
+							echo form_hidden('edit_id', $u->User_ID);
 
 							echo '<div class="form-group">';
 							echo form_label('Username', 'edit_username');
-							echo form_input('edit_username', $u->username, 'class="form-control"');
+							echo form_input('edit_username', $u->Username, 'class="form-control"');
 							echo form_error('edit_username', '<div class="text-danger">', '</div>');
 							echo '</div>';
 
 							echo '<div class="form-group">';
 							echo form_label('First Name', 'edit_first_name');
-							echo form_input('edit_first_name', $u->first_name, 'class="form-control"');
+							echo form_input('edit_first_name', $u->First_Name, 'class="form-control"');
 							echo form_error('edit_first_name', '<div class="text-danger">', '</div>');
 							echo '</div>';
 
 							echo '<div class="form-group">';
 							echo form_label('Last Name', 'edit_last_name');
-							echo form_input('edit_last_name', $u->last_name, 'class="form-control"');
+							echo form_input('edit_last_name', $u->Last_Name, 'class="form-control"');
 							echo form_error('edit_last_name', '<div class="text-danger">', '</div>');
 							echo '</div>';
 
@@ -216,13 +215,13 @@
 
 							echo '<div class="form-group">';
 							echo form_label('Account Type', 'edit_type');
-							echo form_dropdown('edit_type', $input_type_options, $u->type, 'class="form-control"');
+							echo form_dropdown('edit_type', $input_type_options, $u->Type, 'class="form-control"');
 							echo form_error('edit_type', '<div class="text-danger">', '</div>');
 							echo '</div>';
 
 							echo '<div class="form-group">';
 							echo form_label('Assigned School', 'edit_school');
-							echo form_dropdown('edit_school', $input_school_options, $u->school, 'class="form-control"');
+							echo form_dropdown('edit_school', $input_school_options, $u->School_ID, 'class="form-control"');
 							echo form_error('edit_school', '<div class="text-danger">', '</div>');
 							echo '</div>';
 						}
@@ -260,16 +259,16 @@
 					{
 						foreach($user_to_delete as $user)
 						{
-							if($this->session->userdata('logged_in')['id'] != $user->id)
+							if($this->session->userdata('logged_in')['id'] != $user->User_ID)
 							{
-								$u_id = $user->id;
-								$u_username = $user->username;
+								$u_id = $user->User_ID;
+								$u_username = $user->Username;
 								echo "Delete $u_username?";
 							}
 							else
 							{
-								$u_id = $user->id;
-								$u_username = $user->username;
+								$u_id = $user->User_ID;
+								$u_username = $user->Username;
 								echo "Cannot delete self.";
 							}
 						}
@@ -303,8 +302,8 @@
 						{
 							foreach ($user as $u)
 							{
-								echo form_hidden('users_to_delete[]', $u->id);
-							 	echo '<li>' . $u->username . '</li>';
+								echo form_hidden('users_to_delete[]', $u->User_ID);
+							 	echo '<li>' . $u->Username . '</li>';
 							}
 						}
 						echo '</ul>';

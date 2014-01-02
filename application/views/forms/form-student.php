@@ -5,7 +5,7 @@
 	
 	<legend>Personal Information</legend>
 
-	<?php echo form_open('/dbms/form_student'); ?>
+	<?php echo form_open('/dbms/form_student_application'); ?>
 		<!-- BUTTONS DIV -->
 		<div class="save">
 			<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
