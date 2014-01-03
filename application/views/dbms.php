@@ -637,6 +637,60 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="searchSMP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Filter Search</h4>
+      </div>
+      <div class="modal-body">
+		<div class="student-button-groups">
+		
+				<form class="form" role="form">
+					<div class="form-group">
+						<label for="name">ID Number</label>
+						<input type="text" class="form-control" id="sid">
+					</div>
+					<div class="form-group">
+						<label for="school">Name</label>
+						<input type="text" class="form-control" id="sname">
+					</div>
+					<div class="form-group">
+						<label for="school">School </label>
+						<input type="text" class="form-control" id="sschool">
+					</div>
+					<div class="form-group">
+						<label for="school">Year </label>
+						<input type="text" class="form-control" id="syear">
+					</div>
+					<div class="form-group">
+						<label for="school">Course</label>
+						<input type="text" class="form-control" id="scourse">
+					</div>
+					<div class="form-group">
+						<label for="school">Subjects Passed</label><br />
+						<input type="checkbox" value="bc" name="ssubjects"> Business Communication<br />				
+						<input type="checkbox" value="bpo101" name="ssubjects"> BPO101<br />	
+						<input type="checkbox" value="bpo102" name="ssubjects"> BPO102<br />	
+						<input type="checkbox" value="sc" name="ssubjects"> Service Culture<br />	
+						<input type="checkbox" value="st" name="ssubjects"> Systems Thinking<br />	
+						<input type="checkbox" value="st" name="ssubjects"> Internship<br />
+					</div>
+				</form>
+						
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
 <div class="modal fade" id="viewSMPSubjects" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
