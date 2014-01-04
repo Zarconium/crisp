@@ -35,6 +35,24 @@ Class User extends CI_Model
 		}
 	}
 
+	function getAllUsersFormatted()
+	{		
+		$this->db->select('User_ID, Username, First_Name, Last_Name, Type, CONCAT(school.Name, " - ", school.Branch) AS School_Name', false);
+		$this->db->from('users');
+		$this->db->join('school', 'users.School_ID = school.School_ID', 'left');
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getUserById($id)
 	{
 		$this->db->select('*');

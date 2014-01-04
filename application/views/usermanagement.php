@@ -33,24 +33,7 @@
 				<td><?php echo $row->First_Name; ?></td>
 				<td><?php echo $row->Last_Name; ?></td>
 				<td><?php echo $row->Type; ?></td>
-				<td>
-					<?php
-						if($row->Type == 'encoder')
-						{
-							foreach($schools as $school)
-							{
-								if($row->School_ID == $school->School_ID)
-								{
-									echo $school->Name . " - " . $school->Branch;
-								}
-							}
-						}
-						else
-						{
-							echo 'All';
-						}
-					?>
-				</td>
+				<td><?php if($row->Type == 'encoder') { echo $row->School_Name; } else { echo 'All'; } ?></td>
 			</tr>
 			<?php endforeach; ?>
 		</table>

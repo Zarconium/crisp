@@ -13,6 +13,7 @@
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>Privileges</th>
+				<th>Assigned School</th>
 			</tr>
 			<?php foreach ($users as $row): ?>
 			<tr>
@@ -20,6 +21,7 @@
 				<td><?php echo $row->First_Name; ?></td>
 				<td><?php echo $row->Last_Name; ?></td>
 				<td><?php echo $row->Type; ?></td>
+				<td><?php if($row->Type == 'encoder') { echo $row->School_Name; } else { echo 'All'; } ?></td>
 			</tr>
 			<?php endforeach; ?>
 		</table>

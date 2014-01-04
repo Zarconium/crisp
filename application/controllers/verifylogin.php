@@ -16,12 +16,10 @@ class VerifyLogin extends CI_Controller {
 
 		if($this->form_validation->run() == FALSE)
 		{
-		 //Field validation failed. User redirected to login page
 			$this->load->view('login_view');
 		}
 		else
 		{
-		 //Go to private area
 			if($this->input->post('remember_me'))
 			{
 				$this->session->sess_expiration = 0;
