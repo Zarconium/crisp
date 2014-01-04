@@ -41,6 +41,7 @@
 $route['default_controller'] = "login";
 $route['404_override'] = '';
 $route['home'] = 'home';
+$route['resources'] = 'resources';
 $route['dbms'] = 'dbms_controller';
 $route['dbms/(:any)'] = 'dbms_controller/$1';
 $route['reports'] = 'reports_controller';

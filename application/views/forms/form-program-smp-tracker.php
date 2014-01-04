@@ -58,8 +58,8 @@
 						</div>
 					
 					</form>
-					
 					<legend>Subjects</legend>
+					
 					<form class="form" role="form">
 						<table class="table">
 							<tr>

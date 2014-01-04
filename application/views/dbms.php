@@ -382,10 +382,10 @@
 </div>
 <div class="modal-body">
 <div class="student-button-groups">
-	This generates a student / teacher / proctor / whatever sheet containing the student's control number, username, name, sex, and current status with regards to the BEST program.
-	<p>Insert view here.</p>
-	<p><button class="btn  btn-primary">Print as Excel</button></p>
-	<p><button class="btn btn-primary">Print as PDF</button></p>
+<div class="student-button-groups">
+	<button class="btn  btn-primary btn-lg">Print as Excel</button>
+	<button class="btn btn-primary btn-lg">Print as PDF</button>
+</div>
 </div>
 </div>
 <div class="modal-footer">

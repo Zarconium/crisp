@@ -88,7 +88,7 @@
 
 			<div class="form-group">
 			<label>Mobile Number</label>
-			<input type="date" class="form-control" name="mobile_number" value="<?php echo set_value('mobile_number'); ?>">
+			<input type="text" class="form-control" name="mobile_number" value="<?php echo set_value('mobile_number'); ?>">
 				<?php echo form_error('mobile_number', '<div class="text-danger">', '</div>'); ?>
 			</div>
 

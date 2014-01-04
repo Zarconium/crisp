@@ -30,6 +30,7 @@
 						<li><a href="<?php echo base_url('home'); ?>">Home</a></li>
 						<?php if($this->session->userdata('logged_in')['type'] != 'guest') {echo '<li><a href="' . base_url('dbms') . '">Manage Participants</a></li>';} ?>
 						<li><a href="<?php echo base_url('reports'); ?>">Reports</a></li>
+						<li><a href="<?php echo base_url('resources'); ?>">Resources</a></li>
 						<?php if($this->session->userdata('logged_in')['type'] == 'admin') {echo '<li><a href="' . base_url('usermanagement') . '">User Management</a></li>';} ?>
 						<li><a href="<?php echo base_url('test'); ?>">Test</a></li>
 				</ul>	
