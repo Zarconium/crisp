@@ -35,11 +35,11 @@ Class Student extends CI_Model
 		$this->db->distinct();
 		$this->db->select('CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name, CONCAT(school.name, " - ", school.Branch) as School_Name, student.Last_Name, subject.Subject_Code', false);
 		$this->db->from('student');
-		$this->db->join('school', 'student.School_ID = school.School_ID');
-		$this->db->join('student_tracker', 'student.Student_ID = student_tracker.Student_ID');
-		$this->db->join('tracker', 'student_tracker.Tracker_ID = tracker.Tracker_ID');
-		$this->db->join('subject', 'tracker.Subject_ID = subject.Subject_ID');
-		$this->db->join('status', 'tracker.Status_ID = status.Status_ID');
+		$this->db->join('school', 'student.School_ID = school.School_ID', 'left');
+		$this->db->join('student_tracker', 'student.Student_ID = student_tracker.Student_ID', 'left');
+		$this->db->join('tracker', 'student_tracker.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('subject', 'tracker.Subject_ID = subject.Subject_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
 		$this->db->where('status.Name', 'Currently Taking');
 		// $this->db->group_by('Full_Name');
 

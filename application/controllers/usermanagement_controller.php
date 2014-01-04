@@ -193,14 +193,13 @@ class UserManagement_Controller extends CI_Controller {
 
 	function print_all_users()
 	{
-		$session_data['users'] = $this->user->getAllUsers();
-		$this->load->view('print_all_users', $session_data);
+		$this->load->view('print_all_users', $this->session_data());
 	}
 
 	function session_data()
 	{
 		$session_data = $this->session->userdata('logged_in');
-		$data['users'] = $this->user->getAllUsers();
+		$data['users'] = $this->user->getAllUsersFormatted();
 		$data['schools'] = $this->school->getAllSchools();
 
 		return $data;
