@@ -52,8 +52,8 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Gender</label><br/>
-				<input type="radio" name="gender" value="male"> Male
-				<input type="radio" name="gender" value="female"> Female
+				<input type="radio" name="gender" value="M"> Male
+				<input type="radio" name="gender" value="F"> Female
 				<?php echo form_error('gender', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -214,8 +214,8 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Are you a DOST Scholar?</label><br />
-				<input type="radio" name="DOSTscholar" value="yes"> Yes
-				<input type="radio" name="DOSTscholar" value="No"> No
+				<input type="radio" name="DOSTscholar" value="1"> Yes
+				<input type="radio" name="DOSTscholar" value="0"> No
 				<?php echo form_error('DOSTscholar', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -223,8 +223,8 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>If not, are you a recipient of any scholarship? Specify if yes.</label><br />
-				<input type="radio" name="scholar" value="yes"> Yes
-				<input type="radio" name="scholar" value="No"> No
+				<input type="radio" name="scholar" value="1"> Yes
+				<input type="radio" name="scholar" value="0"> No
 				<?php echo form_error('scholar', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -232,8 +232,8 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Are you willing to work for the IT-BPO sector?</label><br/>
-				<input type="radio" name="work" value="yes"> Yes
-				<input type="radio" name="work" value="No"> No
+				<input type="radio" name="work" value="1"> Yes
+				<input type="radio" name="work" value="0"> No
 				<?php echo form_error('work', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -241,8 +241,8 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Do you own a computer?</label><br/>
-				<input type="radio" name="computer" value="yes"> Yes
-				<input type="radio" name="computer" value="No"> No
+				<input type="radio" name="computer" value="1"> Yes
+				<input type="radio" name="computer" value="0"> No
 				<?php echo form_error('computer', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -250,8 +250,8 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Do you have Internet access?</label><br/>
-				<input type="radio" name="internet" value="yes"> Yes
-				<input type="radio" name="internet" value="No"> No
+				<input type="radio" name="internet" value="1"> Yes
+				<input type="radio" name="internet" value="0"> No
 				<?php echo form_error('internet', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -259,8 +259,8 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Submitted the contract?</label><br/>
-				<input type="radio" name="contract" value="yes"> Yes
-				<input type="radio" name="contract" value="No"> No
+				<input type="radio" name="contract" value="1"> Yes
+				<input type="radio" name="contract" value="0"> No
 				<?php echo form_error('contract', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -270,13 +270,13 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Applying for which programs?</label><br/>
-				<input type="checkbox" name="new_program[]" value="smp_ched"> SMP-CHED<br/>
-				<input type="checkbox" name="new_program[]" value="gcat_ched"> GCAT-CHED<br/>
-				<input type="checkbox" name="new_program[]" value="best_ched"> BEST-CHED<br/>
-				<input type="checkbox" name="new_program[]" value="adept_ched"> AdEPT-CHED<br/>
-				<input type="checkbox" name="new_program[]" value="best_sei"> BEST-SEI<br/>
-				<input type="checkbox" name="new_program[]" value="adept_sei"> ADEPT-SEI<br/>
-				<?php echo form_error('new_program[]', '<div class="text-danger">', '</div>'); ?>
+				<input type="checkbox" name="program[]" value="smp_ched"> SMP-CHED<br/>
+				<input type="checkbox" name="program[]" value="gcat_ched"> GCAT-CHED<br/>
+				<input type="checkbox" name="program[]" value="best_ched"> BEST-CHED<br/>
+				<input type="checkbox" name="program[]" value="adept_ched"> AdEPT-CHED<br/>
+				<input type="checkbox" name="program[]" value="best_sei"> BEST-SEI<br/>
+				<input type="checkbox" name="program[]" value="adept_sei"> ADEPT-SEI<br/>
+				<?php echo form_error('program[]', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
 	</form>

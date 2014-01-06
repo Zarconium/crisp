@@ -56,7 +56,6 @@ class Dbms_Controller extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-
 	function form_student_application()
 	{
 		$data['schools'] = $this->school->getAllSchools();
@@ -94,7 +93,7 @@ class Dbms_Controller extends CI_Controller {
 			$this->form_validation->set_rules('computer', 'Computer', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('internet', 'Internet', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('contract', 'Contract', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('new_program[]', 'Applied Programs', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('program[]', 'Applied Programs', 'trim|required|xss_clean');
 
 			if($this->input->post('submit'))
 			{
@@ -129,7 +128,7 @@ class Dbms_Controller extends CI_Controller {
 						'Landline' => $this->input->post('landline'),
 						'Email' => $this->input->post('email'),
 						'Facebook' => $this->input->post('facebook'),
-						'Course' => $this->input->post('degree_type') . " " . $this->input->post('degree'),
+						'Course' => $this->input->post('degree_type') . " " . $this->input->post('degree'), //concatenate degree type and degree
 						'Year' => $this->input->post('year'),
 						'Expected_Year_of_Graduation' => $this->input->post('expected_year_of_graduation'),
 						'DOST_Scholar?' => $this->input->post('DOSTscholar'),
@@ -137,22 +136,25 @@ class Dbms_Controller extends CI_Controller {
 						'Interested_In_IT-BPO?' => $this->input->post('work'),
 						'Own_A_Computer?' => $this->input->post('computer'),
 						'Internet_Access?' => $this->input->post('internet'),
-						//'Contract' => $this->input->post('contract'),//not in DB
-						//'New_program[]' => $this->input->post('new_program[]'),//Other table?
-						'Code' => $this->input->post('school') . $this->input->post('id_number')//concatenate school id and student id
+						'Code' => $this->input->post('school') . $this->input->post('id_number') //concatenate school id and student id
+						//'Program[]' => $this->input->post('program[]'),//Other table?
 					);
 
-					$this->student->addStudent($student);
+					//$student_id = $this->student->addStudent($student);
+					echo print_r($this->input->post('program[]'));
+					foreach ($this->input->post('program[]') as $program)
+					{
+						$student_application = array
+						(
+							//'Date' => $this->input->post(''),
+							'Contract?' => $this->input->post('contract'),
+							'Student_ID' => 1//$student_id
+							//'Project_ID' => $this->input->post(''),
+							//'Subject_ID' => $this->input->post('')
+						);
 
-					$student_application = array
-					(
-						'Answer_1' => $this->input->post(''),
-						'Answer_2' => $this->input->post(''),
-						'Contract?' => $this->input->post(''),
-						'Student_ID' => $this->input->post(''),
-						'Project_ID' => $this->input->post(''),
-						'Subject_ID' => $this->input->post('')
-					);
+						$this->student->addStudentApplication($student_application);
+					}
 
 					$this->load->view('header');
 					$this->load->view('forms/form-student', $data);

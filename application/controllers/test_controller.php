@@ -8,10 +8,7 @@ class Test_Controller extends CI_Controller {
 
 		if($this->session->userdata('logged_in'))
 		{
-			if($this->session->userdata('logged_in')['type'] == 'guest')
-			{
-				redirect('home');
-			}
+			
 		}
 		else
 		{
