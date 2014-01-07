@@ -2,135 +2,205 @@
 	<div class="header">
 		<h1>Reports</h1>
 	</div>
+
 	
-	<ul class="nav nav-tabs">
-		<li class="active"><a href="#reports" data-toggle="tab">Print Reports</a></li>
-		<li><a href="#graphs" data-toggle="tab">Print Graphs</a></li>
-	</ul>
-	
-	<div class="tab-content">
-		<div class="tab-pane active" id="reports">
 			<table class="table">
 				<tr>
 					<th>Type of Sheet / Report</th>
-					<th>View</th>
-					<th>Print</th>
 				</tr>
 				<tr>
-					<td>Departmental Level BEST and ADEPT Student Sheet</td>
-					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+					<div class="panel-group" id="accordion">
+						<div class="panel panel-info">
+						<div class="panel-heading">
+						  <h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#t3subject">
+								&#x25BC;
+							</a>T3 Program Report Per Subject
+						  </h4>
+						</div>
+						<div id="t3subject" class="panel-collapse collapse">
+						  <div class="panel-body">
+							<form class="form" role="form">
+								<div class="form-group">
+									<label>Teacher</label><select class="form-control">
+										<option name="tsubject-teacher" value="option1">Option 1</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label>School</label><select class="form-control">
+										<option name="tsubject-school" value="option1">Option 1</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label>Class</label><select class="form-control">
+										<option name="tsubject-class" value="option1">Option 1</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label>T3 Tracker</label><select class="form-control">
+										<option name="tsubject-tracker" value="option1">Option 1</option>
+									</select>
+								</div>
+								<div class="button-groups">
+									<button type="submit" class="btn btn-primary">View Report</button>
+									<button class="btn btn-info">Print as Excel</button>
+									<button class="btn btn-info">Print as PDF</button>
+								</div>
+							</form>
+						  </div>
+						</div>
+						</div>
 					</td>
 				</tr>
 				<tr>
-					<td>Departmental Level BEST and ADEPT Teacher Sheet</td>
-					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+					<div class="panel-group" id="accordion">
+						<div class="panel panel-info">
+						<div class="panel-heading">
+						  <h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#t3gcat">
+								&#x25BC;
+							</a> T3 Program Report GCAT
+						  </h4>
+						</div>
+						<div id="t3gcat" class="panel-collapse collapse">
+						  <div class="panel-body">
+							<form class="form" role="form">
+								<div class="form-group">
+									<label>Teacher</label><select class="form-control">
+										<option name="t3gcat-teacher" value="option1">Option 1</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label>School</label><select class="form-control">
+										<option name="t3gcat-school" value="option1">Option 1</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label>GCAT Tracker</label><select class="form-control">
+										<option name="t3gcat-class" value="option1">Option 1</option>
+									</select>
+								</div>
+								<div class="button-groups">
+									<button type="submit" class="btn btn-primary">View Report</button>
+									<button class="btn btn-info">Print as Excel</button>
+									<button class="btn btn-info">Print as PDF</button>
+								</div>
+							</form>
+						  </div>
+						</div>
+						</div>
+						</div>
 					</td>
 				</tr>
 				<tr>
-					<td>GCAT Project Level Student Sheet</td>
-					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<div class="panel-group" id="accordion">
+						<div class="panel panel-info">
+						<div class="panel-heading">
+						  <h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#suc">
+								&#x25BC;
+							</a>SUC Report
+						  </h4>
+						</div>
+						<div id="suc" class="panel-collapse collapse">
+						  <div class="panel-body">
+							<form class="form" role="form">
+								<div class="form-group">
+									<label>School</label><select class="form-control">
+										<option name="school" value="option1">Option 1</option>
+									</select>
+								</div>
+								<div class="button-groups">
+									<button type="submit" class="btn btn-primary">View Report</button>
+									<button class="btn btn-info">Print as Excel</button>
+									<button class="btn btn-info">Print as PDF</button>
+								</div>
+							</form>
+						  </div>
+						</div>
+						</div>
 					</td>
 				</tr>
 				<tr>
-					<td>CHED Program Tracker</td>
-					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<div class="panel-group" id="accordion">
+						<div class="panel panel-info">
+						<div class="panel-heading">
+						  <h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#sucsmp">
+								&#x25BC;
+							</a>SUC Report with complete SMP list
+						  </h4>
+						</div>
+						<div id="sucsmp" class="panel-collapse collapse">
+						  <div class="panel-body">
+							<form class="form" role="form">
+								<div class="form-group">
+									<label>School</label>
+									<select class="form-control">
+										<option name="sucsmpschool" value="option1">Option 1</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label>Teacher</label>
+									<select class="form-control">
+										<option name="suchsmpteacher" value="option1">Option 1</option>
+									</select>
+								</div>
+								<div class="button-groups">
+									<button type="submit" class="btn btn-primary">View Report</button>
+									<button class="btn btn-info">Print as Excel</button>
+									<button class="btn btn-info">Print as PDF</button>
+								</div>
+							</form>
+						  </div>
+						</div>
+						</div>
 					</td>
-				</tr>
-				<tr>
-					<td>SMP-T3 Tracker per SUC</td>
-					<td><button class="btn btn-default">View</button></td>
+				</tr><tr>
 					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
-					</td>
-				</tr>
-				<tr>
-					<td>SMP-SUC Tracker per Subject</td>
-					<td><button class="btn btn-default">View</button></td>
-					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
-					</td>
-				</tr>
-				<tr>
-					<td>SMP SUC Level Teacher Sheet</td>
-					<td><button class="btn btn-default">View</button></td>
-					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
-					</td>
-				</tr>
-				<tr>
-					<td>SMP Project Level Student Sheet</td>
-					<td><button class="btn btn-default">View</button></td>
-					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
-					</td>
-				</tr>
-				<tr>
-					<td>SMP Department Level Student Sheet</td>
-					<td><button class="btn btn-default">View</button></td>
-					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
-					</td>
-				</tr>
-				<tr>
-					<td>Participating List of Trainers</td>
-					<td><button class="btn btn-default">View</button></td>
-					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<div class="panel-group" id="accordion">
+						<div class="panel panel-info">
+						<div class="panel-heading">
+						  <h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#sprgcat">
+								&#x25BC;
+							</a>Student Program Report GCAT
+						  </h4>
+						</div>
+						<div id="sprgcat" class="panel-collapse collapse">
+						  <div class="panel-body">
+							<form class="form" role="form">
+								<div class="form-group">
+									<label>School</label>
+									<select class="form-control">
+										<option name="sucsmpschool" value="option1">Option 1</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label>Student</label>
+									<select class="form-control">
+										<option name="suchsmpteacher" value="option1">Option 1</option>
+									</select>
+								</div>
+								<div class="button-groups">
+									<button type="submit" class="btn btn-primary">View Report</button>
+									<button class="btn btn-info">Print as Excel</button>
+									<button class="btn btn-info">Print as PDF</button>
+								</div>
+							</form>
+						  </div>
+						</div>
+						</div>
 					</td>
 				</tr>
 			</table>
 		</div>
 			
-		<div class="tab-pane" id="graphs">
-			<div class="row">
-				<div class="col-md-2">
-					<div class="bs-sidebar">
-						<ul class="nav bs-sidenav">
-							<li><a href="#hi">Print Report</a></li><br/>
-							<li><a href="#hi">Query 1</a></li>
-							<li><a href="#hi">Query 2</a></li>
-							<li><a href="#hi">Query 3</a></li>
-							<li><a href="#hi">Query 4</a></li>
-						</ul>
-			
-					</div>
-				</div>
-
-				<div class="col-md-10 graph-area">
-					<div>
-						<nav class="navbar navbar-default">
-							<ul class="nav navbar-nav">
-								<li class="active"><a href="#">Graph 1</a></li>
-								<li><a href="#">Graph 2</a></li>
-								<li><a href="#">Graph 3</a></li>
-							</ul>
-						</nav>
-						<div class="graph">
-							<img class="img-responsive" src="img/sample-graph.jpg"/>
-						</div>
-					</div>
-				</div>
-			</div>	
 		
-		</div>
 			
 	</div>
 	
