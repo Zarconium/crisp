@@ -4,6 +4,7 @@
 			<h1>Test Page</h1>
 		</div>
 		<p>CONGRATULATIONS! Your SQL Statement Works :D</p>
+		<p>Query executed in <?php echo $this->benchmark->elapsed_time(); ?> second(s).</p>
 		<p>Supot si Evan</p>
 	</div>
 </div>
