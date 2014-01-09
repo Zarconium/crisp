@@ -21,5 +21,12 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('report');
 		$this->load->view('footer');
 	}
+
+	function report_ni_phil()
+	{
+		$data['student_list'] = $this->report_suc->getAllStudentNamesAndSchools();
+
+		$this->load->view('reports/report_ni_phil', $data);
+	}
 }
 ?>
