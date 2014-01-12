@@ -1,5 +1,6 @@
 <div class="info-form">
 	<?php if (isset($draft_saved)) { echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Draft saved.</div>';} ?>
+	<?php if (isset($form_success)) { echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Student successfully added.</div>';} ?>
 
 	<h1>Student Form</h1>
 	
@@ -52,8 +53,8 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Gender</label><br/>
-				<input type="radio" name="gender" value="M"> Male
-				<input type="radio" name="gender" value="F"> Female
+				<input type="radio" name="gender" value="M" <?php echo set_radio('gender', 'M'); ?>> Male
+				<input type="radio" name="gender" value="F" <?php echo set_radio('gender', 'F'); ?>> Female
 				<?php echo form_error('gender', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -61,9 +62,9 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Civil Status</label><br/>
-				<input type="radio" name="civil" value="married"> Married
-				<input type="radio" name="civil" value="single"> Single
-				<input type="radio" name="civil" value="separated"> Separated
+				<input type="radio" name="civil" value="married" <?php echo set_radio('civil', 'married'); ?>> Married
+				<input type="radio" name="civil" value="single" <?php echo set_radio('civil', 'single'); ?>> Single
+				<input type="radio" name="civil" value="separated" <?php echo set_radio('civil', 'separated'); ?>> Separated
 				<?php echo form_error('civil', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -87,10 +88,7 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Nationality</label>
-				<select class="form-control" name="nationality">
-					<option value="Filipino">Filipino</option>
-					<option value="American">American</option>
-				</select>
+				<input type="text" class="form-control" name="nationality" value="<?php echo set_value('nationality'); ?>">
 				<?php echo form_error('nationality', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -120,17 +118,13 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Province</label>
-				<select class="form-control" name="current_province">
-					<option value="Manila">Manila</option>
-				</select>
+				<input type="text" class="form-control" name="current_province" value="<?php echo set_value('current_province'); ?>">
 				<?php echo form_error('current_province', '<div class="text-danger">', '</div>'); ?>
 			</div>
 
 			<div class="form-group">
 				<label>Region</label>
-				<select class="form-control" name="current_region">
-					<option value="NCR">NCR</option>
-				</select>
+				<input type="text" class="form-control" name="current_region" value="<?php echo set_value('current_region'); ?>">
 				<?php echo form_error('current_region', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -174,8 +168,8 @@
 			<div class="form-group">
 				<label>AB / BS</label>
 				<select class="form-control" name="degree_type">
-					<option value="BS">BS</option>
-					<option value="AB">AB</option>
+					<option value="BS" <?php echo set_radio('degree_type', 'BS'); ?>>BS</option>
+					<option value="AB" <?php echo set_radio('degree_type', 'AB'); ?>>AB</option>
 				</select>
 				<?php echo form_error('degree_type', '<div class="text-danger">', '</div>'); ?>
 			</div>
@@ -198,7 +192,7 @@
 				<label>School</label>
 				<select class="form-control" name="school">
 				<?php foreach ($schools as $school): ?>
-					<option value="<?php echo $school->School_ID ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
+					<option value="<?php echo $school->School_ID ?>" <?php echo set_radio('school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch ?></option>
 				<?php endforeach; ?>
 				</select>
 				<?php echo form_error('school', '<div class="text-danger">', '</div>'); ?>
@@ -214,8 +208,8 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Are you a DOST Scholar?</label><br />
-				<input type="radio" name="DOSTscholar" value="1"> Yes
-				<input type="radio" name="DOSTscholar" value="0"> No
+				<input type="radio" name="DOSTscholar" value="1" <?php echo set_radio('DOSTscholar', '1'); ?>> Yes
+				<input type="radio" name="DOSTscholar" value="0" <?php echo set_radio('DOSTscholar', '0'); ?>> No
 				<?php echo form_error('DOSTscholar', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -223,8 +217,8 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>If not, are you a recipient of any scholarship? Specify if yes.</label><br />
-				<input type="radio" name="scholar" value="1"> Yes
-				<input type="radio" name="scholar" value="0"> No
+				<input type="radio" name="scholar" value="1" <?php echo set_radio('scholar', '1'); ?>> Yes
+				<input type="radio" name="scholar" value="0" <?php echo set_radio('scholar', '0'); ?>> No
 				<?php echo form_error('scholar', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -232,8 +226,8 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Are you willing to work for the IT-BPO sector?</label><br/>
-				<input type="radio" name="work" value="1"> Yes
-				<input type="radio" name="work" value="0"> No
+				<input type="radio" name="work" value="1" <?php echo set_radio('work', '1'); ?>> Yes
+				<input type="radio" name="work" value="0" <?php echo set_radio('work', '0'); ?>> No
 				<?php echo form_error('work', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -241,8 +235,8 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Do you own a computer?</label><br/>
-				<input type="radio" name="computer" value="1"> Yes
-				<input type="radio" name="computer" value="0"> No
+				<input type="radio" name="computer" value="1" <?php echo set_radio('computer', '1'); ?>> Yes
+				<input type="radio" name="computer" value="0" <?php echo set_radio('computer', '0'); ?>> No
 				<?php echo form_error('computer', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -250,8 +244,8 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Do you have Internet access?</label><br/>
-				<input type="radio" name="internet" value="1"> Yes
-				<input type="radio" name="internet" value="0"> No
+				<input type="radio" name="internet" value="1" <?php echo set_radio('internet', '1'); ?>> Yes
+				<input type="radio" name="internet" value="0" <?php echo set_radio('internet', '0'); ?>> No
 				<?php echo form_error('internet', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -259,8 +253,8 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Submitted the contract?</label><br/>
-				<input type="radio" name="contract" value="1"> Yes
-				<input type="radio" name="contract" value="0"> No
+				<input type="radio" name="contract" value="1" <?php echo set_radio('contract', '1'); ?>> Yes
+				<input type="radio" name="contract" value="0" <?php echo set_radio('contract', '0'); ?>> No
 				<?php echo form_error('contract', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
@@ -270,12 +264,12 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Applying for which programs?</label><br/>
-				<input type="checkbox" name="program[]" value="smp_ched"> SMP-CHED<br/>
-				<input type="checkbox" name="program[]" value="gcat_ched"> GCAT-CHED<br/>
-				<input type="checkbox" name="program[]" value="best_ched"> BEST-CHED<br/>
-				<input type="checkbox" name="program[]" value="adept_ched"> AdEPT-CHED<br/>
-				<input type="checkbox" name="program[]" value="best_sei"> BEST-SEI<br/>
-				<input type="checkbox" name="program[]" value="adept_sei"> ADEPT-SEI<br/>
+				<input type="checkbox" name="program[]" value="smp_ched" <?php echo set_checkbox('program[]', 'smp_ched'); ?>> SMP-CHED<br/>
+				<input type="checkbox" name="program[]" value="gcat_ched" <?php echo set_checkbox('program[]', 'gcat_ched'); ?>> GCAT-CHED<br/>
+				<input type="checkbox" name="program[]" value="best_ched" <?php echo set_checkbox('program[]', 'best_ched'); ?>> BEST-CHED<br/>
+				<input type="checkbox" name="program[]" value="adept_ched" <?php echo set_checkbox('program[]', 'adept_ched'); ?>> AdEPT-CHED<br/>
+				<input type="checkbox" name="program[]" value="best_sei" <?php echo set_checkbox('program[]', 'best_sei'); ?>> BEST-SEI<br/>
+				<input type="checkbox" name="program[]" value="adept_sei" <?php echo set_checkbox('program[]', 'adept_sei'); ?>> ADEPT-SEI<br/>
 				<?php echo form_error('program[]', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>

@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Dbms_Controller extends CI_Controller {
-
+class Dbms_Controller extends CI_Controller
+{
 	function __construct()
 	{
 		parent::__construct();
@@ -59,6 +59,8 @@ class Dbms_Controller extends CI_Controller {
 	function form_student_application()
 	{
 		$data['schools'] = $this->school->getAllSchools();
+		// $data['subjects'] = $this->school->getAllSubjects();
+		// $data['statuses'] = $this->school->getAllStatuses();
 
 		if($this->input->post())
 		{
@@ -137,24 +139,59 @@ class Dbms_Controller extends CI_Controller {
 						'Own_A_Computer?' => $this->input->post('computer'),
 						'Internet_Access?' => $this->input->post('internet'),
 						'Code' => $this->input->post('school') . $this->input->post('id_number') //concatenate school id and student id
-						//'Program[]' => $this->input->post('program[]'),//Other table?
 					);
 
-					//$student_id = $this->student->addStudent($student);
-					echo print_r($this->input->post('program[]'));
-					foreach ($this->input->post('program[]') as $program)
+					$student_id = $this->student->addStudent($student);
+
+					foreach ($this->input->post('program') as $program)
 					{
+						switch ($program)
+						{
+							case 'smp_ched':
+								$project_id = 1;
+								$subject_id = 1;
+								break;
+
+							case 'gcat_ched':
+								$project_id = 1;
+								$subject_id = 2;
+								break;
+
+							case 'best_ched':
+								$project_id = 1;
+								$subject_id = 3;
+								break;
+							case 'adept_ched':
+								$project_id = 1;
+								$subject_id = 4;
+								break;
+
+							case 'best_ched':
+								$project_id = 2;
+								$subject_id = 1;
+								break;
+
+							case 'adept_ched':
+								$project_id = 2;
+								$subject_id = 2;
+								break;
+
+							default:
+								break;
+						}
+
 						$student_application = array
 						(
-							//'Date' => $this->input->post(''),
 							'Contract?' => $this->input->post('contract'),
-							'Student_ID' => 1//$student_id
-							//'Project_ID' => $this->input->post(''),
-							//'Subject_ID' => $this->input->post('')
+							'Student_ID' => $student_id,
+							'Project_ID' => $project_id,
+							'Subject_ID' => $subject_id
 						);
 
 						$this->student->addStudentApplication($student_application);
 					}
+
+					$data['form_success'] = TRUE;
 
 					$this->load->view('header');
 					$this->load->view('forms/form-student', $data);
