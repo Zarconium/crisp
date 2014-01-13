@@ -87,7 +87,7 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|xss_clean');
 			$this->form_validation->set_rules('degree_type', 'AB/BS', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('degree', 'Degree', 'trim|required|max_length[97]|xss_clean');
-			$this->form_validation->set_rules('year', 'Year', 'trim|required|integer|xss_clean');
+			$this->form_validation->set_rules('year', 'Year Level', 'trim|required|integer|xss_clean');
 			$this->form_validation->set_rules('expected_year_of_graduation', 'Expected Year of Graduation', 'trim|required|integer|xss_clean');
 			$this->form_validation->set_rules('DOSTscholar', 'DOST Scholar', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('scholar', 'Scholar', 'trim|required|xss_clean');
