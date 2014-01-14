@@ -1,7 +1,10 @@
+<?php if ($this->session->flashdata('upload_success')) { echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>Success!</strong> ' . $this->session->flashdata('upload_success') . '</div>';} ?>
+<?php if ($this->session->flashdata('upload_error')) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>Error!</strong> ' . $this->session->flashdata('upload_error') . '</div>';} ?>
+
 <div class="header">
 	<h1>Manage Participants</h1>
 </div>
-		
+
 <ul class="nav nav-tabs">
   <li class="active"><a href="#student" data-toggle="tab">Student</a></li>
   <li><a href="#teacher" data-toggle="tab">Teacher</a></li>
@@ -338,7 +341,10 @@
 </div>
 <div class="modal-body">
 <div class="student-button-groups">
-	<button class="btn btn-primary btn-lg">Upload Students</button>
+	<?php $attributes = array('id' => 'upload_student_profile', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_student_profile', $attributes); ?>
+		<input type="file" name="file_student_profile" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_student_profile').submit();">
+		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_student_profile]').click();">Upload Students</button>
+	<?php echo form_close(); ?>
 	<button class="btn btn-primary btn-lg">Upload GCAT Student Grades</button>
 	<button class="btn btn-primary btn-lg">Upload BEST Student Grades</button>
 	<button class="btn btn-primary btn-lg">Upload ADEPT Student Grades</button>

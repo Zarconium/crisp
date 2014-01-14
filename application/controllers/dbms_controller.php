@@ -592,9 +592,80 @@ class Dbms_Controller extends CI_Controller
 		$this->load->view('forms/form-program-smp-tracker');
 		$this->load->view('footer');
 	}
-	
-	
-	
 
+	function upload_student_profile()
+	{
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_student_profile']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 1) continue;
+
+			$code = 5 . $row['E'];
+			
+			$student = array
+			(
+				'School_ID' => 5,
+				'Last_Name' => $row['A'],
+				'First_Name' => $row['B'],
+				'Middle_Initial' => $row['C'],
+				'Name_Suffix' => $row['D'],
+				'Student_ID_Number' => $row['E'],
+				'Civil_Status' => $row['G'],
+				'Birthdate' => $row['H'],
+				'Birthplace' => $row['I'],
+				'Gender' => $row['J'],
+				'Nationality' => $row['K'],
+				'Street_Number' => $row['L'],
+				'Street_Name' => $row['M'],
+				'City' => $row['N'],
+				'Province' => $row['O'],
+				'Region' => $row['P'],
+				'Alternate_Address' => $row['Q'],
+				'Mobile_Number' => $row['R'],
+				'Landline' => $row['S'],
+				'Email' => $row['T'],
+				'Facebook' => $row['U'],
+				'Course' => $row['V'] . ' ' . $row['W'],
+				'Year' => $row['X'],
+				// 'School' => $row['Y'],//school id pls
+				// 'Campus' => $row['Z'],//^
+				'Expected_Year_of_Graduation' => $row['AA'],
+				'DOST_Scholar?' => $row['AB'],
+				'Scholar?' => $row['AC'],
+				'Interested_In_IT-BPO?' => $row['AD']
+			);
+			
+			if ($row['F'] == 'Yes')
+			{
+				if ($this->student->addStudent($student))
+				{
+					$this->session->set_flashdata('upload_success', 'Student Profile successfully uploaded.');
+				}
+				else
+				{
+					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter);
+					redirect('dbms');
+				}
+			}
+			else
+			{
+				if ($this->student->updateStudentByCode($code, $student))
+				{
+					$this->session->set_flashdata('upload_success', 'Student Profile successfully uploaded.');
+				}
+				else
+				{
+					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter);
+					redirect('dbms');
+				}
+			}
+		}
+
+		redirect('dbms');
+	}
 }
 ?>

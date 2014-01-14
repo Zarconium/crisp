@@ -1,0 +1,81 @@
+
+
+//Download PHPExcelreader here https://code.google.com/p/php-excel-reader/downloads/list
+
+//Put in the directory
+require_once '../Classes/PHPExcel/IOFactory.php';
+
+or 
+
+//Add Excel.php in your library
+
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+require_once APPPATH."/third_party/PHPExcel.php";
+
+class Excel extends PHPExcel {
+    public function __construct() {
+        parent::__construct();
+  }
+}
+
+//load your library's excel 
+	$this->load->library('excel');
+
+//Create a reader
+$objReader = PHPExcel_IOFactory::createReader('Excel5');
+
+or 
+
+$data = new Spreadsheet_Excel_Reader("test.xls",false);
+
+//upload the file and put it here
+$objPHPExcel = PHPExcel_IOFactory::load("yourfile.xlsx");
+
+//converts the sheet into an array
+$sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+
+//GETS COLUMN COUNT
+$row->rowcount($sheet_index=0) 
+
+//GETS ROW COUNT
+$column->colcount($sheet_index=0)
+
+//LOOPING
+
+for( $x=1; $x < $row; $x++)
+{
+	for ($y=0; $y < $column; $y++)
+	{
+		$celldata->val($x,$y)
+	}
+}
+
+//STEPS for batch upload - HARD CODE EXAMPLE
+// example Best_Adept Student Product Tracker
+//School is predefined
+//Contents include: (*- for those we store)
+last name
+first name
+middle initial
+id number*
+control*
+username*
+
+//GETS COLUMN COUNT
+$row->rowcount($sheet_index=0) 
+
+//GETS ROW COUNT
+//there should be 6
+$column->colcount($sheet_index=0)
+
+//LOOPING
+
+for( $x=1; $x < $row; $x++)
+{
+		//you can directly put them in the db though
+		$id->val($x,$3)
+		$control->val($x,$4)
+		$username->val($x,$5)
+}
+
+

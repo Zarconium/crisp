@@ -18,7 +18,7 @@ Class Student extends CI_Model
 	function getAllStudentsFormatted()
 	{
 		$this->db->distinct();
-		$this->db->select('CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name, CONCAT(school.name, " - ", school.Branch) as School_Name, subject.Subject_Code', false);
+		$this->db->select('CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name, CONCAT(school.name, " - ", school.Branch) as School_Name, GROUP_CONCAT(subject.Subject_Code) as Subject_Code', false);
 		$this->db->from('student');
 		$this->db->join('school', 'student.School_ID = school.School_ID', 'left');
 		$this->db->join('student_tracker', 'student.Student_ID = student_tracker.Student_ID', 'left');
@@ -26,6 +26,8 @@ Class Student extends CI_Model
 		$this->db->join('subject', 'tracker.Subject_ID = subject.Subject_ID', 'left');
 		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
 		//$this->db->where('status.Name', 'Currently Taking');
+		$this->db->group_by('Full_Name');
+		$this->db->order_by('student.Student_ID', 'asc');
 
 		$query = $this->db->get();
 		
@@ -47,7 +49,15 @@ Class Student extends CI_Model
 
 	function addStudentApplication($data)
 	{
-		$this->db->insert('student_application', $data);
+		return $this->db->insert('student_application', $data);
+	}
+
+	function updateStudentByCode($code, $data)
+	{
+		$this->db->where('Code', $code);
+		$this->db->update('student', $data);
+
+		return $this->db->affected_rows();
 	}
 }
 ?>
