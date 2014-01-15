@@ -4,6 +4,12 @@
 	
 	<h1>ADEPT Product Tracker Encoder</h1>
 	
+		<div class="save">
+			<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
+			<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
+			<button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
+			<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
+		</div>
 	<legend>General Information</legend>
 	<form class="form-inline" role="form"> <!-- This is the start of the blocked fields -->
 						

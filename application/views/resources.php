@@ -36,6 +36,14 @@
 					</td>
 				</tr>
 				<tr>
+					<td>Participant's Contract</td>
+					<td><button class="btn btn-default">View</button></td>
+					<td>
+						<button class="btn btn-primary">Excel</button>
+						<button class="btn btn-info">PDF</button>
+					</td>
+				</tr>
+				<tr>
 					<td>GCAT Student Grades</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
@@ -80,6 +88,14 @@
 				</tr>
 				<tr>
 					<td>Teacher Application Form - Batch</td>
+					<td><button class="btn btn-default">View</button></td>
+					<td>
+						<button class="btn btn-primary">Excel</button>
+						<button class="btn btn-info">PDF</button>
+					</td>
+				</tr>
+				<tr>
+					<td>Participant's Contract</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -211,6 +227,70 @@
 				</tr>
 				<tr>
 					<td>ADEPT Tracker - Batch</td>
+					<td><button class="btn btn-default">View</button></td>
+					<td>
+						<button class="btn btn-primary">Excel</button>
+						<button class="btn btn-info">PDF</button>
+					</td>
+				</tr>
+				<tr>
+					<td>Internship Evaluation</td>
+					<td><button class="btn btn-default">View</button></td>
+					<td>
+						<button class="btn btn-primary">Excel</button>
+						<button class="btn btn-info">PDF</button>
+					</td>
+				</tr>
+				<tr>
+					<td>GCAT Student Grade - Batch</td>
+					<td><button class="btn btn-default">View</button></td>
+					<td>
+						<button class="btn btn-primary">Excel</button>
+						<button class="btn btn-info">PDF</button>
+					</td>
+				</tr>
+				<tr>
+					<td>BEST Student Grade - Batch</td>
+					<td><button class="btn btn-default">View</button></td>
+					<td>
+						<button class="btn btn-primary">Excel</button>
+						<button class="btn btn-info">PDF</button>
+					</td>
+				</tr>
+				<tr>
+					<td>ADEPT Student Grade - Batch</td>
+					<td><button class="btn btn-default">View</button></td>
+					<td>
+						<button class="btn btn-primary">Excel</button>
+						<button class="btn btn-info">PDF</button>
+					</td>
+				</tr>
+				<tr>
+					<td>SMP Student Grade - Batch</td>
+					<td><button class="btn btn-default">View</button></td>
+					<td>
+						<button class="btn btn-primary">Excel</button>
+						<button class="btn btn-info">PDF</button>
+					</td>
+				</tr>
+				<tr>
+					<td>SMP T3 Tracker</td>
+					<td><button class="btn btn-default">View</button></td>
+					<td>
+						<button class="btn btn-primary">Excel</button>
+						<button class="btn btn-info">PDF</button>
+					</td>
+				</tr>
+				<tr>
+					<td>ADEPT T3 Tracker</td>
+					<td><button class="btn btn-default">View</button></td>
+					<td>
+						<button class="btn btn-primary">Excel</button>
+						<button class="btn btn-info">PDF</button>
+					</td>
+				</tr>
+				<tr>
+					<td>Participant Master List</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>

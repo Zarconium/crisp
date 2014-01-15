@@ -290,7 +290,7 @@
 		<div class="form-inline">
 		
 			<div class="form-group subtitle">
-				<label>Doctorate</label>
+				<label>Post Graduate</label>
 			</div>
 			
 			<div class="form-group" name="post_type">
@@ -368,6 +368,11 @@
 					<?php echo form_error('current_department'); ?>
 			</div>
 			
+			<div class="form-group">
+				<label>Position of Supervisor</label>
+				<input class="form-control" type="text"  name="position_of_supervisor" value="<?php echo set_value('position_of_supervisor'); ?>">
+					<?php echo form_error('position_of_supervisor'); ?>
+			</div>
 			<div class="form-group">
 				<label>Supervisor Contact Details</label>
 				<input class="form-control" type="text"  name="supervisor_contact_details" value="<?php echo set_value('supervisor_contact_details'); ?>">
