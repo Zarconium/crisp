@@ -110,7 +110,7 @@
 					</tr>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td><a href="<?php echo base_url('dbms/form_proctor_profile'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td><a href="<?php echo base_url('dbms/form_proctor_application'); ?>">View</a> | <a href="#">Delete</a></td>
 						<td>Uygongco, Glu</td>
 						<td>Ateneo de Manila University</td>
 						<td>BEST</td>

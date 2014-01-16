@@ -58,19 +58,9 @@
 				<input type="radio" name="civil" value="married"> Married
 				<input type="radio" name="civil" value="single"> Single
 				<input type="radio" name="civil" value="separated"> Separated
+				<input type="radio" name="civil" value="widowed"> Widowed
 				<?php echo form_error('civil', '<div class="text-danger">', '</div>'); ?>
 			</div>
-			
-		</div>
-
-		<div class="form-inline">
-
-			<div class="form-group">
-			<label>Birth Date</label>
-			<input type="date" class="form-control" name="birthdate" value="<?php echo set_value('birthdate'); ?>">
-				<?php echo form_error('birthdate', '<div class="text-danger">', '</div>'); ?>
-			</div>
-
 			
 		</div>
 

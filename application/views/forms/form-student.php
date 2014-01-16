@@ -26,14 +26,19 @@
 				<input type="text" class="form-control" name="id_number" value="<?php echo set_value('id_number'); ?>">
 				<?php echo form_error('id_number'); ?>
 			</div>
+			<div class="form-group">
+				<label>Assigned Database ID</label>
+				<input type="text" class="form-control" name="db_id" value="<?php echo set_value('ddb_id'); ?>">
+				<?php echo form_error('db_id'); ?>
+			</div>
+			<div class="form-group">
+				<label>Date of Application</label>
+				<input type="date" class="form-control" name="date" value="<?php echo set_value('date'); ?>">
+				<?php echo form_error('date'); ?>
+			</div>
 		</div>
 
 		<div class="form-inline">
-			<div class="form-group">
-				<label>Name Suffix</label>
-				<input class="form-control" type="text" name="name_suffix" value="<?php echo set_value('name_suffix'); ?>">
-				<?php echo form_error('name_suffix'); ?>
-			</div>
 			
 			<div class="form-group">
 				<label>Last Name</label>
@@ -51,6 +56,12 @@
 				<label>Middle Initial</label>
 				<input type="text" class="form-control" name="middle_initial" value="<?php echo set_value('middle_initial'); ?>">
 				<?php echo form_error('middle_initial'); ?>
+			</div>
+			
+			<div class="form-group">
+				<label>Name Suffix</label>
+				<input class="form-control" type="text" name="name_suffix" value="<?php echo set_value('name_suffix'); ?>">
+				<?php echo form_error('name_suffix'); ?>
 			</div>
 		</div>
 
@@ -85,15 +96,23 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Birthplace</label>
-				<input type="text" class="form-control" name="birthplace" value="<?php echo set_value('birthplace'); ?>">
-				<?php echo form_error('birthplace'); ?>
+				<select class="form-control" name="birthplace">
+					<?php foreach ($birthplaces as $birthplace): ?>
+						<option value="<?php echo $birthplace->Birthplace_ID ?>" <?php echo set_select('birthplace', $birthplace->Birthplace_ID); ?>><?php echo $birthplace->Name 	?></option>
+					<?php endforeach; ?>
+				</select>
+				<?php echo form_error('school'); ?>
 			</div>
 		</div>
 
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Nationality</label>
-				<input type="text" class="form-control" name="nationality" value="<?php echo set_value('nationality'); ?>">
+				<select class="form-control" name="nationality">
+					<?php foreach ($nationalities as $nationality): ?>
+						<option value="<?php echo $nationality->Nationality_ID ?>" <?php echo set_select('nationality', $nationality->Nationality_ID); ?>><?php echo $nationality->Name 	?></option>
+					<?php endforeach; ?>
+				</select>
 				<?php echo form_error('nationality'); ?>
 			</div>
 		</div>
@@ -123,13 +142,22 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Province</label>
-				<input type="text" class="form-control" name="current_province" value="<?php echo set_value('current_province'); ?>">
+				<select class="form-control" name="current_region">
+				<?php foreach ($current_provinces as $current_province): ?>
+					<option value="<?php echo $current_province->Current_Province_ID ?>" <?php echo set_select('province', $current_province->Current_Province_ID); ?>><?php echo $current_province->Name ?></option>
+				<?php endforeach; ?>
+				</select>
 				<?php echo form_error('current_province'); ?>
 			</div>
 
+				
 			<div class="form-group">
 				<label>Region</label>
-				<input type="text" class="form-control" name="current_region" value="<?php echo set_value('current_region'); ?>">
+				<select class="form-control" name="current_region">
+				<?php foreach ($current_regions as $current_region): ?>
+					<option value="<?php echo $current_region->Current_Region_ID ?>" <?php echo set_select('current_region', $current_region->Current_Region_ID); ?>><?php echo $current_region->Name ?></option>
+				<?php endforeach; ?>
+				</select>
 				<?php echo form_error('current_region'); ?>
 			</div>
 		</div>
@@ -202,6 +230,12 @@
 				</select>
 				<?php echo form_error('school'); ?>
 			</div>
+			
+			<div class="form-group">
+				<label>Campus</label>
+				<input class="form-control" type="text" name="campus" value="<?php echo set_value('campus'); ?>">
+				<?php echo form_error('campus'); ?>
+			</div>
 
 			<div class="form-group">
 				<label>Expected Year of Graduation</label>
@@ -234,24 +268,6 @@
 				<input type="radio" name="work" value="1" <?php echo set_radio('work', '1'); ?>> Yes
 				<input type="radio" name="work" value="0" <?php echo set_radio('work', '0'); ?>> No
 				<?php echo form_error('work'); ?>
-			</div>
-		</div>
-
-		<div class="form-inline">
-			<div class="form-group">
-				<label>Do you own a computer?</label><br/>
-				<input type="radio" name="computer" value="1" <?php echo set_radio('computer', '1'); ?>> Yes
-				<input type="radio" name="computer" value="0" <?php echo set_radio('computer', '0'); ?>> No
-				<?php echo form_error('computer'); ?>
-			</div>
-		</div>
-
-		<div class="form-inline">
-			<div class="form-group">
-				<label>Do you have Internet access?</label><br/>
-				<input type="radio" name="internet" value="1" <?php echo set_radio('internet', '1'); ?>> Yes
-				<input type="radio" name="internet" value="0" <?php echo set_radio('internet', '0'); ?>> No
-				<?php echo form_error('internet'); ?>
 			</div>
 		</div>
 

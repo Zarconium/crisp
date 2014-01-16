@@ -4,6 +4,12 @@
 		Teacher Profile
 	</h1>
 	
+		<div class="save">
+			<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
+			<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
+			<button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
+			<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
+		</div>
 	
 	<ul class="nav nav-tabs">
 	  <li class="active"><a href="#basic" data-toggle="tab">Basic Information</a></li>
@@ -854,7 +860,6 @@
 				
 				<div class="row">
 	
-				<div class="col-md-6">
 				<form class="form">
 					
 					<div class="form-group"><label>Orientation Date </label>
@@ -863,16 +868,7 @@
 					<div class="form-group"><label>Site Visit</label>
 					<input type="date" class="form-control"></div>
 					
-					<div class="form-group"><label>GCAT</label>
-					<input type="date" class="form-control"></div>
-				
-				</form>
-				</div>
-				
-				<div class="col-md-6">
-				<form class="form">
-
-					
+									
 					<div class="form-group"><label>Day 1</label>
 					<input type="date" class="form-control"></div>
 					
@@ -882,17 +878,12 @@
 					<div class="form-group"><label>Day 3</label><span class="help-block">If with the faculty</span>
 					<input type="date" class="form-control"></div>
 					
+					<div class="form-group"><label>Total Days Attended </label>
+					<input type="text" class="form-control"></div>
 				</form>	
-				</div>
 				</div>
 				
 
-				<div class="col-md-12">
-				<form class="form">
-					<div class="form-group"><label>Total Days Attended </label>
-					<input type="text" class="form-control"></div>
-				</form>
-				</div>
 				
 				
 			  </div>
@@ -1002,8 +993,11 @@
 			<div class="panel-heading">Add or Edit Stipend</div>
 			<div class="panel-body">
 				<form class="form">
+					<div class="form-group"><label>State University</label>
+					<input class="form-control"  type="text" placeholder="State University">
+					</div>
 					<div class="form-group"><label>From</label>
-					<input class="form-control"  type="text" placeholder="11/10/2013">
+					<input class="form-control"  type="text" placeholder="Person">
 					</div>
 					<div class="form-group"><label>Subject</label>
 					<input class="form-control"  type="text" placeholder="11/10/2013">
@@ -1034,6 +1028,7 @@
 					<tr>
 						<th></th>
 						<th>Action</th>
+						<th>State Universtiy</th>
 						<th>From</th>
 						<th>Subject</th>
 						<th>Amount</th>
@@ -1042,6 +1037,7 @@
 					<tr>
 						<td><input type="checkbox"></td>
 						<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
+						<td>Ateneo de Manila University</td>
 						<td>Federico, Joy</td>
 						<td>BPO101</td>
 						<td>100</td>
