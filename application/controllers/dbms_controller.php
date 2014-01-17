@@ -33,6 +33,12 @@ class Dbms_Controller extends CI_Controller
 		$this->student->deleteStudentById($id);
 		redirect('dbms');
 	}
+
+	function delete_teacher($id)
+	{
+		$this->teacher->deleteTeacherById($id);
+		redirect('dbms');
+	}
 	
 	function form_student_profile()
 	{
@@ -446,6 +452,14 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('other_positions_held', 'Other Positions Held', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('classes_handling', 'Classes Handling', 'trim|required|xss_clean');
 			// subjs taught 2011-present
+			$this->form_validation->set_rules('computer_proficient_skill', 'Computer Proficiency Skills', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('computer_familiar_skill', 'Computer Familiarity', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('skill', 'Other Skills', 'trim|required|xss_clean');
+			// professional references
+			$this->form_validation->set_rules('resume', 'Resume', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('photo', 'Photo', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('proof', 'Proof of Certification', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('diploma', 'Diploma/TOR', 'trim|required|xss_clean');
 
 			$this->form_validation->set_message('is_unique', 'Teacher already exists.');
 			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');

@@ -364,7 +364,9 @@
 
 			if ($subject && $year)
 			{
-				$('#subjects_taught_table').append('<tr><td><input type="checkbox"></td><td><input type="hidden" name="subjects_taught_subject[]" value="' + $subject + '">' + $subject + '</td><td><input type="hidden" name="subjects_taught_year[]" value="' + $year + '">' + $year + '</td></tr>');
+				$('#subjects_taught_table').append('<tr><td><input type="checkbox"></td>' +
+					'<td><input type="hidden" name="subjects_taught_subject[]" value="' + $subject + '">' + $subject + '</td>' +
+					'<td><input type="hidden" name="subjects_taught_year[]" value="' + $year + '">' + $year + '</td></tr>');
 			}
 			else
 			{
@@ -419,6 +421,41 @@
 		</div>
 		
 		<legend>Institutions Worked in from 2011 to Present</legend>
+
+		<script type="text/javascript">
+		function institutions_worked_add()
+		{
+			$institution = $('[name="institutions_worked_institution_input"]').val();
+			$position = $('[name="institutions_worked_position_input"]').val();
+			$year_started = $('[name="institutions_worked_year_started_input"]').val();
+			$level_taught = $('[name="institutions_worked_level_taught_input"]').val();
+			$courses_taught = $('[name="institutions_worked_courses_taught_input"]').val();
+			$number_of_years_in_institution = $('[name="institutions_worked_number_of_years_in_institution_input"]').val();
+
+			if ($institution && $position && $year_started && $level_taught && $courses_taught && $number_of_years_in_institution)
+			{
+				$('#institutions_worked_table').append('<tr><td><input type="checkbox"></td>' +
+					'<td><input type="hidden" name="institutions_worked_institution[]" value="' + $institution + '">' + $institution + '</td>' +
+					'<td><input type="hidden" name="institutions_worked_position[]" value="' + $position + '">' + $position + '</td>' +
+					'<td><input type="hidden" name="institutions_worked_year_started[]" value="' + $year_started + '">' + $year_started + '</td>' +
+					'<td><input type="hidden" name="institutions_worked_level_taught[]" value="' + $level_taught + '">' + $level_taught + '</td>' +
+					'<td><input type="hidden" name="institutions_worked_courses_taught[]" value="' + $courses_taught + '">' + $courses_taught + '</td>' +
+					'<td><input type="hidden" name="institutions_worked_number_of_years_in_institution[]" value="' + $number_of_years_in_institution + '">' + $number_of_years_in_institution + '</td></tr>');
+			}
+			else
+			{
+				alert('Invalid input. Please check fields and try again.');
+			}
+		}
+
+		function institutions_worked_delete()
+		{
+			if (confirm('Delete selected institutions?'))
+			{
+				$('#institutions_worked_table input[type="checkbox"]:checked').each(function(i, item) { $(item).closest('tr').remove(); });
+			}
+		}
+		</script>
 		
 		<div class="col-md-3">
 			<div class="panel panel-info">
@@ -429,27 +466,27 @@
 					<div class="form">
 						<div class="form-group">
 							<label>Institution</label>
-							<input class="form-control" type="text"  name="institutions_worked_institution">
+							<input class="form-control" type="text"  name="institutions_worked_institution_input">
 						</div>
 						<div class="form-group">
 							<label>Position</label>
-							<input class="form-control" type="text"  name="institutions_worked_position">
+							<input class="form-control" type="text"  name="institutions_worked_position_input">
 						</div>
 						<div class="form-group">
-							<label>Date</label>
-							<input class="form-control" type="text"  name="institutions_worked_date">
+							<label>Year Started</label>
+							<input class="form-control" type="number"  name="institutions_worked_year_started_input" value="2011">
 						</div>
 						<div class="form-group">
-							<label>Level Taught	</label>
-							<input class="form-control" type="text"  name="institutions_worked_level_taught">
+							<label>Level Taught</label>
+							<input class="form-control" type="text"  name="institutions_worked_level_taught_input">
 						</div>
 						<div class="form-group">
 							<label>Courses Taught</label><span class="help-block">separated by a comma</span>
-							<input class="form-control" type="text"  name="institutions_worked_courses_taught">
+							<input class="form-control" type="text"  name="institutions_worked_courses_taught_input">
 						</div>
 						<div class="form-group">
 							<label>Number of Years in the Institution</label>
-							<input class="form-control" type="number"  name="institutions_worked_number_of_years_in_institution">
+							<input class="form-control" type="number"  name="institutions_worked_number_of_years_in_institution_input">
 						</div>
 					
 						<div class="submit-button">
@@ -463,14 +500,14 @@
 		<div class="col-md-9">
 			<h3>List of Institutions</h3>	
 			<div class="customize-btn-group">
-				<button type="button" class="btn btn-danger">Delete</button>
+				<button type="button" class="btn btn-danger" onclick="institutions_worked_delete();">Delete</button>
 			</div>
-			<table class="table">
+			<table class="table" id="institutions_worked_table">
 				<tr>
 					<th></th>
 					<th>Institution</th>
 					<th>Position</th>
-					<th>Date</th>
+					<th>Year Started</th>
 					<th>Level Taught</th>
 					<th>Courses Taught</th>
 					<th>Number of Years</th>
@@ -479,6 +516,35 @@
 		</div>
 		
 		<legend>Certifications</legend>
+
+		<script type="text/javascript">
+		function certifications_add()
+		{
+			$certification = $('[name="certifications_certification_input"]').val();
+			$certifying_body = $('[name="certifications_certifying_body_input"]').val();
+			$date_received = $('[name="certifications_date_received_input"]').val();
+
+			if ($certification && $certifying_body && $date_received)
+			{
+				$('#certifications_table').append('<tr><td><input type="checkbox"></td>' +
+					'<td><input type="hidden" name="certifications_certification[]" value="' + $certification + '">' + $certification + '</td>' +
+					'<td><input type="hidden" name="certifications_certifying_body[]" value="' + $certifying_body + '">' + $certifying_body + '</td>' +
+					'<td><input type="hidden" name="certifications_date_received[]" value="' + $date_received + '">' + $date_received + '</td></tr>');
+			}
+			else
+			{
+				alert('Invalid input. Please check fields and try again.');
+			}
+		}
+
+		function certifications_delete()
+		{
+			if (confirm('Delete selected certifications?'))
+			{
+				$('#certifications_table input[type="checkbox"]:checked').each(function(i, item) { $(item).closest('tr').remove(); });
+			}
+		}
+		</script>
 		
 		<div class="col-md-3">
 			<div class="panel panel-info">
@@ -489,19 +555,19 @@
 					<div class="form">
 						<div class="form-group">
 							<label>Certifications</label>
-							<input class="form-control" type="text" name="certification" value="<?php echo set_value('certification'); ?>">
+							<input class="form-control" type="text" name="certifications_certification_input">
 						</div>
 						<div class="form-group">
 							<label>Certifying Body</label>
-							<input class="form-control" type="text"  name="certifying_body" value="<?php echo set_value('certifying_body'); ?>">
+							<input class="form-control" type="text"  name="certifications_certifying_body_input">
 						</div>
 						<div class="form-group">
 							<label>Date Received</label>
-							<input class="form-control" type="date" name="date_received" value="<?php echo set_value('date_received'); ?>">
+							<input class="form-control" type="date" name="certifications_date_received_input">
 						</div>
 						
 						<div class="submit-button">
-							<button class="btn btn-primary" name="submit">Add to List</button>
+							<button type="button" class="btn btn-primary" name="submit" onclick="certifications_add();">Add to List</button>
 						</div>
 					</div>	
 				</div>
@@ -511,30 +577,48 @@
 		<div class="col-md-9">
 			<h3>List of Certifications</h3>	
 			<div class="customize-btn-group">
-				<button type="button" class="btn btn-danger">Delete</button>
-				<button type="button" class="btn btn-success">Refresh</button>
+				<button type="button" class="btn btn-danger" onclick="certifications_delete();">Delete</button>
 			</div>
-			<table class="table">
+			<table class="table" id="certifications_table">
 				<tr>
 					<th></th>
-					<th>Action</th>
 					<th>Certification</th>
 					<th>Certifying Body</th>
-					<th>Date</th>
 					<th>Date Received</th>
-				</tr>
-				<tr>
-					<td><input type="checkbox"></td>
-					<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-					<td>Example</td>
-					<td>2011</td>
-					<td>2011</td>
-					<td>2011</td>
 				</tr>
 			</table>
 		</div>
 		
 		<legend>Awards</legend>
+
+		<script type="text/javascript">
+		function awards_add()
+		{
+			$award = $('[name="awards_award_input"]').val();
+			$awarding_body = $('[name="awards_awarding_body_input"]').val();
+			$date_received = $('[name="awards_date_received_input"]').val();
+
+			if ($award && $awarding_body && $date_received)
+			{
+				$('#awards_table').append('<tr><td><input type="checkbox"></td>' +
+					'<td><input type="hidden" name="awards_award[]" value="' + $award + '">' + $award + '</td>' +
+					'<td><input type="hidden" name="awards_awarding_body[]" value="' + $awarding_body + '">' + $awarding_body + '</td>' +
+					'<td><input type="hidden" name="awards_date_received[]" value="' + $date_received + '">' + $date_received + '</td></tr>');
+			}
+			else
+			{
+				alert('Invalid input. Please check fields and try again.');
+			}
+		}
+
+		function awards_delete()
+		{
+			if (confirm('Delete selected awards?'))
+			{
+				$('#awards_table input[type="checkbox"]:checked').each(function(i, item) { $(item).closest('tr').remove(); });
+			}
+		}
+		</script>
 		
 		<div class="col-md-3">
 			<div class="panel panel-info">
@@ -545,19 +629,19 @@
 					<div class="form">
 						<div class="form-group">
 							<label>Award</label>
-							<input class="form-control" type="text" name="award" value="<?php echo set_value('award'); ?>">
+							<input class="form-control" type="text" name="awards_award_input">
 						</div>
 						<div class="form-group">
 							<label>Awarding Body</label>
-							<input class="form-control" type="text"  name="awarding_body" value="<?php echo set_value('awarding_body'); ?>">
+							<input class="form-control" type="text"  name="awards_awarding_body_input">
 						</div>
 						<div class="form-group">
 							<label>Date Received</label>
-							<input class="form-control" type="date"  name="date_received" value="<?php echo set_value('date_received'); ?>">
+							<input class="form-control" type="date"  name="awards_date_received_input">
 						</div>
 						
 						<div class="submit-button">
-							<button class="btn btn-primary" name="submit">Add to List</button>
+							<button type="button" class="btn btn-primary" name="submit" onclick="awards_add();">Add to List</button>
 						</div>
 					</div>	
 				</div>
@@ -567,30 +651,50 @@
 		<div class="col-md-9">
 			<h3>List of Awards</h3>	
 			<div class="customize-btn-group">
-				<button type="button" class="btn btn-danger">Delete</button>
-				<button type="button" class="btn btn-success">Refresh</button>
+				<button type="button" class="btn btn-danger" onclick="awards_delete();">Delete</button>
 			</div>
-			<table class="table">
+			<table class="table" id="awards_table">
 				<tr>
 					<th></th>
-					<th>Action</th>
 					<th>Award</th>
 					<th>Awarding Body</th>
-					<th>Date</th>
 					<th>Date Received</th>
-				</tr>
-				<tr>
-					<td><input type="checkbox"></td>
-					<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-					<td>Example</td>
-					<td>2011</td>
-					<td>2011</td>
-					<td>2011</td>
 				</tr>
 			</table>
 		</div>
 		
 		<legend>Other Works / Related Experiences</legend>
+
+		<script type="text/javascript">
+		function other_work_add()
+		{
+			$organization = $('[name="other_work_organization_input"]').val();
+			$position = $('[name="other_work_position_input"]').val();
+			$description = $('[name="other_work_description_input"]').val();
+			$date_started = $('[name="other_work_date_started_input"]').val();
+
+			if ($organization && $position && $description && $date_started)
+			{
+				$('#other_work_table').append('<tr><td><input type="checkbox"></td>' +
+					'<td><input type="hidden" name="other_work_organization[]" value="' + $organization + '">' + $organization + '</td>' +
+					'<td><input type="hidden" name="other_work_position[]" value="' + $position + '">' + $position + '</td>' +
+					'<td><input type="hidden" name="other_work_description[]" value="' + $description + '">' + $description + '</td>' +
+					'<td><input type="hidden" name="other_work_date_started[]" value="' + $date_started + '">' + $date_started + '</td></tr>');
+			}
+			else
+			{
+				alert('Invalid input. Please check fields and try again.');
+			}
+		}
+
+		function other_work_delete()
+		{
+			if (confirm('Delete selected related experiences?'))
+			{
+				$('#other_work_table input[type="checkbox"]:checked').each(function(i, item) { $(item).closest('tr').remove(); });
+			}
+		}
+		</script>
 		
 		<div class="col-md-3">
 			<div class="panel panel-info">
@@ -601,23 +705,23 @@
 					<form class="form">
 						<div class="form-group">
 							<label>Organization</label>
-							<input class="form-control" type="text" name="organization" value="<?php echo set_value('other_work_organization'); ?>">
+							<input class="form-control" type="text" name="other_work_organization_input">
 						</div>
 						<div class="form-group">
 							<label>Position</label>
-							<input class="form-control" type="text"  name="other_work_position" value="<?php echo set_value('other_work_position'); ?>">
+							<input class="form-control" type="text"  name="other_work_position_input">
 						</div>
 						<div class="form-group">
 							<label>Description</label>
-							<input class="form-control" type="text"  name="description" value="<?php echo set_value('description'); ?>">
+							<input class="form-control" type="text"  name="other_work_description_input">
 						</div>
 						<div class="form-group">
-							<label>Date</label>
-							<input class="form-control" type="date"  name="other_work_date" value="<?php echo set_value('other_work_date'); ?>">
+							<label>Date Started</label>
+							<input class="form-control" type="date"  name="other_work_date_started_input">
 						</div>
 						
 						<div class="submit-button">
-							<button class="btn btn-primary" name="submit">Add to List</button>
+							<button type="button" class="btn btn-primary" name="submit" onclick="other_work_add();">Add to List</button>
 						</div>
 					</form>	
 				</div>
@@ -627,31 +731,21 @@
 		<div class="col-md-9">
 			<h3>List of Other Works / Related Experiences</h3>
 			<div class="customize-btn-group">
-				<button type="button" class="btn btn-danger">Delete</button>
-				<button type="button" class="btn btn-success">Refresh</button>
+				<button type="button" class="btn btn-danger" onclick="other_work_delete();">Delete</button>
 			</div>	
-			<table class="table">
+			<table class="table" id="other_work_table">
 				<tr>
 					<th></th>
-					<th>Action</th>
 					<th>Organization</th>
 					<th>Position</th>
 					<th>Description</th>
-					<th>Date</th>
-				</tr>
-				<tr>
-					<td><input type="checkbox"></td>
-					<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-					<td>Example</td>
-					<td>2011</td>
-					<td>2011</td>
-					<td>2011</td>
+					<th>Date Started</th>
 				</tr>
 			</table>
 		</div>
-			
+		
 		<legend>Skills</legend>
-			
+		
 		<div class="form">
 			<div class="form-group"><label>Computer Applications Proficiency</label><span class="help-block">separated by a comma</span>
 				<input class="form-control" type="text"  name="computer_proficient_skill" value="<?php echo set_value('computer_proficient_skill'); ?>">
@@ -670,6 +764,39 @@
 		</div>
 		
 		<legend>Professional References</legend>
+
+		<script type="text/javascript">
+		function reference_add()
+		{
+			$name = $('[name="reference_name_input"]').val();
+			$position = $('[name="reference_position_input"]').val();
+			$company = $('[name="reference_company_input"]').val();
+			$phone = $('[name="reference_phone_input"]').val();
+			$email = $('[name="reference_email_input"]').val();
+
+			if ($name && $position && $company && $phone && $email)
+			{
+				$('#reference_table').append('<tr><td><input type="checkbox"></td>' +
+					'<td><input type="hidden" name="reference_name[]" value="' + $name + '">' + $name + '</td>' +
+					'<td><input type="hidden" name="reference_position[]" value="' + $position + '">' + $position + '</td>' +
+					'<td><input type="hidden" name="reference_company[]" value="' + $company + '">' + $company + '</td>' +
+					'<td><input type="hidden" name="reference_phone[]" value="' + $phone + '">' + $phone + '</td>' +
+					'<td><input type="hidden" name="reference_email[]" value="' + $email + '">' + $email + '</td></tr>');
+			}
+			else
+			{
+				alert('Invalid input. Please check fields and try again.');
+			}
+		}
+
+		function reference_delete()
+		{
+			if (confirm('Delete selected references?'))
+			{
+				$('#reference_table input[type="checkbox"]:checked').each(function(i, item) { $(item).closest('tr').remove(); });
+			}
+		}
+		</script>
 			
 		<div class="col-md-3">
 			<div class="panel panel-info">
@@ -680,63 +807,83 @@
 					<form class="form">
 						<div class="form-group">
 							<label>Name</label>
-							<input class="form-control" type="text"  name="reference_name" value="<?php echo set_value('reference_name'); ?>">
+							<input class="form-control" type="text"  name="reference_name_input">
 						</div>
 						<div class="form-group">
 							<label>Position</label>
-							<input class="form-control" type="text"  name="reference_position" value="<?php echo set_value('reference_position'); ?>">
+							<input class="form-control" type="text"  name="reference_position_input">
 						</div>
 						<div class="form-group">
 							<label>Company</label>
-							<input class="form-control" type="text"  name="company" value="<?php echo set_value('company'); ?>">
+							<input class="form-control" type="text"  name="reference_company_input">
 						</div>
 						<div class="form-group">
 							<label>Phone</label>
-							<input class="form-control" type="number"  name="phone" value="<?php echo set_value('phone'); ?>">
+							<input class="form-control" type="text"  name="reference_phone_input">
 						</div>
 						<div class="form-group">
 							<label>E-mail Address</label>
-							<input class="form-control" type="email"  name="reference_email" value="<?php echo set_value('reference_email'); ?>">
+							<input class="form-control" type="email"  name="reference_email_input">
 						</div>
 						
 						<div class="submit-button">
-							<button class="btn btn-primary" name="submit">Add to List</button>
+							<button type="button" class="btn btn-primary" name="submit" onclick="reference_add();">Add to List</button>
 						</div>
 					</form>
-				</div>	
+				</div>
 			</div>
 		</div>
 		
 		<div class="col-md-9">
-			<h3>List of Other Works / Related Experiences</h3>	
+			<h3>List of Professional References</h3>
 			<div class="customize-btn-group">
-				<button type="button" class="btn btn-danger">Delete</button>
-				<button type="button" class="btn btn-success">Refresh</button>
+				<button type="button" class="btn btn-danger" onclick="reference_delete();">Delete</button>
 			</div>
-			<table class="table">
+			<table class="table" id="reference_table">
 				<tr>
 					<th></th>
-					<th>Action</th>
 					<th>Name</th>
 					<th>Position</th>
 					<th>Company</th>
 					<th>Phone</th>
 					<th>E-mail Address</th>
 				</tr>
-				<tr>
-					<td><input type="checkbox"></td>
-					<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-					<td>Example</td>
-					<td>2011</td>
-					<td>2011</td>
-					<td>2011</td>
-					<td>2011</td>
-				</tr>
 			</table>
 		</div>
 				
 		<legend>Affiliations and Memberships to Other Organizations</legend>
 				
+		<script type="text/javascript">
+		function affiliation_add()
+		{
+			$organization = $('[name="affiliation_organization_input"]').val();
+			$description = $('[name="affiliation_description_input"]').val();
+			$position = $('[name="affiliation_position_input"]').val();
+			$years = $('[name="affiliation_years_input"]').val();
+
+			if ($organization && $description && $position && $years)
+			{
+				$('#affiliation_table').append('<tr><td><input type="checkbox"></td>' +
+					'<td><input type="hidden" name="affiliation_organization[]" value="' + $organization + '">' + $organization + '</td>' +
+					'<td><input type="hidden" name="affiliation_description[]" value="' + $description + '">' + $description + '</td>' +
+					'<td><input type="hidden" name="affiliation_position[]" value="' + $position + '">' + $position + '</td>' +
+					'<td><input type="hidden" name="affiliation_years[]" value="' + $years + '">' + $years + '</td></tr>');
+			}
+			else
+			{
+				alert('Invalid input. Please check fields and try again.');
+			}
+		}
+
+		function affiliation_delete()
+		{
+			if (confirm('Delete selected affiliations?'))
+			{
+				$('#affiliation_table input[type="checkbox"]:checked').each(function(i, item) { $(item).closest('tr').remove(); });
+			}
+		}
+		</script>
+
 		<div class="col-md-3">
 			<div class="panel panel-info">
 				<div class="panel-heading">
@@ -746,23 +893,23 @@
 					<div class="form">
 						<div class="form-group">
 							<label>Organization</label>
-							<input class="form-control" type="text"  name="affiliation_organization" value="<?php echo set_value('affiliation_organization'); ?>">
+							<input class="form-control" type="text"  name="affiliation_organization_input">
 						</div>
 						<div class="form-group">
 							<label>Organization Description</label>
-							<input class="form-control" type="text"  name="organization_description" value="<?php echo set_value('organization_description'); ?>">
+							<input class="form-control" type="text"  name="affiliation_description_input">
 						</div>
 						<div class="form-group">
 							<label>Position</label>
-							<input class="form-control" type="text"  name="affiliation_position" value="<?php echo set_value('affiliation_position'); ?>">
+							<input class="form-control" type="text"  name="affiliation_position_input">
 						</div>
 						<div class="form-group">
 							<label>Years of Affiliation</label>
-							<input class="form-control" type="number"  name="years_of_affiliation" value="<?php echo set_value('years_of_affiliation'); ?>">
+							<input class="form-control" type="number"  name="affiliation_years_input">
 						</div>
 						
 						<div class="submit-button">
-							<button class="btn btn-primary" name="submit">Add to List</button>
+							<button type="button" class="btn btn-primary" name="submit" onclick="affiliation_add();">Add to List</button>
 						</div>
 					</div>	
 				</div>
@@ -770,28 +917,17 @@
 		</div>
 		
 		<div class="col-md-9">
-			<h3>List of Affiliations and Memberships to Other Organizations</h3>	
+			<h3>List of Affiliations and Memberships to Other Organizations</h3>
 			<div class="customize-btn-group">
-				<button type="button" class="btn btn-danger">Delete</button>
-				<button type="button" class="btn btn-success">Refresh</button>
+				<button type="button" class="btn btn-danger" onclick="affiliation_delete();">Delete</button>
 			</div>
-			<table class="table">
+			<table class="table" id="affiliation_table">
 				<tr>
 					<th></th>
-					<th>Action</th>
 					<th>Organization</th>
 					<th>Organization Description</th>
 					<th>Position</th>
 					<th>Years of Affiliation</th>
-				</tr>
-				<tr>
-					<td><input type="checkbox"></td>
-					<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-					<td>Example</td>
-					<td>2011</td>
-					<td>2011</td>
-					<td>2011</td>
-					<td>2011</td>
 				</tr>
 			</table>
 		</div>

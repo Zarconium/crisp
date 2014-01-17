@@ -76,10 +76,10 @@
 					<?php foreach ($teachers as $teacher): ?>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td><a href="<?php echo base_url('dbms/form_teacher_profile'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td><a href="<?php echo base_url('dbms/form_teacher_profile'); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_teacher/' . $teacher->Teacher_ID); ?>">Delete</a></td>
 						<td><?php echo $teacher->Full_Name; ?></td>
 						<td><?php echo $teacher->School_Name; ?></td>
-						<td>ADEPT</td>
+						<td><?php echo $teacher->Subject_Codes; ?></td>
 					</tr>
 					<?php endforeach; ?>
 					<?php endif; ?>
@@ -349,7 +349,11 @@
 		<input type="file" name="file_student_profile" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_student_profile').submit();">
 		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_student_profile]').click();">Upload Students</button>
 	<?php echo form_close(); ?>
-	<button class="btn btn-primary btn-lg">Upload GCAT Student Grades</button>
+	<?php $attributes = array('id' => 'upload_gcat_student_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_gcat_student_grades', $attributes); ?>
+		<input type="file" name="file_gcat_student_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_gcat_student_grades').submit();">
+		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_gcat_student_grades]').click();">Upload GCAT Student Grades</button>
+	<?php echo form_close(); ?>
+
 	<button class="btn btn-primary btn-lg">Upload BEST Student Grades</button>
 	<button class="btn btn-primary btn-lg">Upload ADEPT Student Grades</button>
 </div>
