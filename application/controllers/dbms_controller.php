@@ -403,7 +403,7 @@ class Dbms_Controller extends CI_Controller
 		if($this->input->post())
 		{
 			$this->form_validation->set_rules('code', 'Code', 'trim|required|xss_clean|is_unique[teacher.Code]');
-			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|xss_clean');
 			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean');
@@ -441,6 +441,7 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('current_employer', 'Current Employer', 'trim|required|xss_clean'); //School ID
 			$this->form_validation->set_rules('employer_address', 'Employer Address', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('name_of_supervisor', 'Name of Supervisor', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('position_of_supervisor', 'Position of Supervisor', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('supervisor_contact_details', 'Supervisor Contact Details', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('other_positions_held', 'Other Positions Held', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('classes_handling', 'Classes Handling', 'trim|required|xss_clean');
