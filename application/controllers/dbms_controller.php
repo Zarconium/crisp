@@ -632,9 +632,9 @@ class Dbms_Controller extends CI_Controller
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 1) continue;
-			if ($counter == $highestRow - 1) break;
+			if ($counter == $highestRow) break;
 
-			foreach ($this->school->getSchoolIdByNameAndBranch($row['Y'], $row['Z']) as $school) //Get School_ID
+			foreach ($this->school->getSchoolIdByCode($row['Y']) as $school) //Get School_ID
 			{
 				$school_id = $school->School_ID;
 			}
@@ -666,10 +666,10 @@ class Dbms_Controller extends CI_Controller
 				'Facebook' => $row['U'],
 				'Course' => $row['V'] . ' ' . $row['W'],
 				'Year' => $row['X'],
-				'Expected_Year_of_Graduation' => $row['AA'],
-				'DOST_Scholar?' => $row['AB'],
-				'Scholar?' => $row['AC'],
-				'Interested_In_IT-BPO?' => $row['AD']
+				'Expected_Year_of_Graduation' => $row['Z'],
+				'DOST_Scholar?' => $row['AA'],
+				'Scholar?' => $row['AB'],
+				'Interested_In_IT-BPO?' => $row['AC']
 			);
 			
 			if ($row['F'] == 'Yes')

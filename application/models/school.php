@@ -15,12 +15,11 @@ Class School extends CI_Model
 		}
 	}
 
-	function getSchoolIdByNameAndBranch($name, $branch)
+	function getSchoolIdByCode($code)
 	{
 		$this->db->select('School_ID');
 		$this->db->from('school');
-		$this->db->where('Name', $name);
-		$this->db->where('Branch', $branch);
+		$this->db->where('Code', $code);
 		$this->db->limit(1);
 
 		$query = $this->db->get();
