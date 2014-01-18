@@ -15,7 +15,7 @@
 			<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
 		</div>
 
-		<input type="text" name="code" value="<?php echo set_value('code'); ?>">
+		<input type="hidden" name="code" value="<?php echo set_value('code'); ?>">
 		<?php echo form_error('code'); ?>
 	
 		<div class="form-inline">
@@ -67,7 +67,7 @@
 			
 			<div class="form-group">
 				<label>Total Years of Teaching</label>
-				<input class="form-control" type="number" name="total_year_teaching" value="<?php echo set_value('total_year_teaching'); ?>">
+				<input class="form-control" type="number" name="total_year_teaching" min="0" value="<?php echo set_value('total_year_teaching'); ?>">
 				<?php echo form_error('total_year_teaching'); ?>
 			</div>		
 		</div>
@@ -171,13 +171,13 @@
 			
 			<div class="form-group">
 				<label>Mobile Number</label>
-				<input class="form-control" type="number" name="mobile" value="<?php echo set_value('mobile'); ?>">
+				<input class="form-control" type="number" name="mobile" min="0" value="<?php echo set_value('mobile'); ?>">
 				<?php echo form_error('mobile'); ?>
 			</div>
 			
 			<div class="form-group">
 				<label>Landline</label>
-				<input class="form-control" type="number" name="landline" value="<?php echo set_value('landline'); ?>">
+				<input class="form-control" type="number" name="landline" min="0" value="<?php echo set_value('landline'); ?>">
 				<?php echo form_error('landline'); ?>
 			</div>
 			
@@ -316,7 +316,7 @@
 			
 			<div class="form-group">
 				<label>Employer Address</label>
-				<input class="form-control" type="text"  name="employer_address" value="<?php echo set_value('employer_address'); ?>">
+				<input class="form-control" type="text" name="employer_address" value="<?php echo set_value('employer_address'); ?>">
 				<?php echo form_error('employer_address'); ?>
 			</div>
 		</div>
@@ -324,18 +324,18 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Name of Supervisor</label>
-				<input class="form-control" type="text"  name="name_of_supervisor" value="<?php echo set_value('name_of_supervisor'); ?>">
+				<input class="form-control" type="text" name="name_of_supervisor" value="<?php echo set_value('name_of_supervisor'); ?>">
 				<?php echo form_error('name_of_supervisor'); ?>
 			</div>
 			
 			<div class="form-group">
 				<label>Position of Supervisor</label>
-				<input class="form-control" type="text"  name="position_of_supervisor" value="<?php echo set_value('position_of_supervisor'); ?>">
+				<input class="form-control" type="text" name="position_of_supervisor" value="<?php echo set_value('position_of_supervisor'); ?>">
 					<?php echo form_error('position_of_supervisor'); ?>
 			</div>
 			<div class="form-group">
 				<label>Supervisor Contact Details</label>
-				<input class="form-control" type="text"  name="supervisor_contact_details" value="<?php echo set_value('supervisor_contact_details'); ?>">
+				<input class="form-control" type="text" name="supervisor_contact_details" value="<?php echo set_value('supervisor_contact_details'); ?>">
 				<?php echo form_error('supervisor_contact_details'); ?>
 			</div>
 		</div>
@@ -343,13 +343,13 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Other Positions Held</label>
-				<input class="form-control" type="text"  name="other_positions_held" value="<?php echo set_value('other_positions_held'); ?>">
+				<input class="form-control" type="text" name="other_positions_held" value="<?php echo set_value('other_positions_held'); ?>">
 				<?php echo form_error('other_positions_held'); ?>
 			</div>
 			
 			<div class="form-group">
 				<label>Classes Handling</label>
-				<input class="form-control" type="text"  name="classes_handling" value="<?php echo set_value('classes_handling'); ?>">
+				<input class="form-control" type="text" name="classes_handling" value="<?php echo set_value('classes_handling'); ?>">
 				<?php echo form_error('classes_handling'); ?>
 			</div>
 		</div>
@@ -392,11 +392,11 @@
 					<div class="form">
 						<div class="form-group">
 							<label>Subject</label>
-							<input class="form-control" type="text"  name="subjects_taught_subject_input" value="">
+							<input class="form-control" type="text" name="subjects_taught_subject_input" value="">
 						</div>
 						<div class="form-group">
 							<label>Year</label>
-							<input class="form-control" type="number"  name="subjects_taught_year_input" value="2011">
+							<input class="form-control" type="number" name="subjects_taught_year_input" min="2011">
 						</div>
 						<div class="submit-button">
 							<button type="button" class="btn btn-primary" onclick="subjects_taught_add();">Add to List</button>
@@ -417,6 +417,15 @@
 					<th>Subject</th>
 					<th>Year</th>
 				</tr>
+				<?php if (set_value('subjects_taught_subject[]')): ?>
+				<?php for ($i = 0; $i < count($this->input->post('subjects_taught_subject')); $i++): ?>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td><input type="hidden" name="subjects_taught_subject[]" value="<?php echo $this->input->post('subjects_taught_subject')[$i]; ?>"><?php echo $this->input->post('subjects_taught_subject')[$i]; ?></td>
+					<td><input type="hidden" name="subjects_taught_year[]" value="<?php echo $this->input->post('subjects_taught_year')[$i]; ?>"><?php echo $this->input->post('subjects_taught_year')[$i]; ?></td>
+				</tr>
+				<?php endfor; ?>
+				<?php endif; ?>
 			</table>			
 		</div>
 		
@@ -466,27 +475,27 @@
 					<div class="form">
 						<div class="form-group">
 							<label>Institution</label>
-							<input class="form-control" type="text"  name="institutions_worked_institution_input">
+							<input class="form-control" type="text" name="institutions_worked_institution_input">
 						</div>
 						<div class="form-group">
 							<label>Position</label>
-							<input class="form-control" type="text"  name="institutions_worked_position_input">
+							<input class="form-control" type="text" name="institutions_worked_position_input">
 						</div>
 						<div class="form-group">
 							<label>Year Started</label>
-							<input class="form-control" type="number"  name="institutions_worked_year_started_input" value="2011">
+							<input class="form-control" type="number" name="institutions_worked_year_started_input" min="2011">
 						</div>
 						<div class="form-group">
 							<label>Level Taught</label>
-							<input class="form-control" type="text"  name="institutions_worked_level_taught_input">
+							<input class="form-control" type="text" name="institutions_worked_level_taught_input">
 						</div>
 						<div class="form-group">
 							<label>Courses Taught</label><span class="help-block">separated by a comma</span>
-							<input class="form-control" type="text"  name="institutions_worked_courses_taught_input">
+							<input class="form-control" type="text" name="institutions_worked_courses_taught_input">
 						</div>
 						<div class="form-group">
 							<label>Number of Years in the Institution</label>
-							<input class="form-control" type="number"  name="institutions_worked_number_of_years_in_institution_input">
+							<input class="form-control" type="number" name="institutions_worked_number_of_years_in_institution_input" min="0">
 						</div>
 					
 						<div class="submit-button">
@@ -512,6 +521,19 @@
 					<th>Courses Taught</th>
 					<th>Number of Years</th>
 				</tr>
+				<?php if (set_value('institutions_worked_institution[]')): ?>
+				<?php for ($i = 0; $i < count($this->input->post('institutions_worked_institution')); $i++): ?>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td><input type="hidden" name="institutions_worked_institution[]" value="<?php echo $this->input->post('institutions_worked_institution')[$i]; ?>"><?php echo $this->input->post('institutions_worked_institution')[$i]; ?></td>
+					<td><input type="hidden" name="institutions_worked_position[]" value="<?php echo $this->input->post('institutions_worked_position')[$i]; ?>"><?php echo $this->input->post('institutions_worked_position')[$i]; ?></td>
+					<td><input type="hidden" name="institutions_worked_year_started[]" value="<?php echo $this->input->post('institutions_worked_year_started')[$i]; ?>"><?php echo $this->input->post('institutions_worked_year_started')[$i]; ?></td>
+					<td><input type="hidden" name="institutions_worked_level_taught[]" value="<?php echo $this->input->post('institutions_worked_level_taught')[$i]; ?>"><?php echo $this->input->post('institutions_worked_level_taught')[$i]; ?></td>
+					<td><input type="hidden" name="institutions_worked_courses_taught[]" value="<?php echo $this->input->post('institutions_worked_courses_taught')[$i]; ?>"><?php echo $this->input->post('institutions_worked_courses_taught')[$i]; ?></td>
+					<td><input type="hidden" name="institutions_worked_number_of_years_in_institution[]" value="<?php echo $this->input->post('institutions_worked_number_of_years_in_institution')[$i]; ?>"><?php echo $this->input->post('institutions_worked_number_of_years_in_institution')[$i]; ?></td>
+				</tr>
+				<?php endfor; ?>
+				<?php endif; ?>
 			</table>
 		</div>
 		
@@ -559,7 +581,7 @@
 						</div>
 						<div class="form-group">
 							<label>Certifying Body</label>
-							<input class="form-control" type="text"  name="certifications_certifying_body_input">
+							<input class="form-control" type="text" name="certifications_certifying_body_input">
 						</div>
 						<div class="form-group">
 							<label>Date Received</label>
@@ -586,6 +608,16 @@
 					<th>Certifying Body</th>
 					<th>Date Received</th>
 				</tr>
+				<?php if (set_value('certifications_certification[]')): ?>
+				<?php for ($i = 0; $i < count($this->input->post('certifications_certification')); $i++): ?>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td><input type="hidden" name="certifications_certification[]" value="<?php echo $this->input->post('certifications_certification')[$i]; ?>"><?php echo $this->input->post('certifications_certification')[$i]; ?></td>
+					<td><input type="hidden" name="certifications_certifying_body[]" value="<?php echo $this->input->post('certifications_certifying_body')[$i]; ?>"><?php echo $this->input->post('certifications_certifying_body')[$i]; ?></td>
+					<td><input type="hidden" name="certifications_date_received[]" value="<?php echo $this->input->post('certifications_date_received')[$i]; ?>"><?php echo $this->input->post('certifications_date_received')[$i]; ?></td>
+				</tr>
+				<?php endfor; ?>
+				<?php endif; ?>
 			</table>
 		</div>
 		
@@ -633,11 +665,11 @@
 						</div>
 						<div class="form-group">
 							<label>Awarding Body</label>
-							<input class="form-control" type="text"  name="awards_awarding_body_input">
+							<input class="form-control" type="text" name="awards_awarding_body_input">
 						</div>
 						<div class="form-group">
 							<label>Date Received</label>
-							<input class="form-control" type="date"  name="awards_date_received_input">
+							<input class="form-control" type="date" name="awards_date_received_input">
 						</div>
 						
 						<div class="submit-button">
@@ -660,6 +692,16 @@
 					<th>Awarding Body</th>
 					<th>Date Received</th>
 				</tr>
+				<?php if (set_value('awards_award[]')): ?>
+				<?php for ($i = 0; $i < count($this->input->post('awards_award')); $i++): ?>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td><input type="hidden" name="awards_award[]" value="<?php echo $this->input->post('awards_award')[$i]; ?>"><?php echo $this->input->post('awards_award')[$i]; ?></td>
+					<td><input type="hidden" name="awards_awarding_body[]" value="<?php echo $this->input->post('awards_awarding_body')[$i]; ?>"><?php echo $this->input->post('awards_awarding_body')[$i]; ?></td>
+					<td><input type="hidden" name="awards_date_received[]" value="<?php echo $this->input->post('awards_date_received')[$i]; ?>"><?php echo $this->input->post('awards_date_received')[$i]; ?></td>
+				</tr>
+				<?php endfor; ?>
+				<?php endif; ?>
 			</table>
 		</div>
 		
@@ -702,34 +744,35 @@
 					Add to List
 				</div>
 				<div class="panel-body">
-					<form class="form">
+					<div class="form">
 						<div class="form-group">
 							<label>Organization</label>
 							<input class="form-control" type="text" name="other_work_organization_input">
 						</div>
 						<div class="form-group">
 							<label>Position</label>
-							<input class="form-control" type="text"  name="other_work_position_input">
+							<input class="form-control" type="text" name="other_work_position_input">
 						</div>
 						<div class="form-group">
 							<label>Description</label>
-							<input class="form-control" type="text"  name="other_work_description_input">
+							<input class="form-control" type="text" name="other_work_description_input">
 						</div>
 						<div class="form-group">
 							<label>Date Started</label>
-							<input class="form-control" type="date"  name="other_work_date_started_input">
+							<input class="form-control" type="date" name="other_work_date_started_input">
 						</div>
 						
 						<div class="submit-button">
 							<button type="button" class="btn btn-primary" name="submit" onclick="other_work_add();">Add to List</button>
 						</div>
-					</form>	
+					</div>	
 				</div>
 			</div>
 		</div>
 		
 		<div class="col-md-9">
 			<h3>List of Other Works / Related Experiences</h3>
+			<?php echo form_error('other_work_organization[]'); ?>
 			<div class="customize-btn-group">
 				<button type="button" class="btn btn-danger" onclick="other_work_delete();">Delete</button>
 			</div>	
@@ -741,6 +784,17 @@
 					<th>Description</th>
 					<th>Date Started</th>
 				</tr>
+				<?php if (set_value('other_work_organization[]')): ?>
+				<?php for ($i = 0; $i < count($this->input->post('other_work_organization')); $i++): ?>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td><input type="hidden" name="other_work_organization[]" value="<?php echo $this->input->post('other_work_organization')[$i]; ?>"><?php echo $this->input->post('other_work_organization')[$i]; ?></td>
+					<td><input type="hidden" name="other_work_position[]" value="<?php echo $this->input->post('other_work_position')[$i]; ?>"><?php echo $this->input->post('other_work_position')[$i]; ?></td>
+					<td><input type="hidden" name="other_work_description[]" value="<?php echo $this->input->post('other_work_description')[$i]; ?>"><?php echo $this->input->post('other_work_description')[$i]; ?></td>
+					<td><input type="hidden" name="other_work_date_started[]" value="<?php echo $this->input->post('other_work_date_started')[$i]; ?>"><?php echo $this->input->post('other_work_date_started')[$i]; ?></td>
+				</tr>
+				<?php endfor; ?>
+				<?php endif; ?>
 			</table>
 		</div>
 		
@@ -748,17 +802,17 @@
 		
 		<div class="form">
 			<div class="form-group"><label>Computer Applications Proficiency</label><span class="help-block">separated by a comma</span>
-				<input class="form-control" type="text"  name="computer_proficient_skill" value="<?php echo set_value('computer_proficient_skill'); ?>">
+				<input class="form-control" type="text" name="computer_proficient_skill" value="<?php echo set_value('computer_proficient_skill'); ?>">
 				<?php echo form_error('computer_proficient_skill'); ?>
 			</div>
 			
 			<div class="form-group"><label>Computer Applications Familiar With</label><span class="help-block">separated by a comma</span>
-				<input class="form-control" type="text"  name="computer_familiar_skill" value="<?php echo set_value('computer_familiar_skill'); ?>">
+				<input class="form-control" type="text" name="computer_familiar_skill" value="<?php echo set_value('computer_familiar_skill'); ?>">
 				<?php echo form_error('computer_familiar_skill'); ?>
 			</div>
 				
 			<div class="form-group"><label>Others</label><span class="help-block">separated by a comma</span>
-				<input class="form-control" type="text"  name="skill" value="<?php echo set_value('skill'); ?>">
+				<input class="form-control" type="text" name="skill" value="<?php echo set_value('skill'); ?>">
 				<?php echo form_error('skill'); ?>
 			</div>
 		</div>
@@ -804,32 +858,32 @@
 					Add to List
 				</div>
 				<div class="panel-body">
-					<form class="form">
+					<div class="form">
 						<div class="form-group">
 							<label>Name</label>
-							<input class="form-control" type="text"  name="reference_name_input">
+							<input class="form-control" type="text" name="reference_name_input">
 						</div>
 						<div class="form-group">
 							<label>Position</label>
-							<input class="form-control" type="text"  name="reference_position_input">
+							<input class="form-control" type="text" name="reference_position_input">
 						</div>
 						<div class="form-group">
 							<label>Company</label>
-							<input class="form-control" type="text"  name="reference_company_input">
+							<input class="form-control" type="text" name="reference_company_input">
 						</div>
 						<div class="form-group">
 							<label>Phone</label>
-							<input class="form-control" type="text"  name="reference_phone_input">
+							<input class="form-control" type="text" name="reference_phone_input">
 						</div>
 						<div class="form-group">
 							<label>E-mail Address</label>
-							<input class="form-control" type="email"  name="reference_email_input">
+							<input class="form-control" type="email" name="reference_email_input">
 						</div>
 						
 						<div class="submit-button">
 							<button type="button" class="btn btn-primary" name="submit" onclick="reference_add();">Add to List</button>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -848,6 +902,18 @@
 					<th>Phone</th>
 					<th>E-mail Address</th>
 				</tr>
+				<?php if (set_value('reference_name[]')): ?>
+				<?php for ($i = 0; $i < count($this->input->post('reference_name')); $i++): ?>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td><input type="hidden" name="reference_name[]" value="<?php echo $this->input->post('reference_name')[$i]; ?>"><?php echo $this->input->post('reference_name')[$i]; ?></td>
+					<td><input type="hidden" name="reference_position[]" value="<?php echo $this->input->post('reference_position')[$i]; ?>"><?php echo $this->input->post('reference_position')[$i]; ?></td>
+					<td><input type="hidden" name="reference_company[]" value="<?php echo $this->input->post('reference_company')[$i]; ?>"><?php echo $this->input->post('reference_company')[$i]; ?></td>
+					<td><input type="hidden" name="reference_phone[]" value="<?php echo $this->input->post('reference_phone')[$i]; ?>"><?php echo $this->input->post('reference_phone')[$i]; ?></td>
+					<td><input type="hidden" name="reference_email[]" value="<?php echo $this->input->post('reference_email')[$i]; ?>"><?php echo $this->input->post('reference_email')[$i]; ?></td>
+				</tr>
+				<?php endfor; ?>
+				<?php endif; ?>
 			</table>
 		</div>
 				
@@ -893,19 +959,19 @@
 					<div class="form">
 						<div class="form-group">
 							<label>Organization</label>
-							<input class="form-control" type="text"  name="affiliation_organization_input">
+							<input class="form-control" type="text" name="affiliation_organization_input">
 						</div>
 						<div class="form-group">
 							<label>Organization Description</label>
-							<input class="form-control" type="text"  name="affiliation_description_input">
+							<input class="form-control" type="text" name="affiliation_description_input">
 						</div>
 						<div class="form-group">
 							<label>Position</label>
-							<input class="form-control" type="text"  name="affiliation_position_input">
+							<input class="form-control" type="text" name="affiliation_position_input">
 						</div>
 						<div class="form-group">
 							<label>Years of Affiliation</label>
-							<input class="form-control" type="number"  name="affiliation_years_input">
+							<input class="form-control" type="number" name="affiliation_years_input" min="0">
 						</div>
 						
 						<div class="submit-button">
@@ -929,6 +995,17 @@
 					<th>Position</th>
 					<th>Years of Affiliation</th>
 				</tr>
+				<?php if (set_value('affiliation_organization[]')): ?>
+				<?php for ($i = 0; $i < count($this->input->post('affiliation_organization')); $i++): ?>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td><input type="hidden" name="affiliation_organization[]" value="<?php echo $this->input->post('affiliation_organization')[$i]; ?>"><?php echo $this->input->post('affiliation_organization')[$i]; ?></td>
+					<td><input type="hidden" name="affiliation_description[]" value="<?php echo $this->input->post('affiliation_description')[$i]; ?>"><?php echo $this->input->post('affiliation_description')[$i]; ?></td>
+					<td><input type="hidden" name="affiliation_position[]" value="<?php echo $this->input->post('affiliation_position')[$i]; ?>"><?php echo $this->input->post('affiliation_position')[$i]; ?></td>
+					<td><input type="hidden" name="affiliation_years[]" value="<?php echo $this->input->post('affiliation_years')[$i]; ?>"><?php echo $this->input->post('affiliation_years')[$i]; ?></td>
+				</tr>
+				<?php endfor; ?>
+				<?php endif; ?>
 			</table>
 		</div>
 		

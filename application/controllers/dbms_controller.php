@@ -451,11 +451,45 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('supervisor_contact_details', 'Supervisor Contact Details', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('other_positions_held', 'Other Positions Held', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('classes_handling', 'Classes Handling', 'trim|xss_clean');
-			// subjs taught 2011-present
+			// Subjects Taught 2011-present
+			$this->form_validation->set_rules('subjects_taught_subject[]', 'Subjects Taught', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('subjects_taught_year[]', 'Year Taught', 'trim|required|xss_clean');
+			// Institutions
+			$this->form_validation->set_rules('institutions_worked_institution[]', 'Institution', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('institutions_worked_position[]', 'Position', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('institutions_worked_year_started[]', 'Year Started', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('institutions_worked_level_taught[]', 'Level Taught', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('institutions_worked_courses_taught[]', 'Courses Taught', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('institutions_worked_number_of_years_in_institution[]', 'Number of Years in Institution', 'trim|required|xss_clean');
+			// Certifications
+			$this->form_validation->set_rules('certifications_certification[]', 'Certification', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('certifications_certifying_body[]', 'Certifying Body', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('certifications_date_received[]', 'Certification Date Received', 'trim|required|xss_clean');
+			// Awards
+			$this->form_validation->set_rules('awards_award[]', 'Award', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('awards_awarding_body[]', 'Awarding Body', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('awards_date_received[]', 'Award Date Received', 'trim|required|xss_clean');
+			// Other Work
+			$this->form_validation->set_rules('other_work_organization[]', 'Organization', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('other_work_position[]', 'Position', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('other_work_description[]', 'Work Description', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('other_work_date_started[]', 'Date Started', 'trim|required|xss_clean');
+
 			$this->form_validation->set_rules('computer_proficient_skill', 'Computer Proficiency Skills', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('computer_familiar_skill', 'Computer Familiarity', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('skill', 'Other Skills', 'trim|required|xss_clean');
-			// professional references
+			// Reference
+			$this->form_validation->set_rules('reference_name[]', 'Reference Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('reference_position[]', 'Reference Position', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('reference_company[]', 'Reference Company', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('reference_phone[]', 'Reference Phone', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('reference_email[]', 'Reference Email', 'trim|required|xss_clean');
+			// Affiliations
+			$this->form_validation->set_rules('affiliation_organization[]', 'Affiliation Organization', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('affiliation_description[]', 'Affiliation Description', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('affiliation_position[]', 'Affiliation Position', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('affiliation_years[]', 'Years of Affiliation', 'trim|required|xss_clean');
+
 			$this->form_validation->set_rules('resume', 'Resume', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('photo', 'Photo', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('proof', 'Proof of Certification', 'trim|required|xss_clean');
