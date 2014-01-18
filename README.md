@@ -21,3 +21,16 @@ Executing:
 	
 NOTES:
 	- DROP all tables in crisp database for every crisp.sql import
+
+Implementation
+==============
+
+- Configure DB in /application/config/database.php
+	- $db['default']['hostname'] = 'localhost'; <- MySQL server host
+	- $db['default']['username'] = 'root'; <- MySQL username
+	- $db['default']['password'] = 'root'; <- MySQL password
+	- $db['default']['database'] = 'crisp'; <- DB name
+	- $db['default']['db_debug'] = FALSE; <- disables DB error messages
+
+- Change Apache timezone in php.ini
+	- date.timezone=Asia/Manila

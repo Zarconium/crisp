@@ -443,14 +443,14 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('doctorate_school', 'Doctorate School', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('employment_status', 'Employment Status', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('current_position', 'Current Position', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('current_department', 'Current Department', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('current_department', 'Current Department', 'trim|xss_clean');
 			$this->form_validation->set_rules('current_employer', 'Current Employer', 'trim|required|xss_clean'); //School ID
 			$this->form_validation->set_rules('employer_address', 'Employer Address', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('name_of_supervisor', 'Name of Supervisor', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('position_of_supervisor', 'Position of Supervisor', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('position_of_supervisor', 'Position of Supervisor', 'trim|xss_clean');
 			$this->form_validation->set_rules('supervisor_contact_details', 'Supervisor Contact Details', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('other_positions_held', 'Other Positions Held', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('classes_handling', 'Classes Handling', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('classes_handling', 'Classes Handling', 'trim|xss_clean');
 			// subjs taught 2011-present
 			$this->form_validation->set_rules('computer_proficient_skill', 'Computer Proficiency Skills', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('computer_familiar_skill', 'Computer Familiarity', 'trim|required|xss_clean');

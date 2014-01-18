@@ -15,7 +15,7 @@
 			<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
 		</div>
 
-		<input type="hidden" name="code" value="<?php echo set_value('code'); ?>">
+		<input type="text" name="code" value="<?php echo set_value('code'); ?>">
 		<?php echo form_error('code'); ?>
 	
 		<div class="form-inline">
@@ -308,7 +308,7 @@
 				<label>Current Employer</label>
 				<select class="form-control" name="current_employer">
 				<?php foreach ($schools as $school): ?>
-					<option value="<?php echo $school->School_ID ?>" <?php echo set_select('current_employer', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch ?></option>
+					<option value="<?php echo $school->School_ID; ?>" <?php echo set_select('current_employer', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
 				<?php endforeach; ?>
 				</select>
 				<?php echo form_error('current_employer'); ?>
@@ -965,3 +965,21 @@
 		</div>
 	</form>
 </div>
+
+<script type="text/javascript">
+$('[name="save_draft"]').click
+(
+	function()
+	{
+		$('[name="code"]').val($('[name="current_employer"]').val() + $('[name="first_name"]').val().charAt(0)+ $('[name="middle_initial"]').val().charAt(0)+ $('[name="last_name"]').val().charAt(0)+ $('[name="birthdate"]').val().replace(/-/gi,''));
+	}
+);
+
+$('[name="submit"]').click
+(
+	function()
+	{
+		$('[name="code"]').val($('[name="current_employer"]').val() + $('[name="first_name"]').val().charAt(0)+ $('[name="middle_initial"]').val().charAt(0)+ $('[name="last_name"]').val().charAt(0)+ $('[name="birthdate"]').val().replace(/-/gi,''));
+	}
+);
+</script>
