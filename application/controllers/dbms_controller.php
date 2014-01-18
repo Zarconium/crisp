@@ -632,14 +632,14 @@ class Dbms_Controller extends CI_Controller
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 1) continue;
-			if ($counter == $highestRow) break;
+			if ($counter > $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['Y']) as $school) //Get School_ID
 			{
 				$school_id = $school->School_ID;
 			}
 			
-			$code = $school_id . $row['E']; //Get Code
+			$student_code = $school_id . $row['E']; //Get Code
 
 			$student = array
 			(
@@ -674,9 +674,9 @@ class Dbms_Controller extends CI_Controller
 			
 			if ($row['F'] == 'Yes')
 			{
-				if (!$this->student->getStudentByCode($code))
+				if (!$this->student->getStudentByCode($student_code))
 				{
-					$student['Code'] = $code;
+					$student['Code'] = $student_code;
 				
 					if (!$this->student->addStudent($student))
 					{
@@ -690,17 +690,22 @@ class Dbms_Controller extends CI_Controller
 					redirect('dbms');
 				}
 			}
-			else
+			else if ($row['F'] == 'No')
 			{
-				if (!$this->student->updateStudentByCode($code, $student))
+				if (!$this->student->getStudentByCode($student_code) || !$this->student->updateStudentByCode($student_code, $student))
 				{
 					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter);
 					redirect('dbms');
 				}
 			}
+			else
+			{
+				$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
 		}
 
-		$this->session->set_flashdata('upload_success', 'Student Profile successfully uploaded.');
+		$this->session->set_flashdata('upload_success', 'Student Profile successfully uploaded. ' . ($counter - 1) . ' out of ' . ($highestRow - 1) . ' students added/updated.');
 		redirect('dbms');
 	}
 }
