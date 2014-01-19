@@ -154,23 +154,26 @@
   <div class="tab-pane fade" id="program">
   
 		<ul class="nav nav-tabs">
-		  <li class="active"><a href="#class" data-toggle="tab">Classes</a></li>
+		  <li class="active"><a href="#class_student" data-toggle="tab">Student Classes</a></li>
+		  <li><a href="#class_mastertrainer	" data-toggle="tab">Master Trainer's Classes</a></li>
 		  <li><a href="#smp" data-toggle="tab">SMP Tracker</a></li>
 		  <li><a href="#gcat" data-toggle="tab">GCAT Tracker</a></li>
 		  <li><a href="#best" data-toggle="tab">BEST Tracker</a></li>
 		  <li><a href="#adept" data-toggle="tab">ADEPT Tracker</a></li>
+		  <li><a href="#best_t3" data-toggle="tab">BEST T3 Tracker</a></li>
+		  <li><a href="#adept_t3 " data-toggle="tab">ADEPT T3 Tracker</a></li>
 		</ul>
 		
 		<div class="tab-content">
 		
-			<div class="tab-pane active" id="class">
+			<div class="tab-pane active" id="class_student">
 				
 			  <div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_class_add'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchClass">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-					<button class="btn btn-success">Refresh</button>
+					 
 			  </div>
 				<table class="table table-area">
 					<tr>
@@ -200,16 +203,45 @@
 				</table>
 			</div>
 			
+			
+			
+			<div class="tab-pane" id="class_mastertrainer">
+				
+			  <div class="button-groups">
+					<a href="<?php echo base_url('dbms/form_mastertrainer_class_add'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
+					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+					<button class="btn btn-warning" data-toggle="modal" data-target="#searchClassForMasterTrainer">Search</button>
+					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
+					 
+			  </div>
+				<table class="table table-area">
+					<tr>
+						<th>Check</th>
+						<th>Action</th>
+						<th>Trainer's Name</th>
+						<th>Subject</th>
+						<th>Teachers</th>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td><a href="<?php echo base_url('dbms/form_class_add'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td>Peralta, Philip</td>
+						<td>BPO101</td>
+						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfTeachersForMasterTrainer">View List</button></td>
+					</tr>
+				</table>
+			</div>
+			
 			<div class="tab-pane fade" id="smp">
 				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_program_smp_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-					<button class="btn btn-info" data-toggle="modal" data-target="#batchSMP">
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchSMP">
 					  Batch Upload
 					</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchSMP">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-					<button class="btn btn-success">Refresh</button>
+					 
 				</div>
 				<table class="table table-area">
 					<tr>
@@ -241,7 +273,7 @@
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchGCAT">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-					<button class="btn btn-success">Refresh</button>
+					 
 				</div>
 				<table class="table table-area">
 					<tr>
@@ -278,7 +310,7 @@
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-					<button class="btn btn-success">Refresh</button>
+					 
 				</div>
 				<table class="table table-area">
 					<tr>
@@ -306,7 +338,7 @@
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-					<button class="btn btn-success">Refresh</button>
+					 
 				</div>
 				<table class="table table-area">
 					<tr>
@@ -328,6 +360,74 @@
 				</table>
 			</div>
 			
+			<div class="tab-pane fade" id="best_t3">
+				<div class="button-groups">
+					<a href="<?php echo base_url('dbms/form_program_t3_best_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
+					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchBESTT3">
+					  Batch Upload
+					</button>
+					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
+					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
+					 
+				</div>
+				<table class="table table-area">
+					<tr>
+						<th>Check</th>
+						<th>Action</th>
+						<th>Name</th>
+						<th>School</th>
+						<th>Birthday</th>
+						<th>Status</th>
+						<th>Unsubmitted Documents</th>
+						<th>Grade of Tasks</th>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td><a href="<?php echo base_url('dbms/form_program_t3_adept_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td>Simon, Dayanara</td>
+						<td>Ateneo de Manila University</td>
+						<td>11/21/1993</td>
+						<td>P</td>
+						<td>Contract, Interview Form, Site Visit Form, </td>
+						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewT3BESTTasks">View List</button></td>
+					</tr>
+				</table>
+			</div>
+			
+			<div class="tab-pane fade" id="adept_t3">
+				<div class="button-groups">
+					<a href="<?php echo base_url('dbms/form_program_t3_adept_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
+					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchBESTT3">
+					  Batch Upload
+					</button>
+					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
+					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
+					 
+				</div>
+				<table class="table table-area">
+					<tr>
+						<th>Check</th>
+						<th>Action</th>
+						<th>Name</th>
+						<th>School</th>
+						<th>Birthday</th>
+						<th>Unsubmitted Documents</th>
+						<th>Grade of Tasks</th>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td><a href="<?php echo base_url('dbms/form_program_t3_best_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td>Simon, Dayanara</td>
+						<td>Ateneo de Manila University</td>
+						<td>11/21/2013</td>
+						<td>CD</td>
+						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewT3ADEPTTasks">View List</button></td>
+					</tr>
+				</table>
+			</div>
+
 			
 		</div>
 
@@ -534,6 +634,49 @@
 </div>
 </div>
 
+<div class="modal fade" id="searchClassForMasterTrainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
+</div>
+<div class="modal-body">
+<div class="student-button-groups">
+
+				
+		<form class="form" role="form">
+			<div class="form-group">
+				<label for="name">Master Trainer's Name</label>
+				<input type="text" class="form-control" id="steachername">
+			</div>
+			<div class="form-group">
+				<label for="programs">Subjects</label><br />
+					 <input type="checkbox" name="ssubjects" value="best"> BEST<br />	
+					 <input type="checkbox" name="ssubjects" value="adept"> ADEPT<br />
+					 <input type="checkbox" name="ssubjects" value="bpo101"> BPO101<br />	
+					 <input type="checkbox" name="ssubjects" value="bpo102"> BPO102<br />	
+					 <input type="checkbox" name="ssubjects" value="sc"> Service Culture<br />	
+					 <input type="checkbox" name="ssubjects" value="st"> Systems Thinking<br />	
+					 <input type="checkbox" name="ssubjects" value="gcat"> GCAT<br />
+			</div>
+			<div class="form-group">
+				<label for="school">Students <span class="help-block">separated by a comma</span></label>
+				<input type="text" class="form-control" id="school">
+			</div>
+		</form>
+				
+
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+</div>
+</div>
+</div>
+</div>
+
 <div class="modal fade" id="searchBestAdept" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="modal-dialog">
 <div class="modal-content">
@@ -585,6 +728,25 @@
 <div class="modal-body">
 <div class="student-button-groups">
 	This has the list of all the students in the class.
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="viewListOfTeachersForMasterTrainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title" id="myModalLabel">Print List</h4>
+</div>
+<div class="modal-body">
+<div class="student-button-groups">
+	This has the list of all the teachers in the class.
 </div>
 </div>
 <div class="modal-footer">
@@ -761,6 +923,86 @@ Taken by <span class="highlight">Dayanara Simon</span>.
 		<td>Passed</td>
 		<td>90</td>
 		<td>1</td>
+	</tr>
+</table>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="viewT3BESTTasks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title" id="myModalLabel">BEST T3 Tasks</h4>
+</div>
+<div class="modal-body">
+Taken by <span class="highlight">Dayanara Simon</span>.
+<table class="table">
+	<tr>
+		<th>Task</th>
+		<th>Grade</th>
+	</tr>
+	<tr>
+		<td>Task 1</td>
+		<td>90</td>
+	</tr>
+	<tr>
+		<td>Task 2</td>
+		<td>90</td>
+	</tr>
+	<tr>
+		<td>Task 3</td>
+		<td>90</td>
+	</tr>
+	<tr>
+		<td>Task 4</td>
+		<td>90</td>
+	</tr>
+	<tr>
+		<td>Task 5</td>
+		<td>90</td>
+	</tr>
+	
+</table>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="viewT3ADEPTTasks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title" id="myModalLabel">BEST T3 Tasks</h4>
+</div>
+<div class="modal-body">
+Taken by <span class="highlight">Dayanara Simon</span>.
+<table class="table">
+	<tr>
+		<th>Task</th>
+		<th>Grade</th>
+	</tr>
+	<tr>
+		<td>Lesson Plan Demo</td>
+		<td>90</td>
+	</tr>
+	<tr>
+		<td>Total Weighted</td>
+		<td>90</td>
+	</tr>
+	<tr>
+		<td>Training Portfolio</td>
+		<td>90</td>
 	</tr>
 </table>
 </div>

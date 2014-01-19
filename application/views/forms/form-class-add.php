@@ -10,6 +10,7 @@
 			<button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
 			<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
 		</div>
+		
 	<legend>Class Information</legend>  
 	
 	<form class="form-inline">

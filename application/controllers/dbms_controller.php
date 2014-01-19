@@ -654,6 +654,28 @@ class Dbms_Controller extends CI_Controller
 		$this->load->view('forms/form-program-smp-tracker');
 		$this->load->view('footer');
 	}
+	
+	
+	function form_mastertrainer_class_add()
+	{
+		$this->load->view('header');
+		$this->load->view('forms/form-mastertrainer-classlist');
+		$this->load->view('footer');
+	}
+	function form_program_t3_best_tracker()
+	{
+		$this->load->view('header');
+		$this->load->view('forms/form-program-t3-best-tracker');
+		$this->load->view('footer');
+	}
+	
+	function form_program_t3_adept_tracker()
+	{
+		$this->load->view('header');
+		$this->load->view('forms/form-program-t3-adept-tracker');
+		$this->load->view('footer');
+	}
+	
 
 	function upload_student_profile()
 	{

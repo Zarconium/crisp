@@ -16,11 +16,13 @@
 		<table class="table">
 				<tr>
 					<th>Resource</th>
+					<th>Type</th>
 					<th>View</th>
 					<th>Print</th>
 				</tr>
 				<tr>
-					<td>Student Application Form - Single</td>
+					<td rowspan="2">Student Application Form </td>
+					<td>Single</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -28,7 +30,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Student Application Form - Batch</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -37,6 +39,7 @@
 				</tr>
 				<tr>
 					<td>Participant's Contract</td>
+					<td>Single</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -45,6 +48,7 @@
 				</tr>
 				<tr>
 					<td>GCAT Student Grades</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -53,6 +57,7 @@
 				</tr>
 				<tr>
 					<td>BEST Student Grades</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -61,6 +66,7 @@
 				</tr>
 				<tr>
 					<td>ADEPT Student Grades</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -75,11 +81,13 @@
 		<table class="table">
 				<tr>
 					<th>Resource</th>
+					<th>Type</th>
 					<th>View</th>
 					<th>Print</th>
 				</tr>
 				<tr>
-					<td>Teacher Application Form - Single</td>
+					<td rowspan="2">Teacher Application Form</td>
+					<td>Single</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -87,7 +95,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Teacher Application Form - Batch</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -96,6 +104,7 @@
 				</tr>
 				<tr>
 					<td>Participant's Contract</td>
+					<td>Single</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -104,6 +113,7 @@
 				</tr>
 				<tr>
 					<td>BEST Teacher Attendance</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -112,6 +122,7 @@
 				</tr>
 				<tr>
 					<td>ADEPT Teacher Attendance</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -120,6 +131,7 @@
 				</tr>
 				<tr>
 					<td>SMP Teacher Attendance</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -135,11 +147,13 @@
 			<table class="table">
 				<tr>
 					<th>Resource</th>
+					<th>Type</th>
 					<th>View</th>
 					<th>Print</th>
 				</tr>
 				<tr>
-					<td>Proctor Application Form - Single</td>
+					<td rowspan="2">Proctor Application Form</td>
+					<td>Single</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -147,7 +161,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Proctor Application Form - Batch</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -163,11 +177,13 @@
 			<table class="table">
 				<tr>
 					<th>Resource</th>
+					<th>Type</th>
 					<th>View</th>
 					<th>Print</th>
 				</tr>
 				<tr>
-					<td>Master Trainer Application Form - Single</td>
+					<td rowspan="2">Master Trainer Application Form</td>
+					<td>Single</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -175,7 +191,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Master Trainer Application Form - Batch</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -190,11 +206,13 @@
 			<table class="table">
 				<tr>
 					<th>Resource</th>
+					<th>Type</th>
 					<th>View</th>
 					<th>Print</th>
 				</tr>
 				<tr>
 					<td>Student Class List</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -202,7 +220,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td>SMP Tracker - Single</td>
+					<td rowspan="2">SMP Tracker</td>
+					<td>Single</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -210,7 +229,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td>SMP Tracker - Batch</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -218,7 +237,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td>GCAT Tracker - Batch</td>
+					<td>GCAT Tracker</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -226,7 +246,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td>ADEPT Tracker - Batch</td>
+					<td>ADEPT Tracker</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -235,6 +256,7 @@
 				</tr>
 				<tr>
 					<td>Internship Evaluation</td>
+					<td>Single</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -242,7 +264,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td>GCAT Student Grade - Batch</td>
+					<td>GCAT Student Grade</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -250,7 +273,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td>BEST Student Grade - Batch</td>
+					<td>BEST Student Grade</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -258,7 +282,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td>ADEPT Student Grade - Batch</td>
+					<td>ADEPT Student Grade</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -266,7 +291,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td>SMP Student Grade - Batch</td>
+					<td>SMP Student Grade</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -275,6 +301,7 @@
 				</tr>
 				<tr>
 					<td>SMP T3 Tracker</td>
+					<td>Single</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -282,7 +309,33 @@
 					</td>
 				</tr>
 				<tr>
-					<td>ADEPT T3 Tracker</td>
+					<td rowspan="2">ADEPT T3 Tracker</td>
+					<td>Single</td>
+					<td><button class="btn btn-default">View</button></td>
+					<td>
+						<button class="btn btn-primary">Excel</button>
+						<button class="btn btn-info">PDF</button>
+					</td>
+				</tr>
+				<tr>
+					<td>Batch</td>
+					<td><button class="btn btn-default">View</button></td>
+					<td>
+						<button class="btn btn-primary">Excel</button>
+						<button class="btn btn-info">PDF</button>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="2">Batch T3 Tracker</td>
+					<td>Single</td>
+					<td><button class="btn btn-default">View</button></td>
+					<td>
+						<button class="btn btn-primary">Excel</button>
+						<button class="btn btn-info">PDF</button>
+					</td>
+				</tr>
+				<tr>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
@@ -291,6 +344,7 @@
 				</tr>
 				<tr>
 					<td>Participant Master List</td>
+					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
