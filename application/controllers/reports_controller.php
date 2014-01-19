@@ -61,7 +61,7 @@ class Reports_Controller extends CI_Controller {
 
 	}
 	
-	//Applies to all subjects (SMP,Gcat,Best,Adept)
+	//still being fixed 
 	function getAllStudentClassSUCReport()
 	{
 		$data['student_class_list'] = $this->report_suc->getStudentClass($subject,$school_code,$semester,$teacher_code);

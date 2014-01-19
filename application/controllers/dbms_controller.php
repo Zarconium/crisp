@@ -452,43 +452,43 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('other_positions_held', 'Other Positions Held', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('classes_handling', 'Classes Handling', 'trim|xss_clean');
 			// Subjects Taught 2011-present
-			$this->form_validation->set_rules('subjects_taught_subject[]', 'Subjects Taught', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('subjects_taught_year[]', 'Year Taught', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('subjects_taught_subject[]', 'Subjects Taught', 'trim|xss_clean');
+			$this->form_validation->set_rules('subjects_taught_year[]', 'Year Taught', 'trim|xss_clean');
 			// Institutions
-			$this->form_validation->set_rules('institutions_worked_institution[]', 'Institution', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('institutions_worked_position[]', 'Position', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('institutions_worked_year_started[]', 'Year Started', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('institutions_worked_level_taught[]', 'Level Taught', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('institutions_worked_courses_taught[]', 'Courses Taught', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('institutions_worked_number_of_years_in_institution[]', 'Number of Years in Institution', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('institutions_worked_institution[]', 'Institution', 'trim|xss_clean');
+			$this->form_validation->set_rules('institutions_worked_position[]', 'Position', 'trim|xss_clean');
+			$this->form_validation->set_rules('institutions_worked_year_started[]', 'Year Started', 'trim|xss_clean');
+			$this->form_validation->set_rules('institutions_worked_level_taught[]', 'Level Taught', 'trim|xss_clean');
+			$this->form_validation->set_rules('institutions_worked_courses_taught[]', 'Courses Taught', 'trim|xss_clean');
+			$this->form_validation->set_rules('institutions_worked_number_of_years_in_institution[]', 'Number of Years in Institution', 'trim|xss_clean');
 			// Certifications
-			$this->form_validation->set_rules('certifications_certification[]', 'Certification', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('certifications_certifying_body[]', 'Certifying Body', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('certifications_date_received[]', 'Certification Date Received', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('certifications_certification[]', 'Certification', 'trim|xss_clean');
+			$this->form_validation->set_rules('certifications_certifying_body[]', 'Certifying Body', 'trim|xss_clean');
+			$this->form_validation->set_rules('certifications_date_received[]', 'Certification Date Received', 'trim|xss_clean');
 			// Awards
-			$this->form_validation->set_rules('awards_award[]', 'Award', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('awards_awarding_body[]', 'Awarding Body', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('awards_date_received[]', 'Award Date Received', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('awards_award[]', 'Award', 'trim|xss_clean');
+			$this->form_validation->set_rules('awards_awarding_body[]', 'Awarding Body', 'trim|xss_clean');
+			$this->form_validation->set_rules('awards_date_received[]', 'Award Date Received', 'trim|xss_clean');
 			// Other Work
-			$this->form_validation->set_rules('other_work_organization[]', 'Organization', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('other_work_position[]', 'Position', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('other_work_description[]', 'Work Description', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('other_work_date_started[]', 'Date Started', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('other_work_organization[]', 'Organization', 'trim|xss_clean');
+			$this->form_validation->set_rules('other_work_position[]', 'Position', 'trim|xss_clean');
+			$this->form_validation->set_rules('other_work_description[]', 'Work Description', 'trim|xss_clean');
+			$this->form_validation->set_rules('other_work_date_started[]', 'Date Started', 'trim|xss_clean');
 
 			$this->form_validation->set_rules('computer_proficient_skill', 'Computer Proficiency Skills', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('computer_familiar_skill', 'Computer Familiarity', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('skill', 'Other Skills', 'trim|required|xss_clean');
 			// Reference
-			$this->form_validation->set_rules('reference_name[]', 'Reference Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('reference_position[]', 'Reference Position', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('reference_company[]', 'Reference Company', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('reference_phone[]', 'Reference Phone', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('reference_email[]', 'Reference Email', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('reference_name[]', 'Reference Name', 'trim|xss_clean');
+			$this->form_validation->set_rules('reference_position[]', 'Reference Position', 'trim|xss_clean');
+			$this->form_validation->set_rules('reference_company[]', 'Reference Company', 'trim|xss_clean');
+			$this->form_validation->set_rules('reference_phone[]', 'Reference Phone', 'trim|xss_clean');
+			$this->form_validation->set_rules('reference_email[]', 'Reference Email', 'trim|xss_clean');
 			// Affiliations
-			$this->form_validation->set_rules('affiliation_organization[]', 'Affiliation Organization', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('affiliation_description[]', 'Affiliation Description', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('affiliation_position[]', 'Affiliation Position', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('affiliation_years[]', 'Years of Affiliation', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('affiliation_organization[]', 'Affiliation Organization', 'trim|xss_clean');
+			$this->form_validation->set_rules('affiliation_description[]', 'Affiliation Description', 'trim|xss_clean');
+			$this->form_validation->set_rules('affiliation_position[]', 'Affiliation Position', 'trim|xss_clean');
+			$this->form_validation->set_rules('affiliation_years[]', 'Years of Affiliation', 'trim|xss_clean');
 
 			$this->form_validation->set_rules('resume', 'Resume', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('photo', 'Photo', 'trim|required|xss_clean');
@@ -510,43 +510,50 @@ class Dbms_Controller extends CI_Controller
 				}
 				else
 				{
-					$student = array
+					$teacher = array
 					(
-						'School_ID' => $this->input->post('school'),
+						'Code' => $this->input->post('code'),
+						'Name_Suffix' => $this->input->post('name_suffix'),
 						'Last_Name' => $this->input->post('last_name'),
 						'First_Name' => $this->input->post('first_name'),
 						'Middle_Initial' => $this->input->post('middle_initial'),
-						'Name_Suffix' => $this->input->post('name_suffix'),
-						'Student_ID_Number' => $this->input->post('id_number'),
-						'Civil_Status' => $this->input->post('civil'),
-						'Birthdate' => $this->input->post('birthday'),
+						'Birthdate' => $this->input->post('birthdate'),
 						'Birthplace' => $this->input->post('birthplace'),
-						'Gender' => $this->input->post('gender'),
 						'Nationality' => $this->input->post('nationality'),
-						'Street_Number' => $this->input->post('current_street_number'),
-						'Street_Name' => $this->input->post('current_street_name'),
-						'City' => $this->input->post('current_city'),
-						'Province' => $this->input->post('current_province'),
-						'Region' => $this->input->post('current_region'),
+						'Total_Year_of_Teaching' => $this->input->post('total_year_teaching'),
+						'Civil_Status' => $this->input->post('civil'),
+						'Gender' => $this->input->post('gender'),
+						'Desktop?' => $this->input->post('desktop'),
+						'Laptop?' => $this->input->post('laptop'),
+						'Internet?' => $this->input->post('access'),
+						'Street_Number' => $this->input->post('street_number'),
+						'Street_Name' => $this->input->post('street_name'),
+						'City' => $this->input->post('city'),
+						'Province' => $this->input->post('province'),
+						'Region' => $this->input->post('region'),
 						'Alternate_Address' => $this->input->post('alternate_address'),
 						'Mobile_Number' => $this->input->post('mobile'),
 						'Landline' => $this->input->post('landline'),
 						'Email' => $this->input->post('email'),
 						'Facebook' => $this->input->post('facebook'),
-						'Course' => $this->input->post('degree_type') . " " . $this->input->post('degree'), //concatenate degree type and degree
-						'Year' => $this->input->post('year'),
-						'Expected_Year_of_Graduation' => $this->input->post('expected_year_of_graduation'),
-						'DOST_Scholar?' => $this->input->post('DOSTscholar'),
-						'Scholar?' => $this->input->post('scholar'),
-						'Interested_In_IT-BPO?' => $this->input->post('work'),
-						'Own_A_Computer?' => $this->input->post('computer'),
-						'Internet_Access?' => $this->input->post('internet'),
-						'Code' => $this->input->post('code')
+						'Employment_Status' => $this->input->post('employment_status'),
+						'Current_Position' => $this->input->post('current_position'),
+						'Current_Department' => $this->input->post('current_department'),
+						'School_ID' => $this->input->post('current_employer'),
+						'Name_of_Supervisor' => $this->input->post('name_of_supervisor'),
+						'Supervisor_Contact_Details' => $this->input->post('supervisor_contact_details'),
+						'Position_of_Supervisor' => $this->input->post('position_of_supervisor'),
+						'Classes_Handling' => $this->input->post('classes_handling'),
+						'Resume?' => $this->input->post('resume'),
+						'Photo?' => $this->input->post('photo'),
+						'Proof_of_Certification?' => $this->input->post('proof'),
+						'Diploma/TOR' => $this->input->post('diploma'),
+						'Updated_At' => date("Y-m-d")// Current Date
 					);
 
-					$student_id = $this->student->addStudent($student);
+					$teacher_id = $this->teacher->addTeacher($teacher);
 
-					foreach ($this->input->post('program') as $program)
+					/*foreach ($this->input->post('program') as $program)
 					{
 						switch ($program)
 						{
@@ -592,7 +599,7 @@ class Dbms_Controller extends CI_Controller
 						);
 
 						$this->student->addStudentApplication($student_application);
-					}
+					}*/
 
 					$data['form_success'] = TRUE;
 
