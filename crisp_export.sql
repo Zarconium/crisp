@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2014 at 09:09 PM
+-- Generation Time: Jan 20, 2014 at 11:43 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -843,13 +843,13 @@ CREATE TABLE IF NOT EXISTS `smp_student_courses_taken` (
 --
 
 INSERT INTO `smp_student_courses_taken` (`SMP_Student_Courses_Taken_ID`, `Student_Class_ID`, `Tracker_ID`) VALUES
-('1', 1, 7),
-('2', 2, 8),
-('3', 3, 7),
-('4', 4, 8),
-('5', 5, 9),
-('6', 6, 10),
-('7', 7, 8);
+(1, 1, 7),
+(2, 2, 8),
+(3, 3, 7),
+(4, 4, 8),
+(5, 5, 9),
+(6, 6, 10),
+(7, 7, 8);
 
 -- --------------------------------------------------------
 
@@ -1531,55 +1531,63 @@ CREATE TABLE IF NOT EXISTS `teacher` (
   `Photo?` tinyint(1) NOT NULL DEFAULT '0',
   `Proof_of_Certification?` tinyint(1) NOT NULL DEFAULT '0',
   `Diploma/TOR` tinyint(1) NOT NULL DEFAULT '0',
-  `Created_At` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Updated_At` datetime DEFAULT CURRENT_TIMESTAMP,
+  `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Updated_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Teacher_ID`),
   UNIQUE KEY `Teacher_ID_UNIQUE` (`Teacher_ID`),
   KEY `fk_Teacher_School1_idx` (`School_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Dumping data for table `teacher`
 --
 
 INSERT INTO `teacher` (`Teacher_ID`, `Code`, `Name_Suffix`, `Last_Name`, `First_Name`, `Middle_Initial`, `Birthdate`, `Birthplace`, `Nationality`, `Total_Year_of_Teaching`, `Civil_Status`, `Gender`, `Desktop?`, `Laptop?`, `Internet?`, `Street_Number`, `Street_Name`, `City`, `Province`, `Region`, `Alternate_Address`, `Mobile_Number`, `Landline`, `Email`, `Facebook`, `Employment_Status`, `Current_Position`, `Current_Department`, `School_ID`, `Name_of_Supervisor`, `Supervisor_Contact_Details`, `Position_of_Supervisor`, `Classes_Handling`, `Resume?`, `Photo?`, `Proof_of_Certification?`, `Diploma/TOR`, `Created_At`, `Updated_At`) VALUES
-(1, 'CODE123', 'Jr.', 'Swift', 'Mike', 'A', '1967-11-14 00:24:34', 'Quezon City', 'Filipino', 4, 'Single', 'M', 1, 1, 0, '8', 'Samar', 'Quezon City', 'Metro Manila', '5', 'Basco, Batanes', '091159503612', '3336644', 'rj@gmail.com', 'isa', 'Perm', 'Teacher', 'DISCS', 1, 'John Leveur', '09159999911', 'Boss', 'CS150', 1, 0, 1, 0, '2013-12-12 00:00:00', '2013-12-14 00:00:00'),
-(2, 'CODE432', NULL, 'Tan', 'Gillian', 'P', '1992-01-01 00:24:34', 'Beijing, China', 'Filipino', 3, 'Married', 'F', 1, 0, 1, '7', 'Pura', 'Manila City', 'Metro Manila', 'NCR', 'Laoag City', '098112344321', '3215432', 'gil@gmail.com', 'Gigi', 'Perm', 'Teacher 2', 'DISCS', 2, 'Michael Bryan', '09111222334', 'Manager', 'MIS101', 0, 0, 1, 0, '2013-10-31 00:00:00', '2013-11-05 00:00:00'),
-(3, 'CODE123', 'Jr.', 'Fajardo', 'Francis', 'B', '1991-11-12 00:24:34', 'Caloocan City, Philippines', 'Filipino', 10, 'Married', 'M', 0, 0, 0, '2', 'Arrupe', 'Malabon City', 'Metro Manila ', 'NCR', 'Ormoc City', '123456711111', '32123421', 'fr@gmail.com', 'Francis', 'Perm', 'Teacher 4', 'DISCS', 3, 'Fernando Lopez', '09212123456', 'Manager', 'CS160', 1, 1, 1, 1, '2011-11-24 00:00:00', '2013-11-14 00:00:00'),
-(4, 'CODE143', NULL, 'Calzado', 'Iza', 'C', '1967-11-14 00:24:34', 'Los Angeles, USA', 'American', 22, 'Single', 'F', 0, 1, 1, '6750', 'Ayala', 'Makati City', 'Metro Manila', 'NCR', 'Cebu City', '212321220291', '2132321', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher 10', 'DISCS', 17, 'Barack Obama', '09121431431', 'Principal', 'MIS101', 1, 0, 0, 0, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
-(5, '153', NULL, 'Cheng', 'Joy', 'A', '1967-11-14 00:24:34', 'Manila', 'Filipino', 1, 'Single', 'F', 1, 0, 1, '1', 'Maluggay', 'Makati', 'Metro Manila', 'NCR', 'Davao', '626126311454', '3614988', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 1, 'Joy Federico', '09064939966', 'Principal', 'MIS121', 1, 0, 1, 0, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
-(6, '454', NULL, 'Chen', 'Iza', 'B', '1967-11-14 00:24:34', 'Manila', 'Filipino', 21, 'Single', 'F', 1, 0, 1, '2', '1st', 'Caloccan', 'Metro Manila', 'NCR', 'Bacolod', '541514546444', '3632266', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 2, 'Joy Federico', '12154564867', 'Principal', 'MIS131', 0, 1, 0, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
-(7, '153', NULL, 'Chua', 'Red', 'C', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'F', 1, 0, 1, '3', '2nd', 'Caloccan', 'Metro Manila', 'NCR', 'Tacloban', '13213.210103', '3659324', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 3, 'Joy Federico', '15148657486', 'Principal', 'MIS151', 1, 0, 0, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
-(8, '131', NULL, 'Cua', 'Blue', 'D', '1967-11-14 00:24:34', 'Manila', 'Filipino', 10, 'Single', 'F', 1, 0, 1, '4', '3rd', 'Caloccan', 'Metro Manila', 'NCR', 'Samar', '484851465131', '8787872', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 4, 'Joy Federico', '15145634685', 'Principal', 'MIS141', 0, 0, 0, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
-(9, '25', NULL, 'Tan', 'Green', 'E', '1967-11-14 00:24:34', 'Manila', 'Filipino', 3, 'Single', 'F', 1, 0, 0, '5', '4th', 'Caloccan', 'Metro Manila', 'NCR', 'Leyte', '131253465465', '9876543', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 5, 'Joy Federico', '13143126344', 'Principal', 'CS21', 0, 0, 0, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
-(10, '131', NULL, 'Tiong', 'Yellow', 'F', '1967-11-14 00:24:34', 'Manila', 'Filipino', 1, 'Single', 'F', 1, 0, 0, '6', '5th', 'Caloccan', 'Metro Manila', 'NCR', 'Bicol', '134865488484', '3216547', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 6, 'Joy Federico', '16476463461', 'Principal', 'CS21', 0, 1, 1, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
-(11, '4564', NULL, 'Zhen', 'Black', 'G', '1967-11-14 00:24:34', 'Manila', 'Filipino', 5, 'Single', 'F', 1, 1, 0, '7', '6th', 'Caloccan', 'Metro Manila', 'NCR', 'Baguio', '154135213143', '9874562', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 7, 'Joy Federico', '03163136161', 'Principal', 'CS21', 1, 1, 1, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
-(12, '131', NULL, 'Sy', 'Brown', 'H', '1967-11-14 00:24:34', 'Manila', 'Filipino', 1, 'Single', 'M', 1, 0, 0, '8', '7th', 'Caloccan', 'Metro Manila', 'NCR', 'Batangas', '132156454151', '9876541', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 8, 'Joy Federico', '03125531465', 'Principal', 'CS21', 1, 0, 1, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
-(13, '55', NULL, 'See', 'Teal', 'I', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'F', 1, 0, 1, '9', '8th', 'Caloccan', 'Metro Manila', 'NCR', 'Bulacan', '515151454545', '7894561', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 9, 'Joy Federico', '16351403146', 'Principal', 'CS21', 1, 0, 1, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
-(14, '11', NULL, 'Kim', 'Pink', 'J', '1967-11-14 00:24:34', 'Manila', 'Filipino', 2, 'Single', 'M', 1, 1, 1, '10', '9th', 'Caloccan', 'Metro Manila', 'NCR', 'Cebu', '023102548122', '7894562', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 10, 'Joy Federico', '15614023146', 'Principal', 'CS21', 1, 0, 1, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
-(15, '51', NULL, 'Park', 'Purple', 'K', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'M', 1, 0, 1, '11', '10th', 'Caloccan', 'Metro Manila', 'NCR', 'Palawan', '102534856414', '7894563', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 11, 'Joy Federico', '16148654320', 'Dean', 'CS21', 1, 1, 0, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
-(16, '122', NULL, 'Lim', 'Violet', 'L', '1967-11-14 00:24:34', 'Manila', 'Filipino', 13, 'Single', 'M', 0, 1, 1, '12', '11th', 'Caloccan', 'Metro Manila', 'NCR', 'Bohol', '145451431131', '7893215', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 12, 'Joy Federico', '15313143514', 'Dean', 'CS21', 1, 0, 0, 0, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
-(17, '335', NULL, 'Lee', 'Beige', 'M', '1967-11-14 00:24:34', 'Manila', 'Filipino', 13, 'Single', 'M', 0, 0, 0, '13', 'Rizal', 'Manila', 'Metro Manila', 'NCR', 'Iloilo', '185748965488', '9873216', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 13, 'Joy Federico', '10031631461', 'Dean', 'CS21', 0, 0, 1, 0, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
-(18, '484', NULL, 'Zhong', 'Khaki', 'N', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'M', 0, 1, 0, '14', 'Arnais', 'Makati', 'Metro Manila', 'NCR', 'Bacolod', '165148574897', '9773214', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 14, 'Joy Federico', '31235146545', 'Dean', 'CS21', 0, 1, 0, 0, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
-(19, '646', NULL, 'Leong', 'Maroon', 'O', '1967-11-14 00:24:34', 'Manila', 'Filipino', 5, 'Married', 'M', 1, 0, 0, '15', 'Katipunan', 'Quezon City', 'Metro Manila', 'NCR', 'Sulu', '874885748567', '9873216', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 15, 'Joy Federico', '15314531455', 'Dean', 'CS21', 1, 0, 0, 0, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
-(20, '231', NULL, 'Jeong', 'Cyan', 'P', '1967-11-14 00:24:34', 'Manila', 'Filipino', 10, 'Widowed', 'F', 1, 1, 0, '16', 'Esteban', 'Quezon City', 'Metro Manila', 'NCR', 'Mindoro', '148564768787', '2654878', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 16, 'Joy Federico', '10231032153', 'Deam', 'CS21', 1, 0, 1, 0, '2012-11-24 00:00:00', '2013-11-14 00:00:00');
+(1, 'CODE123', 'Jr.', 'Swift', 'Mike', 'A', '1967-11-14 00:24:34', 'Quezon City', 'Filipino', 4, 'Single', 'M', 1, 1, 0, '8', 'Samar', 'Quezon City', 'Metro Manila', '5', 'Basco, Batanes', '091159503612', '3336644', 'rj@gmail.com', 'isa', 'Perm', 'Teacher', 'DISCS', 1, 'John Leveur', '09159999911', 'Boss', 'CS150', 1, 0, 1, 0, '2013-12-11 16:00:00', '2013-12-13 16:00:00'),
+(2, 'CODE432', NULL, 'Tan', 'Gillian', 'P', '1992-01-01 00:24:34', 'Beijing, China', 'Filipino', 3, 'Married', 'F', 1, 0, 1, '7', 'Pura', 'Manila City', 'Metro Manila', 'NCR', 'Laoag City', '098112344321', '3215432', 'gil@gmail.com', 'Gigi', 'Perm', 'Teacher 2', 'DISCS', 2, 'Michael Bryan', '09111222334', 'Manager', 'MIS101', 0, 0, 1, 0, '2013-10-30 16:00:00', '2013-11-04 16:00:00'),
+(3, 'CODE123', 'Jr.', 'Fajardo', 'Francis', 'B', '1991-11-12 00:24:34', 'Caloocan City, Philippines', 'Filipino', 10, 'Married', 'M', 0, 0, 0, '2', 'Arrupe', 'Malabon City', 'Metro Manila ', 'NCR', 'Ormoc City', '123456711111', '32123421', 'fr@gmail.com', 'Francis', 'Perm', 'Teacher 4', 'DISCS', 3, 'Fernando Lopez', '09212123456', 'Manager', 'CS160', 1, 1, 1, 1, '2011-11-23 16:00:00', '2013-11-13 16:00:00'),
+(4, 'CODE143', NULL, 'Calzado', 'Iza', 'C', '1967-11-14 00:24:34', 'Los Angeles, USA', 'American', 22, 'Single', 'F', 0, 1, 1, '6750', 'Ayala', 'Makati City', 'Metro Manila', 'NCR', 'Cebu City', '212321220291', '2132321', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher 10', 'DISCS', 17, 'Barack Obama', '09121431431', 'Principal', 'MIS101', 1, 0, 0, 0, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
+(5, '153', NULL, 'Cheng', 'Joy', 'A', '1967-11-14 00:24:34', 'Manila', 'Filipino', 1, 'Single', 'F', 1, 0, 1, '1', 'Maluggay', 'Makati', 'Metro Manila', 'NCR', 'Davao', '626126311454', '3614988', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 1, 'Joy Federico', '09064939966', 'Principal', 'MIS121', 1, 0, 1, 0, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
+(6, '454', NULL, 'Chen', 'Iza', 'B', '1967-11-14 00:24:34', 'Manila', 'Filipino', 21, 'Single', 'F', 1, 0, 1, '2', '1st', 'Caloccan', 'Metro Manila', 'NCR', 'Bacolod', '541514546444', '3632266', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 2, 'Joy Federico', '12154564867', 'Principal', 'MIS131', 0, 1, 0, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
+(7, '153', NULL, 'Chua', 'Red', 'C', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'F', 1, 0, 1, '3', '2nd', 'Caloccan', 'Metro Manila', 'NCR', 'Tacloban', '13213.210103', '3659324', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 3, 'Joy Federico', '15148657486', 'Principal', 'MIS151', 1, 0, 0, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
+(8, '131', NULL, 'Cua', 'Blue', 'D', '1967-11-14 00:24:34', 'Manila', 'Filipino', 10, 'Single', 'F', 1, 0, 1, '4', '3rd', 'Caloccan', 'Metro Manila', 'NCR', 'Samar', '484851465131', '8787872', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 4, 'Joy Federico', '15145634685', 'Principal', 'MIS141', 0, 0, 0, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
+(9, '25', NULL, 'Tan', 'Green', 'E', '1967-11-14 00:24:34', 'Manila', 'Filipino', 3, 'Single', 'F', 1, 0, 0, '5', '4th', 'Caloccan', 'Metro Manila', 'NCR', 'Leyte', '131253465465', '9876543', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 5, 'Joy Federico', '13143126344', 'Principal', 'CS21', 0, 0, 0, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
+(10, '131', NULL, 'Tiong', 'Yellow', 'F', '1967-11-14 00:24:34', 'Manila', 'Filipino', 1, 'Single', 'F', 1, 0, 0, '6', '5th', 'Caloccan', 'Metro Manila', 'NCR', 'Bicol', '134865488484', '3216547', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 6, 'Joy Federico', '16476463461', 'Principal', 'CS21', 0, 1, 1, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
+(11, '4564', NULL, 'Zhen', 'Black', 'G', '1967-11-14 00:24:34', 'Manila', 'Filipino', 5, 'Single', 'F', 1, 1, 0, '7', '6th', 'Caloccan', 'Metro Manila', 'NCR', 'Baguio', '154135213143', '9874562', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 7, 'Joy Federico', '03163136161', 'Principal', 'CS21', 1, 1, 1, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
+(12, '131', NULL, 'Sy', 'Brown', 'H', '1967-11-14 00:24:34', 'Manila', 'Filipino', 1, 'Single', 'M', 1, 0, 0, '8', '7th', 'Caloccan', 'Metro Manila', 'NCR', 'Batangas', '132156454151', '9876541', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 8, 'Joy Federico', '03125531465', 'Principal', 'CS21', 1, 0, 1, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
+(13, '55', NULL, 'See', 'Teal', 'I', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'F', 1, 0, 1, '9', '8th', 'Caloccan', 'Metro Manila', 'NCR', 'Bulacan', '515151454545', '7894561', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 9, 'Joy Federico', '16351403146', 'Principal', 'CS21', 1, 0, 1, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
+(14, '11', NULL, 'Kim', 'Pink', 'J', '1967-11-14 00:24:34', 'Manila', 'Filipino', 2, 'Single', 'M', 1, 1, 1, '10', '9th', 'Caloccan', 'Metro Manila', 'NCR', 'Cebu', '023102548122', '7894562', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 10, 'Joy Federico', '15614023146', 'Principal', 'CS21', 1, 0, 1, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
+(15, '51', NULL, 'Park', 'Purple', 'K', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'M', 1, 0, 1, '11', '10th', 'Caloccan', 'Metro Manila', 'NCR', 'Palawan', '102534856414', '7894563', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 11, 'Joy Federico', '16148654320', 'Dean', 'CS21', 1, 1, 0, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
+(16, '122', NULL, 'Lim', 'Violet', 'L', '1967-11-14 00:24:34', 'Manila', 'Filipino', 13, 'Single', 'M', 0, 1, 1, '12', '11th', 'Caloccan', 'Metro Manila', 'NCR', 'Bohol', '145451431131', '7893215', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 12, 'Joy Federico', '15313143514', 'Dean', 'CS21', 1, 0, 0, 0, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
+(17, '335', NULL, 'Lee', 'Beige', 'M', '1967-11-14 00:24:34', 'Manila', 'Filipino', 13, 'Single', 'M', 0, 0, 0, '13', 'Rizal', 'Manila', 'Metro Manila', 'NCR', 'Iloilo', '185748965488', '9873216', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 13, 'Joy Federico', '10031631461', 'Dean', 'CS21', 0, 0, 1, 0, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
+(18, '484', NULL, 'Zhong', 'Khaki', 'N', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'M', 0, 1, 0, '14', 'Arnais', 'Makati', 'Metro Manila', 'NCR', 'Bacolod', '165148574897', '9773214', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 14, 'Joy Federico', '31235146545', 'Dean', 'CS21', 0, 1, 0, 0, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
+(19, '646', NULL, 'Leong', 'Maroon', 'O', '1967-11-14 00:24:34', 'Manila', 'Filipino', 5, 'Married', 'M', 1, 0, 0, '15', 'Katipunan', 'Quezon City', 'Metro Manila', 'NCR', 'Sulu', '874885748567', '9873216', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 15, 'Joy Federico', '15314531455', 'Dean', 'CS21', 1, 0, 0, 0, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
+(20, '231', NULL, 'Jeong', 'Cyan', 'P', '1967-11-14 00:24:34', 'Manila', 'Filipino', 10, 'Widowed', 'F', 1, 1, 0, '16', 'Esteban', 'Quezon City', 'Metro Manila', 'NCR', 'Mindoro', '148564768787', '2654878', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 16, 'Joy Federico', '10231032153', 'Deam', 'CS21', 1, 0, 1, 0, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
+(32, '8PAP20140118', '', 'Peralta', 'Phil', 'A', '2014-01-18 00:00:00', 'Caloocan', 'Ibatan', 1, 'widowed', 'F', 1, 0, 1, '54 C.', 'efsadf', 'Caloocan', 'Metro Manila', 'asdfsa', '54 C. Cordero', '1', '1', 'joi_4real@yahoo.com', '', 'Part', 'Prof', '', 8, 'Joy Federico', '090909', '', '', 1, 1, 1, 1, '2014-01-20 14:55:58', '2014-01-19 16:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `teacher_affliation_to_organization`
+-- Table structure for table `teacher_affiliation_to_organization`
 --
 
-CREATE TABLE IF NOT EXISTS `teacher_affliation_to_organization` (
+CREATE TABLE IF NOT EXISTS `teacher_affiliation_to_organization` (
   `Teacher_Affliation_to_Organization_ID` int(11) NOT NULL,
   `Organization` varchar(45) NOT NULL,
   `Description` varchar(45) DEFAULT NULL,
   `Positions` varchar(45) DEFAULT NULL,
-  `Years_Affliated` int(11) DEFAULT NULL,
+  `Years_Affiliated` int(11) DEFAULT NULL,
   `Teacher_ID` int(11) NOT NULL,
   PRIMARY KEY (`Teacher_Affliation_to_Organization_ID`),
   KEY `fk_Teacher_Affliation_to_Organization_Teacher1_idx` (`Teacher_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `teacher_affiliation_to_organization`
+--
+
+INSERT INTO `teacher_affiliation_to_organization` (`Teacher_Affliation_to_Organization_ID`, `Organization`, `Description`, `Positions`, `Years_Affiliated`, `Teacher_ID`) VALUES
+(0, 'Al Quaeda', 'Middle East', 'Suicide Bomber', 1, 32);
 
 -- --------------------------------------------------------
 
@@ -1596,7 +1604,7 @@ CREATE TABLE IF NOT EXISTS `teacher_awards` (
   PRIMARY KEY (`Teacher_Awards_ID`),
   UNIQUE KEY `Teacher_Awards_ID_UNIQUE` (`Teacher_Awards_ID`),
   KEY `fk_Teacher_Awards_Teacher1_idx` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `teacher_awards`
@@ -1606,7 +1614,8 @@ INSERT INTO `teacher_awards` (`Teacher_Awards_ID`, `Award`, `Awarding_Body`, `Da
 (1, 'Best in English', 'FAMAS', '1992-12-11 00:00:00', 1),
 (2, 'Best in Math', 'Mathers', '1911-11-11 00:00:00', 1),
 (3, 'Oscar', 'Academy', '1999-11-12 00:00:00', 1),
-(4, 'Emmy', 'America', '2012-09-11 00:00:00', 1);
+(4, 'Emmy', 'America', '2012-09-11 00:00:00', 1),
+(7, 'Medal of Honor', 'PSG', '2014-01-20 00:00:00', 32);
 
 -- --------------------------------------------------------
 
@@ -1623,7 +1632,7 @@ CREATE TABLE IF NOT EXISTS `teacher_certification` (
   PRIMARY KEY (`Teacher_Certification_ID`),
   UNIQUE KEY `Teacher_Certification_ID_UNIQUE` (`Teacher_Certification_ID`),
   KEY `fk_Teacher_Certification_Teacher1_idx` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `teacher_certification`
@@ -1633,7 +1642,8 @@ INSERT INTO `teacher_certification` (`Teacher_Certification_ID`, `Certification`
 (1, 'Math', 'Math Body ', '1992-12-11 00:34:00', 1),
 (2, 'Science', 'DOST', '1993-12-26 00:22:22', 2),
 (3, 'Geography', 'Makati Geologist', '2012-12-11 00:00:00', 2),
-(4, 'English', 'English Society', '1993-12-11 00:00:00', 3);
+(4, 'English', 'English Society', '1993-12-11 00:00:00', 3),
+(7, 'TESDA', 'TESDA', '2014-01-20 00:00:00', 32);
 
 -- --------------------------------------------------------
 
@@ -1749,7 +1759,7 @@ CREATE TABLE IF NOT EXISTS `teacher_professional_reference` (
   `Teacher_ID` int(11) NOT NULL,
   PRIMARY KEY (`Teacher_Professional_Reference_ID`),
   KEY `fk_Teacher_Professional_Reference_Teacher1_idx` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `teacher_professional_reference`
@@ -1759,7 +1769,8 @@ INSERT INTO `teacher_professional_reference` (`Teacher_Professional_Reference_ID
 (1, 'jpa@gmail.com', 'Mike Co', 'Teacher 21', 'TeachMe.org', '4212123', 1),
 (2, 'mla@gmail.com', 'Tanner Mo', 'Engineer', 'EngineerMe.org', '4333121', 2),
 (3, 'hack@gmail.com', 'Packer Yu', 'Hacker', 'Hack Company', '4323112', 3),
-(4, 'jack@yahoo.com', 'Jack Lantern', 'Jacker', 'Olero Company', '4323234', 2);
+(4, 'jack@yahoo.com', 'Jack Lantern', 'Jacker', 'Olero Company', '4323234', 2),
+(7, 'joi_4real@yahoo.com', 'Joy Federico', 'Intern', 'Citibank', '63906493996', 32);
 
 -- --------------------------------------------------------
 
@@ -1776,7 +1787,7 @@ CREATE TABLE IF NOT EXISTS `teacher_relevant_experiences` (
   `Teacher_ID` int(11) NOT NULL,
   PRIMARY KEY (`Teacher_Relevant_Experiences_ID`),
   KEY `fk_Teacher_Relevant_Experiences_Teacher1_idx` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `teacher_relevant_experiences`
@@ -1786,7 +1797,8 @@ INSERT INTO `teacher_relevant_experiences` (`Teacher_Relevant_Experiences_ID`, `
 (1, 'Ayala', 'Instructor', 'Instructed employees', '2013-11-16 00:00:00', 1),
 (2, 'Accenture', 'Asst Instructor', 'Assisted the instructor', '2013-11-14 00:00:00', 2),
 (3, 'Mandarin Skies', 'Cook', 'Cooked Food', '2012-11-11 00:00:00', 3),
-(4, 'Arakama', 'Manager', 'Managed people', '2011-11-11 00:00:00', 4);
+(4, 'Arakama', 'Manager', 'Managed people', '2011-11-11 00:00:00', 4),
+(7, 'NPA', 'General', 'Terrorist', '2014-01-20 00:00:00', 32);
 
 -- --------------------------------------------------------
 
@@ -1878,7 +1890,7 @@ CREATE TABLE IF NOT EXISTS `teacher_training_experience` (
   PRIMARY KEY (`Teacher_Training_Experience_ID`),
   UNIQUE KEY `Teacher_Training_Experience_ID_UNIQUE` (`Teacher_Training_Experience_ID`),
   KEY `fk_Teacher_Training_Experience_Teacher_idx` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `teacher_training_experience`
@@ -1888,7 +1900,8 @@ INSERT INTO `teacher_training_experience` (`Teacher_Training_Experience_ID`, `Te
 (1, 2, 'Ateneo de Manila', 'Secretary', 2147483647, 'Tertiary', 'Math', 2),
 (2, 1, 'De La Salle', 'President', 2147483647, 'High School', 'Geography', 4),
 (3, 3, 'PUP', 'Teacher', 2147483647, 'Tertiary', 'Math, Science', 3),
-(4, 3, 'Makati Science High School', 'Teacher', 2147483647, 'Grade School', 'Algebra, Calculus', 2);
+(4, 3, 'Makati Science High School', 'Teacher', 2147483647, 'Grade School', 'Algebra, Calculus', 2),
+(9, 32, 'Ateneo de Manila University', 'Professor', 2011, 'College', 'En11, Lit13', 3);
 
 -- --------------------------------------------------------
 
@@ -1901,8 +1914,8 @@ CREATE TABLE IF NOT EXISTS `tracker` (
   `Remarks` varchar(255) DEFAULT NULL,
   `Status_ID` int(11) NOT NULL,
   `Times_Taken` int(11) NOT NULL DEFAULT '1',
-  `Created_At` datetime DEFAULT CURRENT_TIMESTAMP,
-  `Updated_At` datetime DEFAULT NULL,
+  `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Updated_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `Subject_ID` int(11) NOT NULL,
   PRIMARY KEY (`Tracker_ID`),
   UNIQUE KEY `Tracker_ID_UNIQUE` (`Tracker_ID`),
@@ -1915,31 +1928,31 @@ CREATE TABLE IF NOT EXISTS `tracker` (
 --
 
 INSERT INTO `tracker` (`Tracker_ID`, `Remarks`, `Status_ID`, `Times_Taken`, `Created_At`, `Updated_At`, `Subject_ID`) VALUES
-(1, 'Average', 1, 2, '2013-01-01 00:00:00', NULL, 1),
-(2, 'Great', 2, 1, '2013-03-31 00:00:00', NULL, 1),
-(3, 'Bad', 1, 5, '2013-02-12 00:00:00', NULL, 1),
-(4, 'Worst', 2, 5, '2013-04-01 00:00:00', NULL, 1),
-(5, 'Great', 2, 1, '2013-06-30 00:00:00', NULL, 1),
-(6, 'See class', 1, 1, '2013-07-01 00:00:00', NULL, 1),
-(7, 'Reject', 1, 2, '2013-09-30 00:00:00', NULL, 1),
-(8, 'Singer', 1, 8, '2013-10-01 00:00:00', NULL, 1),
-(9, 'Failure', 2, 1, '2013-12-31 00:00:00', NULL, 1),
-(10, 'Great', 1, 2, '2011-02-12 00:00:00', NULL, 1),
-(11, NULL, 1, 1, '2013-04-02 00:00:00', NULL, 1),
-(12, NULL, 1, 1, '2013-05-02 00:00:00', NULL, 1),
-(13, NULL, 1, 1, '2013-06-02 00:00:00', NULL, 1),
-(14, NULL, 1, 1, '2013-07-02 00:00:00', NULL, 1),
-(15, NULL, 1, 1, '2013-08-02 00:00:00', NULL, 1),
-(16, NULL, 1, 1, '2013-09-02 00:00:00', NULL, 1),
-(17, NULL, 1, 1, '2013-10-02 00:00:00', NULL, 1),
-(18, NULL, 1, 1, '2013-11-02 00:00:00', NULL, 1),
-(19, NULL, 1, 1, '2013-10-02 00:00:00', NULL, 1),
-(20, NULL, 1, 1, '2013-12-02 00:00:00', NULL, 1),
-(21, NULL, 1, 1, '2013-04-02 00:00:00', NULL, 2),
-(22, NULL, 1, 1, '2012-04-02 00:00:00', NULL, 2),
-(23, NULL, 1, 1, '2012-04-02 00:00:00', NULL, 2),
-(24, NULL, 1, 1, '2013-04-02 00:00:00', NULL, 2),
-(25, NULL, 1, 1, '2013-04-02 00:00:00', NULL, 2);
+(1, 'Average', 1, 2, '2012-12-31 16:00:00', '0000-00-00 00:00:00', 1),
+(2, 'Great', 2, 1, '2013-03-30 16:00:00', '0000-00-00 00:00:00', 1),
+(3, 'Bad', 1, 5, '2013-02-11 16:00:00', '0000-00-00 00:00:00', 1),
+(4, 'Worst', 2, 5, '2013-03-31 16:00:00', '0000-00-00 00:00:00', 1),
+(5, 'Great', 2, 1, '2013-06-29 16:00:00', '0000-00-00 00:00:00', 1),
+(6, 'See class', 1, 1, '2013-06-30 16:00:00', '0000-00-00 00:00:00', 1),
+(7, 'Reject', 1, 2, '2013-09-29 16:00:00', '0000-00-00 00:00:00', 1),
+(8, 'Singer', 1, 8, '2013-09-30 16:00:00', '0000-00-00 00:00:00', 1),
+(9, 'Failure', 2, 1, '2013-12-30 16:00:00', '0000-00-00 00:00:00', 1),
+(10, 'Great', 1, 2, '2011-02-11 16:00:00', '0000-00-00 00:00:00', 1),
+(11, NULL, 1, 1, '2013-04-01 16:00:00', '0000-00-00 00:00:00', 1),
+(12, NULL, 1, 1, '2013-05-01 16:00:00', '0000-00-00 00:00:00', 1),
+(13, NULL, 1, 1, '2013-06-01 16:00:00', '0000-00-00 00:00:00', 1),
+(14, NULL, 1, 1, '2013-07-01 16:00:00', '0000-00-00 00:00:00', 1),
+(15, NULL, 1, 1, '2013-08-01 16:00:00', '0000-00-00 00:00:00', 1),
+(16, NULL, 1, 1, '2013-09-01 16:00:00', '0000-00-00 00:00:00', 1),
+(17, NULL, 1, 1, '2013-10-01 16:00:00', '0000-00-00 00:00:00', 1),
+(18, NULL, 1, 1, '2013-11-01 16:00:00', '0000-00-00 00:00:00', 1),
+(19, NULL, 1, 1, '2013-10-01 16:00:00', '0000-00-00 00:00:00', 1),
+(20, NULL, 1, 1, '2013-12-01 16:00:00', '0000-00-00 00:00:00', 1),
+(21, NULL, 1, 1, '2013-04-01 16:00:00', '0000-00-00 00:00:00', 2),
+(22, NULL, 1, 1, '2012-04-01 16:00:00', '0000-00-00 00:00:00', 2),
+(23, NULL, 1, 1, '2012-04-01 16:00:00', '0000-00-00 00:00:00', 2),
+(24, NULL, 1, 1, '2013-04-01 16:00:00', '0000-00-00 00:00:00', 2),
+(25, NULL, 1, 1, '2013-04-01 16:00:00', '0000-00-00 00:00:00', 2);
 
 -- --------------------------------------------------------
 
@@ -2079,13 +2092,6 @@ ALTER TABLE `smp_student`
   ADD CONSTRAINT `fk_SMP_Student_Tracker1` FOREIGN KEY (`Tracker_ID`) REFERENCES `tracker` (`Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `smp_student_courses_taken`
---
-ALTER TABLE `smp_student_courses_taken`
-  ADD CONSTRAINT `fk_SMP_Student_Courses_Taken_SMP_Student1` FOREIGN KEY (`Tracker_ID`) REFERENCES `smp_student` (`Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_SMP_Student_Courses_Taken_Student_Class1` FOREIGN KEY (`Student_Class_ID`) REFERENCES `student_class` (`Student_Class_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Constraints for table `smp_t3_application`
 --
 ALTER TABLE `smp_t3_application`
@@ -2195,9 +2201,9 @@ ALTER TABLE `teacher`
   ADD CONSTRAINT `fk_Teacher_School1` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `teacher_affliation_to_organization`
+-- Constraints for table `teacher_affiliation_to_organization`
 --
-ALTER TABLE `teacher_affliation_to_organization`
+ALTER TABLE `teacher_affiliation_to_organization`
   ADD CONSTRAINT `fk_Teacher_Affliation_to_Organization_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --

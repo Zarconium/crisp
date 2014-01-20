@@ -210,7 +210,6 @@ class Dbms_Controller extends CI_Controller
 							'Remarks' => NULL,
 							'Status_ID' => 3,
 							'Times_Taken' => 1,
-							'Updated_At' => date('Y-m-d'),
 							'Subject_ID' => $subject_id
 						);
 						$tracker_id = $this->student->addTracker($tracker);
@@ -299,7 +298,7 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('civil', 'Civil Status', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('birthdate', 'Birthdate', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('mobile_number', 'Mobile Numver', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|required|xss_clean');
@@ -598,8 +597,7 @@ class Dbms_Controller extends CI_Controller
 						'Resume?' => $this->input->post('resume'),
 						'Photo?' => $this->input->post('photo'),
 						'Proof_of_Certification?' => $this->input->post('proof'),
-						'Diploma/TOR' => $this->input->post('diploma'),
-						'Updated_At' => date("Y-m-d")// Current Date
+						'Diploma/TOR' => $this->input->post('diploma')
 					);
 					$teacher_id = $this->teacher->addTeacher($teacher);
 
