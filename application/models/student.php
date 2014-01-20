@@ -70,7 +70,38 @@ Class Student extends CI_Model
 
 	function addStudentApplication($data)
 	{
-		return $this->db->insert('student_application', $data);
+		$this->db->insert('student_application', $data);
+		return $this->db->insert_id();
+	}
+
+	function addTracker($data)
+	{
+		$this->db->insert('tracker', $data);
+		return $this->db->insert_id();
+	}
+
+	function addSmpStudent($data)
+	{
+		$this->db->insert('smp_student', $data);
+		return $this->db->insert_id();
+	}
+
+	function addGcatStudent($data)
+	{
+		$this->db->insert('gcat_student', $data);
+		return $this->db->insert_id();
+	}
+
+	function addBestStudent($data)
+	{
+		$this->db->insert('best_student', $data);
+		return $this->db->insert_id();
+	}
+
+	function addAdeptStudent($data)
+	{
+		$this->db->insert('adept_student', $data);
+		return $this->db->insert_id();
 	}
 
 	function updateStudentByCode($code, $data)

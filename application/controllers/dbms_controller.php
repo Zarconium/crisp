@@ -157,7 +157,6 @@ class Dbms_Controller extends CI_Controller
 						'Internet_Access?' => $this->input->post('internet'),
 						'Code' => $this->input->post('code')
 					);
-
 					$student_id = $this->student->addStudent($student);
 
 					foreach ($this->input->post('program') as $program)
@@ -183,12 +182,12 @@ class Dbms_Controller extends CI_Controller
 								$subject_id = 4;
 								break;
 
-							case 'best_ched':
+							case 'best_sei':
 								$project_id = 2;
 								$subject_id = 1;
 								break;
 
-							case 'adept_ched':
+							case 'adept_sei':
 								$project_id = 2;
 								$subject_id = 2;
 								break;
@@ -204,8 +203,62 @@ class Dbms_Controller extends CI_Controller
 							'Project_ID' => $project_id,
 							'Subject_ID' => $subject_id
 						);
+						$student_application_id = $this->student->addStudentApplication($student_application);
 
-						$this->student->addStudentApplication($student_application);
+						$tracker = array
+						(
+							'Remarks' => NULL,
+							'Status_ID' => 3,
+							'Times_Taken' => 1,
+							'Updated_At' => date('Y-m-d'),
+							'Subject_ID' => $subject_id
+						);
+						$tracker_id = $this->student->addTracker($tracker);
+
+						$student_tracker = array
+						(
+							'Tracker_ID' => $tracker_id,
+							'Student_ID' => $student_id,
+						);
+						$student_tracker_id = $this->student->addStudentTracker($student_tracker);
+
+						switch ($subject_id)
+						{
+							case 1:
+								$smp_student = array
+								(
+									'Tracker_ID' => $tracker_id
+								);
+								$smp_student_id = $this->student->addSmpStudent($smp_student);
+								break;
+
+							case 2:
+								$gcat_student = array
+								(
+									'Tracker_ID' => $tracker_id
+								);
+								$gcat_student_id = $this->student->addGcatStudent($gcat_student);
+								break;
+
+							case 3:
+								$best_student = array
+								(
+									'Tracker_ID' => $tracker_id
+								);
+								$best_student_id = $this->student->addBestStudent($best_student);
+								break;
+
+							case 4:
+								$adept_student = array
+								(
+									'Tracker_ID' => $tracker_id
+								);
+								$adept_student_id = $this->student->addAdeptStudent($adept_student);
+								break;
+							
+							default:
+								break;
+						}
 					}
 
 					$data['form_success'] = TRUE;
@@ -451,9 +504,6 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('supervisor_contact_details', 'Supervisor Contact Details', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('other_positions_held', 'Other Positions Held', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('classes_handling', 'Classes Handling', 'trim|xss_clean');
-			// Subjects Taught 2011-present
-			$this->form_validation->set_rules('subjects_taught_subject[]', 'Subjects Taught', 'trim|xss_clean');
-			$this->form_validation->set_rules('subjects_taught_year[]', 'Year Taught', 'trim|xss_clean');
 			// Institutions
 			$this->form_validation->set_rules('institutions_worked_institution[]', 'Institution', 'trim|xss_clean');
 			$this->form_validation->set_rules('institutions_worked_position[]', 'Position', 'trim|xss_clean');
@@ -553,53 +603,21 @@ class Dbms_Controller extends CI_Controller
 
 					$teacher_id = $this->teacher->addTeacher($teacher);
 
-					/*foreach ($this->input->post('program') as $program)
-					{
-						switch ($program)
-						{
-							case 'smp_ched':
-								$project_id = 1;
-								$subject_id = 1;
-								break;
-
-							case 'gcat_ched':
-								$project_id = 1;
-								$subject_id = 2;
-								break;
-
-							case 'best_ched':
-								$project_id = 1;
-								$subject_id = 3;
-								break;
-							case 'adept_ched':
-								$project_id = 1;
-								$subject_id = 4;
-								break;
-
-							case 'best_ched':
-								$project_id = 2;
-								$subject_id = 1;
-								break;
-
-							case 'adept_ched':
-								$project_id = 2;
-								$subject_id = 2;
-								break;
-
-							default:
-								break;
-						}
-
-						$student_application = array
+					for ($i = 0; $i < count($this->input->post('institutions_worked_institution')); $i++)
+					{ 
+						$teacher_training_experience = array
 						(
-							'Contract?' => $this->input->post('contract'),
-							'Student_ID' => $student_id,
-							'Project_ID' => $project_id,
-							'Subject_ID' => $subject_id
+							'Teacher_ID' => $teacher_id,
+							'Institution' => $this->input->post('institutions_worked_institution')[$i],
+							'Position' => $this->input->post('institutions_worked_position')[$i],
+							'Date' => $this->input->post('institutions_worked_year_started')[$i],
+							'Level_Taught' => $this->input->post('institutions_worked_level_taught')[$i],
+							'Courses_Taught' => $this->input->post('institutions_worked_courses_taught')[$i],
+							'Number_of_Years_in_Institution' => $this->input->post('institutions_worked_number_of_years_in_institution')[$i]
 						);
 
-						$this->student->addStudentApplication($student_application);
-					}*/
+						$this->teacher->addTeacherTrainingExperience($teacher_training_experience);
+					}
 
 					$data['form_success'] = TRUE;
 

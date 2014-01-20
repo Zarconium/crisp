@@ -68,9 +68,9 @@ Class Teacher extends CI_Model
 		return $this->db->insert_id();
 	}
 
-	function addTeacherApplication($data)
+	function addTeacherTrainingExperience($data)
 	{
-		return $this->db->insert('teacher_application', $data);
+		return $this->db->insert('teacher_training_experience', $data);
 	}
 
 	function updateTeacherByCode($code, $data)

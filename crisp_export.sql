@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 02, 2014 at 01:54 PM
+-- Generation Time: Jan 20, 2014 at 09:09 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -416,6 +416,7 @@ CREATE TABLE IF NOT EXISTS `gcat_student` (
 --
 
 INSERT INTO `gcat_student` (`Tracker_ID`, `GCAT_Total_Cognitive`, `GCAT_Responsiveness`, `GCAT_Reliability`, `GCAT_Empathy`, `GCAT_Courtesy`, `GCAT_Learning_Orientation`, `GCAT_Communication`, `GCAT_Behavioral_Component_Overall_Score`, `GCAT_Perceptual_Speed_&_Accuracy`, `GCAT_Computer_Literacy`, `GCAT_English_Proficiency`, `GCAT_Basic_Skills_Test_Overall_Score`, `Session_ID`, `Test_Date`) VALUES
+(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL),
 (5, 4, 2, 4, 3, 2, 5, 6, 5, 2, 4, 2, 5, 'aa1', NULL),
 (6, 6, 5, 4, 2, 9, 8, 4, 5, 6, 9, 3, 8, 'aa2', NULL);
 
@@ -1107,19 +1108,20 @@ CREATE TABLE IF NOT EXISTS `student` (
   `DOST_Scholar?` tinyint(1) NOT NULL DEFAULT '0',
   `Scholar?` tinyint(1) NOT NULL DEFAULT '0',
   `Interested_in_IT-BPO?` tinyint(1) NOT NULL,
-  `Own_A_Compter?` tinyint(1) NOT NULL DEFAULT '0',
-  `Internet_Access?` tinyint(1) NOT NULL DEFAULT '0',
+  `Own_A_Computer?` tinyint(1) DEFAULT '0',
+  `Internet_Access?` tinyint(1) DEFAULT '0',
   `Code` varchar(15) NOT NULL,
   PRIMARY KEY (`Student_ID`),
   UNIQUE KEY `Student_ID_UNIQUE` (`Student_ID`),
+  UNIQUE KEY `Code` (`Code`),
   KEY `fk_Student_School1_idx` (`School_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`Student_ID`, `School_ID`, `Last_Name`, `First_Name`, `Middle_Initial`, `Name_Suffix`, `Student_ID_Number`, `Civil_Status`, `Birthdate`, `Birthplace`, `Gender`, `Nationality`, `Street_Number`, `Street_Name`, `City`, `Province`, `Region`, `Alternate_Address`, `Mobile_Number`, `Landline`, `Email`, `Facebook`, `Course`, `Year`, `Expected_Year_of_Graduation`, `DOST_Scholar?`, `Scholar?`, `Interested_in_IT-BPO?`, `Own_A_Compter?`, `Internet_Access?`, `Code`) VALUES
+INSERT INTO `student` (`Student_ID`, `School_ID`, `Last_Name`, `First_Name`, `Middle_Initial`, `Name_Suffix`, `Student_ID_Number`, `Civil_Status`, `Birthdate`, `Birthplace`, `Gender`, `Nationality`, `Street_Number`, `Street_Name`, `City`, `Province`, `Region`, `Alternate_Address`, `Mobile_Number`, `Landline`, `Email`, `Facebook`, `Course`, `Year`, `Expected_Year_of_Graduation`, `DOST_Scholar?`, `Scholar?`, `Interested_in_IT-BPO?`, `Own_A_Computer?`, `Internet_Access?`, `Code`) VALUES
 (1, 1, 'Federico', 'Joy', 'H', 'II', '102222', 'Single', '1991-10-10 00:00:00', 'Beijing, China', 'F', 'Filipino', '8', 'Concorde', 'Caloocan City', 'Metro Manila', 'NCR', 'Commonwealth, Quezon City', '09152341231', '4321234', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2013, 0, 0, 1, 0, 0, '12345'),
 (2, 2, 'Fajardo', 'Francis', 'J', 'III', '132123', 'Single', '1990-12-12 00:00:00', 'Quezon City', 'M', 'Filipino', '2', 'Civic', 'Quezon City', 'Metro Manila', 'NCR', 'Caloocan City', '09138312341', '4312312', 'francis@gmail.com', 'Francis Yo', 'BS Management', 3, 2014, 0, 1, 0, 0, 1, '32333'),
 (3, 2, 'Cruz', 'Raymond', 'M', 'Jr', '243121', 'Single', '1991-12-11 00:00:00', 'Manila City', 'M', 'Russian', '3', 'Malakas', 'San Juan City', 'Metro Manila', 'NCR', 'Bonifacio Global City', '09135823842', '9384913', 'rj@yahoo.com', 'RJ', 'BS Management - H', 4, 2013, 1, 1, 1, 0, 1, '39293'),
@@ -1139,7 +1141,11 @@ INSERT INTO `student` (`Student_ID`, `School_ID`, `Last_Name`, `First_Name`, `Mi
 (17, 17, 'Olpoc', 'Joselito', 'M', NULL, '258147', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '13', 'Hongdae', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1318695', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 1, 0, 0, 1, 1, '21311'),
 (18, 18, 'Federico', 'Jerome', 'N', NULL, '155788', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '14', 'Gyeongju', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1312354', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 1, 0, 1, 1, 1, '12348'),
 (19, 1, 'Federico', 'Jimmy', 'O', NULL, '789632', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '15', 'Gwangju', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1465465', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 1, 0, 1, 1, 1, '12346'),
-(20, 2, 'Lee', 'Sungmin', 'P', NULL, '102549', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '16', 'Ilsan', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1346544', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 1, 0, 1, 1, 1, '12487');
+(20, 2, 'Lee', 'Sungmin', 'P', NULL, '102549', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '16', 'Ilsan', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1346544', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 1, 0, 1, 1, 1, '12487'),
+(22, 1, 'Federico', 'Joy', 'H', '', '100001', 'married', '1993-11-08 00:00:00', 'Caloocan', 'F', 'Filipino', '54', 'C. Cordero', 'Caloocan', 'Manila', 'NCR', '', '09171234567', '1234567', 'joy@4real.com', '', 'BS MIS', 4, 2014, 0, 0, 0, 0, 0, '1100001'),
+(23, 1, 'peralta', 'john philip', 'A', '', '102943', 'single', '1993-12-26 00:00:00', 'Quezon City', 'M', 'Filipino', '5', 'Santol', 'Quezon City', 'Batanes', '2', '', '09158437694', '429482456', 'jpap@gmail.com', 'facebook.com/phil', 'BS Muro ami', 4, 2018, 1, 1, 0, 0, 0, '1102943'),
+(24, 1, 'peralta', 'john philip', 'A', '', '102944', 'single', '1993-12-26 00:00:00', 'Quezon City', 'M', 'Filipino', '5', 'Santol', 'Quezon City', 'Batanes', '2', '', '09158437694', '429482456', 'jpap@gmail.com', 'facebook.com/phil', 'BS Muro ami', 4, 2018, 1, 1, 0, 0, 0, '1102944'),
+(26, 1, 'Cruz', 'Raymond', 'C', 'Jr', '101047', 'single', '0000-00-00 00:00:00', 'Mandaluyong', 'M', 'Russian', '3515', 'Camden', 'Cainta', 'Rizal', 'IV', NULL, '9178316188', '6553797', 'rjncruz@gmail.com', 'rjncruz', 'BS Management', 4, 2020, 0, 0, 0, 0, 0, '1101047');
 
 -- --------------------------------------------------------
 
@@ -1148,8 +1154,8 @@ INSERT INTO `student` (`Student_ID`, `School_ID`, `Last_Name`, `First_Name`, `Mi
 --
 
 CREATE TABLE IF NOT EXISTS `student_application` (
-  `Student_Application_ID` int(11) NOT NULL,
-  `Date` datetime DEFAULT NULL,
+  `Student_Application_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Date` datetime DEFAULT CURRENT_TIMESTAMP,
   `Contract?` tinyint(1) DEFAULT NULL,
   `Student_ID` int(11) NOT NULL,
   `Project_ID` int(11) NOT NULL,
@@ -1158,7 +1164,25 @@ CREATE TABLE IF NOT EXISTS `student_application` (
   KEY `fk_Student_Application_Student1_idx` (`Student_ID`),
   KEY `fk_Student_Application_Project1_idx` (`Project_ID`),
   KEY `fk_Student_Application_Subject_ID1_idx` (`Subject_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `student_application`
+--
+
+INSERT INTO `student_application` (`Student_Application_ID`, `Date`, `Contract?`, `Student_ID`, `Project_ID`, `Subject_ID`) VALUES
+(1, '2014-01-11 17:37:50', 1, 23, 1, 1),
+(2, '2014-01-11 17:37:50', 1, 23, 1, 2),
+(3, '2014-01-11 17:37:50', 1, 23, 1, 3),
+(4, '2014-01-11 17:37:51', 1, 23, 1, 4),
+(5, '2014-01-11 17:37:51', 1, 23, 1, 4),
+(6, '2014-01-11 17:37:51', 1, 23, 1, 4),
+(7, '2014-01-11 17:44:50', 1, 24, 1, 1),
+(8, '2014-01-11 17:44:51', 1, 24, 1, 2),
+(9, '2014-01-11 17:44:51', 1, 24, 1, 3),
+(10, '2014-01-11 17:44:51', 1, 24, 1, 4),
+(11, '2014-01-11 17:44:51', 1, 24, 1, 4),
+(12, '2014-01-11 17:44:51', 1, 24, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -1471,74 +1495,74 @@ INSERT INTO `t3_tracker` (`T3_Tracker_ID`, `Status_ID`, `Created_At`, `Updated_A
 
 CREATE TABLE IF NOT EXISTS `teacher` (
   `Teacher_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Code` varchar(45) NOT NULL,
+  `Name_Suffix` varchar(5) DEFAULT NULL,
+  `Last_Name` varchar(45) NOT NULL,
+  `First_Name` varchar(45) NOT NULL,
+  `Middle_Initial` char(1) NOT NULL,
+  `Birthdate` datetime NOT NULL,
+  `Birthplace` varchar(45) NOT NULL DEFAULT 'Philippines',
+  `Nationality` varchar(45) NOT NULL DEFAULT 'Filipino',
+  `Total_Year_of_Teaching` int(11) NOT NULL,
+  `Civil_Status` varchar(9) NOT NULL DEFAULT 'Single',
+  `Gender` char(1) NOT NULL,
+  `Desktop?` tinyint(1) NOT NULL DEFAULT '0',
+  `Laptop?` tinyint(1) NOT NULL DEFAULT '0',
+  `Internet?` tinyint(1) NOT NULL DEFAULT '0',
   `Street_Number` varchar(5) NOT NULL,
   `Street_Name` varchar(45) NOT NULL,
   `City` varchar(45) NOT NULL,
   `Province` varchar(45) NOT NULL,
   `Region` varchar(45) NOT NULL,
   `Alternate_Address` text,
+  `Mobile_Number` varchar(13) NOT NULL,
+  `Landline` varchar(9) NOT NULL,
   `Email` varchar(45) NOT NULL,
   `Facebook` varchar(45) DEFAULT NULL,
-  `Civil_Status` varchar(9) NOT NULL DEFAULT 'Single',
-  `Birthdate` datetime NOT NULL,
-  `Birthplace` varchar(45) NOT NULL DEFAULT 'Philippines',
-  `Gender` char(1) NOT NULL,
-  `Nationality` varchar(45) NOT NULL DEFAULT 'Filipino',
-  `School_ID` int(11) NOT NULL,
-  `Current_Position` varchar(45) NOT NULL,
   `Employment_Status` varchar(4) NOT NULL,
+  `Current_Position` varchar(45) NOT NULL,
+  `Current_Department` varchar(250) DEFAULT NULL,
+  `School_ID` int(11) NOT NULL,
   `Name_of_Supervisor` varchar(45) NOT NULL,
   `Supervisor_Contact_Details` varchar(11) NOT NULL,
-  `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Position_of_Supervisor` varchar(45) DEFAULT NULL,
+  `Classes_Handling` text,
   `Resume?` tinyint(1) NOT NULL,
   `Photo?` tinyint(1) NOT NULL DEFAULT '0',
   `Proof_of_Certification?` tinyint(1) NOT NULL DEFAULT '0',
   `Diploma/TOR` tinyint(1) NOT NULL DEFAULT '0',
-  `Desktop?` tinyint(1) NOT NULL DEFAULT '0',
-  `Laptop?` tinyint(1) NOT NULL DEFAULT '0',
-  `Internet?` tinyint(1) NOT NULL DEFAULT '0',
-  `Total_Year_of_Teaching` int(11) NOT NULL,
-  `Code` varchar(45) NOT NULL,
-  `First_Name` varchar(45) NOT NULL,
-  `Mobile_Number` varchar(13) NOT NULL,
-  `Name_Suffix` varchar(5) DEFAULT NULL,
-  `Middle_Initial` char(1) NOT NULL,
-  `Last_Name` varchar(45) NOT NULL,
-  `Landline` varchar(9) NOT NULL,
-  `Position_of_Supervisor` varchar(45) DEFAULT NULL,
-  `Current_Department` varchar(250) DEFAULT NULL,
-  `Classes_Handling` text,
+  `Created_At` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Updated_At` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`Teacher_ID`),
   UNIQUE KEY `Teacher_ID_UNIQUE` (`Teacher_ID`),
   KEY `fk_Teacher_School1_idx` (`School_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
 
 --
 -- Dumping data for table `teacher`
 --
 
-INSERT INTO `teacher` (`Teacher_ID`, `Street_Number`, `Street_Name`, `City`, `Province`, `Region`, `Alternate_Address`, `Email`, `Facebook`, `Civil_Status`, `Birthdate`, `Birthplace`, `Gender`, `Nationality`, `School_ID`, `Current_Position`, `Employment_Status`, `Name_of_Supervisor`, `Supervisor_Contact_Details`, `Created_At`, `Updated_At`, `Resume?`, `Photo?`, `Proof_of_Certification?`, `Diploma/TOR`, `Desktop?`, `Laptop?`, `Internet?`, `Total_Year_of_Teaching`, `Code`, `First_Name`, `Mobile_Number`, `Name_Suffix`, `Middle_Initial`, `Last_Name`, `Landline`, `Position_of_Supervisor`, `Current_Department`, `Classes_Handling`) VALUES
-(1, '8', 'Samar', 'Quezon City', 'Metro Manila', '5', 'Basco, Batanes', 'rj@gmail.com', 'isa', 'Single', '1967-11-14 00:24:34', 'Quezon City', 'M', 'Filipino', 1, 'Teacher', 'Perm', 'John Leveur', '09159999911', '2013-12-12 00:00:00', '2013-12-14 00:00:00', 1, 0, 1, 0, 1, 1, 0, 4, 'CODE123', 'Mike', '091159503612', 'Jr.', 'A', 'Swift', '3336644', 'Boss', 'DISCS', 'CS150'),
-(2, '7', 'Pura', 'Manila City', 'Metro Manila', 'NCR', 'Laoag City', 'gil@gmail.com', 'Gigi', 'Married', '1992-01-01 00:24:34', 'Beijing, China', 'F', 'Filipino', 2, 'Teacher 2', 'Perm', 'Michael Bryan', '09111222334', '2013-10-31 00:00:00', '2013-11-05 00:00:00', 0, 0, 1, 0, 1, 0, 1, 3, 'CODE432', 'Gillian', '098112344321', NULL, 'P', 'Tan', '3215432', 'Manager', 'DISCS', 'MIS101'),
-(3, '2', 'Arrupe', 'Malabon City', 'Metro Manila ', 'NCR', 'Ormoc City', 'fr@gmail.com', 'Francis', 'Married', '1991-11-12 00:24:34', 'Caloocan City, Philippines', 'M', 'Filipino', 3, 'Teacher 4', 'Perm', 'Fernando Lopez', '09212123456', '2011-11-24 00:00:00', '2013-11-14 00:00:00', 1, 1, 1, 1, 0, 0, 0, 10, 'CODE123', 'Francis', '123456711111', 'Jr.', 'B', 'Fajardo', '32123421', 'Manager', 'DISCS', 'CS160'),
-(4, '6750', 'Ayala', 'Makati City', 'Metro Manila', 'NCR', 'Cebu City', 'iza@yahoo.com', 'Iza', 'Single', '1967-11-14 00:24:34', 'Los Angeles, USA', 'F', 'American', 17, 'Teacher 10', 'Perm', 'Barack Obama', '09121431431', '2012-11-24 00:00:00', '2013-11-14 00:00:00', 1, 0, 0, 0, 0, 1, 1, 22, 'CODE143', 'Iza', '212321220291', NULL, 'C', 'Calzado', '2132321', 'Principal', 'DISCS', 'MIS101'),
-(5, '1', 'Maluggay', 'Makati', 'Metro Manila', 'NCR', 'Davao', 'iza@yahoo.com', 'Iza', 'Single', '1967-11-14 00:24:34', 'Manila', 'F', 'Filipino', 1, 'Teacher', 'Perm', 'Joy Federico', '09064939966', '2012-11-24 00:00:00', '2013-11-14 00:00:00', 1, 0, 1, 0, 1, 0, 1, 1, '153', 'Joy', '626126311454', NULL, 'A', 'Cheng', '3614988', 'Principal', 'DISCS', 'MIS121'),
-(6, '2', '1st', 'Caloccan', 'Metro Manila', 'NCR', 'Bacolod', 'iza@yahoo.com', 'Iza', 'Single', '1967-11-14 00:24:34', 'Manila', 'F', 'Filipino', 2, 'Teacher', 'Perm', 'Joy Federico', '12154564867', '2012-11-24 00:00:00', '2013-11-14 00:00:00', 0, 1, 0, 1, 1, 0, 1, 21, '454', 'Iza', '541514546444', NULL, 'B', 'Chen', '3632266', 'Principal', 'DISCS', 'MIS131'),
-(7, '3', '2nd', 'Caloccan', 'Metro Manila', 'NCR', 'Tacloban', 'iza@yahoo.com', 'Iza', 'Single', '1967-11-14 00:24:34', 'Manila', 'F', 'Filipino', 3, 'Teacher', 'Perm', 'Joy Federico', '15148657486', '2012-11-24 00:00:00', '2013-11-14 00:00:00', 1, 0, 0, 1, 1, 0, 1, 4, '153', 'Red', '13213.210103', NULL, 'C', 'Chua', '3659324', 'Principal', 'DISCS', 'MIS151'),
-(8, '4', '3rd', 'Caloccan', 'Metro Manila', 'NCR', 'Samar', 'iza@yahoo.com', 'Iza', 'Single', '1967-11-14 00:24:34', 'Manila', 'F', 'Filipino', 4, 'Teacher', 'Perm', 'Joy Federico', '15145634685', '2012-11-24 00:00:00', '2013-11-14 00:00:00', 0, 0, 0, 1, 1, 0, 1, 10, '131', 'Blue', '484851465131', NULL, 'D', 'Cua', '8787872', 'Principal', 'DISCS', 'MIS141'),
-(9, '5', '4th', 'Caloccan', 'Metro Manila', 'NCR', 'Leyte', 'iza@yahoo.com', 'Iza', 'Single', '1967-11-14 00:24:34', 'Manila', 'F', 'Filipino', 5, 'Teacher', 'Perm', 'Joy Federico', '13143126344', '2012-11-24 00:00:00', '2013-11-14 00:00:00', 0, 0, 0, 1, 1, 0, 0, 3, '25', 'Green', '131253465465', NULL, 'E', 'Tan', '9876543', 'Principal', 'DISCS', 'CS21'),
-(10, '6', '5th', 'Caloccan', 'Metro Manila', 'NCR', 'Bicol', 'iza@yahoo.com', 'Iza', 'Single', '1967-11-14 00:24:34', 'Manila', 'F', 'Filipino', 6, 'Teacher', 'Perm', 'Joy Federico', '16476463461', '2012-11-24 00:00:00', '2013-11-14 00:00:00', 0, 1, 1, 1, 1, 0, 0, 1, '131', 'Yellow', '134865488484', NULL, 'F', 'Tiong', '3216547', 'Principal', 'DISCS', 'CS21'),
-(11, '7', '6th', 'Caloccan', 'Metro Manila', 'NCR', 'Baguio', 'iza@yahoo.com', 'Iza', 'Single', '1967-11-14 00:24:34', 'Manila', 'F', 'Filipino', 7, 'Teacher', 'Perm', 'Joy Federico', '03163136161', '2012-11-24 00:00:00', '2013-11-14 00:00:00', 1, 1, 1, 1, 1, 1, 0, 5, '4564', 'Black', '154135213143', NULL, 'G', 'Zhen', '9874562', 'Principal', 'DISCS', 'CS21'),
-(12, '8', '7th', 'Caloccan', 'Metro Manila', 'NCR', 'Batangas', 'iza@yahoo.com', 'Iza', 'Single', '1967-11-14 00:24:34', 'Manila', 'M', 'Filipino', 8, 'Teacher', 'Perm', 'Joy Federico', '03125531465', '2012-11-24 00:00:00', '2013-11-14 00:00:00', 1, 0, 1, 1, 1, 0, 0, 1, '131', 'Brown', '132156454151', NULL, 'H', 'Sy', '9876541', 'Principal', 'DISCS', 'CS21'),
-(13, '9', '8th', 'Caloccan', 'Metro Manila', 'NCR', 'Bulacan', 'iza@yahoo.com', 'Iza', 'Single', '1967-11-14 00:24:34', 'Manila', 'F', 'Filipino', 9, 'Teacher', 'Perm', 'Joy Federico', '16351403146', '2012-11-24 00:00:00', '2013-11-14 00:00:00', 1, 0, 1, 1, 1, 0, 1, 4, '55', 'Teal', '515151454545', NULL, 'I', 'See', '7894561', 'Principal', 'DISCS', 'CS21'),
-(14, '10', '9th', 'Caloccan', 'Metro Manila', 'NCR', 'Cebu', 'iza@yahoo.com', 'Iza', 'Single', '1967-11-14 00:24:34', 'Manila', 'M', 'Filipino', 10, 'Teacher', 'Perm', 'Joy Federico', '15614023146', '2012-11-24 00:00:00', '2013-11-14 00:00:00', 1, 0, 1, 1, 1, 1, 1, 2, '11', 'Pink', '023102548122', NULL, 'J', 'Kim', '7894562', 'Principal', 'DISCS', 'CS21'),
-(15, '11', '10th', 'Caloccan', 'Metro Manila', 'NCR', 'Palawan', 'iza@yahoo.com', 'Iza', 'Single', '1967-11-14 00:24:34', 'Manila', 'M', 'Filipino', 11, 'Teacher', 'Perm', 'Joy Federico', '16148654320', '2012-11-24 00:00:00', '2013-11-14 00:00:00', 1, 1, 0, 1, 1, 0, 1, 4, '51', 'Purple', '102534856414', NULL, 'K', 'Park', '7894563', 'Dean', 'DISCS', 'CS21'),
-(16, '12', '11th', 'Caloccan', 'Metro Manila', 'NCR', 'Bohol', 'iza@yahoo.com', 'Iza', 'Single', '1967-11-14 00:24:34', 'Manila', 'M', 'Filipino', 12, 'Teacher', 'Perm', 'Joy Federico', '15313143514', '2012-11-24 00:00:00', '2013-11-14 00:00:00', 1, 0, 0, 0, 0, 1, 1, 13, '122', 'Violet', '145451431131', NULL, 'L', 'Lim', '7893215', 'Dean', 'DISCS', 'CS21'),
-(17, '13', 'Rizal', 'Manila', 'Metro Manila', 'NCR', 'Iloilo', 'iza@yahoo.com', 'Iza', 'Single', '1967-11-14 00:24:34', 'Manila', 'M', 'Filipino', 13, 'Teacher', 'Perm', 'Joy Federico', '10031631461', '2012-11-24 00:00:00', '2013-11-14 00:00:00', 0, 0, 1, 0, 0, 0, 0, 13, '335', 'Beige', '185748965488', NULL, 'M', 'Lee', '9873216', 'Dean', 'DISCS', 'CS21'),
-(18, '14', 'Arnais', 'Makati', 'Metro Manila', 'NCR', 'Bacolod', 'iza@yahoo.com', 'Iza', 'Single', '1967-11-14 00:24:34', 'Manila', 'M', 'Filipino', 14, 'Teacher', 'Perm', 'Joy Federico', '31235146545', '2012-11-24 00:00:00', '2013-11-14 00:00:00', 0, 1, 0, 0, 0, 1, 0, 4, '484', 'Khaki', '165148574897', NULL, 'N', 'Zhong', '9773214', 'Dean', 'DISCS', 'CS21'),
-(19, '15', 'Katipunan', 'Quezon City', 'Metro Manila', 'NCR', 'Sulu', 'iza@yahoo.com', 'Iza', 'Married', '1967-11-14 00:24:34', 'Manila', 'M', 'Filipino', 15, 'Teacher', 'Perm', 'Joy Federico', '15314531455', '2012-11-24 00:00:00', '2013-11-14 00:00:00', 1, 0, 0, 0, 1, 0, 0, 5, '646', 'Maroon', '874885748567', NULL, 'O', 'Leong', '9873216', 'Dean', 'DISCS', 'CS21'),
-(20, '16', 'Esteban', 'Quezon City', 'Metro Manila', 'NCR', 'Mindoro', 'iza@yahoo.com', 'Iza', 'Widowed', '1967-11-14 00:24:34', 'Manila', 'F', 'Filipino', 16, 'Teacher', 'Perm', 'Joy Federico', '10231032153', '2012-11-24 00:00:00', '2013-11-14 00:00:00', 1, 0, 1, 0, 1, 1, 0, 10, '231', 'Cyan', '148564768787', NULL, 'P', 'Jeong', '2654878', 'Deam', 'DISCS', 'CS21');
+INSERT INTO `teacher` (`Teacher_ID`, `Code`, `Name_Suffix`, `Last_Name`, `First_Name`, `Middle_Initial`, `Birthdate`, `Birthplace`, `Nationality`, `Total_Year_of_Teaching`, `Civil_Status`, `Gender`, `Desktop?`, `Laptop?`, `Internet?`, `Street_Number`, `Street_Name`, `City`, `Province`, `Region`, `Alternate_Address`, `Mobile_Number`, `Landline`, `Email`, `Facebook`, `Employment_Status`, `Current_Position`, `Current_Department`, `School_ID`, `Name_of_Supervisor`, `Supervisor_Contact_Details`, `Position_of_Supervisor`, `Classes_Handling`, `Resume?`, `Photo?`, `Proof_of_Certification?`, `Diploma/TOR`, `Created_At`, `Updated_At`) VALUES
+(1, 'CODE123', 'Jr.', 'Swift', 'Mike', 'A', '1967-11-14 00:24:34', 'Quezon City', 'Filipino', 4, 'Single', 'M', 1, 1, 0, '8', 'Samar', 'Quezon City', 'Metro Manila', '5', 'Basco, Batanes', '091159503612', '3336644', 'rj@gmail.com', 'isa', 'Perm', 'Teacher', 'DISCS', 1, 'John Leveur', '09159999911', 'Boss', 'CS150', 1, 0, 1, 0, '2013-12-12 00:00:00', '2013-12-14 00:00:00'),
+(2, 'CODE432', NULL, 'Tan', 'Gillian', 'P', '1992-01-01 00:24:34', 'Beijing, China', 'Filipino', 3, 'Married', 'F', 1, 0, 1, '7', 'Pura', 'Manila City', 'Metro Manila', 'NCR', 'Laoag City', '098112344321', '3215432', 'gil@gmail.com', 'Gigi', 'Perm', 'Teacher 2', 'DISCS', 2, 'Michael Bryan', '09111222334', 'Manager', 'MIS101', 0, 0, 1, 0, '2013-10-31 00:00:00', '2013-11-05 00:00:00'),
+(3, 'CODE123', 'Jr.', 'Fajardo', 'Francis', 'B', '1991-11-12 00:24:34', 'Caloocan City, Philippines', 'Filipino', 10, 'Married', 'M', 0, 0, 0, '2', 'Arrupe', 'Malabon City', 'Metro Manila ', 'NCR', 'Ormoc City', '123456711111', '32123421', 'fr@gmail.com', 'Francis', 'Perm', 'Teacher 4', 'DISCS', 3, 'Fernando Lopez', '09212123456', 'Manager', 'CS160', 1, 1, 1, 1, '2011-11-24 00:00:00', '2013-11-14 00:00:00'),
+(4, 'CODE143', NULL, 'Calzado', 'Iza', 'C', '1967-11-14 00:24:34', 'Los Angeles, USA', 'American', 22, 'Single', 'F', 0, 1, 1, '6750', 'Ayala', 'Makati City', 'Metro Manila', 'NCR', 'Cebu City', '212321220291', '2132321', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher 10', 'DISCS', 17, 'Barack Obama', '09121431431', 'Principal', 'MIS101', 1, 0, 0, 0, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
+(5, '153', NULL, 'Cheng', 'Joy', 'A', '1967-11-14 00:24:34', 'Manila', 'Filipino', 1, 'Single', 'F', 1, 0, 1, '1', 'Maluggay', 'Makati', 'Metro Manila', 'NCR', 'Davao', '626126311454', '3614988', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 1, 'Joy Federico', '09064939966', 'Principal', 'MIS121', 1, 0, 1, 0, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
+(6, '454', NULL, 'Chen', 'Iza', 'B', '1967-11-14 00:24:34', 'Manila', 'Filipino', 21, 'Single', 'F', 1, 0, 1, '2', '1st', 'Caloccan', 'Metro Manila', 'NCR', 'Bacolod', '541514546444', '3632266', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 2, 'Joy Federico', '12154564867', 'Principal', 'MIS131', 0, 1, 0, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
+(7, '153', NULL, 'Chua', 'Red', 'C', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'F', 1, 0, 1, '3', '2nd', 'Caloccan', 'Metro Manila', 'NCR', 'Tacloban', '13213.210103', '3659324', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 3, 'Joy Federico', '15148657486', 'Principal', 'MIS151', 1, 0, 0, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
+(8, '131', NULL, 'Cua', 'Blue', 'D', '1967-11-14 00:24:34', 'Manila', 'Filipino', 10, 'Single', 'F', 1, 0, 1, '4', '3rd', 'Caloccan', 'Metro Manila', 'NCR', 'Samar', '484851465131', '8787872', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 4, 'Joy Federico', '15145634685', 'Principal', 'MIS141', 0, 0, 0, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
+(9, '25', NULL, 'Tan', 'Green', 'E', '1967-11-14 00:24:34', 'Manila', 'Filipino', 3, 'Single', 'F', 1, 0, 0, '5', '4th', 'Caloccan', 'Metro Manila', 'NCR', 'Leyte', '131253465465', '9876543', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 5, 'Joy Federico', '13143126344', 'Principal', 'CS21', 0, 0, 0, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
+(10, '131', NULL, 'Tiong', 'Yellow', 'F', '1967-11-14 00:24:34', 'Manila', 'Filipino', 1, 'Single', 'F', 1, 0, 0, '6', '5th', 'Caloccan', 'Metro Manila', 'NCR', 'Bicol', '134865488484', '3216547', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 6, 'Joy Federico', '16476463461', 'Principal', 'CS21', 0, 1, 1, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
+(11, '4564', NULL, 'Zhen', 'Black', 'G', '1967-11-14 00:24:34', 'Manila', 'Filipino', 5, 'Single', 'F', 1, 1, 0, '7', '6th', 'Caloccan', 'Metro Manila', 'NCR', 'Baguio', '154135213143', '9874562', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 7, 'Joy Federico', '03163136161', 'Principal', 'CS21', 1, 1, 1, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
+(12, '131', NULL, 'Sy', 'Brown', 'H', '1967-11-14 00:24:34', 'Manila', 'Filipino', 1, 'Single', 'M', 1, 0, 0, '8', '7th', 'Caloccan', 'Metro Manila', 'NCR', 'Batangas', '132156454151', '9876541', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 8, 'Joy Federico', '03125531465', 'Principal', 'CS21', 1, 0, 1, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
+(13, '55', NULL, 'See', 'Teal', 'I', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'F', 1, 0, 1, '9', '8th', 'Caloccan', 'Metro Manila', 'NCR', 'Bulacan', '515151454545', '7894561', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 9, 'Joy Federico', '16351403146', 'Principal', 'CS21', 1, 0, 1, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
+(14, '11', NULL, 'Kim', 'Pink', 'J', '1967-11-14 00:24:34', 'Manila', 'Filipino', 2, 'Single', 'M', 1, 1, 1, '10', '9th', 'Caloccan', 'Metro Manila', 'NCR', 'Cebu', '023102548122', '7894562', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 10, 'Joy Federico', '15614023146', 'Principal', 'CS21', 1, 0, 1, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
+(15, '51', NULL, 'Park', 'Purple', 'K', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'M', 1, 0, 1, '11', '10th', 'Caloccan', 'Metro Manila', 'NCR', 'Palawan', '102534856414', '7894563', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 11, 'Joy Federico', '16148654320', 'Dean', 'CS21', 1, 1, 0, 1, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
+(16, '122', NULL, 'Lim', 'Violet', 'L', '1967-11-14 00:24:34', 'Manila', 'Filipino', 13, 'Single', 'M', 0, 1, 1, '12', '11th', 'Caloccan', 'Metro Manila', 'NCR', 'Bohol', '145451431131', '7893215', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 12, 'Joy Federico', '15313143514', 'Dean', 'CS21', 1, 0, 0, 0, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
+(17, '335', NULL, 'Lee', 'Beige', 'M', '1967-11-14 00:24:34', 'Manila', 'Filipino', 13, 'Single', 'M', 0, 0, 0, '13', 'Rizal', 'Manila', 'Metro Manila', 'NCR', 'Iloilo', '185748965488', '9873216', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 13, 'Joy Federico', '10031631461', 'Dean', 'CS21', 0, 0, 1, 0, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
+(18, '484', NULL, 'Zhong', 'Khaki', 'N', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'M', 0, 1, 0, '14', 'Arnais', 'Makati', 'Metro Manila', 'NCR', 'Bacolod', '165148574897', '9773214', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 14, 'Joy Federico', '31235146545', 'Dean', 'CS21', 0, 1, 0, 0, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
+(19, '646', NULL, 'Leong', 'Maroon', 'O', '1967-11-14 00:24:34', 'Manila', 'Filipino', 5, 'Married', 'M', 1, 0, 0, '15', 'Katipunan', 'Quezon City', 'Metro Manila', 'NCR', 'Sulu', '874885748567', '9873216', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 15, 'Joy Federico', '15314531455', 'Dean', 'CS21', 1, 0, 0, 0, '2012-11-24 00:00:00', '2013-11-14 00:00:00'),
+(20, '231', NULL, 'Jeong', 'Cyan', 'P', '1967-11-14 00:24:34', 'Manila', 'Filipino', 10, 'Widowed', 'F', 1, 1, 0, '16', 'Esteban', 'Quezon City', 'Metro Manila', 'NCR', 'Mindoro', '148564768787', '2654878', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 16, 'Joy Federico', '10231032153', 'Deam', 'CS21', 1, 0, 1, 0, '2012-11-24 00:00:00', '2013-11-14 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1847,24 +1871,24 @@ CREATE TABLE IF NOT EXISTS `teacher_training_experience` (
   `Teacher_ID` int(11) NOT NULL,
   `Institution` varchar(250) NOT NULL,
   `Position` varchar(45) NOT NULL,
-  `Date` datetime NOT NULL,
+  `Date` int(4) NOT NULL,
   `Level_Taught` varchar(250) NOT NULL,
   `Courses_Taught` text NOT NULL,
   `Number_of_Years_in_Institution` int(11) NOT NULL,
   PRIMARY KEY (`Teacher_Training_Experience_ID`),
   UNIQUE KEY `Teacher_Training_Experience_ID_UNIQUE` (`Teacher_Training_Experience_ID`),
   KEY `fk_Teacher_Training_Experience_Teacher_idx` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `teacher_training_experience`
 --
 
 INSERT INTO `teacher_training_experience` (`Teacher_Training_Experience_ID`, `Teacher_ID`, `Institution`, `Position`, `Date`, `Level_Taught`, `Courses_Taught`, `Number_of_Years_in_Institution`) VALUES
-(1, 2, 'Ateneo de Manila', 'Secretary', '1992-12-25 00:23:44', 'Tertiary', 'Math', 2),
-(2, 1, 'De La Salle', 'President', '1993-12-23 23:12:22', 'High School', 'Geography', 4),
-(3, 3, 'PUP', 'Teacher', '1992-12-22 00:55:11', 'Tertiary', 'Math, Science', 3),
-(4, 3, 'Makati Science High School', 'Teacher', '1992-12-24 00:00:00', 'Grade School', 'Algebra, Calculus', 2);
+(1, 2, 'Ateneo de Manila', 'Secretary', 2147483647, 'Tertiary', 'Math', 2),
+(2, 1, 'De La Salle', 'President', 2147483647, 'High School', 'Geography', 4),
+(3, 3, 'PUP', 'Teacher', 2147483647, 'Tertiary', 'Math, Science', 3),
+(4, 3, 'Makati Science High School', 'Teacher', 2147483647, 'Grade School', 'Algebra, Calculus', 2);
 
 -- --------------------------------------------------------
 
@@ -1874,11 +1898,10 @@ INSERT INTO `teacher_training_experience` (`Teacher_Training_Experience_ID`, `Te
 
 CREATE TABLE IF NOT EXISTS `tracker` (
   `Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Contract?` tinyint(1) NOT NULL DEFAULT '0',
   `Remarks` varchar(255) DEFAULT NULL,
   `Status_ID` int(11) NOT NULL,
   `Times_Taken` int(11) NOT NULL DEFAULT '1',
-  `Created_At` datetime DEFAULT NULL,
+  `Created_At` datetime DEFAULT CURRENT_TIMESTAMP,
   `Updated_At` datetime DEFAULT NULL,
   `Subject_ID` int(11) NOT NULL,
   PRIMARY KEY (`Tracker_ID`),
@@ -1891,32 +1914,32 @@ CREATE TABLE IF NOT EXISTS `tracker` (
 -- Dumping data for table `tracker`
 --
 
-INSERT INTO `tracker` (`Tracker_ID`, `Contract?`, `Remarks`, `Status_ID`, `Times_Taken`, `Created_At`, `Updated_At`, `Subject_ID`) VALUES
-(1, 1, 'Average', 3, 2, '2013-01-01 00:00:00', NULL, 1),
-(2, 0, 'Great', 2, 1, '2013-03-31 00:00:00', NULL, 1),
-(3, 0, 'Bad', 3, 5, '2013-02-12 00:00:00', NULL, 1),
-(4, 1, 'Worst', 2, 5, '2013-04-01 00:00:00', NULL, 1),
-(5, 0, 'Great', 3, 1, '2013-06-30 00:00:00', NULL, 1),
-(6, 1, 'See class', 1, 1, '2013-07-01 00:00:00', NULL, 1),
-(7, 1, 'Reject', 3, 2, '2013-09-30 00:00:00', NULL, 1),
-(8, 0, 'Singer', 1, 8, '2013-10-01 00:00:00', NULL, 1),
-(9, 1, 'Failure', 2, 1, '2013-12-31 00:00:00', NULL, 1),
-(10, 0, 'Great', 1, 2, '2011-02-12 00:00:00', NULL, 1),
-(11, 1, NULL, 3, 1, '2013-04-02 00:00:00', NULL, 1),
-(12, 1, NULL, 1, 1, '2013-05-02 00:00:00', NULL, 1),
-(13, 1, NULL, 3, 1, '2013-06-02 00:00:00', NULL, 1),
-(14, 1, NULL, 1, 1, '2013-07-02 00:00:00', NULL, 1),
-(15, 1, NULL, 3, 1, '2013-08-02 00:00:00', NULL, 1),
-(16, 1, NULL, 1, 1, '2013-09-02 00:00:00', NULL, 1),
-(17, 1, NULL, 3, 1, '2013-10-02 00:00:00', NULL, 1),
-(18, 1, NULL, 1, 1, '2013-11-02 00:00:00', NULL, 1),
-(19, 1, NULL, 1, 1, '2013-10-02 00:00:00', NULL, 1),
-(20, 1, NULL, 1, 1, '2013-12-02 00:00:00', NULL, 1),
-(21, 1, NULL, 3, 1, '2013-04-02 00:00:00', NULL, 2),
-(22, 1, NULL, 1, 1, '2012-04-02 00:00:00', NULL, 2),
-(23, 1, NULL, 3, 1, '2012-04-02 00:00:00', NULL, 2),
-(24, 1, NULL, 1, 1, '2013-04-02 00:00:00', NULL, 2),
-(25, 1, NULL, 3, 1, '2013-04-02 00:00:00', NULL, 2);
+INSERT INTO `tracker` (`Tracker_ID`, `Remarks`, `Status_ID`, `Times_Taken`, `Created_At`, `Updated_At`, `Subject_ID`) VALUES
+(1, 'Average', 1, 2, '2013-01-01 00:00:00', NULL, 1),
+(2, 'Great', 2, 1, '2013-03-31 00:00:00', NULL, 1),
+(3, 'Bad', 1, 5, '2013-02-12 00:00:00', NULL, 1),
+(4, 'Worst', 2, 5, '2013-04-01 00:00:00', NULL, 1),
+(5, 'Great', 2, 1, '2013-06-30 00:00:00', NULL, 1),
+(6, 'See class', 1, 1, '2013-07-01 00:00:00', NULL, 1),
+(7, 'Reject', 1, 2, '2013-09-30 00:00:00', NULL, 1),
+(8, 'Singer', 1, 8, '2013-10-01 00:00:00', NULL, 1),
+(9, 'Failure', 2, 1, '2013-12-31 00:00:00', NULL, 1),
+(10, 'Great', 1, 2, '2011-02-12 00:00:00', NULL, 1),
+(11, NULL, 1, 1, '2013-04-02 00:00:00', NULL, 1),
+(12, NULL, 1, 1, '2013-05-02 00:00:00', NULL, 1),
+(13, NULL, 1, 1, '2013-06-02 00:00:00', NULL, 1),
+(14, NULL, 1, 1, '2013-07-02 00:00:00', NULL, 1),
+(15, NULL, 1, 1, '2013-08-02 00:00:00', NULL, 1),
+(16, NULL, 1, 1, '2013-09-02 00:00:00', NULL, 1),
+(17, NULL, 1, 1, '2013-10-02 00:00:00', NULL, 1),
+(18, NULL, 1, 1, '2013-11-02 00:00:00', NULL, 1),
+(19, NULL, 1, 1, '2013-10-02 00:00:00', NULL, 1),
+(20, NULL, 1, 1, '2013-12-02 00:00:00', NULL, 1),
+(21, NULL, 1, 1, '2013-04-02 00:00:00', NULL, 2),
+(22, NULL, 1, 1, '2012-04-02 00:00:00', NULL, 2),
+(23, NULL, 1, 1, '2012-04-02 00:00:00', NULL, 2),
+(24, NULL, 1, 1, '2013-04-02 00:00:00', NULL, 2),
+(25, NULL, 1, 1, '2013-04-02 00:00:00', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -1972,8 +1995,8 @@ ALTER TABLE `adept_student`
 -- Constraints for table `adept_t3_tracker`
 --
 ALTER TABLE `adept_t3_tracker`
-  ADD CONSTRAINT `fk_Adept_T3_Tracker_copy1_Adept_T3_Grades1` FOREIGN KEY (`Adept_T3_Grades_ID`) REFERENCES `adept_t3_grades` (`Adept_T3_Grades_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Adept_T3_Tracker_copy1_Adept_T3_Attendance1` FOREIGN KEY (`Adept_T3_Attendance_ID`) REFERENCES `adept_t3_attendance` (`Adept_T3_Attendance_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Adept_T3_Tracker_copy1_Adept_T3_Grades1` FOREIGN KEY (`Adept_T3_Grades_ID`) REFERENCES `adept_t3_grades` (`Adept_T3_Grades_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Adept_T3_Tracker_Teacher_Tracker1` FOREIGN KEY (`T3_Tracker_ID`) REFERENCES `t3_tracker` (`T3_Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -2000,15 +2023,15 @@ ALTER TABLE `best_t3_tracker`
 -- Constraints for table `class`
 --
 ALTER TABLE `class`
-  ADD CONSTRAINT `fk_Section_School2` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Class_Subject1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Class_Subject1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Section_School2` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `gcat_class`
 --
 ALTER TABLE `gcat_class`
-  ADD CONSTRAINT `fk_GCAT_Class_Proctor1` FOREIGN KEY (`Proctor_ID`) REFERENCES `proctor` (`Proctor_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_GCAT_Class_Class1` FOREIGN KEY (`Class_ID`) REFERENCES `class` (`Class_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_GCAT_Class_Class1` FOREIGN KEY (`Class_ID`) REFERENCES `class` (`Class_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_GCAT_Class_Proctor1` FOREIGN KEY (`Proctor_ID`) REFERENCES `proctor` (`Proctor_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `gcat_student`
@@ -2059,8 +2082,8 @@ ALTER TABLE `smp_student`
 -- Constraints for table `smp_student_courses_taken`
 --
 ALTER TABLE `smp_student_courses_taken`
-  ADD CONSTRAINT `fk_SMP_Student_Courses_Taken_Student_Class1` FOREIGN KEY (`Student_Class_ID`) REFERENCES `student_class` (`Student_Class_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_SMP_Student_Courses_Taken_SMP_Student1` FOREIGN KEY (`Tracker_ID`) REFERENCES `smp_student` (`Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_SMP_Student_Courses_Taken_SMP_Student1` FOREIGN KEY (`Tracker_ID`) REFERENCES `smp_student` (`Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_SMP_Student_Courses_Taken_Student_Class1` FOREIGN KEY (`Student_Class_ID`) REFERENCES `student_class` (`Student_Class_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `smp_t3_application`
@@ -2105,8 +2128,8 @@ ALTER TABLE `student`
 -- Constraints for table `student_application`
 --
 ALTER TABLE `student_application`
-  ADD CONSTRAINT `fk_Student_Application_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Student_Application_Project1` FOREIGN KEY (`Project_ID`) REFERENCES `project` (`Project_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Student_Application_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Student_Application_Subject_ID1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -2120,8 +2143,8 @@ ALTER TABLE `student_class`
 -- Constraints for table `student_computer_skills`
 --
 ALTER TABLE `student_computer_skills`
-  ADD CONSTRAINT `fk_Student_Computer_Skills_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Student_Computer_Skills_Computer_Skills1` FOREIGN KEY (`Computer_Skills_ID`) REFERENCES `computer_skills` (`Computer_Skills_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Student_Computer_Skills_Computer_Skills1` FOREIGN KEY (`Computer_Skills_ID`) REFERENCES `computer_skills` (`Computer_Skills_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Student_Computer_Skills_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `student_organization_affiliations`
@@ -2134,15 +2157,15 @@ ALTER TABLE `student_organization_affiliations`
 -- Constraints for table `student_skills`
 --
 ALTER TABLE `student_skills`
-  ADD CONSTRAINT `fk_Student_Skills_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Student_Skills_Skills1` FOREIGN KEY (`Skills_ID`) REFERENCES `skills` (`Skills_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Student_Skills_Skills1` FOREIGN KEY (`Skills_ID`) REFERENCES `skills` (`Skills_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Student_Skills_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `student_tracker`
 --
 ALTER TABLE `student_tracker`
-  ADD CONSTRAINT `fk_Student_Tracker_Tracker1` FOREIGN KEY (`Tracker_ID`) REFERENCES `tracker` (`Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Student_Tracker_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Student_Tracker_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Student_Tracker_Tracker1` FOREIGN KEY (`Tracker_ID`) REFERENCES `tracker` (`Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `t3_application`
@@ -2154,8 +2177,8 @@ ALTER TABLE `t3_application`
 -- Constraints for table `t3_class`
 --
 ALTER TABLE `t3_class`
-  ADD CONSTRAINT `fk_Section_School20` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Class_Subject10` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Section_School20` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_T3_Class_Master_Trainer1` FOREIGN KEY (`Master_Trainer_ID`) REFERENCES `master_trainer` (`Master_Trainer_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -2200,8 +2223,8 @@ ALTER TABLE `teacher_class`
 -- Constraints for table `teacher_computer_familiarity`
 --
 ALTER TABLE `teacher_computer_familiarity`
-  ADD CONSTRAINT `fk_Teacher_Computer_Familiarity_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Teacher_Computer_Familiarity_Skills1` FOREIGN KEY (`Computer_Skills_ID`) REFERENCES `computer_skills` (`Computer_Skills_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Teacher_Computer_Familiarity_Skills1` FOREIGN KEY (`Computer_Skills_ID`) REFERENCES `computer_skills` (`Computer_Skills_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Teacher_Computer_Familiarity_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `teacher_computer_profiency`
@@ -2233,8 +2256,8 @@ ALTER TABLE `teacher_relevant_experiences`
 -- Constraints for table `teacher_t3_application`
 --
 ALTER TABLE `teacher_t3_application`
-  ADD CONSTRAINT `fk_Teacher_T3_Application_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Teacher_T3_Application_T3_Application1` FOREIGN KEY (`T3_Application_ID`) REFERENCES `t3_application` (`T3_Application_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Teacher_T3_Application_T3_Application1` FOREIGN KEY (`T3_Application_ID`) REFERENCES `t3_application` (`T3_Application_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Teacher_T3_Application_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `teacher_t3_tracker`
