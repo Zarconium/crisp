@@ -70,7 +70,38 @@ Class Teacher extends CI_Model
 
 	function addTeacherTrainingExperience($data)
 	{
-		return $this->db->insert('teacher_training_experience', $data);
+		$this->db->insert('teacher_training_experience', $data);
+		return $this->db->insert_id();
+	}
+
+	function addTeacherCertification($data)
+	{
+		$this->db->insert('teacher_certification', $data);
+		return $this->db->insert_id();
+	}
+
+	function addTeacherAwards($data)
+	{
+		$this->db->insert('teacher_awards', $data);
+		return $this->db->insert_id();
+	}
+
+	function addTeacherRelevantExperiences($data)
+	{
+		$this->db->insert('teacher_relevant_experiences', $data);
+		return $this->db->insert_id();
+	}
+
+	function addTeacherProfessionalReference($data)
+	{
+		$this->db->insert('teacher_professional_reference', $data);
+		return $this->db->insert_id();
+	}
+
+	function addTeacherAffiliationToOrganization($data)
+	{
+		$this->db->insert('teacher_affiliation_to_organization', $data);
+		return $this->db->insert_id();
 	}
 
 	function updateTeacherByCode($code, $data)

@@ -829,8 +829,8 @@ INSERT INTO `smp_student` (`Tracker_ID`, `Grade`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `smp_student_courses_taken` (
-  `SMP_Student_Courses_Taken_ID` varchar(45) NOT NULL,
-  `Student_Class_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `SMP_Student_Courses_Taken_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Student_Class_ID` int(11) DEFAULT NULL,
   `Tracker_ID` int(11) NOT NULL,
   PRIMARY KEY (`SMP_Student_Courses_Taken_ID`),
   UNIQUE KEY `Student_Class_Student_Class_ID_UNIQUE` (`Student_Class_ID`),

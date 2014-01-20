@@ -104,6 +104,12 @@ Class Student extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	function addSmpStudentCoursesTaken($data)
+	{
+		$this->db->insert('smp_student_courses_taken', $data);
+		return $this->db->insert_id();
+	}
+
 	function updateStudentByCode($code, $data)
 	{
 		$this->db->where('Code', $code);

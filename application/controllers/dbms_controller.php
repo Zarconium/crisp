@@ -229,7 +229,8 @@ class Dbms_Controller extends CI_Controller
 								(
 									'Tracker_ID' => $tracker_id
 								);
-								$smp_student_id = $this->student->addSmpStudent($smp_student);
+								$this->student->addSmpStudent($smp_student);
+								$this->student->addSmpStudentCoursesTaken($smp_student);
 								break;
 
 							case 2:
@@ -237,7 +238,7 @@ class Dbms_Controller extends CI_Controller
 								(
 									'Tracker_ID' => $tracker_id
 								);
-								$gcat_student_id = $this->student->addGcatStudent($gcat_student);
+								$this->student->addGcatStudent($gcat_student);
 								break;
 
 							case 3:
@@ -245,7 +246,7 @@ class Dbms_Controller extends CI_Controller
 								(
 									'Tracker_ID' => $tracker_id
 								);
-								$best_student_id = $this->student->addBestStudent($best_student);
+								$this->student->addBestStudent($best_student);
 								break;
 
 							case 4:
@@ -253,7 +254,7 @@ class Dbms_Controller extends CI_Controller
 								(
 									'Tracker_ID' => $tracker_id
 								);
-								$adept_student_id = $this->student->addAdeptStudent($adept_student);
+								$this->student->addAdeptStudent($adept_student);
 								break;
 							
 							default:
@@ -600,7 +601,6 @@ class Dbms_Controller extends CI_Controller
 						'Diploma/TOR' => $this->input->post('diploma'),
 						'Updated_At' => date("Y-m-d")// Current Date
 					);
-
 					$teacher_id = $this->teacher->addTeacher($teacher);
 
 					for ($i = 0; $i < count($this->input->post('institutions_worked_institution')); $i++)
@@ -615,8 +615,71 @@ class Dbms_Controller extends CI_Controller
 							'Courses_Taught' => $this->input->post('institutions_worked_courses_taught')[$i],
 							'Number_of_Years_in_Institution' => $this->input->post('institutions_worked_number_of_years_in_institution')[$i]
 						);
-
 						$this->teacher->addTeacherTrainingExperience($teacher_training_experience);
+					}
+
+					for ($i = 0; $i < count($this->input->post('certifications_certification')); $i++)
+					{ 
+						$teacher_certification = array
+						(
+							'Teacher_ID' => $teacher_id,
+							'Certification' => $this->input->post('certifications_certification')[$i],
+							'Certifying_Body' => $this->input->post('certifications_certifying_body')[$i],
+							'Date_Received' => $this->input->post('certifications_date_received')[$i]
+						);
+						$this->teacher->addTeacherCertification($teacher_certification);
+					}
+
+					for ($i = 0; $i < count($this->input->post('awards_award')); $i++)
+					{ 
+						$teacher_awards = array
+						(
+							'Teacher_ID' => $teacher_id,
+							'Award' => $this->input->post('awards_award')[$i],
+							'Awarding_Body' => $this->input->post('awards_awarding_body')[$i],
+							'Date_Received' => $this->input->post('awards_date_received')[$i]
+						);
+						$this->teacher->addTeacherAwards($teacher_awards);
+					}
+
+					for ($i = 0; $i < count($this->input->post('other_work_organization')); $i++)
+					{ 
+						$teacher_relevant_experiences = array
+						(
+							'Teacher_ID' => $teacher_id,
+							'Organization' => $this->input->post('other_work_organization')[$i],
+							'Position' => $this->input->post('other_work_position')[$i],
+							'Description' => $this->input->post('other_work_description')[$i],
+							'Date' => $this->input->post('other_work_date_started')[$i]
+						);
+						$this->teacher->addTeacherRelevantExperiences($teacher_relevant_experiences);
+					}
+
+					for ($i = 0; $i < count($this->input->post('reference_name')); $i++)
+					{ 
+						$teacher_professional_reference = array
+						(
+							'Teacher_ID' => $teacher_id,
+							'Name' => $this->input->post('reference_name')[$i],
+							'Position' => $this->input->post('reference_position')[$i],
+							'Company' => $this->input->post('reference_company')[$i],
+							'Phone' => $this->input->post('reference_phone')[$i],
+							'Email' => $this->input->post('reference_email')[$i]
+						);
+						$this->teacher->addTeacherProfessionalReference($teacher_professional_reference);
+					}
+
+					for ($i = 0; $i < count($this->input->post('affiliation_organization')); $i++)
+					{ 
+						$teacher_affiliation_to_organization = array
+						(
+							'Teacher_ID' => $teacher_id,
+							'Organization' => $this->input->post('affiliation_organization')[$i],
+							'Description' => $this->input->post('affiliation_description')[$i],
+							'Positions' => $this->input->post('affiliation_position')[$i],
+							'Years_Affiliated' => $this->input->post('affiliation_years')[$i]
+						);
+						$this->teacher->addTeacherAffiliationToOrganization($teacher_affiliation_to_organization);
 					}
 
 					$data['form_success'] = TRUE;
