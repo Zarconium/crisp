@@ -39,7 +39,7 @@
 					<?php foreach ($students as $student): ?>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td><a href="<?php echo base_url('dbms/form_student_profile'); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_student/' . $student->Student_ID); ?>">Delete</a></td>
+						<td><a href="<?php echo base_url('dbms/form_student_profile/' . $student->Student_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_student/' . $student->Student_ID); ?>">Delete</a></td>
 						<td><?php echo $student->Full_Name; ?></td>
 						<td><?php echo $student->School_Name; ?></td>
 						<td><?php echo $student->Subject_Codes; ?></td>

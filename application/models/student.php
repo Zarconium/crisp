@@ -44,17 +44,37 @@ Class Student extends CI_Model
 		}	
 	}
 
-	function getStudentByCode($code)
+	function getStudentById($id)
 	{
 		$this->db->select('*');
 		$this->db->from('student');
-		$this->db->where('Code', $code);
+		$this->db->where('Student_ID', $id);
+		$this->db->limit(1);
 		
 		$query = $this->db->get();
 		
 		if($query->num_rows() > 0)
 		{
-			return $query->result();
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getStudentByCode($code)
+	{
+		$this->db->select('*');
+		$this->db->from('student');
+		$this->db->where('Code', $code);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
 		}
 		else
 		{

@@ -40,10 +40,12 @@ class Dbms_Controller extends CI_Controller
 		redirect('dbms');
 	}
 	
-	function form_student_profile()
+	function form_student_profile($id)
 	{
+		$data['student'] = $this->student->getStudentById($id);
+
 		$this->load->view('header');
-		$this->load->view('forms/form-student-profile');
+		$this->load->view('forms/form-student-profile', $data);
 		$this->load->view('footer');
 	}
 	
@@ -769,13 +771,15 @@ class Dbms_Controller extends CI_Controller
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_student_profile']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+		// $sheetData = $objPHPExcel->getActiveSheet()->rangeToArray('A:AC');
+		// $highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
 
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 1) continue;
-			if ($counter > $highestRow) break;
+			// if ($counter > $highestRow) break;
+			if ($row['E'] == NULL) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['Y']) as $school) //Get School_ID
 			{
@@ -823,32 +827,33 @@ class Dbms_Controller extends CI_Controller
 				
 					if (!$this->student->addStudent($student))
 					{
-						$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter);
+						$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . '.');
 						redirect('dbms');
 					}
 				}
 				else
 				{
-					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . '. Student already exists');
+					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . '.');
 					redirect('dbms');
 				}
 			}
 			else if ($row['F'] == 'No')
 			{
-				if (!$this->student->getStudentByCode($student_code) || !$this->student->updateStudentByCode($student_code, $student))
+				if (!$this->student->getStudentByCode($student_code))
 				{
-					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter);
+					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . '. Student not found.');
 					redirect('dbms');
 				}
+				$this->student->updateStudentByCode($student_code, $student);
 			}
 			else
 			{
-				$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter);
+				$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . '.');
 				redirect('dbms');
 			}
 		}
 
-		$this->session->set_flashdata('upload_success', 'Student Profile successfully uploaded. ' . ($counter - 1) . ' out of ' . ($highestRow - 1) . ' students added/updated.');
+		$this->session->set_flashdata('upload_success', 'Student Profile successfully uploaded. ' . ($counter - 2) . ' students added/updated.');
 		redirect('dbms');
 	}
 }
