@@ -21,7 +21,7 @@
 			<div class="form-group">
 				<label>Name Suffix</label>
 				<input type="text" class="form-control" name="name_suffix" value="<?php echo set_value('name_suffix'); ?>">
-				<?php echo form_error('name_suffix', '<div class="text-danger">', '</div>'); ?>
+				<?php echo form_error('name_suffix'); ?>
 			</div>
 			
 			<div class="form-group">
@@ -70,7 +70,7 @@
 			
 			<div class="form-group">
 			<label>Landline</label>
-			<input type="date" class="form-control" name="landline" value="<?php echo set_value('landline'); ?>">
+			<input type="number" class="form-control" name="landline" min="0" max="9999999" value="<?php echo set_value('landline'); ?>">
 				<?php echo form_error('landline', '<div class="text-danger">', '</div>'); ?>
 			</div>
 

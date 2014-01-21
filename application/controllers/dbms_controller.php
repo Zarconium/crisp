@@ -221,39 +221,24 @@ class Dbms_Controller extends CI_Controller
 						);
 						$student_tracker_id = $this->student->addStudentTracker($student_tracker);
 
+						$subject_student = array('Tracker_ID' => $tracker_id);
 						switch ($subject_id)
 						{
 							case 1:
-								$smp_student = array
-								(
-									'Tracker_ID' => $tracker_id
-								);
-								$this->student->addSmpStudent($smp_student);
-								$this->student->addSmpStudentCoursesTaken($smp_student);
+								$this->student->addSmpStudent($subject_student);
+								$this->student->addSmpStudentCoursesTaken($subject_student);
 								break;
 
 							case 2:
-								$gcat_student = array
-								(
-									'Tracker_ID' => $tracker_id
-								);
-								$this->student->addGcatStudent($gcat_student);
+								$this->student->addGcatStudent($subject_student);
 								break;
 
 							case 3:
-								$best_student = array
-								(
-									'Tracker_ID' => $tracker_id
-								);
-								$this->student->addBestStudent($best_student);
+								$this->student->addBestStudent($subject_student);
 								break;
 
 							case 4:
-								$adept_student = array
-								(
-									'Tracker_ID' => $tracker_id
-								);
-								$this->student->addAdeptStudent($adept_student);
+								$this->student->addAdeptStudent($subject_student);
 								break;
 							
 							default:
@@ -289,6 +274,8 @@ class Dbms_Controller extends CI_Controller
 
 	function form_proctor_application()
 	{
+		$data = array();
+
 		if($this->input->post())
 		{
 			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|xss_clean');
@@ -297,26 +284,30 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('civil', 'Civil Status', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('birthdate', 'Birthdate', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean');
 			$this->form_validation->set_rules('company_name', 'Company Name', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('position', 'position', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('position', 'Position', 'trim|required|xss_clean');
+
+			$this->form_validation->set_message('is_unique', 'Proctor already exists.');
+			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
 
 			if($this->input->post('submit'))
 			{
 				if($this->form_validation->run() == FALSE)
 				{
+					$data['form_error'] = TRUE;
+
 					$this->load->view('header');
-					$this->load->view('forms/form-proctor-application');
+					$this->load->view('forms/form-proctor-application', $data);
 					$this->load->view('footer');
 				}
 				else
 				{
-					$data_array = array
+					$student = array
 					(
 						'Name_Suffix' => $this->input->post('name_suffix'),
 						'Last_Name' => $this->input->post('last_name'),
@@ -334,10 +325,12 @@ class Dbms_Controller extends CI_Controller
 						'Position' => $this->input->post('position'),
 					);
 
-					//$this->student->addStudent($data_array);
+					//$this->student->addStudent($student);
+
+					$data['form_success'] = TRUE;
 
 					$this->load->view('header');
-					$this->load->view('forms/form-proctor-application');
+					$this->load->view('forms/form-proctor-application', $data);
 					$this->load->view('footer');
 				}
 			}
@@ -348,20 +341,22 @@ class Dbms_Controller extends CI_Controller
 				$data['draft_saved'] = TRUE;
 
 				$this->load->view('header');
-				$this->load->view('forms/form-proctor-application');
+				$this->load->view('forms/form-proctor-application', $data);
 				$this->load->view('footer');
 			}
 		}
 		else
 		{
 			$this->load->view('header');
-			$this->load->view('forms/form-proctor-application');
+			$this->load->view('forms/form-proctor-application', $data);
 			$this->load->view('footer');
-		}	
+		}
 	}
 
 	function form_mastertrainer_application()
 	{
+		$data = array();
+
 		if($this->input->post())
 		{
 			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|xss_clean');
@@ -370,26 +365,30 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('civil', 'Civil Status', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('birthdate', 'Birthdate', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('mobile_number', 'Mobile Numver', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean');
 			$this->form_validation->set_rules('company_name', 'Company Name', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('position', 'position', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('position', 'Position', 'trim|required|xss_clean');
+
+			$this->form_validation->set_message('is_unique', 'Master Trainer already exists.');
+			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
 
 			if($this->input->post('submit'))
 			{
 				if($this->form_validation->run() == FALSE)
 				{
+					$data['form_error'] = TRUE;
+
 					$this->load->view('header');
-					$this->load->view('forms/form-proctor-application');
+					$this->load->view('forms/form-proctor-application', $data);
 					$this->load->view('footer');
 				}
 				else
 				{
-					$data_array = array
+					$proctor = array
 					(
 						'Name_Suffix' => $this->input->post('name_suffix'),
 						'Last_Name' => $this->input->post('last_name'),
@@ -407,10 +406,12 @@ class Dbms_Controller extends CI_Controller
 						'Position' => $this->input->post('position'),
 					);
 
-					//$this->student->addStudent($data_array);
+					// $this->student->addStudent($student);
+
+					$data['form_success'] = TRUE;
 
 					$this->load->view('header');
-					$this->load->view('forms/form-mastertrainer-application');
+					$this->load->view('forms/form-proctor-application', $data);
 					$this->load->view('footer');
 				}
 			}
@@ -421,16 +422,16 @@ class Dbms_Controller extends CI_Controller
 				$data['draft_saved'] = TRUE;
 
 				$this->load->view('header');
-				$this->load->view('forms/form-mastertrainer-application');
+				$this->load->view('forms/form-proctor-application', $data);
 				$this->load->view('footer');
 			}
 		}
 		else
 		{
 			$this->load->view('header');
-			$this->load->view('forms/form-mastertrainer-application');
+			$this->load->view('forms/form-proctor-application', $data);
 			$this->load->view('footer');
-		}	
+		}
 	}
 
 

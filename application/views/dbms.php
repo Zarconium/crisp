@@ -1,6 +1,5 @@
 <?php if ($this->session->flashdata('upload_success')) { echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>Success!</strong> ' . $this->session->flashdata('upload_success') . '</div>';} ?>
 <?php if ($this->session->flashdata('upload_error')) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>Error!</strong> ' . $this->session->flashdata('upload_error') . '</div>';} ?>
-<?php if ($this->session->flashdata('asdf')) { var_dump($this->session->flashdata('asdf')); } ?>
 
 <div class="header">
 	<h1>Manage Participants</h1>
