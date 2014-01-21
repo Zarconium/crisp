@@ -5,7 +5,6 @@
 
 	<h1>Teacher Form</h1>
 	
-	<legend>Personal Information</legend>
 
 	<?php echo form_open('/dbms/form_teacher_application'); ?>
 		<div class="save">
@@ -17,6 +16,16 @@
 
 		<input type="hidden" name="code" value="<?php echo set_value('code'); ?>">
 		<?php echo form_error('code'); ?>
+	
+	<ul class="nav nav-tabs">
+	  <li class="active"><a href="#basic" data-toggle="tab">Basic Information</a></li>
+	  <li><a href="#application" data-toggle="tab">Application</a></li>
+	</ul>
+	
+	<div class="tab-content">
+	<div class="tab-pane active" id="basic">
+	
+	<legend>Personal Information</legend>
 	
 		<div class="form-inline">
 			<div class="form-group">
@@ -966,6 +975,234 @@
 			</div>
 		</div>
 	</form>
+	</div>
+	<div class="tab-pane" id="application">
+		<ul class="nav nav-tabs">
+		  <li class="active"><a href="#best_adept" data-toggle="tab">BEST and ADEPT</a></li>
+		  <li><a href="#smp_app" data-toggle="tab">SMP</a></li>
+		</ul>	
+
+
+		<div class="tab-content">
+		  <div class="tab-pane active" id="best_adept">
+			<form class="form">
+				<div class="form-group">
+					<label>Date of Application</label>
+					<input class="form-control" type="date" name="date_of_application_best" value="<?php echo set_value('date_of_application_best'); ?>">
+				<?php echo form_error('date_of_application_best'); ?>
+				</div>
+				<div class="form-group">
+					<label>Subject Taking</label><br/>
+					<input type="checkbox" name="subject" value="best"<?php echo set_checkbox('subject', 'best'); ?>> BEST
+					<input type="checkbox" name="subject" value="adept"<?php echo set_checkbox('subject', 'adept'); ?>> ADEPT
+				</div>
+
+				<legend>Questions</legend>
+				<span class="help-block">Please share your thoughts on the following. Limit your answer to 100 to 500 words.</span>
+				<div class="form-group">
+					<label>What is your main motivation for participating in the certification program?</label>
+					<input class="form-control" type="text" name="main_motivation" value="<?php echo set_value('name'); ?>">
+					<?php echo form_error('name'); ?>
+				</div>
+				<div class="form-group">
+					<label>Are there any schedule / work / health / personal impediments to your participation in the certification process? If yes, please explain. Include dates and other relevant details.	</label>
+					<input class="form-control" type="text" name="problem_details"  value="<?php echo set_value('problem_details'); ?>">
+					<?php echo form_error('problem_details'); ?>
+				</div>
+				<div class="form-group">
+					<label>Please share any relevant information not mentioned above that might help you be considered for certification.</label>
+					<input class="form-control" type="text" name="relevant_information"  value="<?php echo set_value('relevant_information'); ?>">
+					<?php echo form_error('relevant_information'); ?>
+				</div>
+			</form>
+		  </div>
+		  
+		  <div class="tab-pane" id="smp_app">
+		  
+		  
+				<form class="form">
+
+				
+					<div class="form-group">
+						<label>Date of Application</label>
+						<input class="form-control" type="date" name="date_of-application" value="<?php echo set_value('date_of-application'); ?>">
+						<?php echo form_error('date_of-application'); ?>
+					</div>
+
+					<div class="form-group">
+						<label>BPO101</label><br/>
+						<input type="radio" name="bpo101" value="yes" <?php echo set_radio('bpo101', 'yes'); ?>> Yes
+						<input type="radio" name="bpo101" value="No"  <?php echo set_radio('bpo101', 'No'); ?>> No
+						<?php echo form_error('bpo101'); ?>
+					</div>
+
+					<div class="form-group">
+						<label>BPO102</label><br/>
+						<input type="radio" name="BPO102" value="yes" <?php echo set_radio('BPO102', 'yes'); ?>> Yes
+						<input type="radio" name="BPO102" value="No"  <?php echo set_radio('BPO102', 'No'); ?>> No
+						<?php echo form_error('BPO102'); ?>
+					</div>
+					
+
+					<div class="form-group">
+						<label>Business Communication</label><br/>
+						<input type="radio" name="Business_Communication" value="yes" <?php echo set_radio('Business_Communication', 'yes'); ?>> Yes
+						<input type="radio" name="Business_Communication" value="No"  <?php echo set_radio('Business_Communication', 'No'); ?>> No
+						<?php echo form_error('Business_Communication'); ?>
+					</div>
+
+					<div class="form-group">
+						<label>Service Culture</label><br/>
+						<input type="radio" name="Service_Culture" value="yes" <?php echo set_radio('Service_Culture', 'yes'); ?>> Yes
+						<input type="radio" name="Service_Culture" value="No"  <?php echo set_radio('Service_Culture', 'No'); ?>> No
+						<?php echo form_error('Service_Culture'); ?>
+					</div>
+
+					<div class="form-group">
+						<label>Systems Thinking</label><br/>
+						<input type="radio" name="Systems_Thinking" value="yes" <?php echo set_radio('Systems_Thinking', 'yes'); ?>> Yes
+						<input type="radio" name="Systems_Thinking" value="No"  <?php echo set_radio('Systems_Thinking', 'No'); ?>> No
+						<?php echo form_error('Systems_Thinking'); ?>
+					</div>
+					
+					<div class="form-group">
+						<label>How do you think the BPO contributes to nation building?</label>
+						<input class="form-control" type="text" name="nation_building" value="<?php echo set_value('nation_building'); ?>">
+						<?php echo form_error('nation_building'); ?>
+					</div>
+					<div class="form-group">
+						<label>What is the difference between a man and a woman?</label>
+						<input class="form-control" type="text" name="man_woman" value="<?php echo set_value('man_woman'); ?>">
+						<?php echo form_error('man_woman'); ?>
+					</div>
+					
+					<legend>Additional Information</legend>
+					<div class="form-group">
+						<label>Approximate Total Numbers of Subjects Handled</label>
+						<input class="form-control" type="number" name="Subjects_Handled" value="<?php echo set_value('Subjects_Handled'); ?>">
+						<?php echo form_error('Subjects_Handled'); ?>
+					</div>
+					<div class="form-group">
+						<label>Number of Years Teaching</label>
+						<input class="form-control" type="number" name="Years_Teaching" value="<?php echo set_value('Years_Teaching'); ?>">
+						<?php echo form_error('Years_Teaching'); ?>
+					</div>
+					<div class="form-group">
+						<label>Number of Years Teaching in Current Institution</label>
+						<input class="form-control" type="number" name="Current_Institution" value="<?php echo set_value('Current_Institution'); ?>">
+						<?php echo form_error('Current_Institution'); ?>
+					</div>
+					<div class="form-group">
+						<label>Average Number of Students per Class</label>
+						<input class="form-control" type="number" name="Students_per_Class" value="<?php echo set_value('Students_per_Class'); ?>">
+						<?php echo form_error('Students_per_Class'); ?>
+					</div>
+											
+					<div class="form-group">
+						<label>What are the support offices available to you?</label>
+						<input class="form-control" type="text" name="support_offices" value="<?php echo set_value('support_offices'); ?>">
+						<?php echo form_error('support_offices'); ?>
+					</div>
+					<div class="form-group">
+						<label>Instructional materials support?</label>
+						<input class="form-control" type="text" name="materials_support" value="<?php echo set_value('materials_support'); ?>">
+						<?php echo form_error('materials_support'); ?>
+					</div>
+					<div class="form-group">
+						<label>Technology support?</label>
+						<input class="form-control" type="text" name="Technology_support" value="<?php echo set_value('Technology_support'); ?>">
+						<?php echo form_error('Technology_support'); ?>
+					</div>
+					<div class="form-group">
+						<label>Can you readily use a laboratory when needed?</label>
+						<input class="form-control" type="text" name="use_a_laboratory" value="<?php echo set_value('use_a_laboratory'); ?>">
+						<?php echo form_error('use_a_laboratory'); ?>
+					</div>
+					<div class="form-group">
+						<label>Internet services? (school)	</label>
+						<input class="form-control" type="text" name="Internet_services" value="<?php echo set_value('Internet_services'); ?>">
+						<?php echo form_error('Internet_services'); ?>
+					</div>
+					
+					<legend>Training</legend>
+					<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="panel panel-info">
+								<div class="panel-heading">
+									Add to List
+								</div>
+								<div class="panel-body">
+									<form class="form">
+										<div class="form-group">
+											<label>Training</label>
+											<input class="form-control" type="text"name="Training" value="<?php echo set_value('Training'); ?>">
+						<?php echo form_error('Training'); ?>
+										</div>
+										<div class="form-group">
+											<label>Training Body</label>
+											<input class="form-control" type="text"name="Training_Body" value="<?php echo set_value('Training_Body'); ?>">
+						<?php echo form_error('Training_Body'); ?>
+										</div>
+										<div class="form-group">
+											<label>Training Date</label>
+											<input class="form-control" type="date"name="Training_Date" value="<?php echo set_value('Training_Date'); ?>">
+						<?php echo form_error('Training_Date'); ?>
+										</div>
+									</form>	
+								</div>
+							</div>
+						</div>
+					
+						<div class="col-md-9">
+							<h3>List of Training</h3>
+							<div class="customize-btn-group">
+								<button type="button" class="btn btn-danger">Delete</button>
+							</div>	
+							<table class="table">
+								<tr>
+									<th></th>
+									<th>Action</th>
+									<th>Training</th>
+									<th>Training Body</th>
+									<th>Training Date</th>
+								</tr>
+								<tr>
+									<td><input type="checkbox"></td>
+									<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
+									<td>Example</td>
+									<td>2011</td>
+									<td>2011</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					</div>
+					
+					<legend>Required</legend>
+					<div class="form-group">
+						<label>Contract</label><br/>
+						<input type="radio" name="contract" value="Yes" <?php echo set_radio('contract', 'Yes'); ?>> Yes
+						<input type="radio" name="contract" value="No" <?php echo set_radio('contract', 'No'); ?>> No
+						<?php echo form_error('contract'); ?>
+					</div>
+					<div class="form-group">
+						<label>Self-Assesment Form<span class="help-block">Business Communcation</span></label><br/>
+						<input type="radio" name="Self_Assesment" value="Yes" <?php echo set_radio('Self_Assesment', 'Yes'); ?>> Yes
+						<input type="radio" name="Self_Assesment" value="No" <?php echo set_radio('Self_Assesment', 'No'); ?>> No
+						<?php echo form_error('Self_Assesment'); ?>
+					</div>
+					<div class="form-group">
+						<label>Self-Assesment Form<span class="help-block">Service Culture</span></label><br/>
+						<input type="radio" name="Self_Assesment" value="Yes" <?php echo set_radio('Self_Assesment', 'Yes'); ?>> Yes
+						<input type="radio" name="Self_Assesment" value="No" <?php echo set_radio('Self_Assesment', 'No'); ?>> No
+						<?php echo form_error('Self_Assesment'); ?>
+					</div>
+
+				</form>
+		  </div>
+		</div>
+		</div>
 </div>
 
 <script type="text/javascript">
