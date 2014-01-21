@@ -29,35 +29,77 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('reports/report_ni_phil', $data);
 	}
 
-	function studentProgramReportGCAT()
-	{
-		$data['count_list'] = $this->report_program->getStudentProgramReportGCAT();
-
-		$this->load->view('reports/student_program_report_gcat', $data);
-	}
-
 	function studentAdeptProgramReport()
 	{
-		$data['pin_count_list'] = $this->report_program->getStudentAdeptProgramReportPins();
-		$data['pin_total'] = $this->report_program->getStudentAdeptProgramReportPinsTotal();
-		$data['current_takers_count_list'] = $this->report_program->getStudentAdeptProgramReportCurrentTakers();
-		$data['current_takers_total'] = $this->report_program->getStudentAdeptProgramReportCurrentTakersTotal();
-		$data['completed_count_list'] = $this->report_program->getStudentAdeptProgramReportCompleted();
-		$data['completed_total'] = $this->report_program->getStudentAdeptProgramReportCompletedTotal();
+		$start_date = "1990-01-01"; $end_date= "2020-01-01";
+		
+		$data['pin_count_list'] = $this->report_program->getStudentAdeptProgramReportPins($start_date, $end_date);
+		$data['pin_total'] = $this->report_program->getStudentAdeptProgramReportPinsTotal($start_date, $end_date);
+		$data['current_takers_count_list'] = $this->report_program->getStudentAdeptProgramReportCurrentTakers($start_date, $end_date);
+		$data['current_takers_total'] = $this->report_program->getStudentAdeptProgramReportCurrentTakersTotal($start_date, $end_date);
+		$data['completed_count_list'] = $this->report_program->getStudentAdeptProgramReportCompleted($start_date, $end_date);
+		$data['completed_total'] = $this->report_program->getStudentAdeptProgramReportCompletedTotal($start_date, $end_date);
+		$this->load->view('header-print');
 		$this->load->view('reports/student_adept_program_report', $data);
+		$this->load->view('footer-print');
 	}
 
 	function studentBestProgramReport()
 	{
-		$data['pin_count_list'] = $this->report_program->getStudentBestProgramReportPins();
-		$data['pin_total'] = $this->report_program->getStudentBestProgramReportPinsTotal();
-		$data['current_takers_count_list'] = $this->report_program->getStudentBestProgramReportCurrentTakers();
-		$data['current_takers_total'] = $this->report_program->getStudentBestProgramReportCurrentTakersTotal();
-		$data['completed_count_list'] = $this->report_program->getStudentBestProgramReportCompleted();
-		$data['completed_total'] = $this->report_program->getStudentBestProgramReportCompletedTotal();
-		$this->load->view('header-print', $data);
+		$start_date = "1990-01-01"; $end_date= "2020-01-01";
+
+		$data['pin_count_list'] = $this->report_program->getStudentBestProgramReportPins($start_date, $end_date);
+		$data['pin_total'] = $this->report_program->getStudentBestProgramReportPinsTotal($start_date, $end_date);
+		$data['current_takers_count_list'] = $this->report_program->getStudentBestProgramReportCurrentTakers($start_date, $end_date);
+		$data['current_takers_total'] = $this->report_program->getStudentBestProgramReportCurrentTakersTotal($start_date, $end_date);
+		$data['completed_count_list'] = $this->report_program->getStudentBestProgramReportCompleted($start_date, $end_date);
+		$data['completed_total'] = $this->report_program->getStudentBestProgramReportCompletedTotal($start_date, $end_date);
+		$this->load->view('header-print');
 		$this->load->view('reports/student_best_program_report', $data);
-		$this->load->view('footer-print', $data);
+		$this->load->view('footer-print');
+
+	}
+
+	function studentProgramReportGCAT()
+	{
+		$start_date = "1990-01-01"; $end_date= "2020-01-01";
+
+		$data['count_list'] = $this->report_program->getStudentProgramReportGCAT($start_date, $end_date);
+		$data['total'] = $this->report_program->getStudentProgramReportGCATTotal($start_date, $end_date);
+		$this->load->view('header-print');
+		$this->load->view('reports/student_program_report_gcat', $data);
+		$this->load->view('footer-print');
+
+
+
+	}
+
+	function studentProgramReportPerSub()
+	{
+		$subject_code=1;
+		$start_date = "1990-01-01"; $end_date= "2020-01-01";
+
+		$data['currently_taking_list'] = $this->report_program->getStudentProgramReportPerSubCurrentTakers($start_date, $end_date, $subject_code);
+		$data['total_ct'] = $this->report_program->getStudentProgramReportPerSubCurrentTakersTotal($start_date, $end_date, $subject_code);
+		$data['finished_list'] = $this->report_program->getStudentProgramReportPerSubFinished($start_date, $end_date, $subject_code);
+		$data['total_ft'] = $this->report_program->getStudentProgramReportPerSubFinishedTotal($start_date, $end_date, $subject_code);
+
+		$this->load->view('header-print');
+		$this->load->view('reports/student_program_report_per_sub', $data);
+		$this->load->view('footer-print');
+
+	}
+
+	function t3ProgramReportGCAT()
+	{
+		$start_date = "1990-01-01"; $end_date= "2020-01-01";
+
+		$data['t3_count_list'] = $this->report_program->gett3ProgramReportGCAT($start_date, $end_date);
+		$data['t3_total'] = $this->report_program->getT3ProgramReportGCATTotal($start_date, $end_date);
+		$this->load->view('header-print');
+		$this->load->view('reports/t3_program_report_gcat', $data);
+		$this->load->view('footer-print');
+
 
 	}
 	
