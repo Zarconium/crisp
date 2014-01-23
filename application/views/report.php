@@ -112,7 +112,9 @@
 			</div>
 		</div>
 		
-	<!-- T3 Program Report -->
+	<!-- T3 Program Report 
+		NOT YET DONE
+		-->
 		<div class="panel-group" id="accordion">
 			<div class="panel panel-info">
 				<div class="panel-heading">
@@ -135,7 +137,7 @@
 							
 							<div class="button-groups">
 							
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -186,7 +188,9 @@
 			</div>
 		</div>
 		
-	<!-- T3 Program Report per Subject -->
+	<!-- T3 Program Report per Subject
+		NOT YET DONE
+		-->
 		<div class="panel-group" id="accordion">
 			<div class="panel panel-info">
 				<div class="panel-heading">
@@ -216,7 +220,7 @@
 							
 							<div class="button-groups">
 							
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
