@@ -128,7 +128,6 @@ class Reports_Controller extends CI_Controller {
 
 	}
 	
-	//still being fixed 
 	function getAllStudentsByPogram()
 	{
 		$subject = $this->input->post('suc_student_subject');
