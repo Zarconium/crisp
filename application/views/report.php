@@ -35,7 +35,7 @@
 							
 							<div class="button-groups">
 							
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/studentProgramReportGCAT'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -62,7 +62,7 @@
 							</div>
 							
 							<div class="form-group">
-								<label>School</label>
+								<label>End Date</label>
 								<input type="date" class="form-control" name="program_student_best_end_date">
 							</div>
 							
@@ -96,7 +96,7 @@
 							</div>
 							
 							<div class="form-group">
-								<label>School</label>
+								<label>End Date</label>
 								<input type="date" class="form-control" name="program_student_adept_end_date">
 							</div>
 							
@@ -112,7 +112,9 @@
 			</div>
 		</div>
 		
-	<!-- T3 Program Report -->
+	<!-- T3 Program Report 
+		NOT YET DONE
+		-->
 		<div class="panel-group" id="accordion">
 			<div class="panel panel-info">
 				<div class="panel-heading">
@@ -129,13 +131,13 @@
 							</div>
 							
 							<div class="form-group">
-								<label>School</label>
+								<label>End Date</label>
 								<input type="date" class="form-control" name="program_st3_end_date">
 							</div>
 							
 							<div class="button-groups">
 							
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -158,25 +160,25 @@
 					<div class="panel-body">
 						<form class="form" role="form">
 							<div class="form-group">
-								<label>Subject</label>
+								<label>Start Date</label>
 								<input type="date" class="form-control" name="program_student_subject_start_date">
 							</div>
 							
 							<div class="form-group">
-								<label>School</label>
+								<label>End Date</label>
 								<input type="date" class="form-control" name="program_student_subject_end_date">
 							</div>
 							
 							<div class="form-group">
 								<label>Subject</label>
-								<select class="form-control" name="program_student_subject__subject">
+								<select class="form-control" name="program_student_subject_subject">
 									<option value="option1">Option 1</option>
 								</select>
 							</div>
 							
 							<div class="button-groups">
 							
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/studentProgramReportPerSub'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -186,7 +188,9 @@
 			</div>
 		</div>
 		
-	<!-- T3 Program Report per Subject -->
+	<!-- T3 Program Report per Subject
+		NOT YET DONE
+		-->
 		<div class="panel-group" id="accordion">
 			<div class="panel panel-info">
 				<div class="panel-heading">
@@ -198,12 +202,12 @@
 					<div class="panel-body">
 						<form class="form" role="form">
 							<div class="form-group">
-								<label>Subject</label>
+								<label>Start Date</label>
 								<input type="date" class="form-control" name="program_t3_subject_start_date">
 							</div>
 							
 							<div class="form-group">
-								<label>School</label>
+								<label>End Date</label>
 								<input type="date" class="form-control" name="program_t3_subject_end_date">
 							</div>
 							
@@ -216,7 +220,7 @@
 							
 							<div class="button-groups">
 							
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -269,7 +273,7 @@
 							</div>
 							<div class="button-groups">
 							
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/getAllStudentsByPogram'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -371,7 +375,7 @@
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/getAllGCATStudentSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -408,7 +412,7 @@
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/getAllAdeptStudentSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -486,7 +490,7 @@
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/getAllT3BestSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -524,7 +528,7 @@
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/getAllT3AdeptSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -563,7 +567,7 @@
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/getAllT3GCATSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -608,7 +612,7 @@
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/getAllT3SMPSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
