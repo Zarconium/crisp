@@ -371,7 +371,7 @@
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/getAllGCATStudentSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -408,7 +408,7 @@
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/getAllAdeptStudentSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -486,7 +486,7 @@
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/getAllT3BestSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -524,7 +524,7 @@
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/getAllT3AdeptSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -563,7 +563,7 @@
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/getAllT3GCATSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -608,7 +608,7 @@
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/getAllT3SMPSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>

@@ -143,13 +143,11 @@ class Reports_Controller extends CI_Controller {
 	function getAllSMPStudentSUCReport()
 	{
 	
-		//$startDate = $this->input->post('myBirthday');
-		//$data['data'] = $this->name->get($startDate, $endDate);
-		$subject = $this->input->post('suc_student_subject');
-		$school_code = $this->input->post('suc_student_subject');
-		$semester = $this->input->post('suc_student_subject');
-		$teacher_code = $this->input->post('suc_student_subject');
-		$class_name = $this->input->post('suc_student_subject');
+		$subject = $this->input->post('suc_smp_class_list_subject');
+		$school_code = $this->input->post('suc_smp_class_list_school');
+		$semester = $this->input->post('suc_smp_class_list_semester');
+		$teacher_code = $this->input->post('suc_smp_class_list_teacher');
+
 		
 		$data['smp_student_list'] = $this->report_suc->getSMPStudent($subject,$school_code,$semester,$teacher_code,$class_name);
 		$this->load->view('header-print', $data);
@@ -159,9 +157,16 @@ class Reports_Controller extends CI_Controller {
 
 	function getAllGCATStudentSUCReport()
 	{
+		$subject = $this->input->post('suc_gcat_student_list_subject');
+		$school_code = $this->input->post('suc_gcat_student_list_school');
+		$semester = $this->input->post('suc_gcat_student_list_semester');
+		$teacher_code = $this->input->post('suc_gcat_student_list_teacher');
+		
 		$data['gcat_student_list'] = $this->report_suc->getGCATStudent($subject,$school_code,$semester,$teacher_code,$class_name);
 	
+		$this->load->view('header-print', $data);
 		$this->load->view('reports/suc_report_gcat_students', $data);
+		$this->load->view('footer-print', $data);
 	}
 
 	function getAllBestStudentSUCReport()
@@ -172,41 +177,74 @@ class Reports_Controller extends CI_Controller {
 		$date_end = $this->input->post('suc_best_student_list_date_end');
 		
 		$data['best_student_list'] = $this->report_suc->getBestStudent($school_code,$date_start,$date_end);
+		$this->load->view('header-print', $data);
 		$this->load->view('reports/suc_report_best_students', $data);
+		$this->load->view('footer-print', $data);
 	}
 
 	function getAllAdeptStudentSUCReport()
 	{
+		$school_code = $this->input->post('suc_adept_student_list_school');
+		$date_start = $this->input->post('suc_adept_student_list_date_start');
+		$date_end = $this->input->post('suc_adept_student_list_date_end');
+		
 		$data['adept_student_list'] = $this->report_suc->getAdeptStudent($school_code,$date_start,$date_end);
+		
+		$this->load->view('header-print', $data);
 		$this->load->view('reports/suc_report_adept_students', $data);
+		$this->load->view('footer-print', $data);
 	}
 
 	function getAllT3BestSUCReport()
-	{
+	{	
+		$school_code = $this->input->post('suc_t3_best_class_list_school');
+		$date_start = $this->input->post('suc_t3_best_class_list_date_start');
+		$date_end = $this->input->post('suc_t3_best_class_list_date_end');
+		
 		$data['T3_best_list'] = $this->report_suc->getT3Best($school_code,$date_start,$date_end);
 	
+		$this->load->view('header-print', $data);
 		$this->load->view('reports/suc_report_T3_Best', $data);
+		$this->load->view('footer-print', $data);
 	}
 
 	function getAllT3AdeptSUCReport()
 	{
+		$school_code = $this->input->post('suc_t3_adept_class_list_school');
+		$date_start = $this->input->post('suc_t3_adept_class_list_date_start');
+		$date_end = $this->input->post('suc_t3_adept_class_list_date_end');
+		
 		$data['T3_adept_list'] = $this->report_suc->getT3Adept ($school_code,$date_start,$date_end);
 	
+		$this->load->view('header-print', $data);
 		$this->load->view('reports/suc_report_T3_Adept', $data);
+		$this->load->view('footer-print', $data);
 	}
 
 	function getAllT3GCATSUCReport()
 	{
+		$school_code = $this->input->post('suc_t3_gcat_class_list_school');
+		$date_start = $this->input->post('suc_t3_gcat_class_list_date_start');
+		$date_end = $this->input->post('suc_t3_gcat_class_list_date_end');
+		
 		$data['T3_GCAT_list'] = $this->report_suc->getT3Gcat($school_code,$date_start,$date_end);
 	
+		$this->load->view('header-print', $data);
 		$this->load->view('reports/suc_report_T3_GCAT', $data);
+		$this->load->view('footer-print', $data);
 	}
 
 	function getAllT3SMPSUCReport()
 	{
+		$school_code = $this->input->post('suc_smp_school');
+		$subject = $this->input->post('suc_smp_subject');
+		$semester = $this->input->post('suc_smp_semester');
+		
 		$data['SMP_total_list'] = $this->report_suc->getSMPTotal($school_code,$subject,$semester);
 	
+		$this->load->view('header-print', $data);
 		$this->load->view('reports/suc_report_smp_total', $data);
+		$this->load->view('footer-print', $data);
 	}
 
 
