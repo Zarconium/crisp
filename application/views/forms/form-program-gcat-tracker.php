@@ -57,9 +57,67 @@
 
 		<legend>Student List</legend>
 
+		<div class="col-md-3">
+			<div class="panel panel-info">
+			<div class="panel-heading">Add or Edit Student</div>
+			<div class="panel-body">
+			<form class="form" role="form">
+					<div class="form-group">		
+						<label>Last Name</label>			
+						<input class="form-control" type="text" id="lname">
+					</div>
+					
+					<div class="form-group">
+						<label>First Name</label>
+						<input type="text" class="form-control" id="fname">
+					</div>
+					
+					<div class="form-group">
+						<label>Middle Initial</label>
+						<input type="text" class="form-control" id="mname">
+					</div>
+					
+				</form>
+				<form class="form" role="form">
+					
+					<div class="form-group">
+						<label>Session ID</label><br/>
+						<input type="text" class="form-control" id="session_id">
+					</div>
+					
+					<div class="form-group">
+						<label>Test Date</label><br/>
+						<input type="date" class="form-control" id="test_date"> 
+					</div>		
+
+					<div class="form-group">
+						<label>Status</label>
+						<select id="status" class="form-control">
+							<option value="passed">Passed</option>
+							<option value="failed">Failed</option>
+							<option value="incomplete">Incomplete</option>
+							<option value="completed">Completed</option>
+							<option value="dropped">Dropped</option>
+						</select>
+					</div>
+					
+					<div class="form-group">
+						<label>Remarks</label><br/>
+						<input type="text" class="form-control" id="remarks"> 
+					</div>		
+
+					<div class="submit-button">
+						<button class="btn btn-primary" name="submit">Add to List</button>
+					</div>
+				</form>
+		
+			</div>
+			</div>
+		</div>
+		
 		<div class="col-md-9">
 			<div class="customize-btn-group">
-				<button type="button" class="btn btn-info">Batch Upload</button>
+				<button type="button" class="btn btn-success">Batch Upload</button>
 				<button type="button" class="btn btn-danger" onclick="student_delete();">Delete</button>
 			</div>
 			<table class="table" id="student_table">

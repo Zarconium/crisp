@@ -198,7 +198,7 @@
 			<div class="tab-pane" id="class_mastertrainer">
 				
 			  <div class="button-groups">
-					<a href="<?php echo base_url('dbms/form_mastertrainer_class_add'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
+					<a href="<?php echo base_url('dbms/form_mastertrainer_classlist'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchClassForMasterTrainer">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
@@ -214,7 +214,7 @@
 					</tr>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td><a href="<?php echo base_url('dbms/form_class_add'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td><a href="<?php echo base_url('dbms/form_mastertrainer_classlist'); ?>">View</a> | <a href="#">Delete</a></td>
 						<td>Peralta, Philip</td>
 						<td>BPO101</td>
 						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfTeachersForMasterTrainer">View List</button></td>
