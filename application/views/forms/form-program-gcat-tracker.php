@@ -37,16 +37,6 @@
 			</div>
 
 			<div class="form-group">
-				<label>Subject</label>
-				<select class="form-control" name="subject">
-				<?php foreach ($subjects as $subject): ?>
-					<option value="<?php echo $subject->Subject_ID; ?>" <?php echo set_select('school', $subject->Subject_ID); ?>><?php echo $subject->Subject_Code; ?></option>
-				<?php endforeach; ?>
-				</select>
-				<?php echo form_error('subject'); ?>
-			</div>
-
-			<div class="form-group">
 				<label>Semester</label>
 				<input class="form-control" type="text" name="semester" value="<?php echo set_value('semester'); ?>" />
 				<?php echo form_error('semester'); ?>
@@ -66,7 +56,7 @@
 		</div>
 
 		<legend>Student List</legend>
-		
+
 		<div class="col-md-9">
 			<div class="customize-btn-group">
 				<button type="button" class="btn btn-info">Batch Upload</button>
