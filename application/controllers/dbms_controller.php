@@ -729,10 +729,10 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('proctor_name', 'Proctor Name', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('subject', 'Subject', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('semester', 'First Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('year', 'Middle Initial', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('section', 'Birthdate', 'trim|required|xss_clean');
-			// Institutions
+			$this->form_validation->set_rules('semester', 'Semester', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('year', 'Year Level', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('section', 'Section', 'trim|required|xss_clean');
+			// Student list
 			$this->form_validation->set_rules('student_full_name[]', 'Student Full Name', 'trim|xss_clean');
 			$this->form_validation->set_rules('student_student_number[]', 'Student Number', 'trim|xss_clean');
 			$this->form_validation->set_rules('student_session_id[]', 'Session ID', 'trim|xss_clean');
