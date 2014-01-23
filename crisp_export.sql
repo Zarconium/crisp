@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2014 at 11:43 PM
+-- Generation Time: Jan 23, 2014 at 08:30 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -53,17 +53,17 @@ INSERT INTO `adept_student` (`Tracker_ID`, `Control_Number`, `Username`, `CD?`) 
 
 CREATE TABLE IF NOT EXISTS `adept_t3_attendance` (
   `Adept_T3_Attendance_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Orientation_Day` datetime DEFAULT NULL,
-  `Site_Visit` datetime DEFAULT NULL,
-  `Day_1` datetime DEFAULT NULL,
-  `Day_2` datetime DEFAULT NULL,
-  `Day_3` datetime DEFAULT NULL,
-  `Day_4` datetime DEFAULT NULL,
-  `Day_5` datetime DEFAULT NULL,
-  `Day_6` datetime DEFAULT NULL,
-  `GCAT` datetime DEFAULT NULL,
-  `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Orientation_Day` datetime NULL DEFAULT NULL,
+  `Site_Visit` datetime NULL DEFAULT NULL,
+  `Day_1` datetime NULL DEFAULT NULL,
+  `Day_2` datetime NULL DEFAULT NULL,
+  `Day_3` datetime NULL DEFAULT NULL,
+  `Day_4` datetime NULL DEFAULT NULL,
+  `Day_5` datetime NULL DEFAULT NULL,
+  `Day_6` datetime NULL DEFAULT NULL,
+  `GCAT` datetime NULL DEFAULT NULL,
+  `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Updated_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Adept_T3_Attendance_ID`),
   UNIQUE KEY `Adept_T3_Attendance_ID_UNIQUE` (`Adept_T3_Attendance_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `application` (
   `Contract?` tinyint(1) NOT NULL DEFAULT '0',
   `Date` datetime NOT NULL,
   `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Updated_At` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`Application_ID`),
   UNIQUE KEY `Application_ID_UNIQUE` (`Application_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -225,13 +225,13 @@ INSERT INTO `best_student` (`Tracker_ID`, `Control_Number`, `Username`, `CD?`) V
 
 CREATE TABLE IF NOT EXISTS `best_t3_attendance` (
   `Best_T3_Attendance_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Orientation_Day` datetime DEFAULT NULL,
-  `Site_Visit` datetime DEFAULT NULL,
-  `Day_1` datetime DEFAULT NULL,
-  `Day_2` datetime DEFAULT NULL,
-  `Day_3` datetime DEFAULT NULL,
+  `Orientation_Day` datetime NULL DEFAULT NULL,
+  `Site_Visit` datetime NULL DEFAULT NULL,
+  `Day_1` datetime NULL DEFAULT NULL,
+  `Day_2` datetime NULL DEFAULT NULL,
+  `Day_3` datetime NULL DEFAULT NULL,
   `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Updated_At` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`Best_T3_Attendance_ID`),
   UNIQUE KEY `Best_T3_Attendance_ID_UNIQUE` (`Best_T3_Attendance_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -406,7 +406,7 @@ CREATE TABLE IF NOT EXISTS `gcat_student` (
   `GCAT_English_Proficiency` int(11) NOT NULL DEFAULT '0',
   `GCAT_Basic_Skills_Test_Overall_Score` int(11) NOT NULL DEFAULT '0',
   `Session_ID` varchar(45) DEFAULT NULL,
-  `Test_Date` datetime DEFAULT NULL,
+  `Test_Date` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`Tracker_ID`),
   UNIQUE KEY `Session_ID_UNIQUE` (`Session_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
@@ -468,8 +468,8 @@ CREATE TABLE IF NOT EXISTS `internship_student` (
   `Tracker_ID` int(11) NOT NULL,
   `Company_Information` text,
   `Company_Address` text,
-  `Start_Date` datetime DEFAULT NULL,
-  `End_Date` datetime DEFAULT NULL,
+  `Start_Date` datetime NULL DEFAULT NULL,
+  `End_Date` datetime NULL DEFAULT NULL,
   `Total_Work_Hours` int(11) DEFAULT NULL,
   `Task` text,
   `English_Proficiency` int(11) DEFAULT NULL,
@@ -721,7 +721,7 @@ CREATE TABLE IF NOT EXISTS `school` (
   `Email` varchar(45) NOT NULL,
   `Point Person` varchar(45) NOT NULL,
   `Point_Person_Contact` varchar(13) NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Updated_At` datetime NULL DEFAULT NULL,
   `Created_At` datetime NOT NULL,
   `Code` varchar(25) NOT NULL,
   `Branch` varchar(45) NOT NULL,
@@ -903,7 +903,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_attendance` (
   `Time_Out?` tinyint(1) NOT NULL DEFAULT '0',
   `Date` datetime NOT NULL,
   `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Updated_At` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`SMP_T3_Attendance_ID`),
   UNIQUE KEY `SMP_T3_Attendance_ID_UNIQUE` (`SMP_T3_Attendance_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -958,7 +958,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_site_visit` (
   `Event_Date` datetime NOT NULL,
   `Feedback_Form?` tinyint(1) NOT NULL DEFAULT '0',
   `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Updated_At` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`SMP_T3_Site_Visit_ID`),
   UNIQUE KEY `SMP_T3_Site_Visit_ID_UNIQUE` (`SMP_T3_Site_Visit_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -1030,7 +1030,7 @@ CREATE TABLE IF NOT EXISTS `stipend_tracking` (
   `Amount` double NOT NULL DEFAULT '0',
   `Claimed?` tinyint(1) NOT NULL DEFAULT '0',
   `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Updated_At` datetime NULL DEFAULT NULL,
   `Teacher_ID` int(11) NOT NULL,
   PRIMARY KEY (`Stipend_Tracking_ID`),
   KEY `fk_Stipend_Tracking_Teacher1_idx` (`Teacher_ID`)
@@ -1115,7 +1115,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   UNIQUE KEY `Student_ID_UNIQUE` (`Student_ID`),
   UNIQUE KEY `Code` (`Code`),
   KEY `fk_Student_School1_idx` (`School_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Dumping data for table `student`
@@ -1144,8 +1144,8 @@ INSERT INTO `student` (`Student_ID`, `School_ID`, `Last_Name`, `First_Name`, `Mi
 (20, 2, 'Lee', 'Sungmin', 'P', NULL, '102549', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '16', 'Ilsan', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1346544', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 1, 0, 1, 1, 1, '12487'),
 (22, 1, 'Federico', 'Joy', 'H', '', '100001', 'married', '1993-11-08 00:00:00', 'Caloocan', 'F', 'Filipino', '54', 'C. Cordero', 'Caloocan', 'Manila', 'NCR', '', '09171234567', '1234567', 'joy@4real.com', '', 'BS MIS', 4, 2014, 0, 0, 0, 0, 0, '1100001'),
 (23, 1, 'peralta', 'john philip', 'A', '', '102943', 'single', '1993-12-26 00:00:00', 'Quezon City', 'M', 'Filipino', '5', 'Santol', 'Quezon City', 'Batanes', '2', '', '09158437694', '429482456', 'jpap@gmail.com', 'facebook.com/phil', 'BS Muro ami', 4, 2018, 1, 1, 0, 0, 0, '1102943'),
-(24, 1, 'peralta', 'john philip', 'A', '', '102944', 'single', '1993-12-26 00:00:00', 'Quezon City', 'M', 'Filipino', '5', 'Santol', 'Quezon City', 'Batanes', '2', '', '09158437694', '429482456', 'jpap@gmail.com', 'facebook.com/phil', 'BS Muro ami', 4, 2018, 1, 1, 0, 0, 0, '1102944'),
-(26, 1, 'Cruz', 'Raymond', 'C', 'Jr', '101047', 'single', '0000-00-00 00:00:00', 'Mandaluyong', 'M', 'Russian', '3515', 'Camden', 'Cainta', 'Rizal', 'IV', NULL, '9178316188', '6553797', 'rjncruz@gmail.com', 'rjncruz', 'BS Management', 4, 2020, 0, 0, 0, 0, 0, '1101047');
+(24, 1, 'peralta', 'john philip', 'A', '', '102944', 'single', '1993-12-26 00:00:00', 'Quezon City', 'M', 'Filipino', '5', 'Santol', 'Quezon City', 'Batanes', '2', '', '09158437694', '429482456', 'jpap@gmail.com', 'facebook.com/phil', 'AB Muro ami', 4, 2018, 1, 1, 0, 0, 0, '1102944'),
+(32, 1, 'Cruz', 'Raymond', 'C', 'Jr', '101047', 'single', '0000-00-00 00:00:00', 'Mandaluyong', 'M', 'Russian', '3515', 'Camden', 'Cainta', 'Rizal', 'IV', NULL, '9178316188', '6553797', 'rjncruz@gmail.com', NULL, 'BS Management', 4, 2020, 0, 0, 0, 0, 0, '1101047');
 
 -- --------------------------------------------------------
 
@@ -1155,7 +1155,7 @@ INSERT INTO `student` (`Student_ID`, `School_ID`, `Last_Name`, `First_Name`, `Mi
 
 CREATE TABLE IF NOT EXISTS `student_application` (
   `Student_Application_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Contract?` tinyint(1) DEFAULT NULL,
   `Student_ID` int(11) NOT NULL,
   `Project_ID` int(11) NOT NULL,
@@ -1381,8 +1381,8 @@ INSERT INTO `subject` (`Subject_ID`, `Subject_Name`, `Subject_Code`) VALUES
 CREATE TABLE IF NOT EXISTS `t3_application` (
   `T3_Application_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Date` varchar(45) NOT NULL,
-  `Created_At` datetime NOT NULL,
-  `Updated_At` varchar(45) DEFAULT NULL,
+  `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Updated_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `Subject_ID` int(11) NOT NULL,
   PRIMARY KEY (`T3_Application_ID`),
   UNIQUE KEY `T3_Application_ID_UNIQUE` (`T3_Application_ID`),
@@ -1414,7 +1414,7 @@ CREATE TABLE IF NOT EXISTS `t3_class` (
   `Master_Trainer_ID` int(11) NOT NULL,
   `School_Year` varchar(10) NOT NULL,
   `Name` varchar(45) NOT NULL,
-  `Created_At` datetime DEFAULT NULL,
+  `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`T3_Class_ID`),
   UNIQUE KEY `T3_Class_ID_UNIQUE` (`T3_Class_ID`),
   KEY `fk_Section_School2` (`School_ID`),
@@ -1446,7 +1446,7 @@ CREATE TABLE IF NOT EXISTS `t3_tracker` (
   `T3_Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Status_ID` int(11) NOT NULL,
   `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Updated_At` datetime NULL DEFAULT NULL,
   `Contract?` tinyint(1) NOT NULL DEFAULT '0',
   `Remarks` varchar(250) DEFAULT NULL,
   `Subject_ID` int(11) NOT NULL,
@@ -1599,7 +1599,7 @@ CREATE TABLE IF NOT EXISTS `teacher_awards` (
   `Teacher_Awards_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Award` varchar(45) NOT NULL,
   `Awarding_Body` varchar(45) NOT NULL,
-  `Date_Received` datetime DEFAULT NULL,
+  `Date_Received` datetime NULL DEFAULT NULL,
   `Teacher_ID` int(11) NOT NULL,
   PRIMARY KEY (`Teacher_Awards_ID`),
   UNIQUE KEY `Teacher_Awards_ID_UNIQUE` (`Teacher_Awards_ID`),

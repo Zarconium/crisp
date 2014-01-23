@@ -10,7 +10,8 @@
   <li><a href="#teacher" data-toggle="tab">Teacher</a></li>
   <li><a href="#proctor" data-toggle="tab">Proctor</a></li>
   <li><a href="#trainer" data-toggle="tab">Master Trainer</a></li>
-  <li><a href="#program" data-toggle="tab">Programs</a></li>
+  <li><a href="#class" data-toggle="tab">Classes</a></li>
+  <li><a href="#tracker" data-toggle="tab">Trackers</a></li>
 </ul>		
 
 <div class="tab-content">
@@ -20,12 +21,11 @@
 			  <div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_student_application'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-					<button class="btn btn-info" data-toggle="modal" data-target="#batchStudent">
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchStudent">
 					  Batch Upload
 					</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-					<button class="btn btn-success">Refresh</button>
 			  </div>
 				<table class="table table-area">
 					<tr>
@@ -39,7 +39,7 @@
 					<?php foreach ($students as $student): ?>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td><a href="<?php echo base_url('dbms/form_student_profile'); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_student/' . $student->Student_ID); ?>">Delete</a></td>
+						<td><a href="<?php echo base_url('dbms/form_student_profile/' . $student->Student_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_student/' . $student->Student_ID); ?>">Delete</a></td>
 						<td><?php echo $student->Full_Name; ?></td>
 						<td><?php echo $student->School_Name; ?></td>
 						<td><?php echo $student->Subject_Codes; ?></td>
@@ -57,12 +57,11 @@
 			  <div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_teacher_application'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-					<button class="btn btn-info" data-toggle="modal" data-target="#batchTeacher">
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchTeacher">
 					  Batch Upload
 					</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-					<button class="btn btn-success">Refresh</button>
 			  </div>
 				<table class="table table-area">
 					<tr>
@@ -93,12 +92,11 @@
 			  <div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_proctor_application'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-					<button class="btn btn-info" data-toggle="modal" data-target="#batchProctor">
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchProctor">
 					  Batch Upload
 					</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-					<button class="btn btn-success">Refresh</button>
 			  </div>
 				<table class="table table-area">
 					<tr>
@@ -125,12 +123,11 @@
 	  <div class="button-groups">
 			<a href="<?php echo base_url('dbms/form_mastertrainer_application'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
 			<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-			<button class="btn btn-info" data-toggle="modal" data-target="#batchTrainer">
+			<button class="btn btn-success" data-toggle="modal" data-target="#batchTrainer">
 			  Batch Upload
 			</button>
 			<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
 			<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-			<button class="btn btn-success">Refresh</button>
 	  </div>
 		<table class="table table-area">
 			<tr>
@@ -150,17 +147,11 @@
 		</table>
   </div>
   
-  <div class="tab-pane fade" id="program">
+  <div class="tab-pane fade" id="class">
   
 		<ul class="nav nav-tabs">
 		  <li class="active"><a href="#class_student" data-toggle="tab">Student Classes</a></li>
 		  <li><a href="#class_mastertrainer	" data-toggle="tab">Master Trainer's Classes</a></li>
-		  <li><a href="#smp" data-toggle="tab">SMP Tracker</a></li>
-		  <li><a href="#gcat" data-toggle="tab">GCAT Tracker</a></li>
-		  <li><a href="#best" data-toggle="tab">BEST Tracker</a></li>
-		  <li><a href="#adept" data-toggle="tab">ADEPT Tracker</a></li>
-		  <li><a href="#best_t3" data-toggle="tab">BEST T3 Tracker</a></li>
-		  <li><a href="#adept_t3 " data-toggle="tab">ADEPT T3 Tracker</a></li>
 		</ul>
 		
 		<div class="tab-content">
@@ -230,8 +221,25 @@
 					</tr>
 				</table>
 			</div>
+
 			
-			<div class="tab-pane fade" id="smp">
+
+			
+		</div>
+	</div>
+
+	<div class="tab-pane" id="tracker">	
+	
+		<ul class="nav nav-tabs">
+		  <li class="active"><a href="#smp" data-toggle="tab">SMP Tracker</a></li>
+		  <li><a href="#gcat" data-toggle="tab">GCAT Tracker</a></li>
+		  <li><a href="#best" data-toggle="tab">BEST Tracker</a></li>
+		  <li><a href="#adept" data-toggle="tab">ADEPT Tracker</a></li>
+		  <li><a href="#best_t3" data-toggle="tab">T3 BEST Tracker</a></li>
+		  <li><a href="#adept_t3 " data-toggle="tab">T3 ADEPT Tracker</a></li>
+		</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="smp">
 				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_program_smp_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
@@ -426,10 +434,8 @@
 					</tr>
 				</table>
 			</div>
-
-			
-		</div>
-
+	</div>
+	</div>
   </div>
   
 
