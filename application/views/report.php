@@ -24,12 +24,12 @@
 					<div class="panel-body">
 						<form class="form" role="form">
 							<div class="form-group">
-								<label>Subject</label>
+								<label>Start Date</label>
 								<input type="date" class="form-control" name="program_student_gcat_start_date">
 							</div>
 							
 							<div class="form-group">
-								<label>School</label>
+								<label>End Date</label>
 								<input type="date" class="form-control" name="program_student_gcat_end_date">
 							</div>
 							
@@ -57,7 +57,7 @@
 					<div class="panel-body">
 						<form class="form" role="form">
 							<div class="form-group">
-								<label>Subject</label>
+								<label>Start Date</label>
 								<input type="date" class="form-control" name="program_student_best_start_date">
 							</div>
 							
@@ -91,7 +91,7 @@
 					<div class="panel-body">
 						<form class="form" role="form">
 							<div class="form-group">
-								<label>Subject</label>
+								<label>Start Date</label>
 								<input type="date" class="form-control" name="program_student_adept_start_date">
 							</div>
 							
@@ -102,7 +102,7 @@
 							
 							<div class="button-groups">
 							
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<a href="<?php echo base_url('reports/studentAdeptProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -124,7 +124,7 @@
 					<div class="panel-body">
 						<form class="form" role="form">
 							<div class="form-group">
-								<label>Subject</label>
+								<label>Start Date</label>
 								<input type="date" class="form-control" name="program_t3_start_date">
 							</div>
 							
