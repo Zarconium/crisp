@@ -719,9 +719,90 @@ class Dbms_Controller extends CI_Controller
 	
 	function form_program_gcat_tracker()
 	{
-		$this->load->view('header');
-		$this->load->view('forms/form-program-gcat-tracker');
-		$this->load->view('footer');
+		$data['proctors'] = $this->proctor->getAllProctorsFormatted();
+		$data['schools'] = $this->school->getAllSchools();
+		$data['subjects'] = $this->subject->getAllSubjects();
+		$data['statuses'] = $this->status->getAllStatuses();
+
+		if($this->input->post())
+		{
+			$this->form_validation->set_rules('proctor_name', 'Proctor Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('subject', 'Subject', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('semester', 'First Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('year', 'Middle Initial', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('section', 'Birthdate', 'trim|required|xss_clean');
+			// Institutions
+			$this->form_validation->set_rules('student_full_name[]', 'Student Full Name', 'trim|xss_clean');
+			$this->form_validation->set_rules('student_student_number[]', 'Student Number', 'trim|xss_clean');
+			$this->form_validation->set_rules('student_session_id[]', 'Session ID', 'trim|xss_clean');
+			$this->form_validation->set_rules('student_test_date[]', 'Test Date', 'trim|xss_clean');
+			$this->form_validation->set_rules('student_status[]', 'Status', 'trim|xss_clean');
+			$this->form_validation->set_rules('student_remarks[]', 'Remarks', 'trim|xss_clean');
+
+			// $this->form_validation->set_message('is_unique', 'Teacher already exists.');
+			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+			if($this->input->post('submit'))
+			{
+				if($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-program-gcat-tracker', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					/*$t3_tracker = array
+					(
+						'Status_ID' => $this->input->post('status'),
+						'Contract?' => $this->input->post('contract'),
+						'Remarks' => $this->input->post('remarks'),
+						'Subject_ID' => $this->input->post('subject')
+					);
+					$t3_tracker_id = $this->teacher->addTeacher($t3_tracker);
+
+					for ($i = 0; $i < count($this->input->post('institutions_worked_institution')); $i++)
+					{ 
+						$teacher_training_experience = array
+						(
+							'Teacher_ID' => $teacher_id,
+							'Institution' => $this->input->post('institutions_worked_institution')[$i],
+							'Position' => $this->input->post('institutions_worked_position')[$i],
+							'Date' => $this->input->post('institutions_worked_year_started')[$i],
+							'Level_Taught' => $this->input->post('institutions_worked_level_taught')[$i],
+							'Courses_Taught' => $this->input->post('institutions_worked_courses_taught')[$i],
+							'Number_of_Years_in_Institution' => $this->input->post('institutions_worked_number_of_years_in_institution')[$i]
+						);
+						$this->teacher->addTeacherTrainingExperience($teacher_training_experience);
+					}*/
+
+					$data['form_success'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-program-gcat-tracker', $data);
+					$this->load->view('footer');
+				}
+			}
+			elseif($this->input->post('save_draft'))
+			{
+				$this->form_validation->run();
+
+				$data['draft_saved'] = TRUE;
+
+				$this->load->view('header');
+				$this->load->view('forms/form-program-gcat-tracker', $data);
+				$this->load->view('footer');
+			}
+		}
+		else
+		{
+			$this->load->view('header');
+			$this->load->view('forms/form-program-gcat-tracker', $data);
+			$this->load->view('footer');
+		}
 	}
 	
 	function form_program_best_tracker()

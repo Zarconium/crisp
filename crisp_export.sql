@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2014 at 11:43 PM
+-- Generation Time: Jan 23, 2014 at 08:30 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -1115,7 +1115,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   UNIQUE KEY `Student_ID_UNIQUE` (`Student_ID`),
   UNIQUE KEY `Code` (`Code`),
   KEY `fk_Student_School1_idx` (`School_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Dumping data for table `student`
@@ -1144,8 +1144,8 @@ INSERT INTO `student` (`Student_ID`, `School_ID`, `Last_Name`, `First_Name`, `Mi
 (20, 2, 'Lee', 'Sungmin', 'P', NULL, '102549', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '16', 'Ilsan', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1346544', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 1, 0, 1, 1, 1, '12487'),
 (22, 1, 'Federico', 'Joy', 'H', '', '100001', 'married', '1993-11-08 00:00:00', 'Caloocan', 'F', 'Filipino', '54', 'C. Cordero', 'Caloocan', 'Manila', 'NCR', '', '09171234567', '1234567', 'joy@4real.com', '', 'BS MIS', 4, 2014, 0, 0, 0, 0, 0, '1100001'),
 (23, 1, 'peralta', 'john philip', 'A', '', '102943', 'single', '1993-12-26 00:00:00', 'Quezon City', 'M', 'Filipino', '5', 'Santol', 'Quezon City', 'Batanes', '2', '', '09158437694', '429482456', 'jpap@gmail.com', 'facebook.com/phil', 'BS Muro ami', 4, 2018, 1, 1, 0, 0, 0, '1102943'),
-(24, 1, 'peralta', 'john philip', 'A', '', '102944', 'single', '1993-12-26 00:00:00', 'Quezon City', 'M', 'Filipino', '5', 'Santol', 'Quezon City', 'Batanes', '2', '', '09158437694', '429482456', 'jpap@gmail.com', 'facebook.com/phil', 'BS Muro ami', 4, 2018, 1, 1, 0, 0, 0, '1102944'),
-(26, 1, 'Cruz', 'Raymond', 'C', 'Jr', '101047', 'single', '0000-00-00 00:00:00', 'Mandaluyong', 'M', 'Russian', '3515', 'Camden', 'Cainta', 'Rizal', 'IV', NULL, '9178316188', '6553797', 'rjncruz@gmail.com', 'rjncruz', 'BS Management', 4, 2020, 0, 0, 0, 0, 0, '1101047');
+(24, 1, 'peralta', 'john philip', 'A', '', '102944', 'single', '1993-12-26 00:00:00', 'Quezon City', 'M', 'Filipino', '5', 'Santol', 'Quezon City', 'Batanes', '2', '', '09158437694', '429482456', 'jpap@gmail.com', 'facebook.com/phil', 'AB Muro ami', 4, 2018, 1, 1, 0, 0, 0, '1102944'),
+(32, 1, 'Cruz', 'Raymond', 'C', 'Jr', '101047', 'single', '0000-00-00 00:00:00', 'Mandaluyong', 'M', 'Russian', '3515', 'Camden', 'Cainta', 'Rizal', 'IV', NULL, '9178316188', '6553797', 'rjncruz@gmail.com', NULL, 'BS Management', 4, 2020, 0, 0, 0, 0, 0, '1101047');
 
 -- --------------------------------------------------------
 
