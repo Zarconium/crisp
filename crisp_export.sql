@@ -53,17 +53,17 @@ INSERT INTO `adept_student` (`Tracker_ID`, `Control_Number`, `Username`, `CD?`) 
 
 CREATE TABLE IF NOT EXISTS `adept_t3_attendance` (
   `Adept_T3_Attendance_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Orientation_Day` datetime DEFAULT NULL,
-  `Site_Visit` datetime DEFAULT NULL,
-  `Day_1` datetime DEFAULT NULL,
-  `Day_2` datetime DEFAULT NULL,
-  `Day_3` datetime DEFAULT NULL,
-  `Day_4` datetime DEFAULT NULL,
-  `Day_5` datetime DEFAULT NULL,
-  `Day_6` datetime DEFAULT NULL,
-  `GCAT` datetime DEFAULT NULL,
-  `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Orientation_Day` timestamp DEFAULT NULL,
+  `Site_Visit` timestamp DEFAULT NULL,
+  `Day_1` timestamp DEFAULT NULL,
+  `Day_2` timestamp DEFAULT NULL,
+  `Day_3` timestamp DEFAULT NULL,
+  `Day_4` timestamp DEFAULT NULL,
+  `Day_5` timestamp DEFAULT NULL,
+  `Day_6` timestamp DEFAULT NULL,
+  `GCAT` timestamp DEFAULT NULL,
+  `Created_At` timestamp NOT NULL,
+  `Updated_At` timestamp DEFAULT NULL,
   PRIMARY KEY (`Adept_T3_Attendance_ID`),
   UNIQUE KEY `Adept_T3_Attendance_ID_UNIQUE` (`Adept_T3_Attendance_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -151,9 +151,9 @@ CREATE TABLE IF NOT EXISTS `application` (
   `Answer_1` text,
   `Answer_2` text,
   `Contract?` tinyint(1) NOT NULL DEFAULT '0',
-  `Date` datetime NOT NULL,
-  `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Date` timestamp NOT NULL,
+  `Created_At` timestamp NOT NULL,
+  `Updated_At` timestamp DEFAULT NULL,
   PRIMARY KEY (`Application_ID`),
   UNIQUE KEY `Application_ID_UNIQUE` (`Application_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -225,13 +225,13 @@ INSERT INTO `best_student` (`Tracker_ID`, `Control_Number`, `Username`, `CD?`) V
 
 CREATE TABLE IF NOT EXISTS `best_t3_attendance` (
   `Best_T3_Attendance_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Orientation_Day` datetime DEFAULT NULL,
-  `Site_Visit` datetime DEFAULT NULL,
-  `Day_1` datetime DEFAULT NULL,
-  `Day_2` datetime DEFAULT NULL,
-  `Day_3` datetime DEFAULT NULL,
-  `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Orientation_Day` timestamp DEFAULT NULL,
+  `Site_Visit` timestamp DEFAULT NULL,
+  `Day_1` timestamp DEFAULT NULL,
+  `Day_2` timestamp DEFAULT NULL,
+  `Day_3` timestamp DEFAULT NULL,
+  `Created_At` timestamp NOT NULL,
+  `Updated_At` timestamp DEFAULT NULL,
   PRIMARY KEY (`Best_T3_Attendance_ID`),
   UNIQUE KEY `Best_T3_Attendance_ID_UNIQUE` (`Best_T3_Attendance_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -406,7 +406,7 @@ CREATE TABLE IF NOT EXISTS `gcat_student` (
   `GCAT_English_Proficiency` int(11) NOT NULL DEFAULT '0',
   `GCAT_Basic_Skills_Test_Overall_Score` int(11) NOT NULL DEFAULT '0',
   `Session_ID` varchar(45) DEFAULT NULL,
-  `Test_Date` datetime DEFAULT NULL,
+  `Test_Date` timestamp DEFAULT NULL,
   PRIMARY KEY (`Tracker_ID`),
   UNIQUE KEY `Session_ID_UNIQUE` (`Session_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
@@ -468,8 +468,8 @@ CREATE TABLE IF NOT EXISTS `internship_student` (
   `Tracker_ID` int(11) NOT NULL,
   `Company_Information` text,
   `Company_Address` text,
-  `Start_Date` datetime DEFAULT NULL,
-  `End_Date` datetime DEFAULT NULL,
+  `Start_Date` timestamp DEFAULT NULL,
+  `End_Date` timestamp DEFAULT NULL,
   `Total_Work_Hours` int(11) DEFAULT NULL,
   `Task` text,
   `English_Proficiency` int(11) DEFAULT NULL,
@@ -495,7 +495,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   `Log_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Made_By` varchar(100) NOT NULL,
   `Changes` text NOT NULL,
-  `Created_At` datetime NOT NULL,
+  `Created_At` timestamp NOT NULL,
   PRIMARY KEY (`Log_ID`),
   UNIQUE KEY `Log_ID_UNIQUE` (`Log_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
@@ -664,7 +664,7 @@ CREATE TABLE IF NOT EXISTS `related_trainings_attended` (
   `Related_Trainings_Attended_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Training` varchar(45) NOT NULL,
   `Training_Body` varchar(250) NOT NULL,
-  `Training_Date` datetime NOT NULL,
+  `Training_Date` timestamp NOT NULL,
   PRIMARY KEY (`Related_Trainings_Attended_ID`),
   UNIQUE KEY `Related_Trainings_Attended_ID_UNIQUE` (`Related_Trainings_Attended_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
@@ -721,8 +721,8 @@ CREATE TABLE IF NOT EXISTS `school` (
   `Email` varchar(45) NOT NULL,
   `Point Person` varchar(45) NOT NULL,
   `Point_Person_Contact` varchar(13) NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
-  `Created_At` datetime NOT NULL,
+  `Updated_At` timestamp DEFAULT NULL,
+  `Created_At` timestamp NOT NULL,
   `Code` varchar(25) NOT NULL,
   `Branch` varchar(45) NOT NULL,
   PRIMARY KEY (`School_ID`),
@@ -901,9 +901,9 @@ CREATE TABLE IF NOT EXISTS `smp_t3_attendance` (
   `Lunch?` tinyint(1) NOT NULL DEFAULT '0',
   `PM_Snack?` tinyint(1) NOT NULL DEFAULT '0',
   `Time_Out?` tinyint(1) NOT NULL DEFAULT '0',
-  `Date` datetime NOT NULL,
-  `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Date` timestamp NOT NULL,
+  `Created_At` timestamp NOT NULL,
+  `Updated_At` timestamp DEFAULT NULL,
   PRIMARY KEY (`SMP_T3_Attendance_ID`),
   UNIQUE KEY `SMP_T3_Attendance_ID_UNIQUE` (`SMP_T3_Attendance_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -955,10 +955,10 @@ CREATE TABLE IF NOT EXISTS `smp_t3_site_visit` (
   `SMP_T3_Site_Visit_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Training_Location` varchar(45) NOT NULL,
   `Company_Host` varchar(45) NOT NULL,
-  `Event_Date` datetime NOT NULL,
+  `Event_Date` timestamp NOT NULL,
   `Feedback_Form?` tinyint(1) NOT NULL DEFAULT '0',
-  `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Created_At` timestamp NOT NULL,
+  `Updated_At` timestamp DEFAULT NULL,
   PRIMARY KEY (`SMP_T3_Site_Visit_ID`),
   UNIQUE KEY `SMP_T3_Site_Visit_ID_UNIQUE` (`SMP_T3_Site_Visit_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -1029,8 +1029,8 @@ CREATE TABLE IF NOT EXISTS `stipend_tracking` (
   `Stipend_Tracking_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Amount` double NOT NULL DEFAULT '0',
   `Claimed?` tinyint(1) NOT NULL DEFAULT '0',
-  `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Created_At` timestamp NOT NULL,
+  `Updated_At` timestamp DEFAULT NULL,
   `Teacher_ID` int(11) NOT NULL,
   PRIMARY KEY (`Stipend_Tracking_ID`),
   KEY `fk_Stipend_Tracking_Teacher1_idx` (`Teacher_ID`)
@@ -1088,7 +1088,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `Name_Suffix` varchar(5) DEFAULT NULL,
   `Student_ID_Number` varchar(10) NOT NULL,
   `Civil_Status` varchar(9) NOT NULL DEFAULT 'Single',
-  `Birthdate` datetime NOT NULL,
+  `Birthdate` timestamp NOT NULL,
   `Birthplace` varchar(45) NOT NULL DEFAULT 'Philippines',
   `Gender` char(1) NOT NULL,
   `Nationality` varchar(45) NOT NULL DEFAULT 'Filipino',
@@ -1155,7 +1155,7 @@ INSERT INTO `student` (`Student_ID`, `School_ID`, `Last_Name`, `First_Name`, `Mi
 
 CREATE TABLE IF NOT EXISTS `student_application` (
   `Student_Application_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `Date` timestamp DEFAULT CURRENT_TIMESTAMP,
   `Contract?` tinyint(1) DEFAULT NULL,
   `Student_ID` int(11) NOT NULL,
   `Project_ID` int(11) NOT NULL,
@@ -1381,7 +1381,7 @@ INSERT INTO `subject` (`Subject_ID`, `Subject_Name`, `Subject_Code`) VALUES
 CREATE TABLE IF NOT EXISTS `t3_application` (
   `T3_Application_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Date` varchar(45) NOT NULL,
-  `Created_At` datetime NOT NULL,
+  `Created_At` timestamp NOT NULL,
   `Updated_At` varchar(45) DEFAULT NULL,
   `Subject_ID` int(11) NOT NULL,
   PRIMARY KEY (`T3_Application_ID`),
@@ -1414,7 +1414,7 @@ CREATE TABLE IF NOT EXISTS `t3_class` (
   `Master_Trainer_ID` int(11) NOT NULL,
   `School_Year` varchar(10) NOT NULL,
   `Name` varchar(45) NOT NULL,
-  `Created_At` datetime DEFAULT NULL,
+  `Created_At` timestamp DEFAULT NULL,
   PRIMARY KEY (`T3_Class_ID`),
   UNIQUE KEY `T3_Class_ID_UNIQUE` (`T3_Class_ID`),
   KEY `fk_Section_School2` (`School_ID`),
@@ -1445,8 +1445,8 @@ INSERT INTO `t3_class` (`T3_Class_ID`, `School_ID`, `Subject_ID`, `Master_Traine
 CREATE TABLE IF NOT EXISTS `t3_tracker` (
   `T3_Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Status_ID` int(11) NOT NULL,
-  `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Created_At` timestamp NOT NULL,
+  `Updated_At` timestamp DEFAULT NULL,
   `Contract?` tinyint(1) NOT NULL DEFAULT '0',
   `Remarks` varchar(250) DEFAULT NULL,
   `Subject_ID` int(11) NOT NULL,
@@ -1500,7 +1500,7 @@ CREATE TABLE IF NOT EXISTS `teacher` (
   `Last_Name` varchar(45) NOT NULL,
   `First_Name` varchar(45) NOT NULL,
   `Middle_Initial` char(1) NOT NULL,
-  `Birthdate` datetime NOT NULL,
+  `Birthdate` timestamp NOT NULL,
   `Birthplace` varchar(45) NOT NULL DEFAULT 'Philippines',
   `Nationality` varchar(45) NOT NULL DEFAULT 'Filipino',
   `Total_Year_of_Teaching` int(11) NOT NULL,
@@ -1599,7 +1599,7 @@ CREATE TABLE IF NOT EXISTS `teacher_awards` (
   `Teacher_Awards_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Award` varchar(45) NOT NULL,
   `Awarding_Body` varchar(45) NOT NULL,
-  `Date_Received` datetime DEFAULT NULL,
+  `Date_Received` timestamp DEFAULT NULL,
   `Teacher_ID` int(11) NOT NULL,
   PRIMARY KEY (`Teacher_Awards_ID`),
   UNIQUE KEY `Teacher_Awards_ID_UNIQUE` (`Teacher_Awards_ID`),
@@ -1627,7 +1627,7 @@ CREATE TABLE IF NOT EXISTS `teacher_certification` (
   `Teacher_Certification_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Certification` varchar(45) NOT NULL,
   `Certifying_Body` varchar(250) NOT NULL,
-  `Date_Received` datetime NOT NULL,
+  `Date_Received` timestamp NOT NULL,
   `Teacher_ID` int(11) NOT NULL,
   PRIMARY KEY (`Teacher_Certification_ID`),
   UNIQUE KEY `Teacher_Certification_ID_UNIQUE` (`Teacher_Certification_ID`),
@@ -1783,7 +1783,7 @@ CREATE TABLE IF NOT EXISTS `teacher_relevant_experiences` (
   `Organization` varchar(250) NOT NULL,
   `Position` varchar(45) NOT NULL,
   `Description` varchar(250) DEFAULT NULL,
-  `Date` datetime NOT NULL,
+  `Date` timestamp NOT NULL,
   `Teacher_ID` int(11) NOT NULL,
   PRIMARY KEY (`Teacher_Relevant_Experiences_ID`),
   KEY `fk_Teacher_Relevant_Experiences_Teacher1_idx` (`Teacher_ID`)
