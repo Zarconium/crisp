@@ -10,7 +10,8 @@
   <li><a href="#teacher" data-toggle="tab">Teacher</a></li>
   <li><a href="#proctor" data-toggle="tab">Proctor</a></li>
   <li><a href="#trainer" data-toggle="tab">Master Trainer</a></li>
-  <li><a href="#program" data-toggle="tab">Programs</a></li>
+  <li><a href="#class" data-toggle="tab">Classes</a></li>
+  <li><a href="#tracker" data-toggle="tab">Trackers</a></li>
 </ul>		
 
 <div class="tab-content">
@@ -150,17 +151,11 @@
 		</table>
   </div>
   
-  <div class="tab-pane fade" id="program">
+  <div class="tab-pane fade" id="class">
   
 		<ul class="nav nav-tabs">
 		  <li class="active"><a href="#class_student" data-toggle="tab">Student Classes</a></li>
 		  <li><a href="#class_mastertrainer	" data-toggle="tab">Master Trainer's Classes</a></li>
-		  <li><a href="#smp" data-toggle="tab">SMP Tracker</a></li>
-		  <li><a href="#gcat" data-toggle="tab">GCAT Tracker</a></li>
-		  <li><a href="#best" data-toggle="tab">BEST Tracker</a></li>
-		  <li><a href="#adept" data-toggle="tab">ADEPT Tracker</a></li>
-		  <li><a href="#best_t3" data-toggle="tab">BEST T3 Tracker</a></li>
-		  <li><a href="#adept_t3 " data-toggle="tab">ADEPT T3 Tracker</a></li>
 		</ul>
 		
 		<div class="tab-content">
@@ -230,8 +225,25 @@
 					</tr>
 				</table>
 			</div>
+
 			
-			<div class="tab-pane fade" id="smp">
+
+			
+		</div>
+	</div>
+
+	<div class="tab-pane" id="tracker">	
+	
+		<ul class="nav nav-tabs">
+		  <li class="active"><a href="#smp" data-toggle="tab">SMP Tracker</a></li>
+		  <li><a href="#gcat" data-toggle="tab">GCAT Tracker</a></li>
+		  <li><a href="#best" data-toggle="tab">BEST Tracker</a></li>
+		  <li><a href="#adept" data-toggle="tab">ADEPT Tracker</a></li>
+		  <li><a href="#best_t3" data-toggle="tab">T3 BEST Tracker</a></li>
+		  <li><a href="#adept_t3 " data-toggle="tab">T3 ADEPT Tracker</a></li>
+		</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="smp">
 				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_program_smp_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
@@ -426,10 +438,8 @@
 					</tr>
 				</table>
 			</div>
-
-			
-		</div>
-
+	</div>
+	</div>
   </div>
   
 

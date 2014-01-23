@@ -80,7 +80,6 @@ class Reports_Controller extends CI_Controller {
 
 	function studentProgramReportPerSub()
 	{
-<<<<<<< HEAD
 		$data['pin_count_list'] = $this->report_program->getStudentAdeptProgramReportPins();
 		$data['pin_total'] = $this->report_program->getStudentAdeptProgramReportPinsTotal();
 		$data['current_takers_count_list'] = $this->report_program->getStudentAdeptProgramReportCurrentTakers();
@@ -90,7 +89,7 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('header-print', $data);
 		$this->load->view('reports/student_adept_program_report', $data);
 		$this->load->view('footer-print', $data);
-=======
+		
 		$subject_code=1;
 		$start_date = "1990-01-01"; $end_date= "2020-01-01";
 
@@ -103,7 +102,6 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('reports/student_program_report_per_sub', $data);
 		$this->load->view('footer-print');
 
->>>>>>> 4b71f4caa511a499f09bbf0cc79881e180deff90
 	}
 
 	function t3ProgramReportGCAT()
