@@ -24,6 +24,10 @@ class Reports_Controller extends CI_Controller {
 
 	function report_ni_phil()
 	{
+	
+		//$startDate = $this->input->post('myBirthday');
+		//$data['data'] = $this->name->get($startDate, $endDate);
+		
 		$data['student_list'] = $this->report_suc->getAllStudentNamesAndSchools();
 
 		$this->load->view('reports/report_ni_phil', $data);
@@ -44,7 +48,9 @@ class Reports_Controller extends CI_Controller {
 		$data['current_takers_total'] = $this->report_program->getStudentAdeptProgramReportCurrentTakersTotal();
 		$data['completed_count_list'] = $this->report_program->getStudentAdeptProgramReportCompleted();
 		$data['completed_total'] = $this->report_program->getStudentAdeptProgramReportCompletedTotal();
+		$this->load->view('header-print', $data);
 		$this->load->view('reports/student_adept_program_report', $data);
+		$this->load->view('footer-print', $data);
 	}
 
 	function studentBestProgramReport()
@@ -71,9 +77,19 @@ class Reports_Controller extends CI_Controller {
 
 	function getAllSMPStudentSUCReport()
 	{
-		$data['smp_student_list'] = $this->report_suc->getSMPStudent($subject,$school_code,$semester,$teacher_code,$class_name);
 	
+		//$startDate = $this->input->post('myBirthday');
+		//$data['data'] = $this->name->get($startDate, $endDate);
+		$subject = $this->input->post('suc_student_subject');
+		$school_code = $this->input->post('suc_student_subject');
+		$semester = $this->input->post('suc_student_subject');
+		$teacher_code = $this->input->post('suc_student_subject');
+		$class_name = $this->input->post('suc_student_subject');
+		
+		$data['smp_student_list'] = $this->report_suc->getSMPStudent($subject,$school_code,$semester,$teacher_code,$class_name);
+		$this->load->view('header-print', $data);
 		$this->load->view('reports/smp_student_suc_report', $data);
+		$this->load->view('footer-print', $data);
 	}
 
 	function getAllGCATStudentSUCReport()
@@ -85,15 +101,18 @@ class Reports_Controller extends CI_Controller {
 
 	function getAllBestStudentSUCReport()
 	{
-		$data['best_student_list'] = $this->report_suc->getBestStudent($school_code,$date_start,$date_end);
 	
+		$school_code = $this->input->post('suc_best_student_list_school');
+		$date_start = $this->input->post('suc_best_student_list_date_start');
+		$date_end = $this->input->post('suc_best_student_list_date_end');
+		
+		$data['best_student_list'] = $this->report_suc->getBestStudent($school_code,$date_start,$date_end);
 		$this->load->view('reports/suc_report_best_students', $data);
 	}
 
 	function getAllAdeptStudentSUCReport()
 	{
 		$data['adept_student_list'] = $this->report_suc->getAdeptStudent($school_code,$date_start,$date_end);
-		
 		$this->load->view('reports/suc_report_adept_students', $data);
 	}
 

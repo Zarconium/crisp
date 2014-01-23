@@ -1,4 +1,4 @@
-<table>
+<table class="table">
 	<th>School</th>
 	<th>Male</th>
 	<th>Female</th>
