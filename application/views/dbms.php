@@ -443,32 +443,32 @@
 <!-- Dialogs and Stuff -->
 
 <div class="modal fade" id="batchStudent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title" id="myModalLabel">Batch Upload</h4>
-</div>
-<div class="modal-body">
-<div class="student-button-groups">
-	<?php $attributes = array('id' => 'upload_student_profile', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_student_profile', $attributes); ?>
-		<input type="file" name="file_student_profile" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_student_profile').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_student_profile]').click();">Upload Students</button>
-	<?php echo form_close(); ?>
-	<?php $attributes = array('id' => 'upload_gcat_student_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_gcat_student_grades', $attributes); ?>
-		<input type="file" name="file_gcat_student_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_gcat_student_grades').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_gcat_student_grades]').click();">Upload GCAT Student Grades</button>
-	<?php echo form_close(); ?>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Batch Upload</h4>
+			</div>
+			<div class="modal-body">
+				<div class="student-button-groups">
+					<?php $attributes = array('id' => 'upload_student_profile', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_student_profile', $attributes); ?>
+						<input type="file" name="file_student_profile" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_student_profile').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_student_profile]').click();">Upload Students</button>
+					<?php echo form_close(); ?>
+					<?php $attributes = array('id' => 'upload_gcat_student_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_gcat_student_grades', $attributes); ?>
+						<input type="file" name="file_gcat_student_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_gcat_student_grades').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_gcat_student_grades]').click();">Upload GCAT Student Grades</button>
+					<?php echo form_close(); ?>
 
-	<button class="btn btn-primary btn-lg">Upload BEST Student Grades</button>
-	<button class="btn btn-primary btn-lg">Upload ADEPT Student Grades</button>
-</div>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-</div>
-</div>
-</div>
+					<button class="btn btn-primary btn-lg">Upload BEST Student Grades</button>
+					<button class="btn btn-primary btn-lg">Upload ADEPT Student Grades</button>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="modal fade" id="batchTeacher" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
