@@ -153,21 +153,21 @@
 				<div class="form-group">
 					<label>AB / BS</label>
 					<select class="form-control" name="degree_type">
-						<option value="BS">BS</option>
-						<option value="AB">AB</option>
+						<option value="BS" <?php if (substr($student->Course, 0, 2) == 'BS') { echo 'selected="selected"'; }?>>BS</option>
+						<option value="AB" <?php if (substr($student->Course, 0, 2) == 'AB') { echo 'selected="selected"'; }?>>AB</option>
 					</select>
 					<?php echo form_error('degree_type'); ?>
 				</div>
 				
 				<div class="form-group">
 					<label>Degree</label>
-					<input class="form-control" type="text" placeholder="degree" name="degree" value="<?php echo set_value('degree'); ?>">
+					<input class="form-control" type="text" name="degree" value="<?php echo substr($student->Course, 3); ?>">
 					<?php echo form_error('degree'); ?>
 				</div>
 				
 				<div class="form-group">
 					<label>Year Level</label>
-					<input class="form-control" type="text" name="year" value="<?php echo set_value('year'); ?>">
+					<input class="form-control" type="text" name="year" value="<?php echo $student->Year; ?>">
 					<?php echo form_error('year'); ?>
 				</div>	
 			</form>
@@ -175,19 +175,17 @@
 			<form class="form-inline" role="form">		
 				<div class="form-group">
 					<label>School</label>
-					<input type="text" class="form-control" name="school" value="<?php echo set_value('school'); ?>">
+					<select class="form-control" name="school">
+					<?php foreach ($schools as $school): ?>
+						<option value="<?php echo $school->School_ID ?>" <?php if ($student->School_ID == $school->School_ID) { echo 'selected="selected"'; }?>><?php echo $school->Name . " - " . $school->Branch ?></option>
+					<?php endforeach; ?>
+					</select>
 					<?php echo form_error('school'); ?>
 				</div>
 					
 				<div class="form-group">
-					<label>Branch</label>
-					<input type="text" class="form-control" name="branch" value="<?php echo set_value('branch'); ?>">
-					<?php echo form_error('branch'); ?>
-				</div>
-					
-				<div class="form-group">
 					<label>Expected Year of Graduation</label>
-					<input type="text" class="form-control" name="expected_year_of_graduation" value="<?php echo set_value('expected_year_of_graduation'); ?>">
+					<input type="text" class="form-control" name="expected_year_of_graduation" value="<?php echo $student->Expected_Year_of_Graduation; ?>">
 					<?php echo form_error('expected_year_of_graduation'); ?>
 				</div>
 			</form>
@@ -195,8 +193,8 @@
 			<form class="form-inline" role="form">	
 				<div class="form-group">
 					<label>Are you a DOST Scholar?</label><br />
-					<input type="radio" name="DOSTscholar" value="yes"> Yes
-					<input type="radio" name="DOSTscholar" value="No"> No
+					<input type="radio" name="DOSTscholar" value="1" <?php if ($student->DOST_Scholar? == 1) { echo 'checked="checked"'; } ?>> Yes
+					<input type="radio" name="DOSTscholar" value="0" <?php if ($student->DOST_Scholar? == 0) { echo 'checked="checked"'; } ?>> No
 					<?php echo form_error('DOSTscholar'); ?>
 				</div>
 			</form>
@@ -204,8 +202,8 @@
 			<form class="form-inline" role="form">	
 				<div class="form-group">
 					<label>If not, are you a recipient of any scholarship?</label><br />
-					<input type="radio" name="scholar" value="yes"> Yes
-					<input type="radio" name="scholar" value="No"> No
+					<input type="radio" name="scholar" value="1"> Yes
+					<input type="radio" name="scholar" value="0"> No
 					<?php echo form_error('scholar'); ?>
 				</div>
 			</form>
@@ -213,8 +211,8 @@
 			<form class="form-inline" role="form">	
 				<div class="form-group">
 					<label>Are you willing to work for the IT-BPO sector</label><br/>
-					<input type="radio" name="work" value="yes"> Yes
-					<input type="radio" name="work" value="No"> No		
+					<input type="radio" name="work" value="1"> Yes
+					<input type="radio" name="work" value="0"> No		
 				</div>	
 				<?php echo form_error('work'); ?>
 			</form>

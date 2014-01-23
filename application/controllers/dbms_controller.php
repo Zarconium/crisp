@@ -42,6 +42,7 @@ class Dbms_Controller extends CI_Controller
 	
 	function form_student_profile($id)
 	{
+		$data['schools'] = $this->school->getAllSchools();
 		$data['student'] = $this->student->getStudentById($id);
 
 		$this->load->view('header');
