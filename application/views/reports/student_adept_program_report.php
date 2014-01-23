@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-=======
 <h1>Student Adept Program Report</h1>
 <legend>Number of Pins Given</legend>
 <div class="report-form">
->>>>>>> 4b71f4caa511a499f09bbf0cc79881e180deff90
 <table class="table">
 	<th>School</th>
 	<th>Male</th>
