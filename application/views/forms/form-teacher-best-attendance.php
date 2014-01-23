@@ -40,51 +40,51 @@
 
 	<div class="row">
 	
-	<div class="col-md-6">
-	<div class="form">
+		<div class="col-md-6">
+			<div class="form">
 		
-		<div class="form-group"><label>Orientation Date </label>
-		<input type="date" class="form-control" name ="orientation_date" value ="<?php echo set_value('orientation_date'); ?>"></div>
-				<?php echo form_error('orientation_date', '<div class="text-danger">', '</div>'); ?>
+				<div class="form-group"><label>Orientation Date </label>
+				<input type="date" class="form-control" name ="orientation_date" value ="<?php echo set_value('orientation_date'); ?>"></div>
+						<?php echo form_error('orientation_date', '<div class="text-danger">', '</div>'); ?>
 		
-		<div class="form-group"><label>Site Visit</label>
-		<input type="date" class="form-control" name="site_visit" value ="<?php echo set_value('site_visit'); ?>"></div>
-				<?php echo form_error('site_visit', '<div class="text-danger">', '</div>'); ?>
+				<div class="form-group"><label>Site Visit</label>
+				<input type="date" class="form-control" name="site_visit" value ="<?php echo set_value('site_visit'); ?>"></div>
+						<?php echo form_error('site_visit', '<div class="text-danger">', '</div>'); ?>
 		
-		<div class="form-group"><label>GCAT</label>
-		<input type="date" class="form-control" name="gcat" value ="<?php echo set_value('gcat'); ?>"></div>
-				<?php echo form_error('gcat', '<div class="text-danger">', '</div>'); ?>
+				<div class="form-group"><label>GCAT</label>
+				<input type="date" class="form-control" name="gcat" value ="<?php echo set_value('gcat'); ?>"></div>
+						<?php echo form_error('gcat', '<div class="text-danger">', '</div>'); ?>
 	
-	</div>
-	</div>
+			</div>
+		</div>
 	
-	<div class="col-md-6">
-	<div class="form">
+		<div class="col-md-6">
+			<div class="form">
 
 		
-		<div class="form-group"><label>Day 1</label>
-		<input type="date" class="form-control" name="day1"  value ="<?php echo set_value('day1'); ?>"></div>
-				<?php echo form_error('day1', '<div class="text-danger">', '</div>'); ?>
+				<div class="form-group"><label>Day 1</label>
+				<input type="date" class="form-control" name="day1"  value ="<?php echo set_value('day1'); ?>"></div>
+						<?php echo form_error('day1', '<div class="text-danger">', '</div>'); ?>
 		
-		<div class="form-group"><label>Day 2</label>
-		<input type="date" class="form-control" name="day2"  value ="<?php echo set_value('day2'); ?>"></div>
-				<?php echo form_error('day2', '<div class="text-danger">', '</div>'); ?>
+				<div class="form-group"><label>Day 2</label>
+				<input type="date" class="form-control" name="day2"  value ="<?php echo set_value('day2'); ?>"></div>
+						<?php echo form_error('day2', '<div class="text-danger">', '</div>'); ?>
 		
-		<div class="form-group"><label>Day 3 (If with the Faculty)</label>
-		<input type="date" class="form-control" name="day3"  value ="<?php echo set_value('day3'); ?>"></div>
-				<?php echo form_error('day3', '<div class="text-danger">', '</div>'); ?>
+				<div class="form-group"><label>Day 3 (If with the Faculty)</label>
+				<input type="date" class="form-control" name="day3"  value ="<?php echo set_value('day3'); ?>"></div>
+						<?php echo form_error('day3', '<div class="text-danger">', '</div>'); ?>
 		
-	</div>	
-	</div>
+			</div>	
+		</div>
 	</div>
 	
 
 	<div class="col-md-12">
-	<div class="form-inline">
-		<div class="form-group"><label>Total Days Attended </label>
-		<input type="text" class="form-control" name="total_days_attended" value ="<?php echo set_value('total_days_attended'); ?>"></div>
-				<?php echo form_error('total_days_attended', '<div class="text-danger">', '</div>'); ?>
-	</div>
+		<div class="form-inline">
+			<div class="form-group"><label>Total Days Attended </label>
+			<input type="text" class="form-control" name="total_days_attended" value ="<?php echo set_value('total_days_attended'); ?>"></div>
+					<?php echo form_error('total_days_attended', '<div class="text-danger">', '</div>'); ?>
+		</div>
 	</div>
 </form>
 </div>

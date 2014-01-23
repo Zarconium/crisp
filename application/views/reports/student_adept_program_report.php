@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+<h1>Student Adept Program Report</h1>
+<legend>Number of Pins Given</legend>
+<div class="report-form">
+>>>>>>> 4b71f4caa511a499f09bbf0cc79881e180deff90
 <table class="table">
 	<th>School</th>
 	<th>Male</th>
@@ -14,13 +20,14 @@
 	<?php foreach ($pin_total as $count): ?>
 	<tr>
 		<td>TOTAL</td>
-		<td><?php echo $count->Total; ?></td>
+		<td colspan="4"><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
 </table>
 
 
-<table>
+<legend>Number of Students Currently Taking Adept</legend>
+<table class="table">
 	<th>School</th>
 	<th>Male</th>
 	<th>Female</th>
@@ -36,12 +43,13 @@
 	<?php foreach ($current_takers_total as $count): ?>
 	<tr>
 		<td>TOTAL</td>
-		<td><?php echo $count->Total; ?></td>
+		<td colspan="4"><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
 </table>	
 
-<table>
+<legend>Number of Students Completed with Adept</legend>
+<table class="table">
 	<th>School</th>
 	<th>Male</th>
 	<th>Female</th>
@@ -57,7 +65,8 @@
 		<?php foreach ($completed_total as $count): ?>
 	<tr>
 		<td>TOTAL</td>
-		<td><?php echo $count->Total; ?></td>
+		<td colspan="4"><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
 </table>	
+</div>

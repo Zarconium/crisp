@@ -33,9 +33,8 @@ Class Report_Program extends CI_Model
 		}
 	}
 
-	function getStudentAdeptProgramReportPins()
+	function getStudentAdeptProgramReportPins($start_date, $end_date)
 	{
-		$start_date = "1990-01-01"; $end_date= "2020-01-01";
 
 		$this->db->query('DROP TABLE IF EXISTS Adept_Trackers;');
 		$this->db->query('DROP TABLE IF EXISTS Adept_Students_List;');
@@ -71,7 +70,7 @@ Class Report_Program extends CI_Model
 		$query = $this->db->query('SELECT s.Name as "School", SUM(IF(st.Gender="M", 1,0)) as "Male", SUM(IF(st.Gender="F", 1,0)) as "Female", Count(st.student_id) as "Total"
 		FROM School as s
 		LEFT JOIN Adept_Students_List as st ON s.School_ID = st.School_ID
-		GROUP BY s.Name;');
+		GROUP BY s.Name ;');
 		
 		if($query->num_rows() > 0)
 		{
@@ -83,9 +82,9 @@ Class Report_Program extends CI_Model
 		}
 	}
 
-	function getStudentAdeptProgramReportPinsTotal()
+	function getStudentAdeptProgramReportPinsTotal($start_date, $end_date)
 	{
-		$this->getStudentAdeptProgramReportPins();
+		$this->getStudentAdeptProgramReportPins($start_date, $end_date);
 
 		/*Total number of students that were given pins*/
 		$query = $this->db->query('SELECT COUNT(asl.student_id) as "Total"
@@ -102,10 +101,9 @@ Class Report_Program extends CI_Model
 
 	}
 
-	function getStudentAdeptProgramReportCurrentTakers()
+	function getStudentAdeptProgramReportCurrentTakers($start_date, $end_date)
 	{
-		$start_date = "1990-01-01"; $end_date= "2020-01-01";
-
+		
 		$this->db->query('DROP TABLE IF EXISTS Adept_Trackers;');
 		$this->db->query('DROP TABLE IF EXISTS Adept_Students_List_Currently_Taking;');
 
@@ -140,7 +138,7 @@ Class Report_Program extends CI_Model
 		$query = $this->db->query('SELECT s.Name as "School", SUM(IF(st.Gender="M", 1,0)) as "Male", SUM(IF(st.Gender="F", 1,0)) as "Female", Count(st.student_id) as "Total"
 		FROM School as s
 		LEFT JOIN Adept_Students_List_Currently_Taking as st ON s.School_ID = st.School_ID
-		GROUP BY s.Name;');
+		GROUP BY s.Name ;');
 
 		if($query->num_rows() > 0)
 		{
@@ -152,9 +150,9 @@ Class Report_Program extends CI_Model
 		}
 	}
 
-	function getStudentAdeptProgramReportCurrentTakersTotal()
+	function getStudentAdeptProgramReportCurrentTakersTotal($start_date, $end_date)
 	{
-		$this->getStudentAdeptProgramReportCurrentTakers();
+		$this->getStudentAdeptProgramReportCurrentTakers($start_date, $end_date);
 
 		/*Total number of students that were given pins*/
 		$query = $this->db->query('SELECT COUNT(aslct.student_id) as "Total"
@@ -172,9 +170,8 @@ Class Report_Program extends CI_Model
 	}
 
 
-	function getStudentAdeptProgramReportCompleted()
+	function getStudentAdeptProgramReportCompleted($start_date, $end_date)
 	{
-		$start_date = "1990-01-01"; $end_date= "2020-01-01";
 
 		$this->db->query('DROP TABLE IF EXISTS Adept_Trackers;');
 		$this->db->query('DROP TABLE IF EXISTS Adept_Students_List_Completed;');
@@ -212,7 +209,7 @@ Class Report_Program extends CI_Model
 		$query = $this->db->query('SELECT s.Name as "School", SUM(IF(st.Gender="M", 1,0)) as "Male", SUM(IF(st.Gender="F", 1,0)) as "Female", Count(st.student_id) as "Total"
 		FROM School as s
 		LEFT JOIN Adept_Students_List_Completed as st ON s.School_ID = st.School_ID
-		GROUP BY s.Name;');	
+		GROUP BY s.Name ;');	
 
 		if($query->num_rows() > 0)
 		{
@@ -224,9 +221,9 @@ Class Report_Program extends CI_Model
 		}
 	}
 
-	function getStudentAdeptProgramReportCompletedTotal()
+	function getStudentAdeptProgramReportCompletedTotal($start_date, $end_date)
 	{
-		$this->getStudentAdeptProgramReportCompleted();
+		$this->getStudentAdeptProgramReportCompleted($start_date, $end_date);
 
 		/*Total number of students that were given pins*/
 		$query = $this->db->query('SELECT COUNT(aslc.student_id) as "Total"
@@ -243,10 +240,8 @@ Class Report_Program extends CI_Model
 
 	}
 
-	function getStudentBestProgramReportPins()
+	function getStudentBestProgramReportPins($start_date, $end_date)
 	{
-		$start_date = "1990-01-01"; $end_date= "2020-01-01";
-
 		$this->db->query('DROP TABLE IF EXIstS BEST_Trackers;');
 		$this->db->query('DROP TABLE IF EXIstS BEST_Students_List;');
 
@@ -278,7 +273,7 @@ Class Report_Program extends CI_Model
 		$query = $this->db->query('SELECT s.Name AS "School", SUM(IF(st.Gender="M", 1,0)) as "Male", SUM(IF(st.Gender="F", 1,0)) as "Female", Count(st.student_id) as "Total"
 		FROM School as s
 		LEFT JOIN BEST_Students_List as st ON s.School_ID = st.School_ID
-		GROUP BY s.Name;');
+		GROUP BY s.Name ;');
 
 		if($query->num_rows() > 0)
 		{
@@ -290,9 +285,9 @@ Class Report_Program extends CI_Model
 		}
 	}
 
-	function getStudentBestProgramReportPinsTotal()
+	function getStudentBestProgramReportPinsTotal($start_date, $end_date)
 	{
-		$this->getStudentBestProgramReportPins();
+		$this->getStudentBestProgramReportPins($start_date, $end_date);
 
 		$query = $this->db->query('SELECT COUNT(bstl.student_id) as "Total"
 		FROM BEST_Students_List as bstl;');
@@ -308,10 +303,8 @@ Class Report_Program extends CI_Model
 
 	}
 
-	function getStudentBestProgramReportCurrentTakers()
+	function getStudentBestProgramReportCurrentTakers($start_date, $end_date)
 	{
-		$start_date = "1990-01-01"; $end_date= "2020-01-01";
-
 
 		$this->db->query('DROP TABLE IF EXIstS BEST_Trackers;');
 		$this->db->query('DROP TABLE IF EXISTs BEST_Students_List_Currently_Taking;');
@@ -346,7 +339,7 @@ Class Report_Program extends CI_Model
 		$query = $this->db->query('SELECT s.Name AS "School", SUM(IF(st.Gender="M", 1,0)) as "Male", SUM(IF(st.Gender="F", 1,0)) as "Female", Count(st.student_id) as "Total"
 		FROM School as s
 		LEFT JOIN BEST_Students_List_Currently_Taking as st ON s.School_ID = st.School_ID
-		GROUP BY s.Name;');
+		GROUP BY s.Name ;');
 
 		if($query->num_rows() > 0)
 		{
@@ -360,9 +353,9 @@ Class Report_Program extends CI_Model
 
 	}
 
-	function getStudentBestProgramReportCurrentTakersTotal()
+	function getStudentBestProgramReportCurrentTakersTotal($start_date, $end_date)
 	{
-		$this->getStudentBestProgramReportCurrentTakers();
+		$this->getStudentBestProgramReportCurrentTakers($start_date, $end_date);
 
 		$query = $this->db->query('SELECT COUNT(bstl.student_id) "Total"
 		FROM BEST_Students_List_Currently_Taking as bstl;');
@@ -378,10 +371,8 @@ Class Report_Program extends CI_Model
 		
 	}
 
-	function getStudentBestProgramReportCompleted()
+	function getStudentBestProgramReportCompleted($start_date, $end_date)
 	{
-		$start_date = "1990-01-01"; $end_date= "2020-01-01";
-
 		$this->db->query('DROP TABLE IF EXIstS BEST_Trackers;');
 		$this->db->query('DROP TABLE IF EXISTs BEST_Students_List_Completed;');
 
@@ -416,7 +407,7 @@ Class Report_Program extends CI_Model
 		$query = $this->db->query('SELECT s.Name AS "School", SUM(IF(st.Gender="M", 1,0)) as "Male", SUM(IF(st.Gender="F", 1,0)) as "Female", Count(st.student_id) as "Total"
 		FROM School as s
 		LEFT JOIN BEST_Students_List_Completed as st ON s.School_ID = st.School_ID
-		GROUP BY s.Name;');
+		GROUP BY s.Name ;');
 
 		if($query->num_rows() > 0)
 		{
@@ -430,9 +421,9 @@ Class Report_Program extends CI_Model
 		
 	}
 
-	function getStudentBestProgramReportCompletedTotal()
+	function getStudentBestProgramReportCompletedTotal($start_date, $end_date)
 	{
-		$this->getStudentBestProgramReportCompleted();
+		$this->getStudentBestProgramReportCompleted($start_date, $end_date);
 
 		$query = $this->db->query('SELECT COUNT(bstl.student_id) "Total"
 		FROM BEST_Students_List_Completed as bstl;');
@@ -447,11 +438,8 @@ Class Report_Program extends CI_Model
 		}
 	}
 
-	function getStudentProgramReportGCAT()
+	function getStudentProgramReportGCAT($start_date, $end_date)
 	{
-
-		$this->db->query('SET @startdate="2011-01-01";');
-		$this->db->query('Set @enddate="2012-12-31";');
 
 		$this->db->query('DROP TEMPORARY TABLE IF EXISTS Student_Taken_GCAT_List;');
 
@@ -470,13 +458,14 @@ Class Report_Program extends CI_Model
 		WHERE stt.Student_ID = st.Student_ID
 		AND gs.Tracker_ID = stt.Tracker_ID
 		AND gs.Tracker_ID = t.Tracker_ID
-		AND t.Created_At BETWEEN @startdate AND @enddate;');
+		AND t.Status_ID=1
+		AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'";');
 
 
-		$query = $this->db->query('SELECT sc.Name as "Name", SUM(IF(stgl.Gender="M",1,0)) as "Male", SUM(IF(stgl.Gender="F",1,0)) as "Female", Count(stgl.student_id) as "Total"
+		$query = $this->db->query('SELECT sc.Name as "School", SUM(IF(stgl.Gender="M",1,0)) as "Male", SUM(IF(stgl.Gender="F",1,0)) as "Female", Count(stgl.student_id) as "Total"
 		FROM School as sc
 		LEFT JOIN Student_Taken_GCAT_List as stgl ON sc.School_ID=stgl.School_ID
-		GROUP BY sc.Name WITH ROLLUP;');
+		GROUP BY sc.Name ;');
 
 		if($query->num_rows() > 0)
 		{
@@ -489,15 +478,218 @@ Class Report_Program extends CI_Model
 		
 	}
 
-	function getStudentProgramReportGCATTotal()
+	function getStudentProgramReportGCATTotal($start_date, $end_date)
 	{
-		$this->getStudentProgramReportGCAT();
+		$this->getStudentProgramReportGCAT($start_date, $end_date);
 
-		$this->db->query('SELECT Count(stgl.Student_ID) as "TOTAL"
+		$query = $this->db->query('SELECT Count(stgl.Student_ID) "Total"
 		FROM Student_Taken_GCAT_List as stgl;');
 
-		$this->db->query('DROP TABLE IF EXISTS Student_Taken_GCAT_List;');
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+
 	}
 
+	function getStudentProgramReportPerSubCurrentTakers($start_date, $end_date, $subject_code)
+	{
+
+		$this->db->query('DROP TABLE IF EXISTS Currently_Taking;');
+		$this->db->query('DROP TABLE IF EXISTS Tracker_List;');
+
+		$this->db->query('CREATE TEMPORARY TABLE IF NOT EXISTS Tracker_List(
+		Tracker_ID INT
+		);');
+
+		$this->db->query('INSERT INTO Tracker_List
+		SELECT Tracker_ID
+		FROM Tracker as t 
+		WHERE T.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND t.Subject_ID="'.$subject_code.'";');
+
+		$this->db->query('CREATE TEMPORARY TABLE IF NOT EXISTS Currently_Taking(
+		Student_ID INT
+		, School_ID INT
+		, Gender CHAR
+		);');
+
+		$this->db->query('INSERT INTO Currently_Taking
+		SELECT st.Student_ID, sc.School_ID, st.Gender
+		FROM Student as st
+		, School as sc
+		, Student_Tracker as stt
+		WHERE stt.Student_ID = st.Student_ID
+		AND st.School_ID = sc.School_ID
+		AND stt.Tracker_ID IN (Select t.Tracker_ID
+		FROM Tracker as t
+		, Tracker_List as tl
+		WHERE t.Tracker_ID = tl.Tracker_ID
+		AND t.Status_ID=3);');
+
+		$query = $this->db->query('SELECT sc.Name as "School", SUM(IF(ct.Gender="M",1,0)) as "Male", SUM(IF(ct.Gender="F",1,0)) as "Female", Count(ct.student_id) as "Total"
+		FROM School as sc
+		LEFT JOIN Currently_Taking as ct ON ct.School_ID=sc.School_ID
+		GROUP BY sc.Name
+		ORDER BY sc.Name ASC;');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+
+	}
+
+	function getStudentProgramReportPerSubCurrentTakersTotal($start_date, $end_date, $subject_code)
+	{
+		$this->getStudentProgramReportPerSubCUrrentTakers($start_date, $end_date, $subject_code);
+
+		$query = $this->db->query('SELECT Count(ct.Student_ID) as "Total"
+		FROM Currently_Taking as ct;');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+
+	}
+
+	function getStudentProgramReportPerSubFinished($start_date, $end_date, $subject_code)
+	{
+
+		$this->db->query('DROP TABLE IF EXISTS Finished_Taking;');
+		$this->db->query('DROP TABLE IF EXISTS Tracker_List;');
+
+		$this->db->query('CREATE TEMPORARY TABLE IF NOT EXISTS Tracker_List(
+		Tracker_ID INT
+		);');
+
+		$this->db->query('INSERT INTO Tracker_List
+		SELECT Tracker_ID
+		FROM Tracker as t 
+		WHERE T.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND t.Subject_ID="'.$subject_code.'";');
+
+		$this->db->query('CREATE TEMPORARY TABLE IF NOT EXISTS Finished_Taking(
+		Student_ID INT
+		, School_ID INT
+		, Gender CHAR
+		);');
+
+		$this->db->query('INSERT INTO Finished_Taking
+		SELECT st.Student_ID, sc.School_ID, st.Gender
+		FROM Student as st
+		, School as sc
+		, Student_Tracker as stt
+		WHERE stt.Student_ID = st.Student_ID
+		AND st.School_ID = sc.School_ID
+		AND stt.Tracker_ID IN (Select t.Tracker_ID
+		FROM Tracker as t
+		, Tracker_List as tl
+		WHERE t.Tracker_ID = tl.Tracker_ID
+		AND t.Status_ID=1);');
+
+		$query = $this->db->query('SELECT sc.Name as "School", SUM(IF(ft.Gender="M",1,0)) as "Male", SUM(IF(ft.Gender="F",1,0)) as "Female", Count(ft.student_id) as "Total"
+		FROM School as sc
+		LEFT JOIN Finished_Taking as ft ON ft.School_ID=sc.School_ID
+		GROUP BY sc.Name
+		ORDER BY sc.Name ASC;');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+
+	}
+
+	function getStudentProgramReportPerSubFinishedTotal($start_date, $end_date, $subject_code)
+	{
+		$this->getStudentProgramReportPerSubFinished($start_date, $end_date, $subject_code);
+
+		$query = $this->db->query('SELECT Count(ft.Student_ID) as "Total"
+		FROM Finished_Taking as ft;');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+
+	}
+
+	function getT3ProgramReportGCAT($start_date, $end_date)
+	{
+
+		$this->db->query('DROP TEMPORARY TABLE IF EXISTS Teachers_Taken_GCAT;'); 
+
+		$this->db->query('CREATE TEMPORARY TABLE IF NOT EXISTS Teachers_Taken_GCAT ( 
+		Teacher_ID INT 
+		, School_ID INT
+		, Gender CHAR);');
+
+		$this->db->query('INSERT INTO Teachers_Taken_GCAT
+		SELECT t.Teacher_ID, t.School_ID, t.Gender
+		FROM Teacher as t
+		, GCAT_Tracker as gt
+		, T3_Tracker as tt
+		, Teacher_T3_Tracker as ttt
+		WHERE tt.T3_Tracker_ID=gt.T3_Tracker_ID
+		AND tt.Created_At BETWEEN @startdate AND @enddate
+		AND tt.Status_ID=1
+		AND tt.T3_Tracker_ID=ttt.T3_Tracker_ID
+		AND ttt.Teacher_ID=t.Teacher_ID;');
+
+		$query = $this->db->query('SELECT sc.Name as "School", SUM(IF(ttg.Gender="M",1,0)) as "Male", SUM(IF(ttg.Gender="F",1,0)) as "Female", Count(ttg.Gender) as "Total"
+		FROM School as sc 
+		LEFT JOIN Teachers_Taken_GCAT as ttg 
+		ON sc.School_ID=ttg.School_ID 
+		GROUP BY sc.Name;'); 
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+
+	}
+
+	function getT3ProgramReportGCATTotal($start_date, $end_date)
+	{
+		$this->getT3ProgramReportGCAT($start_date, $end_date);
+
+		$query = $this->db->query('SELECT Count(ttg.Teacher_ID) as "Total" 
+		FROM Teachers_Taken_GCAT as ttg;');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 ?>

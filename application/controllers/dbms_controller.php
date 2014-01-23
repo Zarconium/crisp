@@ -383,7 +383,7 @@ class Dbms_Controller extends CI_Controller
 					$data['form_error'] = TRUE;
 
 					$this->load->view('header');
-					$this->load->view('forms/form-proctor-application', $data);
+					$this->load->view('forms/form-mastertrainer-application', $data);
 					$this->load->view('footer');
 				}
 				else
@@ -411,7 +411,7 @@ class Dbms_Controller extends CI_Controller
 					$data['form_success'] = TRUE;
 
 					$this->load->view('header');
-					$this->load->view('forms/form-proctor-application', $data);
+					$this->load->view('forms/form-mastertrainer-application', $data);
 					$this->load->view('footer');
 				}
 			}
@@ -422,14 +422,14 @@ class Dbms_Controller extends CI_Controller
 				$data['draft_saved'] = TRUE;
 
 				$this->load->view('header');
-				$this->load->view('forms/form-proctor-application', $data);
+				$this->load->view('forms/form-mastertrainer-application', $data);
 				$this->load->view('footer');
 			}
 		}
 		else
 		{
 			$this->load->view('header');
-			$this->load->view('forms/form-proctor-application', $data);
+			$this->load->view('forms/form-mastertrainer-application', $data);
 			$this->load->view('footer');
 		}
 	}
@@ -743,7 +743,7 @@ class Dbms_Controller extends CI_Controller
 	}
 	
 	
-	function form_mastertrainer_class_add()
+	function form_mastertrainer_classlist()
 	{
 		$this->load->view('header');
 		$this->load->view('forms/form-mastertrainer-classlist');
