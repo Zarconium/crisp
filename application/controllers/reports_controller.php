@@ -70,7 +70,8 @@ class Reports_Controller extends CI_Controller {
 
 	function studentProgramReportGCAT()
 	{
-		$start_date = "1990-01-01"; $end_date= "2020-01-01";
+		$start_date = $this->input->post('program_student_gcat_start_date');
+		$end_date = $this->input->post('program_student_gcat_end_date');
 
 		$data['count_list'] = $this->report_program->getStudentProgramReportGCAT($start_date, $end_date);
 		$data['total'] = $this->report_program->getStudentProgramReportGCATTotal($start_date, $end_date);
@@ -84,7 +85,12 @@ class Reports_Controller extends CI_Controller {
 
 	function studentProgramReportPerSub()
 	{
-		$data['pin_count_list'] = $this->report_program->getStudentAdeptProgramReportPins();
+	
+		$start_date = $this->input->post('program_student_subject_start_date');
+		$end_date = $this->input->post('program_student_subject_end_date');
+		$subject_code = $this->input->post('program_student_subject_subject');
+		
+		$data['pin_count_list'] = $this->report_program->getStudentAdeptProgramReportPins($start_date, $end_date);
 		$data['pin_total'] = $this->report_program->getStudentAdeptProgramReportPinsTotal();
 		$data['current_takers_count_list'] = $this->report_program->getStudentAdeptProgramReportCurrentTakers();
 		$data['current_takers_total'] = $this->report_program->getStudentAdeptProgramReportCurrentTakersTotal();
@@ -94,9 +100,7 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('reports/student_adept_program_report', $data);
 		$this->load->view('footer-print', $data);
 		
-		$subject_code=1;
-		$start_date = "1990-01-01"; $end_date= "2020-01-01";
-
+		
 		$data['currently_taking_list'] = $this->report_program->getStudentProgramReportPerSubCurrentTakers($start_date, $end_date, $subject_code);
 		$data['total_ct'] = $this->report_program->getStudentProgramReportPerSubCurrentTakersTotal($start_date, $end_date, $subject_code);
 		$data['finished_list'] = $this->report_program->getStudentProgramReportPerSubFinished($start_date, $end_date, $subject_code);
@@ -108,12 +112,15 @@ class Reports_Controller extends CI_Controller {
 
 	}
 
+	//what is this
 	function t3ProgramReportGCAT()
 	{
-		$start_date = "1990-01-01"; $end_date= "2020-01-01";
+		$start_date = $this->input->post('');
+		$end_date = $this->input->post('');
 
 		$data['t3_count_list'] = $this->report_program->gett3ProgramReportGCAT($start_date, $end_date);
 		$data['t3_total'] = $this->report_program->getT3ProgramReportGCATTotal($start_date, $end_date);
+		
 		$this->load->view('header-print');
 		$this->load->view('reports/t3_program_report_gcat', $data);
 		$this->load->view('footer-print');
@@ -122,8 +129,13 @@ class Reports_Controller extends CI_Controller {
 	}
 	
 	//still being fixed 
-	function getAllStudentClassSUCReport()
+	function getAllStudentsByPogram()
 	{
+		$subject = $this->input->post('suc_student_subject');
+		$school_code = $this->input->post('suc_student_school');
+		$semester = $this->input->post('suc_student_semester');
+		$teacher_code = $this->input->post('suc_student_teacher');
+		
 		$data['student_class_list'] = $this->report_suc->getStudentClass($subject,$school_code,$semester,$teacher_code);
 	
 		$this->load->view('reports/smp_student_class_suc_report', $data);
