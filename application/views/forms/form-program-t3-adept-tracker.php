@@ -3,7 +3,7 @@
 	<?php if (isset($form_success)) { echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Student successfully added.</div>';} ?>
 	<?php if (isset($form_error)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>There were errors in your input. Please check the fields and try again.</div>';} ?>
 
-	<h1>BEST	 T3 Tracker</h1>
+	<h1>ADEPT T3 Tracker</h1>
 	<?php echo form_open('/dbms/form_program_t3_adept_tracker'); ?>
 		<!-- BUTTONS DIV -->
 		<div class="save">
