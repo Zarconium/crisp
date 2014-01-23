@@ -58,6 +58,7 @@
 				<input type="radio" name="civil" value="married"> Married
 				<input type="radio" name="civil" value="single"> Single
 				<input type="radio" name="civil" value="separated"> Separated
+				<input type="radio" name="civil" value="widowed"> Widowed
 				<?php echo form_error('civil', '<div class="text-danger">', '</div>'); ?>
 			</div>
 			
