@@ -91,11 +91,12 @@ class Reports_Controller extends CI_Controller {
 		$subject_code = $this->input->post('program_student_subject_subject');
 		
 		$data['pin_count_list'] = $this->report_program->getStudentAdeptProgramReportPins($start_date, $end_date);
-		$data['pin_total'] = $this->report_program->getStudentAdeptProgramReportPinsTotal();
-		$data['current_takers_count_list'] = $this->report_program->getStudentAdeptProgramReportCurrentTakers();
-		$data['current_takers_total'] = $this->report_program->getStudentAdeptProgramReportCurrentTakersTotal();
-		$data['completed_count_list'] = $this->report_program->getStudentAdeptProgramReportCompleted();
-		$data['completed_total'] = $this->report_program->getStudentAdeptProgramReportCompletedTotal();
+		$data['pin_total'] = $this->report_program->getStudentAdeptProgramReportPinsTotal($start_date, $end_date);
+		$data['current_takers_count_list'] = $this->report_program->getStudentAdeptProgramReportCurrentTakers($start_date, $end_date);
+		$data['current_takers_total'] = $this->report_program->getStudentAdeptProgramReportCurrentTakersTotal($start_date, $end_date);
+		$data['completed_count_list'] = $this->report_program->getStudentAdeptProgramReportCompleted($start_date, $end_date);
+		$data['completed_total'] = $this->report_program->getStudentAdeptProgramReportCompletedTotal($start_date, $end_date);
+		
 		$this->load->view('header-print', $data);
 		$this->load->view('reports/student_adept_program_report', $data);
 		$this->load->view('footer-print', $data);
