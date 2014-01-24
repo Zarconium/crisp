@@ -211,8 +211,8 @@
 			<form class="form-inline" role="form">	
 				<div class="form-group">
 					<label>Are you willing to work for the IT-BPO sector</label><br/>
-					<input type="radio" name="work" value="1" <?php if ($student->Interested_in_IT-BPO == 1) { echo 'checked="checked"'; } ?>> Yes
-					<input type="radio" name="work" value="0" <?php if ($student->Interested_in_IT-BPO == 0) { echo 'checked="checked"'; } ?>> No		
+					<input type="radio" name="work" value="1" <?php if ($student->Interested_in_ITBPO == 1) { echo 'checked="checked"'; } ?>> Yes
+					<input type="radio" name="work" value="0" <?php if ($student->Interested_in_ITBPO == 0) { echo 'checked="checked"'; } ?>> No		
 				</div>	
 				<?php echo form_error('work'); ?>
 			</form>

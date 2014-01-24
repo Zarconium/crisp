@@ -155,7 +155,7 @@ class Dbms_Controller extends CI_Controller
 						'Expected_Year_of_Graduation' => $this->input->post('expected_year_of_graduation'),
 						'DOST_Scholar?' => $this->input->post('DOSTscholar'),
 						'Scholar?' => $this->input->post('scholar'),
-						'Interested_In_IT-BPO?' => $this->input->post('work'),
+						'Interested_In_ITBPO?' => $this->input->post('work'),
 						'Own_A_Computer?' => $this->input->post('computer'),
 						'Internet_Access?' => $this->input->post('internet'),
 						'Code' => $this->input->post('code')
@@ -869,11 +869,7 @@ class Dbms_Controller extends CI_Controller
 			if ($counter++ < 2) continue;
 			if ($counter > $highestRow) break;
 
-			foreach ($this->school->getSchoolIdByCode($row['Y']) as $school) //Get School_ID
-			{
-				$school_id = $school->School_ID;
-			}
-			
+			$school_id = $this->school->getSchoolIdByCode($row['Y'])->School_ID; //Get School ID			
 			$student_code = $school_id . $row['E']; //Get Code
 
 			$student = array
@@ -904,7 +900,7 @@ class Dbms_Controller extends CI_Controller
 				'Expected_Year_of_Graduation' => $row['Z'],
 				'DOST_Scholar?' => $row['AA'],
 				'Scholar?' => $row['AB'],
-				'Interested_In_IT-BPO?' => $row['AC']
+				'Interested_In_ITBPO?' => $row['AC']
 			);
 			
 			if ($row['F'] == 'Yes')
@@ -941,7 +937,14 @@ class Dbms_Controller extends CI_Controller
 			}
 		}
 
-		$this->session->set_flashdata('upload_success', 'Student Profile successfully uploaded. ' . ($counter - 3) . ' of ' . $highestRow . ' students added/updated.');
+		if ($counter > 2)
+		{
+			$this->session->set_flashdata('upload_success', 'Student Profile successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Empty file.');
+		}
 		redirect('dbms');
 	}
 
