@@ -647,7 +647,7 @@
 								<option value="dropped">Dropped</option>
 								<option value="taking">Currently Taking</option>
 							</select>
-				<?php echo form_error('intern_stat'); ?>							
+							<?php echo form_error('intern_stat'); ?>							
 						</div>		
 					</form>
 				</div>
