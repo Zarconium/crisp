@@ -726,7 +726,7 @@ class Dbms_Controller extends CI_Controller
 
 		if($this->input->post())
 		{
-			$this->form_validation->set_rules('proctor_name', 'Proctor Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('proctor', 'Proctor', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('subject', 'Subject', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('semester', 'Semester', 'trim|required|xss_clean');
@@ -853,15 +853,13 @@ class Dbms_Controller extends CI_Controller
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_student_profile']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		// $sheetData = $objPHPExcel->getActiveSheet()->rangeToArray('A:AC');
-		// $highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
 
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 1) continue;
-			// if ($counter > $highestRow) break;
-			if ($row['E'] == NULL) break;
+			if ($counter++ < 2) continue;
+			if ($counter > $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['Y']) as $school) //Get School_ID
 			{
@@ -909,13 +907,13 @@ class Dbms_Controller extends CI_Controller
 				
 					if (!$this->student->addStudent($student))
 					{
-						$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . '.');
+						$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
 						redirect('dbms');
 					}
 				}
 				else
 				{
-					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . '.');
+					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
 					redirect('dbms');
 				}
 			}
@@ -923,19 +921,19 @@ class Dbms_Controller extends CI_Controller
 			{
 				if (!$this->student->getStudentByCode($student_code))
 				{
-					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . '. Student not found.');
+					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Student not found.');
 					redirect('dbms');
 				}
 				$this->student->updateStudentByCode($student_code, $student);
 			}
 			else
 			{
-				$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . '.');
+				$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
 				redirect('dbms');
 			}
 		}
 
-		$this->session->set_flashdata('upload_success', 'Student Profile successfully uploaded. ' . ($counter - 2) . ' students added/updated.');
+		$this->session->set_flashdata('upload_success', 'Student Profile successfully uploaded. ' . ($counter - 3) . ' of ' . $highestRow . ' students added/updated.');
 		redirect('dbms');
 	}
 }

@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `adept_student` (
   `Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Control_Number` varchar(5) DEFAULT NULL,
   `Username` varchar(45) DEFAULT NULL,
-  `CD?` tinyint(1) DEFAULT NULL,
+  `CD` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`Tracker_ID`),
   UNIQUE KEY `Tracker_ID_UNIQUE` (`Tracker_ID`),
   UNIQUE KEY `Control_Number_UNIQUE` (`Control_Number`),
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `adept_student` (
 -- Dumping data for table `adept_student`
 --
 
-INSERT INTO `adept_student` (`Tracker_ID`, `Control_Number`, `Username`, `CD?`) VALUES
+INSERT INTO `adept_student` (`Tracker_ID`, `Control_Number`, `Username`, `CD`) VALUES
 (3, '2312', 'ara12', NULL),
 (4, '12312', 'joy32', NULL);
 
@@ -110,9 +110,9 @@ CREATE TABLE IF NOT EXISTS `adept_t3_tracker` (
   `T3_Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Adept_T3_Grades_ID` int(11) NOT NULL,
   `Adept_T3_Attendance_ID` int(11) NOT NULL,
-  `Interview_Form?` tinyint(1) NOT NULL DEFAULT '0',
-  `Site_Visit_Form?` tinyint(1) NOT NULL DEFAULT '0',
-  `Adept_T3_Feedback?` tinyint(1) NOT NULL DEFAULT '0',
+  `Interview_Form` tinyint(1) NOT NULL DEFAULT '0',
+  `Site_Visit_Form` tinyint(1) NOT NULL DEFAULT '0',
+  `Adept_T3_Feedback` tinyint(1) NOT NULL DEFAULT '0',
   `Adept_E-Learning_Feedback` tinyint(1) NOT NULL DEFAULT '0',
   `Manual_&_Kit` tinyint(1) NOT NULL DEFAULT '0',
   `Certificate_Of_Attendance` tinyint(1) NOT NULL DEFAULT '0',
@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `adept_t3_tracker` (
 -- Dumping data for table `adept_t3_tracker`
 --
 
-INSERT INTO `adept_t3_tracker` (`T3_Tracker_ID`, `Adept_T3_Grades_ID`, `Adept_T3_Attendance_ID`, `Interview_Form?`, `Site_Visit_Form?`, `Adept_T3_Feedback?`, `Adept_E-Learning_Feedback`, `Manual_&_Kit`, `Certificate_Of_Attendance`, `Adept_Certified_Trainers`, `Lesson_Plan`, `Demo`, `Total_Weighted`, `Training_Portfolio`, `Control_Number`, `User_Name`) VALUES
+INSERT INTO `adept_t3_tracker` (`T3_Tracker_ID`, `Adept_T3_Grades_ID`, `Adept_T3_Attendance_ID`, `Interview_Form`, `Site_Visit_Form`, `Adept_T3_Feedback`, `Adept_E-Learning_Feedback`, `Manual_&_Kit`, `Certificate_Of_Attendance`, `Adept_Certified_Trainers`, `Lesson_Plan`, `Demo`, `Total_Weighted`, `Training_Portfolio`, `Control_Number`, `User_Name`) VALUES
 (3, 1, 1, 1, 0, 1, 1, 0, 1, 0, 10.1, 12, 12.11, 12.1, 'aa3', 'jppp'),
 (4, 2, 2, 1, 1, 1, 1, 0, 0, 1, 10.2, 12.1, 12.11, 12.14, 'aa4', 'jjds01');
 
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `application` (
   `Application_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Answer_1` text,
   `Answer_2` text,
-  `Contract?` tinyint(1) NOT NULL DEFAULT '0',
+  `Contract` tinyint(1) NOT NULL DEFAULT '0',
   `Date` datetime NOT NULL,
   `Created_At` datetime NOT NULL,
   `Updated_At` datetime NULL DEFAULT NULL,
@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `application` (
 -- Dumping data for table `application`
 --
 
-INSERT INTO `application` (`Application_ID`, `Answer_1`, `Answer_2`, `Contract?`, `Date`, `Created_At`, `Updated_At`) VALUES
+INSERT INTO `application` (`Application_ID`, `Answer_1`, `Answer_2`, `Contract`, `Date`, `Created_At`, `Updated_At`) VALUES
 (1, 'Really', 'Good', 1, '2011-11-11 00:00:00', '2012-12-12 00:00:00', '2019-12-12 00:00:00'),
 (2, 'No', 'Not Really', 0, '2011-11-21 00:00:00', '2012-12-16 00:00:00', '2013-12-12 00:00:00'),
 (3, 'Going', 'There', 0, '2012-11-23 00:00:00', '2012-08-22 00:00:00', '2014-11-12 00:00:00'),
@@ -179,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `best_adept_t3_application` (
   `Answer_1` text,
   `Answer_2` text,
   `Answer_3` text,
-  `Contract?` tinyint(1) NOT NULL DEFAULT '0',
+  `Contract` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`T3_Application_ID`),
   UNIQUE KEY `T3_Application_ID_UNIQUE` (`T3_Application_ID`),
   KEY `fk_Best_Adept_T3_Application_Teacher_Application1_idx` (`T3_Application_ID`)
@@ -189,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `best_adept_t3_application` (
 -- Dumping data for table `best_adept_t3_application`
 --
 
-INSERT INTO `best_adept_t3_application` (`T3_Application_ID`, `Answer_1`, `Answer_2`, `Answer_3`, `Contract?`) VALUES
+INSERT INTO `best_adept_t3_application` (`T3_Application_ID`, `Answer_1`, `Answer_2`, `Answer_3`, `Contract`) VALUES
 (4, 'Really', 'Some people', 'In a silver platter', 0),
 (5, 'No one is shared', 'No one really cares', 'For them', 1),
 (6, 'Diamond rings', 'Some just', 'want everything', 1);
@@ -204,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `best_student` (
   `Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Control_Number` varchar(5) DEFAULT NULL,
   `Username` varchar(45) DEFAULT NULL,
-  `CD?` tinyint(1) DEFAULT NULL,
+  `CD` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`Tracker_ID`),
   UNIQUE KEY `Tracker_ID_UNIQUE` (`Tracker_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
@@ -213,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `best_student` (
 -- Dumping data for table `best_student`
 --
 
-INSERT INTO `best_student` (`Tracker_ID`, `Control_Number`, `Username`, `CD?`) VALUES
+INSERT INTO `best_student` (`Tracker_ID`, `Control_Number`, `Username`, `CD`) VALUES
 (1, '12341', 'jpphil', NULL),
 (2, '54321', 'mac01', NULL);
 
@@ -277,9 +277,9 @@ INSERT INTO `best_t3_grades` (`Best_T3_Grades_ID`) VALUES
 CREATE TABLE IF NOT EXISTS `best_t3_tracker` (
   `T3_Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Best_T3_Attendance_ID` int(11) NOT NULL,
-  `Interview_Form?` tinyint(1) NOT NULL DEFAULT '0',
-  `Site_Visit_Form?` tinyint(1) NOT NULL DEFAULT '0',
-  `Best_T3_Feedback?` tinyint(1) NOT NULL DEFAULT '0',
+  `Interview_Form` tinyint(1) NOT NULL DEFAULT '0',
+  `Site_Visit_Form` tinyint(1) NOT NULL DEFAULT '0',
+  `Best_T3_Feedback` tinyint(1) NOT NULL DEFAULT '0',
   `Best_E-Learning_Feedback` tinyint(1) NOT NULL DEFAULT '0',
   `Best_CD` tinyint(1) NOT NULL DEFAULT '0',
   `Certificate_Of_Attendance` tinyint(1) NOT NULL DEFAULT '0',
@@ -304,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `best_t3_tracker` (
 -- Dumping data for table `best_t3_tracker`
 --
 
-INSERT INTO `best_t3_tracker` (`T3_Tracker_ID`, `Best_T3_Attendance_ID`, `Interview_Form?`, `Site_Visit_Form?`, `Best_T3_Feedback?`, `Best_E-Learning_Feedback`, `Best_CD`, `Certificate_Of_Attendance`, `Best_Certified_Trainers`, `Task_1`, `Task_2`, `Task_3`, `Task_4`, `Best_T3_Grades_ID`, `Control_Number`, `User_Name`) VALUES
+INSERT INTO `best_t3_tracker` (`T3_Tracker_ID`, `Best_T3_Attendance_ID`, `Interview_Form`, `Site_Visit_Form`, `Best_T3_Feedback`, `Best_E-Learning_Feedback`, `Best_CD`, `Certificate_Of_Attendance`, `Best_Certified_Trainers`, `Task_1`, `Task_2`, `Task_3`, `Task_4`, `Best_T3_Grades_ID`, `Control_Number`, `User_Name`) VALUES
 (7, 1, 0, 1, 1, 0, 1, 0, 1, 12.1, 21.1, 221.1, 12311, 1, '1231', 'jppp'),
 (8, 2, 0, 1, 1, 1, 1, 0, 1, 13.1, 321.3, 23.1, 224.2, 2, '1211', 'fllr01');
 
@@ -481,7 +481,7 @@ CREATE TABLE IF NOT EXISTS `internship_student` (
   `Courtesy` int(11) DEFAULT NULL,
   `Responsiveness` int(11) DEFAULT NULL,
   `Comments` text,
-  `Meet_Standards?` tinyint(1) DEFAULT NULL,
+  `Meet_Standards` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`Tracker_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -869,11 +869,11 @@ CREATE TABLE IF NOT EXISTS `smp_t3_application` (
   `Support_Offices_Available` text,
   `Instructional_Materials_Support` text,
   `Technology_Support` text,
-  `Readily_Use_Lab?` tinyint(1) NOT NULL DEFAULT '0',
-  `Internet_Services?` tinyint(1) NOT NULL DEFAULT '0',
+  `Readily_Use_Lab` tinyint(1) NOT NULL DEFAULT '0',
+  `Internet_Services` tinyint(1) NOT NULL DEFAULT '0',
   `Self_Assessment_Form_Business_Communication` tinyint(1) NOT NULL DEFAULT '0',
   `Self_Assessment_Form_Service_Culture` tinyint(1) NOT NULL DEFAULT '0',
-  `Contract?` tinyint(1) NOT NULL DEFAULT '0',
+  `Contract` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`T3_Application_ID`),
   UNIQUE KEY `T3_Application_ID_UNIQUE` (`T3_Application_ID`),
   KEY `fk_SMP_T3_Application_Teacher_Application1_idx` (`T3_Application_ID`)
@@ -883,7 +883,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_application` (
 -- Dumping data for table `smp_t3_application`
 --
 
-INSERT INTO `smp_t3_application` (`T3_Application_ID`, `Answer_1`, `Answer_2`, `Answer_3`, `Total_Numbers_Of_Subjects_Handled`, `Years_Teaching`, `Years_Teaching_In_Current_Institution`, `Avg_Student_Per_Class`, `Support_Offices_Available`, `Instructional_Materials_Support`, `Technology_Support`, `Readily_Use_Lab?`, `Internet_Services?`, `Self_Assessment_Form_Business_Communication`, `Self_Assessment_Form_Service_Culture`, `Contract?`) VALUES
+INSERT INTO `smp_t3_application` (`T3_Application_ID`, `Answer_1`, `Answer_2`, `Answer_3`, `Total_Numbers_Of_Subjects_Handled`, `Years_Teaching`, `Years_Teaching_In_Current_Institution`, `Avg_Student_Per_Class`, `Support_Offices_Available`, `Instructional_Materials_Support`, `Technology_Support`, `Readily_Use_Lab`, `Internet_Services`, `Self_Assessment_Form_Business_Communication`, `Self_Assessment_Form_Service_Culture`, `Contract`) VALUES
 (1, 'Yes', 'No', 'Yes', 123, 2, 3, 32, 'No.', 'Books', 'Computer', 0, 1, 1, 0, 1),
 (2, 'Yes', 'No', 'I don''t', 232, 2, 24, 3, 'YES.', 'IPAD', 'Notebook', 0, 0, 1, 1, 0),
 (3, 'No', 'No', 'No', 2, 33, 3, 20, 'No', 'None', 'None', 0, 0, 1, 1, 0);
@@ -896,11 +896,11 @@ INSERT INTO `smp_t3_application` (`T3_Application_ID`, `Answer_1`, `Answer_2`, `
 
 CREATE TABLE IF NOT EXISTS `smp_t3_attendance` (
   `SMP_T3_Attendance_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Time_In?` tinyint(1) NOT NULL DEFAULT '0',
-  `AM_Snack?` tinyint(1) NOT NULL DEFAULT '0',
-  `Lunch?` tinyint(1) NOT NULL DEFAULT '0',
-  `PM_Snack?` tinyint(1) NOT NULL DEFAULT '0',
-  `Time_Out?` tinyint(1) NOT NULL DEFAULT '0',
+  `Time_In` tinyint(1) NOT NULL DEFAULT '0',
+  `AM_Snack` tinyint(1) NOT NULL DEFAULT '0',
+  `Lunch` tinyint(1) NOT NULL DEFAULT '0',
+  `PM_Snack` tinyint(1) NOT NULL DEFAULT '0',
+  `Time_Out` tinyint(1) NOT NULL DEFAULT '0',
   `Date` datetime NOT NULL,
   `Created_At` datetime NOT NULL,
   `Updated_At` datetime NULL DEFAULT NULL,
@@ -912,7 +912,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_attendance` (
 -- Dumping data for table `smp_t3_attendance`
 --
 
-INSERT INTO `smp_t3_attendance` (`SMP_T3_Attendance_ID`, `Time_In?`, `AM_Snack?`, `Lunch?`, `PM_Snack?`, `Time_Out?`, `Date`, `Created_At`, `Updated_At`) VALUES
+INSERT INTO `smp_t3_attendance` (`SMP_T3_Attendance_ID`, `Time_In`, `AM_Snack`, `Lunch`, `PM_Snack`, `Time_Out`, `Date`, `Created_At`, `Updated_At`) VALUES
 (1, 1, 1, 1, 0, 0, '2012-11-11 00:00:00', '2011-11-01 00:00:00', '2011-11-02 00:00:00'),
 (2, 0, 0, 0, 0, 0, '2011-11-09 00:00:00', '2011-11-01 00:00:00', '2011-11-12 00:00:00'),
 (3, 1, 0, 1, 0, 1, '2011-11-12 00:00:00', '2011-11-23 00:00:00', '2011-11-12 00:00:00'),
@@ -956,7 +956,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_site_visit` (
   `Training_Location` varchar(45) NOT NULL,
   `Company_Host` varchar(45) NOT NULL,
   `Event_Date` datetime NOT NULL,
-  `Feedback_Form?` tinyint(1) NOT NULL DEFAULT '0',
+  `Feedback_Form` tinyint(1) NOT NULL DEFAULT '0',
   `Created_At` datetime NOT NULL,
   `Updated_At` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`SMP_T3_Site_Visit_ID`),
@@ -967,7 +967,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_site_visit` (
 -- Dumping data for table `smp_t3_site_visit`
 --
 
-INSERT INTO `smp_t3_site_visit` (`SMP_T3_Site_Visit_ID`, `Training_Location`, `Company_Host`, `Event_Date`, `Feedback_Form?`, `Created_At`, `Updated_At`) VALUES
+INSERT INTO `smp_t3_site_visit` (`SMP_T3_Site_Visit_ID`, `Training_Location`, `Company_Host`, `Event_Date`, `Feedback_Form`, `Created_At`, `Updated_At`) VALUES
 (1, 'Quezon City', 'Ateneo', '2011-11-12 00:00:00', 0, '2011-11-12 00:00:00', '2011-11-26 00:00:00'),
 (2, 'Manila City', 'La Salle', '2011-11-21 00:00:00', 1, '2011-11-21 00:00:00', '2011-11-16 00:00:00'),
 (3, 'Manila CIty', 'PUP', '2011-11-19 00:00:00', 0, '2011-09-11 00:00:00', '2011-04-11 00:00:00'),
@@ -1028,7 +1028,7 @@ INSERT INTO `status` (`Status_ID`, `Name`) VALUES
 CREATE TABLE IF NOT EXISTS `stipend_tracking` (
   `Stipend_Tracking_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Amount` double NOT NULL DEFAULT '0',
-  `Claimed?` tinyint(1) NOT NULL DEFAULT '0',
+  `Claimed` tinyint(1) NOT NULL DEFAULT '0',
   `Created_At` datetime NOT NULL,
   `Updated_At` datetime NULL DEFAULT NULL,
   `Teacher_ID` int(11) NOT NULL,
@@ -1040,7 +1040,7 @@ CREATE TABLE IF NOT EXISTS `stipend_tracking` (
 -- Dumping data for table `stipend_tracking`
 --
 
-INSERT INTO `stipend_tracking` (`Stipend_Tracking_ID`, `Amount`, `Claimed?`, `Created_At`, `Updated_At`, `Teacher_ID`) VALUES
+INSERT INTO `stipend_tracking` (`Stipend_Tracking_ID`, `Amount`, `Claimed`, `Created_At`, `Updated_At`, `Teacher_ID`) VALUES
 (1, 1000, 0, '2011-12-12 00:00:00', '2013-12-11 00:00:00', 1),
 (2, 2123.23, 1, '2010-12-31 00:00:00', '2011-09-11 00:00:00', 2),
 (3, 21231123, 0, '2011-12-21 00:00:00', '2013-09-15 00:00:00', 3),
@@ -1105,11 +1105,11 @@ CREATE TABLE IF NOT EXISTS `student` (
   `Course` varchar(100) NOT NULL,
   `Year` int(11) NOT NULL,
   `Expected_Year_of_Graduation` int(11) NOT NULL,
-  `DOST_Scholar?` tinyint(1) NOT NULL DEFAULT '0',
-  `Scholar?` tinyint(1) NOT NULL DEFAULT '0',
-  `Interested_in_IT-BPO?` tinyint(1) NOT NULL,
-  `Own_A_Computer?` tinyint(1) DEFAULT '0',
-  `Internet_Access?` tinyint(1) DEFAULT '0',
+  `DOST_Scholar` tinyint(1) NOT NULL DEFAULT '0',
+  `Scholar` tinyint(1) NOT NULL DEFAULT '0',
+  `Interested_in_IT-BPO` tinyint(1) NOT NULL,
+  `Own_A_Computer` tinyint(1) DEFAULT '0',
+  `Internet_Access` tinyint(1) DEFAULT '0',
   `Code` varchar(15) NOT NULL,
   PRIMARY KEY (`Student_ID`),
   UNIQUE KEY `Student_ID_UNIQUE` (`Student_ID`),
@@ -1121,7 +1121,7 @@ CREATE TABLE IF NOT EXISTS `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`Student_ID`, `School_ID`, `Last_Name`, `First_Name`, `Middle_Initial`, `Name_Suffix`, `Student_ID_Number`, `Civil_Status`, `Birthdate`, `Birthplace`, `Gender`, `Nationality`, `Street_Number`, `Street_Name`, `City`, `Province`, `Region`, `Alternate_Address`, `Mobile_Number`, `Landline`, `Email`, `Facebook`, `Course`, `Year`, `Expected_Year_of_Graduation`, `DOST_Scholar?`, `Scholar?`, `Interested_in_IT-BPO?`, `Own_A_Computer?`, `Internet_Access?`, `Code`) VALUES
+INSERT INTO `student` (`Student_ID`, `School_ID`, `Last_Name`, `First_Name`, `Middle_Initial`, `Name_Suffix`, `Student_ID_Number`, `Civil_Status`, `Birthdate`, `Birthplace`, `Gender`, `Nationality`, `Street_Number`, `Street_Name`, `City`, `Province`, `Region`, `Alternate_Address`, `Mobile_Number`, `Landline`, `Email`, `Facebook`, `Course`, `Year`, `Expected_Year_of_Graduation`, `DOST_Scholar`, `Scholar`, `Interested_in_IT-BPO`, `Own_A_Computer`, `Internet_Access`, `Code`) VALUES
 (1, 1, 'Federico', 'Joy', 'H', 'II', '102222', 'Single', '1991-10-10 00:00:00', 'Beijing, China', 'F', 'Filipino', '8', 'Concorde', 'Caloocan City', 'Metro Manila', 'NCR', 'Commonwealth, Quezon City', '09152341231', '4321234', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2013, 0, 0, 1, 0, 0, '12345'),
 (2, 2, 'Fajardo', 'Francis', 'J', 'III', '132123', 'Single', '1990-12-12 00:00:00', 'Quezon City', 'M', 'Filipino', '2', 'Civic', 'Quezon City', 'Metro Manila', 'NCR', 'Caloocan City', '09138312341', '4312312', 'francis@gmail.com', 'Francis Yo', 'BS Management', 3, 2014, 0, 1, 0, 0, 1, '32333'),
 (3, 2, 'Cruz', 'Raymond', 'M', 'Jr', '243121', 'Single', '1991-12-11 00:00:00', 'Manila City', 'M', 'Russian', '3', 'Malakas', 'San Juan City', 'Metro Manila', 'NCR', 'Bonifacio Global City', '09135823842', '9384913', 'rj@yahoo.com', 'RJ', 'BS Management - H', 4, 2013, 1, 1, 1, 0, 1, '39293'),
@@ -1156,7 +1156,7 @@ INSERT INTO `student` (`Student_ID`, `School_ID`, `Last_Name`, `First_Name`, `Mi
 CREATE TABLE IF NOT EXISTS `student_application` (
   `Student_Application_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Contract?` tinyint(1) DEFAULT NULL,
+  `Contract` tinyint(1) DEFAULT NULL,
   `Student_ID` int(11) NOT NULL,
   `Project_ID` int(11) NOT NULL,
   `Subject_ID` int(11) NOT NULL,
@@ -1170,7 +1170,7 @@ CREATE TABLE IF NOT EXISTS `student_application` (
 -- Dumping data for table `student_application`
 --
 
-INSERT INTO `student_application` (`Student_Application_ID`, `Date`, `Contract?`, `Student_ID`, `Project_ID`, `Subject_ID`) VALUES
+INSERT INTO `student_application` (`Student_Application_ID`, `Date`, `Contract`, `Student_ID`, `Project_ID`, `Subject_ID`) VALUES
 (1, '2014-01-11 17:37:50', 1, 23, 1, 1),
 (2, '2014-01-11 17:37:50', 1, 23, 1, 2),
 (3, '2014-01-11 17:37:50', 1, 23, 1, 3),
@@ -1447,7 +1447,7 @@ CREATE TABLE IF NOT EXISTS `t3_tracker` (
   `Status_ID` int(11) NOT NULL,
   `Created_At` datetime NOT NULL,
   `Updated_At` datetime NULL DEFAULT NULL,
-  `Contract?` tinyint(1) NOT NULL DEFAULT '0',
+  `Contract` tinyint(1) NOT NULL DEFAULT '0',
   `Remarks` varchar(250) DEFAULT NULL,
   `Subject_ID` int(11) NOT NULL,
   PRIMARY KEY (`T3_Tracker_ID`),
@@ -1460,7 +1460,7 @@ CREATE TABLE IF NOT EXISTS `t3_tracker` (
 -- Dumping data for table `t3_tracker`
 --
 
-INSERT INTO `t3_tracker` (`T3_Tracker_ID`, `Status_ID`, `Created_At`, `Updated_At`, `Contract?`, `Remarks`, `Subject_ID`) VALUES
+INSERT INTO `t3_tracker` (`T3_Tracker_ID`, `Status_ID`, `Created_At`, `Updated_At`, `Contract`, `Remarks`, `Subject_ID`) VALUES
 (1, 1, '2013-01-01 00:00:00', '2013-11-13 00:00:00', 0, 'Really', 1),
 (2, 1, '2013-03-31 00:00:00', '2001-01-01 00:00:00', 1, 'Go ', 1),
 (3, 1, '2013-02-14 00:00:00', '2011-12-11 00:00:00', 0, 'Hell Yeah Im Halfway', 1),
@@ -1506,9 +1506,9 @@ CREATE TABLE IF NOT EXISTS `teacher` (
   `Total_Year_of_Teaching` int(11) NOT NULL,
   `Civil_Status` varchar(9) NOT NULL DEFAULT 'Single',
   `Gender` char(1) NOT NULL,
-  `Desktop?` tinyint(1) NOT NULL DEFAULT '0',
-  `Laptop?` tinyint(1) NOT NULL DEFAULT '0',
-  `Internet?` tinyint(1) NOT NULL DEFAULT '0',
+  `Desktop` tinyint(1) NOT NULL DEFAULT '0',
+  `Laptop` tinyint(1) NOT NULL DEFAULT '0',
+  `Internet` tinyint(1) NOT NULL DEFAULT '0',
   `Street_Number` varchar(5) NOT NULL,
   `Street_Name` varchar(45) NOT NULL,
   `City` varchar(45) NOT NULL,
@@ -1527,9 +1527,9 @@ CREATE TABLE IF NOT EXISTS `teacher` (
   `Supervisor_Contact_Details` varchar(11) NOT NULL,
   `Position_of_Supervisor` varchar(45) DEFAULT NULL,
   `Classes_Handling` text,
-  `Resume?` tinyint(1) NOT NULL,
-  `Photo?` tinyint(1) NOT NULL DEFAULT '0',
-  `Proof_of_Certification?` tinyint(1) NOT NULL DEFAULT '0',
+  `Resume` tinyint(1) NOT NULL,
+  `Photo` tinyint(1) NOT NULL DEFAULT '0',
+  `Proof_of_Certification` tinyint(1) NOT NULL DEFAULT '0',
   `Diploma/TOR` tinyint(1) NOT NULL DEFAULT '0',
   `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Updated_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -1542,7 +1542,7 @@ CREATE TABLE IF NOT EXISTS `teacher` (
 -- Dumping data for table `teacher`
 --
 
-INSERT INTO `teacher` (`Teacher_ID`, `Code`, `Name_Suffix`, `Last_Name`, `First_Name`, `Middle_Initial`, `Birthdate`, `Birthplace`, `Nationality`, `Total_Year_of_Teaching`, `Civil_Status`, `Gender`, `Desktop?`, `Laptop?`, `Internet?`, `Street_Number`, `Street_Name`, `City`, `Province`, `Region`, `Alternate_Address`, `Mobile_Number`, `Landline`, `Email`, `Facebook`, `Employment_Status`, `Current_Position`, `Current_Department`, `School_ID`, `Name_of_Supervisor`, `Supervisor_Contact_Details`, `Position_of_Supervisor`, `Classes_Handling`, `Resume?`, `Photo?`, `Proof_of_Certification?`, `Diploma/TOR`, `Created_At`, `Updated_At`) VALUES
+INSERT INTO `teacher` (`Teacher_ID`, `Code`, `Name_Suffix`, `Last_Name`, `First_Name`, `Middle_Initial`, `Birthdate`, `Birthplace`, `Nationality`, `Total_Year_of_Teaching`, `Civil_Status`, `Gender`, `Desktop`, `Laptop`, `Internet`, `Street_Number`, `Street_Name`, `City`, `Province`, `Region`, `Alternate_Address`, `Mobile_Number`, `Landline`, `Email`, `Facebook`, `Employment_Status`, `Current_Position`, `Current_Department`, `School_ID`, `Name_of_Supervisor`, `Supervisor_Contact_Details`, `Position_of_Supervisor`, `Classes_Handling`, `Resume`, `Photo`, `Proof_of_Certification`, `Diploma/TOR`, `Created_At`, `Updated_At`) VALUES
 (1, 'CODE123', 'Jr.', 'Swift', 'Mike', 'A', '1967-11-14 00:24:34', 'Quezon City', 'Filipino', 4, 'Single', 'M', 1, 1, 0, '8', 'Samar', 'Quezon City', 'Metro Manila', '5', 'Basco, Batanes', '091159503612', '3336644', 'rj@gmail.com', 'isa', 'Perm', 'Teacher', 'DISCS', 1, 'John Leveur', '09159999911', 'Boss', 'CS150', 1, 0, 1, 0, '2013-12-11 16:00:00', '2013-12-13 16:00:00'),
 (2, 'CODE432', NULL, 'Tan', 'Gillian', 'P', '1992-01-01 00:24:34', 'Beijing, China', 'Filipino', 3, 'Married', 'F', 1, 0, 1, '7', 'Pura', 'Manila City', 'Metro Manila', 'NCR', 'Laoag City', '098112344321', '3215432', 'gil@gmail.com', 'Gigi', 'Perm', 'Teacher 2', 'DISCS', 2, 'Michael Bryan', '09111222334', 'Manager', 'MIS101', 0, 0, 1, 0, '2013-10-30 16:00:00', '2013-11-04 16:00:00'),
 (3, 'CODE123', 'Jr.', 'Fajardo', 'Francis', 'B', '1991-11-12 00:24:34', 'Caloocan City, Philippines', 'Filipino', 10, 'Married', 'M', 0, 0, 0, '2', 'Arrupe', 'Malabon City', 'Metro Manila ', 'NCR', 'Ormoc City', '123456711111', '32123421', 'fr@gmail.com', 'Francis', 'Perm', 'Teacher 4', 'DISCS', 3, 'Fernando Lopez', '09212123456', 'Manager', 'CS160', 1, 1, 1, 1, '2011-11-23 16:00:00', '2013-11-13 16:00:00'),
