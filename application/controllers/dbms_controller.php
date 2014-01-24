@@ -936,5 +936,772 @@ class Dbms_Controller extends CI_Controller
 		$this->session->set_flashdata('upload_success', 'Student Profile successfully uploaded. ' . ($counter - 3) . ' of ' . $highestRow . ' students added/updated.');
 		redirect('dbms');
 	}
+	{
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_best_adept_student_product_tracker']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 1) continue;
+			if ($counter == $highestRow) break;
+
+			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
+			{
+				$school_id = $school->School_ID;
+			}
+			
+			$code = $school_id . $row['E']; //Get Code
+
+			$tracker = array
+			(
+				'Control_Number' => $row['G'],
+				'Username' => $row['H']
+			);
+
+			$subject = $row['A'];
+			
+			if (!$this->student->getStudentByCode($code))
+			{
+				$student['Code'] = $code;
+
+				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				redirect('dbms');					
+			}
+
+			else if (!$this->student->updateStudentTracker($code,$subject,$tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
+
+		$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded.');
+		redirect('dbms');
+	}
+
+	function upload_best_adept_student_tracker()
+	{
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_best_adept_student_tracker']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 1) continue;
+			if ($counter == $highestRow) break;
+
+			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
+			{
+				$school_id = $school->School_ID;
+			}
+			
+			$code = $school_id . $row['E']; //Get Code
+
+			$tracker = array
+			(
+				'Contract?' => $row['G'],
+				'Status' => $row['H'],
+				'Remarks' => $row['I'],
+				'CD?' => $row['J']
+			);
+
+			$subject = $row['A'];
+			
+			if (!$this->student->getStudentByCode($code))
+			{
+				$student['Code'] = $code;
+			
+				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				redirect('dbms');					
+			}
+
+			else if (!$this->student->updateStudentTracker($code,$subject,$tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Tracker upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
+
+		$this->session->set_flashdata('upload_success', 'BEST/AdEPT Tracker successfully uploaded.');
+		redirect('dbms');
+	}
+
+	function upload_gcat_student_tracker()
+	{
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_gcat_student_tracker']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 1) continue;
+			if ($counter == $highestRow) break;
+
+			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
+			{
+				$school_id = $school->School_ID;
+			}
+			
+			$code = $school_id . $row['D']; //Get Code
+
+			$tracker = array
+			(
+				'Session_ID' => $row['F'],
+				'Test_Date' => $row['G'],
+				'Status' => $row['H']
+			);
+
+			$subject = 'GCAT';
+			
+				if (!$this->student->getStudentByCode($code))
+				{
+					$student['Code'] = $code;
+
+					$this->session->set_flashdata('upload_error', 'GCAT Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+					redirect('dbms');					
+				}
+
+				else if (!$this->student->updateStudentTracker($code,$subject,$tracker))
+				{
+						$this->session->set_flashdata('upload_error', 'GCAT Tracker upload failed. Invalid data at row ' . $counter);
+						redirect('dbms');
+				}
+
+		$this->session->set_flashdata('upload_success', 'GCAT Tracker successfully uploaded.');
+		redirect('dbms');
+	}
+
+	function upload_smp_student_tracker()
+	{
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_smp_student_tracker']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 1) continue;
+			if ($counter == $highestRow) break;
+
+			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
+			{
+				$school_id = $school->School_ID;
+			} 
+			
+			$code = $school_id . $row['E']; //Get Code
+
+			$tracker = array
+			(
+				'Contract?' => $row['G'],
+				'Grade' => $row['I'],
+				'Status' => $row['H'],
+				'Remarks' => $row['J']
+			);
+
+			$subject = $row['A'];
+			
+				if (!$this->student->getStudentByCode($code))
+				{
+					$student['Code'] = $code;
+
+					$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+					redirect('dbms');					
+				}
+
+				else if (!$this->student->updateStudentTracker($code,$subject,$tracker))
+					{
+						$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $counter);
+						redirect('dbms');
+					}
+
+		$this->session->set_flashdata('upload_success', 'SMP Tracker successfully uploaded.');
+		redirect('dbms');
+	}
+
+	function upload_internship()
+	{
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_internship']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 1) continue;
+			if ($counter == $highestRow) break;
+
+			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
+			{
+				$school_id = $school->School_ID;
+			}
+			
+			$code = $school_id . $row['D']; //Get Code
+
+			$intern = array
+			(
+				'Company_Information' => $row['G'],
+				'Company_Address' => $row['H'],
+				'Department' => $row['I'],
+				'Supervisor_Name' => $row['J'],
+				'Supervisor_Contact' => $row['K'],
+				'Start_Date' => $row['L'],
+				'End_Date' => $row['M'],
+				'Total_Work_Hours' => $row['N'],
+				'Status' => $row['P'],
+				'Remarks' => $row['Q']
+			);
+
+			$subject = 'Intern';
+		
+				if (!$this->student->getStudentByCode($code))
+				{
+					$student['Code'] = $code;
+
+					$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+					redirect('dbms');					
+				}
+
+				else if (!$this->student->updateStudentTracker	($code,$subject,$intern))
+					{
+						$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter);
+						redirect('dbms');
+					}
+
+		$this->session->set_flashdata('upload_success', 'Internship Tracker successfully uploaded.');
+		redirect('dbms');
+	}
+
+	function upload_class_list()
+	{
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_class_list']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 1) continue;
+			if ($counter == $highestRow) break;
+
+			foreach ($this->school->getSchoolIdByCode($row['D']) as $school) //Get School_ID
+			{
+				$school_id = $school->School_ID;
+			}
+
+			$code = $school_id . $row['D']; //Get Code
+
+			$class = array
+			(
+				'Class_Name' => $row['B'],
+				'Teacher' => $row['C']
+
+			);
+
+			$subject = $row['A']
+		
+				if (!$this->student->getStudentByCode($code))
+				{
+					$student['Code'] = $code;
+
+					$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+					redirect('dbms');					
+				}
+
+				else if (!$this->student->updateInternship($code,$subject,$intern))
+					{
+						$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter);
+						redirect('dbms');
+					}
+
+		$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded.');
+		redirect('dbms');
+	}
+
+	function upload_gcat_student_grades()
+	{
+	}
+
+	function upload_best_student_grades()
+	{
+	}
+
+	function upload_adept_student_grades()
+	{
+	}
+
+//teacher//
+	function upload_best_adept_product_tracker()
+	{
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_best_adept_product_tracker']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 1) continue;
+			if ($counter == $highestRow) break;
+
+			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
+			{
+				$school_id = $school->School_ID;
+			} 
+			
+			$code = $school_id . substr($row['C'],0,1). substr($row['D'],0,1). substr($row['B'],0,1) . $row['E']; //Get Code
+
+			$tracker = array
+			(
+				'Control_Number' => $row['G'],
+				'Username' => $row['H']
+			);
+
+			$subject = $row['A'];
+			
+				if (!$this->teacher->getTeacherByCode($code))
+				{
+					$teacher['Code'] = $code;
+
+					$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+					redirect('dbms');					
+				}
+
+				else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
+					{
+						$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter);
+						redirect('dbms');
+					}
+
+		$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded.');
+		redirect('dbms');
+	}
+
+	function upload_best_tracker()
+	{
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_best_tracker']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 1) continue;
+			if ($counter == $highestRow) break;
+
+			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
+			{
+				$school_id = $school->School_ID;
+			} 
+
+			foreach ($this->status->getStatusIDByName($row['R']) as $status) //Get Status_ID
+			{
+				$status_id = $status->Status_ID;
+			} 
+			
+			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . $row['D']; //Get Code
+
+			$tracker = array
+			(
+				'Contract?' => $row['F'],
+				'Interview_Form?' => $row['G'],
+				'Site_Visit_Form?' => $row['H'],
+				'BEST_E-Learning_Feedback' => $row['I'],
+				'BEST_CD' => $row['J'],
+				'Certificate_of_Attendance' => $row['K'],
+				'Best_Certified_Trainers' => $row['L'],
+				'Task_1' => $row['M'],
+				'Task_2' => $row['O'],
+				'Task_3' => $row['P'],
+				'Task_4' => $row['Q'],
+				'Status_ID' => $status_id,
+				'Remarks' => $row['S'],
+			);
+
+			$subject = "BEST";
+			
+				if (!$this->teacher->getTeacherByCode($code))
+				{
+					$teacher['Code'] = $code;
+
+					$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+					redirect('dbms');					
+				}
+
+				else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
+					{
+						$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter);
+						redirect('dbms');
+					}
+
+		$this->session->set_flashdata('upload_success', 'BEST Tracker successfully uploaded.');
+		redirect('dbms');
+	}
+
+	function upload_best_T3_attendance()
+	{
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_best_t3_attendance']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 1) continue;
+			if ($counter == $highestRow) break;
+
+			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
+			{
+				$school_id = $school->School_ID;
+			} 
+			
+			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . $row['D']; //Get Code
+
+			$tracker = array
+			(
+				'Orientation_Day' => $row['H'],
+				'Site_Visit' => $row['I'],
+				'GCAT' => $row['J'],
+				'Day_1' => $row['K'],
+				'Day_2' => $row['L'],
+				'Day_3' => $row['M']
+			);
+
+			$subject = "BEST";
+			
+				if (!$this->teacher->getTeacherByCode($code))
+				{
+					$teacher['Code'] = $code;
+
+					$this->session->set_flashdata('upload_error', 'BEST Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+					redirect('dbms');					
+				}
+
+				else if (!$this->teacher->updateBestTeacherAttendance($code,$subject,$tracker))
+					{
+						$this->session->set_flashdata('upload_error', 'BEST Attendance Tracker upload failed. Invalid data at row ' . $counter);
+						redirect('dbms');
+					}
+
+		$this->session->set_flashdata('upload_success', 'BEST Attendance Tracker successfully uploaded.');
+		redirect('dbms');
+	}
+
+	function upload_adept_tracker()
+	{
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_adept_tracker']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 1) continue;
+			if ($counter == $highestRow) break;
+
+			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
+			{
+				$school_id = $school->School_ID;
+			}
+
+			foreach ($this->status->getStatusIDByName($row['R']) as $status) //Get Status_ID
+			{
+				$status_id = $status->Status_ID;
+			} 
+
+			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . $row['D']; //Get Code
+
+			$tracker = array
+			(
+				'Contract?' => $row['F'],
+				'Interview_Form?' => $row['G'],
+				'Site_Visit_Form?' => $row['H'],
+				'Adept_E-Learning_Feedback' => $row['I'],
+				'Adept_T3_Feedback?' => $row['J'],
+				'Manual_&_kit' => $row['K'],
+				'Certificate_of_Attendance' => $row['L'],
+				'Adept_Certified_Trainers' => $row['M'],
+				'Lesson_Plan' => $row['N'],
+				'Demo' => $row['O'],
+				'Total_Weighted' => $row['P'],
+				'Training_Portofolio' => $row['Q'],
+				'Status_ID' => $status_id,
+				'Remarks' => $row['S']
+			);
+
+			$subject = "AdEPT";
+			
+				if (!$this->teacher->getTeacherByCode($code))
+				{
+					$teacher['Code'] = $code;
+
+					$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+					redirect('dbms');					
+				}
+
+				else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
+					{
+						$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $counter);
+						redirect('dbms');
+					}
+
+		$this->session->set_flashdata('upload_success', 'AdEPT Tracker successfully uploaded.');
+		redirect('dbms');
+	}
+
+	function upload_adept_T3_attendance()
+	{
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_adept_t3_attendance']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 1) continue;
+			if ($counter == $highestRow) break;
+
+			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
+			{
+				$school_id = $school->School_ID;
+			} 
+			
+			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . $row['D']; //Get Code
+
+			$tracker = array
+			(
+				'Orientation_Day' => $row['H'],
+				'Site_Visit' => $row['I'],
+				'GCAT' => $row['J'],
+				'Day_1' => $row['K'],
+				'Day_2' => $row['L'],
+				'Day_3' => $row['M'],
+				'Day_4' => $row['N'],
+				'Day_5' => $row['O'],
+				'Day_6' => $row['P']
+			);
+
+			$subject = "AdEPT";
+			
+				if (!$this->teacher->getTeacherByCode($code))
+				{
+					$teacher['Code'] = $code;
+
+					$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+					redirect('dbms');					
+				}
+
+				else if (!$this->teacher->updateAdeptTeacherAttendance($code,$subject,$tracker))
+					{
+						$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter);
+						redirect('dbms');
+					}
+
+		$this->session->set_flashdata('upload_success', 'AdEPT Attendance Tracker successfully uploaded.');
+		redirect('dbms');
+	}
+
+	function upload_smp_tracker()
+	{
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_smp_tracker']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 1) continue;
+			if ($counter == $highestRow) break;
+
+			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
+			{
+				$school_id = $school->School_ID;
+			} 
+
+			foreach ($this->status->getStatusIDByName($row['G']) as $status) //Get School_ID
+			{
+				$status_id = $status->Status_ID;
+			} 
+			
+			$code = $school_id . substr($row['C'],0,1). substr($row['D'],0,1). substr($row['B'],0,1) . $row['E']; //Get Code
+
+			$tracker = array
+			(
+				'Status_ID' => $status_id,
+				'Remark' => $row['G']
+			);
+
+			$subject = $row['A'];
+			
+			if (!$this->teacher->getTeacherByCode($code))
+			{
+				$teacher['Code'] = $code;
+
+				$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+					redirect('dbms');					
+			}
+
+			else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $counter);
+						redirect('dbms');
+			}
+
+		$this->session->set_flashdata('upload_success', 'SMP Tracker successfully uploaded.');
+		redirect('dbms');
+	}
+
+	function upload_smp_attendance()
+	{
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_smp_attendance']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 1) continue;
+			if ($counter == $highestRow) break;
+
+			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
+			{
+				$school_id = $school->School_ID;
+			} 
+			
+			$code = $school_id . substr($row['C'],0,1). substr($row['D'],0,1). substr($row['B'],0,1) . $row['E']; //Get Code
+
+			$tracker = array
+			(
+				'Time_In?' => $row['G'],
+				'AM_Snack' => $row['H'],
+				'Lunch?' => $row['I'],
+				'PM_Snack?' => $row['J'],
+				'Time_Out?' => $row['K'],
+				'Date' => $row['L']
+			);
+
+			$event = array
+			(
+				'Event' => $row['M']
+			);
+
+			$subject = $row['A'];
+			
+				if (!$this->teacher->getTeacherByCode($code))
+				{
+					$teacher['Code'] = $code;
+
+					$this->session->set_flashdata('upload_error', 'SMP Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+					redirect('dbms');					
+				}
+
+				else if (!$this->teacher->addTeacherSMPAttendance($code,$subject,$tracker) && !$this->teacher->updateTeacherSMPAttendanceEvent($code,$subject,$event) )
+					{
+						$this->session->set_flashdata('upload_error', 'SMP Attendance Tracker upload failed. Invalid data at row ' . $counter);
+						redirect('dbms');
+					}
+
+		$this->session->set_flashdata('upload_success', 'SMP Attendance Tracker successfully uploaded.');
+		redirect('dbms');
+	}
+
+	function upload_stipend_process_tracker()
+	{
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_stipend_process_tracker']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 1) continue;
+			if ($counter == $highestRow) break;
+
+			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
+			{ 
+				$school_id = $school->School_ID;
+			}
+			
+			$code = $school_id . substr($row['C'],0,1). substr($row['D'],0,1). substr($row['B'],0,1) . $row['E']; //Get Code
+
+			$stipend = array
+			(
+				'Amount' => $row['G'],
+				'Claimed?' => $row['H'],
+				'Checked_By' => $row['I'],
+				'Date' => $row['J']
+			);
+
+			$subject = $row['A']
+		
+		if($row['K'] == "Yes")
+		{
+			if ($this->student->getTeacherByCode($code))
+			{
+				$teacher['Code'] = $code;
+
+				if (!$this->student->addStipendTracker($code, $subject, $stipend))
+				{
+					$this->session->set_flashdata('upload_error', 'Teacher Stipdend Tracker upload failed. Invalid data at row ' . $counter);
+					redirect('dbms');
+				}
+
+				else
+				{
+					$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+					redirect('dbms');
+				}
+										
+			}
+		}
+		else if ($this->student->getTeacherByCode($code))
+			{
+				$teacher['Code'] = $code;
+
+				if (!$this->student->updateStipendTracker($code, $subject, $stipend))
+				{
+					$this->session->set_flashdata('upload_error', 'Teacher Stipdend Tracker upload failed. Invalid data at row ' . $counter);
+					redirect('dbms');
+				}
+
+				else
+				{
+					$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+					redirect('dbms');
+				}
+										
+			}
+
+		$this->session->set_flashdata('upload_success', 'Teacher Stipend Tracker successfully uploaded.');
+		redirect('dbms');
+	}
+
+	function upload_gcat_grades()
+	{
+	}
+
+	function upload_best_grades()
+	{
+	}
+
+	function upload_adept_grades()
+	{
+	}
+
+}
 }
 ?>
