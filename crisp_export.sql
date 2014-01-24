@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `adept_t3_tracker` (
   `Interview_Form` tinyint(1) NOT NULL DEFAULT '0',
   `Site_Visit_Form` tinyint(1) NOT NULL DEFAULT '0',
   `Adept_T3_Feedback` tinyint(1) NOT NULL DEFAULT '0',
-  `Adept_E-Learning_Feedback` tinyint(1) NOT NULL DEFAULT '0',
+  `Adept_ELearning_Feedback` tinyint(1) NOT NULL DEFAULT '0',
   `Manual_&_Kit` tinyint(1) NOT NULL DEFAULT '0',
   `Certificate_Of_Attendance` tinyint(1) NOT NULL DEFAULT '0',
   `Adept_Certified_Trainers` tinyint(1) NOT NULL,
@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `adept_t3_tracker` (
 -- Dumping data for table `adept_t3_tracker`
 --
 
-INSERT INTO `adept_t3_tracker` (`T3_Tracker_ID`, `Adept_T3_Grades_ID`, `Adept_T3_Attendance_ID`, `Interview_Form`, `Site_Visit_Form`, `Adept_T3_Feedback`, `Adept_E-Learning_Feedback`, `Manual_&_Kit`, `Certificate_Of_Attendance`, `Adept_Certified_Trainers`, `Lesson_Plan`, `Demo`, `Total_Weighted`, `Training_Portfolio`, `Control_Number`, `User_Name`) VALUES
+INSERT INTO `adept_t3_tracker` (`T3_Tracker_ID`, `Adept_T3_Grades_ID`, `Adept_T3_Attendance_ID`, `Interview_Form`, `Site_Visit_Form`, `Adept_T3_Feedback`, `Adept_ELearning_Feedback`, `Manual_&_Kit`, `Certificate_Of_Attendance`, `Adept_Certified_Trainers`, `Lesson_Plan`, `Demo`, `Total_Weighted`, `Training_Portfolio`, `Control_Number`, `User_Name`) VALUES
 (3, 1, 1, 1, 0, 1, 1, 0, 1, 0, 10.1, 12, 12.11, 12.1, 'aa3', 'jppp'),
 (4, 2, 2, 1, 1, 1, 1, 0, 0, 1, 10.2, 12.1, 12.11, 12.14, 'aa4', 'jjds01');
 
@@ -280,7 +280,7 @@ CREATE TABLE IF NOT EXISTS `best_t3_tracker` (
   `Interview_Form` tinyint(1) NOT NULL DEFAULT '0',
   `Site_Visit_Form` tinyint(1) NOT NULL DEFAULT '0',
   `Best_T3_Feedback` tinyint(1) NOT NULL DEFAULT '0',
-  `Best_E-Learning_Feedback` tinyint(1) NOT NULL DEFAULT '0',
+  `Best_ELearning_Feedback` tinyint(1) NOT NULL DEFAULT '0',
   `Best_CD` tinyint(1) NOT NULL DEFAULT '0',
   `Certificate_Of_Attendance` tinyint(1) NOT NULL DEFAULT '0',
   `Best_Certified_Trainers` tinyint(1) NOT NULL DEFAULT '0',
@@ -304,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `best_t3_tracker` (
 -- Dumping data for table `best_t3_tracker`
 --
 
-INSERT INTO `best_t3_tracker` (`T3_Tracker_ID`, `Best_T3_Attendance_ID`, `Interview_Form`, `Site_Visit_Form`, `Best_T3_Feedback`, `Best_E-Learning_Feedback`, `Best_CD`, `Certificate_Of_Attendance`, `Best_Certified_Trainers`, `Task_1`, `Task_2`, `Task_3`, `Task_4`, `Best_T3_Grades_ID`, `Control_Number`, `User_Name`) VALUES
+INSERT INTO `best_t3_tracker` (`T3_Tracker_ID`, `Best_T3_Attendance_ID`, `Interview_Form`, `Site_Visit_Form`, `Best_T3_Feedback`, `Best_ELearning_Feedback`, `Best_CD`, `Certificate_Of_Attendance`, `Best_Certified_Trainers`, `Task_1`, `Task_2`, `Task_3`, `Task_4`, `Best_T3_Grades_ID`, `Control_Number`, `User_Name`) VALUES
 (7, 1, 0, 1, 1, 0, 1, 0, 1, 12.1, 21.1, 221.1, 12311, 1, '1231', 'jppp'),
 (8, 2, 0, 1, 1, 1, 1, 0, 1, 13.1, 321.3, 23.1, 224.2, 2, '1211', 'fllr01');
 
@@ -1107,7 +1107,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `Expected_Year_of_Graduation` int(11) NOT NULL,
   `DOST_Scholar` tinyint(1) NOT NULL DEFAULT '0',
   `Scholar` tinyint(1) NOT NULL DEFAULT '0',
-  `Interested_in_IT-BPO` tinyint(1) NOT NULL,
+  `Interested_in_ITBPO` tinyint(1) NOT NULL,
   `Own_A_Computer` tinyint(1) DEFAULT '0',
   `Internet_Access` tinyint(1) DEFAULT '0',
   `Code` varchar(15) NOT NULL,
@@ -1121,7 +1121,7 @@ CREATE TABLE IF NOT EXISTS `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`Student_ID`, `School_ID`, `Last_Name`, `First_Name`, `Middle_Initial`, `Name_Suffix`, `Student_ID_Number`, `Civil_Status`, `Birthdate`, `Birthplace`, `Gender`, `Nationality`, `Street_Number`, `Street_Name`, `City`, `Province`, `Region`, `Alternate_Address`, `Mobile_Number`, `Landline`, `Email`, `Facebook`, `Course`, `Year`, `Expected_Year_of_Graduation`, `DOST_Scholar`, `Scholar`, `Interested_in_IT-BPO`, `Own_A_Computer`, `Internet_Access`, `Code`) VALUES
+INSERT INTO `student` (`Student_ID`, `School_ID`, `Last_Name`, `First_Name`, `Middle_Initial`, `Name_Suffix`, `Student_ID_Number`, `Civil_Status`, `Birthdate`, `Birthplace`, `Gender`, `Nationality`, `Street_Number`, `Street_Name`, `City`, `Province`, `Region`, `Alternate_Address`, `Mobile_Number`, `Landline`, `Email`, `Facebook`, `Course`, `Year`, `Expected_Year_of_Graduation`, `DOST_Scholar`, `Scholar`, `Interested_in_ITBPO`, `Own_A_Computer`, `Internet_Access`, `Code`) VALUES
 (1, 1, 'Federico', 'Joy', 'H', 'II', '102222', 'Single', '1991-10-10 00:00:00', 'Beijing, China', 'F', 'Filipino', '8', 'Concorde', 'Caloocan City', 'Metro Manila', 'NCR', 'Commonwealth, Quezon City', '09152341231', '4321234', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2013, 0, 0, 1, 0, 0, '12345'),
 (2, 2, 'Fajardo', 'Francis', 'J', 'III', '132123', 'Single', '1990-12-12 00:00:00', 'Quezon City', 'M', 'Filipino', '2', 'Civic', 'Quezon City', 'Metro Manila', 'NCR', 'Caloocan City', '09138312341', '4312312', 'francis@gmail.com', 'Francis Yo', 'BS Management', 3, 2014, 0, 1, 0, 0, 1, '32333'),
 (3, 2, 'Cruz', 'Raymond', 'M', 'Jr', '243121', 'Single', '1991-12-11 00:00:00', 'Manila City', 'M', 'Russian', '3', 'Malakas', 'San Juan City', 'Metro Manila', 'NCR', 'Bonifacio Global City', '09135823842', '9384913', 'rj@yahoo.com', 'RJ', 'BS Management - H', 4, 2013, 1, 1, 1, 0, 1, '39293'),
