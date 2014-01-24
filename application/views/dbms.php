@@ -232,6 +232,7 @@
 	
 		<ul class="nav nav-tabs">
 		  <li class="active"><a href="#smp" data-toggle="tab">SMP Tracker</a></li>
+		  <li><a href="#internship" data-toggle="tab">Internship Tracker</a></li>
 		  <li><a href="#gcat" data-toggle="tab">GCAT Tracker</a></li>
 		  <li><a href="#best" data-toggle="tab">BEST Tracker</a></li>
 		  <li><a href="#adept" data-toggle="tab">ADEPT Tracker</a></li>
@@ -239,6 +240,7 @@
 		  <li><a href="#adept_t3 " data-toggle="tab">T3 ADEPT Tracker</a></li>
 		</ul>
 	<div class="tab-content">
+	
 		<div class="tab-pane active" id="smp">
 				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_program_smp_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
@@ -273,11 +275,49 @@
 				
 			</div>
 			
+			<div class="tab-pane fade" id="internship">
+			
+				<div class="button-groups">
+					<a href="<?php echo base_url('dbms/form_program_smp_internship_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
+					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchSMP">
+					  Batch Upload
+					</button>
+					<button class="btn btn-warning" data-toggle="modal" data-target="#searchSMP">Search</button>
+					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
+					 
+				</div>
+				<table class="table table-area">
+					<tr>
+						<th>Check</th>
+						<th>Action</th>
+						<th>ID Number</th>
+						<th>Name</th>
+						<th>Year</th>
+						<th>Course</th>
+						<th>Subjects</th>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td><a href="<?php echo base_url('dbms/form_program_smp_internship_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td>103523</td>
+						<td>Simon, Dayanara F.</td>
+						<td>4</td>
+						<td>BS Management Information Systems</td>
+						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewSMPSubjects">View List</button></td>
+					</tr>
+				</table>
+				
+			</div>
+			
 			<div class="tab-pane fade" id="gcat">
 			
 				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_program_gcat_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchgcat">
+					  Batch Upload
+					</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchGCAT">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 					 
@@ -315,6 +355,9 @@
 				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_program_best_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchbest">
+					  Batch Upload
+					</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 					 
@@ -343,6 +386,9 @@
 				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_program_adept_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchadept">
+					  Batch Upload
+					</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 					 

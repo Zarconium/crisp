@@ -827,6 +827,14 @@ class Dbms_Controller extends CI_Controller
 	}
 	
 	
+	function form_program_smp_internship_tracker()
+	{
+		$this->load->view('header');
+		$this->load->view('forms/form-program-smp-internship-tracker');
+		$this->load->view('footer');
+	}
+	
+	
 	function form_mastertrainer_classlist()
 	{
 		$this->load->view('header');

@@ -13,7 +13,7 @@
 			<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
 			</div>
 
-					<form class="form-inline" role="form">
+				<form class="form-inline" role="form">
 						<div class="form-group">
 							<label>ID Number</label>
 							<input type="text" class="form-control" name="id_number" value="<?php echo set_value('id_number'); ?>">
