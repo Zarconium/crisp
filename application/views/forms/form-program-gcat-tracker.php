@@ -41,16 +41,17 @@
 				<input type="date" class="form-control" id="test_date"> 
 			</div>		
 
-			<div class="form-group">
-				<label>Status</label>
-				<select id="status" class="form-control">
-					<option value="passed">Passed</option>
-					<option value="failed">Failed</option>
+			<div class="form-group">		
+				<label>Status</label><br />
+				<select class="form-control" name="status" value="<?php echo set_value('status'); ?>">
+					<option value="pass">Pass</option>
+					<option value="fail">Fail</option>
 					<option value="incomplete">Incomplete</option>
-					<option value="completed">Completed</option>
 					<option value="dropped">Dropped</option>
+					<option value="taking">Currently Taking</option>
 				</select>
-			</div>
+				<?php echo form_error('status'); ?>							
+			</div>	
 			
 			<div class="form-group">
 				<label>Remarks</label><br/>

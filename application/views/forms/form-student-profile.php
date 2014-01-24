@@ -641,11 +641,11 @@
 						<div class="form-group">		
 							<label>Status</label><br />
 							<select class="form-control" name="intern_stat" value="<?php echo set_value('intern_stat'); ?>">
-								<option>Pass
-								<option>Fail
-								<option>Incomplete
-								<option>Dropped
-								<option>Currently Taking
+								<option value="pass">Pass</option>
+								<option value="fail">Fail</option>
+								<option value="incomplete">Incomplete</option>
+								<option value="dropped">Dropped</option>
+								<option value="taking">Currently Taking</option>
 							</select>
 				<?php echo form_error('intern_stat'); ?>							
 						</div>		

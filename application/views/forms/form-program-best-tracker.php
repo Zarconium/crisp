@@ -13,11 +13,6 @@
 	<legend>General Information</legend>
 	<form class="form-inline" role="form"> <!-- This is the start of the blocked fields -->
 						
-
-		<div class="form-group">
-			<label>School</label><!-- This is the start where you put the label -->
-			<input type="text" class="form-control" id="school"><!-- The input field. Don't forget the id -->
-		</div>			
 		
 		<div class="form-group">		
 			<label>Last Name</label>			
@@ -49,7 +44,16 @@
 			<label>Username</label>
 			<input type="text" class="form-control" id="username">
 		</div>
-
+		
+		<div class="form-group">
+			<label>School</label>
+			<select class="form-control" name="school">
+			<?php foreach ($schools as $school): ?>
+				<option value="<?php echo $school->School_ID; ?>" <?php echo set_select('school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+			<?php endforeach; ?>
+			</select>
+			<?php echo form_error('school'); ?>
+		</div>
 		
 	</form>
 				
