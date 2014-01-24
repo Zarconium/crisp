@@ -193,8 +193,8 @@
 			<form class="form-inline" role="form">	
 				<div class="form-group">
 					<label>Are you a DOST Scholar?</label><br />
-					<input type="radio" name="DOSTscholar" value="1" <?php if ($student->DOST_Scholar? == 1) { echo 'checked="checked"'; } ?>> Yes
-					<input type="radio" name="DOSTscholar" value="0" <?php if ($student->DOST_Scholar? == 0) { echo 'checked="checked"'; } ?>> No
+					<input type="radio" name="DOSTscholar" value="1" <?php if ($student->DOST_Scholar == 1) { echo 'checked="checked"'; } ?>> Yes
+					<input type="radio" name="DOSTscholar" value="0" <?php if ($student->DOST_Scholar == 0) { echo 'checked="checked"'; } ?>> No
 					<?php echo form_error('DOSTscholar'); ?>
 				</div>
 			</form>
