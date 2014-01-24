@@ -4,12 +4,13 @@
 	
 	<h1>ADEPT Product Tracker Encoder</h1>
 	
-		<div class="save">
-			<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
-			<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
-			<button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
-			<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
-		</div>
+	<div class="save">
+		<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
+		<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
+		<button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
+		<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
+	</div>
+
 	<legend>General Information</legend>
 	<form class="form-inline" role="form"> <!-- This is the start of the blocked fields -->
 						
@@ -27,86 +28,40 @@
 			<label>Branch</label><!-- This is the another label -->
 			<input type="text" class="form-control" id="branch">
 		</div>
-			
-	</form>
-				
-	<legend>Student List</legend>
-	<div class="col-md-3">
-			<div class="panel panel-info">
-			<div class="panel-heading">Add or Edit Student</div>
-			<div class="panel-body">
-			<form class="form" role="form">
-					<div class="form-group">		
-						<label>Last Name</label>			
-						<input class="form-control" type="text" id="lname">
-					</div>
-					
-					<div class="form-group">
-						<label>First Name</label>
-						<input type="text" class="form-control" id="fname">
-					</div>
-					
-					<div class="form-group">
-						<label>Middle Initial</label>
-						<input type="text" class="form-control" id="mname">
-					</div>
-					
-				</form>
-				<form class="form" role="form">
-					
-					<div class="form-group">
-						<label>Student Number</label><br/>
-						<input type="text" class="form-control" id="snumber">
-					</div>
-					
-					<div class="form-group">
-						<label>Control Number</label><br/>
-						<input type="text" class="form-control" id="cnumber"> 
-					</div>		
 
-					<div class="form-group">
-						<label>Username</label>
-						<input type="text" class="form-control" id="username">
-					</div>
-
-					<div class="submit-button">
-						<button class="btn btn-primary" name="submit">Add to List</button>
-					</div>
-				</form>
-		
-			</div>
-			</div>
+		<div class="form-group">		
+			<label>Last Name</label>			
+			<input class="form-control" type="text" id="lname">
 		</div>
-	
-	<div class="col-md-9">
-	
-	<legend>List of Students</legend>
-	
-		<button class="btn btn-success">Batch Upload</button>
-		<button class="btn btn-danger">Delete</button>
 		
-		<table class="table table-area">
-			<tr>
-				<th></th>
-				<th>Action</th>
-				<th>Last Name</th>
-				<th>First Name</th>
-				<th>Middle Initial</th>
-				<th>Student Number</th>
-				<th>Control Number</th>
-				<th>Username</th>
-			</tr>
-			<tr>
-				<td><input type="checkbox"></td>
-				<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-				<td>Simon</td>
-				<td>Dayanara</td>
-				<td>F</td>
-				<td>103523</td>
-				<td>DS1234</td>
-				<td>asimon</td>
-			</tr>
-		</table>
+		<div class="form-group">
+			<label>First Name</label>
+			<input type="text" class="form-control" id="fname">
+		</div>
 		
-	</div>
+		<div class="form-group">
+			<label>Middle Initial</label>
+			<input type="text" class="form-control" id="mname">
+		</div>
+		
+		<div class="form-group">
+			<label>Student Number</label><br/>
+			<input type="text" class="form-control" id="snumber">
+		</div>
+		
+		<div class="form-group">
+			<label>Control Number</label><br/>
+			<input type="text" class="form-control" id="cnumber"> 
+		</div>		
+
+		<div class="form-group">
+			<label>Username</label>
+			<input type="text" class="form-control" id="username">
+		</div>
+
+		<div class="submit-button">
+			<button class="btn btn-primary" name="submit">Add to List</button>
+		</div>
+
+	</form>
 </div>	

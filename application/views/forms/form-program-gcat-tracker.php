@@ -13,9 +13,8 @@
 			<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
 		</div>
 
-		<legend>Tracker Information</legend>
-
-		<div class="form-inline">
+		<legend>Student Information</legend>
+		<form class="form" role="form">
 			<div class="form-group">
 				<label>Proctor</label>
 				<select class="form-control" name="proctor">
@@ -24,8 +23,54 @@
 				<?php endforeach; ?>
 				</select>
 				<?php echo form_error('proctor'); ?>
-			</div><br/>
+			</div>
 
+	
+			<div class="form-group">		
+				<label>Last Name</label>			
+				<input class="form-control" type="text" id="lname">
+			</div>
+			
+			<div class="form-group">
+				<label>First Name</label>
+				<input type="text" class="form-control" id="fname">
+			</div>
+			
+			<div class="form-group">
+				<label>Middle Initial</label>
+				<input type="text" class="form-control" id="mname">
+			</div>
+			
+			<div class="form-group">
+				<label>Session ID</label><br/>
+				<input type="text" class="form-control" id="session_id">
+			</div>
+			
+			<div class="form-group">
+				<label>Test Date</label><br/>
+				<input type="date" class="form-control" id="test_date"> 
+			</div>		
+
+			<div class="form-group">
+				<label>Status</label>
+				<select id="status" class="form-control">
+					<option value="passed">Passed</option>
+					<option value="failed">Failed</option>
+					<option value="incomplete">Incomplete</option>
+					<option value="completed">Completed</option>
+					<option value="dropped">Dropped</option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label>Remarks</label><br/>
+				<input type="text" class="form-control" id="remarks"> 
+			</div>		
+
+			<div class="submit-button">
+				<button class="btn btn-primary" name="submit">Add to List</button>
+			</div>
+				
 			<div class="form-group">
 				<label>School</label>
 				<select class="form-control" name="school">
@@ -53,84 +98,11 @@
 				<input class="form-control" type="text" name="section" value="<?php echo set_value('section'); ?>" />
 				<?php echo form_error('section'); ?>
 			</div>
-		</div>
+			
 
-		<legend>Student List</legend>
 
-		<div class="col-md-3">
-			<div class="panel panel-info">
-			<div class="panel-heading">Add or Edit Student</div>
-			<div class="panel-body">
-			<form class="form" role="form">
-					<div class="form-group">		
-						<label>Last Name</label>			
-						<input class="form-control" type="text" id="lname">
-					</div>
-					
-					<div class="form-group">
-						<label>First Name</label>
-						<input type="text" class="form-control" id="fname">
-					</div>
-					
-					<div class="form-group">
-						<label>Middle Initial</label>
-						<input type="text" class="form-control" id="mname">
-					</div>
-					
-				</form>
-				<form class="form" role="form">
-					
-					<div class="form-group">
-						<label>Session ID</label><br/>
-						<input type="text" class="form-control" id="session_id">
-					</div>
-					
-					<div class="form-group">
-						<label>Test Date</label><br/>
-						<input type="date" class="form-control" id="test_date"> 
-					</div>		
+		</form>
 
-					<div class="form-group">
-						<label>Status</label>
-						<select id="status" class="form-control">
-							<option value="passed">Passed</option>
-							<option value="failed">Failed</option>
-							<option value="incomplete">Incomplete</option>
-							<option value="completed">Completed</option>
-							<option value="dropped">Dropped</option>
-						</select>
-					</div>
-					
-					<div class="form-group">
-						<label>Remarks</label><br/>
-						<input type="text" class="form-control" id="remarks"> 
-					</div>		
 
-					<div class="submit-button">
-						<button class="btn btn-primary" name="submit">Add to List</button>
-					</div>
-				</form>
-		
-			</div>
-			</div>
-		</div>
-		
-		<div class="col-md-9">
-			<div class="customize-btn-group">
-				<button type="button" class="btn btn-success">Batch Upload</button>
-				<button type="button" class="btn btn-danger" onclick="student_delete();">Delete</button>
-			</div>
-			<table class="table" id="student_table">
-				<tr>
-					<th></th>
-					<th>Full Name</th>
-					<th>Student Number</th>
-					<th>Session ID</th>
-					<th>Test Date</th>
-					<th>Status</th>
-					<th>Remarks</th>
-				</tr>
-			</table>
-		</div>
-	</form>
+				
 </div>
