@@ -1,72 +1,64 @@
-<table>
+<legend>GCAT - Student</legend>
+<div class="report-form">
+<table class="table">
 	<tr>
-		<td>GCAT - Student</td>
+		<th>Teacher</th>
+		<td>Teacher name</td>
 	</tr>
 	<tr>
-		<td>Teacher</td>
-		<td><?php echo $count->Teacher; ?></td>
+		<th>Sem/period</th>
+		<td>sem period here</td>
 	</tr>
 	<tr>
-		<td>Sem/Period</td>
-		<td><?php echo $count->semester; ?></td>
+		<th>School</th>
+		<td>school name here</td>
 	</tr>
 	<tr>
-		<td>School</td>
-		<td><?php echo $count->School; ?></td>
-	</tr>
-	<th>Class</th>
-	<th>Class Size</th>
-	<?php foreach ($pin_count_list as $count): ?>
-	<tr>
-		<td><?php echo $count->Class; ?></td>
-		<td><?php echo $count->Size; ?></td>
-	</tr>
-	<?php endforeach; ?>
-	<th>Total No. of Classes:</th>
-	<th>Total No. of Students:</th>
-	<?php foreach ($pin_total as $count): ?>
-	<tr>
-		<td><?php echo $count->Total; ?></td>
-		<td><?php echo $count->Total; ?></td>
-	</tr>
-	<?php endforeach; ?>
-</table>
-
-<table>
-	<tr>
-		<td>GCAT - Student</td>
+		<th>Class</th>
+		<th>Size</th>
 	</tr>
 	<tr>
-		<td>Student List</td>
+		<td>Class name here</td>
+		<td>size here</td>
 	</tr>
-	<tr>
-		<td>Teacher</td>
-		<td><?php echo $count->Teacher; ?></td>
-	</tr>
-	<tr>
-		<td>Sem/Period</td>
-		<td><?php echo $count->semester; ?></td>
-	</tr>
-	<tr>
-		<td>School</td>
-		<td><?php echo $count->School; ?></td>
-	</tr>
-	<tr>
-		<td>Class</td>
-		<td><?php echo $count->Class; ?></td>
-	</tr>
-	<tr>
-		<td>Student Name</td>
-	</tr>
-	<?php foreach ($pin_count_list as $count): ?>
-	<tr>
-		<td><?php echo $count->Name; ?></td>
-	</tr>
-	<?php endforeach; ?>
-	<?php foreach ($pin_total as $count): ?>
 	<tr>
 		<td>TOTAL</td>
-		<td><?php echo $count->Total; ?></td>
+		<td colspan="4"><?php echo $count->Total; ?></td>
 	</tr>
-	<?php endforeach; ?>
 </table>
+</div>
+
+<legend>GCAT - Student</legend>
+<div class="report-form">
+<table class="table">
+	<tr>
+		<th>Student List</th>
+	</tr>
+	<tr>
+		<th>Teacher</th>
+		<td>Teacher name</td>
+	</tr>
+	<tr>
+		<th>Sem/period</th>
+		<td>sem period here</td>
+	</tr>
+	<tr>
+		<th>School</th>
+		<td>school name here</td>
+	</tr>
+	<tr>
+		<th>Class</th>
+		<td>Class here</td>
+	</tr>
+	<tr>
+		<th>Student Name</th>
+	</tr>
+	<tr>
+		<td>Student name here</td>
+	</tr>
+	<tr>
+		<td>TOTAL</td>
+		<td colspan="4"><?php echo $count->Total; ?></td>
+	</tr>
+</table>
+</div>
