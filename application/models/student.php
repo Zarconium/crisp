@@ -143,5 +143,18 @@ Class Student extends CI_Model
 		$this->db->where('Student_ID', $id);
 		return $this->db->delete('student');
 	}
+
+	function updateStudentTracker($code,$subject,$tracker)
+	{
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID');
+		$this->db->join('student', 'student.Student_ID = student_tracker.Student_ID', 'left');
+		$this->db->join('subject', 'tracker.Subject_ID = subject.Subject_ID', 'left');
+		$this->db->where('Student.Student_Code = "'.$code.'"');
+		$this->db->where('Subject.Subject_Code = "'.$subject.'"');
+		$this->db->update('tracker', $tracker);
+
+		return $this->db->affected_rows();
+	}
+}
 }
 ?>

@@ -14,5 +14,25 @@ Class Status extends CI_Model
 			return false;
 		}
 	}
+	
+	function getStatusIDByName($name)
+		{
+			$this->db->select('Status_ID');
+			$this->db->from('status');
+			$this->db->where('Name', $name);
+			$this->db->limit(1);
+
+			$query = $this->db->get();
+
+			if($query->num_rows() == 1)
+			{
+				return $query->result();
+			}
+			else
+			{
+				return false;
+			}
+		}
+
 }
 ?>
