@@ -15,16 +15,6 @@
 
 		<legend>Student Information</legend>
 		<form class="form" role="form">
-			<div class="form-group">
-				<label>Proctor</label>
-				<select class="form-control" name="proctor">
-				<?php foreach ($proctors as $proctor): ?>
-					<option value="<?php echo $proctor->Proctor_ID; ?>" <?php echo set_select('proctor', $proctor->Proctor_ID); ?>><?php echo $proctor->Full_Name; ?></option>
-				<?php endforeach; ?>
-				</select>
-				<?php echo form_error('proctor'); ?>
-			</div>
-
 	
 			<div class="form-group">		
 				<label>Last Name</label>			
@@ -67,9 +57,6 @@
 				<input type="text" class="form-control" id="remarks"> 
 			</div>		
 
-			<div class="submit-button">
-				<button class="btn btn-primary" name="submit">Add to List</button>
-			</div>
 				
 			<div class="form-group">
 				<label>School</label>
@@ -80,25 +67,6 @@
 				</select>
 				<?php echo form_error('school'); ?>
 			</div>
-
-			<div class="form-group">
-				<label>Semester</label>
-				<input class="form-control" type="text" name="semester" value="<?php echo set_value('semester'); ?>" />
-				<?php echo form_error('semester'); ?>
-			</div>
-
-			<div class="form-group">
-				<label>Year Level</label>
-				<input class="form-control" type="number" name="year" min="1" value="<?php echo set_value('year'); ?>" />
-				<?php echo form_error('year'); ?>
-			</div>
-
-			<div class="form-group">
-				<label>Section</label>
-				<input class="form-control" type="text" name="section" value="<?php echo set_value('section'); ?>" />
-				<?php echo form_error('section'); ?>
-			</div>
-			
 
 
 		</form>

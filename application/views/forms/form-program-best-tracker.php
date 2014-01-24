@@ -13,20 +13,11 @@
 	<legend>General Information</legend>
 	<form class="form-inline" role="form"> <!-- This is the start of the blocked fields -->
 						
-		<div class="form-group">
-			<label>Date</label><!-- This is the start where you put the label -->
-			<input type="date" class="form-control" id="school"><!-- The input field. Don't forget the id -->
-		</div>
 
 		<div class="form-group">
 			<label>School</label><!-- This is the start where you put the label -->
 			<input type="text" class="form-control" id="school"><!-- The input field. Don't forget the id -->
-		</div>
-			
-		<div class="form-group">
-			<label>Branch</label><!-- This is the another label -->
-			<input type="text" class="form-control" id="branch">
-		</div>
+		</div>			
 		
 		<div class="form-group">		
 			<label>Last Name</label>			
@@ -59,9 +50,6 @@
 			<input type="text" class="form-control" id="username">
 		</div>
 
-		<div class="submit-button">
-			<button class="btn btn-primary" name="submit">Add to List</button>
-		</div>
 		
 	</form>
 				

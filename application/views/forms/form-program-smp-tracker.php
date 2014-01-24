@@ -6,12 +6,12 @@
 
 	<?php echo form_open('/dbms/form_program_smp_tracker'); ?>
 					
-					<div class="save">
+		<div class="save">
 			<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
 			<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
 			<button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
 			<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
-			</div>
+		</div>
 
 				<form class="form-inline" role="form">
 						<div class="form-group">
