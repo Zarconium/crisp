@@ -944,6 +944,8 @@ class Dbms_Controller extends CI_Controller
 		$this->session->set_flashdata('upload_success', 'Student Profile successfully uploaded. ' . ($counter - 3) . ' of ' . $highestRow . ' students added/updated.');
 		redirect('dbms');
 	}
+
+	function upload_best_adept_student_product_tracker()
 	{
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_best_adept_student_product_tracker']['tmp_name']);
@@ -984,6 +986,7 @@ class Dbms_Controller extends CI_Controller
 				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter);
 				redirect('dbms');
 			}
+		}
 
 		$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded.');
 		redirect('dbms');
@@ -1032,6 +1035,7 @@ class Dbms_Controller extends CI_Controller
 				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Tracker upload failed. Invalid data at row ' . $counter);
 				redirect('dbms');
 			}
+		}
 
 		$this->session->set_flashdata('upload_success', 'BEST/AdEPT Tracker successfully uploaded.');
 		redirect('dbms');
@@ -1066,19 +1070,20 @@ class Dbms_Controller extends CI_Controller
 
 			$subject = 'GCAT';
 			
-				if (!$this->student->getStudentByCode($code))
-				{
-					$student['Code'] = $code;
+			if (!$this->student->getStudentByCode($code))
+			{
+				$student['Code'] = $code;
 
-					$this->session->set_flashdata('upload_error', 'GCAT Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
-					redirect('dbms');					
-				}
+				$this->session->set_flashdata('upload_error', 'GCAT Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				redirect('dbms');					
+			}
 
-				else if (!$this->student->updateStudentTracker($code,$subject,$tracker))
-				{
-						$this->session->set_flashdata('upload_error', 'GCAT Tracker upload failed. Invalid data at row ' . $counter);
-						redirect('dbms');
-				}
+			else if (!$this->student->updateStudentTracker($code,$subject,$tracker))
+			{
+					$this->session->set_flashdata('upload_error', 'GCAT Tracker upload failed. Invalid data at row ' . $counter);
+					redirect('dbms');
+			}
+		}
 
 		$this->session->set_flashdata('upload_success', 'GCAT Tracker successfully uploaded.');
 		redirect('dbms');
@@ -1114,19 +1119,20 @@ class Dbms_Controller extends CI_Controller
 
 			$subject = $row['A'];
 			
-				if (!$this->student->getStudentByCode($code))
-				{
-					$student['Code'] = $code;
+			if (!$this->student->getStudentByCode($code))
+			{
+				$student['Code'] = $code;
 
-					$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
-					redirect('dbms');					
-				}
+				$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				redirect('dbms');					
+			}
 
-				else if (!$this->student->updateStudentTracker($code,$subject,$tracker))
-					{
-						$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $counter);
-						redirect('dbms');
-					}
+			else if (!$this->student->updateStudentTracker($code,$subject,$tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
+		}
 
 		$this->session->set_flashdata('upload_success', 'SMP Tracker successfully uploaded.');
 		redirect('dbms');
@@ -1168,19 +1174,20 @@ class Dbms_Controller extends CI_Controller
 
 			$subject = 'Intern';
 		
-				if (!$this->student->getStudentByCode($code))
-				{
-					$student['Code'] = $code;
+			if (!$this->student->getStudentByCode($code))
+			{
+				$student['Code'] = $code;
 
-					$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
-					redirect('dbms');					
-				}
+				$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				redirect('dbms');					
+			}
 
-				else if (!$this->student->updateStudentTracker	($code,$subject,$intern))
-					{
-						$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter);
-						redirect('dbms');
-					}
+			else if (!$this->student->updateStudentTracker	($code,$subject,$intern))
+			{
+				$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
+		}
 
 		$this->session->set_flashdata('upload_success', 'Internship Tracker successfully uploaded.');
 		redirect('dbms');
@@ -1213,21 +1220,21 @@ class Dbms_Controller extends CI_Controller
 
 			);
 
-			$subject = $row['A']
+			$subject = $row['A'];
 		
-				if (!$this->student->getStudentByCode($code))
-				{
-					$student['Code'] = $code;
+			if (!$this->student->getStudentByCode($code))
+			{
+				$student['Code'] = $code;
 
-					$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
-					redirect('dbms');					
-				}
-
-				else if (!$this->student->updateInternship($code,$subject,$intern))
-					{
-						$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter);
-						redirect('dbms');
-					}
+				$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				redirect('dbms');					
+			}
+			else if (!$this->student->updateInternship($code,$subject,$intern))
+			{
+				$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
+		}
 
 		$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded.');
 		redirect('dbms');
@@ -1274,19 +1281,19 @@ class Dbms_Controller extends CI_Controller
 
 			$subject = $row['A'];
 			
-				if (!$this->teacher->getTeacherByCode($code))
-				{
-					$teacher['Code'] = $code;
+			if (!$this->teacher->getTeacherByCode($code))
+			{
+				$teacher['Code'] = $code;
 
-					$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
-					redirect('dbms');					
-				}
-
-				else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
-					{
-						$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter);
-						redirect('dbms');
-					}
+				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				redirect('dbms');					
+			}
+			else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
+		}
 
 		$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded.');
 		redirect('dbms');
@@ -1336,19 +1343,20 @@ class Dbms_Controller extends CI_Controller
 
 			$subject = "BEST";
 			
-				if (!$this->teacher->getTeacherByCode($code))
-				{
-					$teacher['Code'] = $code;
+			if (!$this->teacher->getTeacherByCode($code))
+			{
+				$teacher['Code'] = $code;
 
-					$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
-					redirect('dbms');					
-				}
+				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				redirect('dbms');					
+			}
 
-				else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
-					{
-						$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter);
-						redirect('dbms');
-					}
+			else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
+		}
 
 		$this->session->set_flashdata('upload_success', 'BEST Tracker successfully uploaded.');
 		redirect('dbms');
@@ -1386,19 +1394,19 @@ class Dbms_Controller extends CI_Controller
 
 			$subject = "BEST";
 			
-				if (!$this->teacher->getTeacherByCode($code))
-				{
-					$teacher['Code'] = $code;
+			if (!$this->teacher->getTeacherByCode($code))
+			{
+				$teacher['Code'] = $code;
 
-					$this->session->set_flashdata('upload_error', 'BEST Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
-					redirect('dbms');					
-				}
-
-				else if (!$this->teacher->updateBestTeacherAttendance($code,$subject,$tracker))
-					{
-						$this->session->set_flashdata('upload_error', 'BEST Attendance Tracker upload failed. Invalid data at row ' . $counter);
-						redirect('dbms');
-					}
+				$this->session->set_flashdata('upload_error', 'BEST Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				redirect('dbms');					
+			}
+			else if (!$this->teacher->updateBestTeacherAttendance($code,$subject,$tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Attendance Tracker upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
+		}
 
 		$this->session->set_flashdata('upload_success', 'BEST Attendance Tracker successfully uploaded.');
 		redirect('dbms');
@@ -1449,19 +1457,20 @@ class Dbms_Controller extends CI_Controller
 
 			$subject = "AdEPT";
 			
-				if (!$this->teacher->getTeacherByCode($code))
-				{
-					$teacher['Code'] = $code;
+			if (!$this->teacher->getTeacherByCode($code))
+			{
+				$teacher['Code'] = $code;
 
-					$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
-					redirect('dbms');					
-				}
+				$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				redirect('dbms');					
+			}
 
-				else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
-					{
-						$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $counter);
-						redirect('dbms');
-					}
+			else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
+		}
 
 		$this->session->set_flashdata('upload_success', 'AdEPT Tracker successfully uploaded.');
 		redirect('dbms');
@@ -1502,19 +1511,19 @@ class Dbms_Controller extends CI_Controller
 
 			$subject = "AdEPT";
 			
-				if (!$this->teacher->getTeacherByCode($code))
-				{
-					$teacher['Code'] = $code;
+			if (!$this->teacher->getTeacherByCode($code))
+			{
+				$teacher['Code'] = $code;
 
-					$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
-					redirect('dbms');					
-				}
-
-				else if (!$this->teacher->updateAdeptTeacherAttendance($code,$subject,$tracker))
-					{
-						$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter);
-						redirect('dbms');
-					}
+				$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				redirect('dbms');					
+			}
+			else if (!$this->teacher->updateAdeptTeacherAttendance($code,$subject,$tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
+		}
 
 		$this->session->set_flashdata('upload_success', 'AdEPT Attendance Tracker successfully uploaded.');
 		redirect('dbms');
@@ -1560,12 +1569,12 @@ class Dbms_Controller extends CI_Controller
 				$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
 					redirect('dbms');					
 			}
-
 			else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
 			{
 				$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $counter);
 						redirect('dbms');
 			}
+		}
 
 		$this->session->set_flashdata('upload_success', 'SMP Tracker successfully uploaded.');
 		redirect('dbms');
@@ -1608,19 +1617,20 @@ class Dbms_Controller extends CI_Controller
 
 			$subject = $row['A'];
 			
-				if (!$this->teacher->getTeacherByCode($code))
-				{
-					$teacher['Code'] = $code;
+			if (!$this->teacher->getTeacherByCode($code))
+			{
+				$teacher['Code'] = $code;
 
-					$this->session->set_flashdata('upload_error', 'SMP Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
-					redirect('dbms');					
-				}
+				$this->session->set_flashdata('upload_error', 'SMP Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				redirect('dbms');					
+			}
 
-				else if (!$this->teacher->addTeacherSMPAttendance($code,$subject,$tracker) && !$this->teacher->updateTeacherSMPAttendanceEvent($code,$subject,$event) )
-					{
-						$this->session->set_flashdata('upload_error', 'SMP Attendance Tracker upload failed. Invalid data at row ' . $counter);
-						redirect('dbms');
-					}
+			else if (!$this->teacher->addTeacherSMPAttendance($code,$subject,$tracker) && !$this->teacher->updateTeacherSMPAttendanceEvent($code,$subject,$event) )
+			{
+				$this->session->set_flashdata('upload_error', 'SMP Attendance Tracker upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
+		}
 
 		$this->session->set_flashdata('upload_success', 'SMP Attendance Tracker successfully uploaded.');
 		redirect('dbms');
@@ -1654,29 +1664,29 @@ class Dbms_Controller extends CI_Controller
 				'Date' => $row['J']
 			);
 
-			$subject = $row['A']
+			$subject = $row['A'];
 		
-		if($row['K'] == "Yes")
-		{
-			if ($this->student->getTeacherByCode($code))
+			if($row['K'] == "Yes")
 			{
-				$teacher['Code'] = $code;
-
-				if (!$this->student->addStipendTracker($code, $subject, $stipend))
+				if ($this->student->getTeacherByCode($code))
 				{
-					$this->session->set_flashdata('upload_error', 'Teacher Stipdend Tracker upload failed. Invalid data at row ' . $counter);
-					redirect('dbms');
-				}
+					$teacher['Code'] = $code;
 
-				else
-				{
-					$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
-					redirect('dbms');
+					if (!$this->student->addStipendTracker($code, $subject, $stipend))
+					{
+						$this->session->set_flashdata('upload_error', 'Teacher Stipdend Tracker upload failed. Invalid data at row ' . $counter);
+						redirect('dbms');
+					}
+
+					else
+					{
+						$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+						redirect('dbms');
+					}
+											
 				}
-										
 			}
-		}
-		else if ($this->student->getTeacherByCode($code))
+			else if ($this->student->getTeacherByCode($code))
 			{
 				$teacher['Code'] = $code;
 
@@ -1691,8 +1701,8 @@ class Dbms_Controller extends CI_Controller
 					$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
 					redirect('dbms');
 				}
-										
 			}
+		}
 
 		$this->session->set_flashdata('upload_success', 'Teacher Stipend Tracker successfully uploaded.');
 		redirect('dbms');
@@ -1709,7 +1719,5 @@ class Dbms_Controller extends CI_Controller
 	function upload_adept_grades()
 	{
 	}
-
-}
 }
 ?>
