@@ -1,30 +1,24 @@
-<table>
+<h1>GCAT - T3</h1>
+<legend>Teacher List</legend>
+<div class="report-form">
+<table class="table">
 	<tr>
-		<td>GCAT - T3</td>
+		<th>School:</th>
+		<td>School name here</td>
 	</tr>
 	<tr>
-		<td>Teacher List</td>
+		<th>Sem/period</th>
+		<td>it goes here</td>
 	</tr>
 	<tr>
-		<td>School:</td>
-		<td><?php echo $count->School; ?></td>
+		<th>Teacher Name</th>
 	</tr>
 	<tr>
-		<td>Sem/Period</td>
-		<td><?php echo $count->semester; ?></td>
+		<td>name here</td>
 	</tr>
-	<tr>
-		<td>Teacher Name</td>
-	</tr>
-	<?php foreach ($pin_count_teacher_list as $count): ?>
-	<tr>
-		<td><?php echo $count->teacher; ?></td>
-	</tr>
-	<?php endforeach; ?>
-	<?php foreach ($pin_total as $count): ?>
 	<tr>
 		<td>TOTAL</td>
-		<td><?php echo $count->Total; ?></td>
+		<td colspan="4"><?php echo $count->Total; ?></td>
 	</tr>
-	<?php endforeach; ?>
 </table>
+</div>

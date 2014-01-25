@@ -1,76 +1,65 @@
-<table>
+<legend>SMP</legend>
+<div class="report-form">
+<table class="table">
 	<tr>
-		<td>SMP</td>
+		<th>Teacher</th>
+		<td>Teacher name</td>
 	</tr>
 	<tr>
-		<td>Teacher</td>
-		<td><?php echo $count->Teacher; ?></td>
+		<th>Subject</th>
+		<td>Insert subject here</td>
 	</tr>
 	<tr>
-		<td>Subject</td>
-		<td><?php echo $count->Subject; ?></td>
+		<th>Sem/period</th>
+		<td>sem period here</td>
 	</tr>
 	<tr>
-		<td>Sem/Period</td>
-		<td><?php echo $count->semester; ?></td>
+		<th>School</th>
+		<td>school name here</td>
 	</tr>
 	<tr>
-		<td>School:</td>
-		<td><?php echo $count->School; ?></td>
+		<th>Class</th>
+		<th>Size</th>
 	</tr>
-	<th>Class</th>
-	<th>Size</th>
-	<?php foreach ($class_size_list as $count): ?>
 	<tr>
-		<td><?php echo $count->Class; ?></td>
-		<td><?php echo $count->Size; ?></td>
+		<td>Class name here</td>
+		<td>size here</td>
 	</tr>
-	<?php endforeach; ?>
-	<th>Total No. of Classes</th>	
-	<th>Total No. of Students</th>
-	<?php foreach ($pin_total as $count): ?>
 	<tr>
-		<td><?php echo $count->Total; ?></td>
-		<td><?php echo $count->Total; ?></td>
+		<td>TOTAL</td>
+		<td colspan="4"><?php echo $count->Total; ?></td>
 	</tr>
-	<?php endforeach; ?>
 </table>
+</div>
 
-<table>
+<legend>SMP</legend>
+<div class="report-form">
+<table class="table">
 	<tr>
-		<td>SMP</td>
+		<th>School</th>
+		<td>School name</td>
 	</tr>
 	<tr>
-		<td>School</td>
-		<td><?php echo $count->Teacher; ?></td>
+		<th>Subject</th>
+		<td>Insert subject here</td>
 	</tr>
 	<tr>
-		<td>Subject</td>
-		<td><?php echo $count->Subject; ?></td>
+		<th>Sem/period</th>
+		<td>sem period inert here</td>
 	</tr>
 	<tr>
-		<td>Sem/Period</td>
-		<td><?php echo $count->semester; ?></td>
+		<th>Teacher</th>
+		<th># of students</th>
+		<th># of classes</th>
 	</tr>
-	<th>Teacher</th>
-	<th># of Students</th>
-	<th># of Classes</th>
-	<?php foreach ($class_size_list as $count): ?>
 	<tr>
-		<td><?php echo $count->Teacher; ?></td>
-		<td><?php echo $count->Students; ?></td>
-		<td><?php echo $count->Class; ?></td>
+		<td>insert teacher here</td>
+		<td>insert total number of students here</td>
+		<td>insert total number of classes here</td>
 	</tr>
-	<?php endforeach; ?>
-	<th>Total No. of Teachers</th>
-	<th>Total No. of Students</th>	
-	<th>Total No. of Classes</th>	
-
-	<?php foreach ($pin_total as $count): ?>
 	<tr>
-		<td><?php echo $count->Total; ?></td>
-		<td><?php echo $count->Total; ?></td>
-		<td><?php echo $count->Total; ?></td>
+		<td>TOTAL</td>
+		<td colspan="4"><?php echo $count->Total; ?></td>
 	</tr>
-	<?php endforeach; ?>
 </table>
+</div>
