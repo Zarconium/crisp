@@ -958,7 +958,7 @@ class Dbms_Controller extends CI_Controller
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 1) continue;
+			if ($counter++ < 2) continue;
 			if ($counter == $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
@@ -991,7 +991,14 @@ class Dbms_Controller extends CI_Controller
 			}
 		}
 
-		$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded.');
+		if ($counter > 2)
+		{
+					$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded.') . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Empty file.');
+		}
 		redirect('dbms');
 	}
 
@@ -1005,7 +1012,7 @@ class Dbms_Controller extends CI_Controller
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 1) continue;
+			if ($counter++ < 2) continue;
 			if ($counter == $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
@@ -1040,7 +1047,14 @@ class Dbms_Controller extends CI_Controller
 			}
 		}
 
-		$this->session->set_flashdata('upload_success', 'BEST/AdEPT Tracker successfully uploaded.');
+		if ($counter > 2)
+		{
+			$this->session->set_flashdata('upload_success', 'BEST/AdEPT Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Empty file.');
+		}
 		redirect('dbms');
 	}
 
@@ -1054,7 +1068,7 @@ class Dbms_Controller extends CI_Controller
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 1) continue;
+			if ($counter++ < 2) continue;
 			if ($counter == $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
@@ -1088,7 +1102,14 @@ class Dbms_Controller extends CI_Controller
 			}
 		}
 
-		$this->session->set_flashdata('upload_success', 'GCAT Tracker successfully uploaded.');
+		if ($counter > 2)
+		{
+			$this->session->set_flashdata('upload_success', 'GCAT Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'GCAT Tracker upload failed. Empty file.');
+		}
 		redirect('dbms');
 	}
 
@@ -1102,7 +1123,7 @@ class Dbms_Controller extends CI_Controller
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 1) continue;
+			if ($counter++ < 2) continue;
 			if ($counter == $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
@@ -1137,7 +1158,14 @@ class Dbms_Controller extends CI_Controller
 			}
 		}
 
-		$this->session->set_flashdata('upload_success', 'SMP Tracker successfully uploaded.');
+		if ($counter > 2)
+		{
+			$this->session->set_flashdata('upload_success', 'SMP Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Empty file.');
+		}
 		redirect('dbms');
 	}
 
@@ -1151,7 +1179,7 @@ class Dbms_Controller extends CI_Controller
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 1) continue;
+			if ($counter++ < 2) continue;
 			if ($counter == $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
@@ -1191,8 +1219,14 @@ class Dbms_Controller extends CI_Controller
 				redirect('dbms');
 			}
 		}
-
-		$this->session->set_flashdata('upload_success', 'Internship Tracker successfully uploaded.');
+		if ($counter > 2)
+		{
+			$this->session->set_flashdata('upload_success', 'Internship Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Empty file.');
+		}
 		redirect('dbms');
 	}
 
@@ -1206,7 +1240,7 @@ class Dbms_Controller extends CI_Controller
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 1) continue;
+			if ($counter++ < 2) continue;
 			if ($counter == $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['D']) as $school) //Get School_ID
@@ -1239,7 +1273,14 @@ class Dbms_Controller extends CI_Controller
 			}
 		}
 
-		$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded.');
+		if ($counter > 2)
+		{
+			$this->session->set_flashdata('upload_success', 'Class List successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'Class List upload failed. Empty file.');
+		}
 		redirect('dbms');
 	}
 
@@ -1266,7 +1307,7 @@ class Dbms_Controller extends CI_Controller
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 1) continue;
+			if ($counter++ < 2) continue;
 			if ($counter == $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
@@ -1298,7 +1339,14 @@ class Dbms_Controller extends CI_Controller
 			}
 		}
 
-		$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded.');
+		if ($counter > 2)
+		{
+			$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Empty file.');
+		}
 		redirect('dbms');
 	}
 
@@ -1312,7 +1360,7 @@ class Dbms_Controller extends CI_Controller
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 1) continue;
+			if ($counter++ < 2) continue;
 			if ($counter == $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
@@ -1361,7 +1409,14 @@ class Dbms_Controller extends CI_Controller
 			}
 		}
 
-		$this->session->set_flashdata('upload_success', 'BEST Tracker successfully uploaded.');
+		if ($counter > 2)
+		{
+			$this->session->set_flashdata('upload_success', 'BEST Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Empty file.');
+		}
 		redirect('dbms');
 	}
 
@@ -1375,7 +1430,7 @@ class Dbms_Controller extends CI_Controller
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 1) continue;
+			if ($counter++ < 2) continue;
 			if ($counter == $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
@@ -1411,7 +1466,14 @@ class Dbms_Controller extends CI_Controller
 			}
 		}
 
-		$this->session->set_flashdata('upload_success', 'BEST Attendance Tracker successfully uploaded.');
+		if ($counter > 2)
+		{
+			$this->session->set_flashdata('upload_success', 'BEST Attendance Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'BEST Attendance Tracker upload failed. Empty file.');
+		}
 		redirect('dbms');
 	}
 
@@ -1425,7 +1487,7 @@ class Dbms_Controller extends CI_Controller
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 1) continue;
+			if ($counter++ < 2) continue;
 			if ($counter == $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
@@ -1475,7 +1537,14 @@ class Dbms_Controller extends CI_Controller
 			}
 		}
 
-		$this->session->set_flashdata('upload_success', 'AdEPT Tracker successfully uploaded.');
+		if ($counter > 2)
+		{
+			$this->session->set_flashdata('upload_success', 'AdEPT Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Empty file.');
+		}
 		redirect('dbms');
 	}
 
@@ -1489,7 +1558,7 @@ class Dbms_Controller extends CI_Controller
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 1) continue;
+			if ($counter++ < 2) continue;
 			if ($counter == $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
@@ -1528,8 +1597,15 @@ class Dbms_Controller extends CI_Controller
 			}
 		}
 
-		$this->session->set_flashdata('upload_success', 'AdEPT Attendance Tracker successfully uploaded.');
-		redirect('dbms');
+		if ($counter > 2)
+		{
+			$this->session->set_flashdata('upload_success', 'AdEPT Attendance Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Empty file.');
+		}
+		redirect('dbms');		
 	}
 
 	function upload_smp_tracker()
@@ -1542,7 +1618,7 @@ class Dbms_Controller extends CI_Controller
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 1) continue;
+			if ($counter++ < 2) continue;
 			if ($counter == $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
@@ -1579,7 +1655,14 @@ class Dbms_Controller extends CI_Controller
 			}
 		}
 
-		$this->session->set_flashdata('upload_success', 'SMP Tracker successfully uploaded.');
+		if ($counter > 2)
+		{
+			$this->session->set_flashdata('upload_success', 'SMP Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Empty file.');
+		}
 		redirect('dbms');
 	}
 
@@ -1593,7 +1676,7 @@ class Dbms_Controller extends CI_Controller
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 1) continue;
+			if ($counter++ < 2) continue;
 			if ($counter == $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
@@ -1635,7 +1718,14 @@ class Dbms_Controller extends CI_Controller
 			}
 		}
 
-		$this->session->set_flashdata('upload_success', 'SMP Attendance Tracker successfully uploaded.');
+		if ($counter > 2)
+		{
+			$this->session->set_flashdata('upload_success', 'SMP Attendance Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'SMP Attendance Tracker upload failed. Empty file.');
+		}
 		redirect('dbms');
 	}
 
@@ -1649,7 +1739,7 @@ class Dbms_Controller extends CI_Controller
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 1) continue;
+			if ($counter++ < 2) continue;
 			if ($counter == $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
@@ -1707,7 +1797,14 @@ class Dbms_Controller extends CI_Controller
 			}
 		}
 
-		$this->session->set_flashdata('upload_success', 'Teacher Stipend Tracker successfully uploaded.');
+		if ($counter > 2)
+		{
+			$this->session->set_flashdata('upload_success', 'Teacher Stipend Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Empty file.');
+		}
 		redirect('dbms');
 	}
 
