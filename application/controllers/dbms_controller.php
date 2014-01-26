@@ -993,7 +993,7 @@ class Dbms_Controller extends CI_Controller
 
 		if ($counter > 2)
 		{
-					$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded.') . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+			$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded.' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
 		}
 		else
 		{
