@@ -24,6 +24,12 @@ class Resources_Controller extends CI_Controller {
 		$this->load->view('resources');
 		$this->load->view('footer');
 	}
-
+	
+	function downloadStudentProfileSinglePDF()
+	{		
+	$this->load->helper('download');
+	$data = file_get_contents("./downloads/pdf/student_profile_single.pdf");
+	force_download('student_profile_single.pdf', $data);
+	}
 }
 ?>

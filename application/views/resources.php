@@ -26,7 +26,7 @@
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<a href="<?php echo base_url('resources/downloadStudentProfileSinglePDF') ?>"><button class="btn btn-info">PDF</button></a>
 					</td>
 				</tr>
 				<tr>
