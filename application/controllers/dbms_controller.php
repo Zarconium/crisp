@@ -153,11 +153,11 @@ class Dbms_Controller extends CI_Controller
 						'Course' => $this->input->post('degree_type') . " " . $this->input->post('degree'), //concatenate degree type and degree
 						'Year' => $this->input->post('year'),
 						'Expected_Year_of_Graduation' => $this->input->post('expected_year_of_graduation'),
-						'DOST_Scholar?' => $this->input->post('DOSTscholar'),
-						'Scholar?' => $this->input->post('scholar'),
-						'Interested_In_ITBPO?' => $this->input->post('work'),
-						'Own_A_Computer?' => $this->input->post('computer'),
-						'Internet_Access?' => $this->input->post('internet'),
+						'DOST_Scholar' => $this->input->post('DOSTscholar'),
+						'Scholar' => $this->input->post('scholar'),
+						'Interested_In_ITBPO' => $this->input->post('work'),
+						'Own_A_Computer' => $this->input->post('computer'),
+						'Internet_Access' => $this->input->post('internet'),
 						'Code' => $this->input->post('code')
 					);
 					$student_id = $this->student->addStudent($student);
@@ -201,7 +201,7 @@ class Dbms_Controller extends CI_Controller
 
 						$student_application = array
 						(
-							'Contract?' => $this->input->post('contract'),
+							'Contract' => $this->input->post('contract'),
 							'Student_ID' => $student_id,
 							'Project_ID' => $project_id,
 							'Subject_ID' => $subject_id
@@ -898,9 +898,9 @@ class Dbms_Controller extends CI_Controller
 				'Course' => $row['V'] . ' ' . $row['W'],
 				'Year' => $row['X'],
 				'Expected_Year_of_Graduation' => $row['Z'],
-				'DOST_Scholar?' => $row['AA'],
-				'Scholar?' => $row['AB'],
-				'Interested_In_ITBPO?' => $row['AC']
+				'DOST_Scholar' => $row['AA'],
+				'Scholar' => $row['AB'],
+				'Interested_In_ITBPO' => $row['AC']
 			);
 			
 			if ($row['F'] == 'Yes')
@@ -939,7 +939,7 @@ class Dbms_Controller extends CI_Controller
 
 		if ($counter > 2)
 		{
-			$this->session->set_flashdata('upload_success', 'Student Profile successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+			$this->session->set_flashdata('upload_success', 'Student Profile successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
 		}
 		else
 		{
@@ -980,7 +980,7 @@ class Dbms_Controller extends CI_Controller
 			{
 				$student['Code'] = $code;
 
-				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . '. Student does not exist.');
 				redirect('dbms');					
 			}
 
@@ -993,7 +993,7 @@ class Dbms_Controller extends CI_Controller
 
 		if ($counter > 2)
 		{
-			$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded.' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+			$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded.' . ($counter - 3) . ' of ' . ($highestRow - 3) . ' students updated.');
 		}
 		else
 		{

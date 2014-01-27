@@ -78,9 +78,6 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('header-print');
 		$this->load->view('reports/student_program_report_gcat', $data);
 		$this->load->view('footer-print');
-
-
-
 	}
 
 	function studentProgramReportPerSub()

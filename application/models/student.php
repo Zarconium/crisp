@@ -100,6 +100,12 @@ Class Student extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	function addStudentTracker($data)
+	{
+		$this->db->insert('student_tracker', $data);
+		return $this->db->insert_id();
+	}
+
 	function addSmpStudent($data)
 	{
 		$this->db->insert('smp_student', $data);

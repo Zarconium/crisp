@@ -34,7 +34,6 @@
 							</div>
 							
 							<div class="button-groups">
-							
 								<a href="<?php echo base_url('reports/studentProgramReportGCAT'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
