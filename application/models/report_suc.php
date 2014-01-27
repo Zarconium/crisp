@@ -33,11 +33,11 @@ Class Report_Suc extends CI_Model
 		}
 	}
 
-	function getStudentClass($subject,$school_code,$semester,$teacher_code)
+	function getStudentClass($subject_code,$school_code,$semester,$teacher_code)
 	{
 
-		$this->db->query('CREATE TEMPORARY TABLE temp1 AS (
-		select class.Name as "Class Name", COUNT(DISTINCT Student_Class.Student_ID)as "Number of Students"
+
+		$query = $this->db->query('select class.Name as "Class_Name", COUNT(DISTINCT Student_Class.Student_ID)as "Number_of_Students"
 		from Student_Class, Student, Class,subject, school, other_class, teacher
 		where Student_Class.student_id = student.Student_ID 
 		and class.Class_ID = student_class.Class_ID
@@ -45,14 +45,14 @@ Class Report_Suc extends CI_Model
 		and other_class.Teacher_ID = teacher.Teacher_ID
 		and subject.subject_id = class.Subject_ID
 		and school.School_ID = class.School_ID 
-		and subject.Subject_Code = "' . $subject . '"
-		and school.Code = "' . $school_code . '"
-		and class.Semester = ' . $semester . '
-		and teacher.Code = "' . $teacher_code . '"
-		group by class.Name);');
-
-		$this->db->query('CREATE TEMPORARY TABLE temp2 AS (
-		select count(distinct class.Name), count(DISTINCT Student_Class.Student_ID)as "Number of Students"
+		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
+		s.Subject_Code="' . $subject_code . '")
+		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
+		AND class.Semester =' . $semester . '
+		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
+		group by class.Name
+		UNION
+		select "Total: ", COUNT(DISTINCT Student_Class.Student_ID)as "Number_of_Students"
 		from Student_Class, Student, Class,subject, school, other_class, teacher
 		where Student_Class.student_id = student.Student_ID 
 		and class.Class_ID = student_class.Class_ID
@@ -60,15 +60,14 @@ Class Report_Suc extends CI_Model
 		and other_class.Teacher_ID = teacher.Teacher_ID
 		and subject.subject_id = class.Subject_ID
 		and school.School_ID = class.School_ID 
-		and subject.Subject_Code = "' . $subject . '" 
-		and school.Code = "' . $school_code . '"
-		and class.Semester = ' . $semester . '
-		and teacher.Code = "' . $teacher_code . '"
-		);');
+		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
+		s.Subject_Code="' . $subject_code . '")
+		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
+		AND class.Semester =' . $semester . '
+		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '");
+');
 
-		$query = $this->db->query('select * from temp1 union select * from temp2;');
-		$this->db->query('DROP TEMPORARY TABLE IF EXISTS temp1, temp2;');
-		
+
 		if($query->num_rows() > 0)
 		{
 			return $query->result();
@@ -79,42 +78,38 @@ Class Report_Suc extends CI_Model
 		}
 	}
 
-	function getAllSMPStudent($subject,$school_code,$semester,$teacher_code,$class_name)
+	#done
+	function getAllSMPStudent($subject_code,$school_code,$semester,$teacher_code,$class_name)
 	{
-		$this->db->query('CREATE TEMPORARY TABLE temp1 AS (
-		select concat_ws(" ",student.Last_Name,",", student.First_Name,student.middle_initial) as "Student Name"
-		 from Student_Class, Student, Class,subject, school, other_class, teacher
-		where Student_Class.student_id = student.Student_ID 
-		and class.Class_ID = student_class.Class_ID
-		and other_class.Class_ID = class.Class_ID 
-		and other_class.Teacher_ID = teacher.Teacher_ID
-		and subject.subject_id = class.Subject_ID
-		and school.School_ID = class.School_ID 
-		and subject.Subject_Code = "' . $subject . '" 
-		and school.Code = "' . $school_code . '"
-		and class.Semester = ' . $semester . '
-		and teacher.Code = "' . $teacher_code . '"
-		and class.Name = "' . $class_name . '"
-		);');
-
-		$this->db->query('CREATE TEMPORARY TABLE temp2 AS (
-		select "total:" + count(DISTINCT Student_Class.Student_ID) 
-		 from Student_Class, Student, Class,subject, school, other_class, teacher
-		where Student_Class.student_id = student.Student_ID 
-		and class.Class_ID = student_class.Class_ID
-		and other_class.Class_ID = class.Class_ID 
-		and other_class.Teacher_ID = teacher.Teacher_ID
-		and subject.subject_id = class.Subject_ID
-		and school.School_ID = class.School_ID 
-		and subject.Subject_Code = "' . $subject . '" 
-		and school.Code = "' . $school_code . '"
-		and class.Semester = ' . $semester . '
-		and teacher.Code = "' . $teacher_code . '"
-		and class.Name = "' . $class_name . '"
-		);');
-
-		$query = $this->db->query('select * from temp1 union select * from temp2;');
-		$this->db->query('DROP TEMPORARY TABLE IF EXISTS temp1, temp2;');
+		$query = $this->db->query('SELECT CONCAT_WS(  " ", student.Last_Name,  ",", student.First_Name, student.middle_initial ) AS "Student_Names"
+		FROM Student_Class, Student, Class, subject, school, other_class, teacher
+		WHERE Student_Class.student_id = student.Student_ID
+		AND class.Class_ID = student_class.Class_ID
+		AND other_class.Class_ID = class.Class_ID
+		AND other_class.Teacher_ID = teacher.Teacher_ID
+		AND subject.subject_id = class.Subject_ID
+		AND school.School_ID = class.School_ID
+		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
+		s.Subject_Code="' . $subject_code . '")
+		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
+		AND class.Semester =' . $semester . '
+		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
+		AND class.Name = "' . $class_name . '" 
+		UNION
+		SELECT CONCAT_WS(" ", "Total:", COUNT(Student.Student_ID)) as "Student_Names"
+		FROM Student_Class, Student, Class, subject, school, other_class, teacher
+		WHERE Student_Class.student_id = student.Student_ID
+		AND class.Class_ID = student_class.Class_ID
+		AND other_class.Class_ID = class.Class_ID
+		AND other_class.Teacher_ID = teacher.Teacher_ID
+		AND subject.subject_id = class.Subject_ID
+		AND school.School_ID = class.School_ID
+		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
+		s.Subject_Code="' . $subject_code . '")
+		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
+		AND class.Semester =' . $semester . '
+		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
+		AND class.Name = "' . $class_name . '";');
 
 		if($query->num_rows() > 0)
 		{
@@ -362,6 +357,7 @@ Class Report_Suc extends CI_Model
 			return false;
 		}
 	}
+
 
 }
 ?>

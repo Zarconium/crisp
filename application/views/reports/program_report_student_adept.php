@@ -2,10 +2,12 @@
 <legend>Number of Pins Given</legend>
 <div class="report-form">
 <table class="table">
+<tr>
 	<th>School</th>
 	<th>Male</th>
 	<th>Female</th>
 	<th>Total</th>
+<tr>
 	<?php foreach ($pin_count_list as $count): ?>
 	<tr>
 		<td><?php echo $count->School; ?></td>
