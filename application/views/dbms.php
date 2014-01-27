@@ -6,165 +6,150 @@
 </div>
 
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#student" data-toggle="tab">Student</a></li>
-  <li><a href="#teacher" data-toggle="tab">Teacher</a></li>
-  <li><a href="#proctor" data-toggle="tab">Proctor</a></li>
-  <li><a href="#trainer" data-toggle="tab">Master Trainer</a></li>
-  <li><a href="#class" data-toggle="tab">Classes</a></li>
-  <li><a href="#tracker" data-toggle="tab">Trackers</a></li>
+	<li class="active"><a href="#student" data-toggle="tab">Student</a></li>
+	<li><a href="#teacher" data-toggle="tab">Teacher</a></li>
+	<li><a href="#proctor" data-toggle="tab">Proctor</a></li>
+	<li><a href="#trainer" data-toggle="tab">Master Trainer</a></li>
+	<li><a href="#class" data-toggle="tab">Classes</a></li>
+	<li><a href="#tracker" data-toggle="tab">Trackers</a></li>
 </ul>		
 
 <div class="tab-content">
-  <div class="tab-pane active" id="student">
-				  
-		  <div class="col-md-12">
-			  <div class="button-groups">
-					<a href="<?php echo base_url('dbms/form_student_application'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
-					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-					<button class="btn btn-success" data-toggle="modal" data-target="#batchStudent">
-					  Batch Upload
-					</button>
-					<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
-					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-			  </div>
-				<table class="table table-area">
-					<tr>
-						<th>Check</th>
-						<th>Action</th>
-						<th>Name</th>
-						<th>School</th>
-						<th>Programs</th>
-					</tr>
-					<?php if ($students): ?>
-					<?php foreach ($students as $student): ?>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td><a href="<?php echo base_url('dbms/form_student_profile/' . $student->Student_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_student/' . $student->Student_ID); ?>">Delete</a></td>
-						<td><?php echo $student->Full_Name; ?></td>
-						<td><?php echo $student->School_Name; ?></td>
-						<td><?php echo $student->Subject_Codes; ?></td>
-					</tr>
-					<?php endforeach; ?>
-					<?php endif; ?>
-				</table>
-		  </div>
-		  
-		
+  	<div class="tab-pane active" id="student">
+		<div class="col-md-12">
+			<div class="button-groups">
+				<a href="<?php echo base_url('dbms/form_student_application'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
+				<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+				<button class="btn btn-success" data-toggle="modal" data-target="#batchStudent">Batch Upload</button>
+				<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
+				<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
+			</div>
+			<table class="table table-area">
+				<tr>
+					<th>Check</th>
+					<th>Action</th>
+					<th>Name</th>
+					<th>School</th>
+					<th>Programs</th>
+				</tr>
+				<?php if ($students): ?>
+				<?php foreach ($students as $student): ?>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td><a href="<?php echo base_url('dbms/form_student_profile/' . $student->Student_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_student/' . $student->Student_ID); ?>">Delete</a></td>
+					<td><?php echo $student->Full_Name; ?></td>
+					<td><?php echo $student->School_Name; ?></td>
+					<td><?php echo $student->Subject_Codes; ?></td>
+				</tr>
+				<?php endforeach; ?>
+				<?php endif; ?>
+			</table>
+		</div>
 	</div>
-		  <div class="tab-pane fade" id="teacher">
 		  
-		  <div class="col-md-12">
-			  <div class="button-groups">
-					<a href="<?php echo base_url('dbms/form_teacher_application'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
-					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-					<button class="btn btn-success" data-toggle="modal" data-target="#batchTeacher">
-					  Batch Upload
-					</button>
-					<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
-					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-			  </div>
-				<table class="table table-area">
-					<tr>
-						<th>Check</th>
-						<th>Action</th>
-						<th>Name</th>
-						<th>School</th>
-						<th>Programs</th>
-					</tr>
-					<?php if ($teachers): ?>
-					<?php foreach ($teachers as $teacher): ?>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td><a href="<?php echo base_url('dbms/form_teacher_profile'); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_teacher/' . $teacher->Teacher_ID); ?>">Delete</a></td>
-						<td><?php echo $teacher->Full_Name; ?></td>
-						<td><?php echo $teacher->School_Name; ?></td>
-						<td><?php echo $teacher->Subject_Codes; ?></td>
-					</tr>
-					<?php endforeach; ?>
-					<?php endif; ?>
-				</table>
-		  </div>
-		  
-		  </div>
-		  <div class="tab-pane fade" id="proctor">
-		  
-		  <div class="col-md-12">
-			  <div class="button-groups">
-					<a href="<?php echo base_url('dbms/form_proctor_application'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
-					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-					<button class="btn btn-success" data-toggle="modal" data-target="#batchProctor">
-					  Batch Upload
-					</button>
-					<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
-					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-			  </div>
-				<table class="table table-area">
-					<tr>
-						<th>Check</th>
-						<th>Action</th>
-						<th>Name</th>
-						<th>School</th>
-						<th>Programs</th>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td><a href="<?php echo base_url('dbms/form_proctor_application'); ?>">View</a> | <a href="#">Delete</a></td>
-						<td>Uygongco, Glu</td>
-						<td>Ateneo de Manila University</td>
-						<td>BEST</td>
-					</tr>
-				</table>
-		  </div>
-		  
-		  </div>
+	<div class="tab-pane fade" id="teacher">
+		<div class="col-md-12">
+			<div class="button-groups">
+				<a href="<?php echo base_url('dbms/form_teacher_application'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
+				<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+				<button class="btn btn-success" data-toggle="modal" data-target="#batchTeacher">Batch Upload</button>
+				<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
+				<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
+			</div>
+			<table class="table table-area">
+				<tr>
+					<th>Check</th>
+					<th>Action</th>
+					<th>Name</th>
+					<th>School</th>
+					<th>Programs</th>
+				</tr>
+				<?php if ($teachers): ?>
+				<?php foreach ($teachers as $teacher): ?>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td><a href="<?php echo base_url('dbms/form_teacher_profile'); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_teacher/' . $teacher->Teacher_ID); ?>">Delete</a></td>
+					<td><?php echo $teacher->Full_Name; ?></td>
+					<td><?php echo $teacher->School_Name; ?></td>
+					<td><?php echo $teacher->Subject_Codes; ?></td>
+				</tr>
+				<?php endforeach; ?>
+				<?php endif; ?>
+			</table>
+		</div>
+	</div>
+
+	<div class="tab-pane fade" id="proctor">
+		<div class="col-md-12">
+			<div class="button-groups">
+				<a href="<?php echo base_url('dbms/form_proctor_application'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
+				<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+				<button class="btn btn-success" data-toggle="modal" data-target="#batchProctor">Batch Upload</button>
+				<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
+				<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
+			</div>
+			<table class="table table-area">
+				<tr>
+					<th>Check</th>
+					<th>Action</th>
+					<th>Name</th>
+					<th>School</th>
+					<th>Programs</th>
+				</tr>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td><a href="<?php echo base_url('dbms/form_proctor_application'); ?>">View</a> | <a href="#">Delete</a></td>
+					<td>Uygongco, Glu</td>
+					<td>Ateneo de Manila University</td>
+					<td>BEST</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 	
 	
-  <div class="tab-pane fade" id="trainer">
-	  <div class="button-groups">
-			<a href="<?php echo base_url('dbms/form_mastertrainer_application'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
-			<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-			<button class="btn btn-success" data-toggle="modal" data-target="#batchTrainer">
-			  Batch Upload
-			</button>
-			<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
-			<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-	  </div>
-		<table class="table table-area">
-			<tr>
-				<th>Check</th>
-				<th>Action</th>
-				<th>Name</th>
-				<th>School</th>
-				<th>Programs</th>
-			</tr>
-			<tr>
-				<td><input type="checkbox"></td>
-						<td><a href="<?php echo base_url('dbms/form_mastertrainer_profile'); ?>">View</a> | <a href="#">Delete</a></td>
-				<td>Peralta, Philip</td>
-				<td>Ateneo de Manila University</td>
-				<td>GCAT</td>
-			</tr>
-		</table>
-  </div>
+	<div class="tab-pane fade" id="trainer">
+		<div class="col-md-12">
+			<div class="button-groups">
+				<a href="<?php echo base_url('dbms/form_mastertrainer_application'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
+				<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+				<button class="btn btn-success" data-toggle="modal" data-target="#batchTrainer">Batch Upload</button>
+				<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
+				<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
+		 	</div>
+			<table class="table table-area">
+				<tr>
+					<th>Check</th>
+					<th>Action</th>
+					<th>Name</th>
+					<th>School</th>
+					<th>Programs</th>
+				</tr>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td><a href="<?php echo base_url('dbms/form_mastertrainer_profile'); ?>">View</a> | <a href="#">Delete</a></td>
+					<td>Peralta, Philip</td>
+					<td>Ateneo de Manila University</td>
+					<td>GCAT</td>
+				</tr>
+			</table>
+		</div>
+	</div>
   
-  <div class="tab-pane fade" id="class">
-  
+	<div class="tab-pane fade" id="class">
 		<ul class="nav nav-tabs">
-		  <li class="active"><a href="#class_student" data-toggle="tab">Student Classes</a></li>
-		  <li><a href="#class_mastertrainer	" data-toggle="tab">Master Trainer's Classes</a></li>
+			<li class="active"><a href="#class_student" data-toggle="tab">Student Classes</a></li>
+			<li><a href="#class_mastertrainer" data-toggle="tab">Master Trainer's Classes</a></li>
 		</ul>
 		
 		<div class="tab-content">
-		
 			<div class="tab-pane active" id="class_student">
-				
-			  <div class="button-groups">
+				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_class_add'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchClass">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-					 
-			  </div>
+				</div>
 				<table class="table table-area">
 					<tr>
 						<th>Check</th>
@@ -193,17 +178,13 @@
 				</table>
 			</div>
 			
-			
-			
 			<div class="tab-pane" id="class_mastertrainer">
-				
-			  <div class="button-groups">
+				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_mastertrainer_classlist'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchClassForMasterTrainer">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-					 
-			  </div>
+				</div>
 				<table class="table table-area">
 					<tr>
 						<th>Check</th>
@@ -221,36 +202,28 @@
 					</tr>
 				</table>
 			</div>
-
-			
-
-			
 		</div>
 	</div>
 
 	<div class="tab-pane" id="tracker">	
-	
 		<ul class="nav nav-tabs">
-		  <li class="active"><a href="#smp" data-toggle="tab">SMP Tracker</a></li>
-		  <li><a href="#internship" data-toggle="tab">Internship Tracker</a></li>
-		  <li><a href="#gcat" data-toggle="tab">GCAT Tracker</a></li>
-		  <li><a href="#best" data-toggle="tab">BEST Tracker</a></li>
-		  <li><a href="#adept" data-toggle="tab">ADEPT Tracker</a></li>
-		  <li><a href="#best_t3" data-toggle="tab">T3 BEST Tracker</a></li>
-		  <li><a href="#adept_t3 " data-toggle="tab">T3 ADEPT Tracker</a></li>
+			<li class="active"><a href="#smp" data-toggle="tab">SMP Tracker</a></li>
+			<li><a href="#internship" data-toggle="tab">Internship Tracker</a></li>
+			<li><a href="#gcat" data-toggle="tab">GCAT Tracker</a></li>
+			<li><a href="#best" data-toggle="tab">BEST Tracker</a></li>
+			<li><a href="#adept" data-toggle="tab">ADEPT Tracker</a></li>
+			<li><a href="#best_t3" data-toggle="tab">T3 BEST Tracker</a></li>
+			<li><a href="#adept_t3 " data-toggle="tab">T3 ADEPT Tracker</a></li>
 		</ul>
-	<div class="tab-content">
-	
-		<div class="tab-pane active" id="smp">
+
+		<div class="tab-content">
+			<div class="tab-pane active" id="smp">
 				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_program_smp_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-					<button class="btn btn-success" data-toggle="modal" data-target="#batchSMP">
-					  Batch Upload
-					</button>
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchSMP">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchSMP">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-					 
 				</div>
 				<table class="table table-area">
 					<tr>
@@ -272,20 +245,15 @@
 						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewSMPSubjects">View List</button></td>
 					</tr>
 				</table>
-				
 			</div>
 			
 			<div class="tab-pane fade" id="internship">
-			
 				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_program_smp_internship_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-					<button class="btn btn-success" data-toggle="modal" data-target="#batchSMP">
-					  Batch Upload
-					</button>
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchSMP">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchSMP">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-					 
 				</div>
 				<table class="table table-area">
 					<tr>
@@ -307,20 +275,15 @@
 						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewSMPSubjects">View List</button></td>
 					</tr>
 				</table>
-				
 			</div>
 			
 			<div class="tab-pane fade" id="gcat">
-			
 				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_program_gcat_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-					<button class="btn btn-success" data-toggle="modal" data-target="#batchgcat">
-					  Batch Upload
-					</button>
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchgcat">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchGCAT">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-					 
 				</div>
 				<table class="table table-area">
 					<tr>
@@ -348,19 +311,15 @@
 						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfStudents">View List</button></td>
 					</tr>
 				</table>
-			
 			</div>
 			
 			<div class="tab-pane fade" id="best">
 				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_program_best_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-					<button class="btn btn-success" data-toggle="modal" data-target="#batchbest">
-					  Batch Upload
-					</button>
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchbest">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-					 
 				</div>
 				<table class="table table-area">
 					<tr>
@@ -386,12 +345,9 @@
 				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_program_adept_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-					<button class="btn btn-success" data-toggle="modal" data-target="#batchadept">
-					  Batch Upload
-					</button>
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchadept">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-					 
 				</div>
 				<table class="table table-area">
 					<tr>
@@ -417,12 +373,9 @@
 				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_program_t3_best_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-					<button class="btn btn-success" data-toggle="modal" data-target="#batchBESTT3">
-					  Batch Upload
-					</button>
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchBESTT3">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-					 
 				</div>
 				<table class="table table-area">
 					<tr>
@@ -452,12 +405,9 @@
 				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_program_t3_adept_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-					<button class="btn btn-success" data-toggle="modal" data-target="#batchBESTT3">
-					  Batch Upload
-					</button>
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchBESTT3">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
-					 
 				</div>
 				<table class="table table-area">
 					<tr>
@@ -480,9 +430,9 @@
 					</tr>
 				</table>
 			</div>
+		</div>
 	</div>
-	</div>
-  </div>
+</div>
   
 
 

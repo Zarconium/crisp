@@ -4,16 +4,16 @@
 
 
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#program" data-toggle="tab">Program</a></li>
-  <li><a href="#SUC" data-toggle="tab">SUC</a></li>
-  <li><a href="#MandE" data-toggle="tab">Monitoring and Evaluation</a></li>
-</ul>		
+	<li class="active"><a href="#program" data-toggle="tab">Program</a></li>
+	<li><a href="#SUC" data-toggle="tab">SUC</a></li>
+	<li><a href="#MandE" data-toggle="tab">Monitoring and Evaluation</a></li>
+</ul>
 
 <div class="tab-content">
 	<div class="tab-pane active" id="program">
 
-	<!-- Student Program Report GCAT -->
 		<div class="panel-group" id="accordion">
+			<!-- Student Program Report GCAT -->
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -27,12 +27,12 @@
 								<label>Start Date</label>
 								<input type="date" class="form-control" name="program_student_gcat_start_date">
 							</div>
-							
+
 							<div class="form-group">
 								<label>End Date</label>
 								<input type="date" class="form-control" name="program_student_gcat_end_date">
 							</div>
-							
+
 							<div class="button-groups">
 								<!-- CHANGE THIS ALSO --><button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
 								<button type="button" class="btn btn-info">Print as Excel</button>
@@ -42,14 +42,12 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		
-	<!-- Student Program Report BEST -->
-		<div class="panel-group" id="accordion">
+
+			<!-- Student Program Report BEST -->
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_best">&#x25BC;</a> Student Program Report BEST
+						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_best">&#x25BC; Student Program Report BEST</a>
 					</h4>
 				</div>
 				<div id="program_student_best" class="panel-collapse collapse">
@@ -66,7 +64,6 @@
 							</div>
 							
 							<div class="button-groups">
-							
 								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
@@ -75,15 +72,12 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		
-		
-	<!-- Student Program Report ADEPT -->
-		<div class="panel-group" id="accordion">
+
+			<!-- Student Program Report ADEPT -->
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_adept">&#x25BC;</a> Student Program Report ADEPT
+						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_adept">&#x25BC; Student Program Report ADEPT</a>
 					</h4>
 				</div>
 				<div id="program_student_adept" class="panel-collapse collapse">
@@ -100,7 +94,6 @@
 							</div>
 							
 							<div class="button-groups">
-							
 								<a href="<?php echo base_url('reports/studentAdeptProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
@@ -109,14 +102,12 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		
-		<!-- Student Program Report per Subject -->
-		<div class="panel-group" id="accordion">
+
+			<!-- Student Program Report per Subject -->
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_subject">&#x25BC;</a> Student Program Report Per Subject
+						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_subject">&#x25BC; Student Program Report Per Subject</a>
 					</h4>
 				</div>
 				<div id="program_student_subject" class="panel-collapse collapse">
@@ -140,7 +131,6 @@
 							</div>
 							
 							<div class="button-groups">
-							
 								<a href="<?php echo base_url('reports/studentProgramReportPerSub'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
@@ -149,16 +139,14 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		
-	<!-- T3 Program Report 
-		NOT YET DONE
-		-->
-		<div class="panel-group" id="accordion">
+
+			<!-- T3 Program Report 
+			NOT YET DONE
+			-->
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#program_t3">&#x25BC;</a> T3 Program Report GCAT
+						<a data-toggle="collapse" data-parent="#accordion" href="#program_t3">&#x25BC; T3 Program Report GCAT</a>
 					</h4>
 				</div>
 				<div id="program_t3" class="panel-collapse collapse">
@@ -175,7 +163,6 @@
 							</div>
 							
 							<div class="button-groups">
-							
 								<a href="<?php echo base_url('reports/'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
@@ -184,18 +171,14 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		
-		
 
-	<!-- T3 Program Report per Subject
-		NOT YET DONE
-		-->
-		<div class="panel-group" id="accordion">
+			<!-- T3 Program Report per Subject
+			NOT YET DONE
+			-->
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#program_t3_subject">&#x25BC;</a> T3 Program Report Per Subject
+						<a data-toggle="collapse" data-parent="#accordion" href="#program_t3_subject">&#x25BC; T3 Program Report Per Subject</a>
 					</h4>
 				</div>
 				<div id="program_t3_subject" class="panel-collapse collapse">
@@ -219,7 +202,6 @@
 							</div>
 							
 							<div class="button-groups">
-							
 								<a href="<?php echo base_url('reports/'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
@@ -229,9 +211,7 @@
 				</div>
 			</div>
 		</div>
-		
 	</div>
-
 	
 	<div class="tab-pane" id="SUC">
 	
@@ -275,8 +255,8 @@
 									<option value="option1">Option 1</option>
 								</select>
 							</div>
-							<div class="button-groups">
 							
+							<div class="button-groups">
 								<a href="<?php echo base_url('reports/getAllStudentsByPogram'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
@@ -318,7 +298,6 @@
 									<option value="option1">Option 1</option>
 								</select>
 							</div>
-							
 							
 							<div class="form-group">
 								<label>Subject</label>
@@ -630,13 +609,12 @@
 	</div>
 	
 	<div class="tab-pane" id="MandE">
-	
+		<div class="panel-group" id="accordion3">
 		<!-- Quarterly Reports -->
-		<div class="panel-group" id="accordion">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#mande_quarter">&#x25BC;</a> Quarterly Report
+						<a data-toggle="collapse" data-parent="#accordion3" href="#mande_quarter">&#x25BC; Quarterly Report</a>
 					</h4>
 				</div>
 				<div id="mande_quarter" class="panel-collapse collapse">
@@ -652,19 +630,16 @@
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
-							
 						</form>
 					</div>
 				</div>
 			</div>
-		</div>
-		
-		<!-- Monthly Report -->
-		<div class="panel-group" id="accordion">
+
+			<!-- Monthly Report -->
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#mande_month">&#x25BC;</a> Monthly Report
+						<a data-toggle="collapse" data-parent="#accordion3" href="#mande_month">&#x25BC; Monthly Report</a>
 					</h4>
 				</div>
 				<div id="mande_month" class="panel-collapse collapse">
@@ -680,12 +655,11 @@
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
-							
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-		
 	</div>
+
 </div>
