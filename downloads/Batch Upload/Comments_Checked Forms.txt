@@ -1,0 +1,62 @@
+
+STUDENT
+
+Best_Adept Student Product Tracker (with validation)
+-Checked
+
+Best_Adept Student Tracker (with validation)
+-Checked.
+-Translate yes or no into boolean if ever
+
+GCAT Student Tracker (with validation)
+-Note: Grades not yet included 
+
+Internship (1)
+-Checked
+
+SMP Student Tracker
+-Checked
+
+Student Profile-Batch Upload(with validation)-SIS
+-Corrected Degree
+
+
+TEACHER
+
+Adept Product Tracker(with validation)
+-Removed Student Number
+
+Adept T3 Attendance(with validation)
+-Checked
+
+Adept T3 Tracker(with validation)
+-Bakit may civil status?
+
+Attendance Sheet Sample Registration For Day 1 validation
+-Checked
+
+Attendance Sheet Sample SMP Language Track
+-Checked
+
+Best T3 Attendance
+-Birthdate -> DateTime
+
+Best T3 Product Tracker
+-Removed student number
+
+Best T3 Tracker
+-Deleted Task5 Column
+
+Class List(GCAT)(With validation)
+-Checked
+
+Class List(General)
+-Renamed Campus to Branch
+
+SMP T3 Tracker
+-Civil_Status Renamed to Status_ID
+
+Stipend Process Tracker
+-Kulang ata ng updated at?
+
+
