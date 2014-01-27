@@ -17,8 +17,11 @@ class Reports_Controller extends CI_Controller {
 
 	function index()
 	{
+		$data['schools'] = $this->school->getAllSchools();
+		$data['subjects'] = $this->subject->getAllSubjects();
+
 		$this->load->view('header');
-		$this->load->view('report');
+		$this->load->view('report', $data);
 		$this->load->view('footer');
 	}
 
@@ -67,14 +70,19 @@ class Reports_Controller extends CI_Controller {
 
 	function studentProgramReportGCAT()
 	{
-		$start_date = "1990-01-01"; $end_date= "2020-01-01";
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+
+		$start_date = $this->input->post('program_student_gcat_start_date');
+		$end_date = $this->input->post('program_student_gcat_end_date');
 
 		$data['count_list'] = $this->report_program->getStudentProgramReportGCAT($start_date, $end_date);
 		$data['total'] = $this->report_program->getStudentProgramReportGCATTotal($start_date, $end_date);
 		$this->load->view('header-print');
 		$this->load->view('reports/program_report_student_gcat', $data);
-		#$this->load->view('footer-print');
-
+		$this->load->view('footer-print');
 	}
 
 	

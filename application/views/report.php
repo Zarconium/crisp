@@ -17,12 +17,12 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_gcat">&#x25BC;</a> Student Program Report GCAT
+						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_gcat">&#x25BC; Student Program Report GCAT</a>
 					</h4>
 				</div>
 				<div id="program_student_gcat" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form">
+						<!-- CHANGE THIS --><form class="form" role="form" action="<?php echo base_url('reports/studentProgramReportGCAT'); ?>" method="post" target="_blank">
 							<div class="form-group">
 								<label>Start Date</label>
 								<input type="date" class="form-control" name="program_student_gcat_start_date">
@@ -34,7 +34,7 @@
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/studentProgramReportGCAT'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<!-- CHANGE THIS ALSO --><button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -249,14 +249,18 @@
 							<div class="form-group">
 								<label>Subject</label>
 								<select class="form-control" name="suc_student_subject">
-									<option value="option1">Option 1</option>
+									<?php foreach ($subjects as $subject): ?>
+										<option value="<?php echo $subject->Subject_Code; ?>"><?php echo $subject->Subject_Code; ?></option>
+									<?php endforeach; ?>
 								</select>
 							</div>
 							
 							<div class="form-group">
 								<label>School</label>
 								<select class="form-control" name="suc_student_school">
-									<option value="option1">Option 1</option>
+								<?php foreach ($schools as $school): ?>
+									<option value="<?php echo $school->School_ID ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
+								<?php endforeach; ?>
 								</select>
 							</div>
 							<div class="form-group">
