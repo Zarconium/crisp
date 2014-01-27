@@ -114,5 +114,50 @@ class Resources_Controller extends CI_Controller {
 		$data = file_get_contents("./downloads/adept_student_grades.pdf");
 		force_download('adept_student_grades.pdf', $data);
 	}
+	
+	//not existing
+	function downloadTeacherProfileSingleExcel()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/adept_student_grades.xlsx");
+		force_download('adept_student_grades.xlsx', $data);
+	}
+	
+	function downloadTeacherProfileSinglePDF()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/teacher_profile_single.pdf");
+		force_download('teacher_profile_single.pdf', $data);
+	}
+	
+	function downloadTeacherProfileBatchExcel()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/teacher_profile_batch.xlsx");
+		force_download('teacher_profile_batch.xlsx', $data);
+	}
+	
+	//not existing
+	function ddownloadTeacherProfileBatchPDF()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/teacher_profile_batch.pdf");
+		force_download('teacher_profile_batch.pdf', $data);
+	}
+	
+	function downloadTeacherParticipantContractExcel()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/teacher_participant_contract.xlsx");
+		force_download('teacher_participant_contract.xlsx', $data);
+	}
+	
+	//not existing
+	function downloadTeacherParticipantContractPDF()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/teacher_participant_contract.pdf");
+		force_download('teacher_participant_contract.pdf', $data);
+	}
 }
 ?>
