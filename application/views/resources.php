@@ -26,14 +26,14 @@
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<a href="<?php echo base_url('resources/downloadStudentProfileSinglePDF') ?>"><button class="btn btn-info">PDF</button></a>
 					</td>
 				</tr>
 				<tr>
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<button class="btn btn-primary">Excel</button>
+						<a href="<?php echo base_url('resources/downloadStudentProfileBatchExcel') ?>"><button class="btn btn-primary">Excel</button></a>
 						<button class="btn btn-info">PDF</button>
 					</td>
 				</tr>
@@ -43,7 +43,7 @@
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<a href="<?php echo base_url('resources/downloadStudentParticipantContractPDF') ?>"><button class="btn btn-info">PDF</button></a>
 					</td>
 				</tr>
 				<tr>
@@ -51,7 +51,7 @@
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<button class="btn btn-primary">Excel</button>
+						<a href="<?php echo base_url('resources/downloadGCATStudentGradesExcel') ?>"><button class="btn btn-primary">Excel</button>
 						<button class="btn btn-info">PDF</button>
 					</td>
 				</tr>
@@ -60,7 +60,7 @@
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<button class="btn btn-primary">Excel</button>
+						<a href="<?php echo base_url('resources/downloadBESTStudentGradesExcel') ?>"><button class="btn btn-primary">Excel</button>
 						<button class="btn btn-info">PDF</button>
 					</td>
 				</tr>
@@ -69,7 +69,7 @@
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<button class="btn btn-primary">Excel</button>
+						<a href="<?php echo base_url('resources/downloadADEPTStudentGradesExcel') ?>"><button class="btn btn-primary">Excel</button>
 						<button class="btn btn-info">PDF</button>
 					</td>
 				</tr>
