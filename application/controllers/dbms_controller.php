@@ -1078,7 +1078,7 @@ class Dbms_Controller extends CI_Controller
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 3) continue;
-			if ($counter == $highestRow) break;
+			if ($counter > $highestRow) break;
 
 			$school_id = $this->school->getSchoolIdByCode($row['F'])->School_ID; //Get School_ID
 			$code = $school_id . $row['E']; //Get Code
@@ -1125,7 +1125,7 @@ class Dbms_Controller extends CI_Controller
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
-			if ($counter == $highestRow) break;
+			if ($counter > $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
 			{
@@ -1181,7 +1181,7 @@ class Dbms_Controller extends CI_Controller
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
-			if ($counter == $highestRow) break;
+			if ($counter > $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
 			{
@@ -1236,7 +1236,7 @@ class Dbms_Controller extends CI_Controller
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
-			if ($counter == $highestRow) break;
+			if ($counter > $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
 			{
@@ -1292,7 +1292,7 @@ class Dbms_Controller extends CI_Controller
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
-			if ($counter == $highestRow) break;
+			if ($counter > $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
 			{
@@ -1353,7 +1353,7 @@ class Dbms_Controller extends CI_Controller
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
-			if ($counter == $highestRow) break;
+			if ($counter > $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['D']) as $school) //Get School_ID
 			{
@@ -1420,7 +1420,7 @@ class Dbms_Controller extends CI_Controller
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
-			if ($counter == $highestRow) break;
+			if ($counter > $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
 			{
@@ -1473,7 +1473,7 @@ class Dbms_Controller extends CI_Controller
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
-			if ($counter == $highestRow) break;
+			if ($counter > $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
 			{
@@ -1543,7 +1543,7 @@ class Dbms_Controller extends CI_Controller
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
-			if ($counter == $highestRow) break;
+			if ($counter > $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
 			{
@@ -1600,7 +1600,7 @@ class Dbms_Controller extends CI_Controller
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
-			if ($counter == $highestRow) break;
+			if ($counter > $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
 			{
@@ -1671,7 +1671,7 @@ class Dbms_Controller extends CI_Controller
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
-			if ($counter == $highestRow) break;
+			if ($counter > $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
 			{
@@ -1731,7 +1731,7 @@ class Dbms_Controller extends CI_Controller
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
-			if ($counter == $highestRow) break;
+			if ($counter > $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
 			{
@@ -1789,7 +1789,7 @@ class Dbms_Controller extends CI_Controller
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
-			if ($counter == $highestRow) break;
+			if ($counter > $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
 			{
@@ -1852,7 +1852,7 @@ class Dbms_Controller extends CI_Controller
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
-			if ($counter == $highestRow) break;
+			if ($counter > $highestRow) break;
 
 			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
 			{ 
