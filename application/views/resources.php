@@ -7,7 +7,8 @@
   <li><a href="#teacher" data-toggle="tab">Teacher</a></li>
   <li><a href="#proctor" data-toggle="tab">Proctor</a></li>
   <li><a href="#trainer" data-toggle="tab">Master Trainer</a></li>
-  <li><a href="#program" data-toggle="tab">Programs</a></li>
+  <li><a href="#class" data-toggle="tab">Classes</a></li>
+  <li><a href="#tracker" data-toggle="tab">Trackers</a></li>
 </ul>		
 
 <div class="tab-content">
@@ -25,7 +26,7 @@
 					<td>Single</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<button class="btn btn-primary">Excel</button>
+						<button class="btn btn-primary disabled">Excel</button>
 						<a href="<?php echo base_url('resources/downloadStudentProfileSinglePDF') ?>"><button class="btn btn-info">PDF</button></a>
 					</td>
 				</tr>
@@ -34,7 +35,7 @@
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<a href="<?php echo base_url('resources/downloadStudentProfileBatchExcel') ?>"><button class="btn btn-primary">Excel</button></a>
-						<button class="btn btn-info">PDF</button>
+						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
 				<tr>
@@ -52,7 +53,7 @@
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<a href="<?php echo base_url('resources/downloadGCATStudentGradesExcel') ?>"><button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
 				<tr>
@@ -61,7 +62,7 @@
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<a href="<?php echo base_url('resources/downloadBESTStudentGradesExcel') ?>"><button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
 				<tr>
@@ -70,7 +71,7 @@
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<a href="<?php echo base_url('resources/downloadADEPTStudentGradesExcel') ?>"><button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
 			</table>
@@ -90,7 +91,7 @@
 					<td>Single</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<button class="btn btn-primary">Excel</button>
+						<button class="btn btn-primary disabled">Excel</button>
 						<button class="btn btn-info">PDF</button>
 					</td>
 				</tr>
@@ -99,7 +100,7 @@
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
 				<tr>
@@ -107,7 +108,7 @@
 					<td>Single</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<button class="btn btn-primary">Excel</button>
+						<a href="<?php echo base_url('resources/downloadTeacherSMPAttendanceExcel') ?>"><button class="btn btn-primary">Excel</button>
 						<button class="btn btn-info">PDF</button>
 					</td>
 				</tr>
@@ -116,8 +117,8 @@
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<a href="<?php echo base_url('resources/downloadTeacherBESTAttendanceExcel') ?>"><button class="btn btn-primary">Excel</button></a>
+						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
 				<tr>
@@ -125,8 +126,8 @@
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<a href="<?php echo base_url('resources/downloadTeacherADEPTAttendanceExcel') ?>"><button class="btn btn-primary">Excel</button></a>
+						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
 				<tr>
@@ -134,8 +135,8 @@
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<a href="<?php echo base_url('resources/downloadTeacherSMPAttendanceExcel') ?>"><button class="btn btn-primary">Excel</button></a>
+						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
 			</table>
@@ -156,7 +157,7 @@
 					<td>Single</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<button class="btn btn-primary">Excel</button>
+						<button class="btn btn-primary disabled">Excel</button>
 						<button class="btn btn-info">PDF</button>
 					</td>
 				</tr>
@@ -165,7 +166,7 @@
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
 			</table>
@@ -186,7 +187,7 @@
 					<td>Single</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<button class="btn btn-primary">Excel</button>
+						<button class="btn btn-primary disabled">Excel</button>
 						<button class="btn btn-info">PDF</button>
 					</td>
 				</tr>
@@ -195,13 +196,13 @@
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
 			</table>
 	</div>
 	
-	<div class="tab-pane" id="program">
+	<div class="tab-pane" id="class">
 		
 			<table class="table">
 				<tr>
@@ -219,21 +220,26 @@
 						<button class="btn btn-info">PDF</button>
 					</td>
 				</tr>
+			</table>
+	</div>
+	
+	<div class="tab-pane" id="tracker">
+		
+			<table class="table">
 				<tr>
-					<td rowspan="2">SMP Tracker</td>
-					<td>Single</td>
-					<td><button class="btn btn-default">View</button></td>
-					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
-					</td>
+					<th>Resource</th>
+					<th>Type</th>
+					<th>View</th>
+					<th>Print</th>
 				</tr>
 				<tr>
+				<tr>
+					<td>SMP Tracker</td>
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
 				<tr>
@@ -242,7 +248,7 @@
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
 				<tr>
@@ -251,7 +257,7 @@
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
 				<tr>
@@ -260,95 +266,34 @@
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
-					</td>
-				</tr>
-				<tr>
-					<td>GCAT Student Grade</td>
-					<td>Batch</td>
-					<td><button class="btn btn-default">View</button></td>
-					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
-					</td>
-				</tr>
-				<tr>
-					<td>BEST Student Grade</td>
-					<td>Batch</td>
-					<td><button class="btn btn-default">View</button></td>
-					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
-					</td>
-				</tr>
-				<tr>
-					<td>ADEPT Student Grade</td>
-					<td>Batch</td>
-					<td><button class="btn btn-default">View</button></td>
-					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
-					</td>
-				</tr>
-				<tr>
-					<td>SMP Student Grade</td>
-					<td>Batch</td>
-					<td><button class="btn btn-default">View</button></td>
-					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
 				<tr>
 					<td>SMP T3 Tracker</td>
-					<td>Single</td>
-					<td><button class="btn btn-default">View</button></td>
-					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
-					</td>
-				</tr>
-				<tr>
-					<td rowspan="2">ADEPT T3 Tracker</td>
-					<td>Single</td>
-					<td><button class="btn btn-default">View</button></td>
-					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
-					</td>
-				</tr>
-				<tr>
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
 				<tr>
-					<td rowspan="2">Batch T3 Tracker</td>
-					<td>Single</td>
-					<td><button class="btn btn-default">View</button></td>
-					<td>
-						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
-					</td>
-				</tr>
-				<tr>
+					<td>T3 ADEPT Tracker</td>
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
 				<tr>
-					<td>Participant Master List</td>
+					<td>T3 BEST Tracker</td>
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
 						<button class="btn btn-primary">Excel</button>
-						<button class="btn btn-info">PDF</button>
+						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
 			</table>

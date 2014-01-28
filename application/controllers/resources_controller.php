@@ -73,46 +73,46 @@ class Resources_Controller extends CI_Controller {
 	function downloadGCATStudentGradesExcel()
 	{		
 		$this->load->helper('download');
-		$data = file_get_contents("./downloads/gcat_student_grades.xlsx");
-		force_download('gcat_student_grades.xlsx', $data);
+		$data = file_get_contents("./downloads/student_gcat_grades.xlsx");
+		force_download('student_gcat_grades.xlsx', $data);
 	}
 	
 	//not existing
 	function downloadGCATStudentGradesPDF()
 	{		
 		$this->load->helper('download');
-		$data = file_get_contents("./downloads/gcat_student_grades.pdf");
-		force_download('gcat_student_grades.pdf', $data);
+		$data = file_get_contents("./downloads/student_gcat_grades.pdf");
+		force_download('student_gcat_grades.pdf', $data);
 	}
 	
 	function downloadBESTStudentGradesExcel()
 	{		
 		$this->load->helper('download');
-		$data = file_get_contents("./downloads/best_student_grades.xlsx");
-		force_download('best_student_grades.xlsx', $data);
+		$data = file_get_contents("./downloads/student_best_grades.xlsx");
+		force_download('student_best_grades.xlsx', $data);
 	}
 	
 	//not existing
 	function downloadBESTStudentGradesPDF()
 	{		
 		$this->load->helper('download');
-		$data = file_get_contents("./downloads/best_student_grades.pdf");
-		force_download('best_student_grades.pdf', $data);
+		$data = file_get_contents("./downloads/student_best_grades.pdf");
+		force_download('student_best_grades.pdf', $data);
 	}
 	
 	function downloadADEPTStudentGradesExcel()
 	{		
 		$this->load->helper('download');
-		$data = file_get_contents("./downloads/adept_student_grades.xlsx");
-		force_download('adept_student_grades.xlsx', $data);
+		$data = file_get_contents("./downloads/student_gadept_rades.xlsx");
+		force_download('student_adept_grades.xlsx', $data);
 	}
 	
 	//not existing
 	function downloadADEPTStudentGradesPDF()
 	{		
 		$this->load->helper('download');
-		$data = file_get_contents("./downloads/adept_student_grades.pdf");
-		force_download('adept_student_grades.pdf', $data);
+		$data = file_get_contents("./downloads/student_adept_grades.pdf");
+		force_download('student_adept_grades.pdf', $data);
 	}
 	
 	//not existing
@@ -138,11 +138,57 @@ class Resources_Controller extends CI_Controller {
 	}
 	
 	//not existing
-	function ddownloadTeacherProfileBatchPDF()
+	function downloadTeacherProfileBatchPDF()
 	{		
 		$this->load->helper('download');
 		$data = file_get_contents("./downloads/teacher_profile_batch.pdf");
 		force_download('teacher_profile_batch.pdf', $data);
+	}
+	
+	function downloadTeacherBESTAttendanceExcel()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/teacher_profile_batch.xlsx");
+		force_download('teacher_profile_batch.xlsx', $data);
+	}
+	
+	//not existing
+	function downloadTeacherBESTAttendancePDF()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/teacher_best_attendance.pdf");
+		force_download('teacher_best_attendance.xlsx', $data);
+	}
+	
+	function downloadTeacherADEPTAttendanceExcel()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/teacher_adept_attendance.xlsx");
+		force_download('teacher_adept_attendance.xlsx', $data);
+	}
+	
+	//not existing
+	function downloadTeacherADEPTAttendancePDF()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/teacher_adept_attendance.pdf");
+		force_download('teacher_adept_attendance.xlsx', $data);
+	}
+	
+	//not existing
+	function downloadTeacherSMPAttendanceExcel()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/teacher_smp_attendance.xlsx");
+		force_download('teacher_smp_attendance.xlsx', $data);
+	}
+	
+	//not existing
+	function downloadTeacherSMPAttendancePDF()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/teacher_smp_attendance.pdf");
+		force_download('teacher_best_attendance.xlsx', $data);
 	}
 	
 	//not existing
@@ -168,11 +214,55 @@ class Resources_Controller extends CI_Controller {
 	}
 	
 	//not existing
-	function ddownloadProctorProfileBatchPDF()
+	function downloadProctorProfileBatchPDF()
 	{		
 		$this->load->helper('download');
 		$data = file_get_contents("./downloads/proctor_profile_batch.pdf");
 		force_download('proctor_profile_batch.pdf', $data);
+	}
+	
+	//not existing
+	function downloadMasterTrainerProfileSingleExcel()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/mastertrainer_profile_single.xlsx");
+		force_download('mastertrainer_profile_single.xlsx', $data);
+	}
+	
+	function downloadMasterTrainerrofileSinglePDF()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/mastertrainer_profile_single.pdf");
+		force_download('mastertrainer_profile_single.pdf', $data);
+	}
+	
+	function downloadMasterTrainerProfileBatchExcel()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/mastertrainer_profile_batch.xlsx");
+		force_download('mastertrainer_profile_batch.xlsx', $data);
+	}
+	
+	//not existing
+	function downloadMasterTrainerProfileBatchPDF()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/mastertrainer_profile_batch.pdf");
+		force_download('mastertrainer_profile_batch.pdf', $data);
+	
+	function downloadClassListExcel()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/student_classlist.xlsx");
+		force_download('student_classlist.xlsx', $data);
+	}
+	
+	//not existing
+	function downloadClassListPDF()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/student_classlist.pdf");
+		force_download('student_classlist.pdf', $data);
 	}
 }
 ?>
