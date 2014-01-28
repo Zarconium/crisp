@@ -807,16 +807,126 @@ class Dbms_Controller extends CI_Controller
 	
 	function form_program_best_tracker()
 	{
-		$this->load->view('header');
-		$this->load->view('forms/form-program-best-tracker');
-		$this->load->view('footer');
+
+		$data['schools'] = $this->school->getAllSchools();
+		
+
+		if($this->input->post())
+		{
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('student_number', 'Student Number', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('control_number', 'Control Number', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
+	
+		
+		
+			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+			if($this->input->post('submit'))
+			{
+				if($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-program-best-tracker', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					
+
+					$data['form_success'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-program-best-tracker', $data);
+					$this->load->view('footer');
+				}
+			}
+			elseif($this->input->post('save_draft'))
+			{
+				$this->form_validation->run();
+
+				$data['draft_saved'] = TRUE;
+
+				$this->load->view('header');
+				$this->load->view('forms/form-program-best-tracker', $data);
+				$this->load->view('footer');
+			}
+		}
+		else
+		{
+			$this->load->view('header');
+			$this->load->view('forms/form-program-best-tracker', $data);
+			$this->load->view('footer');
+		}
+
+
 	}
 	
 	function form_program_adept_tracker()
 	{
-		$this->load->view('header');
-		$this->load->view('forms/form-program-adept-tracker');
-		$this->load->view('footer');
+
+		$data['schools'] = $this->school->getAllSchools();
+		
+
+		if($this->input->post())
+		{
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('student_number', 'Student Number', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('control_number', 'Control Number', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
+	
+		
+		
+			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+			if($this->input->post('submit'))
+			{
+				if($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-program-adept-tracker', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					
+
+					$data['form_success'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-program-adept-tracker', $data);
+					$this->load->view('footer');
+				}
+			}
+			elseif($this->input->post('save_draft'))
+			{
+				$this->form_validation->run();
+
+				$data['draft_saved'] = TRUE;
+
+				$this->load->view('header');
+				$this->load->view('forms/form-program-adept-tracker', $data);
+				$this->load->view('footer');
+			}
+		}
+		else
+		{
+			$this->load->view('header');
+			$this->load->view('forms/form-program-adept-tracker', $data);
+			$this->load->view('footer');
+		}
+
+
 	}
 	
 	function form_program_smp_tracker()
