@@ -148,8 +148,8 @@ class Resources_Controller extends CI_Controller {
 	function downloadTeacherBESTAttendanceExcel()
 	{		
 		$this->load->helper('download');
-		$data = file_get_contents("./downloads/teacher_profile_batch.xlsx");
-		force_download('teacher_profile_batch.xlsx', $data);
+		$data = file_get_contents("./downloads/teacher_best_attendance.xlsx");
+		force_download('teacher_best_attendance.xlsx', $data);
 	}
 	
 	//not existing
@@ -327,6 +327,20 @@ class Resources_Controller extends CI_Controller {
 		$this->load->helper('download');
 		$data = file_get_contents("./downloads/internship_evaluation.pdf");
 		force_download('internship_evaluation.pdf', $data);
+	}
+	
+	function downloadBESTADEPTApplicationPDF()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/best_adept_application.pdf");
+		force_download('best_adept_application.pdf', $data);
+	}
+	
+	function downloadSMPApplicationPDF()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/smp_application.pdf");
+		force_download('smp_application.pdf', $data);
 	}
 		
 }

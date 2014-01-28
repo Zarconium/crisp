@@ -48,6 +48,24 @@
 					</td>
 				</tr>
 				<tr>
+					<td>BEST and ADEPT Application Form</td>
+					<td>Single</td>
+					<td><button class="btn btn-default">View</button></td>
+					<td>
+						<button class="btn btn-primary disabled">Excel</button>
+						<a target="_blank" href="<?php echo base_url('resources/downloadBESTADEPTApplicationPDF') ?>"><button class="btn btn-info">PDF</button></a>
+					</td>
+				</tr>
+				<tr>
+					<td>SMP Application Form</td>
+					<td>Single</td>
+					<td><button class="btn btn-default">View</button></td>
+					<td>
+						<button class="btn btn-primary disabled">Excel</button>
+						<a target="_blank" href="<?php echo base_url('resources/downloadSMPApplicationPDF') ?>"><button class="btn btn-info">PDF</button></a>
+					</td>
+				</tr>
+				<tr>
 					<td>GCAT Student Grades</td>
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
