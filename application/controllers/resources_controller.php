@@ -249,6 +249,7 @@ class Resources_Controller extends CI_Controller {
 		$this->load->helper('download');
 		$data = file_get_contents("./downloads/mastertrainer_profile_batch.pdf");
 		force_download('mastertrainer_profile_batch.pdf', $data);
+	}
 	
 	function downloadClassListExcel()
 	{		
@@ -264,5 +265,62 @@ class Resources_Controller extends CI_Controller {
 		$data = file_get_contents("./downloads/student_classlist.pdf");
 		force_download('student_classlist.pdf', $data);
 	}
+	
+	function downloadSMPTrackerExcel()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/smp_tracker.xlsx");
+		force_download('smp_tracker.xlsx', $data);
+	}
+	
+	function downloadBESTTrackerExcel()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/best_tracker.xlsx");
+		force_download('best_tracker.xlsx', $data);
+	}
+	
+	function downloadADEPTTrackerExcel()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/adept_tracker.xlsx");
+		force_download('adept_tracker.xlsx', $data);
+	}
+	
+	function downloadT3SMPTrackerExcel()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/t3_smp_tracker.xlsx");
+		force_download('t3_smp_tracker.xlsx', $data);
+	}
+	
+	function downloadT3ADEPTTrackerExcel()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/t3_adept_tracker.xlsx");
+		force_download('t3_adept_tracker.xlsx', $data);
+	}
+	
+	function downloadT3GCATTrackerExcel()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/t3_gcat_tracker.xlsx");
+		force_download('t3_gcat_tracker.xlsx', $data);
+	}
+	
+	function downloadInternshipEvaluationExcel()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/internship_evaluation.xlsx");
+		force_download('internship_evaluation.xlsx', $data);
+	}
+	
+	function downloadInternshipEvaluationPDF()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/internship_evaluation.pdf");
+		force_download('internship_evaluation.pdf', $data);
+	}
+		
 }
 ?>
