@@ -854,14 +854,18 @@ class Dbms_Controller extends CI_Controller
 		$this->load->view('forms/form-program-t3-adept-tracker');
 		$this->load->view('footer');
 	}
-	
 
 	function upload_student_profile()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_student_profile']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
 		foreach ($sheetData as $row)
@@ -869,7 +873,7 @@ class Dbms_Controller extends CI_Controller
 			if ($counter++ < 2) continue;
 			if ($counter > $highestRow) break;
 
-			$school_id = $this->school->getSchoolIdByCode($row['Y'])->School_ID; //Get School ID			
+			$school_id = $this->school->getSchoolIdByCode($row['Y'])->School_ID; //Get School ID
 			$student_code = $school_id . $row['E']; //Get Code
 
 			$student = array
@@ -881,7 +885,7 @@ class Dbms_Controller extends CI_Controller
 				'Name_Suffix' => $row['D'],
 				'Student_ID_Number' => $row['E'],
 				'Civil_Status' => $row['G'],
-				'Birthdate' => $row['H'],
+				'Birthdate' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['H'], 'MM/DD/YYYY'))),
 				'Birthplace' => $row['I'],
 				'Gender' => $row['J'],
 				'Nationality' => $row['K'],
@@ -898,9 +902,9 @@ class Dbms_Controller extends CI_Controller
 				'Course' => $row['V'] . ' ' . $row['W'],
 				'Year' => $row['X'],
 				'Expected_Year_of_Graduation' => $row['Z'],
-				'DOST_Scholar' => $row['AA'],
-				'Scholar' => $row['AB'],
-				'Interested_In_ITBPO' => $row['AC']
+				'DOST_Scholar' => (bool) strcasecmp($row['AA'], 'no'),
+				'Scholar' => (bool) strcasecmp($row['AB'], 'no'),
+				'Interested_In_ITBPO' => (bool) strcasecmp($row['AC'], 'no')
 			);
 			
 			if ($row['F'] == 'Yes')
@@ -950,54 +954,52 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_best_adept_student_product_tracker()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_best_adept_student_product_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 2) continue;
+			if ($counter++ < 3) continue;
 			if ($counter == $highestRow) break;
 
-			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
-			{
-				$school_id = $school->School_ID;
-			}
-			
+			$school_id = $this->school->getSchoolIdByCode($row['F'])->School_ID; //Get School_ID
 			$code = $school_id . $row['E']; //Get Code
+			$subject = $row['A'];
 
 			$tracker = array
 			(
 				'Control_Number' => $row['G'],
 				'Username' => $row['H']
 			);
-
-			$subject = $row['A'];
 			
 			if (!$this->student->getStudentByCode($code))
 			{
-				$student['Code'] = $code;
-
-				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . '. Student does not exist.');
+				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Student does not exist.');
 				redirect('dbms');					
 			}
-
-			else if (!$this->student->updateStudentTracker($code,$subject,$tracker))
+			
+			if (!$this->student->updateStudentTracker($code, $subject, $tracker))
 			{
-				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter);
+				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
 				redirect('dbms');
 			}
 		}
 
-		if ($counter > 2)
+		if ($counter > 3)
 		{
 			$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded.' . ($counter - 3) . ' of ' . ($highestRow - 3) . ' students updated.');
 		}
 		else
 		{
-			$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Empty file.');
+			$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Empty file.');
 		}
 		redirect('dbms');
 	}
@@ -1007,7 +1009,7 @@ class Dbms_Controller extends CI_Controller
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_best_adept_student_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
 		foreach ($sheetData as $row)
@@ -1063,7 +1065,7 @@ class Dbms_Controller extends CI_Controller
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_gcat_student_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
 		foreach ($sheetData as $row)
@@ -1118,7 +1120,7 @@ class Dbms_Controller extends CI_Controller
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_smp_student_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
 		foreach ($sheetData as $row)
@@ -1174,7 +1176,7 @@ class Dbms_Controller extends CI_Controller
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_internship']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
 		foreach ($sheetData as $row)
@@ -1235,7 +1237,7 @@ class Dbms_Controller extends CI_Controller
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_class_list']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
 		foreach ($sheetData as $row)
@@ -1302,7 +1304,7 @@ class Dbms_Controller extends CI_Controller
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_best_adept_product_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
 		foreach ($sheetData as $row)
@@ -1355,7 +1357,7 @@ class Dbms_Controller extends CI_Controller
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_best_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
 		foreach ($sheetData as $row)
@@ -1425,7 +1427,7 @@ class Dbms_Controller extends CI_Controller
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_best_t3_attendance']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
 		foreach ($sheetData as $row)
@@ -1482,7 +1484,7 @@ class Dbms_Controller extends CI_Controller
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_adept_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
 		foreach ($sheetData as $row)
@@ -1553,7 +1555,7 @@ class Dbms_Controller extends CI_Controller
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_adept_t3_attendance']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
 		foreach ($sheetData as $row)
@@ -1613,7 +1615,7 @@ class Dbms_Controller extends CI_Controller
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_smp_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
 		foreach ($sheetData as $row)
@@ -1671,7 +1673,7 @@ class Dbms_Controller extends CI_Controller
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_smp_attendance']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
 		foreach ($sheetData as $row)
@@ -1734,7 +1736,7 @@ class Dbms_Controller extends CI_Controller
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_stipend_process_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		$highestRow = $objPHPExcel->getActiveSheet()->getHighestRow();
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
 		foreach ($sheetData as $row)

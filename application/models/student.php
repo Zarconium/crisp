@@ -82,6 +82,25 @@ Class Student extends CI_Model
 		}
 	}
 
+	function getStudentFullNameById($id)
+	{
+		$this->db->select('CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
+		$this->db->from('student');
+		$this->db->where('Student_ID', $id);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function addStudent($data)
 	{
 		$this->db->insert('student', $data);
@@ -150,13 +169,13 @@ Class Student extends CI_Model
 		return $this->db->delete('student');
 	}
 
-	function updateStudentTracker($code,$subject,$tracker)
+	function updateStudentTracker($code, $subject, $tracker)
 	{
 		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID');
 		$this->db->join('student', 'student.Student_ID = student_tracker.Student_ID', 'left');
 		$this->db->join('subject', 'tracker.Subject_ID = subject.Subject_ID', 'left');
-		$this->db->where('Student.Student_Code = "'.$code.'"');
-		$this->db->where('Subject.Subject_Code = "'.$subject.'"');
+		$this->db->where('Student.Student_Code = "' . $code . '"');
+		$this->db->where('Subject.Subject_Code = "' . $subject . '"');
 		$this->db->update('tracker', $tracker);
 
 		return $this->db->affected_rows();
