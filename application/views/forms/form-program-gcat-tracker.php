@@ -18,27 +18,32 @@
 	
 			<div class="form-group">		
 				<label>Last Name</label>			
-				<input class="form-control" type="text" id="lname">
+				<input class="form-control" type="text" name="last_name" value="<?php echo set_value('last_name'); ?>">
+				<?php echo form_error('last_name'); ?>
 			</div>
 			
 			<div class="form-group">
 				<label>First Name</label>
-				<input type="text" class="form-control" id="fname">
+				<input class="form-control" type="text" name="first_name" value="<?php echo set_value('first_name'); ?>">
+				<?php echo form_error('first_name'); ?>
 			</div>
 			
 			<div class="form-group">
 				<label>Middle Initial</label>
-				<input type="text" class="form-control" id="mname">
+				<input class="form-control" type="text" name="middle_initial" value="<?php echo set_value('middle_initial'); ?>">
+				<?php echo form_error('middle_initial'); ?>
 			</div>
 			
 			<div class="form-group">
 				<label>Session ID</label><br/>
-				<input type="text" class="form-control" id="session_id">
+				<input class="form-control" type="text" name="session_id" value="<?php echo set_value('session_id'); ?>">
+				<?php echo form_error('session_id'); ?>
 			</div>
 			
 			<div class="form-group">
 				<label>Test Date</label><br/>
-				<input type="date" class="form-control" id="test_date"> 
+				<input class="form-control" type="date" name="test_date" value="<?php echo set_value('test_date'); ?>">
+				<?php echo form_error('test_date'); ?>
 			</div>		
 
 			<div class="form-group">		
@@ -55,7 +60,8 @@
 			
 			<div class="form-group">
 				<label>Remarks</label><br/>
-				<input type="text" class="form-control" id="remarks"> 
+				<input class="form-control" type="text" name="remarks" value="<?php echo set_value('remarks'); ?>">
+				<?php echo form_error('remarks'); ?>
 			</div>		
 
 				
