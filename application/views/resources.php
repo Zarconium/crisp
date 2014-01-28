@@ -216,8 +216,8 @@
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<a target="_blank" href="<?php echo base_url('resources/download') ?>"><button class="btn btn-primary">Excel</button></a>
-						<a target="_blank" href="<?php echo base_url('resources/download') ?>"><button class="btn btn-info">PDF</button></a>
+						<a target="_blank" href="<?php echo base_url('resources/downloadClassListExcel') ?>"><button class="btn btn-primary">Excel</button></a>
+						<a target="_blank" href="<?php echo base_url('resources/downloadClassListPDF') ?>"><button class="btn btn-info">PDF</button></a>
 					</td>
 				</tr>
 			</table>
@@ -238,7 +238,7 @@
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<a target="_blank" href="<?php echo base_url('resources/download') ?>"><button class="btn btn-primary">Excel</button></a>
+						<a target="_blank" href="<?php echo base_url('resources/downloadSMPTrackerExcel') ?>"><button class="btn btn-primary">Excel</button></a>
 						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
@@ -247,7 +247,7 @@
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<a target="_blank" href="<?php echo base_url('resources/download') ?>"><button class="btn btn-primary">Excel</button></a>
+						<a target="_blank" href="<?php echo base_url('resources/downloadGCATTrackerExcel') ?>"><button class="btn btn-primary">Excel</button></a>
 						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
@@ -256,7 +256,16 @@
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<a target="_blank" href="<?php echo base_url('resources/download') ?>"><button class="btn btn-primary">Excel</button></a>
+						<a target="_blank" href="<?php echo base_url('resources/downloadADEPTTrackerExcel') ?>"><button class="btn btn-primary">Excel</button></a>
+						<button class="btn btn-info disabled">PDF</button>
+					</td>
+				</tr>
+				<tr>
+					<td>BEST Tracker</td>
+					<td>Batch</td>
+					<td><button class="btn btn-default">View</button></td>
+					<td>
+						<a target="_blank" href="<?php echo base_url('resources/downloadBESTTrackerExcel') ?>"><button class="btn btn-primary">Excel</button></a>
 						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
@@ -265,15 +274,15 @@
 					<td>Single</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<a target="_blank" href="<?php echo base_url('resources/download') ?>"><button class="btn btn-primary">Excel</button></a>
-						<a target="_blank" href="<?php echo base_url('resources/download') ?>"><button class="btn btn-info">PDF</button></a>
+						<a target="_blank" href="<?php echo base_url('resources/downloadInternshipEvaluationExcel') ?>"><button class="btn btn-primary">Excel</button></a>
+						<a target="_blank" href="<?php echo base_url('resources/downloadInternshipEvaluationPDF') ?>"><button class="btn btn-info">PDF</button></a>
 					</td>
 				</tr>
 					<td>T3 SMP Tracker</td>
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<button class="btn btn-primary">Excel</button>
+						<a target="_blank" href="<?php echo base_url('resources/downloadT3SMPTrackerExcel') ?>"><button class="btn btn-primary">Excel</button></a>
 						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
@@ -282,7 +291,7 @@
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<a target="_blank" href="<?php echo base_url('resources/download') ?>"><button class="btn btn-primary">Excel</button></a>
+						<a target="_blank" href="<?php echo base_url('resources/downloadT3ADEPTTrackerExcel') ?>"><button class="btn btn-primary">Excel</button></a>
 						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>
@@ -291,7 +300,7 @@
 					<td>Batch</td>
 					<td><button class="btn btn-default">View</button></td>
 					<td>
-						<a target="_blank" href="<?php echo base_url('resources/download') ?>"><button class="btn btn-primary">Excel</button></a>
+						<a target="_blank" href="<?php echo base_url('resources/downloadT3BESTTrackerExcel') ?>"><button class="btn btn-primary">Excel</button></a>
 						<button class="btn btn-info disabled">PDF</button>
 					</td>
 				</tr>

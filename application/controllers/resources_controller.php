@@ -229,7 +229,7 @@ class Resources_Controller extends CI_Controller {
 		force_download('mastertrainer_profile_single.xlsx', $data);
 	}
 	
-	function downloadMasterTrainerrofileSinglePDF()
+	function downloadMasterTrainerProfileSinglePDF()
 	{		
 		$this->load->helper('download');
 		$data = file_get_contents("./downloads/mastertrainer_profile_single.pdf");
@@ -273,6 +273,13 @@ class Resources_Controller extends CI_Controller {
 		force_download('smp_tracker.xlsx', $data);
 	}
 	
+	function downloadGCATTrackerExcel()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/gcat_tracker.xlsx");
+		force_download('gcat_tracker.xlsx', $data);
+	}
+	
 	function downloadBESTTrackerExcel()
 	{		
 		$this->load->helper('download');
@@ -301,11 +308,11 @@ class Resources_Controller extends CI_Controller {
 		force_download('t3_adept_tracker.xlsx', $data);
 	}
 	
-	function downloadT3GCATTrackerExcel()
+	function downloadT3BESTTrackerExcel()
 	{		
 		$this->load->helper('download');
-		$data = file_get_contents("./downloads/t3_gcat_tracker.xlsx");
-		force_download('t3_gcat_tracker.xlsx', $data);
+		$data = file_get_contents("./downloads/t3_best_tracker.xlsx");
+		force_download('t3_best_tracker.xlsx', $data);
 	}
 	
 	function downloadInternshipEvaluationExcel()
