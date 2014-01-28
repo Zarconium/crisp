@@ -1093,13 +1093,24 @@ class Dbms_Controller extends CI_Controller
 			if (!$this->student->getStudentByCode($code))
 			{
 				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Student does not exist.');
-				redirect('dbms');					
+				redirect('dbms');
 			}
 			
-			if (!$this->student->updateStudentTracker($code, $subject, $tracker))
+			if ($subject == 'BEST')
 			{
-				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
-				redirect('dbms');
+				if (!$this->student->updateBestStudent($code, $subject, $tracker))
+				{
+					$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+					redirect('dbms');
+				}
+			}
+			elseif ($subject == 'AdEPT')
+			{
+				if (!$this->student->updateAdeptStudent($code, $subject, $tracker))
+				{
+					$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+					redirect('dbms');
+				}
 			}
 		}
 
@@ -1116,6 +1127,11 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_best_adept_student_tracker()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_best_adept_student_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
@@ -1149,7 +1165,7 @@ class Dbms_Controller extends CI_Controller
 				$student['Code'] = $code;
 			
 				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
-				redirect('dbms');					
+				redirect('dbms');
 			}
 
 			else if (!$this->student->updateStudentTracker($code,$subject,$tracker))
@@ -1204,7 +1220,7 @@ class Dbms_Controller extends CI_Controller
 				$student['Code'] = $code;
 
 				$this->session->set_flashdata('upload_error', 'GCAT Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
-				redirect('dbms');					
+				redirect('dbms');
 			}
 
 			else if (!$this->student->updateStudentTracker($code,$subject,$tracker))
