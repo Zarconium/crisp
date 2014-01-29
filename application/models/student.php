@@ -183,6 +183,26 @@ Class Student extends CI_Model
 		return $this->db->affected_rows();
 	}
 
+	function updateGcatStudent($code, $subject, $tracker)
+	{
+		$this->db->set($tracker);
+		$this->db->where('student.Code', $code);
+		$this->db->where('subject.Subject_Code', $subject);
+		$this->db->update('gcat_student JOIN tracker ON gcat_student.Tracker_ID = tracker.Tracker_ID JOIN student_tracker ON tracker.Tracker_ID = student_tracker.Tracker_ID JOIN student ON student_tracker.Student_ID = student.Student_ID JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
+
+		return $this->db->affected_rows();
+	}
+
+	function updateSmpStudent($code, $subject, $tracker)
+	{
+		$this->db->set($tracker);
+		$this->db->where('student.Code', $code);
+		$this->db->where('subject.Subject_Code', $subject);
+		$this->db->update('smp_student JOIN tracker ON smp_student.Tracker_ID = tracker.Tracker_ID JOIN student_tracker ON tracker.Tracker_ID = student_tracker.Tracker_ID JOIN student ON student_tracker.Student_ID = student.Student_ID JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
+
+		return $this->db->affected_rows();
+	}
+
 	function deleteStudentById($id)
 	{
 		$this->db->where('Student_ID', $id);

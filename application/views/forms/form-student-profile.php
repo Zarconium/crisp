@@ -53,9 +53,10 @@
 			<form class="form-inline" role="form">
 				<div class="form-group">
 					<label>Civil Status</label><br/>
-					<input type="radio" name="civil" value="married" <?php if ($student->Civil_Status == 'married') { echo 'checked="checked"'; }?>> Married
-					<input type="radio" name="civil" value="single" <?php if ($student->Civil_Status == 'single') { echo 'checked="checked"'; }?>> Single
-					<input type="radio" name="civil" value="separated" <?php if ($student->Civil_Status == 'separated') { echo 'checked="checked"'; }?>> Separated
+					<input type="radio" name="civil" value="married" <?php if (!strcasecmp($student->Civil_Status, 'married')) { echo 'checked="checked"'; }?>> Married
+					<input type="radio" name="civil" value="single" <?php if (!strcasecmp($student->Civil_Status, 'single')) { echo 'checked="checked"'; }?>> Single
+					<input type="radio" name="civil" value="separated" <?php if (!strcasecmp($student->Civil_Status, 'separated')) { echo 'checked="checked"'; }?>> Separated
+					<input type="radio" name="civil" value="widowed" <?php if (!strcasecmp($student->Civil_Status, 'widowed')) { echo 'checked="checked"'; }?>> Widowed
 					<?php echo form_error('civil'); ?>
 				</div>
 			</form>

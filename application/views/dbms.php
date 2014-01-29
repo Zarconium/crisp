@@ -449,7 +449,7 @@
 <div class="student-button-groups">
 	<?php $attributes = array('id' => 'upload_student_profile', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_student_profile', $attributes); ?>
 		<input type="file" name="file_student_profile" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_student_profile').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_student_profile]').click();">Upload Students</button>
+		 <button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_student_profile]').click();">Upload Students</button>
 	<?php echo form_close(); ?>
 
 	<?php $attributes = array('id' => 'upload_best_adept_student_product_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_adept_student_product_tracker', $attributes); ?>
@@ -457,18 +457,18 @@
 		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_adept_student_product_tracker]').click();">Upload BEST/AdEPT Student Product Tracker</button>
 	<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_best_adept_student_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_adept_student_tracker', $attributes); ?>
-		<input type="file" name="file_adept_student_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_student_product_tracker').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_adept_student_tracker]').click();">Upload Adept Student Tracker</button>
+	<?php $attributes = array('id' => 'upload_best_adept_student_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_adept_student_tracker', $attributes); ?>
+		<input type="file" name="file_best_adept_student_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_adept_student_tracker').submit();">
+		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_adept_student_tracker]').click();">Upload BEST/AdEPT Student Tracker</button>
 	<?php echo form_close(); ?>
 
 	<?php $attributes = array('id' => 'upload_gcat_student_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_gcat_student_tracker', $attributes); ?>
-		<input type="file" name="file_gcat_student_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_gcat_student_product_tracker').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_gcat_student_tracker]').click();">Upload Adept Student Tracker</button>
+		<input type="file" name="file_gcat_student_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_gcat_student_tracker').submit();">
+		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_gcat_student_tracker]').click();">Upload GCAT Student Tracker</button>
 	<?php echo form_close(); ?>
 
 	<?php $attributes = array('id' => 'upload_smp_student_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_smp_student_tracker', $attributes); ?>
-		<input type="file" name="file_smp_student_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_smp_student_product_tracker').submit();">
+		<input type="file" name="file_smp_student_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_smp_student_tracker').submit();">
 		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_smp_student_tracker]').click();">Upload SMP Student Tracker</button>
 	<?php echo form_close(); ?>
 
@@ -493,7 +493,7 @@
 	<?php echo form_close(); ?>
 
 	<button class="btn btn-primary btn-lg">Upload BEST Student Grades</button>
-	<button class="btn btn-primary btn-lg">Upload ADEPT Student Grades</button>
+	<button class="btn btn-primary btn-lg">Upload AdEPT Student Grades</button>
 </div>
 </div>
 <div class="modal-footer">
