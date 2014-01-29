@@ -15,7 +15,7 @@ Class mastertrainer extends CI_Model
 		}
 	}
 
-	function getAllStudentsFormatted()
+	function getAllMasterTrainersFormatted()
 	{
 		$this->db->distinct();
 		$this->db->select('master_trainer.Master_Trainer_ID, CONCAT_WS("", IF(LENGTH(master_trainer.Last_Name), master_trainer.Last_Name, NULL), ", ", IF(LENGTH(master_trainer.First_Name), master_trainer.First_Name, NULL), " ", IF(LENGTH(master_trainer.Middle_Initial), master_trainer.Middle_Initial, NULL), ". ", IF(LENGTH(master_trainer.Name_Suffix), master_trainer.Name_Suffix, NULL)) as Full_Name, CONCAT(school.name, " - ", school.Branch) as School_Name, GROUP_CONCAT(subject.Subject_Code) as Subject_Codes', false);
@@ -44,11 +44,11 @@ Class mastertrainer extends CI_Model
 		}	
 	}
 
-	function getStudentById($id)
+	function getMasterTrainerById($id)
 	{
 		$this->db->select('*');
-		$this->db->from('student');
-		$this->db->where('Student_ID', $id);
+		$this->db->from('master_trainer');
+		$this->db->where('Master_Trainer_ID', $id);
 		$this->db->limit(1);
 		
 		$query = $this->db->get();
@@ -64,11 +64,11 @@ Class mastertrainer extends CI_Model
 	}
 
 
-	function getStudentFullNameById($id)
+	function getMasterTrainerFullNameById($id)
 	{
-		$this->db->select('CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
-		$this->db->from('student');
-		$this->db->where('Student_ID', $id);
+		$this->db->select('CONCAT_WS("", IF(LENGTH(master_trainer.Last_Name), master_trainer.Last_Name, NULL), ", ", IF(LENGTH(master_trainer.First_Name), master_trainer.First_Name, NULL), " ", IF(LENGTH(master_trainer.Middle_Initial), master_trainer.Middle_Initial, NULL), ". ", IF(LENGTH(master_trainer.Name_Suffix), master_trainer.Name_Suffix, NULL)) as Full_Name', false);
+		$this->db->from('master_trainer');
+		$this->db->where('Master_Trainer_ID', $id);
 		$this->db->limit(1);
 		
 		$query = $this->db->get();
@@ -83,16 +83,16 @@ Class mastertrainer extends CI_Model
 		}
 	}
 
-	function addStudent($data)
+	function addMasterTrainer($data)
 	{
-		$this->db->insert('student', $data);
+		$this->db->insert('master_trainer', $data);
 		return $this->db->insert_id();
 	}
 
-	function deleteStudentById($id)
+	function deleteMasterTrainerById($id)
 	{
-		$this->db->where('Student_ID', $id);
-		return $this->db->delete('student');
+		$this->db->where('Master_Trainer_ID', $id);
+		return $this->db->delete('master_trainer');
 	}
 }
 ?>
