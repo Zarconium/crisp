@@ -103,7 +103,7 @@ class Resources_Controller extends CI_Controller {
 	function downloadADEPTStudentGradesExcel()
 	{		
 		$this->load->helper('download');
-		$data = file_get_contents("./downloads/student_gadept_rades.xlsx");
+		$data = file_get_contents("./downloads/student_adept_grades.xlsx");
 		force_download('student_adept_grades.xlsx', $data);
 	}
 	
@@ -143,6 +143,13 @@ class Resources_Controller extends CI_Controller {
 		$this->load->helper('download');
 		$data = file_get_contents("./downloads/teacher_profile_batch.pdf");
 		force_download('teacher_profile_batch.pdf', $data);
+	}
+	
+	function downloadTeacherParticipantContractPDF()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/teacher_participant_contract.pdf");
+		force_download('teacher_participant_contract.pdf', $data);
 	}
 	
 	function downloadTeacherBESTAttendanceExcel()
