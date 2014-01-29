@@ -1,6 +1,8 @@
 <div class="info-form">
-<?php if (isset($draft_saved)) { echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Draft saved.</div>';} ?>
-	<?php echo form_open('/dbms/form_teacher_profile'); ?>
+	<?php if (isset($draft_saved)) { echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Draft saved.</div>';} ?>
+	<?php if (isset($form_success)) { echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Teacher successfully updated.</div>';} ?>
+	<?php if (isset($form_error)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>There were errors in your input. Please check the fields and try again.</div>';} ?>
+
 	<div class="save">
 		<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
 		<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
@@ -8,11 +10,9 @@
 		<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
 	</div>
 
-	<h1>
-		Teacher Profile
-	</h1>
-	
-	
+	<h1><?php echo $this->teacher->getTeacherFullNameById($teacher->Teacher_ID)->Full_Name; ?> <small><?php echo $this->school->getSchoolById($teacher->School_ID)->Name . " - " . $this->school->getSchoolById($teacher->School_ID)->Branch; ?></small></h1>
+	<?php echo form_open('/dbms/form_teacher_profile'); ?>
+
 	<ul class="nav nav-tabs">
 	  <li class="active"><a href="#basic" data-toggle="tab">Basic Information</a></li>
 	  <li><a href="#attendance" data-toggle="tab">Attendance</a></li>

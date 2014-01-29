@@ -22,6 +22,7 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['students'] = $this->student->getAllStudentsFormatted();
 		$data['teachers'] = $this->teacher->getAllTeachersFormatted();
+		$data['proctors'] = $this->proctor->getAllProctorsFormatted();
 
 		$this->load->view('header');
 		$this->load->view('dbms', $data);
@@ -39,6 +40,12 @@ class Dbms_Controller extends CI_Controller
 		$this->teacher->deleteTeacherById($id);
 		redirect('dbms');
 	}
+
+	function delete_proctor($id)
+	{
+		$this->teacher->deleteProctorById($id);
+		redirect('dbms');
+	}
 	
 	function form_student_profile($id)
 	{
@@ -51,10 +58,13 @@ class Dbms_Controller extends CI_Controller
 	}
 	
 	
-	function form_teacher_profile()
+	function form_teacher_profile($id)
 	{
+		$data['schools'] = $this->school->getAllSchools();
+		$data['teacher'] = $this->teacher->getTeacherById($id);
+
 		$this->load->view('header');
-		$this->load->view('forms/form-teacher-profile');
+		$this->load->view('forms/form-teacher-profile', $data);
 		$this->load->view('footer');
 	}
 	
