@@ -33,18 +33,21 @@ class Dbms_Controller extends CI_Controller
 	function delete_student($id)
 	{
 		$this->student->deleteStudentById($id);
+		$this->log->addLog('Deleted Student');
 		redirect('dbms');
 	}
 
 	function delete_teacher($id)
 	{
 		$this->teacher->deleteTeacherById($id);
+		$this->log->addLog('Deleted Teacher');
 		redirect('dbms');
 	}
 
 	function delete_proctor($id)
 	{
 		$this->teacher->deleteProctorById($id);
+		$this->log->addLog('Deleted Proctor');
 		redirect('dbms');
 	}
 	
@@ -261,6 +264,7 @@ class Dbms_Controller extends CI_Controller
 					}
 
 					$data['form_success'] = TRUE;
+					$this->log->addLog('Added Student');
 
 					$this->load->view('header');
 					$this->load->view('forms/form-student', $data);
@@ -342,6 +346,7 @@ class Dbms_Controller extends CI_Controller
 					//$this->student->addStudent($student);
 
 					$data['form_success'] = TRUE;
+					$this->log->addLog('Added Proctor');
 
 					$this->load->view('header');
 					$this->load->view('forms/form-proctor-application', $data);
@@ -423,6 +428,7 @@ class Dbms_Controller extends CI_Controller
 					// $this->student->addStudent($student);
 
 					$data['form_success'] = TRUE;
+					$this->log->addLog('Added Master Trainer');
 
 					$this->load->view('header');
 					$this->load->view('forms/form-mastertrainer-application', $data);
@@ -696,6 +702,7 @@ class Dbms_Controller extends CI_Controller
 					}
 
 					$data['form_success'] = TRUE;
+					$this->log->addLog('Added Teacher');
 
 					$this->load->view('header');
 					$this->load->view('forms/form-teacher-application', $data);
@@ -1065,6 +1072,7 @@ class Dbms_Controller extends CI_Controller
 		if ($counter > 2)
 		{
 			$this->session->set_flashdata('upload_success', 'Student Profile successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
+			$this->log->addLog('Student Profile batch upload');
 		}
 		else
 		{

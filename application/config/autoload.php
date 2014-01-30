@@ -111,6 +111,7 @@ $autoload['language'] = array();
 
 $autoload['model'] = array
 	(
+		'log',
 		'mastertrainer',
 		'proctor',
 		'report_mne',

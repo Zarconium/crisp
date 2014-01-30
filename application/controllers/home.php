@@ -18,8 +18,10 @@ class Home extends CI_Controller {
 
 	function index()
 	{
+		$data['logs'] = $this->log->getAllLogs();
+
 		$this->load->view('header');
-		$this->load->view('home_view');
+		$this->load->view('home_view', $data);
 		$this->load->view('footer');
 	}
 

@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `adept_t3_attendance` (
   `Day_6` datetime NULL DEFAULT NULL,
   `GCAT` datetime NULL DEFAULT NULL,
   `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Updated_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `Updated_At` timestamp ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Adept_T3_Attendance_ID`),
   UNIQUE KEY `Adept_T3_Attendance_ID_UNIQUE` (`Adept_T3_Attendance_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -493,20 +493,21 @@ CREATE TABLE IF NOT EXISTS `internship_student` (
 
 CREATE TABLE IF NOT EXISTS `log` (
   `Log_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Made_By` varchar(100) NOT NULL,
+  `User_ID` int(11) NOT NULL,
   `Changes` text NOT NULL,
-  `Created_At` datetime NOT NULL,
+  `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`Log_ID`),
-  UNIQUE KEY `Log_ID_UNIQUE` (`Log_ID`)
+  UNIQUE KEY `Log_ID_UNIQUE` (`Log_ID`),
+  KEY `fk_Log_Users1_idx` (`User_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `log`
 --
 
-INSERT INTO `log` (`Log_ID`, `Made_By`, `Changes`, `Created_At`) VALUES
-(1, 'John Mayer', 'Add Teacher', '2012-11-15 00:00:00'),
-(2, 'Whiz Khaliffa', 'Add Student', '2011-11-16 00:00:00');
+INSERT INTO `log` (`Log_ID`, `User_ID`, `Changes`, `Created_At`) VALUES
+(1, '1', 'Add Teacher', '2012-11-15 00:00:00'),
+(2, '2', 'Add Student', '2011-11-16 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1457,7 +1458,7 @@ CREATE TABLE IF NOT EXISTS `t3_application` (
   `T3_Application_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Date` varchar(45) NOT NULL,
   `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Updated_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `Updated_At` timestamp ON UPDATE CURRENT_TIMESTAMP,
   `Subject_ID` int(11) NOT NULL,
   PRIMARY KEY (`T3_Application_ID`),
   UNIQUE KEY `T3_Application_ID_UNIQUE` (`T3_Application_ID`),
@@ -1607,7 +1608,7 @@ CREATE TABLE IF NOT EXISTS `teacher` (
   `Proof_of_Certification` tinyint(1) NOT NULL DEFAULT '0',
   `Diploma/TOR` tinyint(1) NOT NULL DEFAULT '0',
   `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Updated_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `Updated_At` timestamp ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Teacher_ID`),
   UNIQUE KEY `Teacher_ID_UNIQUE` (`Teacher_ID`),
   KEY `fk_Teacher_School1_idx` (`School_ID`)
@@ -1990,7 +1991,7 @@ CREATE TABLE IF NOT EXISTS `tracker` (
   `Status_ID` int(11) NOT NULL,
   `Times_Taken` int(11) NOT NULL DEFAULT '1',
   `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Updated_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `Updated_At` timestamp ON UPDATE CURRENT_TIMESTAMP,
   `Subject_ID` int(11) NOT NULL,
   PRIMARY KEY (`Tracker_ID`),
   UNIQUE KEY `Tracker_ID_UNIQUE` (`Tracker_ID`),
@@ -2366,6 +2367,8 @@ ALTER TABLE `tracker`
 ALTER TABLE `users`
   ADD CONSTRAINT `fk_User_School1` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
+ALTER TABLE `log`
+  ADD CONSTRAINT `fk_Log_Users1` FOREIGN KEY (`User_ID`) REFERENCES `users` (`User_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
