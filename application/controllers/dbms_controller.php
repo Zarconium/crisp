@@ -23,6 +23,7 @@ class Dbms_Controller extends CI_Controller
 		$data['students'] = $this->student->getAllStudentsFormatted();
 		$data['teachers'] = $this->teacher->getAllTeachersFormatted();
 		$data['proctors'] = $this->proctor->getAllProctorsFormatted();
+		$data['mastertrainers'] = $this->mastertrainer->getAllMasterTrainersFormatted();
 
 		$this->load->view('header');
 		$this->load->view('dbms', $data);

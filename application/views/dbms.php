@@ -133,10 +133,10 @@
 				<?php foreach ($mastertrainers as $mastertrainer): ?>
 				<tr>
 					<td><input type="checkbox"></td>
-					<td><a href="<?php echo base_url('dbms/form_mastertrainer_application/' . $mastertrainer->Proctor_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_mastertrainer/' . $mastertrainer->Proctor_ID); ?>">Delete</a></td>
+					<td><a href="<?php echo base_url('dbms/form_mastertrainer_application/' . $mastertrainer->Master_Trainer_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_mastertrainer/' . $mastertrainer->Master_Trainer_ID); ?>">Delete</a></td>
 					<td><?php echo $mastertrainer->Full_Name; ?></td>
 					<td><?php echo $mastertrainer->School_Name; ?></td>
-					<td><?php echo $mastertrainer->Subject_Code; ?></td>
+					<td><?php echo $mastertrainer->Subject_Codes; ?></td>
 				</tr>
 				<?php endforeach; ?>
 				<?php endif; ?>
@@ -457,7 +457,7 @@
 <div class="student-button-groups">
 	<?php $attributes = array('id' => 'upload_student_profile', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_student_profile', $attributes); ?>
 		<input type="file" name="file_student_profile" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_student_profile').submit();">
-		 <button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_student_profile]').click();">Upload Students</button>
+		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_student_profile]').click();">Upload Students</button>
 	<?php echo form_close(); ?>
 
 	<?php $attributes = array('id' => 'upload_best_adept_student_product_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_adept_student_product_tracker', $attributes); ?>
