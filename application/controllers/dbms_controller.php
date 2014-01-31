@@ -1957,15 +1957,66 @@ class Dbms_Controller extends CI_Controller
 		redirect('dbms');
 	}
 
-	function upload_gcat_grades()
+	function upload_gcat_grades()//mine
+	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_gcat_grades']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 1) continue;
+			if ($counter > $highestRow) break;
+
+			$school_id = $this->school->getSchoolIdByCode($row['E'])->School_ID; //Get School_ID
+			
+			$code = $school_id . substr($row['D'],0,1). substr($row['E'],0,1). substr($row['C'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY'))); //Get Code
+
+			$grades = array
+			(
+				'T3_Tracker_ID' => $row['B'],
+				'Session_ID' => $row['C']
+			);
+
+			$subject = $row['L'];
+			
+			if (!$this->teacher->getTeacherByCode($code))
+			{
+				$teacher['Code'] = $code;
+
+				$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Invalid data at row ' . $counter . '. Teacher already exists');
+				redirect('dbms');					
+			}
+			else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
+		}
+
+		if ($counter > 2)
+		{
+			$this->session->set_flashdata('upload_success', 'GCAT Grades successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Empty file.');
+		}
+		redirect('dbms');
+	}
+
+	function upload_best_grades()//mine
 	{
 	}
 
-	function upload_best_grades()
-	{
-	}
-
-	function upload_adept_grades()
+	function upload_adept_grades()//mine
 	{
 	}
 }
