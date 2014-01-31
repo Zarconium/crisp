@@ -10,15 +10,10 @@
 		<th>Sem/period</th>
 		<td>it goes here</td>
 	</tr>
+	<?php foreach ($gcat_teacher_list as $count): ?>
 	<tr>
-		<th>Teacher Name</th>
+		<td><?php echo $count->Teachers; ?></td>
 	</tr>
-	<tr>
-		<td>name here</td>
-	</tr>
-	<tr>
-		<td>TOTAL</td>
-		<td colspan="4"><?php echo $count->Total; ?></td>
-	</tr>
+	<?php endforeach; ?>
 </table>
 </div>
