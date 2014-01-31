@@ -14,6 +14,7 @@
 	<div class="wrapper">
 	
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<a class="navbar-brand" href="<?php echo base_url(); ?>">CRISP</a>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $this->session->userdata('logged_in')['username'] . ' (' . $this->session->userdata('logged_in')['type'] . ')'; ?>&nbsp;<b class="caret"></b></a>
