@@ -1530,8 +1530,7 @@ class Dbms_Controller extends CI_Controller
 
 		if ($counter > 2)
 		{
-			$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
-			$this->log->addLog('BEST AdEPT Product Tracker Batch Upload');
+			$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
 		}
 		else
 		{
@@ -1599,8 +1598,7 @@ class Dbms_Controller extends CI_Controller
 
 		if ($counter > 2)
 		{
-			$this->session->set_flashdata('upload_success', 'BEST Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
-			$this->log->addLog('BEST Tracker Batch Upload');
+			$this->session->set_flashdata('upload_success', 'BEST Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
 		}
 		else
 		{
@@ -1657,8 +1655,7 @@ class Dbms_Controller extends CI_Controller
 
 		if ($counter > 2)
 		{
-			$this->session->set_flashdata('upload_success', 'BEST Attendance Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
-			$this->log->addLog('BEST T3 Attendance Batch Upload');
+			$this->session->set_flashdata('upload_success', 'BEST Attendance Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
 		}
 		else
 		{
@@ -1728,8 +1725,7 @@ class Dbms_Controller extends CI_Controller
 
 		if ($counter > 2)
 		{
-			$this->session->set_flashdata('upload_success', 'AdEPT Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
-			$this->log->addLog('AdEPT Tracker Batch Upload');
+			$this->session->set_flashdata('upload_success', 'AdEPT Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
 		}
 		else
 		{
