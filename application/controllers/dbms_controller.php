@@ -1514,7 +1514,7 @@ class Dbms_Controller extends CI_Controller
 
 			$school_id = $this->school->getSchoolIdByCode($row['F'])->School_ID; //Get School_ID
 			
-			$code = $school_id . substr($row['C'],0,1). substr($row['D'],0,1). substr($row['B'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['E'], 'MM/DD/YYYY'))); //Get Code
+			$code = $school_id . substr($row['C'],0,1). substr($row['D'],0,1). substr($row['B'],0,1) . date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['E'], 'MM/DD/YYYY'))); //Get Code
 
 			$tracker = array
 			(
@@ -1526,9 +1526,7 @@ class Dbms_Controller extends CI_Controller
 			
 			if (!$this->teacher->getTeacherByCode($code))
 			{
-				$teacher['Code'] = $code;
-
-				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . '. Teacher already exists');
+				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
 				redirect('dbms');					
 			}
 			else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
@@ -1577,24 +1575,24 @@ class Dbms_Controller extends CI_Controller
 			(
 				//best tracker
 				
-				'Interview_Form' =>  (bool) strcasecmp($row['H'], 'no'),
-				'Site_Visit_Form' =>  (bool) strcasecmp($row['I'], 'no'),
-				'BEST_T3_Feedback' =>  (bool) strcasecmp($row['K'], 'no'),
-				'BEST_ELearning_Feedback' =>  (bool) strcasecmp($row['J'], 'no'),
-				'Best_CD' =>  (bool) strcasecmp($row['L'], 'no'),
-				'Certificate_Of_Attendance' =>  (bool) strcasecmp($row['M'], 'no'),
-				'Best_Certified_Trainers' =>  (bool) strcasecmp($row['N'], 'no'),
-				'Task_1' => $row['O'],
-				'Task_2' => $row['P'],
-				'Task_3' => $row['Q'],
-				'Task_4' => $row['R'],
-				'Status_ID' => $status_id
+				'best_t3_tracker.Interview_Form' =>  (bool) strcasecmp($row['H'], 'no'),
+				'best_t3_tracker.Site_Visit_Form' =>  (bool) strcasecmp($row['I'], 'no'),
+				'best_t3_tracker.BEST_T3_Feedback' =>  (bool) strcasecmp($row['K'], 'no'),
+				'best_t3_tracker.BEST_ELearning_Feedback' =>  (bool) strcasecmp($row['J'], 'no'),
+				'best_t3_tracker.Best_CD' =>  (bool) strcasecmp($row['L'], 'no'),
+				'best_t3_tracker.Certificate_Of_Attendance' =>  (bool) strcasecmp($row['M'], 'no'),
+				'best_t3_tracker.Best_Certified_Trainers' =>  (bool) strcasecmp($row['N'], 'no'),
+				'best_t3_tracker.Task_1' => $row['O'],
+				'best_t3_tracker.Task_2' => $row['P'],
+				'best_t3_tracker.Task_3' => $row['Q'],
+				'best_t3_tracker.Task_4' => $row['R'],
+				'best_t3_tracker.Status_ID' => $status_id
 			);
 
 			$teacher = array
 			(
 				//hiwalay teacher
-				'Civil_Status' => $row['F']
+				'teacher.Civil_Status' => $row['F']
 			);		
 
 			$t3_tracker = array
@@ -1608,7 +1606,7 @@ class Dbms_Controller extends CI_Controller
 			
 			if (!$this->teacher->getTeacherByCode($code))
 			{
-				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist.');
+				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exists.');
 				redirect('dbms');					
 			}
 
@@ -1621,7 +1619,7 @@ class Dbms_Controller extends CI_Controller
 
 		if ($counter > 2)
 		{
-			$this->session->set_flashdata('upload_success', 'BEST Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' Teachers added/updated.');
+			$this->session->set_flashdata('upload_success', 'BEST Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' Teacher added/updated.');
 			$this->log->addLog('BEST Tracker Batch Upload');
 		}
 		else
@@ -1650,7 +1648,7 @@ class Dbms_Controller extends CI_Controller
 
 			$school_id = $this->school->getSchoolIdByCode($row['E'])->School_ID; //Get School_ID
 			
-			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['D'], 'MM/DD/YYYY'))); //Get Code
+			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['D'], 'MM/DD/YYYY'))); //Get Code
 
 			$tracker = array
 			(
@@ -1665,9 +1663,7 @@ class Dbms_Controller extends CI_Controller
 			
 			if (!$this->teacher->getTeacherByCode($code))
 			{
-				$teacher['Code'] = $code;
-
-				$this->session->set_flashdata('upload_error', 'BEST Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				$this->session->set_flashdata('upload_error', 'BEST Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exists');
 				redirect('dbms');					
 			}
 			else if (!$this->teacher->updateBestTeacherAttendance($code,$subject,$tracker))
@@ -1679,7 +1675,7 @@ class Dbms_Controller extends CI_Controller
 
 		if ($counter > 2)
 		{
-			$this->session->set_flashdata('upload_success', 'BEST Attendance Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
+			$this->session->set_flashdata('upload_success', 'BEST Attendance Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' Teacher added/updated.');
 			$this->log->addLog('BEST T3 Attendance Batch Upload');
 		}
 		else
@@ -1735,9 +1731,7 @@ class Dbms_Controller extends CI_Controller
 			
 			if (!$this->teacher->getTeacherByCode($code))
 			{
-				$teacher['Code'] = $code;
-
-				$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
 				redirect('dbms');					
 			}
 
