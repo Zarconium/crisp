@@ -174,7 +174,7 @@ Class Teacher extends CI_Model
 		$this->db->update('t3_tracker 
 			JOIN teacher_t3_tracker ON teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID 
 			JOIN teacher ON teacher.teacher_ID = teacher_t3_tracker.Teacher_ID 
-			JOIN subject ON tracker.Subject_ID = subject.Subject_ID'
+			JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
 		return $this->db->affected_rows();
 	}
 
