@@ -2002,7 +2002,7 @@ class Dbms_Controller extends CI_Controller
 		redirect('dbms');
 	}
 
-	function upload_gcat_grades()//mine
+	function upload_gcat_grades()//not yet checked 
 	{
 		if (!$_FILES)
 		{
@@ -2020,22 +2020,30 @@ class Dbms_Controller extends CI_Controller
 			if ($counter++ < 1) continue;
 			if ($counter > $highestRow) break;
 
-			$school_id = $this->school->getSchoolIdByCode($row['E'])->School_ID; //Get School_ID
+			$school_id = $this->school->getSchoolIdByCode($row['H']); //Get School_ID
 			
-			$code = $school_id . substr($row['D'],0,1). substr($row['E'],0,1). substr($row['C'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY'))); //Get Code
+			$code = $school_id . substr($row['H'],0,1). substr($row['F'],0,1). substr($row['D'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY'))); //Get Code
 
 			$grades = array
 			(
-				'T3_Tracker_ID' => $row['B'],
-				'Session_ID' => $row['C']
+				'GCAT_Basic_Skills_Test_Overall_score' => $row['X'],
+				'GCAT_Total_Cognitive' => $row['Y'],
+				'GCAT_English_Proficiency' => $row['Z'],
+				'GCAT_Computer_Literacy' => $row['AA'],
+				'GCAT_Perceptual_Speed_&_Accuracy' => $row['AB'],
+				'GCAT_Behavioral_Component_Overall_Score' => $row['AC'],
+				'GCAT_Communication' => $row['AD'],
+				'GCAT_Learning_Orientation' => $row['AE'],
+				'GCAT_Courtesy' => $row['AF'],
+				'GCAT_Empathy' => $row['AG'],
+				'GCAT_Reliability' => $row['AH'],
+				'GCAT_Responsiveness' => $row['AI']
 			);
 
-			$subject = $row['L'];
+			$subject = $row['J'];
 			
 			if (!$this->teacher->getTeacherByCode($code))
 			{
-				$teacher['Code'] = $code;
-
 				$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Invalid data at row ' . $counter . '. Teacher already exists');
 				redirect('dbms');					
 			}
@@ -2046,9 +2054,9 @@ class Dbms_Controller extends CI_Controller
 			}
 		}
 
-		if ($counter > 2)
+		if ($counter > 1)
 		{
-			$this->session->set_flashdata('upload_success', 'GCAT Grades successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
+			$this->session->set_flashdata('upload_success', 'GCAT Grades successfully uploaded. ' . ($counter - 1) . ' of ' . ($highestRow - 1) . ' teachers added/updated.');
 			$this->log->addLog('GCAT Grades Batch Upload');	
 		}
 		else
@@ -2058,12 +2066,12 @@ class Dbms_Controller extends CI_Controller
 		redirect('dbms');
 	}
 
-	function upload_best_grades()//mine
+	function upload_best_grades()
 	{
 		$this->log->addLog('BEST Grades Batch Upload');
 	}
 
-	function upload_adept_grades()//mine
+	function upload_adept_grades()
 	{
 		$this->log->addLog('AdEPT Grades Batch Upload');
 	}
