@@ -54,9 +54,19 @@ class Dbms_Controller extends CI_Controller
 	function form_student_profile($id)
 	{
 		$data['schools'] = $this->school->getAllSchools();
+		$data['statuses'] = $this->status->getAllStatuses();
 		$data['student'] = $this->student->getStudentById($id);
 		$data['gcat_tracker'] = $this->student->getGcatTrackerByStudentId($id);
-		$this->log->addLog('Updated Student Profile');
+		$data['best_tracker'] = $this->student->getBestTrackerByStudentId($id);
+		$data['adept_tracker'] = $this->student->getAdeptTrackerByStudentId($id);
+		$data['smp_tracker'] = $this->student->getSmpTrackerByStudentId($id);
+		$data['internship'] = $this->student->getInternshipByStudentId($id);
+		$data['bizcom'] = $this->student->getBizComByStudentId($id);
+		$data['bpo101'] = $this->student->getBpo101ByStudentId($id);
+		$data['bpo102'] = $this->student->getBpo102ByStudentId($id);
+		$data['sc101'] = $this->student->getSc101ByStudentId($id);
+		$data['systh101'] = $this->student->getSysth101ByStudentId($id);
+		// $this->log->addLog('Updated Student Profile');
 
 		$this->load->view('header');
 		$this->load->view('forms/form-student-profile', $data);

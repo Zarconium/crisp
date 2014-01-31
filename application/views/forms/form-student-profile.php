@@ -251,13 +251,13 @@
 					<form class="form" role="form">
 						<div class="form-group">
 							<label>Proctor</label>
-							<input class="form-control" type="text" name="gcat_proctor" value="<?php echo $this->proctor->getProctorFullNameById($gcat_tracker->Proctor_ID)->Full_Name; ?>">
+							<input class="form-control" type="text" name="gcat_proctor" value="<?php if (isset($this->proctor->getProctorFullNameById($gcat_tracker->Proctor_ID)->Full_Name)) echo $this->proctor->getProctorFullNameById($gcat_tracker->Proctor_ID)->Full_Name; ?>">
 							<?php echo form_error('gcat_proctor'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Semester</label>
-							<input class="form-control" type="text" name="gcat_semester" value="<?php echo $gcat_tracker->Semester; ?>">
+							<input class="form-control" type="text" name="gcat_semester" value="<?php if(isset($gcat_tracker->Semester)) echo $gcat_tracker->Semester; ?>">
 							<?php echo form_error('gcat_semester'); ?>
 						</div>
 
@@ -281,7 +281,7 @@
 
 						<div class="form-group">
 							<label>Status</label>
-							<input class="form-control" type="text" name="gcat_status" value="<?php echo $gcat_tracker->Name; ?>">
+							<input class="form-control" type="text" name="gcat_status" value="<?php echo $gcat_tracker->Status_Name; ?>">
 							<?php echo form_error('gcat_status'); ?>
 						</div>
 					</form>
@@ -291,58 +291,47 @@
 					<form class="form" role="form">
 						<div class="form-group">
 							<label>Date</label>
-							<input class="form-control" type="date" name="best_date" value="<?php echo set_value('best_date'); ?>">
+							<input class="form-control" type="date" name="best_date" value="<?php echo date('Y-m-d', strtotime($best_tracker->Updated_At)); ?>">
 							<?php echo form_error('best_date'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Control Number</label>
-							<input class="form-control" type="text" name="best_control_number" value="<?php echo set_value('best_control_number'); ?>">
+							<input class="form-control" type="text" name="best_control_number" value="<?php echo $best_tracker->Control_Number; ?>">
 							<?php echo form_error('best_control_number'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Username</label>
-							<input class="form-control" type="text" name="best_username" value="<?php echo set_value('best_username'); ?>">
+							<input class="form-control" type="text" name="best_username" value="<?php echo $best_tracker->Username; ?>">
 							<?php echo form_error('best_username'); ?>
 						</div>
 					</form>
 				</div>
 
 				<div class="tab-pane" id="adept">
-				
 					<form class="form" role="form">	
-						<div class="form-group">		
-							<label>School</label>			
-							<input class="form-control" type="text" name="adept_school" value="<?php echo set_value('adept_school'); ?>">
-				<?php echo form_error('adept_school'); ?>
-						</div>			
-						<div class="form-group">		
-							<label>Branch</label>			
-							<input class="form-control" type="text" name="adept_branch" value="<?php echo set_value('adept_branch'); ?>">
-				<?php echo form_error('adept_branch'); ?>
-						</div>			
-						<div class="form-group">		
-							<label>Date</label>			
-							<input class="form-control" type="date" name="adept_date" value="<?php echo set_value('adept_date'); ?>">
-				<?php echo form_error('adept_date'); ?>
-						</div>		
-						<div class="form-group">		
-							<label>Control Number</label>			
-							<input class="form-control" type="text" name="adept_control_number" value="<?php echo set_value('adept_control_number'); ?>">
-				<?php echo form_error('adept_control_number'); ?>
-						</div>		
-						<div class="form-group">		
-							<label>Username</label>			
-							<input class="form-control" type="text" name="adept_username" value="<?php echo set_value('adept_username'); ?>">
-				<?php echo form_error('adept_username'); ?>
+						<div class="form-group">
+							<label>Date</label>
+							<input class="form-control" type="date" name="adept_date" value="<?php echo date('Y-m-d', strtotime($adept_tracker->Updated_At)); ?>">
+							<?php echo form_error('adept_date'); ?>
+						</div>
+
+						<div class="form-group">
+							<label>Control Number</label>	
+							<input class="form-control" type="text" name="adept_control_number" value="<?php echo $adept_tracker->Control_Number; ?>">
+							<?php echo form_error('adept_control_number'); ?>
+						</div>
+
+						<div class="form-group">
+							<label>Username</label>
+							<input class="form-control" type="text" name="adept_username" value="<?php echo $adept_tracker->Username; ?>">
+							<?php echo form_error('adept_username'); ?>
 						</div>			
 					</form>
-					
 				</div>
 				
 				<div class="tab-pane" id="smp">
-				
 					<legend>General Information</legend>
 					
 					<form class="form" role="form">
@@ -353,12 +342,12 @@
 								<option>Option2</option>
 								<option>Option3</option>
 							</select>
-				<?php echo form_error('smp'); ?>
+							<?php echo form_error('smp'); ?>
 						</div>
-					
 					</form>
 					
 					<legend>Subjects</legend>
+
 					<form class="form" role="form">
 						<table class="table">
 							<tr>
@@ -372,155 +361,135 @@
 							<tr>
 								<td>Business Communication</td>
 								<td>
-									<select class="form-control" name="bizcom_year" value="<?php echo set_value('bizcom_year'); ?>">
-										<option>Option1</option>
-										<option>Option2</option>
-										<option>Option3</option>
-									</select>
+									<input class="form-control" type="text" name="bizcon_year" value="<?php if (isset($bizcom->School_Year)) echo $bizcom->School_Year; ?>">
 									<?php echo form_error('bizcom_year'); ?>
 								</td>
 								<td>
-									<input class="form-control" type="number" name="bizcom_semester" value="<?php echo set_value('bizcom_semester'); ?>">
+									<input class="form-control" type="number" name="bizcom_semester" value="<?php if (isset($bizcom->Semester)) echo $bizcom->Semester; ?>">
 									<?php echo form_error('bizcom_semester'); ?>
 								</td>
 								<td>
-									<select class="form-control" name="bizcom_status" value="<?php echo set_value('bizcom_status'); ?>">
-										<option>Option1</option>
-										<option>Option2</option>
-										<option>Option3</option>
+									<select class="form-control" name="bizcom_status">
+									<?php foreach ($statuses as $status): ?>
+										<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($bizcom->Status_ID)) if ($status->Status_ID == $bizcom->Status_ID) echo 'selected="selected"'; ?>><?php echo $status->Name; ?></option>
+									<?php endforeach; ?>
 									</select>
 									<?php echo form_error('bizcom_status'); ?>
 								</td>
 								<td>
-									<input class="form-control" type="text" name="bizcom_grade" value="<?php echo set_value('bizcom_grade'); ?>">
+									<input class="form-control" type="text" name="bizcom_grade" value="<?php if (isset($bizcom->Grade)) echo $bizcom->Grade; ?>">
 									<?php echo form_error('bizcom_grade'); ?>	
 								</td>
 								<td>
-									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php echo set_value('bizcom_times_taken'); ?>">
+									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php if (isset($bizcom->Times_Taken)) echo $bizcom->Times_Taken; ?>">
 									<?php echo form_error('bizcom_times_taken'); ?>
 								</td>
 							</tr>	
 							<tr>
 								<td>BPO101</td>
 								<td>
-									<select class="form-control" name="bizcom_year" value="<?php echo set_value('bpo101_year'); ?>">
-										<option>Option1</option>
-										<option>Option2</option>
-										<option>Option3</option>
-									</select>
+									<input class="form-control" type="text" name="bpo101_year" value="<?php if (isset($bpo101->School_Year)) echo $bpo101->School_Year; ?>">
 									<?php echo form_error('bpo101_year'); ?>
 								</td>
 								<td>
-									<input class="form-control" type="number" name="bizcom_semester" value="<?php echo set_value('bpo101_semester'); ?>">
+									<input class="form-control" type="number" name="bizcom_semester" value="<?php if (isset($bpo101->Semester)) echo $bpo101->Semester; ?>">
 									<?php echo form_error('bpo101_semester'); ?>
 								</td>
 								<td>
-									<select class="form-control" name="bizcom_status" value="<?php echo set_value('bpo101_status'); ?>">
-										<option>Option1</option>
-										<option>Option2</option>
-										<option>Option3</option>
+									<select class="form-control" name="bizcom_status">
+									<?php foreach ($statuses as $status): ?>
+										<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($bpo101->Status_ID)) if ($status->Status_ID == $bpo101->Status_ID) echo 'selected="selected"' ?>><?php echo $status->Name; ?></option>
+									<?php endforeach; ?>
 									</select>
 									<?php echo form_error('bpo101_status'); ?>
 								</td>
 								<td>
-									<input class="form-control" type="text" name="bizcom_grade" value="<?php echo set_value('bpo101_grade'); ?>">
+									<input class="form-control" type="text" name="bizcom_grade" value="<?php if (isset($bpo101->Grade)) echo $bpo101->Grade; ?>">
 									<?php echo form_error('bpo101_grade'); ?>	
 								</td>
 								<td>
-									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php echo set_value('bpo101_times_taken'); ?>">
+									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php if (isset($bpo101->Times_Taken)) echo $bpo101->Times_Taken; ?>">
 									<?php echo form_error('bpo101_times_taken'); ?>
 								</td>
 							</tr>
 							<tr>
 								<td>BPO102</td>
 								<td>
-									<select class="form-control" name="bizcom_year" value="<?php echo set_value('bpo102_year'); ?>">
-										<option>Option1</option>
-										<option>Option2</option>
-										<option>Option3</option>
-									</select>
+									<input class="form-control" type="text" name="bpo102_year" value="<?php if (isset($bpo102->School_Year)) echo $bpo102->School_Year; ?>">
 									<?php echo form_error('bpo102_year'); ?>
 								</td>
 								<td>
-									<input class="form-control" type="number" name="bizcom_semester" value="<?php echo set_value('bpo102_semester'); ?>">
+									<input class="form-control" type="number" name="bizcom_semester" value="<?php if (isset($bpo102->Semester)) echo $bpo102->Semester; ?>">
 									<?php echo form_error('bpo102_semester'); ?>
 								</td>
 								<td>
-									<select class="form-control" name="bizcom_status" value="<?php echo set_value('bpo102_status'); ?>">
-										<option>Option1</option>
-										<option>Option2</option>
-										<option>Option3</option>
+									<select class="form-control" name="bizcom_status">
+									<?php foreach ($statuses as $status): ?>
+										<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($bpo102->Status_ID)) if ($status->Status_ID == $bpo102->Status_ID) echo 'selected="selected"' ?>><?php echo $status->Name; ?></option>
+									<?php endforeach; ?>
 									</select>
 									<?php echo form_error('bpo102_status'); ?>
 								</td>
 								<td>
-									<input class="form-control" type="text" name="bizcom_grade" value="<?php echo set_value('bpo102_grade'); ?>">
+									<input class="form-control" type="text" name="bizcom_grade" value="<?php if (isset($bpo102->Grade)) echo $bpo102->Grade; ?>">
 									<?php echo form_error('bpo102_grade'); ?>	
 								</td>
 								<td>
-									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php echo set_value('bpo102_times_taken'); ?>">
+									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php if (isset($bpo102->Times_Taken)) echo $bpo102->Times_Taken; ?>">
 									<?php echo form_error('bpo102_times_taken'); ?>
 								</td>
 							</tr>
 							<tr>
 								<td>Service Culture</td>
 								<td>
-									<select class="form-control" name="bizcom_year" value="<?php echo set_value('sc_year'); ?>">
-										<option>Option1</option>
-										<option>Option2</option>
-										<option>Option3</option>
-									</select>
+									<input class="form-control" type="text" name="sc_year" value="<?php if (isset($sc101->School_Year)) echo $sc101->School_Year; ?>">
 									<?php echo form_error('sc_year'); ?>
 								</td>
 								<td>
-									<input class="form-control" type="number" name="bizcom_semester" value="<?php echo set_value('sc_semester'); ?>">
+									<input class="form-control" type="number" name="bizcom_semester" value="<?php if (isset($sc101->Semester)) echo $sc101->Semester; ?>">
 									<?php echo form_error('sc_semester'); ?>
 								</td>
 								<td>
-									<select class="form-control" name="bizcom_status" value="<?php echo set_value('sc_status'); ?>">
-										<option>Option1</option>
-										<option>Option2</option>
-										<option>Option3</option>
+									<select class="form-control" name="bizcom_status">
+									<?php foreach ($statuses as $status): ?>
+										<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($sc101->Status_ID)) if ($status->Status_ID == $sc101->Status_ID) echo 'selected="selected"' ?>><?php echo $status->Name; ?></option>
+									<?php endforeach; ?>
 									</select>
 									<?php echo form_error('sc_status'); ?>
 								</td>
 								<td>
-									<input class="form-control" type="text" name="bizcom_grade" value="<?php echo set_value('sc_grade'); ?>">
+									<input class="form-control" type="text" name="bizcom_grade" value="<?php if (isset($sc101->Grade)) echo $sc101->Grade; ?>">
 									<?php echo form_error('sc_grade'); ?>	
 								</td>
 								<td>
-									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php echo set_value('sc_times_taken'); ?>">
+									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php if (isset($sc101->Times_Taken)) echo $sc101->Times_Taken; ?>">
 									<?php echo form_error('sc_times_taken'); ?>
 								</td>
 							</tr>
 							<tr>
 								<td>Systems Thinking</td>
 								<td>
-									<select class="form-control" name="bizcom_year" value="<?php echo set_value('st_year'); ?>">
-										<option>Option1</option>
-										<option>Option2</option>
-										<option>Option3</option>
-									</select>
+									<input class="form-control" type="text" name="systh_year" value="<?php if (isset($systh101->School_Year)) echo $systh101->School_Year; ?>">
 									<?php echo form_error('st_year'); ?>
 								</td>
 								<td>
-									<input class="form-control" type="number" name="bizcom_semester" value="<?php echo set_value('st_semester'); ?>">
+									<input class="form-control" type="number" name="bizcom_semester" value="<?php if (isset($systh101->Semester)) echo $systh101->Semester; ?>">
 									<?php echo form_error('st_semester'); ?>
 								</td>
 								<td>
-									<select class="form-control" name="bizcom_status" value="<?php echo set_value('st_status'); ?>">
-										<option>Option1</option>
-										<option>Option2</option>
-										<option>Option3</option>
+									<select class="form-control" name="bizcom_status">
+									<?php foreach ($statuses as $status): ?>
+										<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($systh101->Status_ID)) if ($status->Status_ID == $systh101->Status_ID) echo 'selected="selected"' ?>><?php echo $status->Name; ?></option>
+									<?php endforeach; ?>
 									</select>
 									<?php echo form_error('st_status'); ?>
 								</td>
 								<td>
-									<input class="form-control" type="text" name="bizcom_grade" value="<?php echo set_value('st_grade'); ?>">
+									<input class="form-control" type="text" name="bizcom_grade" value="<?php if (isset($systh101->Grade)) echo $systh101->Grade; ?>">
 									<?php echo form_error('st_grade'); ?>	
 								</td>
 								<td>
-									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php echo set_value('st_times_taken'); ?>">
+									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php if (isset($systh101->Times_Taken)) echo $systh101->Times_Taken; ?>">
 									<?php echo form_error('st_times_taken'); ?>
 								</td>
 							</tr>
@@ -528,116 +497,92 @@
 					</form>
 					
 					<legend>Internship</legend>
+
 					<form class="form" role="form">
-					
 						<div class="form-group">		
 							<label>Status</label>			
-							<input class="form-control" type="text" name="intern_status" value="<?php echo set_value('intern_status'); ?>">
-				<?php echo form_error('intern_status'); ?>
+							<input class="form-control" type="text" name="intern_status" value="<?php echo $internship->Name; ?>">
+							<?php echo form_error('intern_status'); ?>
 						</div>		
 						<div class="form-group">		
 							<label>Grades</label>			
 							<input class="form-control" type="text" name="intern_grades" value="<?php echo set_value('intern_grades'); ?>">
-				<?php echo form_error('intern_grades'); ?>
+							<?php echo form_error('intern_grades'); ?>
 						</div>		
 						<div class="form-group">		
 							<label>Remarks</label>			
-							<input class="form-control" type="text" name="intern_remarks" value="<?php echo set_value('intern_remarks'); ?>">
-				<?php echo form_error('intern_remarks'); ?>
-						</div>	
-						
-						<div class="form-group">		
-							<label>School</label>			
-							<input class="form-control" type="text" name="intern_school" value="<?php echo set_value('intern_school'); ?>">
-				<?php echo form_error('intern_school'); ?>
-						</div>	
-						<div class="form-group">		
-							<label>Branch</label>			
-							<input class="form-control" type="text" name="intern_branch" value="<?php echo set_value('intern_branch'); ?>">
-				<?php echo form_error('intern_branch'); ?>
-						</div>								
+							<input class="form-control" type="text" name="intern_remarks" value="<?php echo $internship->Remarks; ?>">
+							<?php echo form_error('intern_remarks'); ?>
+						</div>							
 						<div class="form-group">		
 							<label>Year</label>			
 							<input class="form-control" type="text" name="intern_year" value="<?php echo set_value('intern_year'); ?>">
-				<?php echo form_error('intern_year'); ?>
+							<?php echo form_error('intern_year'); ?>
 						</div>		
 						<div class="form-group">		
 							<label>Semester</label>			
 							<input class="form-control" type="text" name="intern_year" value="<?php echo set_value('intern_year'); ?>">
-				<?php echo form_error('intern_year'); ?>
+							<?php echo form_error('intern_year'); ?>
 						</div>		
 						<div class="form-group">		
 							<label>Company Information</label>			
-							<input class="form-control" type="text" name="company_information" value="<?php echo set_value('company_information'); ?>">
-				<?php echo form_error('company_information'); ?>
+							<input class="form-control" type="text" name="company_information" value="<?php echo $internship->Company_Information; ?>">
+							<?php echo form_error('company_information'); ?>
 						</div>		
 						<div class="form-group">		
 							<label>Name of Company</label>			
 							<input class="form-control" type="text" name="company_name" value="<?php echo set_value('company_name'); ?>">
-				<?php echo form_error('company_name'); ?>
+							<?php echo form_error('company_name'); ?>
 						</div>		
 						<div class="form-group">		
 							<label>Company Address</label>			
-							<input class="form-control" type="text" name="company_address" value="<?php echo set_value('company_address'); ?>">
-				<?php echo form_error('company_address'); ?>
+							<input class="form-control" type="text" name="company_address" value="<?php echo $internship->Company_Address; ?>">
+							<?php echo form_error('company_address'); ?>
 						</div>		
 						<div class="form-group">		
 							<label>Department / Divison</label>			
-							<input class="form-control" type="text" name="department" value="<?php echo set_value('department'); ?>">
-				<?php echo form_error('department'); ?>
+							<input class="form-control" type="text" name="department" value="<?php echo $internship->Task; ?>">
+							<?php echo form_error('department'); ?>
 						</div>		
 						<div class="form-group">		
 							<label>Supervisor / Mentor</label>			
-							<input class="form-control" type="text" name="supervisor" value="<?php echo set_value('supervisor'); ?>">
-				<?php echo form_error('supervisor'); ?>
+							<input class="form-control" type="text" name="supervisor" value="<?php echo $internship->Supervisor_Name; ?>">
+							<?php echo form_error('supervisor'); ?>
 						</div>		
 						<div class="form-group">		
 							<label>Supervisor's Contact Details</label>			
-							<input class="form-control" type="text" name="supervisor_contact_details" value="<?php echo set_value('supervisor_contact_details'); ?>">
-				<?php echo form_error('supervisor_contact_details'); ?>
+							<input class="form-control" type="text" name="supervisor_contact_details" value="<?php echo $internship->Supervisor_Contact; ?>">
+							<?php echo form_error('supervisor_contact_details'); ?>
 						</div>		
 						<div class="form-group">		
 							<label>Supervisor's Email</label>			
 							<input class="form-control" type="text" name="supervisor_email" value="<?php echo set_value('supervisor_email'); ?>">
-				<?php echo form_error('supervisor_email'); ?>
+							<?php echo form_error('supervisor_email'); ?>
 						</div>		
 						<div class="form-group">		
 							<label>Date Started</label>			
-							<input class="form-control" type="date" name="start_date" value="<?php echo set_value('start_date'); ?>">
-				<?php echo form_error('start_date'); ?>
+							<input class="form-control" type="date" name="start_date" value="<?php echo date('Y-m-d', strtotime($internship->Start_Date)); ?>">
+							<?php echo form_error('start_date'); ?>
 						</div>		
 						<div class="form-group">		
 							<label>Date Ended</label>			
-							<input class="form-control" type="date" name="end_date" value="<?php echo set_value('end_date'); ?>">
-				<?php echo form_error('end_date'); ?>
+							<input class="form-control" type="date" name="end_date" value="<?php echo date('Y-m-d', strtotime($internship->End_Date)); ?>">
+							<?php echo form_error('end_date'); ?>
 						</div>		
 						<div class="form-group">		
 							<label>Total Internship Hours</label>			
-							<input class="form-control" type="number" name="total_internship_hours" value="<?php echo set_value('total_internship_hours'); ?>">
-				<?php echo form_error('total_internship_hours'); ?>
+							<input class="form-control" type="number" name="total_internship_hours" value="<?php echo $internship->Total_Work_Hours; ?>">
+							<?php echo form_error('total_internship_hours'); ?>
 						</div>		
 						<div class="form-group">		
 							<label>Evaluation Form</label><br />
 							<input type="radio" name="evaluation_form" value="<?php echo set_value('evaluation_form'); ?>"> Yes
 							<input type="radio" name="evaluation_form" value="<?php echo set_value('evaluation_form'); ?>"> No
-				<?php echo form_error('evaluation_form'); ?>
-						</div>		
-						<div class="form-group">		
-							<label>Status</label><br />
-							<select class="form-control" name="intern_stat" value="<?php echo set_value('intern_stat'); ?>">
-								<option value="pass">Pass</option>
-								<option value="fail">Fail</option>
-								<option value="incomplete">Incomplete</option>
-								<option value="dropped">Dropped</option>
-								<option value="taking">Currently Taking</option>
-							</select>
-							<?php echo form_error('intern_stat'); ?>							
+							<?php echo form_error('evaluation_form'); ?>
 						</div>		
 					</form>
 				</div>
-				
 			</div>
-	  </div>
-	  
+		</div>
 	</div>
 </div>
