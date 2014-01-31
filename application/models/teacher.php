@@ -157,7 +157,7 @@ Class Teacher extends CI_Model
 		return $this->db->delete('teacher');
 	}
 
-	function updateTeacherTracker($code,$subject,$tracker)
+	function updateTeacherTracker($code,$subject,$best_t3_tracker,$teacher,$t3_tracker)
 	{
 
 		/*$this->db->join('teacher_t3_tracker', 'teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID');
@@ -168,13 +168,14 @@ Class Teacher extends CI_Model
 		$this->db->where('Subject.Subject_Code',$subject);
 		$this->db->update('t3_tracker', $tracker); */
 //new
-		$this->db->set($tracker);
+		$this->db->set($t3_tracker);
 		$this->db->where('Teacher.Code', $code);
 		$this->db->where('Subject.Subject_Code', $subject);
 		$this->db->update('t3_tracker 
-			JOIN teacher_t3_tracker ON teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID 
+			JOIN best_t3_tracker ON t3_tracker.T3_Tracker_ID = best_t3_tracker.T3_Tracker_ID
+			JOIN teacher_t3_tracker ON teacher_t3_tracker.T3_Tracker_ID = T3_tracker.T3_Tracker_ID 
 			JOIN teacher ON teacher.teacher_ID = teacher_t3_tracker.Teacher_ID 
-			JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
+			JOIN subject ON t3_tracker.Subject_ID = subject.Subject_ID');
 		
 		return $this->db->affected_rows();
 	}

@@ -1547,7 +1547,7 @@ class Dbms_Controller extends CI_Controller
 			redirect(base_url('dbms'));
 		}
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-		$objPHPExcel = $objReader->load($_FILES['upload_best_tracker']['tmp_name']);
+		$objPHPExcel = $objReader->load($_FILES['file_best_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
@@ -1561,36 +1561,48 @@ class Dbms_Controller extends CI_Controller
 	 
 			$status_id = $this->status->getStatusIDByName($row['S'])->Status_ID; //Get Status_ID
 			
-			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['D'], 'MM/DD/YYYY'))); //Get Code
+			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['D'], 'MM/DD/YYYY'))); //Get Code
 
-			$tracker = array
+			$best_t3_tracker = array
 			(
-				'Contract?' => $row['G'],
-				'Interview_Form?' => $row['H'],
-				'Site_Visit_Form?' => $row['I'],
-				'BEST_E-Learning_Feedback' => $row['J'],
-				'BEST_CD' => $row['L'],
-				'Certificate_of_Attendance' => $row['M'],
-				'Best_Certified_Trainers' => $row['N'],
+				//best tracker
+				
+				'Interview_Form' =>  (bool) strcasecmp($row['H'], 'no'),
+				'Site_Visit_Form' =>  (bool) strcasecmp($row['I'], 'no'),
+				'BEST_T3_Feedback' =>  (bool) strcasecmp($row['K'], 'no'),
+				'BEST_ELearning_Feedback' =>  (bool) strcasecmp($row['J'], 'no'),
+				'Best_CD' =>  (bool) strcasecmp($row['L'], 'no'),
+				'Certificate_Of_Attendance' =>  (bool) strcasecmp($row['M'], 'no'),
+				'Best_Certified_Trainers' =>  (bool) strcasecmp($row['N'], 'no'),
 				'Task_1' => $row['O'],
 				'Task_2' => $row['P'],
 				'Task_3' => $row['Q'],
 				'Task_4' => $row['R'],
-				'Status_ID' => $status_id,
-				'Remarks' => $row['T'],
+				'Status_ID' => $status_id
+			);
+
+			$teacher = array
+			(
+				//hiwalay teacher
+				'Civil_Status' => $row['F']
+			);		
+
+			$t3_tracker = array
+			(
+				//break t3_tracker
+				't3_tracker.Contract' => (bool) strcasecmp($row['G'], 'no'),
+				't3_tracker.Remarks' => $row['T']
 			);
 
 			$subject = "BEST";
 			
 			if (!$this->teacher->getTeacherByCode($code))
 			{
-				$teacher['Code'] = $code;
-
-				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '. Teachers already exists');
+				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist.');
 				redirect('dbms');					
 			}
 
-			else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
+			else if (!$this->teacher->updateTeacherTracker($code,$subject,$best_t3_tracker,$teacher,$t3_tracker))
 			{
 				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter);
 				redirect('dbms');
@@ -1599,7 +1611,7 @@ class Dbms_Controller extends CI_Controller
 
 		if ($counter > 2)
 		{
-			$this->session->set_flashdata('upload_success', 'BEST Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
+			$this->session->set_flashdata('upload_success', 'BEST Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' Teachers added/updated.');
 			$this->log->addLog('BEST Tracker Batch Upload');
 		}
 		else
@@ -1616,7 +1628,7 @@ class Dbms_Controller extends CI_Controller
 			redirect(base_url('dbms'));
 		}
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-		$objPHPExcel = $objReader->load($_FILES['upload_adept_T3_attendance']['tmp_name']);
+		$objPHPExcel = $objReader->load($_FILES['file_best_T3_attendance']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
@@ -1674,7 +1686,7 @@ class Dbms_Controller extends CI_Controller
 			redirect(base_url('dbms'));
 		}
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-		$objPHPExcel = $objReader->load($_FILES['upload_adept_tracker']['tmp_name']);
+		$objPHPExcel = $objReader->load($_FILES['file_adept_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
