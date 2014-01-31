@@ -123,28 +123,24 @@ Class Report_Suc extends CI_Model
 
 	function getT3Best($school_code,$date_start,$date_end)
 	{
-		$this->db->query('CREATE TEMPORARY TABLE temp1 AS (
-		select best_t3_tracker.Control_Number as "Control Number", concat_ws(" ",Teacher.last_name,",", teacher.First_name, teacher.middle_initial) as "Teacher Name"
-		from best_t3_tracker
-		 join teacher_t3_tracker on teacher_t3_tracker.T3_Tracker_ID = best_t3_tracker.T3_Tracker_ID
-		 join teacher on teacher_t3_tracker.teacher_id = teacher.Teacher_ID 
-		 join t3_tracker on t3_tracker.T3_Tracker_ID = best_t3_tracker.T3_Tracker_ID, school
-		where school.School_ID = teacher.School_ID
-		and school.code = "'. $school_code .'"
-		and t3_tracker.Created_At between "' . $date_start . '" AND "' . $date_end . '");');
-
-		$this->db->query('CREATE TEMPORARY TABLE temp2 AS (
-		select "TOTAL", @TOTAL := @TOTAL + count(best_t3_tracker.Control_Number) 
-		from best_t3_tracker
-		 join teacher_t3_tracker on teacher_t3_tracker.T3_Tracker_ID = best_t3_tracker.T3_Tracker_ID
-		join teacher on teacher_t3_tracker.teacher_id = teacher.Teacher_ID
-		 join t3_tracker on t3_tracker.T3_Tracker_ID = best_t3_tracker.T3_Tracker_ID, school
-		where school.School_ID = teacher.School_ID
-		and school.code = "'. $school_code .'"
-		and t3_tracker.Created_At between "' . $date_start . '" AND "' . $date_end . '");');
-
-		$query = $this->db->query('select * from temp1 union select * from temp2;');
-		$this->db->query('DROP TEMPORARY TABLE IF EXISTS temp1, temp2;');
+		$query = $this->db->query('SELECT DISTINCT btt.Control_Number AS "Control_Number", concat_ws(" ",t.last_name,",", t.First_name, t.middle_initial) AS "Teachers"
+		FROM Best_T3_Tracker as btt, T3_Tracker as tt, Teacher_T3_Tracker as ttt, School as s, Teacher as t
+		WHERE btt.T3_Tracker_ID = tt.T3_Tracker_ID
+		AND btt.T3_Tracker_ID = ttt.T3_Tracker_ID
+		AND ttt.Teacher_ID = t.Teacher_ID
+		AND t.School_ID in (SELECT sc.School_ID FROM School as sc WHERE 
+		 sc.Code="'. $school_code .'")
+		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
+		UNION
+		SELECT "Total" as Control_Number, COUNT(DISTINCT t.teacher_id) as "Teachers"
+		FROM Best_T3_Tracker as btt, T3_Tracker as tt, Teacher_T3_Tracker as ttt, School as s, Teacher as t
+		WHERE btt.T3_Tracker_ID = tt.T3_Tracker_ID
+		AND btt.T3_Tracker_ID = ttt.T3_Tracker_ID
+		AND ttt.Teacher_ID = t.Teacher_ID
+		AND t.School_ID in (SELECT sc.School_ID FROM School as sc WHERE 
+		 sc.Code="'. $school_code .'")
+		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
+		');
 
 		if($query->num_rows() > 0)
 		{
@@ -158,28 +154,24 @@ Class Report_Suc extends CI_Model
 
 	function getT3Adept ($school_code,$date_start,$date_end)
 	{
-		$this->db->query('CREATE TEMPORARY TABLE temp1 AS (
-		select adept_t3_tracker.Control_Number as "Control Number", concat_ws(" ",Teacher.last_name,",", teacher.First_name, teacher.middle_initial) as "Teacher Name"
-		from adept_t3_tracker
-		 join teacher_t3_tracker on teacher_t3_tracker.T3_Tracker_ID = adept_t3_tracker.T3_Tracker_ID
-		 join teacher on teacher_t3_tracker.teacher_id = teacher.Teacher_ID
-		 join t3_tracker on t3_tracker.T3_Tracker_ID = adept_t3_tracker.T3_Tracker_ID, school
-		where school.School_ID = teacher.School_ID
-		and school.code = "'. $school_code .'"
-		and t3_tracker.Created_At between "' . $date_start . '" AND "' . $date_end . '");');
-
-		$this->db->query('CREATE TEMPORARY TABLE temp2 AS (
-		select "TOTAL", @TOTAL := @TOTAL + count(adept_t3_tracker.Control_Number)
-		from adept_t3_tracker
-		 join teacher_t3_tracker on teacher_t3_tracker.T3_Tracker_ID = adept_t3_tracker.T3_Tracker_ID
-		join teacher on teacher_t3_tracker.teacher_id = teacher.Teacher_ID
-		 join t3_tracker on t3_tracker.T3_Tracker_ID = adept_t3_tracker.T3_Tracker_ID, school
-		where school.School_ID = teacher.School_ID
-		and school.code = "'. $school_code .'"
-		and t3_tracker.Created_At between "' . $date_start . '" AND "' . $date_end . '");');
-
-		$query = $this->db->query('select * from temp1 union select * from temp2;');
-		$this->db->query('DROP TEMPORARY TABLE IF EXISTS temp1, temp2;');
+		$query = $this->db->query('SELECT DISTINCT att.Control_Number AS "Control_Number", concat_ws(" ",t.last_name,",", t.First_name, t.middle_initial) AS "Teachers"
+		FROM Adept_T3_Tracker as att, T3_Tracker as tt, Teacher_T3_Tracker as ttt, School as s, Teacher as t
+		WHERE att.T3_Tracker_ID = tt.T3_Tracker_ID
+		AND att.T3_Tracker_ID = ttt.T3_Tracker_ID
+		AND ttt.Teacher_ID = t.Teacher_ID
+		AND t.School_ID in (SELECT sc.School_ID FROM School as sc WHERE 
+		 sc.Code="'. $school_code .'")
+		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
+		UNION
+		SELECT "Total" as Control_Number, COUNT(DISTINCT t.teacher_id) as "Teachers"
+		FROM Adept_T3_Tracker as att, T3_Tracker as tt, Teacher_T3_Tracker as ttt, School as s, Teacher as t
+		WHERE att.T3_Tracker_ID = tt.T3_Tracker_ID
+		AND att.T3_Tracker_ID = ttt.T3_Tracker_ID
+		AND ttt.Teacher_ID = t.Teacher_ID
+		AND t.School_ID in (SELECT sc.School_ID FROM School as sc WHERE 
+		 sc.Code="'. $school_code .'")
+		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
+		');
 
 		if($query->num_rows() > 0)
 		{
@@ -191,42 +183,283 @@ Class Report_Suc extends CI_Model
 		}
 	}
 
-	function getGCATStudent($subject,$school_code,$semester,$teacher_code,$class_name)
+	function getT3GCAT($school_code,$date_start,$date_end)
 	{
-		$this->db->query('CREATE TEMPORARY TABLE temp1 AS (
-		select concat_ws(" ",student.Last_Name,",", student.First_Name,student.middle_initial) as "Student Name"
-		 from Student_Class, Student, Class,subject, school, other_class, teacher
+		$query = $this->db->query('SELECT concat_ws(" ",t.last_name,",", t.First_name, t.middle_initial) AS "Teachers"
+		FROM GCAT_Tracker as gt, T3_Tracker as tt, Teacher_T3_Tracker as ttt, School as s, Teacher as t
+		WHERE gt.T3_Tracker_ID = tt.T3_Tracker_ID
+		AND gt.T3_Tracker_ID = ttt.T3_Tracker_ID
+		AND ttt.Teacher_ID = t.Teacher_ID
+		AND t.School_ID in (SELECT sc.School_ID FROM School as sc WHERE 
+		 sc.Code="'. $school_code .'")
+		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
+		UNION
+		SELECT "Total" as Control_Number, COUNT(DISTINCT t.teacher_id) as "Teachers"
+		FROM GCAT_Tracker as gt, T3_Tracker as tt, Teacher_T3_Tracker as ttt, School as s, Teacher as t
+		WHERE gt.T3_Tracker_ID = tt.T3_Tracker_ID
+		AND gt.T3_Tracker_ID = ttt.T3_Tracker_ID
+		AND ttt.Teacher_ID = t.Teacher_ID
+		AND t.School_ID in (SELECT sc.School_ID FROM School as sc WHERE 
+		 sc.Code="'. $school_code .'")
+		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
+		');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getBestStudentClasses ($school_code,$semester, $teacher_code)
+	{
+		$query = $this->db->query('select class.Name as "Class_Name", COUNT(DISTINCT Student_Class.Student_ID)as "Number_of_Students"
+		from Student_Class, Student, Class,subject, school, other_class, teacher
 		where Student_Class.student_id = student.Student_ID 
 		and class.Class_ID = student_class.Class_ID
 		and other_class.Class_ID = class.Class_ID 
 		and other_class.Teacher_ID = teacher.Teacher_ID
 		and subject.subject_id = class.Subject_ID
 		and school.School_ID = class.School_ID 
-		and subject.Subject_Code = "' . $subject . '" 
-		and school.Code = "' . $school_code . '"
-		and class.Semester = ' . $semester . '
-		and teacher.Code = "' . $teacher_code . '"
-		and class.Name = "' . $class_name . '"
-		);');
-
-		$this->db->query('CREATE TEMPORARY TABLE temp2 AS (
-		select "total:" + count(DISTINCT Student_Class.Student_ID) 
-		 from Student_Class, Student, Class,subject, school, other_class, teacher
+		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
+		s.Subject_Code="BEST")
+		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
+		AND class.Semester =' . $semester . '
+		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
+		group by class.Name
+		UNION
+		select "Total: ", COUNT(DISTINCT Student_Class.Student_ID)as "Number_of_Students"
+		from Student_Class, Student, Class,subject, school, other_class, teacher
 		where Student_Class.student_id = student.Student_ID 
 		and class.Class_ID = student_class.Class_ID
 		and other_class.Class_ID = class.Class_ID 
 		and other_class.Teacher_ID = teacher.Teacher_ID
 		and subject.subject_id = class.Subject_ID
 		and school.School_ID = class.School_ID 
-		and subject.Subject_Code = "' . $subject . '" 
-		and school.Code = "' . $school_code . '"
-		and class.Semester = ' . $semester . '
-		and teacher.Code = "' . $teacher_code . '"
-		and class.Name = "' . $class_name . '"
-		);');
+		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
+		s.Subject_Code="BEST")
+		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
+		AND class.Semester =' . $semester . '
+		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '");');
 
-		$query = $this->db->query('select * from temp1 union select * from temp2;');
-		$this->db->query('DROP TEMPORARY TABLE IF EXISTS temp1, temp2;');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getBestStudents($school_code,$semester,$teacher_code,$class_name)
+	{
+		$query = $this->db->query(' SELECT best_student.control_number as "Control_Number", CONCAT_WS(  " ", student.Last_Name,  ",", student.First_Name, student.middle_initial ) AS "Student_Names"
+		FROM Student_Class, Student, Class, subject, school, other_class, teacher, student_tracker, best_student
+		WHERE Student_Class.student_id = student.Student_ID
+		AND class.Class_ID = student_class.Class_ID
+		AND other_class.Class_ID = class.Class_ID
+		AND other_class.Teacher_ID = teacher.Teacher_ID
+		AND subject.subject_id = class.Subject_ID
+		AND school.School_ID = class.School_ID
+		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
+		s.Subject_Code="BEST")
+		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "'.$school_code.'")
+		AND class.Semester = "'.$semester.'"
+		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "'.$teacher_code.'")
+		AND class.Name = "'.$class_name.'"
+		AND student_tracker.student_id=student.student_id
+		AND student_tracker.tracker_id=best_student.tracker_id
+		UNION
+		SELECT "Total", CONCAT_WS(" ", "Total:", COUNT(Student.Student_ID)) as "Student_Names"
+		FROM Student_Class, Student, Class, subject, school, other_class, teacher, student_tracker, best_student
+		WHERE Student_Class.student_id = student.Student_ID
+		AND class.Class_ID = student_class.Class_ID
+		AND other_class.Class_ID = class.Class_ID
+		AND other_class.Teacher_ID = teacher.Teacher_ID
+		AND subject.subject_id = class.Subject_ID
+		AND school.School_ID = class.School_ID
+		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
+		s.Subject_Code="BEST")
+		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "'.$school_code.'")
+		AND class.Semester = "'.$semester.'"
+		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "'.$teacher_code.'")
+		AND class.Name = "'.$class_name.'"
+		AND student_tracker.student_id=student.student_id
+		AND student_tracker.tracker_id=best_student.tracker_id;');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAdeptStudentClasses ($school_code,$semester, $teacher_code)
+	{
+		$query = $this->db->query('select class.Name as "Class_Name", COUNT(DISTINCT Student_Class.Student_ID)as "Number_of_Students"
+		from Student_Class, Student, Class,subject, school, other_class, teacher
+		where Student_Class.student_id = student.Student_ID 
+		and class.Class_ID = student_class.Class_ID
+		and other_class.Class_ID = class.Class_ID 
+		and other_class.Teacher_ID = teacher.Teacher_ID
+		and subject.subject_id = class.Subject_ID
+		and school.School_ID = class.School_ID 
+		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
+		s.Subject_Code="AdEPT")
+		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
+		AND class.Semester =' . $semester . '
+		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
+		group by class.Name
+		UNION
+		select "Total: ", COUNT(DISTINCT Student_Class.Student_ID)as "Number_of_Students"
+		from Student_Class, Student, Class,subject, school, other_class, teacher
+		where Student_Class.student_id = student.Student_ID 
+		and class.Class_ID = student_class.Class_ID
+		and other_class.Class_ID = class.Class_ID 
+		and other_class.Teacher_ID = teacher.Teacher_ID
+		and subject.subject_id = class.Subject_ID
+		and school.School_ID = class.School_ID 
+		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
+		s.Subject_Code="AdEPT")
+		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
+		AND class.Semester =' . $semester . '
+		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '");');
+
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAdeptStudents($school_code,$semester,$teacher_code,$class_name)
+	{
+		$query = $this->db->query(' SELECT adept_student.control_number as "Control_Number", CONCAT_WS(  " ", student.Last_Name,  ",", student.First_Name, student.middle_initial ) AS "Student_Names"
+		FROM Student_Class, Student, Class, subject, school, other_class, teacher, student_tracker, adept_student
+		WHERE Student_Class.student_id = student.Student_ID
+		AND class.Class_ID = student_class.Class_ID
+		AND other_class.Class_ID = class.Class_ID
+		AND other_class.Teacher_ID = teacher.Teacher_ID
+		AND subject.subject_id = class.Subject_ID
+		AND school.School_ID = class.School_ID
+		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
+		s.Subject_Code="adept")
+		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "'.$school_code.'")
+		AND class.Semester = "'.$semester.'"
+		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "'.$teacher_code.'")
+		AND class.Name = "'.$class_name.'"
+		AND student_tracker.student_id=student.student_id
+		AND student_tracker.tracker_id=adept_student.tracker_id
+		UNION
+		SELECT "Total", CONCAT_WS(" ", "Total:", COUNT(Student.Student_ID)) as "Student_Names"
+		FROM Student_Class, Student, Class, subject, school, other_class, teacher, student_tracker, adept_student
+		WHERE Student_Class.student_id = student.Student_ID
+		AND class.Class_ID = student_class.Class_ID
+		AND other_class.Class_ID = class.Class_ID
+		AND other_class.Teacher_ID = teacher.Teacher_ID
+		AND subject.subject_id = class.Subject_ID
+		AND school.School_ID = class.School_ID
+		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
+		s.Subject_Code="adept")
+		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "'.$school_code.'")
+		AND class.Semester = "'.$semester.'"
+		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "'.$teacher_code.'")
+		AND class.Name = "'.$class_name.'"
+		AND student_tracker.student_id=student.student_id
+		AND student_tracker.tracker_id=adept_student.tracker_id;');
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getGCATStudentClasses($school_code, $semester, $first_name, $last_name, $middle_initial)
+	{
+		$query = $this->db->query('select class.Name as "Class_Name", COUNT(DISTINCT Student_Class.Student_ID)as "Number_of_Students"
+		from Student_Class, Student, Class,subject, school, gcat_class, Proctor
+		where Student_Class.student_id = student.Student_ID 
+		and class.Class_ID = student_class.Class_ID
+		and gcat_class.class_id = class.Class_ID 
+		and GCAT_class.Proctor_ID = Proctor.Proctor_ID
+		and subject.subject_id = class.Subject_ID
+		and school.School_ID = class.School_ID 
+		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
+		s.Subject_Code="GCAT")
+		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "'.$school_code.'")
+		AND class.Semester = "'.$semester.'"
+		AND Proctor.Proctor_ID IN (SELECT p.Proctor_ID FROM Proctor AS P WHERE P.First_Name =  "'.$first_name.'" AND P.Last_Name =  "'.$last_name.'" AND P.Middle_Initial =  "'.$middle_initial.'")
+		group by class.Name
+		UNION
+		select "Total: ", COUNT(DISTINCT Student_Class.Student_ID)as "Number_of_Students"
+		from Student_Class, Student, Class,subject, school, gcat_class, Proctor
+		where Student_Class.student_id = student.Student_ID 
+		and class.Class_ID = student_class.Class_ID
+		and gcat_class.class_id = class.Class_ID 
+		and GCAT_class.Proctor_ID = Proctor.Proctor_ID
+		and subject.subject_id = class.Subject_ID
+		and school.School_ID = class.School_ID 
+		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
+		s.Subject_Code="GCAT")
+		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "'.$school_code.'")
+		AND class.Semester = "'.$semester.'"
+		AND Proctor.Proctor_ID IN (SELECT p.Proctor_ID FROM Proctor AS P WHERE P.First_Name =  "'.$first_name.'" AND P.Last_Name =  "'.$last_name.'" AND P.Middle_Initial =  "'.$middle_initial.'");');
+
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getGCATStudent($school_code,$semester,$first_name, $last_name, $middle_initial ,$class_name)
+	{
+		$query = $this->db->query('SELECT CONCAT_WS(  " ", student.Last_Name,  ",", student.First_Name, student.middle_initial ) AS "Student_Names"
+		FROM Student_Class, Student, Class, subject, school, gcat_class, Proctor
+		WHERE Student_Class.student_id = student.Student_ID
+		AND class.Class_ID = student_class.Class_ID
+		AND gcat_class.Class_ID = class.Class_ID
+		AND gcat_class.proctor_ID = proctor.proctor_ID
+		AND subject.subject_id = class.Subject_ID
+		AND school.School_ID = class.School_ID
+		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
+		AND class.Semester =' . $semester . '
+		AND Proctor.Proctor_ID IN (SELECT p.Proctor_ID FROM Proctor AS P WHERE P.First_Name =  "'.$first_name.'" AND P.Last_Name =  "'.$last_name.'" AND P.Middle_Initial =  "'.$middle_initial.'")
+		AND class.Name = "' . $class_name . '" 
+		UNION
+		SELECT CONCAT_WS(" ", "Total:", COUNT(Student.Student_ID)) as "Student_Names"
+		FROM Student_Class, Student, Class, subject, school, gcat_class, Proctor
+		WHERE Student_Class.student_id = student.Student_ID
+		AND class.Class_ID = student_class.Class_ID
+		AND gcat_class.Class_ID = class.Class_ID
+		AND gcat_class.proctor_ID = proctor.proctor_ID
+		AND subject.subject_id = class.Subject_ID
+		AND school.School_ID = class.School_ID
+		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
+		AND class.Semester =' . $semester . '
+		AND Proctor.Proctor_ID IN (SELECT p.Proctor_ID FROM Proctor AS P WHERE P.First_Name =  "'.$first_name.'" AND P.Last_Name =  "'.$last_name.'" AND P.Middle_Initial =  "'.$middle_initial.'")
+		AND class.Name = "' . $class_name . '";');
+
 
 		if($query->num_rows() > 0)
 		{
@@ -238,115 +471,41 @@ Class Report_Suc extends CI_Model
 		}
 	} 
 
-	function getBestStudent ($school_code,$date_start,$date_end)
-	{
-		$query = $this->db->query('select best_student.Contol_Number as "Pin Number", concat_ws(" ",Student.last_name,",", Student.First_name,  Student.middle_initial) as "Student Name"
-		from best_student
-		 join student_tracker on student_tracker.Tracker_ID = best_student.Tracker_ID
-		 join student on student_tracker.student_id = student.student_ID 
-		 join tracker on tracker.tracker_ID = best_student.tracker_ID, school
-		where school.School_ID = student.School_ID
-		and school.code = "'. $school_code .'"
-		and t3_tracker.Created_At between "' . $date_start . '" AND "' . $date_end . '"
-		union
-		select COUNT( DISTINCT best_student.Contol_Number) as "Total Pins", COUNT( DISTINCT concat_ws(" ",Student.last_name,",", Student.First_name,  Student.middle_initial)) as "BEST Student TOTAL"
-		from best_student
-		 join student_tracker on student_tracker.Tracker_ID = best_student.Tracker_ID
-		 join student on student_tracker.student_id = student.student_ID 
-		 join tracker on tracker.tracker_ID = best_student.tracker_ID, school
-		where school.School_ID = student.School_ID
-		and school.code = "'. $school_code .'"
-		and t3_tracker.Created_At between "' . $date_start . '" AND "' . $date_end . '"
-		;');
 
-		if($query->num_rows() > 0)
-		{
-			return $query->result();
-		}
-		else
-		{
-			return false;
-		}
-	}
+	
 
-	function getAdeptStudent($school_code,$date_start,$date_end)
-	{
-		$query = $this->db->query('select adept_student.Control_Number as "Pin Number", concat_ws(" ",student.last_name,",", student.First_name, student.middle_initial) as "student Name"
-		from adept_student
-		 join student_tracker on student_tracker.Tracker_ID = adept_student.Tracker_ID
-		 join student on student_tracker.student_id = student.student_ID
-		 join tracker on tracker.tracker_ID = adept_student.tracker_ID, school
-		where school.School_ID = student.School_ID
-		and school.code = "'. $school_code .'"
-		and t3_tracker.Created_At between "' . $date_start . '" AND "' . $date_end . '"
-		union
-		select COUNT(DISTINCT adept_student.Control_Number) as "Total", COUNT(DISTINCT concat_ws(" ",student.last_name,",", student.First_name, student.middle_initial)) as "Adept student Total"
-		from adept_student
-		 join student_tracker on student_tracker.Tracker_ID = adept_student.Tracker_ID
-		 join student on student_tracker.student_id = student.student_ID
-		 join tracker on tracker.tracker_ID = adept_student.tracker_ID, school
-		where school.School_ID = student.School_ID
-		and school.code = "'. $school_code .'"
-		and t3_tracker.Created_At between "' . $date_start . '" AND "' . $date_end . '"
-		;');
-
-		if($query->num_rows() > 0)
-		{
-			return $query->result();
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	function getT3Gcat($school_code,$date_start,$date_end)
-	{
-		$query = $this->db->query('SELECT concat_ws("",t.Last_Name,",",t.First_Name,t.Middle_Initial) as "Teacher Name"
-		FROM Teacher as t
-		, T3_Tracker as tt
-		, Teacher_T3_Tracker as ttt
-		, GCAT_Tracker as gt
-		WHERE t.School_ID IN (SELECT s.School_ID 
-		FROM School as s
-		WHERE s.code = "'. $school_code .'"
-		AND tt.T3_Tracker_ID=ttt.T3_Tracker_ID
-		AND t.Teacher_ID=ttt.Teacher_ID
-		AND tt.Created_At between "' . $date_start . '" AND "' . $date_end . '"
-		AND gt.T3_Tracker_ID=tt.T3_Tracker_ID');
-
-		if($query->num_rows() > 0)
-		{
-			return $query->result();
-		}
-		else
-		{
-			return false;
-		}
-	}
+	
 
 	function getSMPTotal($school_code,$subject,$semester)
 	{
-		$query = $this->db->query('SELECT CONCAT(t.First_Name, t.Last_Name) AS Teacher, COUNT(sc.Student_ID), COUNT(oc.Class_ID)
-		FROM School as s
-		, Subject as su
-		, Teacher as t
-		, Class as c
-		, Student_Class as sc
-		, Other_Class as oc
-		WHERE s.School_ID IN (SELECT s.School_ID 
-		FROM School as s
-		WHERE s.code = "'. $school_code .'"
-		AND su.Subject_ID IN (SELECT s.Subject_ID
-		FROM Subject as s
-		WHERE s.Subject_Code = "' . $subject . '" 
-		AND c.Class_ID=oc.Class_ID
-		AND c.Class_ID=sc.Class_ID
-		AND oc.Teacher_ID=t.Teacher_ID
-		AND su.Subject_ID=c.Subject_ID
-		AND c.School_ID=s.School_ID
-		AND c.Semester= "' . $semester . '" 
-		GROUP BY Teacher;');
+		$query = $this->db->query('SELECT CONCAT_WS(" ", t.First_Name, t.Middle_Initial, t.Last_Name ) AS Teacher, COUNT( DISTINCT sc.Student_ID ) as "Students", COUNT( DISTINCT oc.Class_ID ) as "Classes"
+		FROM School AS s, Subject AS su, Teacher AS t, Class AS c, Student_Class AS sc, Other_Class AS oc
+		WHERE s.School_ID
+		IN (SELECT school.School_ID
+		FROM School WHERE school.code = "'.$school_code.'") 
+		AND su.Subject_ID IN ( SELECT subject.Subject_ID
+		FROM Subject WHERE subject.Subject_Code =  "'.$subject.'")
+		AND c.School_ID = s.School_ID
+		AND su.Subject_ID = c.Subject_ID
+		AND c.Class_ID = oc.Class_ID
+		AND c.Class_ID = sc.Class_ID
+		AND oc.Teacher_ID = t.Teacher_ID
+		AND c.Semester = "'.$semester.'"
+		GROUP BY Teacher
+		UNION
+		SELECT CONCAT_WS(" ", "Total: ", COUNT(DISTINCT t.teacher_ID)) AS "Teacher", COUNT( DISTINCT sc.Student_ID ) as "Students", COUNT( DISTINCT oc.Class_ID ) as "Classes"
+		FROM School AS s, Subject AS su, Teacher AS t, Class AS c, Student_Class AS sc, Other_Class AS oc
+		WHERE s.School_ID
+		IN (SELECT school.School_ID
+		FROM School WHERE school.code = "'.$school_code.'") 
+		AND su.Subject_ID IN ( SELECT subject.Subject_ID
+		FROM Subject WHERE subject.Subject_Code =  "'.$subject.'")
+		AND c.School_ID = s.School_ID
+		AND su.Subject_ID = c.Subject_ID
+		AND c.Class_ID = oc.Class_ID
+		AND c.Class_ID = sc.Class_ID
+		AND oc.Teacher_ID = t.Teacher_ID
+		AND c.Semester = "'.$semester.'";');
 
 		if($query->num_rows() > 0)
 		{
@@ -357,6 +516,7 @@ Class Report_Suc extends CI_Model
 			return false;
 		}
 	}
+	
 
 
 }

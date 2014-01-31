@@ -7,20 +7,13 @@
 		<td>School name here</td>
 	</tr>
 	<tr>
-		<th>Sem/period</th>
-		<td>it goes here</td>
+		<th>Class Name</th>
+		<th>Number of Students</th>
 	</tr>
+	<?php foreach ($T3_best_list as $count): ?>
 	<tr>
-		<th>PIN</th>
-		<th>Teacher Name</th>
+		<td><?php echo $count->Control_Number; ?></td>
+		<td><?php echo $count->Teachers; ?></td>
 	</tr>
-	<tr>
-		<td>xxxx</td>
-		<td>name here</td>
-	</tr>
-	<tr>
-		<td>TOTAL</td>
-		<td colspan="4"><?php echo $count->Total; ?></td>
-	</tr>
+	<?php endforeach; ?>
 </table>
-</div>
