@@ -247,85 +247,68 @@
 			</ul>
 			
 			<div class="tab-content">
-				<div class="tab-pane active" id="gcat">			
+				<div class="tab-pane active" id="gcat">
 					<form class="form" role="form">
-						<div class="form-group">		
-							<label>School</label>			
-							<input class="form-control" type="text" name="gcat_school" value="<?php echo set_value('gcat_school'); ?>">
-				<?php echo form_error('gcat_school'); ?>
-						</div>			
-						<div class="form-group">		
-							<label>Branch</label>			
-							<input class="form-control" type="text" name="gcat_branch" value="<?php echo set_value('gcat_branch'); ?>">
-				<?php echo form_error('gcat_branch'); ?>
-						</div>			
-						<div class="form-group">		
-							<label>Subject</label>			
-							<input class="form-control" type="text" name="gcat_subject" value="<?php echo set_value('gcat_subject'); ?>">
-				<?php echo form_error('gcat_subject'); ?>
-						</div>			
-						<div class="form-group">		
-							<label>Proctor</label>			
-							<input class="form-control" type="text" name="gcat_proctor" value="<?php echo set_value('gcat_proctor'); ?>">
-				<?php echo form_error('gcat_proctor'); ?>
-						</div>		
-						<div class="form-group">		
-							<label>Semester</label>			
-							<input class="form-control" type="text" name="gcat_semester" value="<?php echo set_value('gcat_semester'); ?>">
-				<?php echo form_error('gcat_semester'); ?>
-						</div>			
-						<div class="form-group">		
-							<label>Year</label>			
-							<input class="form-control" type="text" name="gcat_year" value="<?php echo set_value('gcat_year'); ?>">
-				<?php echo form_error('gcat_year'); ?>
-						</div>			
-						<div class="form-group">		
-							<label>Session ID</label>			
-							<input class="form-control" type="text" name="gcat_session_id" value="<?php echo set_value('gcat_session_id'); ?>">
-				<?php echo form_error('gcat_session_id'); ?>
-						</div>			
-						<div class="form-group">		
-							<label>Test Date</label>			
-							<input class="form-control" type="text" name="gcat_test_date" value="<?php echo set_value('gcat_test_date'); ?>">
-				<?php echo form_error('gcat_test_date'); ?>
-						</div>			
-						<div class="form-group">		
-							<label>Status</label>			
-							<input class="form-control" type="text" name="gcat_status" value="<?php echo set_value('gcat_status'); ?>">
-				<?php echo form_error('gcat_status'); ?>
-						</div>			
+						<div class="form-group">
+							<label>Proctor</label>
+							<input class="form-control" type="text" name="gcat_proctor" value="<?php echo $this->proctor->getProctorFullNameById($gcat_tracker->Proctor_ID)->Full_Name; ?>">
+							<?php echo form_error('gcat_proctor'); ?>
+						</div>
+
+						<div class="form-group">
+							<label>Semester</label>
+							<input class="form-control" type="text" name="gcat_semester" value="<?php echo $gcat_tracker->Semester; ?>">
+							<?php echo form_error('gcat_semester'); ?>
+						</div>
+
+						<div class="form-group">
+							<label>Year</label>
+							<input class="form-control" type="text" name="gcat_year" value="<?php echo $gcat_tracker->School_Year; ?>">
+							<?php echo form_error('gcat_year'); ?>
+						</div>
+
+						<div class="form-group">
+							<label>Session ID</label>
+							<input class="form-control" type="text" name="gcat_session_id" value="<?php echo $gcat_tracker->Session_ID; ?>">
+							<?php echo form_error('gcat_session_id'); ?>
+						</div>
+
+						<div class="form-group">
+							<label>Test Date</label>
+							<input class="form-control" type="text" name="gcat_test_date" value="<?php echo $gcat_tracker->Test_Date; ?>">
+							<?php echo form_error('gcat_test_date'); ?>
+						</div>
+
+						<div class="form-group">
+							<label>Status</label>
+							<input class="form-control" type="text" name="gcat_status" value="<?php echo $gcat_tracker->Name; ?>">
+							<?php echo form_error('gcat_status'); ?>
+						</div>
 					</form>
 				</div>
+
 				<div class="tab-pane" id="best">
-				
-					<form class="form" role="form">	
-						<div class="form-group">		
-							<label>School</label>			
-							<input class="form-control" type="text" name="best_school" value="<?php echo set_value('best_school'); ?>">
-				<?php echo form_error('best_school'); ?>
-						</div>			
-						<div class="form-group">		
-							<label>Branch</label>			
-							<input class="form-control" type="text" name="best_branch" value="<?php echo set_value('best_branch'); ?>">
-				<?php echo form_error('best_branch'); ?>
-						</div>			
-						<div class="form-group">		
-							<label>Date</label>			
+					<form class="form" role="form">
+						<div class="form-group">
+							<label>Date</label>
 							<input class="form-control" type="date" name="best_date" value="<?php echo set_value('best_date'); ?>">
-				<?php echo form_error('best_date'); ?>
-						</div>			
-						<div class="form-group">		
-							<label>Control Number</label>			
+							<?php echo form_error('best_date'); ?>
+						</div>
+
+						<div class="form-group">
+							<label>Control Number</label>
 							<input class="form-control" type="text" name="best_control_number" value="<?php echo set_value('best_control_number'); ?>">
-				<?php echo form_error('best_control_number'); ?>
-						</div>		
-						<div class="form-group">		
-							<label>Username</label>			
+							<?php echo form_error('best_control_number'); ?>
+						</div>
+
+						<div class="form-group">
+							<label>Username</label>
 							<input class="form-control" type="text" name="best_username" value="<?php echo set_value('best_username'); ?>">
-				<?php echo form_error('best_username'); ?>
-						</div>			
+							<?php echo form_error('best_username'); ?>
+						</div>
 					</form>
 				</div>
+
 				<div class="tab-pane" id="adept">
 				
 					<form class="form" role="form">	

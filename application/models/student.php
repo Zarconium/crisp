@@ -101,6 +101,33 @@ Class Student extends CI_Model
 		}
 	}
 
+	function getGcatTrackerByStudentId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('student');
+		$this->db->join('student_tracker', 'student.Student_ID = student_tracker.Student_ID', 'left');
+		$this->db->join('tracker', 'student_tracker.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('gcat_student', 'tracker.Tracker_ID = gcat_student.Tracker_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+		$this->db->join('student_class', 'student.Student_ID = student_class.Student_ID', 'left');
+		$this->db->join('class', 'student_class.Class_ID = class.Class_ID', 'left');
+		$this->db->join('gcat_class', 'class.Class_ID = gcat_class.Class_ID', 'left');
+		$this->db->join('proctor', 'gcat_class.Proctor_ID = proctor.Proctor_ID', 'left');
+		$this->db->where('student.Student_ID', $id);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function addStudent($data)
 	{
 		$this->db->insert('student', $data);

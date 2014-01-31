@@ -66,6 +66,25 @@ Class Proctor extends CI_Model
 		}
 	}
 
+	function getProctorFullNameById($id)
+	{
+		$this->db->select('CONCAT_WS("", IF(LENGTH(proctor.Last_Name), proctor.Last_Name, NULL), ", ", IF(LENGTH(proctor.First_Name), proctor.First_Name, NULL), " ", IF(LENGTH(proctor.Middle_Initial), proctor.Middle_Initial, NULL), ". ", IF(LENGTH(proctor.Name_Suffix), proctor.Name_Suffix, NULL)) as Full_Name', false);
+		$this->db->from('proctor');
+		$this->db->where('Proctor_ID', $id);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function addProctor($data)
 	{
 		$this->db->insert('proctor', $data);

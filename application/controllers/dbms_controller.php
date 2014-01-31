@@ -55,6 +55,7 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['student'] = $this->student->getStudentById($id);
+		$data['gcat_tracker'] = $this->student->getGcatTrackerByStudentId($id);
 		$this->log->addLog('Updated Student Profile');
 
 		$this->load->view('header');
@@ -812,7 +813,7 @@ class Dbms_Controller extends CI_Controller
 					}*/
 
 					$data['form_success'] = TRUE;
-					$this->log->addLog('Added GCAT Tracker');
+					$this->log->addLog('Program GCAT Tracker Added');
 
 					$this->load->view('header');
 					$this->load->view('forms/form-program-gcat-tracker', $data);
@@ -1485,6 +1486,11 @@ class Dbms_Controller extends CI_Controller
 //teacher//
 	function upload_best_adept_product_tracker()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_best_adept_product_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
@@ -1496,12 +1502,9 @@ class Dbms_Controller extends CI_Controller
 			if ($counter++ < 2) continue;
 			if ($counter > $highestRow) break;
 
-			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
-			{
-				$school_id = $school->School_ID;
-			} 
+			$school_id = $this->school->getSchoolIdByCode($row['F'])->School_ID; //Get School_ID
 			
-			$code = $school_id . substr($row['C'],0,1). substr($row['D'],0,1). substr($row['B'],0,1) . $row['E']; //Get Code
+			$code = $school_id . substr($row['C'],0,1). substr($row['D'],0,1). substr($row['B'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['E'], 'MM/DD/YYYY'))); //Get Code
 
 			$tracker = array
 			(
@@ -1539,8 +1542,12 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_best_tracker()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-		$objPHPExcel = $objReader->load($_FILES['file_best_tracker']['tmp_name']);
+		$objPHPExcel = $objReader->load($_FILES['upload_best_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
@@ -1550,33 +1557,27 @@ class Dbms_Controller extends CI_Controller
 			if ($counter++ < 2) continue;
 			if ($counter > $highestRow) break;
 
-			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
-			{
-				$school_id = $school->School_ID;
-			} 
-
-			foreach ($this->status->getStatusIDByName($row['R']) as $status) //Get Status_ID
-			{
-				$status_id = $status->Status_ID;
-			} 
+			$school_id = $this->school->getSchoolIdByCode($row['E'])->School_ID; //Get School_ID
+	 
+			$status_id = $this->status->getStatusIDByName($row['S'])->Status_ID; //Get Status_ID
 			
-			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . $row['D']; //Get Code
+			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['D'], 'MM/DD/YYYY'))); //Get Code
 
 			$tracker = array
 			(
-				'Contract?' => $row['F'],
-				'Interview_Form?' => $row['G'],
-				'Site_Visit_Form?' => $row['H'],
-				'BEST_E-Learning_Feedback' => $row['I'],
-				'BEST_CD' => $row['J'],
-				'Certificate_of_Attendance' => $row['K'],
-				'Best_Certified_Trainers' => $row['L'],
-				'Task_1' => $row['M'],
-				'Task_2' => $row['O'],
-				'Task_3' => $row['P'],
-				'Task_4' => $row['Q'],
+				'Contract?' => $row['G'],
+				'Interview_Form?' => $row['H'],
+				'Site_Visit_Form?' => $row['I'],
+				'BEST_E-Learning_Feedback' => $row['J'],
+				'BEST_CD' => $row['L'],
+				'Certificate_of_Attendance' => $row['M'],
+				'Best_Certified_Trainers' => $row['N'],
+				'Task_1' => $row['O'],
+				'Task_2' => $row['P'],
+				'Task_3' => $row['Q'],
+				'Task_4' => $row['R'],
 				'Status_ID' => $status_id,
-				'Remarks' => $row['S'],
+				'Remarks' => $row['T'],
 			);
 
 			$subject = "BEST";
@@ -1610,8 +1611,12 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_best_T3_attendance()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-		$objPHPExcel = $objReader->load($_FILES['file_best_t3_attendance']['tmp_name']);
+		$objPHPExcel = $objReader->load($_FILES['upload_adept_T3_attendance']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
@@ -1621,21 +1626,17 @@ class Dbms_Controller extends CI_Controller
 			if ($counter++ < 2) continue;
 			if ($counter > $highestRow) break;
 
-			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
-			{
-				$school_id = $school->School_ID;
-			} 
+			$school_id = $this->school->getSchoolIdByCode($row['E'])->School_ID; //Get School_ID
 			
-			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . $row['D']; //Get Code
+			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['D'], 'MM/DD/YYYY'))); //Get Code
 
 			$tracker = array
 			(
-				'Orientation_Day' => $row['H'],
-				'Site_Visit' => $row['I'],
-				'GCAT' => $row['J'],
-				'Day_1' => $row['K'],
-				'Day_2' => $row['L'],
-				'Day_3' => $row['M']
+				'Orientation_Day' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['H'], 'MM/DD/YYYY'))),
+				'Site_Visit' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['I'], 'MM/DD/YYYY'))),
+				'Day_1' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['J'], 'MM/DD/YYYY'))),
+				'Day_2' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['K'], 'MM/DD/YYYY'))),
+				'Day_3' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['L'], 'MM/DD/YYYY')))
 			);
 
 			$subject = "BEST";
@@ -1668,8 +1669,12 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_adept_tracker()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-		$objPHPExcel = $objReader->load($_FILES['file_adept_tracker']['tmp_name']);
+		$objPHPExcel = $objReader->load($_FILES['upload_adept_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
@@ -1679,34 +1684,29 @@ class Dbms_Controller extends CI_Controller
 			if ($counter++ < 2) continue;
 			if ($counter > $highestRow) break;
 
-			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
-			{
-				$school_id = $school->School_ID;
-			}
 
-			foreach ($this->status->getStatusIDByName($row['R']) as $status) //Get Status_ID
-			{
-				$status_id = $status->Status_ID;
-			} 
+			$school_id = $this->school->getSchoolIdByCode($row['D'])->School_ID; //Get School_ID
+	 
+			$status_id = $this->status->getStatusIDByName($row['S'])->Status_ID; //Get Status_ID
 
-			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . $row['D']; //Get Code
+			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) .date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['E'], 'MM/DD/YYYY'))); //Get Code
 
 			$tracker = array
 			(
-				'Contract?' => $row['F'],
-				'Interview_Form?' => $row['G'],
-				'Site_Visit_Form?' => $row['H'],
-				'Adept_E-Learning_Feedback' => $row['I'],
-				'Adept_T3_Feedback?' => $row['J'],
-				'Manual_&_kit' => $row['K'],
-				'Certificate_of_Attendance' => $row['L'],
-				'Adept_Certified_Trainers' => $row['M'],
-				'Lesson_Plan' => $row['N'],
-				'Demo' => $row['O'],
-				'Total_Weighted' => $row['P'],
-				'Training_Portofolio' => $row['Q'],
+				'Contract?' => $row['G'],
+				'Interview_Form?' => $row['H'],
+				'Site_Visit_Form?' => $row['I'],
+				'Adept_E-Learning_Feedback' => $row['J'],
+				'Adept_T3_Feedback?' => $row['K'],
+				'Manual_&_kit' => $row['L'],
+				'Certificate_of_Attendance' => $row['M'],
+				'Adept_Certified_Trainers' => $row['N'],
+				'Lesson_Plan' => $row['O'],
+				'Demo' => $row['P'],
+				'Total_Weighted' => $row['Q'],
+				'Training_Portofolio' => $row['R'],
 				'Status_ID' => $status_id,
-				'Remarks' => $row['S']
+				'Remarks' => $row['T']
 			);
 
 			$subject = "AdEPT";
