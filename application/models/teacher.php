@@ -166,7 +166,11 @@ Class Teacher extends CI_Model
 		$this->db->where('Student.Student_Code', $code);
 		$this->db->where('Subject.Subject_Code',$subject);
 		$this->db->update('t3_tracker', $tracker);
-
+//new
+		$this->db->set($tracker);
+		$this->db->where('Student.Student_Code', $code);
+		$this->db->where('Subject.Subject_Code', $subject);
+		$this->db->update(
 		return $this->db->affected_rows();
 	}
 
