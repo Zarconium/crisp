@@ -1,14 +1,10 @@
-<h1>SUC SMP Students</h1>
+<h1>SUC Adept Students Classes</h1>
 <legend>Description: Number of Students Who Have Taken a Particular SMP Subject</legend>
 <div class="report-form">
 <table class="table">
 	<tr>
 		<th>Teacher</th>
 		<td>Teacher name</td>
-	</tr>
-	<tr>
-		<th>Subject</th>
-		<td>Subject here</td>
 	</tr>
 	<tr>
 		<th>Sem/period</th>
@@ -22,11 +18,7 @@
 		<th>Class Name</th>
 		<th>Number of Students</th>
 	</tr>
-	<tr>
-		<th>Class Name</th>
-		<th>Number of Students</th>
-	</tr>
-	<?php foreach ($class_list as $count): ?>
+	<?php foreach ($gcat_class_list as $count): ?>
 	<tr>
 		<td><?php echo $count->Class_Name; ?></td>
 		<td><?php echo $count->Number_of_Students; ?></td>

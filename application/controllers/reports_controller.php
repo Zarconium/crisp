@@ -99,7 +99,6 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('header-print');
 		$this->load->view('reports/program_report_student_per_sub', $data);
 		$this->load->view('footer-print');
-
 	}
 
 	function t3ProgramReportGCAT()
@@ -152,10 +151,14 @@ class Reports_Controller extends CI_Controller {
 
 		$data['class_list'] = $this->report_suc->getStudentClass($subject_code,$school_code,$semester,$teacher_code);
 	
+		$this->load->view('header-print');
 		$this->load->view('reports/suc_report_smp_classes', $data);
+		$this->load->view('footer-print');
+
 	}
 
-	function getAllSMPStudentSUCReport()
+	#done
+	function SMPStudentSUCReport()
 	{
 		$subject_code="SC101";
 		$school_code="BATSTATU-Lipa";
@@ -168,42 +171,143 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('header-print');
 		$this->load->view('reports/suc_report_smp_student', $data);
 		$this->load->view('footer-print');
-
 	}
 
-	function getAllGCATStudentSUCReport()
+	function T3BestSUCReport()
 	{
-		$data['gcat_student_list'] = $this->report_suc->getGCATStudent($subject,$school_code,$semester,$teacher_code,$class_name);
+		$start_date = "1990-01-01"; $end_date= "2020-01-01";
+		$school_code="BATSTATU-Lipa";
+
+		$data['T3_best_list'] = $this->report_suc->getT3Best($school_code,$start_date,$end_date);
 	
-		$this->load->view('reports/suc_report_gcat_students', $data);
+		$this->load->view('header-print');
+		$this->load->view('reports/suc_report_T3_Best', $data);
+		$this->load->view('footer-print');
 	}
 
-	function getAllBestStudentSUCReport()
+	function T3AdeptSUCReport()
 	{
-		$data['best_student_list'] = $this->report_suc->getBestStudent($school_code,$date_start,$date_end);
+		$start_date = "1990-01-01"; $end_date= "2020-01-01";
+		$school_code="BATSTATU-Lipa";
+
+		$data['T3_adept_list'] = $this->report_suc->getT3Adept ($school_code,$start_date,$end_date);
 	
+		$this->load->view('header-print');
+		$this->load->view('reports/suc_report_T3_Adept', $data);
+		$this->load->view('footer-print');
+	}
+
+	function BestStudentClassesSUCReport()
+	{
+		$school_code="BATSTATU-Malvar";
+		$semester=3;
+		$teacher_code="CODE123";
+
+		$data['best_class_list'] = $this->report_suc->getBestStudentClasses ($school_code,$semester, $teacher_code);
+	
+		$this->load->view('header-print');
+		$this->load->view('reports/suc_report_best_student_classes', $data);
+		$this->load->view('footer-print');
+	}
+
+	function AdeptStudentClassesSUCReport()
+	{
+		$school_code="BATSTATU-Malvar";
+		$semester=3;
+		$teacher_code="CODE123";
+
+		$data['adept_class_list'] = $this->report_suc->getAdeptStudentClasses ($school_code,$semester, $teacher_code);
+	
+		$this->load->view('header-print');
+		$this->load->view('reports/suc_report_adept_student_classes', $data);
+		$this->load->view('footer-print');
+	}
+
+	
+	function BestStudentsSUCReport()
+	{
+		$class_name="BPO101-D";
+		$school_code="BATSTATU-Lipa";
+		$semester=4;
+		$teacher_code="CODE432";
+
+		$data['best_student_list'] = $this->report_suc->getBestStudents($school_code,$semester,$teacher_code,$class_name);
+
+		$this->load->view('header-print');
 		$this->load->view('reports/suc_report_best_students', $data);
+		$this->load->view('footer-print');
 	}
+
+	function AdeptStudentsSUCReport()
+	{
+		$class_name="BPO101-D";
+		$school_code="BATSTATU-Lipa";
+		$semester=4;
+		$teacher_code="CODE432";
+
+		$data['adept_student_list'] = $this->report_suc->getAdeptStudents($school_code,$semester,$teacher_code,$class_name);
+
+		$this->load->view('header-print');
+		$this->load->view('reports/suc_report_adept_students', $data);
+		$this->load->view('footer-print');
+	}
+
+	function GCATStudentClassesSUCReport()
+	{
+		$school_code="BATSTATU-Lipa";
+		$semester=1;
+		$first_name="John";
+		$last_name="Cruz";
+		$middle_initial="A";
+
+		$data['gcat_class_list'] = $this->report_suc->getGCATStudentClasses($school_code, $semester, $first_name, $last_name, $middle_initial);
+	
+	
+		$this->load->view('header-print');
+		$this->load->view('reports/suc_report_gcat_student_classes', $data);
+		$this->load->view('footer-print');
+	}
+
+
+
+	function GCATStudentSUCReport()
+	{
+		$school_code="BATSTATU-Lipa";
+		$semester=1;
+		$first_name="John";
+		$last_name="Cruz";
+		$middle_initial="A";
+		$class_name="GCAT";
+
+		$data['gcat_student_list'] = $this->report_suc->getGCATStudent($school_code,$semester,$first_name, $last_name, $middle_initial ,$class_name);
+	
+		$this->load->view('header-print');
+		$this->load->view('reports/suc_report_gcat_students', $data);
+		$this->load->view('footer-print');
+
+	}
+
+	function SMPTotalSUCReport()
+	{
+		$school_code="BATSTATU-Malvar";
+		$semester=3;
+		$subject = "BEST";
+
+		$data['smp_total_list'] = $this->report_suc->getSMPTotal($school_code,$subject,$semester);
+	
+		$this->load->view('header-print');
+		$this->load->view('reports/suc_report_smp_total', $data);
+		$this->load->view('footer-print');
+
+	}
+
+	
 
 	function getAllAdeptStudentSUCReport()
 	{
 		$data['adept_student_list'] = $this->report_suc->getAdeptStudent($school_code,$date_start,$date_end);
 		
 		$this->load->view('reports/suc_report_adept_students', $data);
-	}
-
-	function getAllT3BestSUCReport()
-	{
-		$data['T3_best_list'] = $this->report_suc->getT3Best($school_code,$date_start,$date_end);
-	
-		$this->load->view('reports/suc_report_T3_Best', $data);
-	}
-
-	function getAllT3AdeptSUCReport()
-	{
-		$data['T3_adept_list'] = $this->report_suc->getT3Adept ($school_code,$date_start,$date_end);
-	
-		$this->load->view('reports/suc_report_T3_Adept', $data);
 	}
 
 	function getAllT3GCATSUCReport()
