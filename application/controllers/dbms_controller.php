@@ -987,7 +987,7 @@ class Dbms_Controller extends CI_Controller
 	
 	function form_mastertrainer_classlist()
 	{
-		$this->log->addLog('Added Mastertrainer Classlist');
+		$this->log->addLog('Updated Mastertrainer Classlist');
 
 		$this->load->view('header');
 		$this->load->view('forms/form-mastertrainer-classlist');
@@ -1531,6 +1531,7 @@ class Dbms_Controller extends CI_Controller
 		if ($counter > 2)
 		{
 			$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
+			$this->log->addLog('BEST AdEPT Product Tracker Batch Upload');
 		}
 		else
 		{
@@ -1599,6 +1600,7 @@ class Dbms_Controller extends CI_Controller
 		if ($counter > 2)
 		{
 			$this->session->set_flashdata('upload_success', 'BEST Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
+			$this->log->addLog('BEST Tracker Batch Upload');
 		}
 		else
 		{
@@ -1656,6 +1658,7 @@ class Dbms_Controller extends CI_Controller
 		if ($counter > 2)
 		{
 			$this->session->set_flashdata('upload_success', 'BEST Attendance Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
+			$this->log->addLog('BEST T3 Attendance Batch Upload');
 		}
 		else
 		{
@@ -1726,6 +1729,7 @@ class Dbms_Controller extends CI_Controller
 		if ($counter > 2)
 		{
 			$this->session->set_flashdata('upload_success', 'AdEPT Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
+			$this->log->addLog('AdEPT Tracker Batch Upload');
 		}
 		else
 		{
