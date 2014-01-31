@@ -169,46 +169,67 @@ Class Teacher extends CI_Model
 		$this->db->update('t3_tracker', $tracker); */
 //new
 		$this->db->set($tracker);
-		$this->db->where('Student.Student_Code', $code);
+		$this->db->where('Teacher.Code', $code);
 		$this->db->where('Subject.Subject_Code', $subject);
 		$this->db->update('t3_tracker 
 			JOIN teacher_t3_tracker ON teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID 
 			JOIN teacher ON teacher.teacher_ID = teacher_t3_tracker.Teacher_ID 
 			JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
+		
 		return $this->db->affected_rows();
 	}
 
 	function updateTeacherAdeptAttendance($code,$subject,$tracker)
 	{
-		$this->db->join('teacher_t3_tracker', 'teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID');
+		/*$this->db->join('teacher_t3_tracker', 'teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID');
 		$this->db->join('teacher', 'teacher.teacher_ID = teacher_t3_tracker.Teacher_ID', 'left');
 		$this->db->join('Adept_T3_Tracker', 'Adept_T3_Tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
 		$this->db->join('Adept_T3_Attendance', 'Adept_T3_Attendance.Adept_T3_Attendance_ID = Adept_T3_Tracker.Adept_T3_Attendance_ID','left');
 		$this->db->join('subject', 'tracker.Subject_ID = subject.Subject_ID', 'left');
 		$this->db->where('Student.Student_Code = "'.$code.'" ');
 		$this->db->where('Subject.Subject_Code = "'.$subject.'"');
-		$this->db->update('Adept_T3_Attendance', $tracker);
+		$this->db->update('Adept_T3_Attendance', $tracker); */
+//new
+		$this->db->set($tracker);
+		$this->db->where('Teacher.Code', $code);
+		$this->db->where('Subject.Subject_Code', $subject);
+		$this->db->update('adept_t3_attendance
+			JOIN teacher_t3_tracker ON teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID 
+			JOIN teacher ON teacher.teacher_ID = teacher_t3_tracker.Teacher_ID
+			JOIN Adept_T3_Tracker ON Adept_T3_Tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID
+			JOIN Adept_T3_Attendance ON Adept_T3_Attendance.Adept_T3_Attendance_ID = Adept_T3_Tracker.Adept_T3_Attendance_ID
+			JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
 
 		return $this->db->affected_rows();
 	}
 
 	function updateTeacherBestAttendance($code,$subject,$tracker)
 	{
-		$this->db->join('teacher_t3_tracker', 'teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID');
+		/*$this->db->join('teacher_t3_tracker', 'teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID');
 		$this->db->join('teacher', 'teacher.teacher_ID = teacher_t3_tracker.Teacher_ID', 'left');
 		$this->db->join('Best_T3_Tracker', 'Best_T3_Tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
 		$this->db->join('Best_T3_Attendance', 'Best_T3_Attendance.Best_T3_Attendance_ID = Best_T3_Tracker.Best_T3_Attendance_ID','left');
 		$this->db->join('subject', 'tracker.Subject_ID = subject.Subject_ID', 'left');
 		$this->db->where('Student.Student_Code = $code');
 		$this->db->where('Subject.Subject_Code = $subject');
-		$this->db->update('Best_T3_Attendance', $tracker);
+		$this->db->update('Best_T3_Attendance', $tracker);*/
+//new
+		$this->db->set($tracker);
+		$this->db->where('Teacher.Code', $code);
+		$this->db->where('Subject.Subject_Code', $subject);
+		$this->db->update('best_t3_attendance
+			JOIN teacher_t3_tracker ON teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID
+			JOIN teacher ON teacher.teacher_ID = teacher_t3_tracker.Teacher_ID
+			JOIN Best_T3_Tracker ON Best_T3_Tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID
+			JOIN Best_T3_Attendance ON Best_T3_Attendance.Best_T3_Attendance_ID = Best_T3_Tracker.Best_T3_Attendance_ID
+			JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
 
 		return $this->db->affected_rows();
 	}
 
 	function updateTeacherSMPAttendance($code,$subject,$tracker)
 	{
-		$this->db->join('teacher_t3_tracker', 'teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID');
+		/*$this->db->join('teacher_t3_tracker', 'teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID');
 		$this->db->join('teacher', 'teacher.teacher_ID = teacher_t3_tracker.Teacher_ID', 'left');
 		$this->db->join('SMP_T3_Tracker', 'SMP_T3_Tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
 		$this->db->join('SMP_T3_Attendance_Tracking', 'SMP_T3_Attendance_Tracking.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
@@ -216,18 +237,38 @@ Class Teacher extends CI_Model
 		$this->db->join('subject', 'tracker.Subject_ID = subject.Subject_ID', 'left');
 		$this->db->where('Student.Student_Code', $code);
 		$this->db->where('Subject.Subject_Code', $subject);
-		$this->db->update('SMP_T3_Attendance', $tracker);
+		$this->db->update('SMP_T3_Attendance', $tracker);*/
+
+//new
+		$this->db->set($tracker);
+		$this->db->where('Teacher.Code', $code);
+		$this->db->where('Subject.Subject_Code', $subject);
+		$this->db->update('smp_t3_attendance
+			JOIN teacher_t3_tracker ON teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID
+			JOIN teacher ON teacher.teacher_ID = teacher_t3_tracker.Teacher_ID
+			JOIN SMP_T3_Tracker ON SMP_T3_Tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID
+			JOIN SMP_T3_Attendance_Tracking ON SMP_T3_Attendance_Tracking.T3_Tracker_ID = t3_tracker.T3_Tracker_ID
+			JOIN SMP_T3_Attendance ON SMP_T3_Attendance.SMP_T3_Attendance_ID = SMP_T3_Attendance_Tracking.SMP_T3_Attendance_ID
+			JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
 
 		return $this->db->affected_rows();
 	}
 
 	function updateStipend($code, $subject, $stipend)
 	{
-		$this->db->join('Stipend_Tracking_List', 'Stipend_Tracking_List.Teacher_ID = Teacher.Teacher_ID');
+		/*$this->db->join('Stipend_Tracking_List', 'Stipend_Tracking_List.Teacher_ID = Teacher.Teacher_ID');
 		$this->db->join('Stipend_Tracking', 'Stipend_Tracking.Stipend_Tracking_ID = Stipend_Tracking_List.Stipend_Tracking_ID');
 		$this->db->where('Teacher.Code', $code);
 		$this->db->where('Subject.Subject_Code', $subject);
-		$this->db->update('Stipend_Tracking', $stipend);
+		$this->db->update('Stipend_Tracking', $stipend);*/
+
+//new
+		$this->db->set($stipend);
+		$this->db->where('Teacher.Code', $code);
+		$this->db->where('Subject.Subject_Code', $subject);
+		$this->db->update('Stipend_Tracking
+			JOIN Stipend_Tracking_List ON Stipend_Tracking_List.Teacher_ID = Teacher.Teacher_ID 
+			JOIN Stipend_Tracking ON Stipend_Tracking.Stipend_Tracking_ID = Stipend_Tracking_List.Stipend_Tracking_ID');
 
 		return $this->db->affected_rows();
 	}

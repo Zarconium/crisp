@@ -1518,7 +1518,7 @@ class Dbms_Controller extends CI_Controller
 			{
 				$teacher['Code'] = $code;
 
-				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . '. Teacher already exists');
 				redirect('dbms');					
 			}
 			else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
@@ -1530,7 +1530,7 @@ class Dbms_Controller extends CI_Controller
 
 		if ($counter > 2)
 		{
-			$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
+			$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' Teacher added/updated.');
 			$this->log->addLog('BEST AdEPT Product Tracker Batch Upload');
 		}
 		else
@@ -1586,7 +1586,7 @@ class Dbms_Controller extends CI_Controller
 			{
 				$teacher['Code'] = $code;
 
-				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '. Teachers already exists');
 				redirect('dbms');					
 			}
 
