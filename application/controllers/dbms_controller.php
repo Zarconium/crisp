@@ -55,6 +55,8 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['student'] = $this->student->getStudentById($id);
+		$data['gcat_tracker'] = $this->student->getGcatTrackerByStudentId($id);
+		$this->log->addLog('Updated Student Profile');
 
 		$this->load->view('header');
 		$this->load->view('forms/form-student-profile', $data);
@@ -798,6 +800,7 @@ class Dbms_Controller extends CI_Controller
 					}*/
 
 					$data['form_success'] = TRUE;
+					$this->log->addLog('Program GCAT Tracker Added');
 
 					$this->load->view('header');
 					$this->load->view('forms/form-program-gcat-tracker', $data);
