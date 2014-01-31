@@ -1586,7 +1586,7 @@ class Dbms_Controller extends CI_Controller
 				'best_t3_tracker.Task_2' => $row['P'],
 				'best_t3_tracker.Task_3' => $row['Q'],
 				'best_t3_tracker.Task_4' => $row['R'],
-				'best_t3_tracker.Status_ID' => $status_id
+				'Status_ID' => $status_id
 			);
 
 			$teacher = array
@@ -1658,6 +1658,15 @@ class Dbms_Controller extends CI_Controller
 				'Day_2' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['K'], 'MM/DD/YYYY'))),
 				'Day_3' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['L'], 'MM/DD/YYYY')))
 			);
+			
+			$teacher_professional_reference = array //make this show in the update method...
+			(
+				'teacher_professional_reference.Phone' => $row['F'],
+				'teacher_professional_reference.Email' => $row['G']
+			);
+			
+			
+
 
 			$subject = "BEST";
 			
@@ -1709,23 +1718,34 @@ class Dbms_Controller extends CI_Controller
 
 			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) .date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['E'], 'MM/DD/YYYY'))); //Get Code
 
-			$tracker = array
-			(
-				'Contract?' => $row['G'],
-				'Interview_Form?' => $row['H'],
-				'Site_Visit_Form?' => $row['I'],
-				'Adept_E-Learning_Feedback' => $row['J'],
-				'Adept_T3_Feedback?' => $row['K'],
-				'Manual_&_kit' => $row['L'],
-				'Certificate_of_Attendance' => $row['M'],
-				'Adept_Certified_Trainers' => $row['N'],
-				'Lesson_Plan' => $row['O'],
-				'Demo' => $row['P'],
-				'Total_Weighted' => $row['Q'],
-				'Training_Portofolio' => $row['R'],
-				'Status_ID' => $status_id,
-				'Remarks' => $row['T']
+			$teacher = array
+			(	
+				'teacher.Civil_Status' => $row['F'], //teacher tab
+				'teacher.Remarks' => $row['T']//t3_tracker
 			);
+
+			$t3_tracker = array
+			(
+				't3_tracker.Contract?' =>  (bool) strcasecmp($row['G'], 'no'), //t3_tracker *
+			);
+			
+			$adept_t3_tracker = array
+			(
+				'adept_t3_tracker.Interview_Form?' =>  (bool) strcasecmp($row['H'], 'no'),
+				'adept_t3_tracker.Site_Visit_Form?' =>  (bool) strcasecmp($row['I'], 'no'),
+				'adept_t3_tracker.Adept_E-Learning_Feedback' =>  (bool) strcasecmp($row['J'], 'no'),
+				'adept_t3_tracker.Adept_T3_Feedback?' =>  (bool) strcasecmp($row['K'], 'no'),
+				'adept_t3_tracker.Manual_&_kit' =>  (bool) strcasecmp($row['L'], 'no'),
+				'adept_t3_tracker.Certificate_of_Attendance' =>  (bool) strcasecmp($row['M'], 'no'),
+				'adept_t3_tracker.Adept_Certified_Trainers' =>  (bool) strcasecmp($row['N'], 'no'), //*
+				'adept_t3_tracker.Lesson_Plan' => $row['O'],
+				'adept_t3_tracker.Demo' => $row['P'],
+				'adept_t3_tracker.Total_Weighted' => $row['Q'],
+				'adept_t3_tracker.Training_Portofolio' => $row['R'],//adept_t3_tracker till here
+				'Status_ID' => $status_id,
+			);
+				
+
 
 			$subject = "AdEPT";
 			
