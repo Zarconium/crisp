@@ -334,7 +334,7 @@ Class Teacher extends CI_Model
 		return $this->db->affected_rows();
 	}
 
-	function updateTeacherAdeptAttendance($code,$subject,$tracker)
+	function updateTeacherAdeptAttendance($code,$subject,$adept_t3_attendance)
 	{
 		/*$this->db->join('teacher_t3_tracker', 'teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID');
 		$this->db->join('teacher', 'teacher.teacher_ID = teacher_t3_tracker.Teacher_ID', 'left');
@@ -345,15 +345,10 @@ Class Teacher extends CI_Model
 		$this->db->where('Subject.Subject_Code = "'.$subject.'"');
 		$this->db->update('Adept_T3_Attendance', $tracker); */
 //new
-		$this->db->set($tracker);
+		$this->db->set($adept_t3_attendance);
 		$this->db->where('Teacher.Code', $code);
 		$this->db->where('Subject.Subject_Code', $subject);
-		$this->db->update('adept_t3_attendance
-			JOIN teacher_t3_tracker ON teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID 
-			JOIN teacher ON teacher.teacher_ID = teacher_t3_tracker.Teacher_ID
-			JOIN Adept_T3_Tracker ON Adept_T3_Tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID
-			JOIN Adept_T3_Attendance ON Adept_T3_Attendance.Adept_T3_Attendance_ID = Adept_T3_Tracker.Adept_T3_Attendance_ID
-			JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
+		$this->db->update('adept_t3_attendance JOIN adept_t3_tracker ON adept_t3_attendance.Adept_T3_Attendance_ID = adept_t3_tracker.Adept_T3_Attendance_ID JOIN t3_tracker ON adept_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID JOIN teacher_t3_tracker ON t3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID JOIN teacher ON teacher.teacher_ID = teacher_t3_tracker.Teacher_ID JOIN subject ON t3_tracker.Subject_ID = subject.Subject_ID');
 
 		return $this->db->affected_rows();
 	}
