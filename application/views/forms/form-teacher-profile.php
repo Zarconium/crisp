@@ -23,7 +23,6 @@
 	
 		<div class="tab-content">
 			<div class="tab-pane active" id="basic">
-
 				<legend>Personal Information</legend>
 
 				<div class="form-inline">
@@ -407,7 +406,6 @@
 					<h3>List of Institutions</h3>	
 					<div class="customize-btn-group">
 						<button type="button" class="btn btn-danger">Delete</button>
-						<button type="button" class="btn btn-success">Refresh</button>
 					</div>
 					<table class="table">
 						<tr>
@@ -419,9 +417,8 @@
 							<th>Courses Taught</th>
 							<th>Number of Years</th>
 						</tr>
+						<?php if ($training_experiences) foreach ($training_experiences as $training_experience): ?>
 						<tr>
-						<?php if (isset($training_experiences)): ?>
-						<?php foreach ($training_experiences as $training_experience): ?>
 							<td><input type="checkbox"></td>
 							<td><?php echo $training_experience->Institution; ?></td>
 							<td><?php echo $training_experience->Position; ?></td>
@@ -429,9 +426,8 @@
 							<td><?php echo $training_experience->Level_Taught; ?></td>
 							<td><?php echo $training_experience->Courses_Taught; ?></td>
 							<td><?php echo $training_experience->Number_of_Years_in_Institution; ?></td>
-						<?php endforeach; ?>
-						<?php endif; ?>
 						</tr>
+						<?php endforeach; ?>
 					</table>
 				</div>
 
@@ -472,25 +468,22 @@
 					<h3>List of Certifications</h3>	
 					<div class="customize-btn-group">
 						<button type="button" class="btn btn-danger">Delete</button>
-						<button type="button" class="btn btn-success">Refresh</button>
 					</div>
 					<table class="table">
 						<tr>
 							<th></th>
-							<th>Action</th>
 							<th>Certification</th>
 							<th>Certifying Body</th>
-							<th>Date</th>
 							<th>Date Received</th>
 						</tr>
+						<?php if ($certifications) foreach ($certifications as $certification): ?>
 						<tr>
 							<td><input type="checkbox"></td>
-							<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-							<td>Example</td>
-							<td>2011</td>
-							<td>2011</td>
-							<td>2011</td>
+							<td><?php echo $certification->Certification; ?></td>
+							<td><?php echo $certification->Certifying_Body; ?></td>
+							<td><?php echo date('m/d/Y', strtotime($certification->Date_Received)); ?></td>
 						</tr>
+						<?php endforeach; ?>
 					</table>
 				</div>
 			
@@ -531,25 +524,22 @@
 					<h3>List of Awards</h3>	
 					<div class="customize-btn-group">
 						<button type="button" class="btn btn-danger">Delete</button>
-						<button type="button" class="btn btn-success">Refresh</button>
 					</div>
 					<table class="table">
 						<tr>
 							<th></th>
-							<th>Action</th>
 							<th>Award</th>
 							<th>Awarding Body</th>
-							<th>Date</th>
 							<th>Date Received</th>
 						</tr>
+						<?php if ($awards) foreach ($awards as $award): ?>
 						<tr>
 							<td><input type="checkbox"></td>
-							<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-							<td>Example</td>
-							<td>2011</td>
-							<td>2011</td>
-							<td>2011</td>
+							<td><?php echo $award->Award; ?></td>
+							<td><?php echo $award->Awarding_Body; ?></td>
+							<td><?php echo date('m/d/Y', strtotime($award->Date_Received)); ?></td>
 						</tr>
+						<?php endforeach; ?>
 					</table>
 				</div>
 			
@@ -595,25 +585,24 @@
 					<h3>List of Other Works / Related Experiences</h3>
 					<div class="customize-btn-group">
 						<button type="button" class="btn btn-danger">Delete</button>
-						<button type="button" class="btn btn-success">Refresh</button>
 					</div>	
 					<table class="table">
 						<tr>
 							<th></th>
-							<th>Action</th>
 							<th>Organization</th>
 							<th>Position</th>
 							<th>Description</th>
-							<th>Date</th>
+							<th>Date Started</th>
 						</tr>
+						<?php if ($relevant_experiences) foreach ($relevant_experiences as $relevant_experience): ?>
 						<tr>
 							<td><input type="checkbox"></td>
-							<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-							<td>Example</td>
-							<td>2011</td>
-							<td>2011</td>
-							<td>2011</td>
+							<td><?php echo $relevant_experience->Organization; ?></td>
+							<td><?php echo $relevant_experience->Position; ?></td>
+							<td><?php echo $relevant_experience->Description; ?></td>
+							<td><?php echo date('m/d/Y', strtotime($relevant_experience->Date)); ?></td>
 						</tr>
+						<?php endforeach; ?>
 					</table>
 				</div>
 				
@@ -686,30 +675,29 @@
 				</div>
 				
 				<div class="col-md-9">
-					<h3>List of Other Works / Related Experiences</h3>	
+					<h3>List of Professional References</h3>	
 					<div class="customize-btn-group">
 						<button type="button" class="btn btn-danger">Delete</button>
-						<button type="button" class="btn btn-success">Refresh</button>
 					</div>
 					<table class="table">
 						<tr>
 							<th></th>
-							<th>Action</th>
 							<th>Name</th>
 							<th>Position</th>
 							<th>Company</th>
 							<th>Phone</th>
 							<th>E-mail Address</th>
 						</tr>
+						<?php if ($professional_references) foreach ($professional_references as $professional_reference): ?>
 						<tr>
 							<td><input type="checkbox"></td>
-							<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-							<td>Example</td>
-							<td>2011</td>
-							<td>2011</td>
-							<td>2011</td>
-							<td>2011</td>
+							<td><?php echo $professional_reference->Name; ?></td>
+							<td><?php echo $professional_reference->Position; ?></td>
+							<td><?php echo $professional_reference->Company; ?></td>
+							<td><?php echo $professional_reference->Phone; ?></td>
+							<td><?php echo $professional_reference->Email; ?></td>
 						</tr>
+						<?php endforeach; ?>
 					</table>
 				</div>
 					
@@ -755,26 +743,24 @@
 					<h3>List of Affiliations and Memberships to Other Organizations</h3>	
 					<div class="customize-btn-group">
 						<button type="button" class="btn btn-danger">Delete</button>
-						<button type="button" class="btn btn-success">Refresh</button>
 					</div>
 					<table class="table">
 						<tr>
 							<th></th>
-							<th>Action</th>
 							<th>Organization</th>
 							<th>Organization Description</th>
 							<th>Position</th>
 							<th>Years of Affiliation</th>
 						</tr>
+						<?php if ($affiliation_to_organizations) foreach ($affiliation_to_organizations as $affiliation_to_organization): ?>
 						<tr>
 							<td><input type="checkbox"></td>
-							<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-							<td>Example</td>
-							<td>2011</td>
-							<td>2011</td>
-							<td>2011</td>
-							<td>2011</td>
+							<td><?php echo $affiliation_to_organization->Organization; ?></td>
+							<td><?php echo $affiliation_to_organization->Description; ?></td>
+							<td><?php echo $affiliation_to_organization->Positions; ?></td>
+							<td><?php echo $affiliation_to_organization->Years_Affiliated; ?></td>
 						</tr>
+						<?php endforeach; ?>
 					</table>
 				</div>
 			
@@ -783,448 +769,488 @@
 				<div class="form">
 					<div class="form-group">
 						<label>Resume</label><br/>
-						<input type="radio" name="resume" value="yes"> Yes
-						<input type="radio" name="resume" value="no"> No
+						<input type="radio" name="resume" value="yes" <?php if ($teacher->Resume == 1) { echo 'checked="checked"'; } ?>> Yes
+						<input type="radio" name="resume" value="no" <?php if ($teacher->Resume == 0) { echo 'checked="checked"'; } ?>> No
 						<?php echo form_error('resume'); ?>
 					</div>
 					
 					<div class="form-group">
 						<label>Photo</label><br/>
-						<input type="radio" name="photo" value="yes"> Yes
-						<input type="radio" name="photo" value="no"> No
+						<input type="radio" name="photo" value="yes" <?php if ($teacher->Photo == 1) { echo 'checked="checked"'; } ?>> Yes
+						<input type="radio" name="photo" value="no" <?php if ($teacher->Photo == 0) { echo 'checked="checked"'; } ?>> No
 						<?php echo form_error('photo'); ?>
 					</div>
 					
 					<div class="form-group">
 						<label>Proof of Certification</label><br/>
-						<input type="radio" name="proof" value="yes"> Yes
-						<input type="radio" name="proof" value="no"> No
+						<input type="radio" name="proof" value="yes" <?php if ($teacher->Proof_of_Certification == 1) { echo 'checked="checked"'; } ?>> Yes
+						<input type="radio" name="proof" value="no" <?php if ($teacher->Proof_of_Certification == 0) { echo 'checked="checked"'; } ?>> No
 						<?php echo form_error('proof'); ?>
 					</div>
 					
 					<div class="form-group">
 						<label>Diploma / TOR</label><br/>
-						<input type="radio" name="diploma" value="yes"> Yes
-						<input type="radio" name="diploma" value="no"> No
+						<input type="radio" name="diploma" value="yes" <?php if ($teacher->Diploma_TOR == 1) { echo 'checked="checked"'; } ?>> Yes
+						<input type="radio" name="diploma" value="no" <?php if ($teacher->Diploma_TOR == 0) { echo 'checked="checked"'; } ?>> No
 						<?php echo form_error('diploma'); ?>
 					</div>
 				</div>
 			</div>
 		
-			  <div class="tab-pane" id="attendance">
-			  	
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="#best" data-toggle="tab">BEST</a></li>
-						<li><a href="#adept" data-toggle="tab">ADEPT</a></li>
-						<li><a href="#smp" data-toggle="tab">SMP</a></li>
-					</ul>
+			<div class="tab-pane" id="attendance">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#best" data-toggle="tab">BEST</a></li>
+					<li><a href="#adept" data-toggle="tab">ADEPT</a></li>
+					<li><a href="#smp" data-toggle="tab">SMP</a></li>
+				</ul>
 			
-			<div class="tab-content">
-			  <div class="tab-pane active" id="best">
-				
-				<div class="row">
-	
-				<div class="col-md-6">
-				<form class="form">
+				<div class="tab-content">
+					<div class="tab-pane active" id="best">
+						<div class="row">
+							<div class="col-md-6">
+								<form class="form">
+									<div class="form-group">
+										<label>Orientation Date </label>
+										<input type="date" class="form-control">
+									</div>
+									
+									<div class="form-group">
+										<label>Site Visit</label>
+										<input type="date" class="form-control">
+									</div>
+									
+									<div class="form-group">
+										<label>GCAT</label>
+										<input type="date" class="form-control">
+									</div>
+								</form>
+							</div>
 					
-					<div class="form-group"><label>Orientation Date </label>
-					<input type="date" class="form-control"></div>
-					
-					<div class="form-group"><label>Site Visit</label>
-					<input type="date" class="form-control"></div>
-					
-					<div class="form-group"><label>GCAT</label>
-					<input type="date" class="form-control"></div>
-				
-				</form>
-				</div>
-				
-				<div class="col-md-6">
-				<form class="form">
-
-					
-					<div class="form-group"><label>Day 1</label>
-					<input type="date" class="form-control"></div>
-					
-					<div class="form-group"><label>Day 2</label>
-					<input type="date" class="form-control"></div>
-					
-					<div class="form-group"><label>Day 3</label><span class="help-block">If with the faculty</span>
-					<input type="date" class="form-control"></div>
-					
-				</form>	
-				</div>
-				</div>
-				
-
-				<div class="col-md-12">
-				<form class="form">
-					<div class="form-group"><label>Total Days Attended </label>
-					<input type="text" class="form-control"></div>
-				</form>
-				</div>
-				
-				
-			  </div>
-			  <div class="tab-pane" id="adept">
-				<div class="row">
-				<div class="col-md-6">
-				<form class="form">
-					
-					<div class="form-group"><label>Orientation Date </label>
-					<input type="date" class="form-control"></div>
-					
-					<div class="form-group"><label>Site Visit</label>
-					<input type="date" class="form-control"></div>
-					
-					<div class="form-group"><label>GCAT</label>
-					<input type="date" class="form-control"></div>
-					
-					<div class="form-group"><label>Day 1</label>
-					<input type="date" class="form-control"></div>
-					
-					<div class="form-group"><label>Day 2</label>
-					<input type="date" class="form-control"></div>
-					
-				</form>
-				</div>
-				
-				<div class="col-md-6">
-				<form class="form">
-					
-					<div class="form-group"><label>Day 3</label><span class="help-block">If with the faculty</span>
-					<input type="date" class="form-control"></div>
-					
-					<div class="form-group"><label>Day 4 </label>
-					<input type="date" class="form-control"></div>
-					
-					<div class="form-group"><label>Day 5 </label>
-					<input type="date" class="form-control"></div>
-					
-					<div class="form-group"><label>Day 6 </label>
-					<input type="date" class="form-control"></div>
-				
-				</form>
-				</div>
-				</div>
-
-			
-				<div class="col-md-12">
-				<form class="form">
-					<div class="form-group"><label>Total Days Attended </label>
-					<input type="text" class="form-control"></div>
-				</form>
-				</div>
-			
-			  </div>
-			  
-			  
-			  <div class="tab-pane" id="smp">
-			  	<legend>Checked By</legend>
-
-				<form class="form">
-					<div class="form-group"><label>Event</label>
-					<input type="text" class="form-control" placeholder="SMP Language Track BEST / ADEPT / GCAT">
-					</div>
-					<div class="form-group"><label>Name</label>
-					<input type="text" class="form-control" placeholder="Chec Kerr">
-					</div>
-					<div class="form-group"><label>Date</label>
-					<input type="text" class="form-control" placeholder="11/10/2013">
-					</div>
-				</form>
-				
-			  	<legend>Attendance	</legend>
-				<form class="form">
-				<span class="help-block">Please check all that applies.</span>
-					<div class="form-group">
-						<input type="checkbox" name="time_in" value="yes">
-						<label> Time In </label>
-					</div>
-					<div class="form-group">
-						<input type="checkbox" name="am_snack" value="yes">
-						<label> AM Snack </label>
-					</div>
-					<div class="form-group">
-						<input type="checkbox" name="lunch" value="yes">
-						<label> Lunch </label>
-					</div>
-					<div class="form-group">
-						<input type="checkbox" name="pm_snack" value="yes">
-						<label> PM Snack </label>
-					</div>
-					<div class="form-group">
-						<input type="checkbox" name="time_out" value="yes">
-						<label> Time Out </label>
-					</div>
-				</form>
-			  </div>
-			  
-			</div>
-			
-	  </div>
-	  
-	  
-		<div class="tab-pane" id="stipend">
-			
-			<div class="col-md-3">
-			<div class="panel panel-info">
-			<div class="panel-heading">Add or Edit Stipend</div>
-			<div class="panel-body">
-				<form class="form">
-					<div class="form-group"><label>From</label>
-					<input class="form-control"  type="text" placeholder="11/10/2013">
-					</div>
-					<div class="form-group"><label>Subject</label>
-					<input class="form-control"  type="text" placeholder="11/10/2013">
-					</div>
-					<legend>Stipend</legend>
-					<div class="form-group"><label>Amount</label>
-					<input class="form-control"  type="text" placeholder="100.00">
-					</div><br/>
-					<div class="form-group"><label>Claimed</label><br />
-						<input type="radio"> Yes
-						<input type="radio"> No
-					</div>
-					<div class="submit-button">
-						<button class="btn btn-primary">Add to List</button>
-					</div>
-				</form>
-			</div>	
-			</div>
-			</div>
-		
-			<div class="col-md-9">
-				<h3>List of Stipend</h3>
-				<div class="customize-btn-group">
-					<button type="button" class="btn btn-danger">Delete</button>
-					<button type="button" class="btn btn-success">Refresh</button>
-				</div>
-				<table class="table table-area">
-					<tr>
-						<th></th>
-						<th>Action</th>
-						<th>From</th>
-						<th>Subject</th>
-						<th>Amount</th>
-						<th>Claimed</th>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-						<td>Federico, Joy</td>
-						<td>BPO101</td>
-						<td>100</td>
-						<td>Yes</td>
-					</tr>
-				</table>
-			</div>
-		</div>	
-
-	  
-	
-	<div class="tab-pane" id="application">
-		<ul class="nav nav-tabs">
-		  <li class="active"><a href="#best_adept" data-toggle="tab">BEST and ADEPT</a></li>
-		  <li><a href="#smp_app" data-toggle="tab">SMP</a></li>
-		</ul>	
-
-
-		<div class="tab-content">
-		  <div class="tab-pane active" id="best_adept">
-			<form class="form">
-				<div class="form-group">
-					<label>Date of Application</label>
-					<input class="form-control" type="date" name="date_of_application_best">
-				</div>
-				<div class="form-group">
-					<label>Subject Taking</label><br/>
-					<input type="checkbox" name="subject" value="best"> BEST
-					<input type="checkbox" name="subject" value="adept"> ADEPT
-				</div>
-
-				<legend>Questions</legend>
-				<span class="help-block">Please share your thoughts on the following. Limit your answer to 100 to 500 words.</span>
-				<div class="form-group">
-					<label>What is your main motivation for participating in the certification program?</label>
-					<input class="form-control" type="text" name="main_motivation">
-				</div>
-				<div class="form-group">
-					<label>Are there any schedule / work / health / personal impediments to your participation in the certification process? If yes, please explain. Include dates and other relevant details.	</label>
-					<input class="form-control" type="text" name="problem_details">
-				</div>
-				<div class="form-group">
-					<label>Please share any relevant information not mentioned above that might help you be considered for certification.</label>
-					<input class="form-control" type="" name="">
-				</div>
-			</form>
-		  </div>
-		  
-		  <div class="tab-pane" id="smp_app">
-		  
-		  
-				<form class="form">
-
-				
-					<div class="form-group">
-						<label>Date of Application</label>
-						<input class="form-control" type="date" name="date_of-application">
-					</div>
-
-					<div class="form-group">
-						<label>BPO101</label><br/>
-						<input type="radio" name="bpo101" value="yes"> Yes
-						<input type="radio" name="bpo101" value="yes"> No
-					</div>
-
-					<div class="form-group">
-						<label>BPO102</label><br/>
-						<input type="radio" name="bpo102" value="yes"> Yes
-						<input type="radio" name="bpo102" value="yes"> No
-					</div>
-					
-
-					<div class="form-group">
-						<label>Business Communication</label><br/>
-						<input type="radio" name="business" value="yes"> Yes
-						<input type="radio" name="business" value="yes"> No
-					</div>
-
-					<div class="form-group">
-						<label>Service Culture</label><br/>
-						<input type="radio" name="service_culture" value="yes"> Yes
-						<input type="radio" name="service_culture" value="yes"> No
-					</div>
-
-					<div class="form-group">
-						<label>Systems Thinking</label><br/>
-						<input type="radio" name="systems_thinking" value="yes"> Yes
-						<input type="radio" name="systems_thinking" value="yes"> No
-					</div>
-					
-					<div class="form-group">
-						<label>How do you think the BPO contributes to nation building?</label>
-						<input class="form-control" type="text" name="nation_building">
-					</div>
-					<div class="form-group">
-						<label>What is the difference between a man and a woman?</label>
-						<input class="form-control" type="text" name="man_woman">
-					</div>
-					
-					<legend>Additional Information</legend>
-					<div class="form-group">
-						<label>Approximate Total Numbers of Subjects Handled</label>
-						<input class="form-control" type="number">
-					</div>
-					<div class="form-group">
-						<label>Number of Years Teaching</label>
-						<input class="form-control" type="number">
-					</div>
-					<div class="form-group">
-						<label>Number of Years Teaching in Current Institution</label>
-						<input class="form-control" type="number">
-					</div>
-					<div class="form-group">
-						<label>Average Number of Students per Class</label>
-						<input class="form-control" type="number">
-					</div>
-											
-					<div class="form-group">
-						<label>What are the support offices available to you?</label>
-						<input class="form-control" type="text">
-					</div>
-					<div class="form-group">
-						<label>Instructional materials support?</label>
-						<input class="form-control" type="text">
-					</div>
-					<div class="form-group">
-						<label>Technology support?</label>
-						<input class="form-control" type="text">
-					</div>
-					<div class="form-group">
-						<label>Can you readily use a laboratory when needed?</label>
-						<input class="form-control" type="text">
-					</div>
-					<div class="form-group">
-						<label>Internet services? (school)	</label>
-						<input class="form-control" type="text">
-					</div>
-					
-					<legend>Training</legend>
-					<div class="col-md-12">
-					<div class="row">
-						<div class="col-md-3">
-							<div class="panel panel-info">
-								<div class="panel-heading">
-									Add to List
-								</div>
-								<div class="panel-body">
-									<form class="form">
-										<div class="form-group">
-											<label>Training</label>
-											<input class="form-control" type="text">
-										</div>
-										<div class="form-group">
-											<label>Training Body</label>
-											<input class="form-control" type="text">
-										</div>
-										<div class="form-group">
-											<label>Training Date</label>
-											<input class="form-control" type="date">
-										</div>
-									</form>	
-								</div>
+							<div class="col-md-6">
+								<form class="form">
+									<div class="form-group">
+										<label>Day 1</label>
+										<input type="date" class="form-control">
+									</div>
+									
+									<div class="form-group">
+										<label>Day 2</label>
+										<input type="date" class="form-control">
+									</div>
+									
+									<div class="form-group">
+										<label>Day 3</label>
+										<span class="help-block">If with the faculty</span>
+										<input type="date" class="form-control">
+									</div>
+								</form>	
 							</div>
 						</div>
 					
-						<div class="col-md-9">
-							<h3>List of Training</h3>
-							<div class="customize-btn-group">
-								<button type="button" class="btn btn-danger">Delete</button>
-							</div>	
-							<table class="table">
-								<tr>
-									<th></th>
-									<th>Action</th>
-									<th>Training</th>
-									<th>Training Body</th>
-									<th>Training Date</th>
-								</tr>
-								<tr>
-									<td><input type="checkbox"></td>
-									<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-									<td>Example</td>
-									<td>2011</td>
-									<td>2011</td>
-								</tr>
-							</table>
+						<div class="col-md-12">
+							<form class="form">
+								<div class="form-group">
+									<label>Total Days Attended </label>
+									<input type="text" class="form-control">
+								</div>
+							</form>
 						</div>
 					</div>
-					</div>
+
+					<div class="tab-pane" id="adept">
+						<div class="row">
+							<div class="col-md-6">
+								<form class="form">
+									<div class="form-group">
+										<label>Orientation Date</label>
+										<input type="date" class="form-control">
+									</div>
+									
+									<div class="form-group">
+										<label>Site Visit</label>
+										<input type="date" class="form-control">
+									</div>
+									
+									<div class="form-group">
+										<label>GCAT</label>
+										<input type="date" class="form-control">
+									</div>
+									
+									<div class="form-group">
+										<label>Day 1</label>
+										<input type="date" class="form-control">
+									</div>
+									
+									<div class="form-group">
+										<label>Day 2</label>
+										<input type="date" class="form-control">
+									</div>
+								</form>
+							</div>
 					
-					<legend>Required</legend>
-					<div class="form-group">
-						<label>Contract</label><br/>
-						<input type="radio" name="contract" value="yes"> Yes
-						<input type="radio" name="contract" value="yes"> No
+							<div class="col-md-6">
+								<form class="form">
+									<div class="form-group">
+										<label>Day 3</label>
+										<span class="help-block">If with the faculty</span>
+										<input type="date" class="form-control">
+									</div>
+									
+									<div class="form-group">
+										<label>Day 4</label>
+										<input type="date" class="form-control">
+									</div>
+									
+									<div class="form-group">
+										<label>Day 5</label>
+										<input type="date" class="form-control">
+									</div>
+									
+									<div class="form-group">
+										<label>Day 6</label>
+										<input type="date" class="form-control">
+									</div>
+								</form>
+							</div>
+						</div>
+				
+						<div class="col-md-12">
+							<form class="form">
+								<div class="form-group">
+									<label>Total Days Attended</label>
+									<input type="text" class="form-control">
+								</div>
+							</form>
+						</div>
 					</div>
-					<div class="form-group">
-						<label>Self-Assesment Form<span class="help-block">Business Communcation</span></label><br/>
-						<input type="radio" name="assessment_bc" value="yes"> Yes
-						<input type="radio" name="assessment_bc" value="yes"> No
-					</div>
-					<div class="form-group">
-						<label>Self-Assesment Form<span class="help-block">Service Culture</span></label><br/>
-						<input type="radio" name="assessment_sc" value="yes"> Yes
-						<input type="radio" name="assessment_sc" value="yes"> No
-					</div>
+				  
+					<div class="tab-pane" id="smp">
+				  		<legend>Checked By</legend>
 
-					</form>
-		  </div>
+						<form class="form">
+							<div class="form-group">
+								<label>Event</label>
+								<input type="text" class="form-control" placeholder="SMP Language Track BEST / ADEPT / GCAT">
+							</div>
+
+							<div class="form-group">
+								<label>Name</label>
+								<input type="text" class="form-control" placeholder="Chec Kerr">
+							</div>
+
+							<div class="form-group">
+								<label>Date</label>
+								<input type="text" class="form-control" placeholder="11/10/2013">
+							</div>
+						</form>
+					
+				  		<legend>Attendance</legend>
+
+						<form class="form">
+							<span class="help-block">Please check all that applies.</span>
+
+							<div class="form-group">
+								<input type="checkbox" name="time_in" value="yes">
+								<label> Time In </label>
+							</div>
+
+							<div class="form-group">
+								<input type="checkbox" name="am_snack" value="yes">
+								<label> AM Snack </label>
+							</div>
+
+							<div class="form-group">
+								<input type="checkbox" name="lunch" value="yes">
+								<label> Lunch </label>
+							</div>
+
+							<div class="form-group">
+								<input type="checkbox" name="pm_snack" value="yes">
+								<label> PM Snack </label>
+							</div>
+
+							<div class="form-group">
+								<input type="checkbox" name="time_out" value="yes">
+								<label> Time Out </label>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	  
+			<div class="tab-pane" id="stipend">
+				<div class="col-md-3">
+					<div class="panel panel-info">
+						<div class="panel-heading">Add or Edit Stipend</div>
+						<div class="panel-body">
+							<form class="form">
+								<div class="form-group">
+									<label>From</label>
+									<input class="form-control"  type="text" placeholder="11/10/2013">
+								</div>
+
+								<div class="form-group">
+									<label>Subject</label>
+									<input class="form-control"  type="text" placeholder="11/10/2013">
+								</div>
+
+								<legend>Stipend</legend>
+
+								<div class="form-group">
+									<label>Amount</label>
+									<input class="form-control"  type="text" placeholder="100.00">
+								</div><br />
+
+								<div class="form-group">
+									<label>Claimed</label><br />
+									<input type="radio"> Yes
+									<input type="radio"> No
+								</div>
+
+								<div class="submit-button">
+									<button class="btn btn-primary">Add to List</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+		
+				<div class="col-md-9">
+					<h3>List of Stipend</h3>
+					<div class="customize-btn-group">
+						<button type="button" class="btn btn-danger">Delete</button>
+					</div>
+					<table class="table table-area">
+						<tr>
+							<th></th>
+							<th>Action</th>
+							<th>From</th>
+							<th>Subject</th>
+							<th>Amount</th>
+							<th>Claimed</th>
+						</tr>
+						<tr>
+							<td><input type="checkbox"></td>
+							<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
+							<td>Federico, Joy</td>
+							<td>BPO101</td>
+							<td>100</td>
+							<td>Yes</td>
+						</tr>
+					</table>
+				</div>
+			</div>	
+	
+			<div class="tab-pane" id="application">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#best_adept" data-toggle="tab">BEST and ADEPT</a></li>
+					<li><a href="#smp_app" data-toggle="tab">SMP</a></li>
+				</ul>	
+
+				<div class="tab-content">
+					<div class="tab-pane active" id="best_adept">
+						<form class="form">
+							<div class="form-group">
+								<label>Date of Application</label>
+								<input class="form-control" type="date" name="date_of_application_best">
+							</div>
+
+							<div class="form-group">
+								<label>Subject Taking</label><br/>
+								<input type="checkbox" name="subject" value="best"> BEST
+								<input type="checkbox" name="subject" value="adept"> ADEPT
+							</div>
+
+							<legend>Questions</legend>
+
+							<span class="help-block">Please share your thoughts on the following. Limit your answer to 100 to 500 words.</span>
+							<div class="form-group">
+								<label>What is your main motivation for participating in the certification program?</label>
+								<input class="form-control" type="text" name="main_motivation">
+							</div>
+
+							<div class="form-group">
+								<label>Are there any schedule / work / health / personal impediments to your participation in the certification process? If yes, please explain. Include dates and other relevant details.	</label>
+								<input class="form-control" type="text" name="problem_details">
+							</div>
+
+							<div class="form-group">
+								<label>Please share any relevant information not mentioned above that might help you be considered for certification.</label>
+								<input class="form-control" type="" name="">
+							</div>
+						</form>
+					</div>
+		  
+		  			<div class="tab-pane" id="smp_app">
+						<form class="form">
+							<div class="form-group">
+								<label>Date of Application</label>
+								<input class="form-control" type="date" name="date_of-application">
+							</div>
+
+							<div class="form-group">
+								<label>BPO101</label><br/>
+								<input type="radio" name="bpo101" value="yes"> Yes
+								<input type="radio" name="bpo101" value="yes"> No
+							</div>
+
+							<div class="form-group">
+								<label>BPO102</label><br/>
+								<input type="radio" name="bpo102" value="yes"> Yes
+								<input type="radio" name="bpo102" value="yes"> No
+							</div>
+							
+							<div class="form-group">
+								<label>Business Communication</label><br/>
+								<input type="radio" name="business" value="yes"> Yes
+								<input type="radio" name="business" value="yes"> No
+							</div>
+
+							<div class="form-group">
+								<label>Service Culture</label><br/>
+								<input type="radio" name="service_culture" value="yes"> Yes
+								<input type="radio" name="service_culture" value="yes"> No
+							</div>
+
+							<div class="form-group">
+								<label>Systems Thinking</label><br/>
+								<input type="radio" name="systems_thinking" value="yes"> Yes
+								<input type="radio" name="systems_thinking" value="yes"> No
+							</div>
+					
+							<div class="form-group">
+								<label>How do you think the BPO contributes to nation building?</label>
+								<input class="form-control" type="text" name="nation_building">
+							</div>
+
+							<div class="form-group">
+								<label>What is the difference between a man and a woman?</label>
+								<input class="form-control" type="text" name="man_woman">
+							</div>
+							
+							<legend>Additional Information</legend>
+
+							<div class="form-group">
+								<label>Approximate Total Numbers of Subjects Handled</label>
+								<input class="form-control" type="number">
+							</div>
+
+							<div class="form-group">
+								<label>Number of Years Teaching</label>
+								<input class="form-control" type="number">
+							</div>
+
+							<div class="form-group">
+								<label>Number of Years Teaching in Current Institution</label>
+								<input class="form-control" type="number">
+							</div>
+
+							<div class="form-group">
+								<label>Average Number of Students per Class</label>
+								<input class="form-control" type="number">
+							</div>
+													
+							<div class="form-group">
+								<label>What are the support offices available to you?</label>
+								<input class="form-control" type="text">
+							</div>
+
+							<div class="form-group">
+								<label>Instructional materials support?</label>
+								<input class="form-control" type="text">
+							</div>
+
+							<div class="form-group">
+								<label>Technology support?</label>
+								<input class="form-control" type="text">
+							</div>
+
+							<div class="form-group">
+								<label>Can you readily use a laboratory when needed?</label>
+								<input class="form-control" type="text">
+							</div>
+
+							<div class="form-group">
+								<label>Internet services? (school)	</label>
+								<input class="form-control" type="text">
+							</div>
+					
+							<legend>Training</legend>
+
+							<div class="col-md-12">
+								<div class="row">
+									<div class="col-md-3">
+										<div class="panel panel-info">
+											<div class="panel-heading">Add to List</div>
+											<div class="panel-body">
+												<form class="form">
+													<div class="form-group">
+														<label>Training</label>
+														<input class="form-control" type="text">
+													</div>
+
+													<div class="form-group">
+														<label>Training Body</label>
+														<input class="form-control" type="text">
+													</div>
+
+													<div class="form-group">
+														<label>Training Date</label>
+														<input class="form-control" type="date">
+													</div>
+												</form>	
+											</div>
+										</div>
+									</div>
+				
+									<div class="col-md-9">
+										<h3>List of Training</h3>
+										<div class="customize-btn-group">
+											<button type="button" class="btn btn-danger">Delete</button>
+										</div>
+										<table class="table">
+											<tr>
+												<th></th>
+												<th>Action</th>
+												<th>Training</th>
+												<th>Training Body</th>
+												<th>Training Date</th>
+											</tr>
+											<tr>
+												<td><input type="checkbox"></td>
+												<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
+												<td>Example</td>
+												<td>2011</td>
+												<td>2011</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+					
+							<legend>Required</legend>
+
+							<div class="form-group">
+								<label>Contract</label><br/>
+								<input type="radio" name="contract" value="yes"> Yes
+								<input type="radio" name="contract" value="yes"> No
+							</div>
+
+							<div class="form-group">
+								<label>Self-Assesment Form<span class="help-block">Business Communcation</span></label><br/>
+								<input type="radio" name="assessment_bc" value="yes"> Yes
+								<input type="radio" name="assessment_bc" value="yes"> No
+							</div>
+
+							<div class="form-group">
+								<label>Self-Assesment Form<span class="help-block">Service Culture</span></label><br/>
+								<input type="radio" name="assessment_sc" value="yes"> Yes
+								<input type="radio" name="assessment_sc" value="yes"> No
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
-
-	</div>
-</div>	
-
-
-	</div>
+	</form>	
+</div>

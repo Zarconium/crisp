@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2014 at 12:57 AM
+-- Generation Time: Feb 01, 2014 at 10:44 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -416,9 +416,9 @@ CREATE TABLE IF NOT EXISTS `gcat_student` (
 --
 
 INSERT INTO `gcat_student` (`Tracker_ID`, `GCAT_Total_Cognitive`, `GCAT_Responsiveness`, `GCAT_Reliability`, `GCAT_Empathy`, `GCAT_Courtesy`, `GCAT_Learning_Orientation`, `GCAT_Communication`, `GCAT_Behavioral_Component_Overall_Score`, `GCAT_Perceptual_Speed_&_Accuracy`, `GCAT_Computer_Literacy`, `GCAT_English_Proficiency`, `GCAT_Basic_Skills_Test_Overall_Score`, `Session_ID`, `Test_Date`) VALUES
-(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL),
-(5, 4, 2, 4, 3, 2, 5, 6, 5, 2, 4, 2, 5, 'aa1', NULL),
-(6, 6, 5, 4, 2, 9, 8, 4, 5, 6, 9, 3, 8, 'aa2', NULL);
+(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'NT05', '2014-01-30 00:00:00'),
+(5, 4, 2, 4, 3, 2, 5, 6, 5, 2, 4, 2, 5, 'aa1', '2014-01-17 00:00:00'),
+(6, 6, 5, 4, 2, 9, 8, 4, 5, 6, 9, 3, 8, 'aa2', '2014-01-13 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -462,10 +462,10 @@ INSERT INTO `gcat_tracker` (`T3_Tracker_ID`, `GCAT_Basic_Skills_Test_Overall_Sco
 --
 
 CREATE TABLE IF NOT EXISTS `internship_student` (
+  `Tracker_ID` int(11) NOT NULL,
   `Supervisor_Name` varchar(250) DEFAULT NULL,
   `Supervisor_Position` varchar(100) DEFAULT NULL,
-  `Supervior_Contact` varchar(45) DEFAULT NULL,
-  `Tracker_ID` int(11) NOT NULL,
+  `Supervisor_Contact` varchar(45) DEFAULT NULL,
   `Company_Information` text,
   `Company_Address` text,
   `Start_Date` datetime DEFAULT NULL,
@@ -485,6 +485,13 @@ CREATE TABLE IF NOT EXISTS `internship_student` (
   PRIMARY KEY (`Tracker_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `internship_student`
+--
+
+INSERT INTO `internship_student` (`Tracker_ID`, `Supervisor_Name`, `Supervisor_Position`, `Supervisor_Contact`, `Company_Information`, `Company_Address`, `Start_Date`, `End_Date`, `Total_Work_Hours`, `Task`, `English_Proficiency`, `Computer_Literacy`, `Learning_Orientation`, `Perceptual_Speed_and_Accuracy`, `Reliability`, `Empathy`, `Courtesy`, `Responsiveness`, `Comments`, `Meet_Standards`) VALUES
+(1, 'Philip', 'Peralta', 'phil@peralta.com', 'Phil''s Fish Market', 'Batanes', '2014-01-01 00:00:00', '2014-01-31 00:00:00', 300, 'Muro Ami Diver', 87, 67, 98, 75, 48, 96, 75, 75, 'N/A', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -499,7 +506,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   PRIMARY KEY (`Log_ID`),
   UNIQUE KEY `Log_ID_UNIQUE` (`Log_ID`),
   KEY `fk_Log_Users1_idx` (`User_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `log`
@@ -511,7 +518,36 @@ INSERT INTO `log` (`Log_ID`, `User_ID`, `Changes`, `Created_At`) VALUES
 (3, 3, 'Added Student', '2014-01-30 16:51:27'),
 (4, 3, 'Deleted Student', '2014-01-30 16:56:26'),
 (5, 3, 'Student Profile batch upload', '2014-01-30 16:56:38'),
-(6, 3, 'Deleted Student', '2014-01-30 16:56:46');
+(6, 3, 'Deleted Student', '2014-01-30 16:56:46'),
+(7, 3, 'Updated Student Profile', '2014-01-31 04:59:33'),
+(8, 3, 'Updated Student Profile', '2014-01-31 04:59:58'),
+(9, 3, 'Updated Student Profile', '2014-01-31 05:00:10'),
+(10, 3, 'Updated Student Profile', '2014-01-31 05:00:30'),
+(11, 3, 'Updated Student Profile', '2014-01-31 05:12:19'),
+(12, 3, 'Updated Student Profile', '2014-01-31 05:12:42'),
+(13, 3, 'Updated Student Profile', '2014-01-31 05:13:38'),
+(14, 3, 'Updated Student Profile', '2014-01-31 05:19:08'),
+(15, 3, 'Updated Student Profile', '2014-01-31 05:31:06'),
+(16, 3, 'Updated Student Profile', '2014-01-31 05:35:57'),
+(17, 3, 'Updated Student Profile', '2014-01-31 05:36:21'),
+(18, 3, 'Updated Student Profile', '2014-01-31 05:36:35'),
+(19, 3, 'Updated Student Profile', '2014-01-31 06:25:46'),
+(20, 3, 'Updated Student Profile', '2014-01-31 06:28:31'),
+(21, 3, 'Updated Student Profile', '2014-01-31 06:29:06'),
+(22, 3, 'Updated Student Profile', '2014-01-31 06:31:39'),
+(23, 3, 'Updated Student Profile', '2014-01-31 06:33:19'),
+(24, 3, 'Updated Student Profile', '2014-01-31 06:33:39'),
+(25, 3, 'Updated Student Profile', '2014-01-31 08:00:10'),
+(26, 3, 'Added Class List', '2014-02-01 08:02:42'),
+(27, 3, 'Updated Mastertrainer Classlist', '2014-02-01 08:04:40'),
+(28, 3, 'Updated SMP Tracker', '2014-02-01 08:04:51'),
+(29, 3, 'Updated SMP Tracker', '2014-02-01 08:05:51'),
+(30, 3, 'Updated SMP Internship Tracker', '2014-02-01 08:06:15'),
+(31, 3, 'Updated Proctor Profile', '2014-02-01 09:06:35'),
+(32, 3, 'Deleted Student', '2014-02-01 14:34:40'),
+(33, 3, 'Deleted Student', '2014-02-01 14:34:58'),
+(34, 3, 'Deleted Student', '2014-02-01 14:42:39'),
+(35, 3, 'Deleted Student', '2014-02-01 14:42:50');
 
 -- --------------------------------------------------------
 
@@ -1168,7 +1204,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   UNIQUE KEY `Student_ID_UNIQUE` (`Student_ID`),
   UNIQUE KEY `Code` (`Code`),
   KEY `fk_Student_School1_idx` (`School_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Dumping data for table `student`
@@ -1194,11 +1230,7 @@ INSERT INTO `student` (`Student_ID`, `School_ID`, `Last_Name`, `First_Name`, `Mi
 (17, 17, 'Olpoc', 'Joselito', 'M', NULL, '258147', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '13', 'Hongdae', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1318695', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 1, 0, 0, 1, 1, '21311'),
 (18, 18, 'Federico', 'Jerome', 'N', NULL, '155788', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '14', 'Gyeongju', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1312354', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 1, 0, 1, 1, 1, '12348'),
 (19, 1, 'Federico', 'Jimmy', 'O', NULL, '789632', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '15', 'Gwangju', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1465465', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 1, 0, 1, 1, 1, '12346'),
-(20, 2, 'Lee', 'Sungmin', 'P', NULL, '102549', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '16', 'Ilsan', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1346544', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 1, 0, 1, 1, 1, '12487'),
-(22, 1, 'Federico', 'Joy', 'H', '', '100001', 'married', '1993-11-08 00:00:00', 'Caloocan', 'F', 'Filipino', '54', 'C. Cordero', 'Caloocan', 'Manila', 'NCR', '', '09171234567', '1234567', 'joy@4real.com', '', 'BS MIS', 4, 2014, 0, 0, 0, 0, 0, '1100001'),
-(23, 1, 'peralta', 'john philip', 'A', '', '102943', 'single', '1993-12-26 00:00:00', 'Quezon City', 'M', 'Filipino', '5', 'Santol', 'Quezon City', 'Batanes', '2', '', '09158437694', '429482456', 'jpap@gmail.com', 'facebook.com/phil', 'BS Muro ami', 4, 2018, 1, 1, 0, 0, 0, '1102943'),
-(24, 1, 'peralta', 'john philip', 'A', '', '102944', 'single', '1993-12-26 00:00:00', 'Quezon City', 'M', 'Filipino', '5', 'Santol', 'Quezon City', 'Batanes', '2', '', '09158437694', '429482456', 'jpap@gmail.com', 'facebook.com/phil', 'AB Muro ami', 4, 2018, 1, 1, 0, 0, 0, '1102944'),
-(32, 1, 'Cruz', 'Raymond', 'C', 'Jr', '101047', 'single', '0000-00-00 00:00:00', 'Mandaluyong', 'M', 'Russian', '3515', 'Camden', 'Cainta', 'Rizal', 'IV', NULL, '9178316188', '6553797', 'rjncruz@gmail.com', NULL, 'BS Management', 4, 2020, 0, 0, 0, 0, 0, '1101047');
+(20, 2, 'Lee', 'Sungmin', 'P', NULL, '102549', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '16', 'Ilsan', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1346544', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 1, 0, 1, 1, 1, '12487');
 
 -- --------------------------------------------------------
 
@@ -1218,24 +1250,6 @@ CREATE TABLE IF NOT EXISTS `student_application` (
   KEY `fk_Student_Application_Project1_idx` (`Project_ID`),
   KEY `fk_Student_Application_Subject_ID1_idx` (`Subject_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
-
---
--- Dumping data for table `student_application`
---
-
-INSERT INTO `student_application` (`Student_Application_ID`, `Date`, `Contract`, `Student_ID`, `Project_ID`, `Subject_ID`) VALUES
-(1, '2014-01-11 17:37:50', 1, 23, 1, 1),
-(2, '2014-01-11 17:37:50', 1, 23, 1, 2),
-(3, '2014-01-11 17:37:50', 1, 23, 1, 3),
-(4, '2014-01-11 17:37:51', 1, 23, 1, 4),
-(5, '2014-01-11 17:37:51', 1, 23, 1, 4),
-(6, '2014-01-11 17:37:51', 1, 23, 1, 4),
-(7, '2014-01-11 17:44:50', 1, 24, 1, 1),
-(8, '2014-01-11 17:44:51', 1, 24, 1, 2),
-(9, '2014-01-11 17:44:51', 1, 24, 1, 3),
-(10, '2014-01-11 17:44:51', 1, 24, 1, 4),
-(11, '2014-01-11 17:44:51', 1, 24, 1, 4),
-(12, '2014-01-11 17:44:51', 1, 24, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -1583,7 +1597,7 @@ CREATE TABLE IF NOT EXISTS `teacher` (
   `Resume` tinyint(1) NOT NULL,
   `Photo` tinyint(1) NOT NULL DEFAULT '0',
   `Proof_of_Certification` tinyint(1) NOT NULL DEFAULT '0',
-  `Diploma/TOR` tinyint(1) NOT NULL DEFAULT '0',
+  `Diploma_TOR` tinyint(1) NOT NULL DEFAULT '0',
   `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Updated_At` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Teacher_ID`),
@@ -1595,28 +1609,28 @@ CREATE TABLE IF NOT EXISTS `teacher` (
 -- Dumping data for table `teacher`
 --
 
-INSERT INTO `teacher` (`Teacher_ID`, `Code`, `Name_Suffix`, `Last_Name`, `First_Name`, `Middle_Initial`, `Birthdate`, `Birthplace`, `Nationality`, `Total_Year_of_Teaching`, `Civil_Status`, `Gender`, `Desktop`, `Laptop`, `Internet`, `Street_Number`, `Street_Name`, `City`, `Province`, `Region`, `Alternate_Address`, `Mobile_Number`, `Landline`, `Email`, `Facebook`, `Employment_Status`, `Current_Position`, `Current_Department`, `School_ID`, `Name_of_Supervisor`, `Supervisor_Contact_Details`, `Position_of_Supervisor`, `Classes_Handling`, `Resume`, `Photo`, `Proof_of_Certification`, `Diploma/TOR`, `Created_At`, `Updated_At`) VALUES
-(1, 'CODE123', 'Jr.', 'Swift', 'Mike', 'A', '1967-11-14 00:24:34', 'Quezon City', 'Filipino', 4, 'Single', 'M', 1, 1, 0, '8', 'Samar', 'Quezon City', 'Metro Manila', '5', 'Basco, Batanes', '091159503612', '3336644', 'rj@gmail.com', 'isa', 'Perm', 'Teacher', 'DISCS', 1, 'John Leveur', '09159999911', 'Boss', 'CS150', 1, 0, 1, 0, '2013-12-11 16:00:00', '2013-12-13 16:00:00'),
-(2, 'CODE432', NULL, 'Tan', 'Gillian', 'P', '1992-01-01 00:24:34', 'Beijing, China', 'Filipino', 3, 'Married', 'F', 1, 0, 1, '7', 'Pura', 'Manila City', 'Metro Manila', 'NCR', 'Laoag City', '098112344321', '3215432', 'gil@gmail.com', 'Gigi', 'Perm', 'Teacher 2', 'DISCS', 2, 'Michael Bryan', '09111222334', 'Manager', 'MIS101', 0, 0, 1, 0, '2013-10-30 16:00:00', '2013-11-04 16:00:00'),
-(3, 'CODE123', 'Jr.', 'Fajardo', 'Francis', 'B', '1991-11-12 00:24:34', 'Caloocan City, Philippines', 'Filipino', 10, 'Married', 'M', 0, 0, 0, '2', 'Arrupe', 'Malabon City', 'Metro Manila ', 'NCR', 'Ormoc City', '123456711111', '32123421', 'fr@gmail.com', 'Francis', 'Perm', 'Teacher 4', 'DISCS', 3, 'Fernando Lopez', '09212123456', 'Manager', 'CS160', 1, 1, 1, 1, '2011-11-23 16:00:00', '2013-11-13 16:00:00'),
-(4, 'CODE143', NULL, 'Calzado', 'Iza', 'C', '1967-11-14 00:24:34', 'Los Angeles, USA', 'American', 22, 'Single', 'F', 0, 1, 1, '6750', 'Ayala', 'Makati City', 'Metro Manila', 'NCR', 'Cebu City', '212321220291', '2132321', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher 10', 'DISCS', 17, 'Barack Obama', '09121431431', 'Principal', 'MIS101', 1, 0, 0, 0, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
-(5, '153', NULL, 'Cheng', 'Joy', 'A', '1967-11-14 00:24:34', 'Manila', 'Filipino', 1, 'Single', 'F', 1, 0, 1, '1', 'Maluggay', 'Makati', 'Metro Manila', 'NCR', 'Davao', '626126311454', '3614988', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 1, 'Joy Federico', '09064939966', 'Principal', 'MIS121', 1, 0, 1, 0, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
-(6, '454', NULL, 'Chen', 'Iza', 'B', '1967-11-14 00:24:34', 'Manila', 'Filipino', 21, 'Single', 'F', 1, 0, 1, '2', '1st', 'Caloccan', 'Metro Manila', 'NCR', 'Bacolod', '541514546444', '3632266', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 2, 'Joy Federico', '12154564867', 'Principal', 'MIS131', 0, 1, 0, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
-(7, '153', NULL, 'Chua', 'Red', 'C', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'F', 1, 0, 1, '3', '2nd', 'Caloccan', 'Metro Manila', 'NCR', 'Tacloban', '13213.210103', '3659324', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 3, 'Joy Federico', '15148657486', 'Principal', 'MIS151', 1, 0, 0, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
-(8, '131', NULL, 'Cua', 'Blue', 'D', '1967-11-14 00:24:34', 'Manila', 'Filipino', 10, 'Single', 'F', 1, 0, 1, '4', '3rd', 'Caloccan', 'Metro Manila', 'NCR', 'Samar', '484851465131', '8787872', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 4, 'Joy Federico', '15145634685', 'Principal', 'MIS141', 0, 0, 0, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
-(9, '25', NULL, 'Tan', 'Green', 'E', '1967-11-14 00:24:34', 'Manila', 'Filipino', 3, 'Single', 'F', 1, 0, 0, '5', '4th', 'Caloccan', 'Metro Manila', 'NCR', 'Leyte', '131253465465', '9876543', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 5, 'Joy Federico', '13143126344', 'Principal', 'CS21', 0, 0, 0, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
-(10, '131', NULL, 'Tiong', 'Yellow', 'F', '1967-11-14 00:24:34', 'Manila', 'Filipino', 1, 'Single', 'F', 1, 0, 0, '6', '5th', 'Caloccan', 'Metro Manila', 'NCR', 'Bicol', '134865488484', '3216547', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 6, 'Joy Federico', '16476463461', 'Principal', 'CS21', 0, 1, 1, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
-(11, '4564', NULL, 'Zhen', 'Black', 'G', '1967-11-14 00:24:34', 'Manila', 'Filipino', 5, 'Single', 'F', 1, 1, 0, '7', '6th', 'Caloccan', 'Metro Manila', 'NCR', 'Baguio', '154135213143', '9874562', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 7, 'Joy Federico', '03163136161', 'Principal', 'CS21', 1, 1, 1, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
-(12, '131', NULL, 'Sy', 'Brown', 'H', '1967-11-14 00:24:34', 'Manila', 'Filipino', 1, 'Single', 'M', 1, 0, 0, '8', '7th', 'Caloccan', 'Metro Manila', 'NCR', 'Batangas', '132156454151', '9876541', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 8, 'Joy Federico', '03125531465', 'Principal', 'CS21', 1, 0, 1, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
-(13, '55', NULL, 'See', 'Teal', 'I', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'F', 1, 0, 1, '9', '8th', 'Caloccan', 'Metro Manila', 'NCR', 'Bulacan', '515151454545', '7894561', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 9, 'Joy Federico', '16351403146', 'Principal', 'CS21', 1, 0, 1, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
-(14, '11', NULL, 'Kim', 'Pink', 'J', '1967-11-14 00:24:34', 'Manila', 'Filipino', 2, 'Single', 'M', 1, 1, 1, '10', '9th', 'Caloccan', 'Metro Manila', 'NCR', 'Cebu', '023102548122', '7894562', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 10, 'Joy Federico', '15614023146', 'Principal', 'CS21', 1, 0, 1, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
-(15, '51', NULL, 'Park', 'Purple', 'K', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'M', 1, 0, 1, '11', '10th', 'Caloccan', 'Metro Manila', 'NCR', 'Palawan', '102534856414', '7894563', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 11, 'Joy Federico', '16148654320', 'Dean', 'CS21', 1, 1, 0, 1, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
-(16, '122', NULL, 'Lim', 'Violet', 'L', '1967-11-14 00:24:34', 'Manila', 'Filipino', 13, 'Single', 'M', 0, 1, 1, '12', '11th', 'Caloccan', 'Metro Manila', 'NCR', 'Bohol', '145451431131', '7893215', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 12, 'Joy Federico', '15313143514', 'Dean', 'CS21', 1, 0, 0, 0, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
-(17, '335', NULL, 'Lee', 'Beige', 'M', '1967-11-14 00:24:34', 'Manila', 'Filipino', 13, 'Single', 'M', 0, 0, 0, '13', 'Rizal', 'Manila', 'Metro Manila', 'NCR', 'Iloilo', '185748965488', '9873216', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 13, 'Joy Federico', '10031631461', 'Dean', 'CS21', 0, 0, 1, 0, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
-(18, '484', NULL, 'Zhong', 'Khaki', 'N', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'M', 0, 1, 0, '14', 'Arnais', 'Makati', 'Metro Manila', 'NCR', 'Bacolod', '165148574897', '9773214', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 14, 'Joy Federico', '31235146545', 'Dean', 'CS21', 0, 1, 0, 0, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
-(19, '646', NULL, 'Leong', 'Maroon', 'O', '1967-11-14 00:24:34', 'Manila', 'Filipino', 5, 'Married', 'M', 1, 0, 0, '15', 'Katipunan', 'Quezon City', 'Metro Manila', 'NCR', 'Sulu', '874885748567', '9873216', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 15, 'Joy Federico', '15314531455', 'Dean', 'CS21', 1, 0, 0, 0, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
-(20, '231', NULL, 'Jeong', 'Cyan', 'P', '1967-11-14 00:24:34', 'Manila', 'Filipino', 10, 'Widowed', 'F', 1, 1, 0, '16', 'Esteban', 'Quezon City', 'Metro Manila', 'NCR', 'Mindoro', '148564768787', '2654878', 'iza@yahoo.com', 'Iza', 'Perm', 'Teacher', 'DISCS', 16, 'Joy Federico', '10231032153', 'Deam', 'CS21', 1, 0, 1, 0, '2012-11-23 16:00:00', '2013-11-13 16:00:00'),
-(32, '8PAP20140118', '', 'Peralta', 'Phil', 'A', '2014-01-18 00:00:00', 'Caloocan', 'Ibatan', 1, 'widowed', 'F', 1, 0, 1, '54 C.', 'efsadf', 'Caloocan', 'Metro Manila', 'asdfsa', '54 C. Cordero', '1', '1', 'joi_4real@yahoo.com', '', 'Part', 'Prof', '', 8, 'Joy Federico', '090909', '', '', 1, 1, 1, 1, '2014-01-20 14:55:58', '2014-01-19 16:00:00');
+INSERT INTO `teacher` (`Teacher_ID`, `Code`, `Name_Suffix`, `Last_Name`, `First_Name`, `Middle_Initial`, `Birthdate`, `Birthplace`, `Nationality`, `Total_Year_of_Teaching`, `Civil_Status`, `Gender`, `Desktop`, `Laptop`, `Internet`, `Street_Number`, `Street_Name`, `City`, `Province`, `Region`, `Alternate_Address`, `Mobile_Number`, `Landline`, `Email`, `Facebook`, `Employment_Status`, `Current_Position`, `Current_Department`, `School_ID`, `Name_of_Supervisor`, `Supervisor_Contact_Details`, `Position_of_Supervisor`, `Classes_Handling`, `Resume`, `Photo`, `Proof_of_Certification`, `Diploma_TOR`, `Created_At`, `Updated_At`) VALUES
+(1, 'CODE123', 'Jr.', 'Swift', 'Mike', 'A', '1967-11-14 00:24:34', 'Quezon City', 'Filipino', 4, 'Single', 'm', 1, 1, 0, '8', 'Samar', 'Quezon City', 'Metro Manila', '5', 'Basco, Batanes', '091159503612', '3336644', 'rj@gmail.com', 'isa', 'Full', 'Teacher', 'DISCS', 1, 'John Leveur', '09159999911', 'Boss', 'CS150', 1, 0, 1, 0, '2013-12-11 16:00:00', '2014-02-01 09:16:11'),
+(2, 'CODE432', NULL, 'Tan', 'Gillian', 'P', '1992-01-01 00:24:34', 'Beijing, China', 'Filipino', 3, 'Married', 'f', 1, 0, 1, '7', 'Pura', 'Manila City', 'Metro Manila', 'NCR', 'Laoag City', '098112344321', '3215432', 'gil@gmail.com', 'Gigi', 'Full', 'Teacher 2', 'DISCS', 2, 'Michael Bryan', '09111222334', 'Manager', 'MIS101', 0, 0, 1, 0, '2013-10-30 16:00:00', '2014-02-01 09:16:11'),
+(3, 'CODE123', 'Jr.', 'Fajardo', 'Francis', 'B', '1991-11-12 00:24:34', 'Caloocan City, Philippines', 'Filipino', 10, 'Married', 'm', 0, 0, 0, '2', 'Arrupe', 'Malabon City', 'Metro Manila ', 'NCR', 'Ormoc City', '123456711111', '32123421', 'fr@gmail.com', 'Francis', 'Full', 'Teacher 4', 'DISCS', 3, 'Fernando Lopez', '09212123456', 'Manager', 'CS160', 1, 1, 1, 1, '2011-11-23 16:00:00', '2014-02-01 09:16:11'),
+(4, 'CODE143', NULL, 'Calzado', 'Iza', 'C', '1967-11-14 00:24:34', 'Los Angeles, USA', 'American', 22, 'Single', 'f', 0, 1, 1, '6750', 'Ayala', 'Makati City', 'Metro Manila', 'NCR', 'Cebu City', '212321220291', '2132321', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher 10', 'DISCS', 17, 'Barack Obama', '09121431431', 'Principal', 'MIS101', 1, 0, 0, 0, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
+(5, '153', NULL, 'Cheng', 'Joy', 'A', '1967-11-14 00:24:34', 'Manila', 'Filipino', 1, 'Single', 'f', 1, 0, 1, '1', 'Maluggay', 'Makati', 'Metro Manila', 'NCR', 'Davao', '626126311454', '3614988', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 1, 'Joy Federico', '09064939966', 'Principal', 'MIS121', 1, 0, 1, 0, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
+(6, '454', NULL, 'Chen', 'Iza', 'B', '1967-11-14 00:24:34', 'Manila', 'Filipino', 21, 'Single', 'f', 1, 0, 1, '2', '1st', 'Caloccan', 'Metro Manila', 'NCR', 'Bacolod', '541514546444', '3632266', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 2, 'Joy Federico', '12154564867', 'Principal', 'MIS131', 0, 1, 0, 1, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
+(7, '153', NULL, 'Chua', 'Red', 'C', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'f', 1, 0, 1, '3', '2nd', 'Caloccan', 'Metro Manila', 'NCR', 'Tacloban', '13213.210103', '3659324', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 3, 'Joy Federico', '15148657486', 'Principal', 'MIS151', 1, 0, 0, 1, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
+(8, '131', NULL, 'Cua', 'Blue', 'D', '1967-11-14 00:24:34', 'Manila', 'Filipino', 10, 'Single', 'f', 1, 0, 1, '4', '3rd', 'Caloccan', 'Metro Manila', 'NCR', 'Samar', '484851465131', '8787872', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 4, 'Joy Federico', '15145634685', 'Principal', 'MIS141', 0, 0, 0, 1, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
+(9, '25', NULL, 'Tan', 'Green', 'E', '1967-11-14 00:24:34', 'Manila', 'Filipino', 3, 'Single', 'f', 1, 0, 0, '5', '4th', 'Caloccan', 'Metro Manila', 'NCR', 'Leyte', '131253465465', '9876543', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 5, 'Joy Federico', '13143126344', 'Principal', 'CS21', 0, 0, 0, 1, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
+(10, '131', NULL, 'Tiong', 'Yellow', 'F', '1967-11-14 00:24:34', 'Manila', 'Filipino', 1, 'Single', 'f', 1, 0, 0, '6', '5th', 'Caloccan', 'Metro Manila', 'NCR', 'Bicol', '134865488484', '3216547', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 6, 'Joy Federico', '16476463461', 'Principal', 'CS21', 0, 1, 1, 1, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
+(11, '4564', NULL, 'Zhen', 'Black', 'G', '1967-11-14 00:24:34', 'Manila', 'Filipino', 5, 'Single', 'f', 1, 1, 0, '7', '6th', 'Caloccan', 'Metro Manila', 'NCR', 'Baguio', '154135213143', '9874562', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 7, 'Joy Federico', '03163136161', 'Principal', 'CS21', 1, 1, 1, 1, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
+(12, '131', NULL, 'Sy', 'Brown', 'H', '1967-11-14 00:24:34', 'Manila', 'Filipino', 1, 'Single', 'm', 1, 0, 0, '8', '7th', 'Caloccan', 'Metro Manila', 'NCR', 'Batangas', '132156454151', '9876541', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 8, 'Joy Federico', '03125531465', 'Principal', 'CS21', 1, 0, 1, 1, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
+(13, '55', NULL, 'See', 'Teal', 'I', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'f', 1, 0, 1, '9', '8th', 'Caloccan', 'Metro Manila', 'NCR', 'Bulacan', '515151454545', '7894561', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 9, 'Joy Federico', '16351403146', 'Principal', 'CS21', 1, 0, 1, 1, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
+(14, '11', NULL, 'Kim', 'Pink', 'J', '1967-11-14 00:24:34', 'Manila', 'Filipino', 2, 'Single', 'm', 1, 1, 1, '10', '9th', 'Caloccan', 'Metro Manila', 'NCR', 'Cebu', '023102548122', '7894562', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 10, 'Joy Federico', '15614023146', 'Principal', 'CS21', 1, 0, 1, 1, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
+(15, '51', NULL, 'Park', 'Purple', 'K', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'm', 1, 0, 1, '11', '10th', 'Caloccan', 'Metro Manila', 'NCR', 'Palawan', '102534856414', '7894563', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 11, 'Joy Federico', '16148654320', 'Dean', 'CS21', 1, 1, 0, 1, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
+(16, '122', NULL, 'Lim', 'Violet', 'L', '1967-11-14 00:24:34', 'Manila', 'Filipino', 13, 'Single', 'm', 0, 1, 1, '12', '11th', 'Caloccan', 'Metro Manila', 'NCR', 'Bohol', '145451431131', '7893215', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 12, 'Joy Federico', '15313143514', 'Dean', 'CS21', 1, 0, 0, 0, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
+(17, '335', NULL, 'Lee', 'Beige', 'M', '1967-11-14 00:24:34', 'Manila', 'Filipino', 13, 'Single', 'm', 0, 0, 0, '13', 'Rizal', 'Manila', 'Metro Manila', 'NCR', 'Iloilo', '185748965488', '9873216', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 13, 'Joy Federico', '10031631461', 'Dean', 'CS21', 0, 0, 1, 0, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
+(18, '484', NULL, 'Zhong', 'Khaki', 'N', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'm', 0, 1, 0, '14', 'Arnais', 'Makati', 'Metro Manila', 'NCR', 'Bacolod', '165148574897', '9773214', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 14, 'Joy Federico', '31235146545', 'Dean', 'CS21', 0, 1, 0, 0, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
+(19, '646', NULL, 'Leong', 'Maroon', 'O', '1967-11-14 00:24:34', 'Manila', 'Filipino', 5, 'Married', 'm', 1, 0, 0, '15', 'Katipunan', 'Quezon City', 'Metro Manila', 'NCR', 'Sulu', '874885748567', '9873216', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 15, 'Joy Federico', '15314531455', 'Dean', 'CS21', 1, 0, 0, 0, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
+(20, '231', NULL, 'Jeong', 'Cyan', 'P', '1967-11-14 00:24:34', 'Manila', 'Filipino', 10, 'Widowed', 'f', 1, 1, 0, '16', 'Esteban', 'Quezon City', 'Metro Manila', 'NCR', 'Mindoro', '148564768787', '2654878', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 16, 'Joy Federico', '10231032153', 'Deam', 'CS21', 1, 0, 1, 0, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
+(32, '8PAP20140118', '', 'Peralta', 'Phil', 'A', '2014-01-18 00:00:00', 'Caloocan', 'Ibatan', 1, 'widowed', 'f', 1, 0, 1, '54 C.', 'efsadf', 'Caloocan', 'Metro Manila', 'asdfsa', '54 C. Cordero', '1', '1', 'joi_4real@yahoo.com', '', 'Part', 'Prof', '', 8, 'Joy Federico', '090909', '', '', 1, 1, 1, 1, '2014-01-20 14:55:58', '2014-02-01 08:55:24');
 
 -- --------------------------------------------------------
 
@@ -1950,10 +1964,10 @@ CREATE TABLE IF NOT EXISTS `teacher_training_experience` (
 --
 
 INSERT INTO `teacher_training_experience` (`Teacher_Training_Experience_ID`, `Teacher_ID`, `Institution`, `Position`, `Date`, `Level_Taught`, `Courses_Taught`, `Number_of_Years_in_Institution`) VALUES
-(1, 2, 'Ateneo de Manila', 'Secretary', 2147483647, 'Tertiary', 'Math', 2),
-(2, 1, 'De La Salle', 'President', 2147483647, 'High School', 'Geography', 4),
-(3, 3, 'PUP', 'Teacher', 2147483647, 'Tertiary', 'Math, Science', 3),
-(4, 3, 'Makati Science High School', 'Teacher', 2147483647, 'Grade School', 'Algebra, Calculus', 2),
+(1, 2, 'Ateneo de Manila', 'Secretary', 2011, 'Tertiary', 'Math', 2),
+(2, 1, 'De La Salle', 'President', 2011, 'High School', 'Geography', 4),
+(3, 3, 'PUP', 'Teacher', 2012, 'Tertiary', 'Math, Science', 3),
+(4, 3, 'Makati Science High School', 'Teacher', 2013, 'Grade School', 'Algebra, Calculus', 2),
 (9, 32, 'Ateneo de Manila University', 'Professor', 2011, 'College', 'En11, Lit13', 3);
 
 -- --------------------------------------------------------
@@ -1981,7 +1995,7 @@ CREATE TABLE IF NOT EXISTS `tracker` (
 --
 
 INSERT INTO `tracker` (`Tracker_ID`, `Remarks`, `Status_ID`, `Times_Taken`, `Created_At`, `Updated_At`, `Subject_ID`) VALUES
-(1, 'Average', 1, 2, '2012-12-31 16:00:00', '0000-00-00 00:00:00', 1),
+(1, 'Average', 1, 2, '2012-12-31 16:00:00', '2014-01-31 08:17:37', 1),
 (2, 'Great', 2, 1, '2013-03-30 16:00:00', '0000-00-00 00:00:00', 1),
 (3, 'Bad', 1, 5, '2013-02-11 16:00:00', '0000-00-00 00:00:00', 1),
 (4, 'Worst', 2, 5, '2013-03-31 16:00:00', '0000-00-00 00:00:00', 1),
@@ -2055,67 +2069,67 @@ INSERT INTO `users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password
 -- Constraints for table `adept_student`
 --
 ALTER TABLE `adept_student`
-  ADD CONSTRAINT `fk_Adept_Student_Tracker1` FOREIGN KEY (`Tracker_ID`) REFERENCES `tracker` (`Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Adept_Student_Tracker1` FOREIGN KEY (`Tracker_ID`) REFERENCES `tracker` (`Tracker_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `adept_t3_tracker`
 --
 ALTER TABLE `adept_t3_tracker`
-  ADD CONSTRAINT `fk_Adept_T3_Tracker_copy1_Adept_T3_Attendance1` FOREIGN KEY (`Adept_T3_Attendance_ID`) REFERENCES `adept_t3_attendance` (`Adept_T3_Attendance_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Adept_T3_Tracker_copy1_Adept_T3_Grades1` FOREIGN KEY (`Adept_T3_Grades_ID`) REFERENCES `adept_t3_grades` (`Adept_T3_Grades_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Adept_T3_Tracker_Teacher_Tracker1` FOREIGN KEY (`T3_Tracker_ID`) REFERENCES `t3_tracker` (`T3_Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Adept_T3_Tracker_copy1_Adept_T3_Attendance1` FOREIGN KEY (`Adept_T3_Attendance_ID`) REFERENCES `adept_t3_attendance` (`Adept_T3_Attendance_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Adept_T3_Tracker_copy1_Adept_T3_Grades1` FOREIGN KEY (`Adept_T3_Grades_ID`) REFERENCES `adept_t3_grades` (`Adept_T3_Grades_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Adept_T3_Tracker_Teacher_Tracker1` FOREIGN KEY (`T3_Tracker_ID`) REFERENCES `t3_tracker` (`T3_Tracker_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `best_adept_t3_application`
 --
 ALTER TABLE `best_adept_t3_application`
-  ADD CONSTRAINT `fk_Best_Adept_T3_Application_Teacher_Application1` FOREIGN KEY (`T3_Application_ID`) REFERENCES `t3_application` (`T3_Application_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Best_Adept_T3_Application_Teacher_Application1` FOREIGN KEY (`T3_Application_ID`) REFERENCES `t3_application` (`T3_Application_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `best_student`
 --
 ALTER TABLE `best_student`
-  ADD CONSTRAINT `fk_BEST_Student_Tracker1` FOREIGN KEY (`Tracker_ID`) REFERENCES `tracker` (`Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_BEST_Student_Tracker1` FOREIGN KEY (`Tracker_ID`) REFERENCES `tracker` (`Tracker_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `best_t3_tracker`
 --
 ALTER TABLE `best_t3_tracker`
-  ADD CONSTRAINT `fk_Adept_T3_Tracker_Best_T3_Attendance1` FOREIGN KEY (`Best_T3_Attendance_ID`) REFERENCES `best_t3_attendance` (`Best_T3_Attendance_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Adept_T3_Tracker_Best_T3_Grades1` FOREIGN KEY (`Best_T3_Grades_ID`) REFERENCES `best_t3_grades` (`Best_T3_Grades_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Best_T3_Tracker_Teacher_Tracker1` FOREIGN KEY (`T3_Tracker_ID`) REFERENCES `t3_tracker` (`T3_Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Adept_T3_Tracker_Best_T3_Attendance1` FOREIGN KEY (`Best_T3_Attendance_ID`) REFERENCES `best_t3_attendance` (`Best_T3_Attendance_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Adept_T3_Tracker_Best_T3_Grades1` FOREIGN KEY (`Best_T3_Grades_ID`) REFERENCES `best_t3_grades` (`Best_T3_Grades_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Best_T3_Tracker_Teacher_Tracker1` FOREIGN KEY (`T3_Tracker_ID`) REFERENCES `t3_tracker` (`T3_Tracker_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `class`
 --
 ALTER TABLE `class`
-  ADD CONSTRAINT `fk_Class_Subject1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Section_School2` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Class_Subject1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Section_School2` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `gcat_class`
 --
 ALTER TABLE `gcat_class`
-  ADD CONSTRAINT `fk_GCAT_Class_Class1` FOREIGN KEY (`Class_ID`) REFERENCES `class` (`Class_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_GCAT_Class_Proctor1` FOREIGN KEY (`Proctor_ID`) REFERENCES `proctor` (`Proctor_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_GCAT_Class_Class1` FOREIGN KEY (`Class_ID`) REFERENCES `class` (`Class_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_GCAT_Class_Proctor1` FOREIGN KEY (`Proctor_ID`) REFERENCES `proctor` (`Proctor_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `gcat_student`
 --
 ALTER TABLE `gcat_student`
-  ADD CONSTRAINT `fk_GCAT_Student_Tracker1` FOREIGN KEY (`Tracker_ID`) REFERENCES `tracker` (`Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_GCAT_Student_Tracker1` FOREIGN KEY (`Tracker_ID`) REFERENCES `tracker` (`Tracker_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `gcat_tracker`
 --
 ALTER TABLE `gcat_tracker`
-  ADD CONSTRAINT `fk_GCAT_T3_Tracker_Teacher_Tracker1` FOREIGN KEY (`T3_Tracker_ID`) REFERENCES `t3_tracker` (`T3_Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_GCAT_T3_Tracker_Teacher_Tracker1` FOREIGN KEY (`T3_Tracker_ID`) REFERENCES `t3_tracker` (`T3_Tracker_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `internship_student`
 --
 ALTER TABLE `internship_student`
-  ADD CONSTRAINT `fk_Internship_Student_Tracker1` FOREIGN KEY (`Tracker_ID`) REFERENCES `tracker` (`Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Internship_Student_Tracker1` FOREIGN KEY (`Tracker_ID`) REFERENCES `tracker` (`Tracker_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `log`
@@ -2127,228 +2141,228 @@ ALTER TABLE `log`
 -- Constraints for table `other_class`
 --
 ALTER TABLE `other_class`
-  ADD CONSTRAINT `fk_Other_Class_Class1` FOREIGN KEY (`Class_ID`) REFERENCES `class` (`Class_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Other_Class_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Other_Class_Class1` FOREIGN KEY (`Class_ID`) REFERENCES `class` (`Class_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Other_Class_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `related_trainings_attended_by_a_teacher`
 --
 ALTER TABLE `related_trainings_attended_by_a_teacher`
-  ADD CONSTRAINT `fk_Related_Trainings_Attended_By_A_Teacher_Related_Trainings_1` FOREIGN KEY (`Related_Trainings_Attended_ID`) REFERENCES `related_trainings_attended` (`Related_Trainings_Attended_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Related_Trainings_Attended_By_A_Teacher_SMP_T3_Application1` FOREIGN KEY (`SMP_T3_Application_ID`) REFERENCES `smp_t3_application` (`T3_Application_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Related_Trainings_Attended_By_A_Teacher_Related_Trainings_1` FOREIGN KEY (`Related_Trainings_Attended_ID`) REFERENCES `related_trainings_attended` (`Related_Trainings_Attended_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Related_Trainings_Attended_By_A_Teacher_SMP_T3_Application1` FOREIGN KEY (`SMP_T3_Application_ID`) REFERENCES `smp_t3_application` (`T3_Application_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `school_subject`
 --
 ALTER TABLE `school_subject`
-  ADD CONSTRAINT `fk_School_Subject_School1` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_School_Subject_Subject1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_School_Subject_School1` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_School_Subject_Subject1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `smp_student`
 --
 ALTER TABLE `smp_student`
-  ADD CONSTRAINT `fk_SMP_Student_Tracker1` FOREIGN KEY (`Tracker_ID`) REFERENCES `tracker` (`Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_SMP_Student_Tracker1` FOREIGN KEY (`Tracker_ID`) REFERENCES `tracker` (`Tracker_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `smp_t3_application`
 --
 ALTER TABLE `smp_t3_application`
-  ADD CONSTRAINT `fk_SMP_T3_Application_Teacher_Application1` FOREIGN KEY (`T3_Application_ID`) REFERENCES `t3_application` (`T3_Application_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_SMP_T3_Application_Teacher_Application1` FOREIGN KEY (`T3_Application_ID`) REFERENCES `t3_application` (`T3_Application_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `smp_t3_attendance_tracking`
 --
 ALTER TABLE `smp_t3_attendance_tracking`
-  ADD CONSTRAINT `fk_SMP_T3_Attendance_Tracking_SMP_T3_Attendance1` FOREIGN KEY (`SMP_T3_Attendance_ID`) REFERENCES `smp_t3_attendance` (`SMP_T3_Attendance_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_SMP_T3_Attendance_Tracking_SMP_T3_Tracker1` FOREIGN KEY (`T3_Tracker_ID`) REFERENCES `smp_t3_tracker` (`T3_Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_SMP_T3_Attendance_Tracking_SMP_T3_Attendance1` FOREIGN KEY (`SMP_T3_Attendance_ID`) REFERENCES `smp_t3_attendance` (`SMP_T3_Attendance_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_SMP_T3_Attendance_Tracking_SMP_T3_Tracker1` FOREIGN KEY (`T3_Tracker_ID`) REFERENCES `smp_t3_tracker` (`T3_Tracker_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `smp_t3_tracker`
 --
 ALTER TABLE `smp_t3_tracker`
-  ADD CONSTRAINT `fk_SMP_T3_Tracker_SMP_T3_Site_Visit1` FOREIGN KEY (`SMP_T3_Site_Visit_ID`) REFERENCES `smp_t3_site_visit` (`SMP_T3_Site_Visit_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_SMP_T3_Tracker_T3_Tracker1` FOREIGN KEY (`T3_Tracker_ID`) REFERENCES `t3_tracker` (`T3_Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_SMP_T3_Tracker_SMP_T3_Site_Visit1` FOREIGN KEY (`SMP_T3_Site_Visit_ID`) REFERENCES `smp_t3_site_visit` (`SMP_T3_Site_Visit_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_SMP_T3_Tracker_T3_Tracker1` FOREIGN KEY (`T3_Tracker_ID`) REFERENCES `t3_tracker` (`T3_Tracker_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `stipend_tracking`
 --
 ALTER TABLE `stipend_tracking`
-  ADD CONSTRAINT `fk_Stipend_Tracking_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Stipend_Tracking_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `stipend_tracking_list`
 --
 ALTER TABLE `stipend_tracking_list`
-  ADD CONSTRAINT `fk_Stipend_Tracking_List_Stipend_Tracking1` FOREIGN KEY (`Stipend_Tracking_ID`) REFERENCES `stipend_tracking` (`Stipend_Tracking_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Stipend_Tracking_List_Subject_ID1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Stipend_Tracking_List_Stipend_Tracking1` FOREIGN KEY (`Stipend_Tracking_ID`) REFERENCES `stipend_tracking` (`Stipend_Tracking_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Stipend_Tracking_List_Subject_ID1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student`
 --
 ALTER TABLE `student`
-  ADD CONSTRAINT `fk_Student_School1` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Student_School1` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student_application`
 --
 ALTER TABLE `student_application`
-  ADD CONSTRAINT `fk_Student_Application_Project1` FOREIGN KEY (`Project_ID`) REFERENCES `project` (`Project_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Student_Application_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Student_Application_Subject_ID1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Student_Application_Project1` FOREIGN KEY (`Project_ID`) REFERENCES `project` (`Project_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Student_Application_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Student_Application_Subject_ID1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student_class`
 --
 ALTER TABLE `student_class`
-  ADD CONSTRAINT `fk_Student_Class_Class1` FOREIGN KEY (`Class_ID`) REFERENCES `class` (`Class_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Student_Class_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Student_Class_Class1` FOREIGN KEY (`Class_ID`) REFERENCES `class` (`Class_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Student_Class_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student_computer_skills`
 --
 ALTER TABLE `student_computer_skills`
-  ADD CONSTRAINT `fk_Student_Computer_Skills_Computer_Skills1` FOREIGN KEY (`Computer_Skills_ID`) REFERENCES `computer_skills` (`Computer_Skills_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Student_Computer_Skills_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Student_Computer_Skills_Computer_Skills1` FOREIGN KEY (`Computer_Skills_ID`) REFERENCES `computer_skills` (`Computer_Skills_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Student_Computer_Skills_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student_organization_affiliations`
 --
 ALTER TABLE `student_organization_affiliations`
-  ADD CONSTRAINT `fk_Student_Organization_Affiliations_Organization_Affiliations1` FOREIGN KEY (`Organization_Affiliations_ID`) REFERENCES `organization_affiliations` (`Organization_Affiliations_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Student_Organization_Affiliations_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Student_Organization_Affiliations_Organization_Affiliations1` FOREIGN KEY (`Organization_Affiliations_ID`) REFERENCES `organization_affiliations` (`Organization_Affiliations_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Student_Organization_Affiliations_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student_skills`
 --
 ALTER TABLE `student_skills`
-  ADD CONSTRAINT `fk_Student_Skills_Skills1` FOREIGN KEY (`Skills_ID`) REFERENCES `skills` (`Skills_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Student_Skills_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Student_Skills_Skills1` FOREIGN KEY (`Skills_ID`) REFERENCES `skills` (`Skills_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Student_Skills_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student_tracker`
 --
 ALTER TABLE `student_tracker`
-  ADD CONSTRAINT `fk_Student_Tracker_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Student_Tracker_Tracker1` FOREIGN KEY (`Tracker_ID`) REFERENCES `tracker` (`Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Student_Tracker_Student1` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Student_Tracker_Tracker1` FOREIGN KEY (`Tracker_ID`) REFERENCES `tracker` (`Tracker_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `t3_application`
 --
 ALTER TABLE `t3_application`
-  ADD CONSTRAINT `fk_Teacher_Application_Subject1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Teacher_Application_Subject1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `t3_class`
 --
 ALTER TABLE `t3_class`
-  ADD CONSTRAINT `fk_Class_Subject10` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Section_School20` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_T3_Class_Master_Trainer1` FOREIGN KEY (`Master_Trainer_ID`) REFERENCES `master_trainer` (`Master_Trainer_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Class_Subject10` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Section_School20` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_T3_Class_Master_Trainer1` FOREIGN KEY (`Master_Trainer_ID`) REFERENCES `master_trainer` (`Master_Trainer_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `t3_tracker`
 --
 ALTER TABLE `t3_tracker`
-  ADD CONSTRAINT `fk_Teacher_Tracker_Status1` FOREIGN KEY (`Status_ID`) REFERENCES `status` (`Status_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Teacher_Tracker_Subject1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Teacher_Tracker_Status1` FOREIGN KEY (`Status_ID`) REFERENCES `status` (`Status_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Teacher_Tracker_Subject1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher`
 --
 ALTER TABLE `teacher`
-  ADD CONSTRAINT `fk_Teacher_School1` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Teacher_School1` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher_affiliation_to_organization`
 --
 ALTER TABLE `teacher_affiliation_to_organization`
-  ADD CONSTRAINT `fk_Teacher_Affliation_to_Organization_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Teacher_Affliation_to_Organization_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher_awards`
 --
 ALTER TABLE `teacher_awards`
-  ADD CONSTRAINT `fk_Teacher_Awards_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Teacher_Awards_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher_certification`
 --
 ALTER TABLE `teacher_certification`
-  ADD CONSTRAINT `fk_Teacher_Certification_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Teacher_Certification_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher_class`
 --
 ALTER TABLE `teacher_class`
-  ADD CONSTRAINT `fk_Student_Class_Class10` FOREIGN KEY (`T3_Class_ID`) REFERENCES `t3_class` (`T3_Class_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Teacher_Class_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Student_Class_Class10` FOREIGN KEY (`T3_Class_ID`) REFERENCES `t3_class` (`T3_Class_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Teacher_Class_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher_computer_familiarity`
 --
 ALTER TABLE `teacher_computer_familiarity`
-  ADD CONSTRAINT `fk_Teacher_Computer_Familiarity_Skills1` FOREIGN KEY (`Computer_Skills_ID`) REFERENCES `computer_skills` (`Computer_Skills_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Teacher_Computer_Familiarity_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Teacher_Computer_Familiarity_Skills1` FOREIGN KEY (`Computer_Skills_ID`) REFERENCES `computer_skills` (`Computer_Skills_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Teacher_Computer_Familiarity_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher_computer_profiency`
 --
 ALTER TABLE `teacher_computer_profiency`
-  ADD CONSTRAINT `fk_Teacher_Computer_Profiency_Skills1` FOREIGN KEY (`Computer_Skills_ID`) REFERENCES `computer_skills` (`Computer_Skills_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Teacher_Computer_Profiency_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Teacher_Computer_Profiency_Skills1` FOREIGN KEY (`Computer_Skills_ID`) REFERENCES `computer_skills` (`Computer_Skills_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Teacher_Computer_Profiency_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher_other_skills`
 --
 ALTER TABLE `teacher_other_skills`
-  ADD CONSTRAINT `fk_Teacher_Other_Skills_Skills1` FOREIGN KEY (`Skills_ID`) REFERENCES `skills` (`Skills_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Teacher_Other_Skills_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Teacher_Other_Skills_Skills1` FOREIGN KEY (`Skills_ID`) REFERENCES `skills` (`Skills_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Teacher_Other_Skills_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher_professional_reference`
 --
 ALTER TABLE `teacher_professional_reference`
-  ADD CONSTRAINT `fk_Teacher_Professional_Reference_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Teacher_Professional_Reference_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher_relevant_experiences`
 --
 ALTER TABLE `teacher_relevant_experiences`
-  ADD CONSTRAINT `fk_Teacher_Relevant_Experiences_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Teacher_Relevant_Experiences_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher_t3_application`
 --
 ALTER TABLE `teacher_t3_application`
-  ADD CONSTRAINT `fk_Teacher_T3_Application_T3_Application1` FOREIGN KEY (`T3_Application_ID`) REFERENCES `t3_application` (`T3_Application_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Teacher_T3_Application_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Teacher_T3_Application_T3_Application1` FOREIGN KEY (`T3_Application_ID`) REFERENCES `t3_application` (`T3_Application_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Teacher_T3_Application_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher_t3_tracker`
 --
 ALTER TABLE `teacher_t3_tracker`
-  ADD CONSTRAINT `fk_Teacher_T3_Tracker_T3_Tracker1` FOREIGN KEY (`T3_Tracker_ID`) REFERENCES `t3_tracker` (`T3_Tracker_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Teacher_T3_Tracker_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Teacher_T3_Tracker_T3_Tracker1` FOREIGN KEY (`T3_Tracker_ID`) REFERENCES `t3_tracker` (`T3_Tracker_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Teacher_T3_Tracker_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teacher_training_experience`
 --
 ALTER TABLE `teacher_training_experience`
-  ADD CONSTRAINT `fk_Teacher_Training_Experience_Teacher` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Teacher_Training_Experience_Teacher` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tracker`
 --
 ALTER TABLE `tracker`
-  ADD CONSTRAINT `fk_Tracker_Status1` FOREIGN KEY (`Status_ID`) REFERENCES `status` (`Status_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Tracker_Subject1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Tracker_Status1` FOREIGN KEY (`Status_ID`) REFERENCES `status` (`Status_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Tracker_Subject1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `fk_User_School1` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_User_School1` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

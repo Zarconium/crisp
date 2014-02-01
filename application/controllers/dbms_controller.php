@@ -78,7 +78,12 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['teacher'] = $this->teacher->getTeacherById($id);
-		$data['training_experiences'] = $this->teacher->getTrainingExperienceByTeacherId($id);
+		$data['training_experiences'] = $this->teacher->getTrainingExperiencesByTeacherId($id);
+		$data['certifications'] = $this->teacher->getCertificationsByTeacherId($id);
+		$data['awards'] = $this->teacher->getAwardsByTeacherId($id);
+		$data['relevant_experiences'] = $this->teacher->getRelevantExperiencesByTeacherId($id);
+		$data['professional_references'] = $this->teacher->getProfessionalReferencesByTeacherId($id);
+		$data['affiliation_to_organizations'] = $this->teacher->getAffiliationToOrganizationsByTeacherId($id);
 
 		// $this->log->addLog('Updated Teacher Profile');
 

@@ -101,10 +101,100 @@ Class Teacher extends CI_Model
 		}
 	}
 
-	function getTrainingExperienceByTeacherId($id)
+	function getTrainingExperiencesByTeacherId($id)
 	{
 		$this->db->select('*');
 		$this->db->from('teacher_training_experience');
+		$this->db->where('Teacher_ID', $id);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getCertificationsByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('teacher_certification');
+		$this->db->where('Teacher_ID', $id);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAwardsByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('teacher_awards');
+		$this->db->where('Teacher_ID', $id);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getRelevantExperiencesByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('teacher_relevant_experiences');
+		$this->db->where('Teacher_ID', $id);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getProfessionalReferencesByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('teacher_professional_reference');
+		$this->db->where('Teacher_ID', $id);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAffiliationToOrganizationsByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('teacher_affiliation_to_organization');
 		$this->db->where('Teacher_ID', $id);
 		
 		$query = $this->db->get();

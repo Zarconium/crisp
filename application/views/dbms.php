@@ -32,8 +32,7 @@
 					<th>School</th>
 					<th>Programs</th>
 				</tr>
-				<?php if (isset($students)): ?>
-				<?php foreach ($students as $student): ?>
+				<?php if (isset($students)) foreach ($students as $student): ?>
 				<tr>
 					<td><input type="checkbox"></td>
 					<td><a href="<?php echo base_url('dbms/form_student_profile/' . $student->Student_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_student/' . $student->Student_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
@@ -42,7 +41,6 @@
 					<td><?php echo $student->Subject_Codes; ?></td>
 				</tr>
 				<?php endforeach; ?>
-				<?php endif; ?>
 			</table>
 		</div>
 	</div>
@@ -64,8 +62,7 @@
 					<th>School</th>
 					<th>Programs</th>
 				</tr>
-				<?php if (isset($teachers)): ?>
-				<?php foreach ($teachers as $teacher): ?>
+				<?php if (isset($teachers)) foreach ($teachers as $teacher): ?>
 				<tr>
 					<td><input type="checkbox"></td>
 					<td><a href="<?php echo base_url('dbms/form_teacher_profile/' . $teacher->Teacher_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_teacher/' . $teacher->Teacher_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
@@ -74,7 +71,6 @@
 					<td><?php echo $teacher->Subject_Codes; ?></td>
 				</tr>
 				<?php endforeach; ?>
-				<?php endif; ?>
 			</table>
 		</div>
 	</div>
@@ -96,8 +92,7 @@
 					<th>School</th>
 					<th>Programs</th>
 				</tr>
-				<?php if (isset($proctors)): ?>
-				<?php foreach ($proctors as $proctor): ?>
+				<?php if (isset($proctors)) foreach ($proctors as $proctor): ?>
 				<tr>
 					<td><input type="checkbox"></td>
 					<td><a href="<?php echo base_url('dbms/form_proctor_application/' . $proctor->Proctor_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_proctor/' . $proctor->Proctor_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
@@ -106,7 +101,6 @@
 					<td><?php echo $proctor->Subject_Code; ?></td>
 				</tr>
 				<?php endforeach; ?>
-				<?php endif; ?>
 			</table>
 		</div>
 	</div>
@@ -129,8 +123,7 @@
 					<th>School</th>
 					<th>Programs</th>
 				</tr>
-				<?php if (isset($mastertrainers)): ?>
-				<?php foreach ($mastertrainers as $mastertrainer): ?>
+				<?php if (isset($mastertrainers)) foreach ($mastertrainers as $mastertrainer): ?>
 				<tr>
 					<td><input type="checkbox"></td>
 					<td><a href="<?php echo base_url('dbms/form_mastertrainer_application/' . $mastertrainer->Master_Trainer_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_mastertrainer/' . $mastertrainer->Master_Trainer_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
@@ -139,7 +132,6 @@
 					<td><?php echo $mastertrainer->Subject_Codes; ?></td>
 				</tr>
 				<?php endforeach; ?>
-				<?php endif; ?>
 			</table>
 		</div>
 	</div>
