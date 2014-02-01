@@ -1680,6 +1680,7 @@ class Dbms_Controller extends CI_Controller
 				redirect('dbms');					
 			}
 			$this->teacher->updateTeacherBestAttendance($code,$subject,$best_t3_attendance);
+			$this->teacher->updateTeacherProfessionalReference($code,$subject,$teacher_professional_reference);
 		}
 
 		if ($counter > 2)
@@ -1716,33 +1717,35 @@ class Dbms_Controller extends CI_Controller
 	 
 			$status_id = $this->status->getStatusIDByName($row['S'])->Status_ID; //Get Status_ID
 
-			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) .date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['E'], 'MM/DD/YYYY'))); //Get Code
+			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) .date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['E'], 'MM/DD/YYYY'))); //Get Code
 
 			$teacher = array
 			(	
 				'teacher.Civil_Status' => $row['F'], //teacher tab
-				'teacher.Remarks' => $row['T']//t3_tracker
+				
 			);
 
 			$t3_tracker = array
 			(
-				't3_tracker.Contract?' =>  (bool) strcasecmp($row['G'], 'no'), //t3_tracker *
+				't3_tracker.Remarks' => $row['T'],//t3_tracker
+				't3_tracker.Contract' =>  (bool) strcasecmp($row['G'], 'no'), //t3_tracker *
+				'Status_ID' => $status_id
 			);
 			
 			$adept_t3_tracker = array
 			(
-				'adept_t3_tracker.Interview_Form?' =>  (bool) strcasecmp($row['H'], 'no'),
-				'adept_t3_tracker.Site_Visit_Form?' =>  (bool) strcasecmp($row['I'], 'no'),
-				'adept_t3_tracker.Adept_E-Learning_Feedback' =>  (bool) strcasecmp($row['J'], 'no'),
-				'adept_t3_tracker.Adept_T3_Feedback?' =>  (bool) strcasecmp($row['K'], 'no'),
+				'adept_t3_tracker.Interview_Form' =>  (bool) strcasecmp($row['H'], 'no'),
+				'adept_t3_tracker.Site_Visit_Form' =>  (bool) strcasecmp($row['I'], 'no'),
+				'adept_t3_tracker.Adept_ELearning_Feedback' =>  (bool) strcasecmp($row['J'], 'no'),
+				'adept_t3_tracker.Adept_T3_Feedback' =>  (bool) strcasecmp($row['K'], 'no'),
 				'adept_t3_tracker.Manual_&_kit' =>  (bool) strcasecmp($row['L'], 'no'),
-				'adept_t3_tracker.Certificate_of_Attendance' =>  (bool) strcasecmp($row['M'], 'no'),
+				'adept_t3_tracker.Certificate_Of_Attendance' =>  (bool) strcasecmp($row['M'], 'no'),
 				'adept_t3_tracker.Adept_Certified_Trainers' =>  (bool) strcasecmp($row['N'], 'no'), //*
 				'adept_t3_tracker.Lesson_Plan' => $row['O'],
 				'adept_t3_tracker.Demo' => $row['P'],
 				'adept_t3_tracker.Total_Weighted' => $row['Q'],
-				'adept_t3_tracker.Training_Portofolio' => $row['R'],//adept_t3_tracker till here
-				'Status_ID' => $status_id,
+				'adept_t3_tracker.Training_Portfolio' => $row['R']//adept_t3_tracker till here
+				
 			);
 				
 
@@ -1751,15 +1754,14 @@ class Dbms_Controller extends CI_Controller
 			
 			if (!$this->teacher->getTeacherByCode($code))
 			{
-				$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
+				$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
 				redirect('dbms');					
 			}
 
-			else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
-			{
-				$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $counter);
-				redirect('dbms');
-			}
+			$this->teacher->updateAdeptT3Tracker($code,$subject,$adept_t3_tracker);
+			$this->teacher->updateTeacherByCode($code, $teacher);
+			$this->teacher->updateT3Tracker($code,$subject,$t3_tracker);
+			
 		}
 
 		if ($counter > 2)
