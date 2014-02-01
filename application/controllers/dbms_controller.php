@@ -1526,7 +1526,7 @@ class Dbms_Controller extends CI_Controller
 			$tracker = array
 			(
 				'Control_Number' => $row['G'],
-				'Username' => $row['H']
+				'User_Name' => $row['H']
 			);
 
 			$subject = $row['A'];
@@ -1536,11 +1536,7 @@ class Dbms_Controller extends CI_Controller
 				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
 				redirect('dbms');					
 			}
-			else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
-			{
-				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter);
-				redirect('dbms');
-			}
+			$this->teacher->updateTeacherTracker($code,$subject,$tracker);
 		}
 
 		if ($counter > 2)
@@ -1582,18 +1578,17 @@ class Dbms_Controller extends CI_Controller
 			(
 				//best tracker
 				
-				'best_t3_tracker.Interview_Form' =>  (bool) strcasecmp($row['H'], 'no'),
-				'best_t3_tracker.Site_Visit_Form' =>  (bool) strcasecmp($row['I'], 'no'),
-				'best_t3_tracker.BEST_T3_Feedback' =>  (bool) strcasecmp($row['K'], 'no'),
-				'best_t3_tracker.BEST_ELearning_Feedback' =>  (bool) strcasecmp($row['J'], 'no'),
-				'best_t3_tracker.Best_CD' =>  (bool) strcasecmp($row['L'], 'no'),
-				'best_t3_tracker.Certificate_Of_Attendance' =>  (bool) strcasecmp($row['M'], 'no'),
-				'best_t3_tracker.Best_Certified_Trainers' =>  (bool) strcasecmp($row['N'], 'no'),
-				'best_t3_tracker.Task_1' => $row['O'],
-				'best_t3_tracker.Task_2' => $row['P'],
-				'best_t3_tracker.Task_3' => $row['Q'],
-				'best_t3_tracker.Task_4' => $row['R'],
-				'Status_ID' => $status_id
+				'Interview_Form' =>  (bool) strcasecmp($row['H'], 'no'),
+				'Site_Visit_Form' =>  (bool) strcasecmp($row['I'], 'no'),
+				'BEST_T3_Feedback' =>  (bool) strcasecmp($row['K'], 'no'),
+				'BEST_ELearning_Feedback' =>  (bool) strcasecmp($row['J'], 'no'),
+				'Best_CD' =>  (bool) strcasecmp($row['L'], 'no'),
+				'Certificate_Of_Attendance' =>  (bool) strcasecmp($row['M'], 'no'),
+				'Best_Certified_Trainers' =>  (bool) strcasecmp($row['N'], 'no'),
+				'Task_1' => $row['O'],
+				'Task_2' => $row['P'],
+				'Task_3' => $row['Q'],
+				'Task_4' => $row['R']
 			);
 
 			$teacher = array
@@ -1606,7 +1601,8 @@ class Dbms_Controller extends CI_Controller
 			(
 				//break t3_tracker
 				't3_tracker.Contract' => (bool) strcasecmp($row['G'], 'no'),
-				't3_tracker.Remarks' => $row['T']
+				't3_tracker.Remarks' => $row['T'],
+				'Status_ID' => $status_id
 			);
 
 			$subject = "BEST";
@@ -1617,11 +1613,14 @@ class Dbms_Controller extends CI_Controller
 				redirect('dbms');					
 			}
 
-			else if (!$this->teacher->updateTeacherTracker($code,$subject,$best_t3_tracker,$teacher,$t3_tracker))
+		/*	if (!$this->teacher->updateTeacherTracker($code,$subject,$t3_tracker))
 			{
 				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter);
 				redirect('dbms');
-			}
+			}*/
+			$this->teacher->updateBestT3Tracker($code,$subject,$best_t3_tracker);
+			$this->teacher->updateTeacherByCode($code, $teacher);
+			$this->teacher->updateT3Tracker($code,$subject,$t3_tracker);
 		}
 
 		if ($counter > 2)
@@ -1657,7 +1656,7 @@ class Dbms_Controller extends CI_Controller
 			
 			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['D'], 'MM/DD/YYYY'))); //Get Code
 
-			$tracker = array
+			$best_t3_attendance = array
 			(
 				'Orientation_Day' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['H'], 'MM/DD/YYYY'))),
 				'Site_Visit' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['I'], 'MM/DD/YYYY'))),
@@ -1672,21 +1671,15 @@ class Dbms_Controller extends CI_Controller
 				'teacher_professional_reference.Email' => $row['G']
 			);
 			
-			
-
-
+		
 			$subject = "BEST";
 			
 			if (!$this->teacher->getTeacherByCode($code))
 			{
-				$this->session->set_flashdata('upload_error', 'BEST Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exists');
+				$this->session->set_flashdata('upload_error', 'BEST Attendance Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
 				redirect('dbms');					
 			}
-			else if (!$this->teacher->updateBestTeacherAttendance($code,$subject,$tracker))
-			{
-				$this->session->set_flashdata('upload_error', 'BEST Attendance Tracker upload failed. Invalid data at row ' . $counter);
-				redirect('dbms');
-			}
+			$this->teacher->updateTeacherBestAttendance($code,$subject,$best_t3_attendance);
 		}
 
 		if ($counter > 2)
