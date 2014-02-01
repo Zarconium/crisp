@@ -78,7 +78,9 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['teacher'] = $this->teacher->getTeacherById($id);
-		$this->log->addLog('Updated Teacher Profile');
+		$data['training_experiences'] = $this->teacher->getTrainingExperienceByTeacherId($id);
+
+		// $this->log->addLog('Updated Teacher Profile');
 
 		$this->load->view('header');
 		$this->load->view('forms/form-teacher-profile', $data);

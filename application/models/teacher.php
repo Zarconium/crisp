@@ -101,6 +101,24 @@ Class Teacher extends CI_Model
 		}
 	}
 
+	function getTrainingExperienceByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('teacher_training_experience');
+		$this->db->where('Teacher_ID', $id);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function addTeacher($data)
 	{
 		$this->db->insert('teacher', $data);
