@@ -2050,6 +2050,7 @@ class Dbms_Controller extends CI_Controller
 			if ($counter > $highestRow) break;
 
 			$school_id = $this->school->getSchoolIdByCode($row['F'])->School_ID; //Get School_ID 
+			
 			$code = $school_id . substr($row['C'],0,1). substr($row['D'],0,1). substr($row['B'],0,1) . date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['E'], 'MM/DD/YYYY'))); //Get Code
 
 			$smp_t3_attendance = array
@@ -2098,6 +2099,7 @@ class Dbms_Controller extends CI_Controller
 		{
 			redirect(base_url('dbms'));
 		}
+
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_stipend_process_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
