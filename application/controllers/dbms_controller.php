@@ -1503,7 +1503,6 @@ class Dbms_Controller extends CI_Controller
 		$this->log->addLog('GCAT Student Grades Batch Upload');
 	}
 
-
 	function upload_best_student_grades()// please test
 	{
 		if (!$_FILES)
@@ -1521,7 +1520,6 @@ class Dbms_Controller extends CI_Controller
 		{
 			if ($counter++ < 4) continue;
 			if ($counter > $highestRow) break;
-
 
 			//-----getting the student code-------------------
 			$this->db->select('Tracker_ID');
