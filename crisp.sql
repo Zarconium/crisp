@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2014 at 02:48 PM
+-- Generation Time: Feb 02, 2014 at 03:08 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -86,19 +86,15 @@ INSERT INTO `adept_t3_attendance` (`Adept_T3_Attendance_ID`, `Orientation_Day`, 
 
 CREATE TABLE IF NOT EXISTS `adept_t3_grades` (
   `Adept_T3_Grades_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Oral` decimal(10,0) DEFAULT NULL,
+  `Retention` decimal(10,0) DEFAULT NULL,
+  `Typing` decimal(10,0) DEFAULT NULL,
+  `Grammar` decimal(10,0) DEFAULT NULL,
+  `Comprehension` decimal(10,0) DEFAULT NULL,
+  `Summary_Scores` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`Adept_T3_Grades_ID`),
   UNIQUE KEY `Adept_T3_Grades_ID_UNIQUE` (`Adept_T3_Grades_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `adept_t3_grades`
---
-
-INSERT INTO `adept_t3_grades` (`Adept_T3_Grades_ID`) VALUES
-(1),
-(2),
-(3),
-(4);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -243,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `best_t3_attendance` (
 INSERT INTO `best_t3_attendance` (`Best_T3_Attendance_ID`, `Orientation_Day`, `Site_Visit`, `Day_1`, `Day_2`, `Day_3`, `Created_At`, `Updated_At`) VALUES
 (1, '2011-11-12 00:00:00', '2011-11-14 00:00:00', '2011-11-01 00:00:00', '2011-11-02 00:00:00', '2011-11-03 00:00:00', '2011-12-12 00:00:00', '2011-12-10 00:00:00'),
 (2, '2011-11-14 00:00:00', '2011-11-15 00:00:00', '2011-11-02 00:00:00', '2011-11-04 00:00:00', '2011-11-05 00:00:00', '2012-01-01 00:00:00', '2012-01-02 00:00:00'),
-(3, '2011-11-03 00:00:00', '2011-11-02 00:00:00', '2011-11-06 00:00:00', '2011-11-07 00:00:00', '2011-11-08 00:00:00', '2011-11-09 00:00:00', '2011-11-10 0teacher_t3_trackerTeacher_T3_Tracker_ID0:00:00'),
+(3, '2011-11-03 00:00:00', '2011-11-02 00:00:00', '2011-11-06 00:00:00', '2011-11-07 00:00:00', '2011-11-08 00:00:00', '2011-11-09 00:00:00', '2011-11-10 00:00:00'),
 (4, '2012-08-01 00:00:00', '2012-08-02 00:00:00', '2012-08-03 00:00:00', '2012-08-04 00:00:00', '2012-08-05 00:00:00', '2012-08-06 00:00:00', '2012-08-07 00:00:00');
 
 -- --------------------------------------------------------
@@ -254,19 +250,15 @@ INSERT INTO `best_t3_attendance` (`Best_T3_Attendance_ID`, `Orientation_Day`, `S
 
 CREATE TABLE IF NOT EXISTS `best_t3_grades` (
   `Best_T3_Grades_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Oral` decimal(10,0) DEFAULT NULL,
+  `Typing` decimal(10,0) DEFAULT NULL,
+  `Retention` decimal(10,0) DEFAULT NULL,
+  `Grammar` decimal(10,0) DEFAULT NULL,
+  `Comprehension` decimal(10,0) DEFAULT NULL,
+  `Summary_Scores` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`Best_T3_Grades_ID`),
   UNIQUE KEY `Best_T3_Grades_ID_UNIQUE` (`Best_T3_Grades_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `best_t3_grades`
---
-
-INSERT INTO `best_t3_grades` (`Best_T3_Grades_ID`) VALUES
-(1),
-(2),
-(3),
-(4);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

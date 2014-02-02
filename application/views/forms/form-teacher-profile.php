@@ -811,7 +811,7 @@
 								<form class="form">
 									<div class="form-group">
 										<label>Orientation Date</label>
-										<input type="date" class="form-control">
+										<input type="date" class="form-control" value="<?php if ($best_t3_attendance) echo date('Y-m-d', strtotime($best_t3_attendance->Orientation_Day)); ?>">
 									</div>
 									
 									<div class="form-group">

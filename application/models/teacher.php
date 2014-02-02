@@ -213,8 +213,10 @@ Class Teacher extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('best_t3_attendance');
-		$this->db->join();
-		$this->db->where('teacher_ID', $id);
+		$this->db->join('best_t3_tracker', 'best_t3_attendance.Best_T3_Attendance_ID = best_t3_tracker.Best_T3_Attendance_ID', 'left');
+		$this->db->join('t3_tracker', 'best_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->join('teacher_t3_tracker', 't3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->where('teacher_t3_tracker.Teacher_ID', $id);
 
 		$query = $this->db->get();
 		
