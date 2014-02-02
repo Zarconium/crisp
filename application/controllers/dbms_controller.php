@@ -1493,14 +1493,96 @@ class Dbms_Controller extends CI_Controller
 		$this->log->addLog('GCAT Student Grades Batch Upload');
 	}
 
-	function upload_best_student_grades()
+	function upload_best_student_grades()//comment same sa teacher 
 	{
-		$this->log->addLog('BEST Student Grades Batch Upload');
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_best_grades']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
+
+		$counter = 4;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 4) continue;
+			if ($counter > $highestRow) break;
+
+			$school_id = $this->school->getSchoolIdByCode($row['A']);
+			
+			$username = $row['D'];
+
+			// need excel to format in order to get this $code = $school_id . substr($row['E'],0,1). substr($row['F'],0,1). substr($row['D'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY')));
+
+			$grades = array
+			
+				'Oral' => $row['I'],
+				'Retention' => $row['J'],
+				'Typing' => $row['K'],
+				'Grammar' => $row['L'],
+				'Comprehension' => $row['M'],
+				'Summary Scores' => $row['N'],
+			);
+			
+			if (!$this->teacher->getStudentByUsername($username))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exists');
+				redirect('dbms');					
+			}
+			else if (!$this->teacher->updateBestStudent($code,$subject,$tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
 	}
 
-	function upload_adept_student_grades()
+	function upload_adept_student_grades()//comment same sa teacher
 	{
-		$this->log->addLog('AdEPT Student Grades Batch Upload');
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_adept_grades']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
+
+		$counter = 4;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 4) continue;
+			if ($counter > $highestRow) break;
+
+			$school_id = $this->school->getSchoolIdByCode($row['A']);
+			
+			$username = $row['D'];
+
+			// need excel to format in order to get this $code = $school_id . substr($row['E'],0,1). substr($row['F'],0,1). substr($row['D'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY')));
+
+			$grades = array
+			
+				'Oral' => $row['I'],
+				'Retention' => $row['J'],
+				'Typing' => $row['K'],
+				'Grammar' => $row['L'],
+				'Comprehension' => $row['M'],
+				'Summary Scores' => $row['N'],
+			);
+			
+			if (!$this->teacher->getStudentByUsername($username))
+			{
+				$this->session->set_flashdata('upload_error', 'AdEPT Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exists');
+				redirect('dbms');					
+			}
+			else if (!$this->teacher->updateAdeptStudent($code,$subject,$tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'AdEPT Grades upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
 	}
 
 //teacher//
@@ -2160,14 +2242,120 @@ class Dbms_Controller extends CI_Controller
 		redirect('dbms');
 	}
 
-	function upload_best_grades()
+	function upload_best_grades()//missing code 
 	{
-		$this->log->addLog('BEST Grades Batch Upload');
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_best_grades']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
+
+		$counter = 4;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 4) continue;
+			if ($counter > $highestRow) break;
+
+			$school_id = $this->school->getSchoolIdByCode($row['A']);
+			
+			$username = $row['D'];
+
+			// need excel to format in order to get this $code = $school_id . substr($row['E'],0,1). substr($row['F'],0,1). substr($row['D'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY')));
+
+			$grades = array
+			
+				'Oral' => $row['I'],
+				'Retention' => $row['J'],
+				'Typing' => $row['K'],
+				'Grammar' => $row['L'],
+				'Comprehension' => $row['M'],
+				'Summary Scores' => $row['N'],
+			);
+			
+			if (!$this->teacher->getTeacherByUsername($username))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exists');
+				redirect('dbms');					
+			}
+			else if (!$this->teacher->updateBestT3Tracker($code,$subject,$best_t3tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
+		}
+
+		if ($counter > 4)
+		{
+			$this->session->set_flashdata('upload_success', 'GCAT Grades successfully uploaded. ' . ($counter - 4) . ' of ' . ($highestRow - 4) . ' teachers added/updated.');
+			$this->log->addLog('GCAT Grades Batch Upload');	
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Empty file.');
+		}
+		redirect('dbms');
 	}
 
-	function upload_adept_grades()
+	function upload_adept_grades()//missing code
 	{
-		$this->log->addLog('AdEPT Grades Batch Upload');
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_adept_grades']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
+
+		$counter = 4;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 4) continue;
+			if ($counter > $highestRow) break;
+
+			$school_id = $this->school->getSchoolIdByCode($row['A']);
+			
+			$username = $row['D'];
+
+			// need excel to format in order to get this $code = $school_id . substr($row['E'],0,1). substr($row['F'],0,1). substr($row['D'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY')));
+
+			$grades = array
+			
+				'Oral' => $row['I'],
+				'Retention' => $row['J'],
+				'Typing' => $row['K'],
+				'Grammar' => $row['L'],
+				'Comprehension' => $row['M'],
+				'Summary Scores' => $row['N'],
+			);
+			
+			if (!$this->teacher->getTeacherByUsername($username))
+			{
+				$this->session->set_flashdata('upload_error', 'AdEPT Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exists');
+				redirect('dbms');					
+			}
+			else if (!$this->teacher->updateAdeptT3Tracker($code,$subject,$adept_t3tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'AdEPT Grades upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
+		}
+
+		if ($counter > 4)
+		{
+			$this->session->set_flashdata('upload_success', 'AdEPT Grades successfully uploaded. ' . ($counter - 4) . ' of ' . ($highestRow - 4) . ' teachers added/updated.');
+			$this->log->addLog('GCAT Grades Batch Upload');	
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'AdEPT Grades upload failed. Empty file.');
+		}
+		redirect('dbms');
 	}
 }
 ?>
