@@ -1775,62 +1775,7 @@ class Dbms_Controller extends CI_Controller
 		}
 		redirect('dbms');
 	}
-/*function upload_adept_T3_attendance() BACKUP LANG 
-	{
-		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-		$objPHPExcel = $objReader->load($_FILES['file_adept_T3_attendance']['tmp_name']);
-		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
-		$counter = 0;
-		foreach ($sheetData as $row)
-		{
-			if ($counter++ < 2) continue;
-			if ($counter > $highestRow) break;
-
-			$school_id = $this->school->getSchoolIdByCode($row['E'])->School_ID; //Get School_ID 
-			
-			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['D'], 'MM/DD/YYYY'))); //Get Code
-
-			$adept_t3_attendance = array
-			(
-				'Orientation_Day' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['H'], 'MM/DD/YYYY'))),
-				'Site_Visit' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['I'], 'MM/DD/YYYY'))),
-				'GCAT' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['J'], 'MM/DD/YYYY'))),
-				'Day_1' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['K'], 'MM/DD/YYYY'))),
-				'Day_2' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['L'], 'MM/DD/YYYY'))),
-				'Day_3' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['M'], 'MM/DD/YYYY'))),
-				'Day_4' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['N'], 'MM/DD/YYYY'))),
-				'Day_5' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['O'], 'MM/DD/YYYY'))),
-				'Day_6' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY')))
-			);
-			$teacher_professional_reference = array //make this show in the update method...
-			(
-				'teacher_professional_reference.Phone' => $row['F'],
-				'teacher_professional_reference.Email' => $row['G']
-			);
-
-			$subject = "AdEPT";
-			
-			if (!$this->teacher->getTeacherByCode($code))
-			{	
-				$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
-				redirect('dbms');					
-			}
-			$this->teacher->updateTeacherAdeptAttendance($code,$subject,$adept_t3_attendance);
-		}
-
-		if ($counter > 2)
-		{
-			$this->session->set_flashdata('upload_success', 'AdEPT Attendance Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
-			$this->log->addLog('AdEPT T3 Attendance Batch Upload');
-		}
-		else
-		{
-			$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Empty file.');
-		}
-		redirect('dbms');		
-	}*/
 	function upload_adept_T3_attendance()
 	{
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
@@ -1898,46 +1843,34 @@ class Dbms_Controller extends CI_Controller
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 2) continue;
+			if ($counter++ < 3) continue;
 			if ($counter > $highestRow) break;
-
-			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
-			{
-				$school_id = $school->School_ID;
-			} 
-
-			foreach ($this->status->getStatusIDByName($row['G']) as $status) //Get School_ID
-			{
-				$status_id = $status->Status_ID;
-			} 
 			
-			$code = $school_id . substr($row['C'],0,1). substr($row['D'],0,1). substr($row['B'],0,1) . $row['E']; //Get Code
+			$school_id = $this->school->getSchoolIdByCode($row['F'])->School_ID; //Get School_ID 
+			
+			$status_id = $this->status->getStatusIDByName($row['G'])->Status_ID; //Get Status_ID
+			
+			$code = $school_id . substr($row['C'],0,1). substr($row['D'],0,1). substr($row['B'],0,1) . date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['E'], 'MM/DD/YYYY'))); //Get Code
 
-			$tracker = array
+			$t3_tracker = array
 			(
 				'Status_ID' => $status_id,
-				'Remark' => $row['G']
+				't3_tracker.Remarks' => $row['H']
 			);
 
 			$subject = $row['A'];
 			
 			if (!$this->teacher->getTeacherByCode($code))
 			{
-				$teacher['Code'] = $code;
-
-				$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
 					redirect('dbms');					
 			}
-			else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
-			{
-				$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $counter);
-						redirect('dbms');
-			}
+			$this->teacher->updateT3Tracker($code,$subject,$t3_tracker);
 		}
 
-		if ($counter > 2)
+		if ($counter > 3)
 		{
-			$this->session->set_flashdata('upload_success', 'SMP Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+			$this->session->set_flashdata('upload_success', 'SMP Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 3) . ' students added/updated.');
 			$this->log->addLog('SMP Tracker Batch Upload');
 		}
 		else
@@ -1957,27 +1890,23 @@ class Dbms_Controller extends CI_Controller
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 2) continue;
+			if ($counter++ < 3) continue;
 			if ($counter > $highestRow) break;
 
-			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
-			{
-				$school_id = $school->School_ID;
-			} 
-			
-			$code = $school_id . substr($row['C'],0,1). substr($row['D'],0,1). substr($row['B'],0,1) . $row['E']; //Get Code
+			$school_id = $this->school->getSchoolIdByCode($row['F'])->School_ID; //Get School_ID 
+			$code = $school_id . substr($row['C'],0,1). substr($row['D'],0,1). substr($row['B'],0,1) . date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['E'], 'MM/DD/YYYY'))); //Get Code
 
-			$tracker = array
+			$smp_t3_attendance = array
 			(
-				'Time_In?' => $row['G'],
-				'AM_Snack' => $row['H'],
-				'Lunch?' => $row['I'],
-				'PM_Snack?' => $row['J'],
-				'Time_Out?' => $row['K'],
-				'Date' => $row['L']
+				'Time_In' => (bool) strcasecmp($row['G'], 'no'),
+				'AM_Snack' => (bool) strcasecmp($row['H'], 'no'),
+				'Lunch' => (bool) strcasecmp($row['I'], 'no'),
+				'PM_Snack' => (bool) strcasecmp($row['J'], 'no'),
+				'Time_Out' => (bool) strcasecmp($row['K'], 'no'),
+				'Date' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['L'], 'MM/DD/YYYY'))),
 			);
 
-			$event = array
+			$smp_t3_attendance_tracking = array
 			(
 				'Event' => $row['M']
 			);
@@ -1986,22 +1915,18 @@ class Dbms_Controller extends CI_Controller
 			
 			if (!$this->teacher->getTeacherByCode($code))
 			{
-				$teacher['Code'] = $code;
-
 				$this->session->set_flashdata('upload_error', 'SMP Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
 				redirect('dbms');					
 			}
+			
+			$this->teacher->updateTeacherSMPAttendance($code,$subject,$smp_t3_attendance);
+			$this->teacher->updateTeacherSMPAttendanceTracking($code,$subject,$smp_t3_attendance_tracking);
 
-			else if (!$this->teacher->addTeacherSMPAttendance($code,$subject,$tracker) && !$this->teacher->updateTeacherSMPAttendanceEvent($code,$subject,$event) )
-			{
-				$this->session->set_flashdata('upload_error', 'SMP Attendance Tracker upload failed. Invalid data at row ' . $counter);
-				redirect('dbms');
-			}
 		}
 
-		if ($counter > 2)
+		if ($counter > 3)
 		{
-			$this->session->set_flashdata('upload_success', 'SMP Attendance Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+			$this->session->set_flashdata('upload_success', 'SMP Attendance Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 3) . ' students added/updated.');
 			$this->log->addLog('SMP Attendance Batch Upload');
 		}
 		else
@@ -2024,19 +1949,18 @@ class Dbms_Controller extends CI_Controller
 			if ($counter++ < 2) continue;
 			if ($counter > $highestRow) break;
 
-			foreach ($this->school->getSchoolIdByCode($row['F']) as $school) //Get School_ID
-			{ 
-				$school_id = $school->School_ID;
-			}
-			
-			$code = $school_id . substr($row['C'],0,1). substr($row['D'],0,1). substr($row['B'],0,1) . $row['E']; //Get Code
+			$school_id = $this->school->getSchoolIdByCode($row['F'])->School_ID; //Get School_ID 
+			$code = $school_id . substr($row['C'],0,1). substr($row['D'],0,1). substr($row['B'],0,1) . date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['E'], 'MM/DD/YYYY'))); //Get Code
 
-			$stipend = array
+			$stipend_tracking_list = array
+			(
+				'Checked_By' => $row['I'],
+				'Date' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['J'], 'MM/DD/YYYY')))
+			);
+			$stipend_tracking = array
 			(
 				'Amount' => $row['G'],
-				'Claimed?' => $row['H'],
-				'Checked_By' => $row['I'],
-				'Date' => $row['J']
+				'Claimed?' => (bool) strcasecmp($row['H'], 'no'),
 			);
 
 			$subject = $row['A'];
@@ -2090,6 +2014,7 @@ class Dbms_Controller extends CI_Controller
 		}
 		redirect('dbms');
 	}
+
 
 	function upload_gcat_grades()//parang sakto na yung logic pero di pa tested  
 	{

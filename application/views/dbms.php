@@ -543,7 +543,7 @@
 	<?php echo form_close(); ?>
 
 	<?php $attributes = array('id' => 'upload_smp_attendance', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_smp_attendance', $attributes); ?>
-		<input type="file" name="file_smp_attendance" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_smp_tracker').submit();">
+		<input type="file" name="file_smp_attendance" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_smp_attendance').submit();">
 		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_smp_attendance]').click();">Upload T3 SMP Attendance</button>
 	<?php echo form_close(); ?>
 
