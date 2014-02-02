@@ -1518,7 +1518,7 @@ class Dbms_Controller extends CI_Controller
 			// need excel to format in order to get this $code = $school_id . substr($row['E'],0,1). substr($row['F'],0,1). substr($row['D'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY')));
 
 			$grades = array
-			
+			(
 				'Oral' => $row['I'],
 				'Retention' => $row['J'],
 				'Typing' => $row['K'],
@@ -1537,6 +1537,7 @@ class Dbms_Controller extends CI_Controller
 				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $counter);
 				redirect('dbms');
 			}
+		}
 	}
 
 	function upload_adept_student_grades()//comment same sa teacher
@@ -1564,7 +1565,7 @@ class Dbms_Controller extends CI_Controller
 			// need excel to format in order to get this $code = $school_id . substr($row['E'],0,1). substr($row['F'],0,1). substr($row['D'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY')));
 
 			$grades = array
-			
+			(
 				'Oral' => $row['I'],
 				'Retention' => $row['J'],
 				'Typing' => $row['K'],
@@ -1583,9 +1584,10 @@ class Dbms_Controller extends CI_Controller
 				$this->session->set_flashdata('upload_error', 'AdEPT Grades upload failed. Invalid data at row ' . $counter);
 				redirect('dbms');
 			}
+		}
 	}
 
-//teacher//
+	//teacher//
 	function upload_best_adept_product_tracker()
 	{
 		if (!$_FILES)
@@ -1860,62 +1862,6 @@ class Dbms_Controller extends CI_Controller
 		}
 		redirect('dbms');
 	}
-/*function upload_adept_T3_attendance() BACKUP LANG 
-	{
-		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-		$objPHPExcel = $objReader->load($_FILES['file_adept_T3_attendance']['tmp_name']);
-		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
-
-		$counter = 0;
-		foreach ($sheetData as $row)
-		{
-			if ($counter++ < 2) continue;
-			if ($counter > $highestRow) break;
-
-			$school_id = $this->school->getSchoolIdByCode($row['E'])->School_ID; //Get School_ID 
-			
-			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['D'], 'MM/DD/YYYY'))); //Get Code
-
-			$adept_t3_attendance = array
-			(
-				'Orientation_Day' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['H'], 'MM/DD/YYYY'))),
-				'Site_Visit' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['I'], 'MM/DD/YYYY'))),
-				'GCAT' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['J'], 'MM/DD/YYYY'))),
-				'Day_1' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['K'], 'MM/DD/YYYY'))),
-				'Day_2' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['L'], 'MM/DD/YYYY'))),
-				'Day_3' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['M'], 'MM/DD/YYYY'))),
-				'Day_4' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['N'], 'MM/DD/YYYY'))),
-				'Day_5' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['O'], 'MM/DD/YYYY'))),
-				'Day_6' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY')))
-			);
-			$teacher_professional_reference = array //make this show in the update method...
-			(
-				'teacher_professional_reference.Phone' => $row['F'],
-				'teacher_professional_reference.Email' => $row['G']
-			);
-
-			$subject = "AdEPT";
-			
-			if (!$this->teacher->getTeacherByCode($code))
-			{	
-				$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
-				redirect('dbms');					
-			}
-			$this->teacher->updateTeacherAdeptAttendance($code,$subject,$adept_t3_attendance);
-		}
-
-		if ($counter > 2)
-		{
-			$this->session->set_flashdata('upload_success', 'AdEPT Attendance Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
-			$this->log->addLog('AdEPT T3 Attendance Batch Upload');
-		}
-		else
-		{
-			$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Empty file.');
-		}
-		redirect('dbms');		
-	}*/
 	function upload_adept_T3_attendance()
 	{
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
@@ -2267,7 +2213,7 @@ class Dbms_Controller extends CI_Controller
 			// need excel to format in order to get this $code = $school_id . substr($row['E'],0,1). substr($row['F'],0,1). substr($row['D'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY')));
 
 			$grades = array
-			
+			(
 				'Oral' => $row['I'],
 				'Retention' => $row['J'],
 				'Typing' => $row['K'],
@@ -2325,7 +2271,7 @@ class Dbms_Controller extends CI_Controller
 			// need excel to format in order to get this $code = $school_id . substr($row['E'],0,1). substr($row['F'],0,1). substr($row['D'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY')));
 
 			$grades = array
-			
+			(
 				'Oral' => $row['I'],
 				'Retention' => $row['J'],
 				'Typing' => $row['K'],

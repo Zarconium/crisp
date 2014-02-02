@@ -950,7 +950,7 @@
 							<span class="help-block">Please check all that applies.</span>
 
 							<div class="form-group">
-								<input type="checkbox" name="time_in" value="yes">
+								<input type="checkbox" name="time_in" value="yes" checked="checked">
 								<label> Time In </label>
 							</div>
 
