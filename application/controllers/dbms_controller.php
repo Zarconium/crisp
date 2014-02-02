@@ -2058,7 +2058,7 @@ class Dbms_Controller extends CI_Controller
 
 			$school_id = $this->school->getSchoolIdByCode($row['H']); //Get School_ID
 			
-			$code = $school_id . substr($row['H'],0,1). substr($row['F'],0,1). substr($row['D'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY'))); //Get Code
+			$code = $school_id . substr($row['E'],0,1). substr($row['F'],0,1). substr($row['D'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY'))); //Get Code
 
 			$grades = array
 			(
@@ -2077,10 +2077,12 @@ class Dbms_Controller extends CI_Controller
 			);
 
 			$subject = $row['J'];
+
+			$tracker = $row['A'];
 			
 			if (!$this->teacher->getTeacherByCode($code))
 			{
-				$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Invalid data at row ' . $counter . '. Teacher already exists');
+				$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exists');
 				redirect('dbms');					
 			}
 			else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
