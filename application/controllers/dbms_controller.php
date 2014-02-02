@@ -1922,6 +1922,10 @@ class Dbms_Controller extends CI_Controller
 	}
 	function upload_adept_T3_attendance()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_adept_T3_attendance']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
@@ -1979,6 +1983,10 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_smp_tracker()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_smp_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
@@ -2026,6 +2034,10 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_smp_attendance()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_smp_attendance']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
@@ -2082,6 +2094,10 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_stipend_process_tracker()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_stipend_process_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
@@ -2090,7 +2106,7 @@ class Dbms_Controller extends CI_Controller
 		$counter = 0;
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 2) continue;
+			if ($counter++ < 3) continue;
 			if ($counter > $highestRow) break;
 
 			$school_id = $this->school->getSchoolIdByCode($row['F'])->School_ID; //Get School_ID 
@@ -2104,52 +2120,25 @@ class Dbms_Controller extends CI_Controller
 			$stipend_tracking = array
 			(
 				'Amount' => $row['G'],
-				'Claimed?' => (bool) strcasecmp($row['H'], 'no'),
+				'Claimed' => (bool) strcasecmp($row['H'], 'no')
 			);
 
 			$subject = $row['A'];
-		
-			if($row['K'] == "Yes")
+			
+			if (!$this->teacher->getTeacherByCode($code))
 			{
-				if ($this->student->getTeacherByCode($code))
-				{
-					$teacher['Code'] = $code;
-
-					if (!$this->student->addStipendTracker($code, $subject, $stipend))
-					{
-						$this->session->set_flashdata('upload_error', 'Teacher Stipdend Tracker upload failed. Invalid data at row ' . $counter);
-						redirect('dbms');
-					}
-
-					else
-					{
-						$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
-						redirect('dbms');
-					}
-											
-				}
+				$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
+				redirect('dbms');					
 			}
-			else if ($this->student->getTeacherByCode($code))
-			{
-				$teacher['Code'] = $code;
-
-				if (!$this->student->updateStipendTracker($code, $subject, $stipend))
-				{
-					$this->session->set_flashdata('upload_error', 'Teacher Stipdend Tracker upload failed. Invalid data at row ' . $counter);
-					redirect('dbms');
-				}
-
-				else
-				{
-					$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
-					redirect('dbms');
-				}
-			}
+			
+			$this->teacher->updateStipendTrackingList($code, $subject, $stipend_tracking_list);
+			
+			$this->teacher->updateStipendTracking($code, $subject, $stipend_tracking);
 		}
 
-		if ($counter > 2)
+		if ($counter > 3)
 		{
-			$this->session->set_flashdata('upload_success', 'Teacher Stipend Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+			$this->session->set_flashdata('upload_success', 'Teacher Stipend Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 3) . ' Teacher added/updated.');
 			$this->log->addLog('Stipend Process Tracker Batch Upload');
 		}
 		else

@@ -123,8 +123,8 @@ Class Student extends CI_Model
 	function getAdeptStudentByStudentId($id)
 	{
 		$this->db->select('*');
-		$this->db->from('adept_student')
-		$this->db->where('Student_ID', $id)
+		$this->db->from('adept_student');
+		$this->db->where('Student_ID', $id);
 		$this->db->limit(1);
 		
 		$query = $this->db->get();

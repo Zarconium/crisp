@@ -372,6 +372,7 @@ Class Teacher extends CI_Model
 		$this->db->where('Teacher.Code', $code);
 		$this->db->where('Subject.Subject_Code', $subject);
 		$this->db->update('best_t3_tracker JOIN t3_tracker ON best_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID JOIN subject ON t3_tracker.Subject_ID = subject.Subject_ID JOIN teacher_t3_tracker ON t3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID JOIN teacher ON teacher_t3_tracker.Teacher_ID = teacher.Teacher_ID');
+		return $this->db->affected_rows();
 	}
 
 	function updateAdeptT3Tracker($code,$subject,$adept_t3_tracker)
@@ -380,6 +381,8 @@ Class Teacher extends CI_Model
 		$this->db->where('Teacher.Code', $code);
 		$this->db->where('Subject.Subject_Code', $subject);
 		$this->db->update('adept_t3_tracker JOIN t3_tracker ON adept_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID JOIN subject ON t3_tracker.Subject_ID = subject.Subject_ID JOIN teacher_t3_tracker ON t3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID JOIN teacher ON teacher_t3_tracker.Teacher_ID = teacher.Teacher_ID');
+
+		return $this->db->affected_rows();
 	}
 
 	function updateTeacherProfessionalReference($code,$subject,$teacher_professional_reference)
@@ -392,6 +395,8 @@ Class Teacher extends CI_Model
 			JOIN teacher_t3_tracker ON teacher.Teacher_ID = teacher_t3_tracker.Teacher_ID 
 			JOIN t3_tracker ON teacher_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID 
 			JOIN subject ON t3_tracker.Subject_ID = subject.Subject_ID');
+
+		return $this->db->affected_rows();
 	}
 
 	function updateT3Tracker($code,$subject,$t3_tracker)
@@ -504,7 +509,7 @@ Class Teacher extends CI_Model
 		return $this->db->affected_rows();
 	}
 
-	function updateStipend($code, $subject, $stipend)
+	function updateStipendTrackingList($code, $subject, $stipend_tracking_list)
 	{
 		/*$this->db->join('Stipend_Tracking_List', 'Stipend_Tracking_List.Teacher_ID = Teacher.Teacher_ID');
 		$this->db->join('Stipend_Tracking', 'Stipend_Tracking.Stipend_Tracking_ID = Stipend_Tracking_List.Stipend_Tracking_ID');
@@ -513,12 +518,19 @@ Class Teacher extends CI_Model
 		$this->db->update('Stipend_Tracking', $stipend);*/
 
 //new
-		$this->db->set($stipend);
+		$this->db->set($stipend_tracking_list);
 		$this->db->where('Teacher.Code', $code);
 		$this->db->where('Subject.Subject_Code', $subject);
-		$this->db->update('Stipend_Tracking
-			JOIN Stipend_Tracking_List ON Stipend_Tracking_List.Teacher_ID = Teacher.Teacher_ID 
-			JOIN Stipend_Tracking ON Stipend_Tracking.Stipend_Tracking_ID = Stipend_Tracking_List.Stipend_Tracking_ID');
+		$this->db->update('stipend_tracking_list JOIN subject ON stipend_tracking_list.Subject_ID = subject.Subject_ID JOIN stipend_tracking ON stipend_tracking_list.Stipend_Tracking_ID = stipend_tracking.Stipend_Tracking_ID JOIN teacher ON stipend_tracking.teacher_ID = teacher.Teacher_ID');
+
+		return $this->db->affected_rows();
+	}
+	function updateStipendTracking($code, $subject, $stipend_tracking)
+	{
+		$this->db->set($stipend_tracking);
+		$this->db->where('Teacher.Code', $code);
+		$this->db->where('Subject.Subject_Code', $subject);
+		$this->db->update('stipend_tracking JOIN stipend_tracking_list ON stipend_tracking.Stipend_Tracking_ID = stipend_tracking_list.Stipend_Tracking_ID JOIN subject ON stipend_tracking_list.Subject_ID = subject.Subject_ID JOIN teacher ON stipend_tracking.teacher_ID = teacher.Teacher_ID');
 
 		return $this->db->affected_rows();
 	}

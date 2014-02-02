@@ -548,7 +548,7 @@
 	<?php echo form_close(); ?>
 
 	<?php $attributes = array('id' => 'upload_stipend_process_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_stipend_process_tracker', $attributes); ?>
-		<input type="file" name="file_stipend_process_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_smp_tracker').submit();">
+		<input type="file" name="file_stipend_process_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_stipend_process_tracker').submit();">
 		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_stipend_process_tracker]').click();">Upload Stipend Process Tracker</button>
 	<?php echo form_close(); ?>
 
