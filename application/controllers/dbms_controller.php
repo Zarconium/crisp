@@ -78,7 +78,14 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['teacher'] = $this->teacher->getTeacherById($id);
-		$this->log->addLog('Updated Teacher Profile');
+		$data['training_experiences'] = $this->teacher->getTrainingExperiencesByTeacherId($id);
+		$data['certifications'] = $this->teacher->getCertificationsByTeacherId($id);
+		$data['awards'] = $this->teacher->getAwardsByTeacherId($id);
+		$data['relevant_experiences'] = $this->teacher->getRelevantExperiencesByTeacherId($id);
+		$data['professional_references'] = $this->teacher->getProfessionalReferencesByTeacherId($id);
+		$data['affiliation_to_organizations'] = $this->teacher->getAffiliationToOrganizationsByTeacherId($id);
+
+		// $this->log->addLog('Updated Teacher Profile');
 
 		$this->load->view('header');
 		$this->load->view('forms/form-teacher-profile', $data);
@@ -1519,7 +1526,7 @@ class Dbms_Controller extends CI_Controller
 			$tracker = array
 			(
 				'Control_Number' => $row['G'],
-				'Username' => $row['H']
+				'User_Name' => $row['H']
 			);
 
 			$subject = $row['A'];
@@ -1529,11 +1536,7 @@ class Dbms_Controller extends CI_Controller
 				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
 				redirect('dbms');					
 			}
-			else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
-			{
-				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter);
-				redirect('dbms');
-			}
+			$this->teacher->updateTeacherTracker($code,$subject,$tracker);
 		}
 
 		if ($counter > 2)
@@ -1575,18 +1578,17 @@ class Dbms_Controller extends CI_Controller
 			(
 				//best tracker
 				
-				'best_t3_tracker.Interview_Form' =>  (bool) strcasecmp($row['H'], 'no'),
-				'best_t3_tracker.Site_Visit_Form' =>  (bool) strcasecmp($row['I'], 'no'),
-				'best_t3_tracker.BEST_T3_Feedback' =>  (bool) strcasecmp($row['K'], 'no'),
-				'best_t3_tracker.BEST_ELearning_Feedback' =>  (bool) strcasecmp($row['J'], 'no'),
-				'best_t3_tracker.Best_CD' =>  (bool) strcasecmp($row['L'], 'no'),
-				'best_t3_tracker.Certificate_Of_Attendance' =>  (bool) strcasecmp($row['M'], 'no'),
-				'best_t3_tracker.Best_Certified_Trainers' =>  (bool) strcasecmp($row['N'], 'no'),
-				'best_t3_tracker.Task_1' => $row['O'],
-				'best_t3_tracker.Task_2' => $row['P'],
-				'best_t3_tracker.Task_3' => $row['Q'],
-				'best_t3_tracker.Task_4' => $row['R'],
-				'Status_ID' => $status_id
+				'Interview_Form' =>  (bool) strcasecmp($row['H'], 'no'),
+				'Site_Visit_Form' =>  (bool) strcasecmp($row['I'], 'no'),
+				'BEST_T3_Feedback' =>  (bool) strcasecmp($row['K'], 'no'),
+				'BEST_ELearning_Feedback' =>  (bool) strcasecmp($row['J'], 'no'),
+				'Best_CD' =>  (bool) strcasecmp($row['L'], 'no'),
+				'Certificate_Of_Attendance' =>  (bool) strcasecmp($row['M'], 'no'),
+				'Best_Certified_Trainers' =>  (bool) strcasecmp($row['N'], 'no'),
+				'Task_1' => $row['O'],
+				'Task_2' => $row['P'],
+				'Task_3' => $row['Q'],
+				'Task_4' => $row['R']
 			);
 
 			$teacher = array
@@ -1599,7 +1601,8 @@ class Dbms_Controller extends CI_Controller
 			(
 				//break t3_tracker
 				't3_tracker.Contract' => (bool) strcasecmp($row['G'], 'no'),
-				't3_tracker.Remarks' => $row['T']
+				't3_tracker.Remarks' => $row['T'],
+				'Status_ID' => $status_id
 			);
 
 			$subject = "BEST";
@@ -1610,11 +1613,14 @@ class Dbms_Controller extends CI_Controller
 				redirect('dbms');					
 			}
 
-			else if (!$this->teacher->updateTeacherTracker($code,$subject,$best_t3_tracker,$teacher,$t3_tracker))
+		/*	if (!$this->teacher->updateTeacherTracker($code,$subject,$t3_tracker))
 			{
 				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter);
 				redirect('dbms');
-			}
+			}*/
+			$this->teacher->updateBestT3Tracker($code,$subject,$best_t3_tracker);
+			$this->teacher->updateTeacherByCode($code, $teacher);
+			$this->teacher->updateT3Tracker($code,$subject,$t3_tracker);
 		}
 
 		if ($counter > 2)
@@ -1650,7 +1656,7 @@ class Dbms_Controller extends CI_Controller
 			
 			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['D'], 'MM/DD/YYYY'))); //Get Code
 
-			$tracker = array
+			$best_t3_attendance = array
 			(
 				'Orientation_Day' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['H'], 'MM/DD/YYYY'))),
 				'Site_Visit' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['I'], 'MM/DD/YYYY'))),
@@ -1665,21 +1671,16 @@ class Dbms_Controller extends CI_Controller
 				'teacher_professional_reference.Email' => $row['G']
 			);
 			
-			
-
-
+		
 			$subject = "BEST";
 			
 			if (!$this->teacher->getTeacherByCode($code))
 			{
-				$this->session->set_flashdata('upload_error', 'BEST Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exists');
+				$this->session->set_flashdata('upload_error', 'BEST Attendance Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
 				redirect('dbms');					
 			}
-			else if (!$this->teacher->updateBestTeacherAttendance($code,$subject,$tracker))
-			{
-				$this->session->set_flashdata('upload_error', 'BEST Attendance Tracker upload failed. Invalid data at row ' . $counter);
-				redirect('dbms');
-			}
+			$this->teacher->updateTeacherBestAttendance($code,$subject,$best_t3_attendance);
+			$this->teacher->updateTeacherProfessionalReference($code,$subject,$teacher_professional_reference);
 		}
 
 		if ($counter > 2)
@@ -1716,33 +1717,35 @@ class Dbms_Controller extends CI_Controller
 	 
 			$status_id = $this->status->getStatusIDByName($row['S'])->Status_ID; //Get Status_ID
 
-			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) .date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['E'], 'MM/DD/YYYY'))); //Get Code
+			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) .date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['E'], 'MM/DD/YYYY'))); //Get Code
 
 			$teacher = array
 			(	
 				'teacher.Civil_Status' => $row['F'], //teacher tab
-				'teacher.Remarks' => $row['T']//t3_tracker
+				
 			);
 
 			$t3_tracker = array
 			(
-				't3_tracker.Contract?' =>  (bool) strcasecmp($row['G'], 'no'), //t3_tracker *
+				't3_tracker.Remarks' => $row['T'],//t3_tracker
+				't3_tracker.Contract' =>  (bool) strcasecmp($row['G'], 'no'), //t3_tracker *
+				'Status_ID' => $status_id
 			);
 			
 			$adept_t3_tracker = array
 			(
-				'adept_t3_tracker.Interview_Form?' =>  (bool) strcasecmp($row['H'], 'no'),
-				'adept_t3_tracker.Site_Visit_Form?' =>  (bool) strcasecmp($row['I'], 'no'),
-				'adept_t3_tracker.Adept_E-Learning_Feedback' =>  (bool) strcasecmp($row['J'], 'no'),
-				'adept_t3_tracker.Adept_T3_Feedback?' =>  (bool) strcasecmp($row['K'], 'no'),
+				'adept_t3_tracker.Interview_Form' =>  (bool) strcasecmp($row['H'], 'no'),
+				'adept_t3_tracker.Site_Visit_Form' =>  (bool) strcasecmp($row['I'], 'no'),
+				'adept_t3_tracker.Adept_ELearning_Feedback' =>  (bool) strcasecmp($row['J'], 'no'),
+				'adept_t3_tracker.Adept_T3_Feedback' =>  (bool) strcasecmp($row['K'], 'no'),
 				'adept_t3_tracker.Manual_&_kit' =>  (bool) strcasecmp($row['L'], 'no'),
-				'adept_t3_tracker.Certificate_of_Attendance' =>  (bool) strcasecmp($row['M'], 'no'),
+				'adept_t3_tracker.Certificate_Of_Attendance' =>  (bool) strcasecmp($row['M'], 'no'),
 				'adept_t3_tracker.Adept_Certified_Trainers' =>  (bool) strcasecmp($row['N'], 'no'), //*
 				'adept_t3_tracker.Lesson_Plan' => $row['O'],
 				'adept_t3_tracker.Demo' => $row['P'],
 				'adept_t3_tracker.Total_Weighted' => $row['Q'],
-				'adept_t3_tracker.Training_Portofolio' => $row['R'],//adept_t3_tracker till here
-				'Status_ID' => $status_id,
+				'adept_t3_tracker.Training_Portfolio' => $row['R']//adept_t3_tracker till here
+				
 			);
 				
 
@@ -1751,15 +1754,14 @@ class Dbms_Controller extends CI_Controller
 			
 			if (!$this->teacher->getTeacherByCode($code))
 			{
-				$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
+				$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
 				redirect('dbms');					
 			}
 
-			else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
-			{
-				$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $counter);
-				redirect('dbms');
-			}
+			$this->teacher->updateAdeptT3Tracker($code,$subject,$adept_t3_tracker);
+			$this->teacher->updateTeacherByCode($code, $teacher);
+			$this->teacher->updateT3Tracker($code,$subject,$t3_tracker);
+			
 		}
 
 		if ($counter > 2)
@@ -1773,11 +1775,10 @@ class Dbms_Controller extends CI_Controller
 		}
 		redirect('dbms');
 	}
-
-	function upload_adept_T3_attendance()
+/*function upload_adept_T3_attendance() BACKUP LANG 
 	{
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-		$objPHPExcel = $objReader->load($_FILES['file_adept_t3_attendance']['tmp_name']);
+		$objPHPExcel = $objReader->load($_FILES['file_adept_T3_attendance']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
@@ -1787,45 +1788,97 @@ class Dbms_Controller extends CI_Controller
 			if ($counter++ < 2) continue;
 			if ($counter > $highestRow) break;
 
-			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
-			{
-				$school_id = $school->School_ID;
-			} 
+			$school_id = $this->school->getSchoolIdByCode($row['E'])->School_ID; //Get School_ID 
 			
-			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . $row['D']; //Get Code
+			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['D'], 'MM/DD/YYYY'))); //Get Code
 
-			$tracker = array
+			$adept_t3_attendance = array
 			(
-				'Orientation_Day' => $row['H'],
-				'Site_Visit' => $row['I'],
-				'GCAT' => $row['J'],
-				'Day_1' => $row['K'],
-				'Day_2' => $row['L'],
-				'Day_3' => $row['M'],
-				'Day_4' => $row['N'],
-				'Day_5' => $row['O'],
-				'Day_6' => $row['P']
+				'Orientation_Day' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['H'], 'MM/DD/YYYY'))),
+				'Site_Visit' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['I'], 'MM/DD/YYYY'))),
+				'GCAT' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['J'], 'MM/DD/YYYY'))),
+				'Day_1' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['K'], 'MM/DD/YYYY'))),
+				'Day_2' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['L'], 'MM/DD/YYYY'))),
+				'Day_3' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['M'], 'MM/DD/YYYY'))),
+				'Day_4' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['N'], 'MM/DD/YYYY'))),
+				'Day_5' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['O'], 'MM/DD/YYYY'))),
+				'Day_6' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY')))
+			);
+			$teacher_professional_reference = array //make this show in the update method...
+			(
+				'teacher_professional_reference.Phone' => $row['F'],
+				'teacher_professional_reference.Email' => $row['G']
 			);
 
 			$subject = "AdEPT";
 			
 			if (!$this->teacher->getTeacherByCode($code))
-			{
-				$teacher['Code'] = $code;
-
-				$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+			{	
+				$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
 				redirect('dbms');					
 			}
-			else if (!$this->teacher->updateAdeptTeacherAttendance($code,$subject,$tracker))
-			{
-				$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter);
-				redirect('dbms');
-			}
+			$this->teacher->updateTeacherAdeptAttendance($code,$subject,$adept_t3_attendance);
 		}
 
 		if ($counter > 2)
 		{
-			$this->session->set_flashdata('upload_success', 'AdEPT Attendance Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+			$this->session->set_flashdata('upload_success', 'AdEPT Attendance Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
+			$this->log->addLog('AdEPT T3 Attendance Batch Upload');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Empty file.');
+		}
+		redirect('dbms');		
+	}*/
+	function upload_adept_T3_attendance()
+	{
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_adept_T3_attendance']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 2) continue;
+			if ($counter > $highestRow) break;
+
+			$school_id = $this->school->getSchoolIdByCode($row['E'])->School_ID; //Get School_ID 
+			
+			$code = $school_id . substr($row['B'],0,1). substr($row['C'],0,1). substr($row['A'],0,1) . date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['D'], 'MM/DD/YYYY'))); //Get Code
+
+			$adept_t3_attendance = array
+			(
+				'Orientation_Day' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['H'], 'MM/DD/YYYY'))),
+				'Site_Visit' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['I'], 'MM/DD/YYYY'))),
+				'GCAT' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['J'], 'MM/DD/YYYY'))),
+				'Day_1' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['K'], 'MM/DD/YYYY'))),
+				'Day_2' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['L'], 'MM/DD/YYYY'))),
+				'Day_3' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['M'], 'MM/DD/YYYY'))),
+				'Day_4' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['N'], 'MM/DD/YYYY'))),
+				'Day_5' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['O'], 'MM/DD/YYYY'))),
+				'Day_6' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY')))
+			);
+			$teacher_professional_reference = array //make this show in the update method...
+			(
+				'teacher_professional_reference.Phone' => $row['F'],
+				'teacher_professional_reference.Email' => $row['G']
+			);
+
+			$subject = "AdEPT";
+			
+			if (!$this->teacher->getTeacherByCode($code))
+			{	
+				$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
+				redirect('dbms');					
+			}
+			$this->teacher->updateTeacherAdeptAttendance($code,$subject,$adept_t3_attendance);
+		}
+
+		if ($counter > 2)
+		{
+			$this->session->set_flashdata('upload_success', 'AdEPT Attendance Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
 			$this->log->addLog('AdEPT T3 Attendance Batch Upload');
 		}
 		else

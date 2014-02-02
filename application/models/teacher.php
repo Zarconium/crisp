@@ -101,6 +101,114 @@ Class Teacher extends CI_Model
 		}
 	}
 
+	function getTrainingExperiencesByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('teacher_training_experience');
+		$this->db->where('Teacher_ID', $id);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getCertificationsByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('teacher_certification');
+		$this->db->where('Teacher_ID', $id);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAwardsByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('teacher_awards');
+		$this->db->where('Teacher_ID', $id);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getRelevantExperiencesByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('teacher_relevant_experiences');
+		$this->db->where('Teacher_ID', $id);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getProfessionalReferencesByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('teacher_professional_reference');
+		$this->db->where('Teacher_ID', $id);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAffiliationToOrganizationsByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('teacher_affiliation_to_organization');
+		$this->db->where('Teacher_ID', $id);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function addTeacher($data)
 	{
 		$this->db->insert('teacher', $data);
@@ -157,6 +265,34 @@ Class Teacher extends CI_Model
 		return $this->db->delete('teacher');
 	}
 
+	function updateBestT3Tracker($code,$subject,$best_t3_tracker)
+	{
+		$this->db->set($best_t3_tracker);
+		$this->db->where('Teacher.Code', $code);
+		$this->db->where('Subject.Subject_Code', $subject);
+		$this->db->update('best_t3_tracker JOIN t3_tracker ON best_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID JOIN subject ON t3_tracker.Subject_ID = subject.Subject_ID JOIN teacher_t3_tracker ON t3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID JOIN teacher ON teacher_t3_tracker.Teacher_ID = teacher.Teacher_ID');
+	}
+
+	function updateAdeptT3Tracker($code,$subject,$adept_t3_tracker)
+	{
+		$this->db->set($adept_t3_tracker);
+		$this->db->where('Teacher.Code', $code);
+		$this->db->where('Subject.Subject_Code', $subject);
+		$this->db->update('adept_t3_tracker JOIN t3_tracker ON adept_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID JOIN subject ON t3_tracker.Subject_ID = subject.Subject_ID JOIN teacher_t3_tracker ON t3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID JOIN teacher ON teacher_t3_tracker.Teacher_ID = teacher.Teacher_ID');
+	}
+
+	function updateTeacherProfessionalReference($code,$subject,$teacher_professional_reference)
+	{
+		$this->db->set($teacher_professional_reference);
+		$this->db->where('Teacher.Code', $code);
+		$this->db->where('Subject.Subject_Code', $subject);
+		$this->db->update('teacher_professional_reference 
+			JOIN teacher ON teacher_professional_reference.Teacher_ID = teacher.Teacher_ID 
+			JOIN teacher_t3_tracker ON teacher.Teacher_ID = teacher_t3_tracker.Teacher_ID 
+			JOIN t3_tracker ON teacher_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID 
+			JOIN subject ON t3_tracker.Subject_ID = subject.Subject_ID');
+	}
+
 	function updateT3Tracker($code,$subject,$t3_tracker)
 	{
 
@@ -171,11 +307,7 @@ Class Teacher extends CI_Model
 		$this->db->set($t3_tracker);
 		$this->db->where('Teacher.Code', $code);
 		$this->db->where('Subject.Subject_Code', $subject);
-		$this->db->update('t3_tracker 
-			JOIN best_t3_tracker ON t3_tracker.T3_Tracker_ID = best_t3_tracker.T3_Tracker_ID
-			JOIN teacher_t3_tracker ON teacher_t3_tracker.T3_Tracker_ID = T3_tracker.T3_Tracker_ID 
-			JOIN teacher ON teacher.teacher_ID = teacher_t3_tracker.Teacher_ID 
-			JOIN subject ON t3_tracker.Subject_ID = subject.Subject_ID');
+		$this->db->update('t3_tracker JOIN teacher_t3_tracker ON teacher_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID JOIN teacher ON teacher.teacher_ID = teacher_t3_tracker.Teacher_ID JOIN subject ON t3_tracker.Subject_ID = subject.Subject_ID');
 		
 		return $this->db->affected_rows();
 	}
@@ -202,7 +334,7 @@ Class Teacher extends CI_Model
 		return $this->db->affected_rows();
 	}
 
-	function updateTeacherAdeptAttendance($code,$subject,$tracker)
+	function updateTeacherAdeptAttendance($code,$subject,$adept_t3_attendance)
 	{
 		/*$this->db->join('teacher_t3_tracker', 'teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID');
 		$this->db->join('teacher', 'teacher.teacher_ID = teacher_t3_tracker.Teacher_ID', 'left');
@@ -213,20 +345,15 @@ Class Teacher extends CI_Model
 		$this->db->where('Subject.Subject_Code = "'.$subject.'"');
 		$this->db->update('Adept_T3_Attendance', $tracker); */
 //new
-		$this->db->set($tracker);
+		$this->db->set($adept_t3_attendance);
 		$this->db->where('Teacher.Code', $code);
 		$this->db->where('Subject.Subject_Code', $subject);
-		$this->db->update('adept_t3_attendance
-			JOIN teacher_t3_tracker ON teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID 
-			JOIN teacher ON teacher.teacher_ID = teacher_t3_tracker.Teacher_ID
-			JOIN Adept_T3_Tracker ON Adept_T3_Tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID
-			JOIN Adept_T3_Attendance ON Adept_T3_Attendance.Adept_T3_Attendance_ID = Adept_T3_Tracker.Adept_T3_Attendance_ID
-			JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
+		$this->db->update('adept_t3_attendance JOIN adept_t3_tracker ON adept_t3_attendance.Adept_T3_Attendance_ID = adept_t3_tracker.Adept_T3_Attendance_ID JOIN t3_tracker ON adept_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID JOIN teacher_t3_tracker ON t3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID JOIN teacher ON teacher.teacher_ID = teacher_t3_tracker.Teacher_ID JOIN subject ON t3_tracker.Subject_ID = subject.Subject_ID');
 
 		return $this->db->affected_rows();
 	}
 
-	function updateTeacherBestAttendance($code,$subject,$tracker)
+	function updateTeacherBestAttendance($code,$subject,$best_t3_attendance)
 	{
 		/*$this->db->join('teacher_t3_tracker', 'teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID');
 		$this->db->join('teacher', 'teacher.teacher_ID = teacher_t3_tracker.Teacher_ID', 'left');
@@ -237,15 +364,10 @@ Class Teacher extends CI_Model
 		$this->db->where('Subject.Subject_Code = $subject');
 		$this->db->update('Best_T3_Attendance', $tracker);*/
 //new
-		$this->db->set($tracker);
+		$this->db->set($best_t3_attendance);
 		$this->db->where('Teacher.Code', $code);
 		$this->db->where('Subject.Subject_Code', $subject);
-		$this->db->update('best_t3_attendance
-			JOIN teacher_t3_tracker ON teacher_t3_tracker.Tracker_ID = T3_tracker.Tracker_ID
-			JOIN teacher ON teacher.teacher_ID = teacher_t3_tracker.Teacher_ID
-			JOIN Best_T3_Tracker ON Best_T3_Tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID
-			JOIN Best_T3_Attendance ON Best_T3_Attendance.Best_T3_Attendance_ID = Best_T3_Tracker.Best_T3_Attendance_ID
-			JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
+		$this->db->update('best_t3_attendance JOIN best_t3_tracker ON best_t3_attendance.Best_T3_Attendance_ID = best_t3_tracker.Best_T3_Attendance_ID JOIN t3_tracker ON best_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID JOIN teacher_t3_tracker ON t3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID JOIN teacher ON teacher.teacher_ID = teacher_t3_tracker.Teacher_ID JOIN subject ON t3_tracker.Subject_ID = subject.Subject_ID');
 
 		return $this->db->affected_rows();
 	}
