@@ -2038,7 +2038,7 @@ class Dbms_Controller extends CI_Controller
 		redirect('dbms');
 	}
 
-	function upload_gcat_grades()//not yet checked 
+	function upload_gcat_grades()//parang sakto na yung logic pero di pa tested  
 	{
 		if (!$_FILES)
 		{
