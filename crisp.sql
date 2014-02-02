@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2014 at 03:08 PM
+-- Generation Time: Feb 02, 2014 at 04:52 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -31,6 +31,12 @@ CREATE TABLE IF NOT EXISTS `adept_student` (
   `Control_Number` varchar(5) DEFAULT NULL,
   `Username` varchar(45) DEFAULT NULL,
   `CD` tinyint(1) DEFAULT NULL,
+  `Oral` decimal(10,0) DEFAULT NULL,
+  `Retention` decimal(10,0) DEFAULT NULL,
+  `Typing` decimal(10,0) DEFAULT NULL,
+  `Grammar` decimal(10,0) DEFAULT NULL,
+  `Comprehension` decimal(10,0) DEFAULT NULL,
+  `Summary_Scores` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`Tracker_ID`),
   UNIQUE KEY `Tracker_ID_UNIQUE` (`Tracker_ID`),
   UNIQUE KEY `Control_Number_UNIQUE` (`Control_Number`),
@@ -41,9 +47,9 @@ CREATE TABLE IF NOT EXISTS `adept_student` (
 -- Dumping data for table `adept_student`
 --
 
-INSERT INTO `adept_student` (`Tracker_ID`, `Control_Number`, `Username`, `CD`) VALUES
-(3, '2312', 'ara12', NULL),
-(4, '12312', 'joy32', NULL);
+INSERT INTO `adept_student` (`Tracker_ID`, `Control_Number`, `Username`, `CD`, `Oral`, `Retention`, `Typing`, `Grammar`, `Comprehension`, `Summary_Scores`) VALUES
+(3, '2312', 'ara12', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, '12312', 'joy32', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -94,7 +100,15 @@ CREATE TABLE IF NOT EXISTS `adept_t3_grades` (
   `Summary_Scores` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`Adept_T3_Grades_ID`),
   UNIQUE KEY `Adept_T3_Grades_ID_UNIQUE` (`Adept_T3_Grades_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `adept_t3_grades`
+--
+
+INSERT INTO `adept_t3_grades` (`Adept_T3_Grades_ID`, `Oral`, `Retention`, `Typing`, `Grammar`, `Comprehension`, `Summary_Scores`) VALUES
+(1, '4', '5', '8', '7', '4', '7'),
+(2, '8', '5', '5', '9', '3', '6');
 
 -- --------------------------------------------------------
 
@@ -123,8 +137,8 @@ CREATE TABLE IF NOT EXISTS `adept_t3_tracker` (
   UNIQUE KEY `T3_Tracker_ID_UNIQUE` (`T3_Tracker_ID`),
   UNIQUE KEY `Control_Number_UNIQUE` (`Control_Number`),
   UNIQUE KEY `User_Name_UNIQUE` (`User_Name`),
-  KEY `fk_Adept_T3_Tracker_copy1_Adept_T3_Grades1_idx` (`Adept_T3_Grades_ID`),
-  KEY `fk_Adept_T3_Tracker_copy1_Adept_T3_Attendance1_idx` (`Adept_T3_Attendance_ID`),
+  KEY `fk_Adept_T3_Tracker_Adept_T3_Grades1_idx` (`Adept_T3_Grades_ID`),
+  KEY `fk_Adept_T3_Tracker_Adept_T3_Attendance1_idx` (`Adept_T3_Attendance_ID`),
   KEY `fk_Adept_T3_Tracker_Teacher_Tracker1_idx` (`T3_Tracker_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
@@ -201,6 +215,12 @@ CREATE TABLE IF NOT EXISTS `best_student` (
   `Control_Number` varchar(5) DEFAULT NULL,
   `Username` varchar(45) DEFAULT NULL,
   `CD` tinyint(1) DEFAULT NULL,
+  `Oral` decimal(10,0) DEFAULT NULL,
+  `Retention` decimal(10,0) DEFAULT NULL,
+  `Typing` decimal(10,0) DEFAULT NULL,
+  `Grammar` decimal(10,0) DEFAULT NULL,
+  `Comprehension` decimal(10,0) DEFAULT NULL,
+  `Summary_Scores` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`Tracker_ID`),
   UNIQUE KEY `Tracker_ID_UNIQUE` (`Tracker_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
@@ -209,9 +229,9 @@ CREATE TABLE IF NOT EXISTS `best_student` (
 -- Dumping data for table `best_student`
 --
 
-INSERT INTO `best_student` (`Tracker_ID`, `Control_Number`, `Username`, `CD`) VALUES
-(1, '12341', 'jpphil', NULL),
-(2, '54321', 'mac01', NULL);
+INSERT INTO `best_student` (`Tracker_ID`, `Control_Number`, `Username`, `CD`, `Oral`, `Retention`, `Typing`, `Grammar`, `Comprehension`, `Summary_Scores`) VALUES
+(1, '12341', 'jpphil', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, '54321', 'mac01', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -258,7 +278,15 @@ CREATE TABLE IF NOT EXISTS `best_t3_grades` (
   `Summary_Scores` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`Best_T3_Grades_ID`),
   UNIQUE KEY `Best_T3_Grades_ID_UNIQUE` (`Best_T3_Grades_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `best_t3_grades`
+--
+
+INSERT INTO `best_t3_grades` (`Best_T3_Grades_ID`, `Oral`, `Typing`, `Retention`, `Grammar`, `Comprehension`, `Summary_Scores`) VALUES
+(1, '4', '8', '5', '7', '4', '7'),
+(2, '8', '5', '5', '9', '3', '6');
 
 -- --------------------------------------------------------
 
@@ -2067,8 +2095,8 @@ ALTER TABLE `adept_student`
 -- Constraints for table `adept_t3_tracker`
 --
 ALTER TABLE `adept_t3_tracker`
-  ADD CONSTRAINT `fk_Adept_T3_Tracker_copy1_Adept_T3_Attendance1` FOREIGN KEY (`Adept_T3_Attendance_ID`) REFERENCES `adept_t3_attendance` (`Adept_T3_Attendance_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_Adept_T3_Tracker_copy1_Adept_T3_Grades1` FOREIGN KEY (`Adept_T3_Grades_ID`) REFERENCES `adept_t3_grades` (`Adept_T3_Grades_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Adept_T3_Tracker_Adept_T3_Attendance1` FOREIGN KEY (`Adept_T3_Attendance_ID`) REFERENCES `adept_t3_attendance` (`Adept_T3_Attendance_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Adept_T3_Tracker_Adept_T3_Grades1` FOREIGN KEY (`Adept_T3_Grades_ID`) REFERENCES `adept_t3_grades` (`Adept_T3_Grades_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_Adept_T3_Tracker_Teacher_Tracker1` FOREIGN KEY (`T3_Tracker_ID`) REFERENCES `t3_tracker` (`T3_Tracker_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

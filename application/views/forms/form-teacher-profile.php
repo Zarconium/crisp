@@ -816,12 +816,12 @@
 									
 									<div class="form-group">
 										<label>Site Visit</label>
-										<input type="date" class="form-control">
+										<input type="date" class="form-control" value="<?php if ($best_t3_attendance) echo date('Y-m-d', strtotime($best_t3_attendance->Site_Visit)); ?>">
 									</div>
 									
 									<div class="form-group">
 										<label>GCAT</label>
-										<input type="date" class="form-control">
+										<input type="date" class="form-control" value="">
 									</div>
 								</form>
 							</div>
@@ -830,18 +830,18 @@
 								<form class="form">
 									<div class="form-group">
 										<label>Day 1</label>
-										<input type="date" class="form-control">
+										<input type="date" class="form-control" value="<?php if ($best_t3_attendance) echo date('Y-m-d', strtotime($best_t3_attendance->Day_1)); ?>">
 									</div>
 									
 									<div class="form-group">
 										<label>Day 2</label>
-										<input type="date" class="form-control">
+										<input type="date" class="form-control" value="<?php if ($best_t3_attendance) echo date('Y-m-d', strtotime($best_t3_attendance->Day_2)); ?>">
 									</div>
 									
 									<div class="form-group">
 										<label>Day 3</label>
 										<span class="help-block">If with the faculty</span>
-										<input type="date" class="form-control">
+										<input type="date" class="form-control" value="<?php if ($best_t3_attendance) echo date('Y-m-d', strtotime($best_t3_attendance->Day_3)); ?>">
 									</div>
 								</form>	
 							</div>
@@ -863,27 +863,27 @@
 								<form class="form">
 									<div class="form-group">
 										<label>Orientation Date</label>
-										<input type="date" class="form-control">
+										<input type="date" class="form-control" value="<?php if ($adept_t3_attendance) echo date('Y-m-d', strtotime($adept_t3_attendance->Orientation_Day)); ?>">
 									</div>
 									
 									<div class="form-group">
 										<label>Site Visit</label>
-										<input type="date" class="form-control">
+										<input type="date" class="form-control" value="<?php if ($adept_t3_attendance) echo date('Y-m-d', strtotime($adept_t3_attendance->Site_Visit)); ?>">
 									</div>
 									
 									<div class="form-group">
 										<label>GCAT</label>
-										<input type="date" class="form-control">
+										<input type="date" class="form-control" value="<?php if ($adept_t3_attendance) echo date('Y-m-d', strtotime($adept_t3_attendance->GCAT)); ?>">
 									</div>
 									
 									<div class="form-group">
 										<label>Day 1</label>
-										<input type="date" class="form-control">
+										<input type="date" class="form-control" value="<?php if ($adept_t3_attendance) echo date('Y-m-d', strtotime($adept_t3_attendance->Day_1)); ?>">
 									</div>
 									
 									<div class="form-group">
 										<label>Day 2</label>
-										<input type="date" class="form-control">
+										<input type="date" class="form-control" value="<?php if ($adept_t3_attendance) echo date('Y-m-d', strtotime($adept_t3_attendance->Day_2)); ?>">
 									</div>
 								</form>
 							</div>
@@ -893,22 +893,22 @@
 									<div class="form-group">
 										<label>Day 3</label>
 										<span class="help-block">If with the faculty</span>
-										<input type="date" class="form-control">
+										<input type="date" class="form-control" value="<?php if ($adept_t3_attendance) echo date('Y-m-d', strtotime($adept_t3_attendance->Day_3)); ?>">
 									</div>
 									
 									<div class="form-group">
 										<label>Day 4</label>
-										<input type="date" class="form-control">
+										<input type="date" class="form-control" value="<?php if ($adept_t3_attendance) echo date('Y-m-d', strtotime($adept_t3_attendance->Day_4)); ?>">
 									</div>
 									
 									<div class="form-group">
 										<label>Day 5</label>
-										<input type="date" class="form-control">
+										<input type="date" class="form-control" value="<?php if ($adept_t3_attendance) echo date('Y-m-d', strtotime($adept_t3_attendance->Day_5)); ?>">
 									</div>
 									
 									<div class="form-group">
 										<label>Day 6</label>
-										<input type="date" class="form-control">
+										<input type="date" class="form-control" value="<?php if ($adept_t3_attendance) echo date('Y-m-d', strtotime($adept_t3_attendance->Day_6)); ?>">
 									</div>
 								</form>
 							</div>
@@ -930,17 +930,17 @@
 						<form class="form">
 							<div class="form-group">
 								<label>Event</label>
-								<input type="text" class="form-control" placeholder="SMP Language Track BEST / ADEPT / GCAT">
+								<input type="text" class="form-control" value="<?php if ($smp_t3_attendance) echo $smp_t3_attendance->Event; ?>">
 							</div>
 
 							<div class="form-group">
 								<label>Name</label>
-								<input type="text" class="form-control" placeholder="Chec Kerr">
+								<input type="text" class="form-control" value="">
 							</div>
 
 							<div class="form-group">
 								<label>Date</label>
-								<input type="text" class="form-control" placeholder="11/10/2013">
+								<input type="date" class="form-control" value="<?php if ($smp_t3_attendance) echo date('Y-m-d', strtotime($smp_t3_attendance->Date)); ?>">
 							</div>
 						</form>
 					

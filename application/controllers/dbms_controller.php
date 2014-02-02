@@ -85,6 +85,8 @@ class Dbms_Controller extends CI_Controller
 		$data['professional_references'] = $this->teacher->getProfessionalReferencesByTeacherId($id);
 		$data['affiliation_to_organizations'] = $this->teacher->getAffiliationToOrganizationsByTeacherId($id);
 		$data['best_t3_attendance'] = $this->teacher->getBestT3AttendanceByTeacherId($id);
+		$data['adept_t3_attendance'] = $this->teacher->getAdeptT3AttendanceByTeacherId($id);
+		$data['smp_t3_attendance'] = $this->teacher->getSmpT3AttendanceByTeacherId($id);
 
 		// $this->log->addLog('Updated Teacher Profile');
 

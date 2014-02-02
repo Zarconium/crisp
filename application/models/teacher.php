@@ -230,6 +230,49 @@ Class Teacher extends CI_Model
 		}
 	}
 
+	function getAdeptT3AttendanceByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('adept_t3_attendance');
+		$this->db->join('adept_t3_tracker', 'adept_t3_attendance.Adept_T3_Attendance_ID = adept_t3_tracker.Adept_T3_Attendance_ID', 'left');
+		$this->db->join('t3_tracker', 'adept_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->join('teacher_t3_tracker', 't3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->where('teacher_t3_tracker.Teacher_ID', $id);
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getSmpT3AttendanceByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('smp_t3_attendance');
+		$this->db->join('smp_t3_attendance_tracking', 'smp_t3_attendance.SMP_T3_Attendance_ID = smp_t3_attendance_tracking.SMP_T3_Attendance_ID', 'left');
+		$this->db->join('t3_tracker', 'smp_t3_attendance_tracking.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->join('teacher_t3_tracker', 't3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->where('teacher_t3_tracker.Teacher_ID', $id);
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+
 	function addTeacher($data)
 	{
 		$this->db->insert('teacher', $data);
