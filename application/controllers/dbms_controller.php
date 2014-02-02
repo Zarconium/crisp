@@ -84,6 +84,9 @@ class Dbms_Controller extends CI_Controller
 		$data['relevant_experiences'] = $this->teacher->getRelevantExperiencesByTeacherId($id);
 		$data['professional_references'] = $this->teacher->getProfessionalReferencesByTeacherId($id);
 		$data['affiliation_to_organizations'] = $this->teacher->getAffiliationToOrganizationsByTeacherId($id);
+		$data['best_t3_attendance'] = $this->teacher->getBestT3AttendanceByTeacherId($id);
+		$data['adept_t3_attendance'] = $this->teacher->getAdeptT3AttendanceByTeacherId($id);
+		$data['smp_t3_attendance'] = $this->teacher->getSmpT3AttendanceByTeacherId($id);
 
 		// $this->log->addLog('Updated Teacher Profile');
 
@@ -1046,7 +1049,7 @@ class Dbms_Controller extends CI_Controller
 			if ($counter++ < 2) continue;
 			if ($counter > $highestRow) break;
 
-			$school_id = $this->school->getSchoolIdByCode($row['Y'])->School_ID; //Get School ID
+			$school_id = $this->school->getSchoolIdByCode(trim($row['Y']))->School_ID; //Get School ID
 			$student_code = $school_id . $row['E']; //Get Code
 
 			$student = array
@@ -1080,7 +1083,7 @@ class Dbms_Controller extends CI_Controller
 				'Interested_In_ITBPO' => (bool) strcasecmp($row['AC'], 'no')
 			);
 			
-			if ($row['F'] == 'Yes')
+			if (strcasecmp($row['F'], 'yes') == 0)
 			{
 				if (!$this->student->getStudentByCode($student_code))
 				{
@@ -1094,11 +1097,11 @@ class Dbms_Controller extends CI_Controller
 				}
 				else
 				{
-					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Student already exists.');
 					redirect('dbms');
 				}
 			}
-			else if ($row['F'] == 'No')
+			else if (strcasecmp($row['F'], 'no') == 0)
 			{
 				if (!$this->student->getStudentByCode($student_code))
 				{
@@ -1109,7 +1112,7 @@ class Dbms_Controller extends CI_Controller
 			}
 			else
 			{
-				$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+				$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Column New_Applicant? invalid.');
 				redirect('dbms');
 			}
 		}
@@ -1144,14 +1147,14 @@ class Dbms_Controller extends CI_Controller
 			if ($counter++ < 3) continue;
 			if ($counter > $highestRow) break;
 
-			$school_id = $this->school->getSchoolIdByCode($row['F'])->School_ID; //Get School_ID
+			$school_id = $this->school->getSchoolIdByCode(trim($row['F']))->School_ID; //Get School_ID
 			$code = $school_id . $row['E']; //Get Code
 			$subject = $row['A'];
 
 			$tracker = array
 			(
-				'Control_Number' => $row['G'],
-				'Username' => $row['H']
+				'Control_Number' => trim($row['G']),
+				'Username' => trim($row['H'])
 			);
 			
 			if (!$this->student->getStudentByCode($code))
@@ -1164,15 +1167,25 @@ class Dbms_Controller extends CI_Controller
 			{
 				if (!$this->student->updateBestStudent($code, $subject, $tracker))
 				{
-					$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+					$this->session->set_flashdata('upload_error', 'BEST Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
 					redirect('dbms');
 				}
 			}
 			elseif ($subject == 'AdEPT')
 			{
-				if (!$this->student->updateAdeptStudent($code, $subject, $tracker))
+				if ($this->student->getAdeptStudentByStudentId($row['E']))
 				{
-					$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+					if (!$this->student->updateAdeptStudent($code, $subject, $tracker))
+					{
+						$this->session->set_flashdata('upload_error', 'AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+						redirect('dbms');
+					}
+				}
+				if (!$this->student->addAdeptStudent($code, $subject, $tracker))
+				{
+					// $tracker['Tracker_ID'] = $this->student->getAdeptTrackerByStudentId()
+
+					$this->session->set_flashdata('upload_error', 'AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
 					redirect('dbms');
 				}
 			}
@@ -1490,17 +1503,101 @@ class Dbms_Controller extends CI_Controller
 		$this->log->addLog('GCAT Student Grades Batch Upload');
 	}
 
-	function upload_best_student_grades()
+	function upload_best_student_grades()//comment same sa teacher 
 	{
-		$this->log->addLog('BEST Student Grades Batch Upload');
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_best_grades']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
+
+		$counter = 4;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 4) continue;
+			if ($counter > $highestRow) break;
+
+			$school_id = $this->school->getSchoolIdByCode($row['A']);
+			
+			$username = $row['D'];
+
+			// need excel to format in order to get this $code = $school_id . substr($row['E'],0,1). substr($row['F'],0,1). substr($row['D'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY')));
+
+			$grades = array
+			(
+				'Oral' => $row['I'],
+				'Retention' => $row['J'],
+				'Typing' => $row['K'],
+				'Grammar' => $row['L'],
+				'Comprehension' => $row['M'],
+				'Summary Scores' => $row['N'],
+			);
+			
+			if (!$this->teacher->getStudentByUsername($username))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exists');
+				redirect('dbms');					
+			}
+			else if (!$this->teacher->updateBestStudent($code,$subject,$tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
+		}
 	}
 
-	function upload_adept_student_grades()
+	function upload_adept_student_grades()//comment same sa teacher
 	{
-		$this->log->addLog('AdEPT Student Grades Batch Upload');
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_adept_grades']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
+
+		$counter = 4;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 4) continue;
+			if ($counter > $highestRow) break;
+
+			$school_id = $this->school->getSchoolIdByCode($row['A']);
+			
+			$username = $row['D'];
+
+			// need excel to format in order to get this $code = $school_id . substr($row['E'],0,1). substr($row['F'],0,1). substr($row['D'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY')));
+
+			$grades = array
+			(
+				'Oral' => $row['I'],
+				'Retention' => $row['J'],
+				'Typing' => $row['K'],
+				'Grammar' => $row['L'],
+				'Comprehension' => $row['M'],
+				'Summary Scores' => $row['N'],
+			);
+			
+			if (!$this->teacher->getStudentByUsername($username))
+			{
+				$this->session->set_flashdata('upload_error', 'AdEPT Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exists');
+				redirect('dbms');					
+			}
+			else if (!$this->teacher->updateAdeptStudent($code,$subject,$tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'AdEPT Grades upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
+		}
 	}
 
-//teacher//
+	//teacher//
 	function upload_best_adept_product_tracker()
 	{
 		if (!$_FILES)
@@ -2082,14 +2179,120 @@ class Dbms_Controller extends CI_Controller
 		redirect('dbms');
 	}
 
-	function upload_best_grades()
+	function upload_best_grades()//missing code 
 	{
-		$this->log->addLog('BEST Grades Batch Upload');
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_best_grades']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
+
+		$counter = 4;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 4) continue;
+			if ($counter > $highestRow) break;
+
+			$school_id = $this->school->getSchoolIdByCode($row['A']);
+			
+			$username = $row['D'];
+
+			// need excel to format in order to get this $code = $school_id . substr($row['E'],0,1). substr($row['F'],0,1). substr($row['D'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY')));
+
+			$grades = array
+			(
+				'Oral' => $row['I'],
+				'Retention' => $row['J'],
+				'Typing' => $row['K'],
+				'Grammar' => $row['L'],
+				'Comprehension' => $row['M'],
+				'Summary Scores' => $row['N'],
+			);
+			
+			if (!$this->teacher->getTeacherByUsername($username))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exists');
+				redirect('dbms');					
+			}
+			else if (!$this->teacher->updateBestT3Tracker($code,$subject,$best_t3tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
+		}
+
+		if ($counter > 4)
+		{
+			$this->session->set_flashdata('upload_success', 'GCAT Grades successfully uploaded. ' . ($counter - 4) . ' of ' . ($highestRow - 4) . ' teachers added/updated.');
+			$this->log->addLog('GCAT Grades Batch Upload');	
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Empty file.');
+		}
+		redirect('dbms');
 	}
 
-	function upload_adept_grades()
+	function upload_adept_grades()//missing code
 	{
-		$this->log->addLog('AdEPT Grades Batch Upload');
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_adept_grades']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
+
+		$counter = 4;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 4) continue;
+			if ($counter > $highestRow) break;
+
+			$school_id = $this->school->getSchoolIdByCode($row['A']);
+			
+			$username = $row['D'];
+
+			// need excel to format in order to get this $code = $school_id . substr($row['E'],0,1). substr($row['F'],0,1). substr($row['D'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY')));
+
+			$grades = array
+			(
+				'Oral' => $row['I'],
+				'Retention' => $row['J'],
+				'Typing' => $row['K'],
+				'Grammar' => $row['L'],
+				'Comprehension' => $row['M'],
+				'Summary Scores' => $row['N'],
+			);
+			
+			if (!$this->teacher->getTeacherByUsername($username))
+			{
+				$this->session->set_flashdata('upload_error', 'AdEPT Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exists');
+				redirect('dbms');					
+			}
+			else if (!$this->teacher->updateAdeptT3Tracker($code,$subject,$adept_t3tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'AdEPT Grades upload failed. Invalid data at row ' . $counter);
+				redirect('dbms');
+			}
+		}
+
+		if ($counter > 4)
+		{
+			$this->session->set_flashdata('upload_success', 'AdEPT Grades successfully uploaded. ' . ($counter - 4) . ' of ' . ($highestRow - 4) . ' teachers added/updated.');
+			$this->log->addLog('GCAT Grades Batch Upload');	
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'AdEPT Grades upload failed. Empty file.');
+		}
+		redirect('dbms');
 	}
 }
 ?>

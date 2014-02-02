@@ -6,9 +6,9 @@
 	<h1><?php echo $this->student->getStudentFullNameById($student->Student_ID)->Full_Name; ?> <small><?php echo $this->school->getSchoolById($student->School_ID)->Name . " - " . $this->school->getSchoolById($student->School_ID)->Branch; ?></small></h1>
 	
 	<ul class="nav nav-tabs">
-	  <li class="active"><a href="#basic" data-toggle="tab">Basic Information</a></li>
-	  <li><a href="#grades" data-toggle="tab">Grades</a></li>
-	  <li><a href="#tracker" data-toggle="tab">Tracker</a></li>
+		<li class="active"><a href="#basic" data-toggle="tab">Basic Information</a></li>
+		<li><a href="#grades" data-toggle="tab">Grades</a></li>
+		<li><a href="#tracker" data-toggle="tab">Tracker</a></li>
 	</ul>
 	
 	<div class="tab-content">
@@ -111,8 +111,7 @@
 					<input type="text" class="form-control" name="region" value="<?php echo $student->Region; ?>">
 					<?php echo form_error('region'); ?>
 				</div>
-					
-				</form>
+			</form>
 						
 			<legend>Alternate Address</legend>
 				

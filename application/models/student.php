@@ -63,6 +63,25 @@ Class Student extends CI_Model
 		}
 	}
 
+	function getStudentByUsername($username)//<-- di pa final. same comment sa teacher user name. saan ba talaga galing? 
+	{
+		$this->db->select('*');
+		$this->db->from('student');
+		$this->db->where('User_name', $username);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getStudentByCode($code)
 	{
 		$this->db->select('*');
@@ -87,6 +106,25 @@ Class Student extends CI_Model
 		$this->db->select('CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
 		$this->db->from('student');
 		$this->db->where('Student_ID', $id);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAdeptStudentByStudentId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('adept_student')
+		$this->db->where('Student_ID', $id)
 		$this->db->limit(1);
 		
 		$query = $this->db->get();

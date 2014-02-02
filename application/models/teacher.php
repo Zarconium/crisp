@@ -82,6 +82,25 @@ Class Teacher extends CI_Model
 		}
 	}
 
+	function getTeacherByUsername($username)// di pa to tama. saan ba kunin yung username ng teacher? 
+	{
+		$this->db->select('*');
+		$this->db->from('teacher');
+		$this->db->where('User_Name', $username);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getTeacherFullNameById($id)
 	{
 		$this->db->select('CONCAT_WS("", IF(LENGTH(teacher.Last_Name), teacher.Last_Name, NULL), ", ", IF(LENGTH(teacher.First_Name), teacher.First_Name, NULL), " ", IF(LENGTH(teacher.Middle_Initial), teacher.Middle_Initial, NULL), ". ", IF(LENGTH(teacher.Name_Suffix), teacher.Name_Suffix, NULL)) as Full_Name', false);
@@ -202,6 +221,88 @@ Class Teacher extends CI_Model
 		if($query->num_rows() > 0)
 		{
 			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getBestT3AttendanceByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('best_t3_attendance');
+		$this->db->join('best_t3_tracker', 'best_t3_attendance.Best_T3_Attendance_ID = best_t3_tracker.Best_T3_Attendance_ID', 'left');
+		$this->db->join('t3_tracker', 'best_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->join('teacher_t3_tracker', 't3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->where('teacher_t3_tracker.Teacher_ID', $id);
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAdeptT3AttendanceByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('adept_t3_attendance');
+		$this->db->join('adept_t3_tracker', 'adept_t3_attendance.Adept_T3_Attendance_ID = adept_t3_tracker.Adept_T3_Attendance_ID', 'left');
+		$this->db->join('t3_tracker', 'adept_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->join('teacher_t3_tracker', 't3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->where('teacher_t3_tracker.Teacher_ID', $id);
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getSmpT3AttendanceByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('smp_t3_attendance');
+		$this->db->join('smp_t3_attendance_tracking', 'smp_t3_attendance.SMP_T3_Attendance_ID = smp_t3_attendance_tracking.SMP_T3_Attendance_ID', 'left');
+		$this->db->join('t3_tracker', 'smp_t3_attendance_tracking.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->join('teacher_t3_tracker', 't3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->where('teacher_t3_tracker.Teacher_ID', $id);
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getStipendByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('stipend_tracking');
+		$this->db->join('stipend_tracking_list', 'stipend_tracking.Stipend_Tracking_ID = stipend_tracking_list.Stipend_Tracking_ID', 'left');
+		$this->db->where('teacher_t3_tracker.Teacher_ID', $id);
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
 		}
 		else
 		{
