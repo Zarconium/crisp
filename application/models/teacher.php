@@ -209,6 +209,25 @@ Class Teacher extends CI_Model
 		}
 	}
 
+	function getBestT3AttendanceByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('best_t3_attendance');
+		$this->db->join();
+		$this->db->where('teacher_ID', $id);
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function addTeacher($data)
 	{
 		$this->db->insert('teacher', $data);

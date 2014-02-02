@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 01, 2014 at 10:44 PM
+-- Generation Time: Feb 02, 2014 at 02:48 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -1204,7 +1204,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   UNIQUE KEY `Student_ID_UNIQUE` (`Student_ID`),
   UNIQUE KEY `Code` (`Code`),
   KEY `fk_Student_School1_idx` (`School_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `student`
@@ -1249,7 +1249,7 @@ CREATE TABLE IF NOT EXISTS `student_application` (
   KEY `fk_Student_Application_Student1_idx` (`Student_ID`),
   KEY `fk_Student_Application_Project1_idx` (`Project_ID`),
   KEY `fk_Student_Application_Subject_ID1_idx` (`Subject_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

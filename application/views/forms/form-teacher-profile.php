@@ -810,7 +810,7 @@
 							<div class="col-md-6">
 								<form class="form">
 									<div class="form-group">
-										<label>Orientation Date </label>
+										<label>Orientation Date</label>
 										<input type="date" class="form-control">
 									</div>
 									

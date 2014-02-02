@@ -16,7 +16,7 @@
 					<?php echo form_open('verifylogin', 'role="form"'); ?>
 					<div class="form-group">
 						<label for="username">Username</label>
-						<input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+						<input type="text" class="form-control" id="username" name="username" placeholder="Enter username" autofocus="autofocus">
 					</div>
 					<div class="form-group">
 						<label for="password">Password</label>
