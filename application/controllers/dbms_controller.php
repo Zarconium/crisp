@@ -1049,7 +1049,7 @@ class Dbms_Controller extends CI_Controller
 			if ($counter++ < 2) continue;
 			if ($counter > $highestRow) break;
 
-			$school_id = $this->school->getSchoolIdByCode($row['Y'])->School_ID; //Get School ID
+			$school_id = $this->school->getSchoolIdByCode(trim($row['Y']))->School_ID; //Get School ID
 			$student_code = $school_id . $row['E']; //Get Code
 
 			$student = array
@@ -1083,7 +1083,7 @@ class Dbms_Controller extends CI_Controller
 				'Interested_In_ITBPO' => (bool) strcasecmp($row['AC'], 'no')
 			);
 			
-			if ($row['F'] == 'Yes')
+			if (strcasecmp($row['F'], 'yes') == 0)
 			{
 				if (!$this->student->getStudentByCode($student_code))
 				{
@@ -1097,11 +1097,11 @@ class Dbms_Controller extends CI_Controller
 				}
 				else
 				{
-					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Student already exists.');
 					redirect('dbms');
 				}
 			}
-			else if ($row['F'] == 'No')
+			else if (strcasecmp($row['F'], 'no') == 0)
 			{
 				if (!$this->student->getStudentByCode($student_code))
 				{
@@ -1112,7 +1112,7 @@ class Dbms_Controller extends CI_Controller
 			}
 			else
 			{
-				$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+				$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Column New_Applicant? invalid.');
 				redirect('dbms');
 			}
 		}
@@ -1147,14 +1147,14 @@ class Dbms_Controller extends CI_Controller
 			if ($counter++ < 3) continue;
 			if ($counter > $highestRow) break;
 
-			$school_id = $this->school->getSchoolIdByCode($row['F'])->School_ID; //Get School_ID
+			$school_id = $this->school->getSchoolIdByCode(trim($row['F']))->School_ID; //Get School_ID
 			$code = $school_id . $row['E']; //Get Code
 			$subject = $row['A'];
 
 			$tracker = array
 			(
-				'Control_Number' => $row['G'],
-				'Username' => $row['H']
+				'Control_Number' => trim($row['G']),
+				'Username' => trim($row['H'])
 			);
 			
 			if (!$this->student->getStudentByCode($code))
@@ -1167,15 +1167,25 @@ class Dbms_Controller extends CI_Controller
 			{
 				if (!$this->student->updateBestStudent($code, $subject, $tracker))
 				{
-					$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+					$this->session->set_flashdata('upload_error', 'BEST Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
 					redirect('dbms');
 				}
 			}
 			elseif ($subject == 'AdEPT')
 			{
-				if (!$this->student->updateAdeptStudent($code, $subject, $tracker))
+				if ($this->student->getAdeptStudentByStudentId($row['E']))
 				{
-					$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+					if (!$this->student->updateAdeptStudent($code, $subject, $tracker))
+					{
+						$this->session->set_flashdata('upload_error', 'AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+						redirect('dbms');
+					}
+				}
+				if (!$this->student->addAdeptStudent($code, $subject, $tracker))
+				{
+					// $tracker['Tracker_ID'] = $this->student->getAdeptTrackerByStudentId()
+
+					$this->session->set_flashdata('upload_error', 'AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
 					redirect('dbms');
 				}
 			}

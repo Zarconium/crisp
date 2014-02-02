@@ -291,6 +291,24 @@ Class Teacher extends CI_Model
 		}
 	}
 
+	function getStipendByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('stipend_tracking');
+		$this->db->join('stipend_tracking_list', 'stipend_tracking.Stipend_Tracking_ID = stipend_tracking_list.Stipend_Tracking_ID', 'left');
+		$this->db->where('teacher_t3_tracker.Teacher_ID', $id);
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	function addTeacher($data)
 	{

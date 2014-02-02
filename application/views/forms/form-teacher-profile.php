@@ -950,34 +950,34 @@
 							<span class="help-block">Please check all that applies.</span>
 
 							<div class="form-group">
-								<input type="checkbox" name="time_in" value="yes" checked="checked">
+								<input type="checkbox" name="time_in" value="yes" <?php if ($smp_t3_attendance) if ($smp_t3_attendance->Time_In) echo 'checked="checked"'; ?>>
 								<label> Time In </label>
 							</div>
 
 							<div class="form-group">
-								<input type="checkbox" name="am_snack" value="yes">
+								<input type="checkbox" name="am_snack" value="yes" <?php if ($smp_t3_attendance) if ($smp_t3_attendance->AM_Snack) echo 'checked="checked"'; ?>>
 								<label> AM Snack </label>
 							</div>
 
 							<div class="form-group">
-								<input type="checkbox" name="lunch" value="yes">
+								<input type="checkbox" name="lunch" value="yes" <?php if ($smp_t3_attendance) if ($smp_t3_attendance->Lunch) echo 'checked="checked"'; ?>>
 								<label> Lunch </label>
 							</div>
 
 							<div class="form-group">
-								<input type="checkbox" name="pm_snack" value="yes">
+								<input type="checkbox" name="pm_snack" value="yes" <?php if ($smp_t3_attendance) if ($smp_t3_attendance->PM_Snack) echo 'checked="checked"'; ?>>
 								<label> PM Snack </label>
 							</div>
 
 							<div class="form-group">
-								<input type="checkbox" name="time_out" value="yes">
+								<input type="checkbox" name="time_out" value="yes" <?php if ($smp_t3_attendance) if ($smp_t3_attendance->Time_Out) echo 'checked="checked"'; ?>>
 								<label> Time Out </label>
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
-	  
+			
 			<div class="tab-pane" id="stipend">
 				<div class="col-md-3">
 					<div class="panel panel-info">

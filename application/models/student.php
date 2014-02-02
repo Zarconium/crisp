@@ -120,6 +120,25 @@ Class Student extends CI_Model
 		}
 	}
 
+	function getAdeptStudentByStudentId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('adept_student')
+		$this->db->where('Student_ID', $id)
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getGcatTrackerByStudentId($id)
 	{
 		$this->db->select('*, status.Name as Status_Name');
