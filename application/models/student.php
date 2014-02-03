@@ -188,7 +188,7 @@ Class Student extends CI_Model
 		}
 	}
 
-	function getGcatTrackerByStudentId($id)
+	function getGcatTrackerByStudentIdOrCode($id)
 	{
 		$this->db->select('*, status.Name as Status_Name');
 		$this->db->from('student');
@@ -200,7 +200,8 @@ Class Student extends CI_Model
 		$this->db->join('class', 'student_class.Class_ID = class.Class_ID', 'left');
 		$this->db->join('gcat_class', 'class.Class_ID = gcat_class.Class_ID', 'left');
 		$this->db->join('proctor', 'gcat_class.Proctor_ID = proctor.Proctor_ID', 'left');
-		$this->db->where('student.Student_ID', $id);
+		$this->db->where('student.Student_ID', $id_code);
+		$this->db->or_where('student.Code', $id_code);
 		$this->db->limit(1);
 		
 		$query = $this->db->get();
@@ -215,14 +216,15 @@ Class Student extends CI_Model
 		}
 	}
 
-	function getBestTrackerByStudentId($id)
+	function getBestTrackerByStudentIdOrCode($id_code)
 	{
 		$this->db->select('*');
 		$this->db->from('student');
 		$this->db->join('student_tracker', 'student.Student_ID = student_tracker.Student_ID', 'left');
 		$this->db->join('tracker', 'student_tracker.Tracker_ID = tracker.Tracker_ID', 'left');
 		$this->db->join('best_student', 'tracker.Tracker_ID = best_student.Tracker_ID', 'left');
-		$this->db->where('student.Student_ID', $id);
+		$this->db->where('student.Student_ID', $id_code);
+		$this->db->or_where('student.Code', $id_code);
 		$this->db->limit(1);
 		
 		$query = $this->db->get();
