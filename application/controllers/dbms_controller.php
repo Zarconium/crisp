@@ -56,7 +56,7 @@ class Dbms_Controller extends CI_Controller
 		$data['schools'] = $this->school->getAllSchools();
 		$data['statuses'] = $this->status->getAllStatuses();
 		$data['student'] = $this->student->getStudentById($id);
-		$data['gcat_tracker'] = $this->student->getGcatTrackerByStudentId($id);
+		$data['gcat_tracker'] = $this->student->getGcatTrackerByStudentIdOrCode($id);
 		$data['best_tracker'] = $this->student->getBestTrackerByStudentIdOrCode($id);
 		$data['adept_tracker'] = $this->student->getAdeptTrackerByStudentIdOrCode($id);
 		$data['smp_tracker'] = $this->student->getSmpTrackerByStudentId($id);
@@ -1395,17 +1395,17 @@ class Dbms_Controller extends CI_Controller
 			if ($counter++ < 2) continue;
 			if ($counter > $highestRow) break;
 
-			$school_id = $this->school->getSchoolIdByCode($row['E'])->School_ID; //Get School_ID
-			$code = $school_id . $row['D']; //Get Code
+			$school_id = $this->school->getSchoolIdByCode(trim($row['E']))->School_ID; //Get School_ID
+			$code = $school_id . trim($row['D']); //Get Code
 			$subject = 'GCAT';
+			$status_id = $this->status->getStatusIDByName(trim($row['H']))->Status_ID;
 
 			$tracker = array
 			(
 				'Session_ID' => $row['F'],
-				'Test_Date' => $row['G'],
-				'Status' => $row['H']
+				'Test_Date' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['G'], 'MM/DD/YYYY'))),
+				'Status' => $status_id
 			);
-
 			
 			if (!$this->student->getStudentByCode($code))
 			{
@@ -1414,9 +1414,18 @@ class Dbms_Controller extends CI_Controller
 				redirect('dbms');
 			}
 
-			if (!$this->student->updateGcatStudent($code, $subject, $tracker))
+			if ($this->student->getGcatTrackerByStudentIdOrCode($code))
 			{
-				$this->session->set_flashdata('upload_error', 'GCAT Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+				if ($this->student->updateGcatStudent($code, $subject, $tracker))
+				{
+					$this->session->set_flashdata('upload_error', 'GCAT Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Update failed.');
+					$this->db->trans_rollback();
+					redirect('dbms');
+				}
+			}
+			else
+			{
+				$this->session->set_flashdata('upload_error', 'GCAT Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. GCAT Tracker does not exist.');
 				$this->db->trans_rollback();
 				redirect('dbms');
 			}

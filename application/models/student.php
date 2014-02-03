@@ -188,7 +188,7 @@ Class Student extends CI_Model
 		}
 	}
 
-	function getGcatTrackerByStudentId($id)
+	function getGcatTrackerByStudentIdOrCode($id)
 	{
 		$this->db->select('*, status.Name as Status_Name');
 		$this->db->from('student');
@@ -200,7 +200,8 @@ Class Student extends CI_Model
 		$this->db->join('class', 'student_class.Class_ID = class.Class_ID', 'left');
 		$this->db->join('gcat_class', 'class.Class_ID = gcat_class.Class_ID', 'left');
 		$this->db->join('proctor', 'gcat_class.Proctor_ID = proctor.Proctor_ID', 'left');
-		$this->db->where('student.Student_ID', $id);
+		$this->db->where('student.Student_ID', $id_code);
+		$this->db->or_where('student.Code', $id_code);
 		$this->db->limit(1);
 		
 		$query = $this->db->get();
