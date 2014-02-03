@@ -63,25 +63,6 @@ Class Student extends CI_Model
 		}
 	}
 
-	function getStudentByUsername($username)//<-- di pa final. same comment sa teacher user name. saan ba talaga galing? 
-	{
-		$this->db->select('*');
-		$this->db->from('student');
-		$this->db->where('User_name', $username);
-		$this->db->limit(1);
-		
-		$query = $this->db->get();
-		
-		if($query->num_rows() > 0)
-		{
-			return $query->row();
-		}
-		else
-		{
-			return false;
-		}
-	}
-
 	function getStudentByCode($code)
 	{
 		$this->db->select('*');
