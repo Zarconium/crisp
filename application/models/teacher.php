@@ -614,7 +614,7 @@ Class Teacher extends CI_Model
 			return false;
 		}
 	}
-	function uploadGcatGrade($Email, $Gcat_Tracker)
+	function uploadGcatGradeByEmail($Email, $Gcat_Tracker)
 	{
 		$this->db->set($Gcat_Tracker);
 		$this->db->where('teacher.Email', $Email);
