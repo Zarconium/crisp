@@ -24,11 +24,26 @@ class Home extends CI_Controller {
 		$config['base_url'] = base_url() . '/home/index';
 		$config['total_rows'] = $this->db->get('log')->num_rows();
 		$config['per_page'] = 10;  
-		$config['num_tag_open'] = '<div>';
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['first_tag_open'] = '<li>';	
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';	
+		$config['last_tag_close'] = '</li>';
+		$config['next_tag_open'] = '<li>';	
+		$config['next_tag_close'] = '</li>';
+		$config['prev_tag_open'] = '<li>';	
+		$config['prev_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';	
+		$config['cur_tag_close'] = '</a></li>';
+		$config['num_tag_open'] = '<li>';	
+		$config['num_tag_close'] = '</li>';
+		$config['num_links'] = 3;
  
         $this->pagination->initialize($config);
 		
 		$this->db->select('User_ID, log.Changes, log.Created_At');
+		$this->db->order_by('log.Created_At', 'desc');
 
 		$data['logs'] = $this->db->get('log', $config['per_page'], $this->uri->segment(3));
 		//$data['logs'] = $this->log->getAllLogs();
