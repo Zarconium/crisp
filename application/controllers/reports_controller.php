@@ -19,6 +19,15 @@ class Reports_Controller extends CI_Controller {
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['subjects'] = $this->subject->getAllSubjects();
+		$data['teachers'] = $this->teacher->getAllTeachersFormatted();
+		$data['proctors'] = $this->proctor->getAllProctorsFormatted();
+		$data['best_classes'] = $this->classes->getAllBestClasses();
+		$data['adept_classes'] = $this->classes->getAllAdeptClasses();
+		$data['gcat_classes'] = $this->classes->getAllGCATClasses();
+		$data['smp_subjects'] = $this->subject->getSMPSubjects();
+		$data['smp_classes'] = $this->classes->getAllSMPClasses();
+
+
 
 		$this->load->view('header');
 		$this->load->view('report', $data);
@@ -32,7 +41,6 @@ class Reports_Controller extends CI_Controller {
 		//$data['data'] = $this->name->get($startDate, $endDate);
 		
 		$data['student_list'] = $this->report_suc->getAllStudentNamesAndSchools();
-
 		$this->load->view('reports/report_ni_phil', $data);
 	}
 
@@ -54,7 +62,13 @@ class Reports_Controller extends CI_Controller {
 
 	function studentBestProgramReport()
 	{
-		$start_date = "1990-01-01"; $end_date= "2020-01-01";
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+
+		$start_date = $this->input->post('program_student_best_start_date');
+		$end_date = $this->input->post('program_student_best_end_date');
 
 		$data['pin_count_list'] = $this->report_program->getStudentBestProgramReportPins($start_date, $end_date);
 		$data['pin_total'] = $this->report_program->getStudentBestProgramReportPinsTotal($start_date, $end_date);
@@ -78,6 +92,7 @@ class Reports_Controller extends CI_Controller {
 		$start_date = $this->input->post('program_student_gcat_start_date');
 		$end_date = $this->input->post('program_student_gcat_end_date');
 
+
 		$data['count_list'] = $this->report_program->getStudentProgramReportGCAT($start_date, $end_date);
 		$data['total'] = $this->report_program->getStudentProgramReportGCATTotal($start_date, $end_date);
 		$this->load->view('header-print');
@@ -88,9 +103,23 @@ class Reports_Controller extends CI_Controller {
 	
 	function studentProgramReportPerSub()
 	{
-		$subject_code=1;
-		$start_date = "1990-01-01"; $end_date= "2020-01-01";
 
+		
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+		
+		
+		$start_date = $this->input->post('program_student_subject_start_date');
+		$end_date = $this->input->post('program_student_subject_end_date');
+		$subject_code = $this->input->post('program_student_subject_subject');
+		
+		
+		/*
+			$subject_code=1;
+			$start_date = "1990-01-01"; $end_date= "2020-01-01";
+		*/
 		$data['currently_taking_list'] = $this->report_program->getStudentProgramReportPerSubCurrentTakers($start_date, $end_date, $subject_code);
 		$data['total_ct'] = $this->report_program->getStudentProgramReportPerSubCurrentTakersTotal($start_date, $end_date, $subject_code);
 		$data['finished_list'] = $this->report_program->getStudentProgramReportPerSubFinished($start_date, $end_date, $subject_code);
@@ -103,7 +132,17 @@ class Reports_Controller extends CI_Controller {
 
 	function t3ProgramReportGCAT()
 	{
-		$start_date = "1990-01-01"; $end_date= "2020-01-01";
+		
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+		
+		
+		$start_date = $this->input->post('program_t3_start_date');
+		$end_date = $this->input->post('program_t3_end_date');
+
+		/*$start_date = "1990-01-01"; $end_date= "2020-01-01";*/
 
 		$data['t3_count_list'] = $this->report_program->gett3ProgramReportGCAT($start_date, $end_date);
 		$data['t3_total'] = $this->report_program->getT3ProgramReportGCATTotal($start_date, $end_date);
@@ -116,8 +155,17 @@ class Reports_Controller extends CI_Controller {
 	
 	function T3ProgramReportPerSub()
 	{
-		$start_date = "1990-01-01"; $end_date= "2020-01-01"; $subjectid="1";
-
+		/*$start_date = "1990-01-01"; $end_date= "2020-01-01"; $subjectid="1";*/
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+		
+		
+		$start_date = $this->input->post('program_t3_subject_start_date');
+		$end_date = $this->input->post('program_t3_subject_end_date');
+		$subjectid = $this->input->post('program_student_t3_subject');
+		
 		$data['t3_count_list'] = $this->report_program->getT3ProgramReportPerSub($start_date, $end_date, $subjectid);
 		$data['t3_total'] = $this->report_program->getT3ProgramReportPerSubTotal($start_date, $end_date, $subjectid);
 		$data['class_count'] = $this->report_program->getT3ProgramReportPerSubClasses($subjectid);
@@ -130,10 +178,27 @@ class Reports_Controller extends CI_Controller {
 
 	function sucReport()
 	{
-		$schoolcode="BATSTATU-Lipa";
-		$data['teacher_count_list'] = $this->report_program->getSucReportTeachers($schoolcode);
-		$data['student_completed_count_list'] = $this->report_program->getSucReportStudentsCompleted($schoolcode);
-		$data['student_currently_taking_count_list'] = $this->report_program->getSucReportStudentsCurrentlyTaking($schoolcode);
+		
+		/*$schoolcode="BatStateU-Lipa";
+		$start_date = "1990-01-01"; 
+		$end_date= "2020-01-01";*/
+		
+
+		
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+		
+		$schoolcode = $this->input->post('program_suc_report_school_code');
+		$start_date = $this->input->post('program_suc_report_start_date');
+		$end_date = $this->input->post('program_suc_report_end_date');
+		
+
+		$data['teacher_count_list'] = $this->report_program->getSucReportTeachers($schoolcode, $start_date, $end_date);
+		$data['student_completed_count_list'] = $this->report_program->getSucReportStudentsCompleted($schoolcode, $start_date, $end_date);
+		$data['student_currently_taking_count_list'] = $this->report_program->getSucReportStudentsCurrentlyTaking($schoolcode, $start_date, $end_date);
+
 		$this->load->view('header-print');
 		$this->load->view('reports/program_report_suc_report', $data);
 		$this->load->view('footer-print');
@@ -142,12 +207,27 @@ class Reports_Controller extends CI_Controller {
 
 
 	//SUC Controller
-	function SMPClasses()
+	function smpClassesSUCReport()
 	{
+		
+		/*$teacher_code="CODE432";
 		$subject_code="SC101";
-		$school_code="BATSTATU-Lipa";
-		$semester=4;
-		$teacher_code="CODE432";
+		$semester="4";
+		$school_code="BatStateU-Lipa";*/
+		
+		
+		
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+
+		$teacher_code = $this->input->post('suc_teacher_class');
+		$subject_code = $this->input->post('suc_subject_class');
+		$semester = $this->input->post('suc_semester_class');
+		$school_code = $this->input->post('suc_school_class');
+		
+		
 
 		$data['class_list'] = $this->report_suc->getStudentClass($subject_code,$school_code,$semester,$teacher_code);
 	
@@ -157,14 +237,188 @@ class Reports_Controller extends CI_Controller {
 
 	}
 
-	#done
+	function BestStudentClassesSUCReport()
+	{
+
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+
+		$teacher_code = $this->input->post('suc_best_teacher_class');
+		$semester = $this->input->post('suc_best_semester_class');
+		$school_code = $this->input->post('suc_best_school_class');
+
+		/*$school_code="BatStateU-Malvar";
+		$semester=3;
+		$teacher_code="CODE123";*/
+
+		
+		$data['best_class_list'] = $this->report_suc->getBestStudentClasses ($school_code,$semester, $teacher_code);
+	
+		$this->load->view('header-print');
+		$this->load->view('reports/suc_report_best_student_classes', $data);
+		$this->load->view('footer-print');
+	}
+
+	function AdeptStudentClassesSUCReport()
+	{
+
+		
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+
+		$teacher_code = $this->input->post('suc_adept_teacher_class');
+		$semester = $this->input->post('suc_adept_semester_class');
+		$school_code = $this->input->post('suc_adept_school_class');
+
+		/*$school_code="BatStateU-Malvar";
+		$semester=3;
+		$teacher_code="CODE123";*/
+
+		$data['adept_class_list'] = $this->report_suc->getAdeptStudentClasses ($school_code,$semester, $teacher_code);
+	
+		$this->load->view('header-print');
+		$this->load->view('reports/suc_report_adept_student_classes', $data);
+		$this->load->view('footer-print');
+	}
+
+
+	
+	function GCATStudentClassesSUCReport()
+	{
+
+		
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+
+		$school_code = $this->input->post('suc_gcat_school_class');
+		$semester = $this->input->post('suc_gcat_semester_class');
+		$proctor_id = $this->input->post('suc_gcat_proctor_class');
+		
+
+	/*	$school_code="BatStateU-Lipa";
+		$semester=1;
+		$proctor_id=1;
+*/
+		$data['gcat_class_list'] = $this->report_suc->getGCATStudentClasses($school_code, $semester, $proctor_id);
+	
+	
+		$this->load->view('header-print');
+		$this->load->view('reports/suc_report_gcat_student_classes', $data);
+		$this->load->view('footer-print');
+	}
+
+	function BestStudentsSUCReport()
+	{
+
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+
+		$teacher_code = $this->input->post('suc_best_teacher_students');
+		$semester = $this->input->post('suc_best_semester_students');
+		$school_code = $this->input->post('suc_best_school_students');
+		$class_name = $this->input->post('suc_best_class_students');
+		
+		
+		
+
+/*
+		$teacher_code="CODE432";
+		$school_code="BatStateU-Lipa";
+		$class_name="BPO101-D";
+		$semester=4;*/
+		
+
+		$data['best_student_list'] = $this->report_suc->getBestStudents($school_code,$semester,$teacher_code,$class_name);
+
+		$this->load->view('header-print');
+		$this->load->view('reports/suc_report_best_students', $data);
+		$this->load->view('footer-print');
+	}
+
+	
+	function AdeptStudentsSUCReport()
+	{
+
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+
+		$teacher_code = $this->input->post('suc_adept_teacher_students');
+		$semester = $this->input->post('suc_adept_semester_students');
+		$school_code = $this->input->post('suc_adept_school_students');
+		$class_name = $this->input->post('suc_adept_class_students');
+
+		/*$class_name="BPO101-D";
+		$school_code="BatStateU-Lipa";
+		$semester=4;
+		$teacher_code="CODE432";*/
+
+		$data['adept_student_list'] = $this->report_suc->getAdeptStudents($school_code,$semester,$teacher_code,$class_name);
+
+		$this->load->view('header-print');
+		$this->load->view('reports/suc_report_adept_students', $data);
+		$this->load->view('footer-print');
+	}
+
+
+	function GCATStudentSUCReport()
+	{
+
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+
+		$proctor_id = $this->input->post('suc_gcat_proctor_students');
+		$semester = $this->input->post('suc_gcat_semester_students');
+		$school_code = $this->input->post('suc_gcat_school_students');
+		$class_name = $this->input->post('suc_gcat_class_students');
+		
+		/*$proctor_id=1;
+		$school_code="BatStateU-Lipa";
+		$semester=1;
+		$class_name="GCAT";*/
+
+		$data['gcat_student_list'] = $this->report_suc->getGCATStudent($school_code,$semester, $proctor_id ,$class_name);
+	
+		$this->load->view('header-print');
+		$this->load->view('reports/suc_report_gcat_students', $data);
+		$this->load->view('footer-print');
+
+	}
+
+
+
+
+#STRRT HERE
 	function SMPStudentSUCReport()
 	{
-		$subject_code="SC101";
-		$school_code="BATSTATU-Lipa";
+
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+
+		$teacher_code = $this->input->post('suc_smp_teacher_students');
+		$subject_code = $this->input->post('suc_smp_subject_students');
+		$school_code = $this->input->post('suc_smp_school_students');
+		$semester = $this->input->post('suc_smp_semester_students');
+		$class_name = $this->input->post('suc_smp_class_students');
+
+		/*$teacher_code="CODE432";
 		$semester=4;
-		$teacher_code="CODE432";
-		$class_name="BPO101-C";
+		$school_code="BatStateU-Lipa";
+		$subject_code="SC101";
+		$class_name="BPO101-C";*/
 
 		$data['smp_student_list'] = $this->report_suc->getallSMPStudent($subject_code,$school_code,$semester,$teacher_code,$class_name);
 	
@@ -173,10 +427,23 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('footer-print');
 	}
 
+
+
 	function T3BestSUCReport()
 	{
-		$start_date = "1990-01-01"; $end_date= "2020-01-01";
-		$school_code="BATSTATU-Lipa";
+
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+
+		$start_date = $this->input->post('suc_t3_best_class_list_date_start');
+		$end_date = $this->input->post('suc_t3_best_class_list_date_end');
+		$school_code = $this->input->post('suc_t3_best_class_list_school');
+
+		/*$start_date = "1990-01-01"; 
+		$end_date= "2020-01-01";
+		$school_code="BatStateU-Lipa";*/
 
 		$data['T3_best_list'] = $this->report_suc->getT3Best($school_code,$start_date,$end_date);
 	
@@ -187,9 +454,19 @@ class Reports_Controller extends CI_Controller {
 
 	function T3AdeptSUCReport()
 	{
-		$start_date = "1990-01-01"; $end_date= "2020-01-01";
-		$school_code="BATSTATU-Lipa";
 
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+
+		$start_date = $this->input->post('suc_t3_adept_class_list_date_start');
+		$end_date = $this->input->post('suc_t3_adept_class_list_date_end');
+		$school_code = $this->input->post('suc_t3_adept_class_list_school');
+
+		/*$start_date = "1990-01-01"; $end_date= "2020-01-01";
+		$school_code="BatStateU-Lipa";
+*/
 		$data['T3_adept_list'] = $this->report_suc->getT3Adept ($school_code,$start_date,$end_date);
 	
 		$this->load->view('header-print');
@@ -197,138 +474,50 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('footer-print');
 	}
 
-	function BestStudentClassesSUCReport()
-	{
-		$school_code="BATSTATU-Malvar";
-		$semester=3;
-		$teacher_code="CODE123";
-
-		$data['best_class_list'] = $this->report_suc->getBestStudentClasses ($school_code,$semester, $teacher_code);
-	
-		$this->load->view('header-print');
-		$this->load->view('reports/suc_report_best_student_classes', $data);
-		$this->load->view('footer-print');
-	}
-
-	function AdeptStudentClassesSUCReport()
-	{
-		$school_code="BATSTATU-Malvar";
-		$semester=3;
-		$teacher_code="CODE123";
-
-		$data['adept_class_list'] = $this->report_suc->getAdeptStudentClasses ($school_code,$semester, $teacher_code);
-	
-		$this->load->view('header-print');
-		$this->load->view('reports/suc_report_adept_student_classes', $data);
-		$this->load->view('footer-print');
-	}
-
-	
-	function BestStudentsSUCReport()
-	{
-		$class_name="BPO101-D";
-		$school_code="BATSTATU-Lipa";
-		$semester=4;
-		$teacher_code="CODE432";
-
-		$data['best_student_list'] = $this->report_suc->getBestStudents($school_code,$semester,$teacher_code,$class_name);
-
-		$this->load->view('header-print');
-		$this->load->view('reports/suc_report_best_students', $data);
-		$this->load->view('footer-print');
-	}
-
-	function AdeptStudentsSUCReport()
-	{
-		$class_name="BPO101-D";
-		$school_code="BATSTATU-Lipa";
-		$semester=4;
-		$teacher_code="CODE432";
-
-		$data['adept_student_list'] = $this->report_suc->getAdeptStudents($school_code,$semester,$teacher_code,$class_name);
-
-		$this->load->view('header-print');
-		$this->load->view('reports/suc_report_adept_students', $data);
-		$this->load->view('footer-print');
-	}
-
-	function GCATStudentClassesSUCReport()
-	{
-		$school_code="BATSTATU-Lipa";
-		$semester=1;
-		$first_name="John";
-		$last_name="Cruz";
-		$middle_initial="A";
-
-		$data['gcat_class_list'] = $this->report_suc->getGCATStudentClasses($school_code, $semester, $first_name, $last_name, $middle_initial);
-	
-	
-		$this->load->view('header-print');
-		$this->load->view('reports/suc_report_gcat_student_classes', $data);
-		$this->load->view('footer-print');
-	}
-
-
-
-	function GCATStudentSUCReport()
-	{
-		$school_code="BATSTATU-Lipa";
-		$semester=1;
-		$first_name="John";
-		$last_name="Cruz";
-		$middle_initial="A";
-		$class_name="GCAT";
-
-		$data['gcat_student_list'] = $this->report_suc->getGCATStudent($school_code,$semester,$first_name, $last_name, $middle_initial ,$class_name);
-	
-		$this->load->view('header-print');
-		$this->load->view('reports/suc_report_gcat_students', $data);
-		$this->load->view('footer-print');
-
-	}
-
 	function SMPTotalSUCReport()
 	{
-		$school_code="BATSTATU-Malvar";
-		$semester=3;
-		$subject = "BEST";
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
 
-		$data['smp_total_list'] = $this->report_suc->getSMPTotal($school_code,$subject,$semester);
+		$school_code = $this->input->post('suc_t3_smp_school');
+		$semester = $this->input->post('suc_t3_smp_semester');
+		$subject_code = $this->input->post('suc_t3_smp_subject');
+
+		/*$school_code="BatStateU-Malvar";
+		$semester=3;
+		$subject = "BEST";*/
+
+		$data['smp_total_list'] = $this->report_suc->getSMPTotal($school_code,$subject_code,$semester);
 	
 		$this->load->view('header-print');
 		$this->load->view('reports/suc_report_smp_total', $data);
 		$this->load->view('footer-print');
 
-	}
-
-	
-
-	function getAllAdeptStudentSUCReport()
-	{
-		$data['adept_student_list'] = $this->report_suc->getAdeptStudent($school_code,$date_start,$date_end);
-		
-		$this->load->view('reports/suc_report_adept_students', $data);
-	}
-
-	function getAllT3GCATSUCReport()
-	{
-		$data['T3_GCAT_list'] = $this->report_suc->getT3Gcat($school_code,$date_start,$date_end);
-	
-		$this->load->view('reports/suc_report_T3_GCAT', $data);
-	}
-
-	function getAllT3SMPSUCReport()
-	{
-		$data['SMP_total_list'] = $this->report_suc->getSMPTotal($school_code,$subject,$semester);
-	
-		$this->load->view('reports/suc_report_smp_total', $data);
 	}
 
 	//MNE Controller
 
 	function mneQuarterlyReport()
 	{
-		$qtr1_start="1990-01-01"; $qtr1_end = "2020-01-01"; $qtr2_start="1990-01-01"; $qtr2_end = "2020-01-01"; $qtr3_start="1990-01-01"; $qtr3_end = "2020-01-01"; $qtr4_start="1990-01-01"; $qtr4_end = "2020-01-01"; $annual_start="1990-01-01"; $annual_end="2020-01-01";
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+
+		$qtr1_start = $this->input->post('mande_quarter_year') . "-01-01";
+		$qtr1_end = $this->input->post('mande_quarter_year') . "-03-31";
+		$qtr2_start=$this->input->post('mande_quarter_year') .  "-04-01";
+		$qtr2_end = $this->input->post('mande_quarter_year') . "-06-30";
+		$qtr3_start=$this->input->post('mande_quarter_year') . "-07-01";
+		$qtr3_end = $this->input->post('mande_quarter_year') . "-09-30";
+		$qtr4_start= $this->input->post('mande_quarter_year') . "-10-01";
+		$qtr4_end = $this->input->post('mande_quarter_year') . "-12-31";
+		$annual_start= $this->input->post('mande_quarter_year') . "-01-01";
+		$annual_end= $this->input->post('mande_quarter_year') . "-12-31";
+
+		/*$qtr1_start="1990-01-01"; $qtr1_end = "2020-01-01"; $qtr2_start="1990-01-01"; $qtr2_end = "2020-01-01"; $qtr3_start="1990-01-01"; $qtr3_end = "2020-01-01"; $qtr4_start="1990-01-01"; $qtr4_end = "2020-01-01"; $annual_start="1990-01-01"; $annual_end="2020-01-01";*/
 
 		$data['teacher_gcat_completed_row'] = $this->report_mne->getallTeacherGcat($qtr1_start, $qtr1_end, $qtr2_start, $qtr2_end, $qtr3_start, $qtr3_end, $qtr4_start, $qtr4_end, $annual_start, $annual_end);
 		$data['teacher_best_completed_row'] = $this->report_mne->getallTeacherBest($qtr1_start, $qtr1_end, $qtr2_start, $qtr2_end, $qtr3_start, $qtr3_end, $qtr4_start, $qtr4_end, $annual_start, $annual_end);
@@ -367,7 +556,41 @@ class Reports_Controller extends CI_Controller {
 	}
 	function mneMonthlyReport()
 	{
-		$jan_start="1990-01-01"; $jan_end= "2020-01-01"; $feb_start="1990-01-01"; $feb_end= "2020-01-01"; $mar_start="1990-01-01"; $mar_end= "2020-01-01"; $apr_start="1990-01-01"; $apr_end= "2020-01-01"; $may_start="1990-01-01"; $may_end= "2020-01-01"; $jun_start="1990-01-01"; $jun_end= "2020-01-01"; $jul_start="1990-01-01"; $jul_end= "2020-01-01"; $aug_start="1990-01-01"; $aug_end= "2020-01-01"; $sep_start="1990-01-01"; $sep_end= "2020-01-01"; $oct_start="1990-01-01"; $oct_end= "2020-01-01"; $nov_start="1990-01-01"; $nov_end= "2020-01-01"; $dec_start="1990-01-01"; $dec_end= "2020-01-01"; $annual_start="1990-01-01"; $annual_end= "2020-01-01";
+
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+
+		$jan_start=$this->input->post('mande_month_year') . "-01-01";
+		$jan_end= $this->input->post('mande_month_year') . "-01-31";
+		$feb_start=$this->input->post('mande_month_year') . "-02-01";
+		$feb_end= $this->input->post('mande_month_year') . "-02-01"; 
+		$mar_start=$this->input->post('mande_month_year') . "-03-01";
+		$mar_end= $this->input->post('mande_month_year') . "-03-31";
+		$apr_start=$this->input->post('mande_month_year') . "-04-01";
+		$apr_end= $this->input->post('mande_month_year') . "-04-30"; 
+		$may_start=$this->input->post('mande_month_year') . "-05-01"; 
+		$may_end= $this->input->post('mande_month_year') . "-05-31";
+		$jun_start=$this->input->post('mande_month_year') . "-06-01"; 
+		$jun_end= $this->input->post('mande_month_year') . "-06-30"; 
+		$jul_start=$this->input->post('mande_month_year') . "-07-01"; 
+		$jul_end= $this->input->post('mande_month_year') . "-07-31"; 
+		$aug_start=$this->input->post('mande_month_year') . "-08-01"; 
+		$aug_end= $this->input->post('mande_month_year') . "-08-31"; 
+		$sep_start=$this->input->post('mande_month_year') . "-09-01"; 
+		$sep_end= $this->input->post('mande_month_year') . "-09-30"; 
+		$oct_start=$this->input->post('mande_month_year') . "-10-01"; 
+		$oct_end= $this->input->post('mande_month_year') . "-10-31";
+		$nov_start=$this->input->post('mande_month_year') . "-11-01"; 
+		$nov_end= $this->input->post('mande_month_year') . "-11-30"; 
+		$dec_start=$this->input->post('mande_month_year') . "-12-01"; 
+		$dec_end= $this->input->post('mande_month_year') . "-12-31"; 
+		$annual_start=$this->input->post('mande_month_year') . "-01-01"; 
+		$annual_end= $this->input->post('mande_month_year') . "-12-31";
+
+		/*$jan_start="1990-01-01"; $jan_end= "2020-01-01"; $feb_start="1990-01-01"; $feb_end= "2020-01-01"; $mar_start="1990-01-01"; $mar_end= "2020-01-01"; $apr_start="1990-01-01"; $apr_end= "2020-01-01"; $may_start="1990-01-01"; $may_end= "2020-01-01"; $jun_start="1990-01-01"; $jun_end= "2020-01-01"; $jul_start="1990-01-01"; $jul_end= "2020-01-01"; $aug_start="1990-01-01"; $aug_end= "2020-01-01"; $sep_start="1990-01-01"; $sep_end= "2020-01-01"; $oct_start="1990-01-01"; $oct_end= "2020-01-01"; $nov_start="1990-01-01"; $nov_end= "2020-01-01"; $dec_start="1990-01-01"; $dec_end= "2020-01-01"; $annual_start="1990-01-01"; $annual_end= "2020-01-01";*/
+
 
 		$data['getMonthlyTeachersCompletedGcat'] = $this->report_mne->getallTeacherGcatMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end);
 		$data['getMonthlyTeachersTrainedInBest'] = $this->report_mne->getallTeacherBestMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end);

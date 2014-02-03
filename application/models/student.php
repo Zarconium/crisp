@@ -101,6 +101,28 @@ Class Student extends CI_Model
 		}
 	}
 
+	function getTrackerByStudentCodeAndSubjectId($code, $subject)
+	{
+		$this->db->select('*');
+		$this->db->from('tracker');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID' ,'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID' ,'left');
+		$this->db->where('student.Code', $code);
+		$this->db->where('tracker.Subject_ID', $subject);
+		$this->db->limit(1);
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getStudentFullNameById($id)
 	{
 		$this->db->select('CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
@@ -120,11 +142,38 @@ Class Student extends CI_Model
 		}
 	}
 
-	function getAdeptStudentByStudentId($id)
+	function getBestStudentByStudentIdOrCode($id_code)
+	{
+		$this->db->select('*');
+		$this->db->from('best_student');
+		$this->db->join('tracker', 'best_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->where('student.Student_ID', $id_code);
+		$this->db->or_where('student.Code', $id_code);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAdeptStudentByStudentIdOrCode($id_code)
 	{
 		$this->db->select('*');
 		$this->db->from('adept_student');
-		$this->db->where('Student_ID', $id);
+		$this->db->join('tracker', 'adept_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->where('student.Student_ID', $id_code);
+		$this->db->or_where('student.Code', $id_code);
 		$this->db->limit(1);
 		
 		$query = $this->db->get();
@@ -188,14 +237,15 @@ Class Student extends CI_Model
 		}
 	}
 
-	function getAdeptTrackerByStudentId($id)
+	function getAdeptTrackerByStudentIdOrCode($id_code)
 	{
 		$this->db->select('*');
 		$this->db->from('student');
 		$this->db->join('student_tracker', 'student.Student_ID = student_tracker.Student_ID', 'left');
 		$this->db->join('tracker', 'student_tracker.Tracker_ID = tracker.Tracker_ID', 'left');
 		$this->db->join('adept_student', 'tracker.Tracker_ID = adept_student.Tracker_ID', 'left');
-		$this->db->where('student.Student_ID', $id);
+		$this->db->where('student.Student_ID', $id_code);
+		$this->db->or_where('student.Code', $id_code);
 		$this->db->limit(1);
 		
 		$query = $this->db->get();
