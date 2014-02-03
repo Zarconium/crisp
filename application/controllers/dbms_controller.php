@@ -95,21 +95,24 @@ class Dbms_Controller extends CI_Controller
 		$this->load->view('footer');
 	}
 	
-	function form_proctor_profile()
+	function form_proctor_profile($id)
 	{
-		$this->log->addLog('Updated Proctor Profile');
+		$data['proctor'] = $this->proctor->getProctorById($id);
+
+		//$this->log->addLog('Updated Proctor Profile');
 
 		$this->load->view('header');
-		$this->load->view('forms/form-proctor-profile');
+		$this->load->view('forms/form-proctor-profile', $data);
 		$this->load->view('footer');
 	}
 	
 	function form_mastertrainer_profile()
 	{
-		$this->log->addLog('Updated Mastertrainer Profile');
+		$data['proctor'] = $this->proctor->getMasterTrainerById($id);
+		//$this->log->addLog('Updated Mastertrainer Profile');
 
 		$this->load->view('header');
-		$this->load->view('forms/form-mastertrainer-profile');
+		$this->load->view('forms/form-mastertrainer-profile', $data);
 		$this->load->view('footer');
 	}
 
