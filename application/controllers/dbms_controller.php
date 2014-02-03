@@ -2509,7 +2509,7 @@ class Dbms_Controller extends CI_Controller
 		}
 
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-		$objPHPExcel = $objReader->load($_FILES['file_adept_grades']['tmp_name']);
+		$objPHPExcel = $objReader->load($_FILES['file_student_class_list']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
@@ -2545,15 +2545,39 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_teacher_class_list()
 	{
-		if (!$_FILES)
-		{
-			redirect(base_url('dbms'));
-		}
-
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-		$objPHPExcel = $objReader->load($_FILES['file_adept_grades']['tmp_name']);
+		$objPHPExcel = $objReader->load($_FILES['file_teacher_class_list']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 9) continue;
+			if ($counter > $highestRow) break;
+
+			$classlist = array
+			(
+				'Last_Name' => $row['A'],
+				'First_Name' => $row['B'],
+				'Middle_Initial' => $row['C'],
+				'Birthdate' => $row['D']
+			);
+
+			$data['class_list']	= $classlist;
+			$this->load->view('header');
+			$this->load->view('forms/form-mastertrainer-classlist', $data);
+			$this->load->view('footer');
+		}
+
+		if ($counter > 1)
+		{
+			$this->session->set_flashdata('upload_success', 'Teacher class list successfully uploaded. ' . ($counter - 1) . ' of ' . ($highestRow - 1) . ' Teacher added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'Teacher class list upload failed. Empty file.');
+		}
 
 	}
 }
