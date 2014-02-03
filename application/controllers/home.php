@@ -19,16 +19,44 @@ class Home extends CI_Controller {
 	function index()
 	{
 		$this->load->library('pagination');
-
-		$config['base_url'] = base_url() . '/home';
-		$config['total_rows'] = $this->log->getTotalLogs();
+		$this->load->library('table');
+		
+		$config['base_url'] = base_url() . '/home/index';
+		$config['total_rows'] = $this->db->get('log')->num_rows();
 		$config['per_page'] = 10;  
  
         $this->pagination->initialize($config);
 		
-		$data['logs'] = $this->log->getAllLogs();
-        $data['links'] = $this->pagination->create_links();
+		$this->db->select('User_ID, log.Changes, log.Created_At');
+		$data['logs'] = $this->db->get('log', $config['per_page'], $this->uri->segment(3));
+		//$data['logs'] = $this->log->getAllLogs();
+		$data['links'] = $this->pagination->create_links();
+		
+		
+		$tmpl = array (
+                    'table_open'          => '<table class="table table-area">',
 
+                    'heading_row_start'   => '<tr>',
+                    'heading_row_end'     => '</tr>',
+                    'heading_cell_start'  => '<th>',
+                    'heading_cell_end'    => '</th>',
+
+                    'row_start'           => '<tr>',
+                    'row_end'             => '</tr>',
+                    'cell_start'          => '<td>',
+                    'cell_end'            => '</td>',
+
+                    'row_alt_start'       => '<tr>',
+                    'row_alt_end'         => '</tr>',
+                    'cell_alt_start'      => '<td>',
+                    'cell_alt_end'        => '</td>',
+
+                    'table_close'         => '</table>'
+              );
+		
+		$this->table->set_heading('Username', 'Description', 'Date');
+		$this->table->set_template($tmpl);
+		
 		$this->load->view('header');
 		$this->load->view('home_view', $data);
 		$this->load->view('footer');
