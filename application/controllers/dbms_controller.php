@@ -798,7 +798,7 @@ class Dbms_Controller extends CI_Controller
 
 			// $this->form_validation->set_message('is_unique', 'Teacher already exists.');
 			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
-
+			/*
 			if($this->input->post('submit'))
 			{
 				if($this->form_validation->run() == FALSE)
@@ -811,10 +811,10 @@ class Dbms_Controller extends CI_Controller
 				}
 				else
 				{
-					/*$t3_tracker = array
+					$t3_tracker = array
 					(
 						'Status_ID' => $this->input->post('status'),
-						'Contract?' => $this->input->post('contract'),
+						'Contract' => $this->input->post('contract'),
 						'Remarks' => $this->input->post('remarks'),
 						'Subject_ID' => $this->input->post('subject')
 					);
@@ -859,7 +859,7 @@ class Dbms_Controller extends CI_Controller
 			$this->load->view('header');
 			$this->load->view('forms/form-program-gcat-tracker', $data);
 			$this->load->view('footer');
-		}
+		}*/
 	}
 	
 	function form_program_best_tracker()
