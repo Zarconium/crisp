@@ -28,7 +28,7 @@
 			
 			<div class="form-group">
 				<label>Last Name</label>
-				<input type="text" class="form-control" name="last_name"value="<?php if(isset($proctor->Last_Name) echo $proctor->Last_Name; ?>">
+				<input type="text" class="form-control" name="last_name"value="<?php if(isset($proctor->Last_Name)) echo $proctor->Last_Name; ?>">
 				<?php echo form_error('last_name'); ?>
 			</div>
 
@@ -66,18 +66,6 @@
 			
 		</div>
 
-		<div class="form-inline">
-
-			<div class="form-group">
-			<label>Birth Date</label>
-			<input type="date" class="form-control" name="birthdate" value="<?php if(isset($proctor->Birthdate)) echo date('Y-m-d', strtotime($proctor->Birthdate)); ?>">
-				<?php echo form_error('birthdate'); ?>
-			</div>
-
-			
-		</div>
-
-			
 		</div>
 		
 		<legend>Contact Details</legend>
@@ -116,17 +104,17 @@
 		<div class="form-inline">
 			
 			<div class="form-group"><label>Company Name</label>
-			<input type="text" class="form-control" name="company_name" value="<?php if(isset($proctor->company_name)) echo $proctor->company_name; ?>">
+			<input type="text" class="form-control" name="company_name" value="<?php if(isset($proctor->Company_Name)) echo $proctor->Company_Name; ?>">
 				<?php echo form_error('company_name'); ?>
 			</div>
 			
 			<div class="form-group"><label>Company Address</label>
-			<input type="text" class="form-control" name="company_address" value="<?php if(isset($proctor->company_address)) echo $proctor->company_address; ?>">
+			<input type="text" class="form-control" name="company_address" value="<?php if(isset($proctor->Company_address)) echo $proctor->Company_Address; ?>">
 				<?php echo form_error('company_address'); ?>
 			</div>
 
 			<div class="form-group"><label>Position</label>
-			<input type="text" class="form-control" name="position" value="<?php if(isset($proctor->position)) echo $proctor->position; ?>">
+			<input type="text" class="form-control" name="position" value="<?php if(isset($proctor->Position)) echo $proctor->Position; ?>">
 				<?php echo form_error('position'); ?>
 			</div>
 		
