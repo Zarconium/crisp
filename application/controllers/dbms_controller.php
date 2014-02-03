@@ -1047,7 +1047,6 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
-		$this->db->trans_start();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
@@ -1120,7 +1119,6 @@ class Dbms_Controller extends CI_Controller
 				redirect('dbms');
 			}
 		}
-		$this->db->trans_complete();
 
 		if ($counter > 2)
 		{
@@ -1147,6 +1145,7 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 3) continue;
@@ -1165,6 +1164,7 @@ class Dbms_Controller extends CI_Controller
 			if (!$this->student->getStudentByCode($code))
 			{
 				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Student does not exist.');
+				$this->db->trans_rollback();
 				redirect('dbms');
 			}
 			
@@ -1175,6 +1175,7 @@ class Dbms_Controller extends CI_Controller
 					if (!$this->student->updateBestStudent($code, $subject, $subject_student))
 					{
 						$this->session->set_flashdata('upload_error', 'BEST Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+						$this->db->trans_rollback();
 						redirect('dbms');
 					}
 				}
@@ -1207,6 +1208,7 @@ class Dbms_Controller extends CI_Controller
 					if (!$this->student->addBestStudent($subject_student))
 					{
 						$this->session->set_flashdata('upload_error', 'BEST Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+						$this->db->trans_rollback();
 						redirect('dbms');
 					}
 				}
@@ -1218,6 +1220,7 @@ class Dbms_Controller extends CI_Controller
 					if (!$this->student->updateAdeptStudent($code, $subject, $subject_student))
 					{
 						$this->session->set_flashdata('upload_error', 'AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+						$this->db->trans_rollback();
 						redirect('dbms');
 					}
 				}
@@ -1250,6 +1253,7 @@ class Dbms_Controller extends CI_Controller
 					if (!$this->student->addAdeptStudent($subject_student))
 					{
 						$this->session->set_flashdata('upload_error', 'AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+						$this->db->trans_rollback();
 						redirect('dbms');
 					}
 				}
@@ -1257,9 +1261,11 @@ class Dbms_Controller extends CI_Controller
 			else
 			{
 				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Invalid subject.');
+				$this->db->trans_rollback();
 				redirect('dbms');
 			}
 		}
+		$this->db->trans_commit();
 
 		if ($counter > 3)
 		{
