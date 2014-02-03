@@ -160,7 +160,7 @@
 				<th>Student Number</th>
 			</tr>
 		</thead>
-			<?php if ($student_class_list) foreach ($student_class_list as $student): ?>
+			<?php if ($class_list) foreach ($class_list as $student): ?>
 			<tr>
 				<td><input type="checkbox"></td>
 				<td><a href="<?php echo base_url('dbms/form_teacher_profile/' . $teacher->Teacher_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_teacher/' . $teacher->Teacher_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
