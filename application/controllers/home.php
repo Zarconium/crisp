@@ -18,7 +18,16 @@ class Home extends CI_Controller {
 
 	function index()
 	{
+		$this->load->library('pagination');
+
+		$config['base_url'] = base_url() . '/home';
+		$config['total_rows'] = $this->log->getTotalLogs();
+		$config['per_page'] = 10;  
+ 
+        $this->pagination->initialize($config);
+		
 		$data['logs'] = $this->log->getAllLogs();
+        $data['links'] = $this->pagination->create_links();
 
 		$this->load->view('header');
 		$this->load->view('home_view', $data);
