@@ -833,7 +833,7 @@ class Dbms_Controller extends CI_Controller
 							'Number_of_Years_in_Institution' => $this->input->post('institutions_worked_number_of_years_in_institution')[$i]
 						);
 						$this->teacher->addTeacherTrainingExperience($teacher_training_experience);
-					}*/
+					}
 
 					$data['form_success'] = TRUE;
 					$this->log->addLog('Program GCAT Tracker Added');
@@ -858,8 +858,8 @@ class Dbms_Controller extends CI_Controller
 		{
 			$this->load->view('header');
 			$this->load->view('forms/form-program-gcat-tracker', $data);
-			$this->load->view('footer');
-		}*/
+			$this->load->view('footer');*/
+		}
 	}
 	
 	function form_program_best_tracker()
@@ -2501,10 +2501,11 @@ class Dbms_Controller extends CI_Controller
 				'Student_ID_Number' => $row['D']
 			);
 
-		$data['student_class_list']	= $classlist;
-		$this->load->view('header');
-		$this->load->view('forms/form-class-add', $data);
-		$this->load->view('footer');
+			$data['student_class_list']	= $classlist;
+			$this->load->view('header');
+			$this->load->view('forms/form-class-add', $data);
+			$this->load->view('footer');
+		}
 
 		if ($counter > 1)
 		{
