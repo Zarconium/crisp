@@ -1319,7 +1319,7 @@ class Dbms_Controller extends CI_Controller
 			
 			if (!$this->student->getStudentByCode($code))
 			{
-				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $code . '. Student does not exist.');
+				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Student does not exist.');
 				$this->db->trans_rollback();
 				redirect('dbms');
 			}
@@ -1400,11 +1400,11 @@ class Dbms_Controller extends CI_Controller
 			$subject = 'GCAT';
 			$status_id = $this->status->getStatusIDByName(trim($row['H']))->Status_ID;
 
-			$tracker = array
+			$gcat_student = array
 			(
-				'Session_ID' => $row['F'],
-				'Test_Date' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['G'], 'MM/DD/YYYY'))),
-				'Status' => $status_id
+				'gcat_student.Session_ID' => $row['F'],
+				'gcat_student.Test_Date' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['G'], 'MM/DD/YYYY'))),
+				'tracker.Status' => $status_id
 			);
 			
 			if (!$this->student->getStudentByCode($code))
@@ -1416,7 +1416,7 @@ class Dbms_Controller extends CI_Controller
 
 			if ($this->student->getGcatTrackerByStudentIdOrCode($code))
 			{
-				if ($this->student->updateGcatStudent($code, $subject, $tracker))
+				if ($this->student->updateGcatStudent($code, $subject, $gcat_student))
 				{
 					$this->session->set_flashdata('upload_error', 'GCAT Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Update failed.');
 					$this->db->trans_rollback();
@@ -1452,41 +1452,53 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 2) continue;
+			if ($counter++ < 3) continue;
 			if ($counter > $highestRow) break;
 
-			$school_id = $this->school->getSchoolIdByCode($row['F'])->School_ID; //Get School_ID
-			$code = $school_id . $row['E']; //Get Code
-			$subject = $row['A'];
+			$school_id = $this->school->getSchoolIdByCode(trim($row['F']))->School_ID; //Get School_ID
+			$code = $school_id . trim($row['E']); //Get Code
+			$subject = trim($row['A']);
+			$status_id = $this->status->getStatusIDByName(trim($row['H']))->Status_ID;
 
-			$tracker = array
+			$smp_student = array
 			(
-				'Contract?' => $row['G'],
-				'Grade' => $row['I'],
-				'Status' => $row['H'],
-				'Remarks' => $row['J']
+				// 'Contract?' => $row['G'],
+				'smp_student.Grade' => trim($row['I']),
+				'tracker.Status_ID' => $status_id,
+				'tracker.Remarks' => trim($row['J'])
 			);
 			
 			if (!$this->student->getStudentByCode($code))
 			{
-				$student['Code'] = $code;
-
-				$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Student does not exist.');
+				$this->db->trans_rollback();
 				redirect('dbms');					
 			}
-
-			else if (!$this->student->updateStudentTracker($code,$subject,$tracker))
+			
+			if ($this->student->getSmpTrackerByStudentIdOrCode($code))
 			{
-				$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $counter);
+				if ($this->student->updateSmpStudent($code, $subject, $smp_student))
+				{
+					$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Update failed.');
+					$this->db->trans_rollback();
+					redirect('dbms');
+				}
+			}
+			else
+			{
+				$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. SMP Tracker does not exist.');
+				$this->db->trans_rollback();
 				redirect('dbms');
 			}
 		}
+		$this->db->trans_commit();
 
-		if ($counter > 2)
+		if ($counter > 3)
 		{
-			$this->session->set_flashdata('upload_success', 'SMP Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+			$this->session->set_flashdata('upload_success', 'SMP Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 3) . ' students added/updated.');
 			$this->log->addLog('SMP Student Tracker Batch Upload');
 		}
 		else
