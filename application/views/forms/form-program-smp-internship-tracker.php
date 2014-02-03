@@ -14,7 +14,9 @@
 
 					
 		<legend>General Information</legend>
-		<form class="form-inline" role="form">
+		
+		<div class="form-inline">
+		<form role="form">
 			
 				<div class="form-group">
 					<label>ID Number</label>
@@ -121,5 +123,5 @@
 					<?php echo form_error('intern_stat', '<div class="text-danger">', '</div>'); ?>				
 				
 		</form>
-	
+		</div>
 </div>	
