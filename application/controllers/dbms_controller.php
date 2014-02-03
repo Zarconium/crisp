@@ -2312,7 +2312,7 @@ class Dbms_Controller extends CI_Controller
 			
 			if (!$this->teacher->getTeacherByEmail($Email))
 			{
-				$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exists');
+				$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
 				redirect('dbms');					
 			}
 			$this->teacher->uploadGcatGrade($Email, $Gcat_Tracker);
