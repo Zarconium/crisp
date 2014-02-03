@@ -52,7 +52,7 @@
 				</div>
 				<div id="program_student_best" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form">
+						<form class="form" role="form" action="<?php echo base_url('reports/studentBestProgramReport'); ?>" method="post" target="_blank">
 							<div class="form-group">
 								<label>Start Date</label>
 								<input type="date" class="form-control" name="program_student_best_start_date">
@@ -64,7 +64,7 @@
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -112,7 +112,7 @@
 				</div>
 				<div id="program_student_subject" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form">
+						<form class="form" role="form" action="<?php echo base_url('reports/studentProgramReportPerSub'); ?>" method="post" target="_blank">
 							<div class="form-group">
 								<label>Start Date</label>
 								<input type="date" class="form-control" name="program_student_subject_start_date">
@@ -126,12 +126,14 @@
 							<div class="form-group">
 								<label>Subject</label>
 								<select class="form-control" name="program_student_subject_subject">
-									<option value="option1">Option 1</option>
+									<?php foreach ($subjects as $subject): ?>
+										<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Code; ?></option>
+									<?php endforeach; ?>
 								</select>
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/studentProgramReportPerSub'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -140,7 +142,7 @@
 				</div>
 			</div>
 
-			<!-- T3 Program Report 
+			<!-- T3 Program Report GCAT
 			NOT YET DONE
 			-->
 			<div class="panel panel-info">
@@ -151,7 +153,7 @@
 				</div>
 				<div id="program_t3" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form">
+						<form class="form" role="form" action="<?php echo base_url('reports/t3ProgramReportGCAT'); ?>" method="post" target="_blank">
 							<div class="form-group">
 								<label>Start Date</label>
 								<input type="date" class="form-control" name="program_t3_start_date">
@@ -159,11 +161,11 @@
 							
 							<div class="form-group">
 								<label>End Date</label>
-								<input type="date" class="form-control" name="program_st3_end_date">
+								<input type="date" class="form-control" name="program_t3_end_date">
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -172,9 +174,7 @@
 				</div>
 			</div>
 
-			<!-- T3 Program Report per Subject
-			NOT YET DONE
-			-->
+			<!-- T3 Program Report per Subject-->
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -183,7 +183,7 @@
 				</div>
 				<div id="program_t3_subject" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form">
+						<form class="form" role="form" action="<?php echo base_url('reports/T3ProgramReportPerSub'); ?>" method="post" target="_blank">
 							<div class="form-group">
 								<label>Start Date</label>
 								<input type="date" class="form-control" name="program_t3_subject_start_date">
@@ -196,13 +196,57 @@
 							
 							<div class="form-group">
 								<label>Subject</label>
-								<select class="form-control" name="program_student_t3__subject">
-									<option value="option1">Option 1</option>
+								<select class="form-control" name="program_student_t3_subject">
+									<?php foreach ($subjects as $subject): ?>
+										<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Code; ?></option>
+									<?php endforeach; ?>
 								</select>
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
+								<button type="button" class="btn btn-info">Print as Excel</button>
+								<button type="button" class="btn btn-info">Print as PDF</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	
+
+<!-- SUC Report-->
+	<div class="panel panel-info">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_report">&#x25BC; SUC Report</a>
+					</h4>
+				</div>
+				<div id="suc_report" class="panel-collapse collapse">
+					<div class="panel-body">
+						<form class="form" role="form" action="<?php echo base_url('reports/sucReport'); ?>" method="post" target="_blank">
+							
+							<div class="form-group">
+								<label>School</label>
+								<select class="form-control" name="program_suc_report_school_code">
+								<?php foreach ($schools as $school): ?>
+									<option value="<?php echo $school->Code ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
+								<?php endforeach; ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Start Date</label>
+								<input type="date" class="form-control" name="program_suc_report_start_date">
+							</div>
+							
+							<div class="form-group">
+								<label>End Date</label>
+								<input type="date" class="form-control" name="program_suc_report_end_date">
+							</div>
+							
+							
+							<div class="button-groups">
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -212,102 +256,56 @@
 			</div>
 		</div>
 	</div>
+
 	
-	<div class="tab-pane" id="SUC">
-	
-		<!-- Students by Program -->
-		<div class="panel-group" id="accordion">
-			<div class="panel panel-info">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_student">&#x25BC;</a> Students by Program
-					</h4>
-				</div>
-				<div id="suc_student" class="panel-collapse collapse">
-					<div class="panel-body">
-						<form class="form" role="form">
-							<div class="form-group">
-								<label>Subject</label>
-								<select class="form-control" name="suc_student_subject">
-									<?php foreach ($subjects as $subject): ?>
-										<option value="<?php echo $subject->Subject_Code; ?>"><?php echo $subject->Subject_Code; ?></option>
-									<?php endforeach; ?>
-								</select>
-							</div>
-							
-							<div class="form-group">
-								<label>School</label>
-								<select class="form-control" name="suc_student_school">
-								<?php foreach ($schools as $school): ?>
-									<option value="<?php echo $school->School_ID ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
-								<?php endforeach; ?>
-								</select>
-							</div>
-							<div class="form-group">
-								<label>Semester</label>
-								<select class="form-control" name="suc_student_semester">
-									<option value="option1">Option 1</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label>Teacher</label>
-								<select class="form-control" name="suc_student_teacher">
-									<option value="option1">Option 1</option>
-								</select>
-							</div>
-							
-							<div class="button-groups">
-								<a href="<?php echo base_url('reports/getAllStudentsByPogram'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
+	<div class="tab-pane" id="SUC">	
 		
-		<!-- SMP Class List -->
+		<!-- SMP Class List DONE -->
 		<div class="panel-group" id="accordion">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_smp_class_list">&#x25BC;</a> Class List SMP 
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_smp_class_list">&#x25BC;</a> SMP Class List
 					</h4>
 				</div>
 				<div id="suc_smp_class_list" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form">
-
+						<form class="form" role="form" action="<?php echo base_url('reports/smpclassesSUCReport'); ?>" method="post" target="_blank">
 							
-							<div class="form-group">
-								<label>School</label>
-								<select class="form-control" name="suc_smp_class_list_school">
-									<option value="option1">Option 1</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label>Class Name</label>
-								<select class="form-control" name="suc_smp_class_list_class">
-									<option value="option1">Option 1</option>
-								</select>
-							</div>
 							<div class="form-group">
 								<label>Teacher</label>
-								<select class="form-control" name="suc_smp_class_list_teacher">
-									<option value="option1">Option 1</option>
+								<select class="form-control" name="suc_teacher_class">
+								<?php foreach ($teachers as $teacher): ?>
+									<option value="<?php echo $teacher->Code ?>"><?php echo $teacher->Full_Name ?></option>
+								<?php endforeach; ?>
 								</select>
 							</div>
-							
+
 							<div class="form-group">
 								<label>Subject</label>
-								<select class="form-control" name="suc_smp_class_list_subject">
-									<option value="option1">Option 1</option>
+								<select class="form-control" name="suc_subject_class">
+								<?php foreach ($subjects as $subject): ?>
+									<option value="<?php echo $subject->Subject_Code ?>"><?php echo $subject->Subject_Code ?></option>
+								<?php endforeach; ?>
 								</select>
 							</div>
-							
+
+							<div class="form-group">
+								<label>Semester</label>
+									<input type="number" class="form-control" name="suc_semester_class">
+							</div>
+
+							<div class="form-group">
+								<label>School</label>
+								<select class="form-control" name="suc_school_class">
+								<?php foreach ($schools as $school): ?>
+									<option value="<?php echo $school->Code; ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
+								<?php endforeach; ?>
+								</select>
+							</div>
+
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/getAllStudentClassSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -316,6 +314,101 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- BEST Class List -->
+		<div class="panel-group" id="accordion">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_best_class_list">&#x25BC;</a> BEST Class List
+					</h4>
+				</div>
+				<div id="suc_best_class_list" class="panel-collapse collapse">
+					<div class="panel-body">
+						<form class="form" role="form" action="<?php echo base_url('reports/BestStudentClassesSUCReport'); ?>" method="post" target="_blank">							
+							
+							<div class="form-group">
+								<label>Teacher</label>
+								<select class="form-control" name="suc_best_teacher_class">
+								<?php foreach ($teachers as $teacher): ?>
+									<option value="<?php echo $teacher->Code ?>"><?php echo $teacher->Full_Name ?></option>
+								<?php endforeach; ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Semester</label>
+									<input type="number" class="form-control" name="suc_best_semester_class">
+							</div>
+
+							<div class="form-group">
+								<label>School</label>
+								<select class="form-control" name="suc_best_school_class">
+								<?php foreach ($schools as $school): ?>
+									<option value="<?php echo $school->Code; ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
+								<?php endforeach; ?>
+								</select>
+							</div>
+							
+							<div class="button-groups">
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
+								<button type="button" class="btn btn-info">Print as Excel</button>
+								<button type="button" class="btn btn-info">Print as PDF</button>
+							</div>
+							
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Adept Class List -->
+		<div class="panel-group" id="accordion">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_adept_class_list">&#x25BC;</a> AdEPT Class List
+					</h4>
+				</div>
+				<div id="suc_adept_class_list" class="panel-collapse collapse">
+					<div class="panel-body">
+						<form class="form" role="form" action="<?php echo base_url('reports/AdeptStudentClassesSUCReport'); ?>" method="post" target="_blank">							
+							
+							<div class="form-group">
+								<label>Teacher</label>
+								<select class="form-control" name="suc_adept_teacher_class">
+								<?php foreach ($teachers as $teacher): ?>
+									<option value="<?php echo $teacher->Code ?>"><?php echo $teacher->Full_Name ?></option>
+								<?php endforeach; ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Semester</label>
+									<input type="number" class="form-control" name="suc_adept_semester_class">
+							</div>
+
+							<div class="form-group">
+								<label>School</label>
+								<select class="form-control" name="suc_adept_school_class">
+								<?php foreach ($schools as $school): ?>
+									<option value="<?php echo $school->Code; ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
+								<?php endforeach; ?>
+								</select>
+							</div>
+							
+							<div class="button-groups">
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
+								<button type="button" class="btn btn-info">Print as Excel</button>
+								<button type="button" class="btn btn-info">Print as PDF</button>
+							</div>
+							
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+					
 					
 	
 	<!-- GCAT Class List -->
@@ -323,42 +416,38 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_gcat_student_list">&#x25BC;</a> Student List GCAT
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_gcat_class_list">&#x25BC;</a> GCAT Classes
 					</h4>
 				</div>
-				<div id="suc_gcat_student_list" class="panel-collapse collapse">
+				<div id="suc_gcat_class_list" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form">
+						<form class="form" role="form" action="<?php echo base_url('reports/GCATStudentClassesSUCReport'); ?>" method="post" target="_blank">
 
+							<div class="form-group">
+								<label>Proctor</label>
+								<select class="form-control" name="suc_gcat_proctor_class">
+								<?php foreach ($proctors as $proctor): ?>
+									<option value="<?php echo $proctor->Proctor_ID ?>"><?php echo $proctor->Full_Name ?></option>
+								<?php endforeach; ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Semester</label>
+									<input type="number" class="form-control" name="suc_gcat_semester_class">
+							</div>
 							
 							<div class="form-group">
 								<label>School</label>
-								<select class="form-control" name="suc_gcat_student_list_school">
-									<option value="option1">Option 1</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label>Class Name</label>
-								<select class="form-control" name="suc_gcat_student_list_class">
-									<option value="option1">Option 1</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label>Teacher</label>
-								<select class="form-control" name="suc_gcat_student_list_teacher">
-									<option value="option1">Option 1</option>
-								</select>
-							</div>
-							
-							<div class="form-group">
-								<label>Subject</label>
-								<select class="form-control" name="suc_gcat_student_list_subject">
-									<option value="option1">Option 1</option>
+								<select class="form-control" name="suc_gcat_school_class">
+								<?php foreach ($schools as $school): ?>
+									<option value="<?php echo $school->Code; ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
+								<?php endforeach; ?>
 								</select>
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/getAllGCATStudentSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -368,34 +457,52 @@
 			</div>
 		</div>
 					
-	<!-- ADEPT Class List -->
+	<!-- Best Students List  -->
 		<div class="panel-group" id="accordion">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_adept_student_list">&#x25BC;</a> Student List ADEPT
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_best_student_list">&#x25BC;</a> BEST Student List
 					</h4>
 				</div>
-				<div id="suc_adept_student_list" class="panel-collapse collapse">
+				<div id="suc_best_student_list" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form">							
+						<form class="form" role="form" action="<?php echo base_url('reports/BestStudentsSUCReport'); ?>" method="post" target="_blank">							
+							
 							<div class="form-group">
-								<label>School</label>
-								<select class="form-control" name="suc_adept_student_list_school">
-									<option value="option1">Option 1</option>
+								<label>Teacher</label>
+								<select class="form-control" name="suc_best_teacher_students">
+								<?php foreach ($teachers as $teacher): ?>
+									<option value="<?php echo $teacher->Code ?>"><?php echo $teacher->Full_Name ?></option>
+								<?php endforeach; ?>
 								</select>
 							</div>
+
 							<div class="form-group">
-								<label>Date Start</label>
-								<input type="date" class="form-control" name="suc_adept_student_list_date_start">
+								<label>Semester</label>
+									<input type="number" class="form-control" name="suc_best_semester_students">
 							</div>
+
 							<div class="form-group">
-								<label>Date End</label>
-								<input type="date" class="form-control" name="suc_adept_student_list_date_end">
+								<label>School</label>
+								<select class="form-control" name="suc_best_school_students">
+								<?php foreach ($schools as $school): ?>
+									<option value="<?php echo $school->Code; ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
+								<?php endforeach; ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Class</label>
+								<select class="form-control" name="suc_best_class_students">
+								<?php foreach ($best_classes as $class): ?>
+									<option value="<?php echo $class->Name; ?>"><?php echo $class->Name?></option>
+								<?php endforeach; ?>
+								</select>
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/getAllAdeptStudentSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -406,35 +513,53 @@
 			</div>
 		</div>
 
-							
-	<!-- BEST Class List -->
+	<!-- AdEPT Students List  -->
+
 		<div class="panel-group" id="accordion">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_best_student_list">&#x25BC;</a> Student List BEST
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_adept_student_list">&#x25BC;</a> AdEPT Student List
 					</h4>
 				</div>
-				<div id="suc_best_student_list" class="panel-collapse collapse">
+				<div id="suc_adept_student_list" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form">							
+						<form class="form" role="form" action="<?php echo base_url('reports/BestStudentsSUCReport'); ?>" method="post" target="_blank">							
+							
 							<div class="form-group">
-								<label>School</label>
-								<select class="form-control" name="suc_best_student_list_school">
-									<option value="option1">Option 1</option>
+								<label>Teacher</label>
+								<select class="form-control" name="suc_adept_teacher_students">
+								<?php foreach ($teachers as $teacher): ?>
+									<option value="<?php echo $teacher->Code ?>"><?php echo $teacher->Full_Name ?></option>
+								<?php endforeach; ?>
 								</select>
 							</div>
+
 							<div class="form-group">
-								<label>Date Start</label>
-								<input type="date" class="form-control" name="suc_best_student_list_date_start">
+								<label>Semester</label>
+									<input type="number" class="form-control" name="suc_adept_semester_students">
 							</div>
+
 							<div class="form-group">
-								<label>Date End</label>
-								<input type="date" class="form-control" name="suc_best_student_list_date_end">
+								<label>School</label>
+								<select class="form-control" name="suc_adept_school_students">
+								<?php foreach ($schools as $school): ?>
+									<option value="<?php echo $school->Code; ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
+								<?php endforeach; ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Class</label>
+								<select class="form-control" name="suc_adept_class_students">
+								<?php foreach ($adept_classes as $class): ?>
+									<option value="<?php echo $class->Name; ?>"><?php echo $class->Name?></option>
+								<?php endforeach; ?>
+								</select>
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/getAllBestStudentSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -444,6 +569,134 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- GCAT Students List   -->
+
+		<div class="panel-group" id="accordion">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_gcat_student_list">&#x25BC;</a> GCAT Student List
+					</h4>
+				</div>
+				<div id="suc_gcat_student_list" class="panel-collapse collapse">
+					<div class="panel-body">
+						<form class="form" role="form" action="<?php echo base_url('reports/GCATStudentSUCReport'); ?>" method="post" target="_blank">							
+							
+						<div class="form-group">
+								<label>Proctor</label>
+								<select class="form-control" name="suc_gcat_proctor_students">
+								<?php foreach ($proctors as $proctor): ?>
+									<option value="<?php echo $proctor->Proctor_ID ?>"><?php echo $proctor->Full_Name ?></option>
+								<?php endforeach; ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Semester</label>
+									<input type="number" class="form-control" name="suc_gcat_semester_students">
+							</div>
+
+							<div class="form-group">
+								<label>School</label>
+								<select class="form-control" name="suc_gcat_school_students">
+								<?php foreach ($schools as $school): ?>
+									<option value="<?php echo $school->Code; ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
+								<?php endforeach; ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Class</label>
+								<select class="form-control" name="suc_gcat_class_students">
+								<?php foreach ($gcat_classes as $class): ?>
+									<option value="<?php echo $class->Name; ?>"><?php echo $class->Name?></option>
+								<?php endforeach; ?>
+								</select>
+							</div>
+							
+							<div class="button-groups">
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
+								<button type="button" class="btn btn-info">Print as Excel</button>
+								<button type="button" class="btn btn-info">Print as PDF</button>
+							</div>
+							
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- SMP Students List here  -->
+
+		<div class="panel-group" id="accordion">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_smp_student_list">&#x25BC;</a> SMP Student List
+					</h4>
+				</div>
+				<div id="suc_smp_student_list" class="panel-collapse collapse">
+					<div class="panel-body">
+						<form class="form" role="form" action="<?php echo base_url('reports/SMPStudentSUCReport'); ?>" method="post" target="_blank">							
+							
+							<div class="form-group">
+								<label>Teacher</label>
+								<select class="form-control" name="suc_smp_teacher_students">
+								<?php foreach ($teachers as $teacher): ?>
+									<option value="<?php echo $teacher->Code ?>"><?php echo $teacher->Full_Name ?></option>
+								<?php endforeach; ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Subject</label>
+								<select class="form-control" name="suc_smp_subject_students">
+									<?php foreach ($smp_subjects as $subject): ?>
+										<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Code; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Semester</label>
+									<input type="number" class="form-control" name="suc_smp_semester_students">
+							</div>
+
+							<div class="form-group">
+								<label>School</label>
+								<select class="form-control" name="suc_smp_school_students">
+								<?php foreach ($schools as $school): ?>
+									<option value="<?php echo $school->Code; ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
+								<?php endforeach; ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Class</label>
+								<select class="form-control" name="suc_smp_class_students">
+								<?php foreach ($smp_classes as $class): ?>
+									<option value="<?php echo $class->Name; ?>"><?php echo $class->Name?></option>
+								<?php endforeach; ?>
+								</select>
+							</div>
+
+
+							
+							<div class="button-groups">
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
+								<button type="button" class="btn btn-info">Print as Excel</button>
+								<button type="button" class="btn btn-info">Print as PDF</button>
+							</div>
+							
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
 					
 					
 		<!-- T3 BEST -->
@@ -456,11 +709,13 @@
 				</div>
 				<div id="suc_t3_best_class_list" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form">							
+						<form class="form" role="form" action="<?php echo base_url('reports/T3BestSUCReport'); ?>" method="post" target="_blank">							
 							<div class="form-group">
 								<label>School</label>
 								<select class="form-control" name="suc_t3_best_class_list_school">
-									<option value="option1">Option 1</option>
+								<?php foreach ($schools as $school): ?>
+									<option value="<?php echo $school->Code; ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
+								<?php endforeach; ?>
 								</select>
 							</div>
 							<div class="form-group">
@@ -473,7 +728,7 @@
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/getAllT3BestSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -494,11 +749,13 @@
 				</div>
 				<div id="suc_t3_adept_class_list" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form">							
+						<form class="form" role="form" action="<?php echo base_url('reports/T3AdeptSUCReport'); ?>" method="post" target="_blank">							
 							<div class="form-group">
 								<label>School</label>
 								<select class="form-control" name="suc_t3_adept_class_list_school">
-									<option value="option1">Option 1</option>
+								<?php foreach ($schools as $school): ?>
+									<option value="<?php echo $school->Code; ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
+								<?php endforeach; ?>
 								</select>
 							</div>
 							<div class="form-group">
@@ -511,7 +768,7 @@
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/getAllT3AdeptSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -522,46 +779,7 @@
 			</div>
 		</div>
 
-
-	<!-- T3 GCAT Class List-->
-		<div class="panel-group" id="accordion">
-			<div class="panel panel-info">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_t3_gcat_class_list">&#x25BC;</a> T3 GCAT
-					</h4>
-				</div>
-				<div id="suc_t3_gcat_class_list" class="panel-collapse collapse">
-					<div class="panel-body">
-						<form class="form" role="form">							
-							<div class="form-group">
-								<label>School</label>
-								<select class="form-control" name="suc_t3_gcat_class_list_school">
-									<option value="option1">Option 1</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label>Date Start</label>
-								<input type="date" class="form-control" name="suc_t3_gcat_class_list_date_start">
-							</div>
-							<div class="form-group">
-								<label>Date End</label>
-								<input type="date" class="form-control" name="suc_t3_gcat_class_list_date_end">
-							</div>
-							
-							<div class="button-groups">
-								<a href="<?php echo base_url('reports/getAllT3GCATSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
-							</div>
-							
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		
+			
 		
 
 	<!-- T3 SMP -->
@@ -574,28 +792,32 @@
 				</div>
 				<div id="suc_smp" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form">							
+						<form class="form" role="form" action="<?php echo base_url('reports/SMPTotalSUCReport'); ?>" method="post" target="_blank">							
 							<div class="form-group">
 								<label>School</label>
-								<select class="form-control" name="suc_smp_school">
-									<option value="option1">Option 1</option>
+								<select class="form-control" name="suc_t3_smp_school">
+								<?php foreach ($schools as $school): ?>
+									<option value="<?php echo $school->Code; ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
+								<?php endforeach; ?>
 								</select>
 							</div>
+
 							<div class="form-group">
 								<label>Subject</label>
-								<select class="form-control" name="suc_smp_subject">
-									<option value="option1">Option 1</option>
+								<select class="form-control" name="suc_t3_smp_subject">
+									<?php foreach ($smp_subjects as $subject): ?>
+										<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Code; ?></option>
+									<?php endforeach; ?>
 								</select>
 							</div>
+
 							<div class="form-group">
 								<label>Semester</label>
-								<select class="form-control" name="suc_smp_semester">
-									<option value="option1">Option 1</option>
-								</select>
+									<input type="number" class="form-control" name="suc_t3_smp_semester">
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/getAllT3SMPSUCReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -605,7 +827,6 @@
 				</div>
 			</div>
 		</div>
-		
 	</div>
 	
 	<div class="tab-pane" id="MandE">
@@ -619,14 +840,18 @@
 				</div>
 				<div id="mande_quarter" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form">							
+						<form class="form" role="form" action="<?php echo base_url('reports/mneQuarterlyReport'); ?>" method="post" target="_blank">
 							<div class="form-group">
 								<label>Year</label>
 								<input class="form-control" type="number" name="mande_quarter_year" min="2011">
 							</div>
+							<div class="form-group">
+								<label>Target</label>
+								<input class="form-control" type="number" name="mande_quarter_target">
+							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -644,14 +869,18 @@
 				</div>
 				<div id="mande_month" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form">							
+						<form class="form" role="form" action="<?php echo base_url('reports/mneMonthlyReport'); ?>" method="post" target="_blank">
 							<div class="form-group">
 								<label>Year</label>
 								<input class="form-control" type="number" name="mande_month_year" min="2011">
+							</div>				
+							<div class="form-group">
+								<label>Target</label>
+								<input class="form-control" type="number" name="mande_month_target">
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
@@ -661,5 +890,4 @@
 			</div>
 		</div>
 	</div>
-
 </div>

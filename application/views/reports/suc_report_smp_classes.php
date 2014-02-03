@@ -3,26 +3,6 @@
 <div class="report-form">
 <table class="table">
 	<tr>
-		<th>Teacher</th>
-		<td>Teacher name</td>
-	</tr>
-	<tr>
-		<th>Subject</th>
-		<td>Subject here</td>
-	</tr>
-	<tr>
-		<th>Sem/period</th>
-		<td>sem period here</td>
-	</tr>
-	<tr>
-		<th>School</th>
-		<td>school name here</td>
-	</tr>
-	<tr>
-		<th>Class Name</th>
-		<th>Number of Students</th>
-	</tr>
-	<tr>
 		<th>Class Name</th>
 		<th>Number of Students</th>
 	</tr>
