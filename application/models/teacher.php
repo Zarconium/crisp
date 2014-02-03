@@ -534,15 +534,6 @@ Class Teacher extends CI_Model
 
 		return $this->db->affected_rows();
 	}
-	function uploadGCATGrade($code, $subject, $stipend_tracking)
-	{
-		$this->db->set($stipend_tracking);
-		$this->db->where('Teacher.Code', $code);
-		$this->db->where('Subject.Subject_Code', $subject);
-		$this->db->update('stipend_tracking JOIN stipend_tracking_list ON stipend_tracking.Stipend_Tracking_ID = stipend_tracking_list.Stipend_Tracking_ID JOIN subject ON stipend_tracking_list.Subject_ID = subject.Subject_ID JOIN teacher ON stipend_tracking.teacher_ID = teacher.Teacher_ID');
-
-		return $this->db->affected_rows();
-	}
 
 	function uploadBestGrade($Best_T3_Tracker, $Best_T3_Grades)
 	{
@@ -614,6 +605,7 @@ Class Teacher extends CI_Model
 			return false;
 		}
 	}
+	
 	function uploadGcatGrade($Email, $Gcat_Tracker)
 	{
 		$this->db->set($Gcat_Tracker);
