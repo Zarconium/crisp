@@ -24,8 +24,8 @@ class Home extends CI_Controller {
 		$config['base_url'] = base_url() . '/home/index';
 		$config['total_rows'] = $this->db->get('log')->num_rows();
 		$config['per_page'] = 10;  
-		$config['full_tag_open'] = '<ul class="pagination">';
-		$config['full_tag_close'] = '</ul>';
+		$config['full_tag_open'] = '<div class="center"><ul class="pagination">';
+		$config['full_tag_close'] = '</ul></div>';
 		$config['first_tag_open'] = '<li>';	
 		$config['first_tag_close'] = '</li>';
 		$config['last_tag_open'] = '<li>';	
@@ -38,7 +38,7 @@ class Home extends CI_Controller {
 		$config['cur_tag_close'] = '</a></li>';
 		$config['num_tag_open'] = '<li>';	
 		$config['num_tag_close'] = '</li>';
-		$config['num_links'] = 3;
+		$config['num_links'] = 2;
  
         $this->pagination->initialize($config);
 		

@@ -19,8 +19,27 @@ class Dbms_Controller extends CI_Controller
 	}
 
 	function index()
-	{
+	{		
+		$this->load->library('pagination');
+		$this->load->library('table');
+		
+		
+		$offset = $this->uri->segment(3);
+		$config['total_rows'] = 30;
+		$config['base_url'] =  base_url() . ('dbms/students/page/');
+		$config['per_page'] = 10;
+		
+			
+
+		//$this->db->limit($config['per_page'], $this->uri->segment(3, 0));
+		//$this->pagination->initialize($config);
+		//$data['students'] = $this->post->limit($limit, $offset)->student->getAllStudentsFormatted();	
+		//$data['students'] = $this->db->get('student', $config['per_page'], $this->uri->segment(3));
+		//$data['students'] = $this->student->getAllStudentsFormattedLimit($config['per_page'], $this->uri->segment(3));
 		$data['students'] = $this->student->getAllStudentsFormatted();
+		
+		$data['links'] = $this->pagination->create_links();
+		
 		$data['teachers'] = $this->teacher->getAllTeachersFormatted();
 		$data['proctors'] = $this->proctor->getAllProctorsFormatted();
 		$data['mastertrainers'] = $this->mastertrainer->getAllMasterTrainersFormatted();

@@ -44,6 +44,7 @@ Class Student extends CI_Model
 		}	
 	}
 
+
 	function getStudentById($id)
 	{
 		$this->db->select('*');
