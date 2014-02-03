@@ -1185,7 +1185,7 @@ class Dbms_Controller extends CI_Controller
 						(
 							'Status_ID' => 3,
 							'Times_Taken' => 1,
-							'Subject_ID' => 3
+							'Subject_ID' => 2
 						);
 						$tracker_id = $this->student->addTracker($tracker);
 
