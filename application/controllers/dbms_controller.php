@@ -106,7 +106,7 @@ class Dbms_Controller extends CI_Controller
 		$this->load->view('footer');
 	}
 	
-	function form_mastertrainer_profile()
+	function form_mastertrainer_profile($id)
 	{
 		$data['mastertrainer'] = $this->mastertrainer->getMasterTrainerById($id);
 		//$this->log->addLog('Updated Mastertrainer Profile');
