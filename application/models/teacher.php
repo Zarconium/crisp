@@ -610,7 +610,7 @@ Class Teacher extends CI_Model
 	{
 		$this->db->set($Gcat_Tracker);
 		$this->db->where('teacher.Email', $Email);
-		$this->db->update('gcat_tracker JOIN t3_tracker on gcat_tracker.T3_TrackerID = t3_tracker.T3_Tracker_ID JOIN teacher_t3_tracker ON t3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID JOIN teacher ON teacher_t3_tracker.Teacher_ID = teacher.Teacher_ID');
+		$this->db->update('gcat_tracker JOIN t3_tracker on gcat_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID JOIN teacher_t3_tracker ON t3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID JOIN teacher ON teacher_t3_tracker.Teacher_ID = teacher.Teacher_ID');
 
 		return $this->db->affected_rows();
 	}
