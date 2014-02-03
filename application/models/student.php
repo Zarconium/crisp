@@ -500,7 +500,7 @@ Class Student extends CI_Model
 		$this->db->where('Code', $code);
 		$this->db->update('student', $data);
 
-		return $this->db->affected_rows();
+		return $this->db->_error_message();
 	}
 
 	function updateBestStudent($code, $subject, $tracker)
@@ -510,7 +510,7 @@ Class Student extends CI_Model
 		$this->db->where('subject.Subject_Code', $subject);
 		$this->db->update('best_student JOIN tracker ON best_student.Tracker_ID = tracker.Tracker_ID JOIN student_tracker ON tracker.Tracker_ID = student_tracker.Tracker_ID JOIN student ON student_tracker.Student_ID = student.Student_ID JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
 
-		return $this->db->affected_rows();
+		return $this->db->_error_message();
 	}
 
 	function updateAdeptStudent($code, $subject, $tracker)
@@ -520,7 +520,7 @@ Class Student extends CI_Model
 		$this->db->where('subject.Subject_Code', $subject);
 		$this->db->update('adept_student JOIN tracker ON adept_student.Tracker_ID = tracker.Tracker_ID JOIN student_tracker ON tracker.Tracker_ID = student_tracker.Tracker_ID JOIN student ON student_tracker.Student_ID = student.Student_ID JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
 
-		return $this->db->affected_rows();
+		return $this->db->_error_message();
 	}
 
 	function updateGcatStudent($code, $subject, $tracker)
@@ -530,7 +530,7 @@ Class Student extends CI_Model
 		$this->db->where('subject.Subject_Code', $subject);
 		$this->db->update('gcat_student JOIN tracker ON gcat_student.Tracker_ID = tracker.Tracker_ID JOIN student_tracker ON tracker.Tracker_ID = student_tracker.Tracker_ID JOIN student ON student_tracker.Student_ID = student.Student_ID JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
 
-		return $this->db->affected_rows();
+		return $this->db->_error_message();
 	}
 
 	function updateSmpStudent($code, $subject, $tracker)
@@ -540,7 +540,7 @@ Class Student extends CI_Model
 		$this->db->where('subject.Subject_Code', $subject);
 		$this->db->update('smp_student JOIN tracker ON smp_student.Tracker_ID = tracker.Tracker_ID JOIN student_tracker ON tracker.Tracker_ID = student_tracker.Tracker_ID JOIN student ON student_tracker.Student_ID = student.Student_ID JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
 
-		return $this->db->affected_rows();
+		return $this->db->_error_message();
 	}
 
 	function deleteStudentById($id)
