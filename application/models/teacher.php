@@ -351,6 +351,11 @@ Class Teacher extends CI_Model
 		$this->db->insert('teacher_affiliation_to_organization', $data);
 		return $this->db->insert_id();
 	}
+	function addTeacherBestT3Tracker($best_t3_tracker)
+	{
+		$this->db->insert ('best_t3_tracker', $best_t3_tracker);
+		return $this->db->insert_id(); 
+	}
 
 	function updateTeacherByCode($code, $data)
 	{
@@ -364,6 +369,45 @@ Class Teacher extends CI_Model
 	{
 		$this->db->where('Teacher_ID', $id);
 		return $this->db->delete('teacher');
+	}
+	function getBestT3TrackerByTeacherCode($Code)
+	{
+		$this->db->select('*');
+		$this->db->from('teacher');
+		$this->db->join('teacher_t3_tracker', 'teacher.teacher_ID = teacher_t3_tracker.Teacher_ID', 'left');
+		$this->db->join('t3_tracker', 'teacher_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->join('best_t3_tracker', 't3_tracker.T3_Tracker_ID = best_t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->where('teacher.code', $Code);
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	function getT3TrackerByTeacherCode($Code)
+	{
+		$this->db->select('*');
+		$this->db->from('teacher');
+		$this->db->join('teacher_t3_tracker', 'teacher.teacher_ID = teacher_t3_tracker.Teacher_ID', 'left');
+		$this->db->join('t3_tracker', 'teacher_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->where('teacher.code', $Code);
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	function updateBestT3Tracker($code,$subject,$best_t3_tracker)
