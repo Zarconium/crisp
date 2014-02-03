@@ -57,7 +57,7 @@ class Dbms_Controller extends CI_Controller
 		$data['statuses'] = $this->status->getAllStatuses();
 		$data['student'] = $this->student->getStudentById($id);
 		$data['gcat_tracker'] = $this->student->getGcatTrackerByStudentId($id);
-		$data['best_tracker'] = $this->student->getBestTrackerByStudentId($id);
+		$data['best_tracker'] = $this->student->getBestTrackerByStudentIdOrCode($id);
 		$data['adept_tracker'] = $this->student->getAdeptTrackerByStudentIdOrCode($id);
 		$data['smp_tracker'] = $this->student->getSmpTrackerByStudentId($id);
 		$data['internship'] = $this->student->getInternshipByStudentId($id);
@@ -1304,39 +1304,58 @@ class Dbms_Controller extends CI_Controller
 			if ($counter++ < 3) continue;
 			if ($counter > $highestRow) break;
 
-			$school_id = $this->school->getSchoolIdByCode($row['F'])->School_ID; //Get School_ID
-			$code = $school_id . $row['E']; //Get Code
-			$subject = $row['A'];
+			$school_id = $this->school->getSchoolIdByCode(trim($row['F']))->School_ID; //Get School_ID
+			$code = $school_id . trim($row['E']); //Get Code
+			$subject = trim($row['A']);
+			$status_id = $this->status->getStatusIDByName(trim($row['H']))->Status_ID;
 
-			$tracker = array
+			$subject_student = array
 			(
-				'Contract' => $row['G'],
-				'Status' => $row['H'],
-				'Remarks' => $row['I'],
-				'CD' => $row['J']
+				// 'Contract' => trim($row['G']),
+				'tracker.Status_ID' => $status_id,
+				'tracker.Remarks' => trim($row['I']),
+				'CD' => (bool) strcasecmp($row['J'], 'no'),
 			);
 			
 			if (!$this->student->getStudentByCode($code))
 			{
-				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Student does not exist.');
+				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $code . '. Student does not exist.');
 				$this->db->trans_rollback();
 				redirect('dbms');
 			}
 
 			if ($subject == 'BEST')
 			{
-				if ($this->student->updateBestTracker($code, $subject, $tracker))
+				if ($this->student->getBestTrackerByStudentIdOrCode($code))
 				{
-					$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+					if ($this->student->updateBestStudent($code, $subject, $subject_student))
+					{
+						$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Update failed.');
+						$this->db->trans_rollback();
+						redirect('dbms');
+					}
+				}
+				else
+				{
+					$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. BEST Tracker does not exist.');
 					$this->db->trans_rollback();
 					redirect('dbms');
 				}
 			}
 			elseif ($subject == 'AdEPT')
 			{
-				if ($this->student->updateAdeptTracker($code, $subject, $tracker))
+				if ($this->student->getAdeptTrackerByStudentIdOrCode($code))
 				{
-					$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+					if ($this->student->updateAdeptStudent($code, $subject, $subject_student))
+					{
+						$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Update failed.');
+						$this->db->trans_rollback();
+						redirect('dbms');
+					}
+				}
+				else
+				{
+					$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. AdEPT Tracker does not exist.');
 					$this->db->trans_rollback();
 					redirect('dbms');
 				}
@@ -1850,7 +1869,11 @@ class Dbms_Controller extends CI_Controller
 				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter);
 				redirect('dbms');
 			}*/
-			$this->teacher->updateBestT3Tracker($code,$subject,$best_t3_tracker);
+			if ($this->teacher->updateBestT3Tracker($code,$subject,$best_t3_tracker))
+			{
+				// error ,message
+			}
+
 			$this->teacher->updateTeacherByCode($code, $teacher);
 			$this->teacher->updateT3Tracker($code,$subject,$t3_tracker);
 		}
