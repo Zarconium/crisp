@@ -33,5 +33,23 @@ Class Subject extends CI_Model
 			return false;
 		}
 	}
+
+	function getSMPSubjects()
+	{
+		$query = $this->db->query('SELECT * FROM subject 
+			WHERE subject.subject_code !="GCAT" 
+			AND subject.subject_code !="ADEPT" 
+			AND subject.subject_code !="BEST" 
+			AND subject.subject_code !="BEST/AdePT";');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 ?>
