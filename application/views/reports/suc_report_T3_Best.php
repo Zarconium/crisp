@@ -3,10 +3,6 @@
 <div class="report-form">
 <table class="table">
 	<tr>
-		<th>School:</th>
-		<td>School name here</td>
-	</tr>
-	<tr>
 		<th>Class Name</th>
 		<th>Number of Students</th>
 	</tr>

@@ -1,3 +1,4 @@
+<?php $this->student->getTrackerByStudentCodeAndSubjectId('aasdasd', 2); ?>
 <?php if ($this->session->flashdata('upload_success')) { echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>Success!</strong> ' . $this->session->flashdata('upload_success') . '</div>';} ?>
 <?php if ($this->session->flashdata('upload_error')) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>Error!</strong> ' . $this->session->flashdata('upload_error') . '</div>';} ?>
 
@@ -80,7 +81,7 @@
 			<div class="button-groups">
 				<a href="<?php echo base_url('dbms/form_proctor_application'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
 				<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-				<button class="btn btn-success" data-toggle="modal" data-target="#batchProctor">Batch Upload</button>
+				<button class="btn btn-success disabled" data-toggle="modal" data-target="#batchProctor">Batch Upload</button>
 				<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
 				<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 			</div>
@@ -111,7 +112,7 @@
 			<div class="button-groups">
 				<a href="<?php echo base_url('dbms/form_mastertrainer_application'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
 				<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-				<button class="btn btn-success" data-toggle="modal" data-target="#batchTrainer">Batch Upload</button>
+				<button class="btn btn-success disabled" data-toggle="modal" data-target="#batchTrainer">Batch Upload</button>
 				<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
 				<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 		 	</div>

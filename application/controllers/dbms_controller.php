@@ -95,21 +95,24 @@ class Dbms_Controller extends CI_Controller
 		$this->load->view('footer');
 	}
 	
-	function form_proctor_profile()
+	function form_proctor_profile($id)
 	{
-		$this->log->addLog('Updated Proctor Profile');
+		$data['proctor'] = $this->proctor->getProctorById($id);
+
+		//$this->log->addLog('Updated Proctor Profile');
 
 		$this->load->view('header');
-		$this->load->view('forms/form-proctor-profile');
+		$this->load->view('forms/form-proctor-profile', $data);
 		$this->load->view('footer');
 	}
 	
 	function form_mastertrainer_profile()
 	{
-		$this->log->addLog('Updated Mastertrainer Profile');
+		$data['master_trainer'] = $this->master_trainer->getMasterTrainerById($id);
+		//$this->log->addLog('Updated Mastertrainer Profile');
 
 		$this->load->view('header');
-		$this->load->view('forms/form-mastertrainer-profile');
+		$this->load->view('forms/form-mastertrainer-profile', $data);
 		$this->load->view('footer');
 	}
 
@@ -1151,7 +1154,7 @@ class Dbms_Controller extends CI_Controller
 			$code = $school_id . $row['E']; //Get Code
 			$subject = $row['A'];
 
-			$tracker = array
+			$subject_student = array
 			(
 				'Control_Number' => trim($row['G']),
 				'Username' => trim($row['H'])
@@ -1165,28 +1168,88 @@ class Dbms_Controller extends CI_Controller
 			
 			if ($subject == 'BEST')
 			{
-				if (!$this->student->updateBestStudent($code, $subject, $tracker))
+				if ($this->student->getBestStudentByStudentIdOrCode($code)) //BEST Student Tracker exists -> Update
 				{
-					$this->session->set_flashdata('upload_error', 'BEST Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
-					redirect('dbms');
+					if (!$this->student->updateBestStudent($code, $subject, $subject_student))
+					{
+						$this->session->set_flashdata('upload_error', 'BEST Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+						redirect('dbms');
+					}
+				}
+				else //BEST Student Tracker does not exist -> Add
+				{
+					if ($this->student->getTrackerByStudentCodeAndSubjectId($code, 2)) //Tracker exists -> Get Tracker ID
+					{
+						$subject_student['Tracker_ID'] = $this->student->getBestTrackerByStudentIdOrCode($code);
+					}
+					else //Tracker does not exist -> Add Tracker and get ID
+					{
+						$tracker = array
+						(
+							'Status_ID' => 3,
+							'Times_Taken' => 1,
+							'Subject_ID' => 2
+						);
+						$tracker_id = $this->student->addTracker($tracker);
+
+						$student_tracker = array
+						(
+							'Tracker_ID' => $tracker_id,
+							'Student_ID' => $this->student->getStudentByCode($code)->Student_ID
+						);
+						$student_tracker_id = $this->student->addStudentTracker($student_tracker);
+
+						$subject_student['Tracker_ID'] = $tracker_id;
+					}
+
+					if (!$this->student->addBestStudent($subject_student))
+					{
+						$this->session->set_flashdata('upload_error', 'BEST Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+						redirect('dbms');
+					}
 				}
 			}
 			elseif ($subject == 'AdEPT')
 			{
-				if ($this->student->getAdeptStudentByStudentId($row['E']))
+				if ($this->student->getAdeptStudentByStudentIdOrCode($code)) //AdEPT Student Tracker exists -> Update
 				{
-					if (!$this->student->updateAdeptStudent($code, $subject, $tracker))
+					if (!$this->student->updateAdeptStudent($code, $subject, $subject_student))
 					{
 						$this->session->set_flashdata('upload_error', 'AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
 						redirect('dbms');
 					}
 				}
-				if (!$this->student->addAdeptStudent($code, $subject, $tracker))
+				else //AdEPT Student Tracker does not exist -> Add
 				{
-					// $tracker['Tracker_ID'] = $this->student->getAdeptTrackerByStudentId()
+					if ($this->student->getTrackerByStudentCodeAndSubjectId($code, 3)) //Tracker exists -> Get Tracker ID
+					{
+						$subject_student['Tracker_ID'] = $this->student->getAdeptTrackerByStudentIdOrCode($code);
+					}
+					else //Tracker does not exist -> Add Tracker and get ID
+					{
+						$tracker = array
+						(
+							'Status_ID' => 3,
+							'Times_Taken' => 1,
+							'Subject_ID' => 3
+						);
+						$tracker_id = $this->student->addTracker($tracker);
 
-					$this->session->set_flashdata('upload_error', 'AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
-					redirect('dbms');
+						$student_tracker = array
+						(
+							'Tracker_ID' => $tracker_id,
+							'Student_ID' => $this->student->getStudentByCode($code)->Student_ID
+						);
+						$student_tracker_id = $this->student->addStudentTracker($student_tracker);
+
+						$subject_student['Tracker_ID'] = $tracker_id;
+					}
+
+					if (!$this->student->addAdeptStudent($subject_student))
+					{
+						$this->session->set_flashdata('upload_error', 'AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+						redirect('dbms');
+					}
 				}
 			}
 			else

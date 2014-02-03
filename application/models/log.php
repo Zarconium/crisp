@@ -32,5 +32,9 @@ Class Log extends CI_Model
 		$this->db->insert('log', $data);
 		return $this->db->insert_id();
 	}
+	
+	function getTotalLogs(){
+		return $this->db->count_all("log");
+	}
 }
 ?>

@@ -760,56 +760,56 @@ Class Report_Program extends CI_Model
 		}
 	}
 
-	function getSucReportTeachers($schoolcode)
+	function getSucReportTeachers($schoolcode, $start_date, $end_date)
 	{
 
 		$query = $this->db->query('(select(SELECT COUNT(DISTINCT T3.teacher_ID) 
 		FROM Teacher_T3_Tracker as T3, School as sc, Teacher as t
 		WHERE t.teacher_id = t3.Teacher_id AND t.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND T3.T3_Tracker_ID IN (SELECT t.T3_Tracker_ID 
 		FROM T3_Tracker as t, Subject as s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101")) as BPO101
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as BPO101
 		,
 		(SELECT COUNT(DISTINCT T3.teacher_ID) 
 		FROM Teacher_T3_Tracker as T3, School as sc, Teacher as t
 		WHERE t.teacher_id = t3.Teacher_id AND t.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND T3.T3_Tracker_ID IN (SELECT t.T3_Tracker_ID 
 		FROM T3_Tracker as t, Subject as s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102")) as BPO102
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as BPO102
 		,
 		(SELECT COUNT(DISTINCT T3.teacher_ID) 
 		FROM Teacher_T3_Tracker as T3, School as sc, Teacher as t
 		WHERE t.teacher_id = t3.Teacher_id AND t.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND T3.T3_Tracker_ID IN (SELECT t.T3_Tracker_ID 
 		FROM T3_Tracker as t, Subject as s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101")) as ServiceCulture
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as ServiceCulture
 		,
 		(SELECT COUNT(DISTINCT T3.teacher_ID) 
 		FROM Teacher_T3_Tracker as T3, School as sc, Teacher as t
 		WHERE t.teacher_id = t3.Teacher_id AND t.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND T3.T3_Tracker_ID IN (SELECT t.T3_Tracker_ID 
 		FROM T3_Tracker as t, Subject as s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom")) as BusinessCommunication
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as BusinessCommunication
 		,
 		(SELECT COUNT(DISTINCT T3.teacher_ID) 
 		FROM Teacher_T3_Tracker as T3, School as sc, Teacher as t
 		WHERE t.teacher_id = t3.Teacher_id AND t.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND T3.T3_Tracker_ID IN (SELECT t.T3_Tracker_ID 
 		FROM T3_Tracker as t, Subject as s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101")) as SystemsThinking
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as SystemsThinking
 		,
 		(SELECT COUNT(DISTINCT T3.teacher_ID) 
 		FROM Teacher_T3_Tracker as T3, School as sc, Teacher as t
 		WHERE t.teacher_id = t3.Teacher_id AND t.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND T3.T3_Tracker_ID IN (SELECT t.T3_Tracker_ID 
 		FROM T3_Tracker as t, Subject as s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" or s.Subject_Code = "BEST/AdEPT" )) as AdEPT
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" or s.Subject_Code = "BEST/AdEPT" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as AdEPT
 		,
 		(SELECT COUNT(DISTINCT T3.teacher_ID) 
 		FROM Teacher_T3_Tracker as T3, School as sc, Teacher as t
 		WHERE t.teacher_id = t3.Teacher_id AND t.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND T3.T3_Tracker_ID IN (SELECT t.T3_Tracker_ID 
 		FROM T3_Tracker as t, Subject as s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" or s.Subject_Code = "BEST/AdEPT" )) as BEST
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" or s.Subject_Code = "BEST/AdEPT" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'" )) as BEST
 		,
 		(SELECT COUNT(DISTINCT T3.teacher_ID) 
 		FROM Teacher_T3_Tracker as T3, School as sc, Teacher as t
 		WHERE t.teacher_id = t3.Teacher_id AND t.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND T3.T3_Tracker_ID IN (SELECT t.T3_Tracker_ID 
 		FROM T3_Tracker as t, Subject as s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT")) as GCAT);');
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as GCAT);');
 	
 
 		if($query->num_rows() > 0)
@@ -823,55 +823,55 @@ Class Report_Program extends CI_Model
 
 	}
 
-	function getSucReportStudentsCompleted($schoolcode)
+	function getSucReportStudentsCompleted($schoolcode, $start_date, $end_date)
 	{
 		$query = $this->db->query('(select(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
 		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="BATSTATU-Lipa" AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101")) as "BPO101"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "BPO101"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
 		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="BATSTATU-Lipa" AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102")) as "BPO102"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "BPO102"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
 		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="BATSTATU-Lipa" AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101")) as "ServiceCulture"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "ServiceCulture"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
 		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="BATSTATU-Lipa" AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom")) as "BusinessCommunication"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "BusinessCommunication"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
 		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="BATSTATU-Lipa" AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYS101")) as "SystemsThinking"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYS101" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "SystemsThinking"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
 		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="BATSTATU-Lipa" AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "AdEPT" or s.Subject_Code = "BEST/AdEPT"))) as "AdEPT"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "AdEPT" or s.Subject_Code = "BEST/AdEPT" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"))) as "AdEPT"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
 		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="BATSTATU-Lipa" AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "BEST" or s.Subject_Code = "BEST/AdEPT"))) as "BEST"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "BEST" or s.Subject_Code = "BEST/AdEPT" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"))) as "BEST"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
 		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="BATSTATU-Lipa" AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT")) as "GCAT");');
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "GCAT");');
 
 		if($query->num_rows() > 0)
 		{
@@ -883,55 +883,55 @@ Class Report_Program extends CI_Model
 		}
 	}
 
-	function getSucReportStudentsCurrentlyTaking($schoolcode)
+	function getSucReportStudentsCurrentlyTaking($schoolcode, $start_date, $end_date)
 	{
 		$query = $this->db->query('(select(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
 		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="BATSTATU-Lipa" AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101")) as "BPO101"
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "BPO101"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
 		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="BATSTATU-Lipa" AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102")) as "BPO102"
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "BPO102"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
 		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="BATSTATU-Lipa" AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101")) as "ServiceCulture"
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "ServiceCulture"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
 		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="BATSTATU-Lipa" AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom")) as "BusinessCommunication"
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "BusinessCommunication"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
 		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="BATSTATU-Lipa" AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYS101")) as "SystemsThinking"
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYS101" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "SystemsThinking"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
 		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="BATSTATU-Lipa" AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "AdEPT" or s.Subject_Code = "BEST/AdEPT"))) as "AdEPT"
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "AdEPT" or s.Subject_Code = "BEST/AdEPT" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"))) as "AdEPT"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
 		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="BATSTATU-Lipa" AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "BEST" or s.Subject_Code = "BEST/AdEPT"))) as "BEST"
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "BEST" or s.Subject_Code = "BEST/AdEPT" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"))) as "BEST"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
 		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="BATSTATU-Lipa" AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT")) as "GCAT");');
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "GCAT");');
 
 		if($query->num_rows() > 0)
 		{
