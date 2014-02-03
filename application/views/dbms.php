@@ -35,7 +35,7 @@
 					<th>Programs</th>
 				</tr>
 				</thead>
-				<?php if (isset($students)) foreach ($students as $student): ?>
+				<?php if ($students) foreach ($students as $student): ?>
 				<tr>
 					<td><input type="checkbox"></td>
 					<td><a href="<?php echo base_url('dbms/form_student_profile/' . $student->Student_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_student/' . $student->Student_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
@@ -67,7 +67,7 @@
 					<th>Programs</th>
 				</tr>
 				</thead>
-				<?php if (isset($teachers)) foreach ($teachers as $teacher): ?>
+				<?php if ($teachers) foreach ($teachers as $teacher): ?>
 				<tr>
 					<td><input type="checkbox"></td>
 					<td><a href="<?php echo base_url('dbms/form_teacher_profile/' . $teacher->Teacher_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_teacher/' . $teacher->Teacher_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
@@ -99,7 +99,7 @@
 					<th>Programs</th>
 				</tr>
 				</thead>
-				<?php if (isset($proctors)) foreach ($proctors as $proctor): ?>
+				<?php if ($proctors) foreach ($proctors as $proctor): ?>
 				<tr>
 					<td><input type="checkbox"></td>
 					<td><a href="<?php echo base_url('dbms/form_proctor_profile/' . $proctor->Proctor_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_proctor/' . $proctor->Proctor_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
@@ -132,7 +132,7 @@
 					<th>Programs</th>
 				</tr>
 				</thead>
-				<?php if (isset($mastertrainers)) foreach ($mastertrainers as $mastertrainer): ?>
+				<?php if ($mastertrainers) foreach ($mastertrainers as $mastertrainer): ?>
 				<tr>
 					<td><input type="checkbox"></td>
 					<td><a href="<?php echo base_url('dbms/form_mastertrainer_profile/' . $mastertrainer->Master_Trainer_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_mastertrainer/' . $mastertrainer->Master_Trainer_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>

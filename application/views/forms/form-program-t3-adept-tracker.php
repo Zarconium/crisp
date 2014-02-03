@@ -14,8 +14,10 @@
 		</div>
 
 		
-<form class="form">
 	<legend>Personal Information</legend>
+<div class="form-inline">
+	<form>
+
 	<div class="form-group">
 		<label>Last Name</label>
 		<input class="form-control" type="text" name="last_name" value="<?php echo set_value('last_name'); ?>">		
@@ -61,47 +63,47 @@
 			<input type="radio" name="contract" value="yes"> Yes
 			<input type="radio" name="contract" value="no"> No
 		<?php echo form_error('contract', '<div class="text-danger">', '</div>'); ?>
-	</div>
+	</div><br/>
 	<div class="form-group">
 		<label>Interview Form</label><br/>
 		<input type="radio" name="interview_form" value="yes"> Yes
 		<input type="radio" name="interview_form" value="no"> No
 		<?php echo form_error('interview_form', '<div class="text-danger">', '</div>'); ?>
-	</div>
+	</div><br/>
 	<div class="form-group">
 		<label>Site Visit Form</label><br/>
 		<input type="radio" name="site_visit_form" value="yes"> Yes
 		<input type="radio" name="site_visit_form" value="no"> No
 		<?php echo form_error('', '<div class="text-danger">', '</div>'); ?>
 	
-	</div>
+	</div><br/>
 	<div class="form-group">
 		<label>Adept E-Learning Feedback</label><br/>
 		<input type="radio" name="adept_elearning_feedback" value="yes"> Yes
 		<input type="radio" name="adept_elearning_feedback" value="no"> No
 		<?php echo form_error('adept_elearning_feedback', '<div class="text-danger">', '</div>'); ?>
-	</div>
+	</div><br/>
 	<div class="form-group">
 		<label>Adept T3 Feedback</label><br/>
 		<input type="radio" name="adept_t3_feedback" value="yes"> Yes
 		<input type="radio" name="adept_t3_feedback" value="no"> No
 		<?php echo form_error('adept_t3_feedback', '<div class="text-danger">', '</div>'); ?>
 	
-	</div>
+	</div><br/>
 	<div class="form-group">
 		<label>Manual and Kit</label><br/>
 		<input type="radio" name="manual_kit" value="yes"> Yes
 		<input type="radio" name="manual_kit" value="no"> No
 		<?php echo form_error('manual_kit', '<div class="text-danger">', '</div>'); ?>
 	
-	</div>
+	</div><br/>
 	<div class="form-group">
 		<label>Certificate of Attendance</label><br/>
 		<input type="radio" name="certificate_attendance" value="yes"> Yes
 		<input type="radio" name="certificate_attendance" value="no"> No
 		<?php echo form_error('certificate_attendance', '<div class="text-danger">', '</div>'); ?>
 	
-	</div>
+	</div><br/>
 	<div class="form-group">
 		<label>Adept Certified Trainers</label><br/>
 		<input type="radio" name="certificatied_trainers" value="yes"> Yes
@@ -134,4 +136,5 @@
 		<?php echo form_error('remarks', '<div class="text-danger">', '</div>'); ?>
 	</div>
 </form>
+</div>
 </div>

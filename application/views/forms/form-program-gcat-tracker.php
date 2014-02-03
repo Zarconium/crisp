@@ -14,8 +14,17 @@
 		</div>
 
 		<legend>Student Information</legend>
+	
+		<div class="form-inline">
+	
 		<form class="form" role="form">
 	
+			<div class="form-group">		
+				<label>ID Number</label>			
+				<input class="form-control" type="text" name="last_name" value="<?php echo set_value('id_number'); ?>">
+				<?php echo form_error('id_number'); ?>
+			</div>
+			
 			<div class="form-group">		
 				<label>Last Name</label>			
 				<input class="form-control" type="text" name="last_name" value="<?php echo set_value('last_name'); ?>">
@@ -78,6 +87,7 @@
 
 		</form>
 
-
+		
 				
+</div>
 </div>
