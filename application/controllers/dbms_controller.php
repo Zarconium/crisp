@@ -2325,15 +2325,15 @@ class Dbms_Controller extends CI_Controller
 				'Summary_Scores' => $row['N']
 			);
 				
-				$Best_T3_Tracker = $row['D']; 
+			$Best_T3_Tracker = $row['D'];
 			
 
 			//$subject = 'BEST';
 			
 			if (!$this->teacher->getTeacherByUsernameBest($Best_T3_Tracker))
 			{
-				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $best_t3_tracker . '. Teacher does not exist');
-				redirect('dbms');					
+				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
+				redirect('dbms');
 			}
 			$this->teacher->uploadBestGrade($Best_T3_Tracker, $Best_T3_Grades);
 		}
@@ -2341,7 +2341,7 @@ class Dbms_Controller extends CI_Controller
 		if ($counter > 4)
 		{
 			$this->session->set_flashdata('upload_success', 'BEST Grades successfully uploaded. ' . ($counter - 4) . ' of ' . ($highestRow - 4) . ' teachers added/updated.');
-			$this->log->addLog('GCAT Grades Batch Upload');	
+			$this->log->addLog('GCAT Grades Batch Upload');
 		}
 		else
 		{
@@ -2395,7 +2395,7 @@ class Dbms_Controller extends CI_Controller
 				'Summary_Scores' => $row['N']
 			);
 			
-		$Adept_T3_Tracker = $this->teacher->getTeacherByUsernameAdept($row['D'])->User_Name; 
+			$Adept_T3_Tracker = $row['D'];
 
 			//$subject = 'AdEPT';
 			
