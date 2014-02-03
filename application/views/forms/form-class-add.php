@@ -64,6 +64,38 @@
 		<?php echo form_error('section', '<div class="text-danger">', '</div>'); ?>
 		</div>
 	</form>
+
+	<script type="text/javascript">
+
+	function delete_student()
+	{
+		if (confirm('Delete selected institutions?'))
+		{
+			$('#student_list_table input[type="checkbox"]:checked').each(function(i, item) { $(item).closest('tr').remove(); });
+		}
+	}
+	
+	function add_student()
+	{
+		$Last_Name = $('[name="last_name_input"]').val().trim();
+		$First_Name = $('[name="first_name_input"]').val().trim();
+		$Middle_Initial = $('[name="middle_initial_input"]').val().trim();
+		$Student_Number = $('[name="student_number_input"]').val().trim();
+
+		if ($Last_Name && $First_Name && $Middle_Initial && $Student_Number)
+		{
+			$('#student_list_table').append('<tr><td><input type="checkbox"></td>' +
+				'<td><input type="hidden" name="Last_Name[]" value="' + $Last_Name + '">' + $Last_Name + '</td>' +
+				'<td><input type="hidden" name="First_Name[]" value="' + $First_Name + '">' + $First_Name + '</td>' +
+				'<td><input type="hidden" name="Middle_Initial[]" value="' + $Middle_Initial + '">' + $Middle_Initial + '</td>' +
+				'<td><input type="hidden" name="Student_Number[]" value="' + $Student_Number + '">' + $Student_Number + '</td></tr>');
+		}
+		else
+		{
+			alert('Invalid input. Please check fields and try again.');
+		}
+	}
+	</script>
 	
 	<legend>Student List</legend>
  
@@ -106,12 +138,13 @@
 				
 		</div>
  
+
 	<div class="col-md-9">
 	<legend>List of Students</legend>
 	<div class="customize-btn-group">
 		<?php $attributes = array('id' => 'upload_student_class_list', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_student_class_list', $attributes); ?>
 			<input type="file" name="file_student_class_list" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_student_class_list').submit();">
-			<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_student_class_list]').click();">Upload AdEPT Grades</button>
+			<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_student_class_list]').click();">Batch Upload</button>
 		<?php echo form_close(); ?>
 
 		<button type="button" class="btn btn-danger" onclick="delete_student();">Delete</button>
@@ -139,38 +172,6 @@
 			<?php endforeach; ?>
 			</table>
 
-	<script type="text/javascript">
 
-	function delete_student()
-	{
-		if (confirm('Delete selected institutions?'))
-		{
-			$('#student_list_table input[type="checkbox"]:checked').each(function(i, item) { $(item).closest('tr').remove(); });
-		}
-	}
-	
-	function add_student()
-	{
-		$Last_Name = $('[name="last_name_input"]').val().trim();
-		$First_Name = $('[name="first_name_input"]').val().trim();
-		$Middle_Initial = $('[name="middle_initial_input"]').val().trim();
-		$Student_Number = $('[name="student_number_input"]').val().trim();
-
-		if ($Last_Name && $First_Name && $Middle_Initial && $Student_Number)
-		{
-			$('#student_list_table').append('<tr><td><input type="checkbox"></td>' +
-				'<td><input type="hidden" name="Last_Name[]" value="' + $Last_Name + '">' + $Last_Name + '</td>' +
-				'<td><input type="hidden" name="First_Name[]" value="' + $First_Name + '">' + $First_Name + '</td>' +
-				'<td><input type="hidden" name="Middle_Initial[]" value="' + $Middle_Initial + '">' + $Middle_Initial + '</td>' +
-				'<td><input type="hidden" name="Student_Number[]" value="' + $Student_Number + '">' + $Student_Number + '</td></tr>');
-		}
-		else
-		{
-			alert('Invalid input. Please check fields and try again.');
-		}
-	}
-
-
-	</script>
 	</div>
 
