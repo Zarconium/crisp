@@ -1535,15 +1535,14 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
 			if ($counter > $highestRow) break;
 
-			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
-			{
-				$school_id = $school->School_ID;
-			}
+			$school_id = $this->school->getSchoolIdByCode(trim($row['E']))->School_ID;
+			$subject = 'Intern';
 			
 			$code = $school_id . $row['D']; //Get Code
 
@@ -1561,25 +1560,26 @@ class Dbms_Controller extends CI_Controller
 				'Remarks' => $row['Q']
 			);
 
-			$subject = 'Intern';
 		
 			if (!$this->student->getStudentByCode($code))
 			{
-				$student['Code'] = $code;
-
-				$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Student does not exist.');
+				$this->db->trans_rollback();
 				redirect('dbms');					
 			}
 
-			else if (!$this->student->updateStudentTracker	($code,$subject,$intern))
+			if ($this->student->updateStudentTracker($code, $subject, $intern))
 			{
-				$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter);
+				$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Internship Tracker does not exist.');
+				$this->db->trans_rollback();
 				redirect('dbms');
 			}
 		}
+		$this->db->trans_commit();
+
 		if ($counter > 2)
 		{
-			$this->session->set_flashdata('upload_success', 'Internship Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+			$this->session->set_flashdata('upload_success', 'Internship Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
 			$this->log->addLog('SMP Internship Student Tracker Batch Upload');
 		}
 		else
