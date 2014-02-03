@@ -189,7 +189,7 @@ Class Student extends CI_Model
 		}
 	}
 
-	function getGcatTrackerByStudentId($id)
+	function getGcatTrackerByStudentIdOrCode($id)
 	{
 		$this->db->select('*, status.Name as Status_Name');
 		$this->db->from('student');
@@ -201,7 +201,8 @@ Class Student extends CI_Model
 		$this->db->join('class', 'student_class.Class_ID = class.Class_ID', 'left');
 		$this->db->join('gcat_class', 'class.Class_ID = gcat_class.Class_ID', 'left');
 		$this->db->join('proctor', 'gcat_class.Proctor_ID = proctor.Proctor_ID', 'left');
-		$this->db->where('student.Student_ID', $id);
+		$this->db->where('student.Student_ID', $id_code);
+		$this->db->or_where('student.Code', $id_code);
 		$this->db->limit(1);
 		
 		$query = $this->db->get();
@@ -216,14 +217,15 @@ Class Student extends CI_Model
 		}
 	}
 
-	function getBestTrackerByStudentId($id)
+	function getBestTrackerByStudentIdOrCode($id_code)
 	{
 		$this->db->select('*');
 		$this->db->from('student');
 		$this->db->join('student_tracker', 'student.Student_ID = student_tracker.Student_ID', 'left');
 		$this->db->join('tracker', 'student_tracker.Tracker_ID = tracker.Tracker_ID', 'left');
 		$this->db->join('best_student', 'tracker.Tracker_ID = best_student.Tracker_ID', 'left');
-		$this->db->where('student.Student_ID', $id);
+		$this->db->where('student.Student_ID', $id_code);
+		$this->db->or_where('student.Code', $id_code);
 		$this->db->limit(1);
 		
 		$query = $this->db->get();
@@ -284,7 +286,7 @@ Class Student extends CI_Model
 		}
 	}
 
-	function getSmpTrackerByStudentId($id)
+	function getSmpTrackerByStudentIdOrCode($id_code)
 	{
 		$this->db->select('*');
 		$this->db->from('student');
@@ -292,7 +294,8 @@ Class Student extends CI_Model
 		$this->db->join('tracker', 'student_tracker.Tracker_ID = tracker.Tracker_ID', 'left');
 		$this->db->join('smp_student', 'tracker.Tracker_ID = smp_student.Tracker_ID', 'left');
 		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
-		$this->db->where('student.Student_ID', $id);
+		$this->db->where('student.Student_ID', $id_code);
+		$this->db->or_where('student.Code', $id_code);
 		$this->db->limit(1);
 		
 		$query = $this->db->get();
@@ -501,7 +504,7 @@ Class Student extends CI_Model
 		$this->db->where('Code', $code);
 		$this->db->update('student', $data);
 
-		return $this->db->affected_rows();
+		return $this->db->_error_message();
 	}
 
 	function updateBestStudent($code, $subject, $tracker)
@@ -511,7 +514,7 @@ Class Student extends CI_Model
 		$this->db->where('subject.Subject_Code', $subject);
 		$this->db->update('best_student JOIN tracker ON best_student.Tracker_ID = tracker.Tracker_ID JOIN student_tracker ON tracker.Tracker_ID = student_tracker.Tracker_ID JOIN student ON student_tracker.Student_ID = student.Student_ID JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
 
-		return $this->db->affected_rows();
+		return $this->db->_error_message();
 	}
 
 	function updateAdeptStudent($code, $subject, $tracker)
@@ -521,7 +524,7 @@ Class Student extends CI_Model
 		$this->db->where('subject.Subject_Code', $subject);
 		$this->db->update('adept_student JOIN tracker ON adept_student.Tracker_ID = tracker.Tracker_ID JOIN student_tracker ON tracker.Tracker_ID = student_tracker.Tracker_ID JOIN student ON student_tracker.Student_ID = student.Student_ID JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
 
-		return $this->db->affected_rows();
+		return $this->db->_error_message();
 	}
 
 	function updateGcatStudent($code, $subject, $tracker)
@@ -531,7 +534,7 @@ Class Student extends CI_Model
 		$this->db->where('subject.Subject_Code', $subject);
 		$this->db->update('gcat_student JOIN tracker ON gcat_student.Tracker_ID = tracker.Tracker_ID JOIN student_tracker ON tracker.Tracker_ID = student_tracker.Tracker_ID JOIN student ON student_tracker.Student_ID = student.Student_ID JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
 
-		return $this->db->affected_rows();
+		return $this->db->_error_message();
 	}
 
 	function updateSmpStudent($code, $subject, $tracker)
@@ -541,7 +544,7 @@ Class Student extends CI_Model
 		$this->db->where('subject.Subject_Code', $subject);
 		$this->db->update('smp_student JOIN tracker ON smp_student.Tracker_ID = tracker.Tracker_ID JOIN student_tracker ON tracker.Tracker_ID = student_tracker.Tracker_ID JOIN student ON student_tracker.Student_ID = student.Student_ID JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
 
-		return $this->db->affected_rows();
+		return $this->db->_error_message();
 	}
 
 	function deleteStudentById($id)
