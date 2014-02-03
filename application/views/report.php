@@ -624,6 +624,10 @@
 								<label>Year</label>
 								<input class="form-control" type="number" name="mande_quarter_year" min="2011">
 							</div>
+							<div class="form-group">
+								<label>Target</label>
+								<input class="form-control" type="number" name="mande_quarter_target">
+							</div>
 							
 							<div class="button-groups">
 								<a href="<?php echo base_url('reports/studentBestProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
@@ -648,6 +652,10 @@
 							<div class="form-group">
 								<label>Year</label>
 								<input class="form-control" type="number" name="mande_month_year" min="2011">
+							</div>				
+							<div class="form-group">
+								<label>Target</label>
+								<input class="form-control" type="number" name="mande_month_target">
 							</div>
 							
 							<div class="button-groups">
