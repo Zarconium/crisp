@@ -106,9 +106,9 @@ class Dbms_Controller extends CI_Controller
 		$this->load->view('footer');
 	}
 	
-	function form_mastertrainer_profile()
+	function form_mastertrainer_profile($id)
 	{
-		$data['proctor'] = $this->proctor->getMasterTrainerById($id);
+		$data['mastertrainer'] = $this->mastertrainer->getMasterTrainerById($id);
 		//$this->log->addLog('Updated Mastertrainer Profile');
 
 		$this->load->view('header');
@@ -1047,6 +1047,7 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_start();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
@@ -1119,6 +1120,7 @@ class Dbms_Controller extends CI_Controller
 				redirect('dbms');
 			}
 		}
+		$this->db->trans_complete();
 
 		if ($counter > 2)
 		{
@@ -2234,7 +2236,7 @@ class Dbms_Controller extends CI_Controller
 
 			$school_id = $this->school->getSchoolIdByCode($row['H']); //Get School_ID
 			
-			$code = $school_id . substr($row['E'],0,1). substr($row['F'],0,1). substr($row['D'],0,1) . date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY'))); //Get Code
+			$code = $school_id . substr($row['E'],0,1). substr($row['F'],0,1). substr($row['D'],0,1) . date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY'))); //Get Code
 
 			$grades = array
 			(
@@ -2292,13 +2294,13 @@ class Dbms_Controller extends CI_Controller
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
-		$counter = 4;
+		$counter = 0;
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 4) continue;
 			if ($counter > $highestRow) break;
 
-			//-----getting the teacher code-------------------
+			/*//-----getting the teacher code------------------- //  username lang. yung login  id
 			$this->db->select('T3_Tracker_ID');
 			$this->db->from('best_t3_tracker');
 			$this->db->where('User_Name', $row['D']);
@@ -2313,36 +2315,35 @@ class Dbms_Controller extends CI_Controller
 			$this->db->from('teacher');
 			$this->db->where('Teacher_ID', $teacherId);
 			$code = $this->db->get(); //to get teacher code
-			//-------------------------------------------------
+			//-------------------------------------------------*/
 
-			$grades = array
+			$Best_T3_Grades = array
 			(
 				'Oral' => $row['I'],
 				'Retention' => $row['J'],
 				'Typing' => $row['K'],
 				'Grammar' => $row['L'],
 				'Comprehension' => $row['M'],
-				'Summary Scores' => $row['N'],
+				'Summary_Scores' => $row['N']
 			);
-
-			$subject = 'BEST';
+				
+			$Best_T3_Tracker = $row['D'];
 			
-			if (!$this->teacher->getTeacherByCode($Code))
+
+			//$subject = 'BEST';
+			
+			if (!$this->teacher->getTeacherByUsernameBest($Best_T3_Tracker))
 			{
-				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exists');
-				redirect('dbms');					
-			}
-			else if (!$this->teacher->updateBestT3Tracker($code,$subject,$trackerId))//tama bang trackerId = best t3 tracker?
-			{
-				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $counter);
+				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
 				redirect('dbms');
 			}
+			$this->teacher->uploadBestGrade($Best_T3_Tracker, $Best_T3_Grades);
 		}
 
 		if ($counter > 4)
 		{
 			$this->session->set_flashdata('upload_success', 'BEST Grades successfully uploaded. ' . ($counter - 4) . ' of ' . ($highestRow - 4) . ' teachers added/updated.');
-			$this->log->addLog('GCAT Grades Batch Upload');	
+			$this->log->addLog('GCAT Grades Batch Upload');
 		}
 		else
 		{
@@ -2363,13 +2364,13 @@ class Dbms_Controller extends CI_Controller
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
-		$counter = 4;
+		$counter = 0;
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 4) continue;
 			if ($counter > $highestRow) break;
 
-			//-----getting the teacher code-------------------
+			/*//-----getting the teacher code-------------------
 			$this->db->select('T3_Tracker_ID');
 			$this->db->from('adept_t3_tracker');
 			$this->db->where('User_Name', $row['D']);
@@ -2384,30 +2385,28 @@ class Dbms_Controller extends CI_Controller
 			$this->db->from('teacher');
 			$this->db->where('Teacher_ID', $teacherId);
 			$code = $this->db->get(); //to get teacher code
-			//-------------------------------------------------
+			//-------------------------------------------------*/
 			
-			$grades = array
+			$Adept_T3_Grades = array
 			(
 				'Oral' => $row['I'],
 				'Retention' => $row['J'],
 				'Typing' => $row['K'],
 				'Grammar' => $row['L'],
 				'Comprehension' => $row['M'],
-				'Summary Scores' => $row['N'],
+				'Summary_Scores' => $row['N']
 			);
-
-			$subject = 'AdEPT';
 			
-			if (!$this->teacher->getTeacherByCode($Code))
+			$Adept_T3_Tracker = $row['D'];
+
+			//$subject = 'AdEPT';
+			
+			if (!$this->teacher->getTeacherByUsernameAdept($Adept_T3_Tracker))
 			{
-				$this->session->set_flashdata('upload_error', 'AdEPT Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exists');
+				$this->session->set_flashdata('upload_error', 'Adept Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
 				redirect('dbms');					
 			}
-			else if (!$this->teacher->updateAdeptT3Tracker($code,$subject,$trackerId))//tama bang trackerId = apet t3 tracker?
-			{
-				$this->session->set_flashdata('upload_error', 'AdEPT Grades upload failed. Invalid data at row ' . $counter);
-				redirect('dbms');
-			}
+			$this->teacher->uploadAdeptGrade($Adept_T3_Tracker, $Adept_T3_Grades);
 		}
 
 		if ($counter > 4)

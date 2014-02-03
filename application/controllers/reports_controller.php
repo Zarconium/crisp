@@ -46,8 +46,16 @@ class Reports_Controller extends CI_Controller {
 
 	function studentAdeptProgramReport()
 	{
-		$start_date = "1990-01-01"; $end_date= "2020-01-01";
-		
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+
+		$start_date = $this->input->post('program_student_adept_start_date');
+		$end_date = $this->input->post('program_student_adept_end_date');
+
+/*		$start_date = "1990-01-01"; $end_date= "2020-01-01";
+*/		
 		$data['pin_count_list'] = $this->report_program->getStudentAdeptProgramReportPins($start_date, $end_date);
 		$data['pin_total'] = $this->report_program->getStudentAdeptProgramReportPinsTotal($start_date, $end_date);
 		$data['current_takers_count_list'] = $this->report_program->getStudentAdeptProgramReportCurrentTakers($start_date, $end_date);

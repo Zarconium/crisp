@@ -96,7 +96,7 @@
 				<?php if (isset($proctors)) foreach ($proctors as $proctor): ?>
 				<tr>
 					<td><input type="checkbox"></td>
-					<td><a href="<?php echo base_url('dbms/form_proctor_application/' . $proctor->Proctor_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_proctor/' . $proctor->Proctor_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
+					<td><a href="<?php echo base_url('dbms/form_proctor_profile/' . $proctor->Proctor_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_proctor/' . $proctor->Proctor_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
 					<td><?php echo $proctor->Full_Name; ?></td>
 					<td><?php echo $proctor->School_Name; ?></td>
 					<td><?php echo $proctor->Subject_Code; ?></td>
@@ -127,7 +127,7 @@
 				<?php if (isset($mastertrainers)) foreach ($mastertrainers as $mastertrainer): ?>
 				<tr>
 					<td><input type="checkbox"></td>
-					<td><a href="<?php echo base_url('dbms/form_mastertrainer_application/' . $mastertrainer->Master_Trainer_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_mastertrainer/' . $mastertrainer->Master_Trainer_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
+					<td><a href="<?php echo base_url('dbms/form_mastertrainer_profile/' . $mastertrainer->Master_Trainer_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_mastertrainer/' . $mastertrainer->Master_Trainer_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
 					<td><?php echo $mastertrainer->Full_Name; ?></td>
 					<td><?php echo $mastertrainer->School_Name; ?></td>
 					<td><?php echo $mastertrainer->Subject_Codes; ?></td>

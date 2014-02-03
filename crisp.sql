@@ -789,7 +789,7 @@ CREATE TABLE IF NOT EXISTS `school` (
   PRIMARY KEY (`School_ID`),
   UNIQUE KEY `School_ID_UNIQUE` (`School_ID`),
   UNIQUE KEY `Code_UNIQUE` (`Code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=73 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=74 ;
 
 --
 -- Dumping data for table `school`
@@ -867,7 +867,8 @@ INSERT INTO `school` (`School_ID`, `Name`, `Address`, `Landline`, `Email`, `Poin
 (69, 'Jose Rizal University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'JRU', 'Main'),
 (70, 'Informatics', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'Informatics', 'Main'),
 (71, 'Don Bosco Manila', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'Don Bosco Manila', 'Main'),
-(72, 'De La Salle - College of Saint Benilde', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'DLS-CSB', 'Main');
+(72, 'De La Salle - College of Saint Benilde', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'DLS-CSB', 'Main'),
+(73, 'Tarlac State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'TarSU', 'Main');
 
 -- --------------------------------------------------------
 

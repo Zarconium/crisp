@@ -534,5 +534,67 @@ Class Teacher extends CI_Model
 
 		return $this->db->affected_rows();
 	}
+	function uploadGCATGrade($code, $subject, $stipend_tracking)
+	{
+		$this->db->set($stipend_tracking);
+		$this->db->where('Teacher.Code', $code);
+		$this->db->where('Subject.Subject_Code', $subject);
+		$this->db->update('stipend_tracking JOIN stipend_tracking_list ON stipend_tracking.Stipend_Tracking_ID = stipend_tracking_list.Stipend_Tracking_ID JOIN subject ON stipend_tracking_list.Subject_ID = subject.Subject_ID JOIN teacher ON stipend_tracking.teacher_ID = teacher.Teacher_ID');
+
+		return $this->db->affected_rows();
+	}
+
+	function uploadBestGrade($Best_T3_Tracker, $Best_T3_Grades)
+	{
+		$this->db->set($Best_T3_Grades);
+		$this->db->where('best_t3_tracker.User_Name', $Best_T3_Tracker);
+		$this->db->update('best_t3_grades JOIN best_t3_tracker ON best_t3_grades.Best_T3_Grades_ID = best_t3_tracker.Best_T3_Grades_ID');
+
+		return $this->db->affected_rows();
+	}
+	function uploadAdeptGrade($Adept_T3_Tracker, $Adept_T3_Grades)
+	{
+		$this->db->set($Adept_T3_Grades);
+		$this->db->where('adept_t3_tracker.User_Name', $Adept_T3_Tracker);
+		$this->db->update('adept_t3_Grades JOIN adept_t3_tracker ON adept_t3_grades.Adept_T3_Grades_ID = adept_t3_tracker.Adept_T3_Grades_ID');
+
+		return $this->db->affected_rows();
+	}
+	function getTeacherByUsernameBest($Best_T3_Tracker)
+	{
+		$this->db->select('*');
+		$this->db->from('best_t3_tracker');
+		$this->db->where('User_Name', $Best_T3_Tracker);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	function getTeacherByUsernameAdept($Adept_T3_Tracker)
+	{
+		$this->db->select('*');
+		$this->db->from('adept_t3_tracker');
+		$this->db->where('User_Name', $Adept_T3_Tracker);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 ?>
