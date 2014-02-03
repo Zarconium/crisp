@@ -2527,7 +2527,7 @@ class Dbms_Controller extends CI_Controller
 				'Student_ID_Number' => $row['D']
 			);
 
-			$data['student_class_list']	= $classlist;
+			$data['class_list']	= $classlist;
 			$this->load->view('header');
 			$this->load->view('forms/form-class-add', $data);
 			$this->load->view('footer');
