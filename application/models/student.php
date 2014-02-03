@@ -285,7 +285,7 @@ Class Student extends CI_Model
 		}
 	}
 
-	function getSmpTrackerByStudentId($id)
+	function getSmpTrackerByStudentIdOrCode($id_code)
 	{
 		$this->db->select('*');
 		$this->db->from('student');
@@ -293,7 +293,8 @@ Class Student extends CI_Model
 		$this->db->join('tracker', 'student_tracker.Tracker_ID = tracker.Tracker_ID', 'left');
 		$this->db->join('smp_student', 'tracker.Tracker_ID = smp_student.Tracker_ID', 'left');
 		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
-		$this->db->where('student.Student_ID', $id);
+		$this->db->where('student.Student_ID', $id_code);
+		$this->db->or_where('student.Code', $id_code);
 		$this->db->limit(1);
 		
 		$query = $this->db->get();
