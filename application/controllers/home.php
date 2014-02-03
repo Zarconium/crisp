@@ -28,13 +28,15 @@ class Home extends CI_Controller {
         $this->pagination->initialize($config);
 		
 		$this->db->select('User_ID, log.Changes, log.Created_At');
+
 		$data['logs'] = $this->db->get('log', $config['per_page'], $this->uri->segment(3));
 		//$data['logs'] = $this->log->getAllLogs();
 		$data['links'] = $this->pagination->create_links();
 		
 		
+		$this->table->set_heading('Username', 'Description', 'Date');
 		$tmpl = array (
-                    'table_open'          => '<table class="table table-area">',
+                    'table_open'          => '<table class="table table-striped table-area">',
 
                     'heading_row_start'   => '<tr>',
                     'heading_row_end'     => '</tr>',
@@ -54,7 +56,6 @@ class Home extends CI_Controller {
                     'table_close'         => '</table>'
               );
 		
-		$this->table->set_heading('Username', 'Description', 'Date');
 		$this->table->set_template($tmpl);
 		
 		$this->load->view('header');

@@ -25,7 +25,8 @@
 				<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
 				<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 			</div>
-			<table class="table table-area">
+			<table class="table table-striped table-area">
+				<thead>
 				<tr>
 					<th>Check</th>
 					<th>Action</th>
@@ -33,6 +34,7 @@
 					<th>School</th>
 					<th>Programs</th>
 				</tr>
+				</thead>
 				<?php if (isset($students)) foreach ($students as $student): ?>
 				<tr>
 					<td><input type="checkbox"></td>
@@ -55,7 +57,8 @@
 				<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
 				<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 			</div>
-			<table class="table table-area">
+			<table class="table table-striped table-area">
+				<thead>
 				<tr>
 					<th>Check</th>
 					<th>Action</th>
@@ -63,6 +66,7 @@
 					<th>School</th>
 					<th>Programs</th>
 				</tr>
+				</thead>
 				<?php if (isset($teachers)) foreach ($teachers as $teacher): ?>
 				<tr>
 					<td><input type="checkbox"></td>
@@ -85,7 +89,8 @@
 				<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
 				<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 			</div>
-			<table class="table table-area">
+			<table class="table table-striped table-area">
+				<thead>
 				<tr>
 					<th>Check</th>
 					<th>Action</th>
@@ -93,6 +98,7 @@
 					<th>School</th>
 					<th>Programs</th>
 				</tr>
+				</thead>
 				<?php if (isset($proctors)) foreach ($proctors as $proctor): ?>
 				<tr>
 					<td><input type="checkbox"></td>
@@ -116,7 +122,8 @@
 				<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
 				<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 		 	</div>
-			<table class="table table-area">
+			<table class="table table-striped table-area">
+				<thead>
 				<tr>
 					<th>Check</th>
 					<th>Action</th>
@@ -124,6 +131,7 @@
 					<th>School</th>
 					<th>Programs</th>
 				</tr>
+				</thead>
 				<?php if (isset($mastertrainers)) foreach ($mastertrainers as $mastertrainer): ?>
 				<tr>
 					<td><input type="checkbox"></td>
@@ -151,7 +159,8 @@
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchClass">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>
-				<table class="table table-area">
+				<table class="table table-striped table-area">
+					<thead>
 					<tr>
 						<th>Check</th>
 						<th>Action</th>
@@ -164,6 +173,7 @@
 						<th>Section</th>
 						<th>Students</th>
 					</tr>
+					</thead>
 					<tr>
 						<td><input type="checkbox"></td>
 						<td><a href="<?php echo base_url('dbms/form_class_add'); ?>">View</a> | <a href="#">Delete</a></td>
@@ -186,13 +196,15 @@
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchClassForMasterTrainer">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>
-				<table class="table table-area">
+				<table class="table table-striped table-area">
+					<thead>
 					<tr>
 						<th>Check</th>
 						<th>Action</th>
 						<th>Trainer's Name</th>
 						<th>Subject</th>
 						<th>Teachers</th>
+					</thead>
 					</tr>
 					<tr>
 						<td><input type="checkbox"></td>
@@ -226,7 +238,8 @@
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchSMP">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>
-				<table class="table table-area">
+				<table class="table table-striped table-area">
+					<thead>
 					<tr>
 						<th>Check</th>
 						<th>Action</th>
@@ -236,6 +249,7 @@
 						<th>Course</th>
 						<th>Subjects</th>
 					</tr>
+					</thead>
 					<tr>
 						<td><input type="checkbox"></td>
 						<td><a href="<?php echo base_url('dbms/form_program_smp_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
@@ -256,7 +270,8 @@
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchSMP">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>
-				<table class="table table-area">
+				<table class="table table-striped table-area">
+					<thead>
 					<tr>
 						<th>Check</th>
 						<th>Action</th>
@@ -266,6 +281,7 @@
 						<th>Course</th>
 						<th>Subjects</th>
 					</tr>
+					</thead>
 					<tr>
 						<td><input type="checkbox"></td>
 						<td><a href="<?php echo base_url('dbms/form_program_smp_internship_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
@@ -286,7 +302,8 @@
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchGCAT">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>
-				<table class="table table-area">
+				<table class="table table-striped table-area">
+					<thead>
 					<tr>
 						<th>Check</th>
 						<th>Action</th>
@@ -299,6 +316,7 @@
 						<th>Section</th>
 						<th>List of Students</th>
 					</tr>
+					</thead>
 					<tr>
 						<td><input type="checkbox"></td>
 						<td><a href="<?php echo base_url('dbms/form_program_gcat_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
@@ -322,7 +340,8 @@
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>
-				<table class="table table-area">
+				<table class="table table-striped table-area">
+					<thead>
 					<tr>
 						<th>Check</th>
 						<th>Action</th>
@@ -331,6 +350,7 @@
 						<th>Campus</th>
 						<th>List of Students</th>
 					</tr>
+					</thead>
 					<tr>
 						<td><input type="checkbox"></td>
 						<td><a href="<?php echo base_url('dbms/form_program_best_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
@@ -350,7 +370,8 @@
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>
-				<table class="table table-area">
+				<table class="table table-striped table-area">
+					<thead>
 					<tr>
 						<th>Check</th>
 						<th>Action</th>
@@ -359,6 +380,7 @@
 						<th>Campus</th>
 						<th>List of Students</th>
 					</tr>
+					</thead>
 					<tr>
 						<td><input type="checkbox"></td>
 						<td><a href="<?php echo base_url('dbms/form_program_adept_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
@@ -378,7 +400,8 @@
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>
-				<table class="table table-area">
+				<table class="table table-striped table-area">
+					<thead>
 					<tr>
 						<th>Check</th>
 						<th>Action</th>
@@ -389,6 +412,7 @@
 						<th>Unsubmitted Documents</th>
 						<th>Grade of Tasks</th>
 					</tr>
+					</thead>
 					<tr>
 						<td><input type="checkbox"></td>
 						<td><a href="<?php echo base_url('dbms/form_program_t3_adept_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
@@ -410,7 +434,8 @@
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>
-				<table class="table table-area">
+				<table class="table table-striped table-area">
+					<thead>
 					<tr>
 						<th>Check</th>
 						<th>Action</th>
@@ -420,6 +445,7 @@
 						<th>Unsubmitted Documents</th>
 						<th>Grade of Tasks</th>
 					</tr>
+					</thead>
 					<tr>
 						<td><input type="checkbox"></td>
 						<td><a href="<?php echo base_url('dbms/form_program_t3_best_tracker'); ?>">View</a> | <a href="#">Delete</a></td>

@@ -14,12 +14,14 @@
 <div class="tab-content">
 	<div class="tab-pane active" id="student">
 	
-		<table class="table">
+		<table class="table  ">
+				<thead>
 				<tr>
 					<th>Resource</th>
 					<th>Type</th>					
 					<th>Print</th>
 				</tr>
+				</thead>
 				<tr>
 					<td rowspan="2">Student Application Form </td>
 					<td>Single</td>					
@@ -80,12 +82,14 @@
 	
 	
 	<div class="tab-pane" id="teacher">
-		<table class="table">
+		<table class="table  ">
+				<thead>
 				<tr>
 					<th>Resource</th>
 					<th>Type</th>					
 					<th>Print</th>
 				</tr>
+				</thead>
 				<tr>
 					<td rowspan="2">Teacher Application Form</td>
 					<td>Single</td>					
@@ -133,12 +137,14 @@
 	
 	<div class="tab-pane" id="proctor">
 		
-			<table class="table">
+			<table class="table  ">
+				<thead>
 				<tr>
 					<th>Resource</th>
 					<th>Type</th>					
 					<th>Print</th>
 				</tr>
+				</thead>
 				<tr>
 					<td rowspan="2">Proctor Application Form</td>
 					<td>Single</td>					
@@ -158,7 +164,7 @@
 	
 	<div class="tab-pane" id="trainer">
 		
-			<table class="table">
+			<table class="table  "><thead>
 				<tr>
 					<th>Resource</th>
 					<th>Type</th>					
@@ -182,7 +188,7 @@
 	
 	<div class="tab-pane" id="class">
 		
-			<table class="table">
+			<table class="table  "><thead>
 				<tr>
 					<th>Resource</th>
 					<th>Type</th>					
@@ -201,7 +207,7 @@
 	
 	<div class="tab-pane" id="tracker">
 		
-			<table class="table">
+			<table class="table  "><thead>
 				<tr>
 					<th>Resource</th>
 					<th>Type</th>					
