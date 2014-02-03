@@ -82,7 +82,7 @@
 				</div>
 				<div id="program_student_adept" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form">
+						<form class="form" role="form" action="<?php echo base_url('reports/studentAdeptProgramReport'); ?>" method="post" target="_blank">
 							<div class="form-group">
 								<label>Start Date</label>
 								<input type="date" class="form-control" name="program_student_adept_start_date">
@@ -94,7 +94,7 @@
 							</div>
 							
 							<div class="button-groups">
-								<a href="<?php echo base_url('reports/studentAdeptProgramReport'); ?>" target="_blank"><button type="button" class="btn btn-primary">View Report</button></a>
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
 								<button type="button" class="btn btn-info">Print as Excel</button>
 								<button type="button" class="btn btn-info">Print as PDF</button>
 							</div>
