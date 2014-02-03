@@ -33,12 +33,12 @@
 			</div>
 
 			<div class="form-group"><label>First Name</label>
-			<input type="text" class="form-control" name="first_name" value="<?php if(isset($proctor->first_name)) echo $proctor->First_Name; ?>">
+			<input type="text" class="form-control" name="first_name" value="<?php if(isset($proctor->First_Name)) echo $proctor->First_Name; ?>">
 				<?php echo form_error('first_name'); ?>
 			</div>
 
 			<div class="form-group"><label>Middle Initial</label>
-			<input type="text" class="form-control" name="middle_initial" value="<?php if(isset($proctor->middle_initial)) echo $proctor->Middle_Initial; ?>">
+			<input type="text" class="form-control" name="middle_initial" value="<?php if(isset($proctor->Middle_Initial)) echo $proctor->Middle_Initial; ?>">
 				<?php echo form_error('middle_initial'); ?>
 			</div>
 
@@ -73,13 +73,13 @@
 			
 			<div class="form-group">
 			<label>Landline</label>
-			<input type="date" class="form-control" name="landline" value="<?php if(isset($proctor->Landline)) echo $proctor->Landline; ?>">
+			<input type="number" class="form-control" name="landline" value="<?php if(isset($proctor->Landline)) echo $proctor->Landline; ?>">
 				<?php echo form_error('landline'); ?>
 			</div>
 
 			<div class="form-group">
 			<label>Mobile Number</label>
-			<input type="date" class="form-control" name="mobile_number" value="<?php if(isset($proctor->Mobile_Number)) echo $proctor->Mobile_Number; ?>">
+			<input type="number" class="form-control" name="mobile_number" value="<?php if(isset($proctor->Mobile_Number)) echo $proctor->Mobile_Number; ?>">
 				<?php echo form_error('mobile_number'); ?>
 			</div>
 
