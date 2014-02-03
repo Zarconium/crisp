@@ -106,9 +106,9 @@ class Dbms_Controller extends CI_Controller
 		$this->load->view('footer');
 	}
 	
-	function form_mastertrainer_profile()
+	function form_mastertrainer_profile($id)
 	{
-		$data['master_trainer'] = $this->master_trainer->getMasterTrainerById($id);
+		$data['mastertrainer'] = $this->mastertrainer->getMasterTrainerById($id);
 		//$this->log->addLog('Updated Mastertrainer Profile');
 
 		$this->load->view('header');
@@ -1047,6 +1047,7 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_start();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
@@ -1119,6 +1120,7 @@ class Dbms_Controller extends CI_Controller
 				redirect('dbms');
 			}
 		}
+		$this->db->trans_complete();
 
 		if ($counter > 2)
 		{
