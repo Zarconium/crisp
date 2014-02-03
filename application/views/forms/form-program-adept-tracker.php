@@ -13,10 +13,19 @@
 		<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
 	</div>
 
+
 	<legend>General Information</legend>
-	<form class="form-inline" role="form"> <!-- This is the start of the blocked fields -->
+
+	<div class="form-inline">
+	<form role="form"> <!-- This is the start of the blocked fields -->
 									
 
+		<div class="form-group">		
+			<label>ID Number</label>			
+			<input class="form-control" type="text" name="last_name" value="<?php echo set_value('id_number'); ?>">
+			<?php echo form_error('id_number'); ?>
+		</div>
+			
 		<div class="form-group">		
 			<label>Last Name</label>			
 			<input class="form-control" type="text" name="last_name" value="<?php echo set_value('last_name'); ?>">
@@ -64,4 +73,5 @@
 		</div>
 
 	</form>
+</div>	
 </div>	

@@ -24,6 +24,7 @@ class Home extends CI_Controller {
 		$config['base_url'] = base_url() . '/home/index';
 		$config['total_rows'] = $this->db->get('log')->num_rows();
 		$config['per_page'] = 10;  
+		$config['num_tag_open'] = '<div>';
  
         $this->pagination->initialize($config);
 		
