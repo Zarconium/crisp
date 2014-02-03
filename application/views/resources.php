@@ -98,12 +98,6 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Batch</td>					
-					<td>
-						<a target="_blank" href="<?php echo base_url('resources/downloadTeacherProfileBatchExcel') ?>"><button class="btn btn-primary">Excel</button></a>
-					</td>
-				</tr>
-				<tr>
 					<td>Participant's Contract</td>
 					<td>Single</td>					
 					<td>
@@ -152,12 +146,6 @@
 						<a target="_blank" href="<?php echo base_url('resources/downloadProctorProfileSinglePDF') ?>"><button class="btn btn-info">PDF</button></a>
 					</td>
 				</tr>
-				<tr>
-					<td>Batch</td>					
-					<td>
-						<a target="_blank" href="<?php echo base_url('resources/downloadProctorProfileBatchExcel') ?>"><button class="btn btn-primary">Excel</button></a>
-					</td>
-				</tr>
 			</table>
 	
 	</div>
@@ -177,12 +165,6 @@
 						<a target="_blank" href="<?php echo base_url('resources/downloadMasterTrainerProfileSinglePDF') ?>"><button class="btn btn-info">PDF</button></a>
 					</td>
 				</tr>
-				<tr>
-					<td>Batch</td>					
-					<td>
-						<a target="_blank" href="<?php echo base_url('resources/downloadMasterTrainerProfileBatchExcel') ?>"><button class="btn btn-primary">Excel</button></a>
-					</td>
-				</tr>
 			</table>
 	</div>
 	
@@ -199,7 +181,6 @@
 					<td>Batch</td>					
 					<td>
 						<a target="_blank" href="<?php echo base_url('resources/downloadClassListExcel') ?>"><button class="btn btn-primary">Excel</button></a>
-						<a target="_blank" href="<?php echo base_url('resources/downloadClassListPDF') ?>"><button class="btn btn-info">PDF</button></a>
 					</td>
 				</tr>
 			</table>
@@ -246,7 +227,6 @@
 					<td>Internship Evaluation</td>
 					<td>Single</td>					
 					<td>
-						<a target="_blank" href="<?php echo base_url('resources/downloadInternshipEvaluationExcel') ?>"><button class="btn btn-primary">Excel</button></a>
 						<a target="_blank" href="<?php echo base_url('resources/downloadInternshipEvaluationPDF') ?>"><button class="btn btn-info">PDF</button></a>
 					</td>
 				</tr>
