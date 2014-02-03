@@ -1047,6 +1047,7 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_start();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
@@ -1119,6 +1120,7 @@ class Dbms_Controller extends CI_Controller
 				redirect('dbms');
 			}
 		}
+		$this->db->trans_complete();
 
 		if ($counter > 2)
 		{
