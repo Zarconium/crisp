@@ -8,7 +8,7 @@
 
 	<legend>Personal Information</legend>
 
-	<?php echo form_open('/dbms/form_mastertrainer_profile'); ?>
+	<?php echo form_open('/dbms/form_proctor_profile'); ?>
 
 		<!-- BUTTONS DIV -->
 		<div class="save">
