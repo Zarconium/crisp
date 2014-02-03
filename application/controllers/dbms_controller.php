@@ -2442,5 +2442,60 @@ class Dbms_Controller extends CI_Controller
 		}
 		redirect('dbms');
 	}
+
+	function upload_student_class_list()
+	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_adept_grades']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 9) continue;
+			if ($counter > $highestRow) break;
+
+			$classlist = array
+			(
+				'Last_Name' => $row['A'],
+				'First_Name' => $row['B'],
+				'Middle_Initial' => $row['C'],
+				'Student_ID_Number' => $row['D']
+			);
+
+		$data['student_class_list']	= $classlist;
+		$this->load->view('header');
+		$this->load->view('forms/form-class-add', $data);
+		$this->load->view('footer');
+
+		if ($counter > 1)
+		{
+			$this->session->set_flashdata('upload_success', 'Student class list successfully uploaded. ' . ($counter - 1) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'Student class list upload failed. Empty file.');
+		}
+	}
+
+	function upload_teacher_class_list()
+	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_adept_grades']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
+
+	}
 }
 ?>
