@@ -1834,7 +1834,11 @@ class Dbms_Controller extends CI_Controller
 				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter);
 				redirect('dbms');
 			}*/
-			$this->teacher->updateBestT3Tracker($code,$subject,$best_t3_tracker);
+			if ($this->teacher->updateBestT3Tracker($code,$subject,$best_t3_tracker))
+			{
+				// error ,message
+			}
+
 			$this->teacher->updateTeacherByCode($code, $teacher);
 			$this->teacher->updateT3Tracker($code,$subject,$t3_tracker);
 		}
