@@ -82,6 +82,25 @@ Class Teacher extends CI_Model
 		}
 	}
 
+	function getTeacherByUsername($username)// di pa to tama. saan ba kunin yung username ng teacher? 
+	{
+		$this->db->select('*');
+		$this->db->from('teacher');
+		$this->db->where('User_Name', $username);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getTeacherFullNameById($id)
 	{
 		$this->db->select('CONCAT_WS("", IF(LENGTH(teacher.Last_Name), teacher.Last_Name, NULL), ", ", IF(LENGTH(teacher.First_Name), teacher.First_Name, NULL), " ", IF(LENGTH(teacher.Middle_Initial), teacher.Middle_Initial, NULL), ". ", IF(LENGTH(teacher.Name_Suffix), teacher.Name_Suffix, NULL)) as Full_Name', false);
