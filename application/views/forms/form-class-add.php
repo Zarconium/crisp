@@ -15,32 +15,36 @@
 	
 	<form class="form-inline">
 	
-		<div class="form-group"><label for="Teacher">Teacher's Full Name</label><span class="help-block">First Name, Last Name, Middle Initial</span>
-		<input class="form-control" type="text" name="teacher_name" value="<?php echo set_value('teacher_name'); ?>" maxlength="250" />
-		<?php echo form_error('teacher_name', '<div class="text-danger">', '</div>'); ?>
+		<div class="form-group"><label for="Teacher">Teacher's Last Name</label>
+		<input class="form-control" type="text" name="teacher_last_name" value="<?php echo set_value('teacher_last_name'); ?>" maxlength="250" />
+		<?php echo form_error('teacher_last_name', '<div class="text-danger">', '</div>'); ?>
+		</div>
+
+		<div class="form-group"><label for="Teacher">Teacher's First Name</label>
+		<input class="form-control" type="text" name="teacher_first_name" value="<?php echo set_value('teacher_first_name'); ?>" maxlength="250" />
+		<?php echo form_error('teacher_first_name', '<div class="text-danger">', '</div>'); ?>
+		</div>
+
+		<div class="form-group"><label for="Teacher">Teacher's Middle Initial</label>
+		<input class="form-control" type="text" name="teacher_middle_initial" value="<?php echo set_value('teacher_middle_initial'); ?>" maxlength="250" />
+		<?php echo form_error('teacher_middle_initial', '<div class="text-danger">', '</div>'); ?>
 		</div>
 		<br/>
 		
 		<div class="form-group"><label for="Name">School:</label>
-		<input class="form-control" type="text" name="name" value="<?php echo set_value('name'); ?>" maxlength="250" />
-		<?php echo form_error('name', '<div class="text-danger">', '</div>'); ?>		
-		</div>
-
-		<div class="form-group"><label for="Branch">Campus:</label>
-		<input class="form-control" type="text" name="branch" value="<?php echo set_value('branch'); ?>" maxlength="250" />
-		<?php echo form_error('name', '<div class="text-danger">', '</div>'); ?>	
+		<select class="form-control" name="current_employer">
+			<?php foreach ($schools as $school): ?>
+			<option value="<?php echo $school->School_ID; ?>" <?php echo set_select('current_employer', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+			<?php endforeach; ?>
+		</select>		
 		</div>
 
 		<div class="form-group"><label for="Subject">Subject:</label>
-		<SELECT name="subject" class="form-control" value="<?php echo set_value('subject'); ?>">
-						<OPTION value="BEST">BEST</OPTION>
-						<OPTION value="AdEPT">AdEPT</OPTION>
-						<OPTION value="BPO101">BPO101</OPTION>
-						<OPTION value="BPO102">BPO102</OPTION>
-						<OPTION value="Service_Culture">Service Culture</OPTION>
-						<OPTION value="Systems_Thinking">Systems Thinking</OPTION>
-						<OPTION value="GCAT">GCAT</OPTION>
-					</SELECT>
+			<select class="form-control" name="program_student_subject_subject">
+					<?php foreach ($subjects as $subject): ?>
+					<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Code; ?></option>
+					<?php endforeach; ?>
+			</select>
 		<?php echo form_error('subject', '<div class="text-danger">', '</div>'); ?>		
 		</div>
 		<br/>
@@ -92,7 +96,7 @@
 			</div>
 			
 			<div class="submit-button">
-				<button class="btn btn-primary" name="submit">Add to List</button>
+				<button type="button" class="btn btn-primary" name="submit" onclick="add_student();">Add to List</button>
 			</div>
 		
 		</form>
@@ -105,24 +109,68 @@
 	<div class="col-md-9">
 	<legend>List of Students</legend>
 	<div class="customize-btn-group">
-		<button class="btn btn-info">Batch Upload</button>
-		<button class="btn btn-danger">Delete</button>O
-	</div>
-    <TABLE id="dataTable"  class="table">
-        <TR>
-        <TD></TD>
-        <TD>Action</TD>
-        <TD>Full Name</B></TD>
-        <TD>Student Number</B></TD>
+		<?php $attributes = array('id' => 'upload_student_class_list', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_student_class_list', $attributes); ?>
+			<input type="file" name="file_student_class_list" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_student_class_list').submit();">
+			<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_student_class_list]').click();">Upload AdEPT Grades</button>
+		<?php echo form_close(); ?>
 
-        </TR>
-        <TR>
-			<td><input type="checkbox"></td>
-			<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-            <TD>Simon, Dayanara F.</TD>
-            <TD>103523</TD>
-            
-        </TR>
-    </TABLE>
+		<button type="button" class="btn btn-danger" onclick="delete_student();">Delete</button>
+	</div>
+	<table class="table table-striped table-area" id="student_list_table">
+		<thead>
+			<tr>
+				<th>Check</th>
+				<th>Action</th>
+				<th>Last Name</th>
+				<th>First Name</th>
+				<th>Middle Initial</th>
+				<th>Student Number</th>
+			</tr>
+		</thead>
+			<?php if ($student_class_list) foreach ($student_class_list as $student): ?>
+			<tr>
+				<td><input type="checkbox"></td>
+				<td><a href="<?php echo base_url('dbms/form_teacher_profile/' . $teacher->Teacher_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_teacher/' . $teacher->Teacher_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
+				<td><?php echo $student->Last_Name ?></td>
+				<td><?php echo $student->First_Name ?></td>
+				<td><?php echo $student->Middle_Initial ?></td>
+				<td><?php echo $student->Student_Number ?></td>
+			</tr>
+			<?php endforeach; ?>
+			</table>
+
+	<script type="text/javascript">
+
+	function delete_student()
+	{
+		if (confirm('Delete selected institutions?'))
+		{
+			$('#student_list_table input[type="checkbox"]:checked').each(function(i, item) { $(item).closest('tr').remove(); });
+		}
+	}
+	
+	function add_student()
+	{
+		$Last_Name = $('[name="last_name_input"]').val().trim();
+		$First_Name = $('[name="first_name_input"]').val().trim();
+		$Middle_Initial = $('[name="middle_initial_input"]').val().trim();
+		$Student_Number = $('[name="student_number_input"]').val().trim();
+
+		if ($Last_Name && $First_Name && $Middle_Initial && $Student_Number)
+		{
+			$('#student_list_table').append('<tr><td><input type="checkbox"></td>' +
+				'<td><input type="hidden" name="Last_Name[]" value="' + $Last_Name + '">' + $Last_Name + '</td>' +
+				'<td><input type="hidden" name="First_Name[]" value="' + $First_Name + '">' + $First_Name + '</td>' +
+				'<td><input type="hidden" name="Middle_Initial[]" value="' + $Middle_Initial + '">' + $Middle_Initial + '</td>' +
+				'<td><input type="hidden" name="Student_Number[]" value="' + $Student_Number + '">' + $Student_Number + '</td></tr>');
+		}
+		else
+		{
+			alert('Invalid input. Please check fields and try again.');
+		}
+	}
+
+
+	</script>
 	</div>
 

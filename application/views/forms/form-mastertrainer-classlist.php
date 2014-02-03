@@ -85,6 +85,10 @@
 		<div class="col-md-9">
 			<h3>List of Teachers</h3>	
 			<div class="customize-btn-group">
+				<?php $attributes = array('id' => 'upload_teacher_class_list', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_teacher_class_list', $attributes); ?>
+					<input type="file" name="file_teacher_class_list" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_teacher_class_list').submit();">
+					<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_teacher_class_list]').click();">Upload AdEPT Grades</button>
+				<?php echo form_close(); ?>
 				<button type="button" class="btn btn-danger">Delete</button>
 				<button type="button" class="btn btn-success">Refresh</button>
 			</div>
