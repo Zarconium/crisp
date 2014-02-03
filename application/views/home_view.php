@@ -1,6 +1,8 @@
 <div class="header">
 	<h1>Notifications</h1>
 </div>
+
+<!-- Delete --
 <table class="table table-area">
 	<tr>
 		<th>Date</th>
@@ -14,6 +16,10 @@
 		<td><?php echo $log->Username; ?></td>
 		<td><?php echo $log->Changes; ?></td>
 	</tr>
-	<?php } echo $links; ?>
-	
+	<?php } ?>
 </table>
+-->
+
+<?php echo $this->table->generate($logs) ?>
+<?php echo $links; ?>
+	

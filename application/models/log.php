@@ -7,7 +7,6 @@ Class Log extends CI_Model
 		$this->db->from('log');
 		$this->db->join('users', 'log.User_ID = users.User_ID');
 		$this->db->order_by('log.Created_At', 'desc');
-		$this->db->limit(20);
 
 		$query = $this->db->get();
 		
@@ -20,7 +19,7 @@ Class Log extends CI_Model
 			return false;
 		}
 	}
-
+	
 	function addLog($changes)
 	{
 		$data = array
