@@ -58,7 +58,7 @@ class Dbms_Controller extends CI_Controller
 		$data['student'] = $this->student->getStudentById($id);
 		$data['gcat_tracker'] = $this->student->getGcatTrackerByStudentId($id);
 		$data['best_tracker'] = $this->student->getBestTrackerByStudentId($id);
-		$data['adept_tracker'] = $this->student->getAdeptTrackerByStudentId($id);
+		$data['adept_tracker'] = $this->student->getAdeptTrackerByStudentIdOrCode($id);
 		$data['smp_tracker'] = $this->student->getSmpTrackerByStudentId($id);
 		$data['internship'] = $this->student->getInternshipByStudentId($id);
 		$data['bizcom'] = $this->student->getBizComByStudentId($id);
