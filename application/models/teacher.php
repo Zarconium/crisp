@@ -596,5 +596,31 @@ Class Teacher extends CI_Model
 			return false;
 		}
 	}
+	function getTeacherByEmail($Email)
+	{
+		$this->db->select('*');
+		$this->db->from('teacher');
+		$this->db->where('Email', $Email);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	function uploadGcatGrade($Email, $Gcat_Tracker)
+	{
+		$this->db->set($Gcat_Tracker);
+		$this->db->where('teacher.Email', $Email);
+		$this->db->update('gcat_tracker JOIN t3_tracker on gcat_tracker.T3_TrackerID = t3_tracker.T3_Tracker_ID JOIN teacher_t3_tracker ON t3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID JOIN teacher ON teacher_t3_tracker.Teacher_ID = teacher.Teacher_ID');
+
+		return $this->db->affected_rows();
+	}
 }
 ?>

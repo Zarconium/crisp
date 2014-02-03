@@ -2304,36 +2304,31 @@ class Dbms_Controller extends CI_Controller
 			
 			$code = $school_id . substr($row['E'],0,1). substr($row['F'],0,1). substr($row['D'],0,1) . date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['P'], 'MM/DD/YYYY'))); //Get Code
 
-			$grades = array
+			$Gcat_Tracker = array
 			(
-				'GCAT_Basic_Skills_Test_Overall_score' => $row['X'],
-				'GCAT_Total_Cognitive' => $row['Y'],
-				'GCAT_English_Proficiency' => $row['Z'],
-				'GCAT_Computer_Literacy' => $row['AA'],
-				'GCAT_Perceptual_Speed_&_Accuracy' => $row['AB'],
-				'GCAT_Behavioral_Component_Overall_Score' => $row['AC'],
-				'GCAT_Communication' => $row['AD'],
-				'GCAT_Learning_Orientation' => $row['AE'],
-				'GCAT_Courtesy' => $row['AF'],
-				'GCAT_Empathy' => $row['AG'],
-				'GCAT_Reliability' => $row['AH'],
-				'GCAT_Responsiveness' => $row['AI']
+				'GCAT_Basic_Skills_Test_Overall_Score' => $row['U'],
+				'GCAT_Total_Cognitive' => $row['V'],
+				'GCAT_English_Proficiency' => $row['W'],
+				'GCAT_Computer_Literacy' => $row['X'],
+				'GCAT_Perceptual_Speed_&_Accuracy' => $row['Y'],
+				'GCAT_Behavioral_Component_Overall_Score' => $row['Z'],
+				'GCAT_Communication' => $row['AA'],
+				'GCAT_Learning_Orientation' => $row['AB'],
+				'GCAT_Courtesy' => $row['AC'],
+				'GCAT_Empathy' => $row['AD'],
+				'GCAT_Reliability' => $row['AE'],
+				'GCAT_Responsiveness' => $row['AF']
 			);
 
-			$subject = $row['J'];
-
-			$tracker = $row['A'];
+			$Email = $row['Q'];
 			
-			if (!$this->teacher->getTeacherByCode($code))
+			if (!$this->teacher->getTeacherByEmail($Email))
 			{
 				$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exists');
 				redirect('dbms');					
 			}
-			else if (!$this->teacher->updateTeacherTracker($code,$subject,$tracker))
-			{
-				$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Invalid data at row ' . $counter);
-				redirect('dbms');
-			}
+			$this->teacher->uploadGcatGrade($Email, $Gcat_Tracker);
+			
 		}
 
 		if ($counter > 1)
