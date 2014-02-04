@@ -79,7 +79,7 @@ Class Report_Suc extends CI_Model
 	}
 
 	#done
-	function getAllSMPStudent($subject_code,$school_code,$semester,$teacher_code,$class_name)
+	function getAllSMPStudent($subject_id,$school_code,$semester,$teacher_code,$class_name)
 	{
 		$query = $this->db->query('SELECT CONCAT_WS(  " ", student.Last_Name,  ",", student.First_Name, student.middle_initial ) AS "Student_Names"
 		FROM Student_Class, Student, Class, subject, school, other_class, teacher
@@ -90,7 +90,7 @@ Class Report_Suc extends CI_Model
 		AND subject.subject_id = class.Subject_ID
 		AND school.School_ID = class.School_ID
 		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
-		s.Subject_Code="' . $subject_code . '")
+		s.Subject_Code="' . $subject_id . '")
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
 		AND class.Semester =' . $semester . '
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
@@ -105,7 +105,7 @@ Class Report_Suc extends CI_Model
 		AND subject.subject_id = class.Subject_ID
 		AND school.School_ID = class.School_ID
 		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
-		s.Subject_Code="' . $subject_code . '")
+		s.Subject_Code="' . $subject_id . '")
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
 		AND class.Semester =' . $semester . '
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")

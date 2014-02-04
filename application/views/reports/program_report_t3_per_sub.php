@@ -1,4 +1,5 @@
-<h1>T3 Program Report Per Subject</h1>
+<h1>T3 Program Report For <?php echo $subject->Subject_Name; ?></h1>
+<h4>Period: <?php echo $start_date; ?> to <?php echo $end_date; ?> </h4>
 <legend>Number of Teachers Finished with T3 in a Subject</legend>
 <div class="report-form">
 <table class="table">

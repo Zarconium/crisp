@@ -33,6 +33,24 @@ Class School extends CI_Model
 			return false;
 		}
 	}
+	
+	function getSchoolByCode($code)
+	{
+		$query = $this->db->query('SELECT * FROM school as s WHERE s.Code="'.$code.'";');
+		
+		if($query->num_rows() == 1)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+
+
+
 
 	function getSchoolById($id)
 	{
