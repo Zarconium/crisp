@@ -87,6 +87,14 @@ Class Mastertrainer extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	function updateMasterTrainerById($id, $data)
+	{
+		$this->db->where('Master_Trainer_ID', $id);
+		$this->db->update('master_trainer', $data);
+
+		return $this->db->_error_message();
+	}
+
 	function deleteMasterTrainerById($id)
 	{
 		$this->db->where('Master_Trainer_ID', $id);

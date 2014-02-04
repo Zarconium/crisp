@@ -78,7 +78,7 @@ class Dbms_Controller extends CI_Controller
 		$data['gcat_tracker'] = $this->student->getGcatTrackerByStudentIdOrCode($id);
 		$data['best_tracker'] = $this->student->getBestTrackerByStudentIdOrCode($id);
 		$data['adept_tracker'] = $this->student->getAdeptTrackerByStudentIdOrCode($id);
-		$data['smp_tracker'] = $this->student->getSmpTrackerByStudentId($id);
+		$data['smp_tracker'] = $this->student->getSmpTrackerByStudentIdOrCode($id);
 		$data['internship'] = $this->student->getInternshipByStudentId($id);
 		$data['bizcom'] = $this->student->getBizComByStudentId($id);
 		$data['bpo101'] = $this->student->getBpo101ByStudentId($id);
@@ -118,21 +118,182 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['proctor'] = $this->proctor->getProctorById($id);
 
-		//$this->log->addLog('Updated Proctor Profile');
+		if ($this->input->post())
+		{
+			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|max_length[4]|xss_clean');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|max_length[5]|xss_clean');
+			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('civil', 'Civil Status', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|max_length[13]|xss_clean');
+			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|max_length[9]|xss_clean');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[45]|valid_email|xss_clean');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('company_name', 'Company Name', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|max_length[255]|xss_clean');
+			$this->form_validation->set_rules('position', 'Position', 'trim|required|max_length[45]|xss_clean');
 
-		$this->load->view('header');
-		$this->load->view('forms/form-proctor-profile', $data);
-		$this->load->view('footer');
+			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+			if($this->input->post('submit'))
+			{
+				if($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-proctor-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					$proctor = array
+					(
+						'Name_Suffix' => $this->input->post('name_suffix'),
+						'Last_Name' => $this->input->post('last_name'),
+						'First_Name' => $this->input->post('first_name'),
+						'Middle_Initial' => $this->input->post('middle_initial'),
+						'Gender' => $this->input->post('gender'),
+						'Civil_Status' => $this->input->post('civil'),
+						// 'Birthdate' => $this->input->post('birthday'),
+						'Mobile_Number' => $this->input->post('mobile_number'),
+						'Landline' => $this->input->post('landline'),
+						'Email' => $this->input->post('email'),
+						'Facebook' => $this->input->post('facebook'),
+						'Company_Name' => $this->input->post('company_name'),
+						'Company_Address' => $this->input->post('company_address'),
+						'Position' => $this->input->post('position'),
+					);
+
+					if($this->proctor->updateProctorById($id, $proctor))
+					{
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-proctor-profile', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$data['proctor'] = $this->proctor->getProctorById($id);
+						$data['form_success'] = TRUE;
+						$this->log->addLog('Updated Proctor');
+
+						$this->load->view('header');
+						$this->load->view('forms/form-proctor-profile', $data);
+						$this->load->view('footer');
+					}
+				}
+			}
+			elseif($this->input->post('save_draft'))
+			{
+				$this->form_validation->run();
+
+				$data['draft_saved'] = TRUE;
+
+				$this->load->view('header');
+				$this->load->view('forms/form-proctor-profile', $data);
+				$this->load->view('footer');
+			}
+		}
+		else
+		{
+			$this->load->view('header');
+			$this->load->view('forms/form-proctor-profile', $data);
+			$this->load->view('footer');
+		}
 	}
 	
 	function form_mastertrainer_profile($id)
 	{
 		$data['mastertrainer'] = $this->mastertrainer->getMasterTrainerById($id);
-		//$this->log->addLog('Updated Mastertrainer Profile');
 
-		$this->load->view('header');
-		$this->load->view('forms/form-mastertrainer-profile', $data);
-		$this->load->view('footer');
+		if ($this->input->post())
+		{
+			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|max_length[4]|xss_clean');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|max_length[5]|xss_clean');
+			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('civil', 'Civil Status', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|max_length[13]|xss_clean');
+			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|max_length[9]|xss_clean');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[45]|valid_email|xss_clean');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('company_name', 'Company Name', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|max_length[255]|xss_clean');
+			$this->form_validation->set_rules('position', 'Position', 'trim|required|max_length[45]|xss_clean');
+
+			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+			if($this->input->post('submit'))
+			{
+				if($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-mastertrainer-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					$mastertrainer = array
+					(
+						'Name_Suffix' => $this->input->post('name_suffix'),
+						'Last_Name' => $this->input->post('last_name'),
+						'First_Name' => $this->input->post('first_name'),
+						'Middle_Initial' => $this->input->post('middle_initial'),
+						'Gender' => $this->input->post('gender'),
+						'Civil_Status' => $this->input->post('civil'),
+						// 'Birthdate' => $this->input->post('birthday'),
+						'Mobile_Number' => $this->input->post('mobile_number'),
+						'Landline' => $this->input->post('landline'),
+						'Email' => $this->input->post('email'),
+						'Facebook' => $this->input->post('facebook'),
+						'Company_Name' => $this->input->post('company_name'),
+						'Company_Address' => $this->input->post('company_address'),
+						'Position' => $this->input->post('position'),
+					);
+
+					if($this->mastertrainer->updateMasterTrainerById($id, $mastertrainer))
+					{
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-mastertrainer-profile', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$data['mastertrainer'] = $this->mastertrainer->getMasterTrainerById($id);
+						$data['form_success'] = TRUE;
+						$this->log->addLog('Updated Proctor');
+
+						$this->load->view('header');
+						$this->load->view('forms/form-mastertrainer-profile', $data);
+						$this->load->view('footer');
+					}
+				}
+			}
+			elseif($this->input->post('save_draft'))
+			{
+				$this->form_validation->run();
+
+				$data['draft_saved'] = TRUE;
+
+				$this->load->view('header');
+				$this->load->view('forms/form-mastertrainer-profile', $data);
+				$this->load->view('footer');
+			}
+		}
+		else
+		{
+			$this->load->view('header');
+			$this->load->view('forms/form-mastertrainer-profile', $data);
+			$this->load->view('footer');
+		}
 	}
 
 	function form_student_application()
