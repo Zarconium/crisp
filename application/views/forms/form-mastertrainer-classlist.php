@@ -37,6 +37,39 @@
 			</div>
 			
 		</form>
+
+	<script type="text/javascript">
+
+		function delete_teacher()
+		{
+			if (confirm('Delete selected institutions?'))
+			{
+				$('#teacher_list_table input[type="checkbox"]:checked').each(function(i, item) { $(item).closest('tr').remove(); });
+			}
+		}
+		
+		function add_teacher()
+		{
+			$Last_Name = $('[name="last_name_input"]').val().trim();
+			$First_Name = $('[name="first_name_input"]').val().trim();
+			$Middle_Initial = $('[name="middle_initial_input"]').val().trim();
+			$birthdate = $('[name="birthdate_input"]').val().trim();
+
+			if ($Last_Name && $First_Name && $Middle_Initial && $birthdate)
+			{
+				$('#teacher_list_table').append('<tr><td><input type="checkbox"></td>' +
+					'<td><input type="hidden" name="Last_Name[]" value="' + $Last_Name + '">' + $Last_Name + '</td>' +
+					'<td><input type="hidden" name="First_Name[]" value="' + $First_Name + '">' + $First_Name + '</td>' +
+					'<td><input type="hidden" name="Middle_Initial[]" value="' + $Middle_Initial + '">' + $Middle_Initial + '</td>' +
+					'<td><input type="hidden" name="School_Code[]" value="' + $School_Code + '">' + $School_Code + '</td>' +
+					'<td><input type="hidden" name="birthdate[]" value="' + $birthdate + '">' + $birthdate + '</td></tr>');
+			}
+			else
+			{
+				alert('Invalid input. Please check fields and try again.');
+			}
+		}
+	</script>	
 	
 	<legend>Teacher List</legend>
 		<div class="col-md-3">
@@ -47,19 +80,26 @@
 				<div class="panel-body">
 					<form class="form">
 						<div class="form-group">
-							<label>Name</label>
-							<input type="text" class="form-control" id="name"name="Name" value="<?php echo set_value('Name'); ?>">
+							<label>Last Name</label>
+							<input type="text" class="form-control" id="Last_Name"name="Last_Name" value="<?php echo set_value('Last_Name'); ?>">
 				<?php echo form_error('Name'); ?>
 						</div>
 						<div class="form-group">
-							<label>School</label>
-							<input type="text" class="form-control" id="school"name="School" value="<?php echo set_value('School'); ?>">
-				<?php echo form_error('School'); ?>
+							<label>First Name</label>
+							<input type="text" class="form-control" id="First_Name"name="First_Name" value="<?php echo set_value('First_Name'); ?>">
+				<?php echo form_error('Name'); ?>
 						</div>
 						<div class="form-group">
-							<label>Branch</label>
-							<input type="text" class="form-control" id="branch"name="Branch" value="<?php echo set_value('Branch'); ?>">
-				<?php echo form_error('Branch'); ?>
+							<label>Middle Initial</label>
+							<input type="text" class="form-control" id="Middle_Initial"name="Middle_Initial" value="<?php echo set_value('Middle_Initial'); ?>">
+				<?php echo form_error('Name'); ?>
+						</div>
+						<div class="form-group"><label for="Name">School:</label>
+						<select class="form-control" name="current_employer">
+							<?php foreach ($schools as $school): ?>
+							<option value="<?php echo $school->School_ID; ?>" <?php echo set_select('school_code', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+							<?php endforeach; ?>
+						</select>		
 						</div>
 						<div class="form-group">
 							<label>Contact Details</label>
@@ -73,7 +113,7 @@
 						</div>
 							
 						<div class="submit-button">
-							<button class="btn btn-primary" name="submit">Add to List</button>
+							<button class="btn btn-primary" name="submit" onclick="add_teacher();">Add to List</button>
 						</div>
 					
 					</form>
@@ -85,22 +125,22 @@
 		<div class="col-md-9">
 			<h3>List of Teachers</h3>	
 			<div class="customize-btn-group">
-				<?php $attributes = array('id' => 'upload_teacher_class_list', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_teacher_class_list', $attributes); ?>
+				<?php $attributes = array('id' => 'upload_teacher_class_list', 'class' => 'teacher-button-groups'); echo form_open_multipart('dbms/upload_teacher_class_list', $attributes); ?>
 					<input type="file" name="file_teacher_class_list" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_teacher_class_list').submit();">
 					<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_teacher_class_list]').click();">Upload AdEPT Grades</button>
 				<?php echo form_close(); ?>
-				<button type="button" class="btn btn-danger">Delete</button>
+				<button type="button" class="btn btn-danger" onclick="delete_student();">Delete</button>
 				<button type="button" class="btn btn-success">Refresh</button>
 			</div>
 			<table class="table">
 				<tr>
 					<th></th>
 					<th>Action</th>
-					<th>Name</th>
+					<th>Last Name</th>
+					<th>First Name</th>
+					<th>Middle Initial</th>
 					<th>School</th>
-					<th>Branch</th>
-					<th>Contact Details</th>
-					<th>Email</th>
+					<th>Birthday</th>
 				</tr>
 				<tr>
 					<td><input type="checkbox"></td>
