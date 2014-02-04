@@ -189,7 +189,7 @@ Class Student extends CI_Model
 		}
 	}
 
-	function getGcatTrackerByStudentIdOrCode($id)
+	function getGcatTrackerByStudentIdOrCode($id_code)
 	{
 		$this->db->select('*, status.Name as Status_Name');
 		$this->db->from('student');
