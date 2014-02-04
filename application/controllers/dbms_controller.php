@@ -1633,7 +1633,7 @@ class Dbms_Controller extends CI_Controller
 						redirect('dbms');
 					}
 				}
-				else //BEST Student Tracker does not exist -> Add
+				/*else //BEST Student Tracker does not exist -> Add
 				{
 					if ($this->student->getTrackerByStudentCodeAndSubjectId($code, 2)) //Tracker exists -> Get Tracker ID
 					{
@@ -1665,7 +1665,7 @@ class Dbms_Controller extends CI_Controller
 						$this->db->trans_rollback();
 						redirect('dbms');
 					}
-				}
+				}*/
 			}
 			elseif ($subject == 'AdEPT')
 			{
@@ -1678,7 +1678,7 @@ class Dbms_Controller extends CI_Controller
 						redirect('dbms');
 					}
 				}
-				else //AdEPT Student Tracker does not exist -> Add
+				/*else //AdEPT Student Tracker does not exist -> Add
 				{
 					if ($this->student->getTrackerByStudentCodeAndSubjectId($code, 3)) //Tracker exists -> Get Tracker ID
 					{
@@ -1710,7 +1710,7 @@ class Dbms_Controller extends CI_Controller
 						$this->db->trans_rollback();
 						redirect('dbms');
 					}
-				}
+				}*/
 			}
 			else
 			{
