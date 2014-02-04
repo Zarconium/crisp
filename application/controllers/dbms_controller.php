@@ -2059,11 +2059,23 @@ class Dbms_Controller extends CI_Controller
 
 			$subject = "BEST";
 			
-			if (!$this->teacher->getTeacherByCode($code))
+			if (!$this->teacher->getTeacherByCode($code)) //--checker kung existing yung teacher--//
 			{
-				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exists.');
+				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist.');
 				redirect('dbms');					
 			}
+			if (!$this->teacher->getBestT3TrackerByTeacherCode($Code))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist.');
+				redirect('dbms');					
+			}
+			if (!$this->teacher->getT3TrackerByTeacherCode($Code))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist.');
+				redirect('dbms');					
+			}
+
+
 
 		/*	if (!$this->teacher->updateTeacherTracker($code,$subject,$t3_tracker))
 			{
