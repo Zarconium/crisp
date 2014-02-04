@@ -132,12 +132,12 @@ Class Proctor extends CI_Model
 		return $this->db->insert_id();
 	}
 
-	function updateProctorByCode($code, $data)
+	function updateProctorById($id, $data)
 	{
-		$this->db->where('Code', $code);
+		$this->db->where('Proctor_ID', $id);
 		$this->db->update('proctor', $data);
 
-		return $this->db->affected_rows();
+		return $this->db->_error_message();
 	}
 
 	function deleteProctorById($id)
