@@ -143,6 +143,29 @@ Class Student extends CI_Model
 		}
 	}
 
+	function getGcatStudentByStudentIdOrCode($id_code)
+	{
+		$this->db->select('*');
+		$this->db->from('gcat_student');
+		$this->db->join('tracker', 'gcat_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->where('student.Student_ID', $id_code);
+		$this->db->or_where('student.Code', $id_code);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getBestStudentByStudentIdOrCode($id_code)
 	{
 		$this->db->select('*');
