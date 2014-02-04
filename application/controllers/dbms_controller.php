@@ -1563,7 +1563,38 @@ class Dbms_Controller extends CI_Controller
 					$this->db->trans_rollback();
 					redirect('dbms');
 				}
-				$this->student->updateStudentByCode($student_code, $student);
+
+				if ($this->student->updateStudentByCode($student_code, $student))
+				{
+					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Student profile update failed.');
+					$this->db->trans_rollback();
+					redirect('dbms');
+				}
+
+				if ((bool) strcasecmp(trim($row['AD']), 'no')) //SMP-CHED
+				{
+					
+				}
+				
+				if ((bool) strcasecmp(trim($row['AE']), 'no')) //GCAT-CHED
+				{
+				}
+
+				if ((bool) strcasecmp(trim($row['AF']), 'no')) //BEST-CHED
+				{
+				}
+
+				if ((bool) strcasecmp(trim($row['AG']), 'no')) //AdEPT-CHED
+				{
+				}
+
+				if ((bool) strcasecmp(trim($row['AH']), 'no')) //BEST-SEI
+				{
+				}
+
+				if ((bool) strcasecmp(trim($row['AI']), 'no')) //AdEPT-SEI
+				{
+				}
 			}
 			else
 			{
