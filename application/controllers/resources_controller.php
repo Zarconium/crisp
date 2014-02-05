@@ -349,6 +349,13 @@ class Resources_Controller extends CI_Controller {
 		$data = file_get_contents("./downloads/smp_application.pdf");
 		force_download('smp_application.pdf', $data);
 	}
+
+	function downloadCRISPUserManualPDF()
+	{		
+		$this->load->helper('download');
+		$data = file_get_contents("./downloads/crisp_user_manual.pdf");
+		force_download('crisp_user_manual.pdf', $data);
+	}
 		
 }
 ?>

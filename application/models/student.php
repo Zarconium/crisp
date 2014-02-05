@@ -601,6 +601,8 @@ Class Student extends CI_Model
 		$this->db->insert('class', $data);
 		$this->db->join('other_class', 'other_class.class_ID = other_class.class_ID', 'left');
 		$this->db->join('teacher', 'teacher.Teacher_ID = other_class.Teacher_ID', 'left');
+		$this->db->join('school', 'school.School_ID = class.School_ID', 'left');
+		$this->db->join('subject', 'subject.Subject_ID = class.Subject_ID', 'left');
 		$this->db->where('teacher.teacher_code', $code);
 		return $this->db->insert_id();
 	}
@@ -611,6 +613,8 @@ Class Student extends CI_Model
 		$this->db->insert('class', $data);
 		$this->db->join('gcat_class', 'gcat_class.class_ID = gcat_class.gcat_class', 'left');
 		$this->db->join('proctor', 'proctor.Proctor_ID = proctor.Proctor_ID', 'left');
+		$this->db->join('school', 'school.School_ID = class.School_ID', 'left');
+		$this->db->join('subject', 'subject.Subject_ID = class.Subject_ID', 'left');
 		$this->db->where('proctor.email', $email);
 		return $this->db->insert_id();
 	}
