@@ -332,10 +332,10 @@ Class Student extends CI_Model
 	function getSmpTrackerByStudentIdOrCode($id_code)
 	{
 		$this->db->select('*');
-		$this->db->from('student');
-		$this->db->join('student_tracker', 'student.Student_ID = student_tracker.Student_ID', 'left');
-		$this->db->join('tracker', 'student_tracker.Tracker_ID = tracker.Tracker_ID', 'left');
-		$this->db->join('smp_student', 'tracker.Tracker_ID = smp_student.Tracker_ID', 'left');
+		$this->db->from('smp_student');
+		$this->db->join('tracker', 'smp_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
 		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
 		$this->db->where('student.Student_ID', $id_code);
 		$this->db->or_where('student.Code', $id_code);
