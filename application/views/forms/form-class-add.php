@@ -28,7 +28,6 @@
 				<?php echo form_error('teacher_first_name', '<div class="text-danger">', '</div>'); ?>
 			</div>
 
-<<<<<<< HEAD
 		<div class="form-group"><label for="Section">Section:</label>
 		<input class="form-control" type="text" name="section" value="<?php echo set_value('section'); ?>" maxlength="4" />
 		<?php echo form_error('section', '<div class="text-danger">', '</div>'); ?>
@@ -78,12 +77,12 @@
 				<label>Last Name</label>			
 				<input class="form-control" type="text" name="last_name" "<?php echo set_value('last_name'); ?>">
 				<?php echo form_error('last_name', '<div class="text-danger">', '</div>'); ?>
-=======
+
 			<div class="form-group">
 				<label for="Teacher">Teacher's Middle Initial</label>
 				<input class="form-control" type="text" name="teacher_middle_initial" value="<?php echo set_value('teacher_middle_initial'); ?>" maxlength="250" />
 				<?php echo form_error('teacher_middle_initial', '<div class="text-danger">', '</div>'); ?>
->>>>>>> 0559c6617232ca51d98ebb90a0ed57ee480c586e
+
 			</div>
 
 			<div class="form-group">
@@ -137,8 +136,6 @@
 				<?php echo form_error('section', '<div class="text-danger">', '</div>'); ?>
 			</div>
 		</div>
-<<<<<<< HEAD
- 
 
 	<div class="col-md-9">
 	<legend>List of Students</legend>
@@ -173,8 +170,6 @@
 			<?php endforeach; ?>
 			</table>
 
-
-=======
 	</form>
 
 	<script type="text/javascript">
@@ -244,7 +239,6 @@
 				</div>
 			</div>
 		</div>
->>>>>>> 0559c6617232ca51d98ebb90a0ed57ee480c586e
 	</div>
 
 	<div class="col-md-9">
