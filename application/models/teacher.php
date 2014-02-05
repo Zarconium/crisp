@@ -63,6 +63,25 @@ Class Teacher extends CI_Model
 		}
 	}
 
+	function getTeacherIDByCode($code)
+	{
+		$this->db->select('teacher.teacher_ID');
+		$this->db->from('teacher');
+		$this->db->where('Code', $code);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getTeacherByCode($code)
 	{
 		$this->db->select('*');
@@ -562,7 +581,7 @@ Class Teacher extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('teacher_professional_reference');
-		$this->db->join('teahcer', 'teacher_professional_reference.Teacher_ID = teacher.Teacher_ID', 'left');
+		$this->db->join('teacher', 'teacher_professional_reference.Teacher_ID = teacher.Teacher_ID', 'left');
 		$this->db->where('teacher.Code', $Code);
 
 		$query = $this->db->get();
@@ -884,6 +903,25 @@ Class Teacher extends CI_Model
 		$this->db->update('gcat_tracker JOIN t3_tracker on gcat_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID JOIN teacher_t3_tracker ON t3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID JOIN teacher ON teacher_t3_tracker.Teacher_ID = teacher.Teacher_ID');
 
 		return $this->db->_error_message();
+	}
+
+	function addT3ClassList($data, $email)
+	{
+		$this->db->insert('T3_class', $data);
+		$this->db->join('master_trainer', 'master_trainer.master_trainer_ID = T3_class.master_trainer_ID', 'left');
+		$this->db->join('school', 'school.School_ID = class.School_ID', 'left');
+		$this->db->join('subject', 'subject.Subject_ID = class.Subject_ID', 'left');
+		$this->db->where('master_trainer.master_trainer_ID', $email);
+		return $this->db->insert_id();
+	}
+
+
+	function addTeacherClassList($data)
+	{
+		$this->db->insert('teacher_class', $data);
+		$this->db->join('teacher', 'teacher.teacher_ID = teacher_class.teacher_ID', 'left');
+		$this->db->join('T3_class', 'T3_class.T3_class_ID = teacher_class.T3_class_ID', 'left');
+		return $this->db->insert_id();
 	}
 }
 ?>
