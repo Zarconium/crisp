@@ -85,6 +85,19 @@
 				<?php echo form_error('teacher_middle_initial', '<div class="text-danger">', '</div>'); ?>
 >>>>>>> 0559c6617232ca51d98ebb90a0ed57ee480c586e
 			</div>
+
+			<div class="form-group">
+				<label for="Teacher">Teacher's Email</label>
+				<input class="form-control" type="email" name="teacher_first_name" value="<?php echo set_value('teacher_first_name'); ?>" maxlength="250" />
+				<?php echo form_error('teacher_first_name', '<div class="text-danger">', '</div>'); ?>
+			</div>
+
+			<div class="form-group">
+				<label for="Teacher">Teacher's Birthdate</label>
+				<input class="form-control" type="date" name="teacher_first_name" value="<?php echo set_value('teacher_first_name'); ?>" maxlength="250" />
+				<?php echo form_error('teacher_first_name', '<div class="text-danger">', '</div>'); ?>
+			</div>
+
 			<br/>
 			
 			<div class="form-group">
