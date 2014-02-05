@@ -1301,9 +1301,13 @@ class Dbms_Controller extends CI_Controller
 			}
 			else if (strcasecmp($row['F'], 'no') == 0)
 			{
+<<<<<<< HEAD
 				$student_id = $this->student->getStudentByCode($student_code)->Student_ID;
 				
 				if (!$student_id)
+=======
+				if (!$this->student->getStudentByCode($student_code))
+>>>>>>> bbb4b4ddfde750b86f6bca3ffe3adf4a8fa1546a
 				{
 					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Student not found.');
 					$this->db->trans_rollback();
@@ -1319,6 +1323,7 @@ class Dbms_Controller extends CI_Controller
 
 				if ((bool) strcasecmp(trim($row['AD']), 'no')) //SMP-CHED
 				{
+<<<<<<< HEAD
 					if (!$this->student->getSmpTrackerByStudentIdOrCode($student_code))
 					{
 						$subject_id_array = array(4, 5, 6, 7, 10, 11);
@@ -1365,10 +1370,14 @@ class Dbms_Controller extends CI_Controller
 							}
 						}
 					}
+=======
+					
+>>>>>>> bbb4b4ddfde750b86f6bca3ffe3adf4a8fa1546a
 				}
 				
 				if ((bool) strcasecmp(trim($row['AE']), 'no')) //GCAT-CHED
 				{
+<<<<<<< HEAD
 					if (!$this->student->getGcatStudentByStudentIdOrCode($student_code))
 					{
 						$project_id = 1;
@@ -1412,10 +1421,13 @@ class Dbms_Controller extends CI_Controller
 							redirect('dbms');
 						}
 					}
+=======
+>>>>>>> bbb4b4ddfde750b86f6bca3ffe3adf4a8fa1546a
 				}
 
 				if ((bool) strcasecmp(trim($row['AF']), 'no')) //BEST-CHED
 				{
+<<<<<<< HEAD
 					if ($this->student->getBestStudentByStudentIdOrCode($student_code))
 					{
 						$project_id = 1;
@@ -1459,10 +1471,13 @@ class Dbms_Controller extends CI_Controller
 							redirect('dbms');
 						}
 					}
+=======
+>>>>>>> bbb4b4ddfde750b86f6bca3ffe3adf4a8fa1546a
 				}
 
 				if ((bool) strcasecmp(trim($row['AG']), 'no')) //AdEPT-CHED
 				{
+<<<<<<< HEAD
 					if ($this->student->getAdeptStudentByStudentIdOrCode($student_code))
 					{
 						$project_id = 1;
@@ -1506,10 +1521,13 @@ class Dbms_Controller extends CI_Controller
 							redirect('dbms');
 						}
 					}
+=======
+>>>>>>> bbb4b4ddfde750b86f6bca3ffe3adf4a8fa1546a
 				}
 
 				if ((bool) strcasecmp(trim($row['AH']), 'no')) //BEST-SEI
 				{
+<<<<<<< HEAD
 					if ($this->student->getBestStudentByStudentIdOrCode($student_code))
 					{
 						$project_id = 2;
@@ -1553,6 +1571,8 @@ class Dbms_Controller extends CI_Controller
 							redirect('dbms');
 						}
 					}
+=======
+>>>>>>> bbb4b4ddfde750b86f6bca3ffe3adf4a8fa1546a
 				}
 
 				if ((bool) strcasecmp(trim($row['AI']), 'no')) //AdEPT-SEI
