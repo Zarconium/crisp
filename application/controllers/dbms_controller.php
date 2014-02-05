@@ -3019,6 +3019,7 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 9) continue;
@@ -3037,6 +3038,8 @@ class Dbms_Controller extends CI_Controller
 			$this->load->view('forms/form-mastertrainer-classlist', $data);
 			$this->load->view('footer');
 		}
+
+		$this->db->trans_commit();
 
 		if ($counter > 1)
 		{

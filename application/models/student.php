@@ -64,7 +64,7 @@ Class Student extends CI_Model
 		}
 	}
 
-		function getStudentById($code)
+	function getStudentIDByCode($code)
 	{
 		$this->db->select('student.Student_ID');
 		$this->db->from('student');
@@ -598,9 +598,11 @@ Class Student extends CI_Model
 
 	function addOtherClassList($data, $code)
 	{
-		$this->db->insert('class', $data)
+		$this->db->insert('class', $data);
 		$this->db->join('other_class', 'other_class.class_ID = other_class.class_ID', 'left');
 		$this->db->join('teacher', 'teacher.Teacher_ID = other_class.Teacher_ID', 'left');
+		$this->db->join('school', 'school.School_ID = class.School_ID', 'left');
+		$this->db->join('subject', 'subject.Subject_ID = class.Subject_ID', 'left');
 		$this->db->where('teacher.teacher_code', $code);
 		return $this->db->insert_id();
 	}
@@ -608,16 +610,18 @@ Class Student extends CI_Model
 
 	function addGCATClassList($data, $email)
 	{
-		$this->db->insert('class', $data)
+		$this->db->insert('class', $data);
 		$this->db->join('gcat_class', 'gcat_class.class_ID = gcat_class.gcat_class', 'left');
 		$this->db->join('proctor', 'proctor.Proctor_ID = proctor.Proctor_ID', 'left');
+		$this->db->join('school', 'school.School_ID = class.School_ID', 'left');
+		$this->db->join('subject', 'subject.Subject_ID = class.Subject_ID', 'left');
 		$this->db->where('proctor.email', $email);
 		return $this->db->insert_id();
 	}
 
 	function addStudentClassList($data)
 	{
-		$this->db->insert('student_class', $)
+		$this->db->insert('student_class', $data);
 		$this->db->join('student', 'Student.Student_ID = student_class.Student_ID', 'left');
 		$this->db->join('class', 'class.class_ID = student_class.class_ID', 'left');
 		return $this->db->insert_id();

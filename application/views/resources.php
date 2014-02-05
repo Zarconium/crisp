@@ -9,6 +9,7 @@
   <li><a target="_blank" href="#trainer" data-toggle="tab">Master Trainer</a></li>
   <li><a target="_blank" href="#class" data-toggle="tab">Classes</a></li>
   <li><a target="_blank" href="#tracker" data-toggle="tab">Trackers</a></li>
+  <li><a target="_blank" href="#others" data-toggle="tab">Others</a></li>
 </ul>		
 
 <div class="tab-content">
@@ -91,7 +92,7 @@
 				</tr>
 				</thead>
 				<tr>
-					<td rowspan="2">Teacher Application Form</td>
+					<td rowspan="1">Teacher Application Form</td>
 					<td>Single</td>					
 					<td>
 						<a target="_blank" href="<?php echo base_url('resources/downloadTeacherProfileSinglePDF') ?>"><button class="btn btn-info">PDF</button></a>
@@ -248,6 +249,24 @@
 					<td>Batch</td>					
 					<td>
 						<a target="_blank" href="<?php echo base_url('resources/downloadT3BESTTrackerExcel') ?>"><button class="btn btn-primary">Excel</button></a>
+					</td>
+				</tr>
+			</table>
+	</div>
+
+	<div class="tab-pane" id="others">
+		
+			<table class="table  "><thead>
+				<tr>
+					<th>Resource</th>
+					<th>Type</th>					
+					<th>Print</th>
+				</tr>
+				<tr>
+					<td rowspan="1">User Manual</td>
+					<td>Single</td>					
+					<td>
+						<a target="_blank" href="<?php echo base_url('resources/downloadCRISPUserManualPDF') ?>"><button class="btn btn-info">PDF</button></a>
 					</td>
 				</tr>
 			</table>
