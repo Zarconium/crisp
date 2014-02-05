@@ -1,5 +1,6 @@
 <h1>Student BEST Program Report</h1>
-<legend>Number of Pins Given</legend>
+<legend>Pins Given</legend>
+<h4>Period: <?php echo $start_date; ?> to <?php echo $end_date; ?> </h4>
 <div class="report-form">
 <table class="table">
 <tr>
@@ -25,7 +26,7 @@
 </table>
 
 
-<legend>Number of Students Currently Taking BEST</legend>
+<legend>Current Takers</legend>
 <table class="table">
 <tr>
 	<th>School</th>
@@ -49,7 +50,7 @@
 	<?php endforeach; ?>
 </table>	
 
-<legend>Number of Students Completed with BEST</legend>
+<legend>Students Completed</legend>
 <table class="table">
 <tr>
 	<th>School</th>

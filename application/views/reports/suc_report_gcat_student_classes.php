@@ -1,5 +1,7 @@
-<h1>SUC Adept Students Classes</h1>
-<legend>Description: Number of Students Who Have Taken a Particular SMP Subject</legend>
+<h1>SUC GCAT Students Classes</h1>
+<h4>Proctor: <?php echo $proctor->First_Name; ?> <?php echo $proctor->Middle_Initial; ?> <?php echo $proctor->Last_Name; ?> <?php echo $proctor->Name_Suffix; ?></h4>
+<h4>Semester: <?php echo $semester; ?></h4>
+<h4>School: <?php echo $school->Name; ?></h4>
 <div class="report-form">
 <table class="table">
 	<tr>

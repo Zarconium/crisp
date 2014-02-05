@@ -64,6 +64,26 @@ Class Student extends CI_Model
 		}
 	}
 
+		function getStudentById($code)
+	{
+		$this->db->select('student.Student_ID');
+		$this->db->from('student');
+		$this->db->where('student.Code', $code);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+
 	function getStudentByUsername($username)//<-- di pa final. same comment sa teacher user name. saan ba talaga galing? 
 	{
 		$this->db->select('*');
@@ -143,6 +163,29 @@ Class Student extends CI_Model
 		}
 	}
 
+	function getGcatStudentByStudentIdOrCode($id_code)
+	{
+		$this->db->select('*');
+		$this->db->from('gcat_student');
+		$this->db->join('tracker', 'gcat_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->where('student.Student_ID', $id_code);
+		$this->db->or_where('student.Code', $id_code);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getBestStudentByStudentIdOrCode($id_code)
 	{
 		$this->db->select('*');
@@ -189,7 +232,7 @@ Class Student extends CI_Model
 		}
 	}
 
-	function getGcatTrackerByStudentIdOrCode($id)
+	function getGcatTrackerByStudentIdOrCode($id_code)
 	{
 		$this->db->select('*, status.Name as Status_Name');
 		$this->db->from('student');
@@ -552,5 +595,33 @@ Class Student extends CI_Model
 		$this->db->where('Student_ID', $id);
 		return $this->db->delete('student');
 	}
+
+	function addOtherClassList($data, $code)
+	{
+		$this->db->insert('class', $data)
+		$this->db->join('other_class', 'other_class.class_ID = other_class.class_ID', 'left');
+		$this->db->join('teacher', 'teacher.Teacher_ID = other_class.Teacher_ID', 'left');
+		$this->db->where('teacher.teacher_code', $code);
+		return $this->db->insert_id();
+	}
+
+
+	function addGCATClassList($data, $email)
+	{
+		$this->db->insert('class', $data)
+		$this->db->join('gcat_class', 'gcat_class.class_ID = gcat_class.gcat_class', 'left');
+		$this->db->join('proctor', 'proctor.Proctor_ID = proctor.Proctor_ID', 'left');
+		$this->db->where('proctor.email', $email);
+		return $this->db->insert_id();
+	}
+
+	function addStudentClassList($data)
+	{
+		$this->db->insert('student_class', $)
+		$this->db->join('student', 'Student.Student_ID = student_class.Student_ID', 'left');
+		$this->db->join('class', 'class.class_ID = student_class.class_ID', 'left');
+		return $this->db->insert_id();
+	}
+
 }
 ?>

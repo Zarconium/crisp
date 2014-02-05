@@ -1,4 +1,6 @@
 <h1>SUC Report</h1>
+<h4>School: <?php echo $school->Name; ?></h4>
+<h4>Period: <?php echo $start_date; ?> to <?php echo $end_date; ?> </h4>
 <legend>Teachers</legend>
 <div class="report-form">
 <table class="table">

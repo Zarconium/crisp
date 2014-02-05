@@ -51,5 +51,33 @@ Class Subject extends CI_Model
 			return false;
 		}
 	}
+
+	function getSubjectByID($ID)
+	{
+		$query = $this->db->query('SELECT * FROM subject WHERE subject.subject_id = "'. $ID .'";');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getSubjectByCode($Code)
+	{
+		$query = $this->db->query('SELECT * FROM subject WHERE subject.subject_code = "'. $Code .'";');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 ?>

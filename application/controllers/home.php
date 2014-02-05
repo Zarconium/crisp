@@ -42,7 +42,8 @@ class Home extends CI_Controller {
  
         $this->pagination->initialize($config);
 		
-		$this->db->select('User_ID, log.Changes, log.Created_At');
+		$this->db->select('users.Username, log.Changes, log.Created_At');
+		$this->db->join('users', 'log.User_ID = users.User_ID', 'left');
 		$this->db->order_by('log.Created_At', 'desc');
 
 		$data['logs'] = $this->db->get('log', $config['per_page'], $this->uri->segment(3));

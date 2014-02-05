@@ -78,7 +78,7 @@ class Dbms_Controller extends CI_Controller
 		$data['gcat_tracker'] = $this->student->getGcatTrackerByStudentIdOrCode($id);
 		$data['best_tracker'] = $this->student->getBestTrackerByStudentIdOrCode($id);
 		$data['adept_tracker'] = $this->student->getAdeptTrackerByStudentIdOrCode($id);
-		$data['smp_tracker'] = $this->student->getSmpTrackerByStudentId($id);
+		$data['smp_tracker'] = $this->student->getSmpTrackerByStudentIdOrCode($id);
 		$data['internship'] = $this->student->getInternshipByStudentId($id);
 		$data['bizcom'] = $this->student->getBizComByStudentId($id);
 		$data['bpo101'] = $this->student->getBpo101ByStudentId($id);
@@ -118,21 +118,182 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['proctor'] = $this->proctor->getProctorById($id);
 
-		//$this->log->addLog('Updated Proctor Profile');
+		if ($this->input->post())
+		{
+			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|max_length[4]|xss_clean');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|max_length[5]|xss_clean');
+			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('civil', 'Civil Status', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|max_length[13]|xss_clean');
+			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|max_length[9]|xss_clean');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[45]|valid_email|xss_clean');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('company_name', 'Company Name', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|max_length[255]|xss_clean');
+			$this->form_validation->set_rules('position', 'Position', 'trim|required|max_length[45]|xss_clean');
 
-		$this->load->view('header');
-		$this->load->view('forms/form-proctor-profile', $data);
-		$this->load->view('footer');
+			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+			if($this->input->post('submit'))
+			{
+				if($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-proctor-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					$proctor = array
+					(
+						'Name_Suffix' => $this->input->post('name_suffix'),
+						'Last_Name' => $this->input->post('last_name'),
+						'First_Name' => $this->input->post('first_name'),
+						'Middle_Initial' => $this->input->post('middle_initial'),
+						'Gender' => $this->input->post('gender'),
+						'Civil_Status' => $this->input->post('civil'),
+						// 'Birthdate' => $this->input->post('birthday'),
+						'Mobile_Number' => $this->input->post('mobile_number'),
+						'Landline' => $this->input->post('landline'),
+						'Email' => $this->input->post('email'),
+						'Facebook' => $this->input->post('facebook'),
+						'Company_Name' => $this->input->post('company_name'),
+						'Company_Address' => $this->input->post('company_address'),
+						'Position' => $this->input->post('position'),
+					);
+
+					if($this->proctor->updateProctorById($id, $proctor))
+					{
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-proctor-profile', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$data['proctor'] = $this->proctor->getProctorById($id);
+						$data['form_success'] = TRUE;
+						$this->log->addLog('Updated Proctor');
+
+						$this->load->view('header');
+						$this->load->view('forms/form-proctor-profile', $data);
+						$this->load->view('footer');
+					}
+				}
+			}
+			elseif($this->input->post('save_draft'))
+			{
+				$this->form_validation->run();
+
+				$data['draft_saved'] = TRUE;
+
+				$this->load->view('header');
+				$this->load->view('forms/form-proctor-profile', $data);
+				$this->load->view('footer');
+			}
+		}
+		else
+		{
+			$this->load->view('header');
+			$this->load->view('forms/form-proctor-profile', $data);
+			$this->load->view('footer');
+		}
 	}
 	
 	function form_mastertrainer_profile($id)
 	{
 		$data['mastertrainer'] = $this->mastertrainer->getMasterTrainerById($id);
-		//$this->log->addLog('Updated Mastertrainer Profile');
 
-		$this->load->view('header');
-		$this->load->view('forms/form-mastertrainer-profile', $data);
-		$this->load->view('footer');
+		if ($this->input->post())
+		{
+			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|max_length[4]|xss_clean');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|max_length[5]|xss_clean');
+			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('civil', 'Civil Status', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|max_length[13]|xss_clean');
+			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|max_length[9]|xss_clean');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[45]|valid_email|xss_clean');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('company_name', 'Company Name', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|max_length[255]|xss_clean');
+			$this->form_validation->set_rules('position', 'Position', 'trim|required|max_length[45]|xss_clean');
+
+			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+			if($this->input->post('submit'))
+			{
+				if($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-mastertrainer-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					$mastertrainer = array
+					(
+						'Name_Suffix' => $this->input->post('name_suffix'),
+						'Last_Name' => $this->input->post('last_name'),
+						'First_Name' => $this->input->post('first_name'),
+						'Middle_Initial' => $this->input->post('middle_initial'),
+						'Gender' => $this->input->post('gender'),
+						'Civil_Status' => $this->input->post('civil'),
+						// 'Birthdate' => $this->input->post('birthday'),
+						'Mobile_Number' => $this->input->post('mobile_number'),
+						'Landline' => $this->input->post('landline'),
+						'Email' => $this->input->post('email'),
+						'Facebook' => $this->input->post('facebook'),
+						'Company_Name' => $this->input->post('company_name'),
+						'Company_Address' => $this->input->post('company_address'),
+						'Position' => $this->input->post('position'),
+					);
+
+					if($this->mastertrainer->updateMasterTrainerById($id, $mastertrainer))
+					{
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-mastertrainer-profile', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$data['mastertrainer'] = $this->mastertrainer->getMasterTrainerById($id);
+						$data['form_success'] = TRUE;
+						$this->log->addLog('Updated Proctor');
+
+						$this->load->view('header');
+						$this->load->view('forms/form-mastertrainer-profile', $data);
+						$this->load->view('footer');
+					}
+				}
+			}
+			elseif($this->input->post('save_draft'))
+			{
+				$this->form_validation->run();
+
+				$data['draft_saved'] = TRUE;
+
+				$this->load->view('header');
+				$this->load->view('forms/form-mastertrainer-profile', $data);
+				$this->load->view('footer');
+			}
+		}
+		else
+		{
+			$this->load->view('header');
+			$this->load->view('forms/form-mastertrainer-profile', $data);
+			$this->load->view('footer');
+		}
 	}
 
 	function form_student_application()
@@ -1134,7 +1295,38 @@ class Dbms_Controller extends CI_Controller
 					$this->db->trans_rollback();
 					redirect('dbms');
 				}
-				$this->student->updateStudentByCode($student_code, $student);
+
+				if ($this->student->updateStudentByCode($student_code, $student))
+				{
+					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Student profile update failed.');
+					$this->db->trans_rollback();
+					redirect('dbms');
+				}
+
+				if ((bool) strcasecmp(trim($row['AD']), 'no')) //SMP-CHED
+				{
+					
+				}
+				
+				if ((bool) strcasecmp(trim($row['AE']), 'no')) //GCAT-CHED
+				{
+				}
+
+				if ((bool) strcasecmp(trim($row['AF']), 'no')) //BEST-CHED
+				{
+				}
+
+				if ((bool) strcasecmp(trim($row['AG']), 'no')) //AdEPT-CHED
+				{
+				}
+
+				if ((bool) strcasecmp(trim($row['AH']), 'no')) //BEST-SEI
+				{
+				}
+
+				if ((bool) strcasecmp(trim($row['AI']), 'no')) //AdEPT-SEI
+				{
+				}
 			}
 			else
 			{
@@ -1535,15 +1727,14 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
 			if ($counter > $highestRow) break;
 
-			foreach ($this->school->getSchoolIdByCode($row['E']) as $school) //Get School_ID
-			{
-				$school_id = $school->School_ID;
-			}
+			$school_id = $this->school->getSchoolIdByCode(trim($row['E']))->School_ID;
+			$subject = 'Intern';
 			
 			$code = $school_id . $row['D']; //Get Code
 
@@ -1561,25 +1752,26 @@ class Dbms_Controller extends CI_Controller
 				'Remarks' => $row['Q']
 			);
 
-			$subject = 'Intern';
 		
 			if (!$this->student->getStudentByCode($code))
 			{
-				$student['Code'] = $code;
-
-				$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Student does not exist.');
+				$this->db->trans_rollback();
 				redirect('dbms');					
 			}
 
-			else if (!$this->student->updateStudentTracker	($code,$subject,$intern))
+			if ($this->student->updateStudentTracker($code, $subject, $intern))
 			{
-				$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter);
+				$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Internship Tracker does not exist.');
+				$this->db->trans_rollback();
 				redirect('dbms');
 			}
 		}
+		$this->db->trans_commit();
+
 		if ($counter > 2)
 		{
-			$this->session->set_flashdata('upload_success', 'Internship Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+			$this->session->set_flashdata('upload_success', 'Internship Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
 			$this->log->addLog('SMP Internship Student Tracker Batch Upload');
 		}
 		else
@@ -1779,6 +1971,8 @@ class Dbms_Controller extends CI_Controller
 			}
 		}
 
+		$this->db->trans_commit();
+
 		if ($counter > 4)
 		{
 			$this->session->set_flashdata('upload_success', 'AdEPT Grades successfully uploaded. ' . ($counter - 4) . ' of ' . ($highestRow - 4) . ' teachers added/updated.');
@@ -1791,7 +1985,7 @@ class Dbms_Controller extends CI_Controller
 		redirect('dbms');
 	}
 
-	//teacher//
+	//teacher//---------------------------------------------------------------
 	function upload_best_adept_product_tracker()
 	{
 		if (!$_FILES)
@@ -1805,31 +1999,65 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
 			if ($counter > $highestRow) break;
 
 			$school_id = $this->school->getSchoolIdByCode($row['F'])->School_ID; //Get School_ID
-			
 			$code = $school_id . substr($row['C'],0,1). substr($row['D'],0,1). substr($row['B'],0,1) . date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['E'], 'MM/DD/YYYY'))); //Get Code
-
+			$subject = $row['A'];
+			
 			$tracker = array
 			(
 				'Control_Number' => $row['G'],
 				'User_Name' => $row['H']
 			);
 
-			$subject = $row['A'];
 			
 			if (!$this->teacher->getTeacherByCode($code))
 			{
 				$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
+				$this->db->trans_rollback();
 				redirect('dbms');					
 			}
-			$this->teacher->updateTeacherTracker($code,$subject,$tracker);
+
+			if ($subject == 'BEST')
+			{
+				if (!$this->teacher->getBestT3TrackerByTeacherCode($code)) //chcek if exiist
+				{
+					$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist.');
+					$this->db->trans_rollback();
+					redirect('dbms');					
+				}
+				if ($this->teacher->updateBestT3Tracker($code,$subject,$tracker)) // the update method...
+				{
+					$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter .'');
+					$this->db->trans_rollback();
+					redirect('dbms');					
+				}
+			}
+
+			if ($subject == 'AdEPT')
+			{
+				if (!$this->teacher->getAdeptT3TrackerByTeacherCode($code)) //chcek if exiist
+				{
+					$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row a' . $counter . '. Teacher does not exist.');
+					$this->db->trans_rollback();
+					redirect('dbms');					
+				}
+				if ($this->teacher->updateAdeptT3Tracker($code,$subject,$tracker)) // the update method...
+				{
+					$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row bs' . $counter .'');
+					$this->db->trans_rollback();
+					redirect('dbms');					
+				}
+			}
 		}
 
+		$this->db->trans_commit();
+		
 		if ($counter > 2)
 		{
 			$this->session->set_flashdata('upload_success', 'BEST/AdEPT Product Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' Teacher added/updated.');
@@ -1854,6 +2082,7 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
@@ -1898,25 +2127,49 @@ class Dbms_Controller extends CI_Controller
 
 			$subject = "BEST";
 			
-			if (!$this->teacher->getTeacherByCode($code))
+			if (!$this->teacher->getTeacherByCode($code)) //--checker kung existing yung teacher--//
 			{
-				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exists.');
+				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist.');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
+			if (!$this->teacher->getBestT3TrackerByTeacherCode($code))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist.');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
+			if (!$this->teacher->getT3TrackerByTeacherCode($code))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist.');
+				$this->db->trans_rollback();
 				redirect('dbms');					
 			}
 
-		/*	if (!$this->teacher->updateTeacherTracker($code,$subject,$t3_tracker))
-			{
-				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter);
-				redirect('dbms');
-			}*/
+
+
 			if ($this->teacher->updateBestT3Tracker($code,$subject,$best_t3_tracker))
 			{
-				// error ,message
+				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter .'');
+				$this->db->trans_rollback();
+				redirect('dbms');						
 			}
 
-			$this->teacher->updateTeacherByCode($code, $teacher);
-			$this->teacher->updateT3Tracker($code,$subject,$t3_tracker);
+			if ($this->teacher->updateTeacherByCode($code, $teacher))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter .'');
+				$this->db->trans_rollback();
+				redirect('dbms');						
+			}
+			if ($this->teacher->updateT3Tracker($code,$subject,$t3_tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter .'');
+				$this->db->trans_rollback();
+				redirect('dbms');						
+			}
 		}
+
+		$this->db->trans_commit();
 
 		if ($counter > 2)
 		{
@@ -1926,11 +2179,12 @@ class Dbms_Controller extends CI_Controller
 		else
 		{
 			$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Empty file.');
+			$this->db->trans_rollback();
 		}
 		redirect('dbms');
 	}
 
-	function upload_best_T3_attendance()
+	function upload_best_T3_attendance() 
 	{
 		if (!$_FILES)
 		{
@@ -1942,6 +2196,7 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
@@ -1972,12 +2227,32 @@ class Dbms_Controller extends CI_Controller
 			if (!$this->teacher->getTeacherByCode($code))
 			{
 				$this->session->set_flashdata('upload_error', 'BEST Attendance Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
+				$this->db->trans_rollback();
 				redirect('dbms');					
 			}
-			$this->teacher->updateTeacherBestAttendance($code,$subject,$best_t3_attendance);
-			$this->teacher->updateTeacherProfessionalReference($code,$subject,$teacher_professional_reference);
+			if (!$this->teacher->getBestT3AttendanceByTeacherCode($code))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Attendance Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
+			
+			if ($this->teacher->updateTeacherBestAttendance($code,$subject,$best_t3_attendance))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '');
+				$this->db->trans_rollback();
+				redirect('dbms');						
+			}
+			if ($this->teacher->updateTeacherProfessionalReference($code,$subject,$teacher_professional_reference))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Invalid data at row ' . $counter . '');
+				$this->db->trans_rollback();
+				redirect('dbms');						
+			}
 		}
 
+		$this->db->trans_commit();
+		
 		if ($counter > 2)
 		{
 			$this->session->set_flashdata('upload_success', 'BEST Attendance Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' Teacher added/updated.');
@@ -2002,6 +2277,7 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
@@ -2050,15 +2326,45 @@ class Dbms_Controller extends CI_Controller
 			if (!$this->teacher->getTeacherByCode($code))
 			{
 				$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
+			if (!$this->teacher->getT3TrackerByTeacherCode($code))
+			{
+				$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
+			if (!$this->teacher->getAdeptT3TrackerByTeacherCode($code))
+			{
+				$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
+				$this->db->trans_rollback();
 				redirect('dbms');					
 			}
 
-			$this->teacher->updateAdeptT3Tracker($code,$subject,$adept_t3_tracker);
-			$this->teacher->updateTeacherByCode($code, $teacher);
-			$this->teacher->updateT3Tracker($code,$subject,$t3_tracker);
+			if ($this->teacher->updateAdeptT3Tracker($code,$subject,$adept_t3_tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $code .'' );
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
+			if ($this->teacher->updateTeacherByCode($code, $teacher))
+			{
+				$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $code . '');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
+			if ($this->teacher->updateT3Tracker($code,$subject,$t3_tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Invalid data at row ' . $code . '');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
 			
 		}
 
+		$this->db->trans_commit();
+		
 		if ($counter > 2)
 		{
 			$this->session->set_flashdata('upload_success', 'AdEPT Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
@@ -2082,6 +2388,7 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 2) continue;
@@ -2114,11 +2421,38 @@ class Dbms_Controller extends CI_Controller
 			if (!$this->teacher->getTeacherByCode($code))
 			{	
 				$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
+				$this->db->trans_rollback();
 				redirect('dbms');					
 			}
-			$this->teacher->updateTeacherAdeptAttendance($code,$subject,$adept_t3_attendance);
+			if (!$this->teacher->getAdeptT3AttendanceByTeacherCode($code))
+			{	
+				$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
+			if (!$this->teacher->getTeacherProfessionalReferenceByTeacherCode($code))
+			{	
+				$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
+			
+			if($this->teacher->updateTeacherAdeptAttendance($code,$subject,$adept_t3_attendance))
+			{	
+				$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter .'');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
+			if($this->teacher->updateTeacherProfessionalReference($code,$subject,$teacher_professional_reference))
+			{	
+				$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter .'');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
 		}
 
+		$this->db->trans_commit();
+		
 		if ($counter > 2)
 		{
 			$this->session->set_flashdata('upload_success', 'AdEPT Attendance Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
@@ -2143,6 +2477,7 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 3) continue;
@@ -2165,10 +2500,26 @@ class Dbms_Controller extends CI_Controller
 			if (!$this->teacher->getTeacherByCode($code))
 			{
 				$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
+					$this->db->trans_rollback();
 					redirect('dbms');					
 			}
-			$this->teacher->updateT3Tracker($code,$subject,$t3_tracker);
+			if (!$this->teacher->getT3TrackerByTeacherCode($code))
+			{
+				$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
+					$this->db->trans_rollback();
+					redirect('dbms');					
+			}
+
+			if ($this->teacher->updateT3Tracker($code,$subject,$t3_tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'SMP Tracker upload failed. Invalid data at row ' . $code . '');
+					$this->db->trans_rollback();
+					redirect('dbms');					
+			}
+			
 		}
+
+		$this->db->trans_commit();
 
 		if ($counter > 3)
 		{
@@ -2194,6 +2545,7 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 3) continue;
@@ -2222,14 +2574,39 @@ class Dbms_Controller extends CI_Controller
 			
 			if (!$this->teacher->getTeacherByCode($code))
 			{
-				$this->session->set_flashdata('upload_error', 'SMP Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Student already exists');
+				$this->session->set_flashdata('upload_error', 'SMP Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
+				$this->db->trans_rollback();
 				redirect('dbms');					
 			}
-			
-			$this->teacher->updateTeacherSMPAttendance($code,$subject,$smp_t3_attendance);
-			$this->teacher->updateTeacherSMPAttendanceTracking($code,$subject,$smp_t3_attendance_tracking);
+			if (!$this->teacher->getSmpT3AttendanceByTeacherCode($code))
+			{
+				$this->session->set_flashdata('upload_error', 'SMP Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
+			if (!$this->teacher->getSmpT3AttendanceTrackingByTeacherCode($code))
+			{
+				$this->session->set_flashdata('upload_error', 'SMP Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
 
+			
+			if ($this->teacher->updateTeacherSMPAttendance($code,$subject,$smp_t3_attendance))
+			{
+				$this->session->set_flashdata('upload_error', 'SMP Attendance Tracker upload failed. Invalid data at row ' . $counter . '');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
+			if ($this->teacher->updateTeacherSMPAttendanceTracking($code,$subject,$smp_t3_attendance_tracking))
+			{
+				$this->session->set_flashdata('upload_error', 'SMP Attendance Tracker upload failed. Invalid data at row ' . $counter . '');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
 		}
+
+		$this->db->trans_commit();
 
 		if ($counter > 3)
 		{
@@ -2256,6 +2633,7 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 3) continue;
@@ -2280,14 +2658,38 @@ class Dbms_Controller extends CI_Controller
 			if (!$this->teacher->getTeacherByCode($code))
 			{
 				$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
+			if (!$this->teacher->getStipendTrackingByTeacherCode($code))
+			{
+				$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
+			if (!$this->teacher->getStipendTrackingListByTeacherCode($code))
+			{
+				$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
+				$this->db->trans_rollback();
 				redirect('dbms');					
 			}
 			
-			$this->teacher->updateStipendTrackingList($code, $subject, $stipend_tracking_list);
-			
-			$this->teacher->updateStipendTracking($code, $subject, $stipend_tracking);
+			if ($this->teacher->updateStipendTrackingList($code, $subject, $stipend_tracking_list))
+			{
+				$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $code . '');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
+			if ($this->teacher->updateStipendTracking($code, $subject, $stipend_tracking))
+			{
+				$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $code . '');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
 		}
 
+		$this->db->trans_commit();
+		
 		if ($counter > 3)
 		{
 			$this->session->set_flashdata('upload_success', 'Teacher Stipend Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 3) . ' Teacher added/updated.');
@@ -2314,6 +2716,7 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 1) continue;
@@ -2344,11 +2747,25 @@ class Dbms_Controller extends CI_Controller
 			if (!$this->teacher->getTeacherByEmail($Email))
 			{
 				$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
+				$this->db->trans_rollback();
 				redirect('dbms');					
 			}
-			$this->teacher->uploadGcatGrade($Email, $Gcat_Tracker);
-			
+			if (!$this->teacher->getGcatTrackerByTeacherEmail($Email))
+			{
+				$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
+
+			if (!$this->teacher->$this->teacher->uploadGcatGrade($Email, $Gcat_Tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Invalid data at row ' . $counter . '');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
 		}
+
+		$this->db->trans_commit();
 
 		if ($counter > 1)
 		{
@@ -2375,6 +2792,7 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 4) continue;
@@ -2415,10 +2833,25 @@ class Dbms_Controller extends CI_Controller
 			if (!$this->teacher->getTeacherByUsernameBest($Best_T3_Tracker))
 			{
 				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
+				$this->db->trans_rollback();
 				redirect('dbms');
 			}
-			$this->teacher->uploadBestGrade($Best_T3_Tracker, $Best_T3_Grades);
+			if (!$this->teacher->getBestT3GradesbyUsername($Best_T3_Tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
+				$this->db->trans_rollback();
+				redirect('dbms');
+			}
+
+			if ($this->teacher->$this->teacher->uploadBestGrade($Best_T3_Tracker, $Best_T3_Grades))
+			{
+				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $counter . '');
+				$this->db->trans_rollback();
+				redirect('dbms');
+			}
 		}
+
+		$this->db->trans_commit();
 
 		if ($counter > 4)
 		{
@@ -2445,6 +2878,7 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
+		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 4) continue;
@@ -2484,10 +2918,25 @@ class Dbms_Controller extends CI_Controller
 			if (!$this->teacher->getTeacherByUsernameAdept($Adept_T3_Tracker))
 			{
 				$this->session->set_flashdata('upload_error', 'Adept Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
+				$this->db->trans_rollback();
 				redirect('dbms');					
 			}
-			$this->teacher->uploadAdeptGrade($Adept_T3_Tracker, $Adept_T3_Grades);
+			if (!$this->teacher->getAdeptT3GradesbyUsername($Adept_T3_Tracker))
+			{
+				$this->session->set_flashdata('upload_error', 'Adept Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
+
+			if ($this->teacher->uploadAdeptGrade($Adept_T3_Tracker, $Adept_T3_Grades))
+			{
+				$this->session->set_flashdata('upload_error', 'Adept Grades upload failed. Invalid data at row ' . $counter . '');
+				$this->db->trans_rollback();
+				redirect('dbms');					
+			}
 		}
+
+		$this->db->trans_commit();
 
 		if ($counter > 4)
 		{
@@ -2509,7 +2958,7 @@ class Dbms_Controller extends CI_Controller
 		}
 
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-		$objPHPExcel = $objReader->load($_FILES['file_adept_grades']['tmp_name']);
+		$objPHPExcel = $objReader->load($_FILES['file_student_class_list']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
@@ -2527,7 +2976,7 @@ class Dbms_Controller extends CI_Controller
 				'Student_ID_Number' => $row['D']
 			);
 
-			$data['student_class_list']	= $classlist;
+			$data['class_list']	= $classlist;
 			$this->load->view('header');
 			$this->load->view('forms/form-class-add', $data);
 			$this->load->view('footer');
@@ -2545,15 +2994,39 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_teacher_class_list()
 	{
-		if (!$_FILES)
-		{
-			redirect(base_url('dbms'));
-		}
-
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-		$objPHPExcel = $objReader->load($_FILES['file_adept_grades']['tmp_name']);
+		$objPHPExcel = $objReader->load($_FILES['file_teacher_class_list']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
+
+		$counter = 0;
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 9) continue;
+			if ($counter > $highestRow) break;
+
+			$classlist = array
+			(
+				'Last_Name' => $row['A'],
+				'First_Name' => $row['B'],
+				'Middle_Initial' => $row['C'],
+				'Birthdate' => $row['D']
+			);
+
+			$data['class_list']	= $classlist;
+			$this->load->view('header');
+			$this->load->view('forms/form-mastertrainer-classlist', $data);
+			$this->load->view('footer');
+		}
+
+		if ($counter > 1)
+		{
+			$this->session->set_flashdata('upload_success', 'Teacher class list successfully uploaded. ' . ($counter - 1) . ' of ' . ($highestRow - 1) . ' Teacher added/updated.');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'Teacher class list upload failed. Empty file.');
+		}
 
 	}
 }

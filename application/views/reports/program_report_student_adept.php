@@ -1,5 +1,6 @@
 <h1>Student Adept Program Report</h1>
-<legend>Number of Pins Given</legend>
+<h4>Period: <?php echo $start_date; ?> to <?php echo $end_date; ?> </h4>
+<legend>Pins Given </legend>
 <div class="report-form">
 <table class="table">
 <tr>
@@ -24,8 +25,7 @@
 	<?php endforeach; ?>
 </table>
 
-
-<legend>Number of Students Currently Taking Adept</legend>
+<legend>Current Takers</legend>
 <table class="table">
 	<th>School</th>
 	<th>Male</th>
@@ -47,7 +47,7 @@
 	<?php endforeach; ?>
 </table>	
 
-<legend>Number of Students Completed with Adept</legend>
+<legend>Students Completed</legend>
 <table class="table">
 	<th>School</th>
 	<th>Male</th>
