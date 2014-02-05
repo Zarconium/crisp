@@ -1317,52 +1317,7 @@ class Dbms_Controller extends CI_Controller
 
 				if ((bool) strcasecmp(trim($row['AD']), 'no')) //SMP-CHED
 				{
-					if (!$this->student->getSmpTrackerByStudentIdOrCode($student_code))
-					{
-						$subject_id_array = array(4, 5, 6, 7, 10, 11);
-
-						foreach ($subject_id_array as $subject_id)
-						{
-							$student_application = array
-							(
-								'Contract' => (bool) strcasecmp(trim($row['AJ']), 'no'),
-								'Student_ID' => $student_id,
-								'Project_ID' => 1,
-								'Subject_ID' => $subject_id
-							);
-							$this->student->addStudentApplication($student_application);
-
-							$tracker = array
-							(
-								'Remarks' => NULL,
-								'Status_ID' => 3,
-								'Times_Taken' => 1,
-								'Subject_ID' => $subject_id
-							);
-							$tracker_id = $this->student->addTracker($tracker);
-
-							$student_tracker = array
-							(
-								'Tracker_ID' => $tracker_id,
-								'Student_ID' => $student_id,
-							);
-							$student_tracker_id = $this->student->addStudentTracker($student_tracker);
-
-							$subject_student = array
-							(
-								'Tracker_ID' => $tracker_id
-							);
-							$this->student->addSmpStudent($subject_student);
-							$this->student->addSmpStudentCoursesTaken($subject_student);
-
-							if ($this->db->_error_message())
-							{
-								$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. SMP-CHED Tracker creation failed. ' . $this->db->_error_message());
-								$this->db->trans_rollback();
-								redirect('dbms');
-							}
-						}
-					}
+					
 				}
 				
 				if ((bool) strcasecmp(trim($row['AE']), 'no')) //GCAT-CHED
