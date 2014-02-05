@@ -946,11 +946,23 @@ class Dbms_Controller extends CI_Controller
 	
 	function form_class_add()
 	{
-		$this->log->addLog('Added Class List');
+		$data['schools'] = $this->school->getAllSchools();
+		$data['subjects'] = $this->subject->getAllSubjects();
+		if ($_FILES) $data['class_list'] = $this->upload_student_class_list();
+		// $this->log->addLog('Added Class List');
 
-		$this->load->view('header');
-		$this->load->view('forms/form-class-add');
-		$this->load->view('footer');
+		if ($this->input->post())
+		{
+			$this->load->view('header');
+			$this->load->view('forms/form-class-add', $data);
+			$this->load->view('footer');
+		}
+		else
+		{
+			$this->load->view('header');
+			$this->load->view('forms/form-class-add', $data);
+			$this->load->view('footer');
+		}
 	}
 	
 	function form_program_gcat_tracker()
@@ -2963,13 +2975,13 @@ class Dbms_Controller extends CI_Controller
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
 		$counter = 0;
-		$this->db->trans_begin();
+		$classlist = array();
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 9) continue;
+			if ($counter++ < 10) continue;
 			if ($counter > $highestRow) break;
 
-			$classlist = array
+			$student = array
 			(
 				'Last_Name' => $row['A'],
 				'First_Name' => $row['B'],
@@ -2977,22 +2989,19 @@ class Dbms_Controller extends CI_Controller
 				'Student_ID_Number' => $row['D']
 			);
 
-			$data['class_list']	= $classlist;
-			$this->load->view('header');
-			$this->load->view('forms/form-class-add', $data);
-			$this->load->view('footer');
+			$classlist[] = $student;
 		}
 
-		$this->db->trans_commit();
-
-		if ($counter > 1)
+		if ($counter > 10)
 		{
-			$this->session->set_flashdata('upload_success', 'Student class list successfully uploaded. ' . ($counter - 1) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+			$this->session->set_flashdata('upload_success', 'Student class list successfully uploaded. ' . ($counter - 10) . ' of ' . ($highestRow - 10) . ' students added/updated.');
 		}
 		else
 		{
 			$this->session->set_flashdata('upload_error', 'Student class list upload failed. Empty file.');
 		}
+
+		return $classlist;
 	}
 
 	function upload_teacher_class_list()
