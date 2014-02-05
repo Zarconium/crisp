@@ -3018,18 +3018,16 @@ class Dbms_Controller extends CI_Controller
 			if ($counter++ < 9) continue;
 			if ($counter > $highestRow) break;
 
-			$classlist = array
+			$teacher = array
 			(
 				'Last_Name' => $row['A'],
 				'First_Name' => $row['B'],
 				'Middle_Initial' => $row['C'],
-				'Birthdate' => $row['D']
+				'Code' => $row['D'],
+				'Birthdate' => $row['E']
 			);
 
-			$data['class_list']	= $classlist;
-			$this->load->view('header');
-			$this->load->view('forms/form-mastertrainer-classlist', $data);
-			$this->load->view('footer');
+			$classlist[]	= $teacher;
 		}
 
 		$this->db->trans_commit();
