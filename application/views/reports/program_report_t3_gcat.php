@@ -1,4 +1,5 @@
-<h1>Student Program Report Per Subj</h1>
+<h1>T3 GCAT Program Report</h1>
+<h4>Period: <?php echo $start_date; ?> to <?php echo $end_date; ?> </h4>
 <legend>Number of Teachers Finished with T3 GCAT</legend>
 <div class="report-form">
 <table class="table">

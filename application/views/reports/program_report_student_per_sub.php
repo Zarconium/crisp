@@ -1,5 +1,6 @@
-<h1>Student Program Report Per Subj</h1>
-<legend>Number of Students Currently Taking a Subject</legend>
+<h1>Student Program Report For <?php echo $subject->Subject_Name; ?> </h1>
+<h4>Period: <?php echo $start_date; ?> to <?php echo $end_date; ?> </h4>
+<legend>Current Takers</legend>
 <div class="report-form">
 <table class="table">
 	<tr>

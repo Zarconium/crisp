@@ -79,7 +79,7 @@ Class Report_Suc extends CI_Model
 	}
 
 	#done
-	function getAllSMPStudent($subject_code,$school_code,$semester,$teacher_code,$class_name)
+	function getAllSMPStudent($subject_id,$school_code,$semester,$teacher_code,$class_name)
 	{
 		$query = $this->db->query('SELECT CONCAT_WS(  " ", student.Last_Name,  ",", student.First_Name, student.middle_initial ) AS "Student_Names"
 		FROM Student_Class, Student, Class, subject, school, other_class, teacher
@@ -90,7 +90,7 @@ Class Report_Suc extends CI_Model
 		AND subject.subject_id = class.Subject_ID
 		AND school.School_ID = class.School_ID
 		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
-		s.Subject_Code="' . $subject_code . '")
+		s.Subject_ID="' . $subject_id . '")
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
 		AND class.Semester =' . $semester . '
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
@@ -105,7 +105,7 @@ Class Report_Suc extends CI_Model
 		AND subject.subject_id = class.Subject_ID
 		AND school.School_ID = class.School_ID
 		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
-		s.Subject_Code="' . $subject_code . '")
+		s.Subject_ID="' . $subject_id . '")
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
 		AND class.Semester =' . $semester . '
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
@@ -475,7 +475,7 @@ Class Report_Suc extends CI_Model
 
 	
 
-	function getSMPTotal($school_code,$subject_code,$semester)
+	function getSMPTotal($school_code,$subject_id,$semester)
 	{
 		$query = $this->db->query('SELECT CONCAT_WS(" ", t.First_Name, t.Middle_Initial, t.Last_Name ) AS Teacher, COUNT( DISTINCT sc.Student_ID ) as "Students", COUNT( DISTINCT oc.Class_ID ) as "Classes"
 		FROM School AS s, Subject AS su, Teacher AS t, Class AS c, Student_Class AS sc, Other_Class AS oc
@@ -483,7 +483,7 @@ Class Report_Suc extends CI_Model
 		IN (SELECT school.School_ID
 		FROM School WHERE school.code = "'.$school_code.'") 
 		AND su.Subject_ID IN ( SELECT subject.Subject_ID
-		FROM Subject WHERE subject.Subject_Code =  "'.$subject_code.'")
+		FROM Subject WHERE subject.Subject_ID =  "'.$subject_id.'")
 		AND c.School_ID = s.School_ID
 		AND su.Subject_ID = c.Subject_ID
 		AND c.Class_ID = oc.Class_ID
@@ -498,7 +498,7 @@ Class Report_Suc extends CI_Model
 		IN (SELECT school.School_ID
 		FROM School WHERE school.code = "'.$school_code.'") 
 		AND su.Subject_ID IN ( SELECT subject.Subject_ID
-		FROM Subject WHERE subject.Subject_Code =  "'.$subject_code.'")
+		FROM Subject WHERE subject.Subject_ID =  "'.$subject_id.'")
 		AND c.School_ID = s.School_ID
 		AND su.Subject_ID = c.Subject_ID
 		AND c.Class_ID = oc.Class_ID

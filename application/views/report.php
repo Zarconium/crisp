@@ -127,7 +127,7 @@
 								<label>Subject</label>
 								<select class="form-control" name="program_student_subject_subject">
 									<?php foreach ($subjects as $subject): ?>
-										<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Code; ?></option>
+										<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Name; ?></option>
 									<?php endforeach; ?>
 								</select>
 							</div>
@@ -198,7 +198,7 @@
 								<label>Subject</label>
 								<select class="form-control" name="program_student_t3_subject">
 									<?php foreach ($subjects as $subject): ?>
-										<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Code; ?></option>
+										<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Name; ?></option>
 									<?php endforeach; ?>
 								</select>
 							</div>
@@ -285,7 +285,7 @@
 								<label>Subject</label>
 								<select class="form-control" name="suc_subject_class">
 								<?php foreach ($subjects as $subject): ?>
-									<option value="<?php echo $subject->Subject_Code ?>"><?php echo $subject->Subject_Code ?></option>
+									<option value="<?php echo $subject->Subject_Code ?>"><?php echo $subject->Subject_Name ?></option>
 								<?php endforeach; ?>
 								</select>
 							</div>
@@ -653,7 +653,7 @@
 								<label>Subject</label>
 								<select class="form-control" name="suc_smp_subject_students">
 									<?php foreach ($smp_subjects as $subject): ?>
-										<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Code; ?></option>
+										<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Name; ?></option>
 									<?php endforeach; ?>
 								</select>
 							</div>
@@ -806,7 +806,7 @@
 								<label>Subject</label>
 								<select class="form-control" name="suc_t3_smp_subject">
 									<?php foreach ($smp_subjects as $subject): ?>
-										<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Code; ?></option>
+										<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Name; ?></option>
 									<?php endforeach; ?>
 								</select>
 							</div>
