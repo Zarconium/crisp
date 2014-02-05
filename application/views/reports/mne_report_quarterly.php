@@ -1,4 +1,5 @@
 <h1>MNE Quarterly Report</h1>
+<h4>Period: <?php echo $annual_start; ?> to <?php echo $annual_end; ?> </h4>
 <legend>CHED-LFA</legend>
 <div class="report-form">
 <table class="table">

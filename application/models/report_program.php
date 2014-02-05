@@ -692,7 +692,7 @@ Class Report_Program extends CI_Model
 		}
 	}
 
-	function getT3ProgramReportPerSub($start_date, $end_date, $subjectid)
+	function getT3ProgramReportPerSub($start_date, $end_date, $subject_id)
 	{
 		$this->db->query('DROP TEMPORARY TABLE IF EXISTS teachers_list;');
 
@@ -704,7 +704,7 @@ Class Report_Program extends CI_Model
 		FROM Teacher_T3_Tracker as tt
 		WHERE tt.T3_Tracker_ID IN (SELECT t.T3_Tracker_ID
 		FROM T3_Tracker as t
-		WHERE t.Subject_ID IN (SELECT s.Subject_ID FROM Subject as s WHERE s.Subject_id = "'.$subjectid.'") AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'");');
+		WHERE t.Subject_ID IN (SELECT s.Subject_ID FROM Subject as s WHERE s.Subject_id = "'.$subject_id.'") AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'");');
 
 		$query = $this->db->query('SELECT s.Code as "School", SUM(IF(t.Gender="M",1,0)) as "Male", SUM(IF(t.Gender="F",1,0)) as "Female", Count(t.Teacher_ID) as "Total"
 		FROM teacher as t, teachers_list as tl, school as s
@@ -722,9 +722,9 @@ Class Report_Program extends CI_Model
 
 	}
 
-	function getT3ProgramReportPerSubTotal($start_date, $end_date, $subjectid)
+	function getT3ProgramReportPerSubTotal($start_date, $end_date, $subject_id)
 	{
-		$this->getT3ProgramReportPerSub($start_date, $end_date, $subjectid);
+		$this->getT3ProgramReportPerSub($start_date, $end_date, $subject_id);
 
 		$query = $this->db->query('SELECT COUNT(t.Teacher_ID) as "Total"
 		FROM Teachers_List as t;');
@@ -739,16 +739,16 @@ Class Report_Program extends CI_Model
 		}
 	}
 
-	function getT3ProgramReportPerSubClasses($subjectid)
+	function getT3ProgramReportPerSubClasses($subject_id)
 	{
 		$query = $this->db->query('SELECT s.Code as "School", COUNT(c.Class_ID) as "Count"
 		FROM Class as c, School as s, Subject as su
-		WHERE c.School_ID=s.School_ID AND su.Subject_ID=c.Subject_ID AND su.Subject_ID="'.$subjectid.'"
+		WHERE c.School_ID=s.School_ID AND su.Subject_ID=c.Subject_ID AND su.Subject_ID="'.$subject_id.'"
 		GROUP BY s.Code
 		UNION ALL
 		SELECT "SUM", COUNT(c.Class_ID) as "Count"
 		FROM Class as c, School as s, Subject as su
-		WHERE c.School_ID=s.School_ID AND su.Subject_ID=c.Subject_ID AND su.Subject_ID="'.$subjectid.'";');
+		WHERE c.School_ID=s.School_ID AND su.Subject_ID=c.Subject_ID AND su.Subject_ID="'.$subject_id.'";');
 
 		if($query->num_rows() > 0)
 		{
