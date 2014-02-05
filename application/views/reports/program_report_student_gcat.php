@@ -2,14 +2,19 @@
 <h4>Period: <?php echo $start_date; ?> to <?php echo $end_date; ?> </h4>
 <legend>Number of Students Who Have Taken GCAT</legend>
 <div class="report-form">
-<table class="table">
+
+
+<div class="container_12">				
+<table class="table" class="tryingThis">
+<thead>
 <tr>
 	<th>School</th>
 	<th>Male</th>
 	<th>Female</th>
 	<th>Total</th>
-	<?php foreach ($count_list as $count): ?>
 </tr>
+</thead>
+	<?php foreach ($count_list as $count): ?>
 	<tr>
 		<td><?php echo $count->School; ?></td>
 		<td><?php echo $count->Male; ?></td>
@@ -24,4 +29,5 @@
 	</tr>
 	<?php endforeach; ?>
 </table>
+</div>
 </div>
