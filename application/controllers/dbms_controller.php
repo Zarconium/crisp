@@ -2220,7 +2220,7 @@ class Dbms_Controller extends CI_Controller
 		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 3) continue;
+			if ($counter++ < 2) continue;
 			if ($counter > $highestRow) break;
 
 			$school_id = $this->school->getSchoolIdByCode(trim($row['F']))->School_ID; //Get School_ID
@@ -2261,9 +2261,9 @@ class Dbms_Controller extends CI_Controller
 		}
 		$this->db->trans_commit();
 
-		if ($counter > 3)
+		if ($counter > 2)
 		{
-			$this->session->set_flashdata('upload_success', 'SMP Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 3) . ' students added/updated.');
+			$this->session->set_flashdata('upload_success', 'SMP Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
 			$this->log->addLog('SMP Student Tracker Batch Upload');
 		}
 		else

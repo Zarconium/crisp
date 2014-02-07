@@ -500,7 +500,7 @@
 					<form class="form" role="form">
 						<div class="form-group">
 							<label>Status</label>
-							<input class="form-control" type="text" name="intern_status" value="<?php echo $internship->Name; ?>">
+							<input class="form-control" type="text" name="intern_status" value="<?php if (isset($internship->Name)) echo $internship->Name; ?>">
 							<?php echo form_error('intern_status'); ?>
 						</div>	
 						<div class="form-group">
@@ -510,7 +510,7 @@
 						</div>
 						<div class="form-group">
 							<label>Remarks</label>
-							<input class="form-control" type="text" name="intern_remarks" value="<?php echo $internship->Remarks; ?>">
+							<input class="form-control" type="text" name="intern_remarks" value="<?php if (isset($internship->Remarks)) echo $internship->Remarks; ?>">
 							<?php echo form_error('intern_remarks'); ?>
 						</div>
 						<div class="form-group">
@@ -525,7 +525,7 @@
 						</div>
 						<div class="form-group">
 							<label>Company Information</label>
-							<input class="form-control" type="text" name="company_information" value="<?php echo $internship->Company_Information; ?>">
+							<input class="form-control" type="text" name="company_information" value="<?php if (isset($internship->Company_Information)) echo $internship->Company_Information; ?>">
 							<?php echo form_error('company_information'); ?>
 						</div>
 						<div class="form-group">
@@ -535,22 +535,22 @@
 						</div>		
 						<div class="form-group">
 							<label>Company Address</label>
-							<input class="form-control" type="text" name="company_address" value="<?php echo $internship->Company_Address; ?>">
+							<input class="form-control" type="text" name="company_address" value="<?php if (isset($internship->Company_Address)) echo $internship->Company_Address; ?>">
 							<?php echo form_error('company_address'); ?>
 						</div>
 						<div class="form-group">
 							<label>Department / Divison</label>
-							<input class="form-control" type="text" name="department" value="<?php echo $internship->Task; ?>">
+							<input class="form-control" type="text" name="department" value="<?php if (isset($internship->Task)) echo $internship->Task; ?>">
 							<?php echo form_error('department'); ?>
 						</div>
 						<div class="form-group">
 							<label>Supervisor / Mentor</label>
-							<input class="form-control" type="text" name="supervisor" value="<?php echo $internship->Supervisor_Name; ?>">
+							<input class="form-control" type="text" name="supervisor" value="<?php if (isset($internship->Supervisor_Name)) echo $internship->Supervisor_Name; ?>">
 							<?php echo form_error('supervisor'); ?>
 						</div>
 						<div class="form-group">
 							<label>Supervisor's Contact Details</label>
-							<input class="form-control" type="text" name="supervisor_contact_details" value="<?php echo $internship->Supervisor_Contact; ?>">
+							<input class="form-control" type="text" name="supervisor_contact_details" value="<?php if (isset($internship->Supervisor_Contact)) echo $internship->Supervisor_Contact; ?>">
 							<?php echo form_error('supervisor_contact_details'); ?>
 						</div>
 						<div class="form-group">
@@ -560,23 +560,23 @@
 						</div>
 						<div class="form-group">
 							<label>Date Started</label>
-							<input class="form-control" type="date" name="start_date" value="<?php echo date('Y-m-d', strtotime($internship->Start_Date)); ?>">
+							<input class="form-control" type="date" name="start_date" value="<?php if (isset($internship->Start_Date)) echo date('Y-m-d', strtotime($internship->Start_Date)); ?>">
 							<?php echo form_error('start_date'); ?>
 						</div>
 						<div class="form-group">
 							<label>Date Ended</label>
-							<input class="form-control" type="date" name="end_date" value="<?php echo date('Y-m-d', strtotime($internship->End_Date)); ?>">
+							<input class="form-control" type="date" name="end_date" value="<?php if (isset($internship->End_Date)) echo date('Y-m-d', strtotime($internship->End_Date)); ?>">
 							<?php echo form_error('end_date'); ?>
 						</div>
 						<div class="form-group">
 							<label>Total Internship Hours</label>
-							<input class="form-control" type="number" name="total_internship_hours" value="<?php echo $internship->Total_Work_Hours; ?>">
+							<input class="form-control" type="number" name="total_internship_hours" value="<?php if (isset($internship->Total_Work_Hours)) echo $internship->Total_Work_Hours; ?>">
 							<?php echo form_error('total_internship_hours'); ?>
 						</div>
 						<div class="form-group">
 							<label>Evaluation Form</label><br />
-							<input type="radio" name="evaluation_form" value="1" <?php if ($internship->Meet_Standards == 1) { echo 'checked="checked"'; } ?>> Yes
-							<input type="radio" name="evaluation_form" value="0" <?php if ($internship->Meet_Standards == 0) { echo 'checked="checked"'; } ?>> No
+							<input type="radio" name="evaluation_form" value="1" <?php if (isset($internship->Meet_Standards)) if ($internship->Meet_Standards == 1) { echo 'checked="checked"'; } ?>> Yes
+							<input type="radio" name="evaluation_form" value="0" <?php if (isset($internship->Meet_Standards)) if ($internship->Meet_Standards == 0) { echo 'checked="checked"'; } ?>> No
 							<?php echo form_error('evaluation_form'); ?>
 						</div>
 					</form>
