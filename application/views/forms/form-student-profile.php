@@ -262,25 +262,25 @@
 
 						<div class="form-group">
 							<label>Year</label>
-							<input class="form-control" type="text" name="gcat_year" value="<?php echo $gcat_tracker->School_Year; ?>">
+							<input class="form-control" type="text" name="gcat_year" value="<?php if(isset($gcat_tracker->School_Year)) echo $gcat_tracker->School_Year; ?>">
 							<?php echo form_error('gcat_year'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Session ID</label>
-							<input class="form-control" type="text" name="gcat_session_id" value="<?php echo $gcat_tracker->Session_ID; ?>">
+							<input class="form-control" type="text" name="gcat_session_id" value="<?php if(isset($gcat_tracker->Session_ID)) echo $gcat_tracker->Session_ID; ?>">
 							<?php echo form_error('gcat_session_id'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Test Date</label>
-							<input class="form-control" type="text" name="gcat_test_date" value="<?php echo $gcat_tracker->Test_Date; ?>">
+							<input class="form-control" type="date" name="gcat_test_date" value="<?php if(isset($gcat_tracker->Test_Date)) echo date('Y-m-d', strtotime($gcat_tracker->Test_Date)); ?>">
 							<?php echo form_error('gcat_test_date'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Status</label>
-							<input class="form-control" type="text" name="gcat_status" value="<?php echo $gcat_tracker->Status_Name; ?>">
+							<input class="form-control" type="text" name="gcat_status" value="<?php if(isset($gcat_tracker->Status_Name)) echo $gcat_tracker->Status_Name; ?>">
 							<?php echo form_error('gcat_status'); ?>
 						</div>
 					</form>
@@ -290,19 +290,19 @@
 					<form class="form" role="form">
 						<div class="form-group">
 							<label>Date</label>
-							<input class="form-control" type="date" name="best_date" value="<?php echo date('Y-m-d', strtotime($best_tracker->Updated_At)); ?>">
+							<input class="form-control" type="date" name="best_date" value="<?php if (isset($best_tracker->Updated_At)) echo date('Y-m-d', strtotime($best_tracker->Updated_At)); ?>">
 							<?php echo form_error('best_date'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Control Number</label>
-							<input class="form-control" type="text" name="best_control_number" value="<?php echo $best_tracker->Control_Number; ?>">
+							<input class="form-control" type="text" name="best_control_number" value="<?php if (isset($best_tracker->Control_Number)) echo $best_tracker->Control_Number; ?>">
 							<?php echo form_error('best_control_number'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Username</label>
-							<input class="form-control" type="text" name="best_username" value="<?php echo $best_tracker->Username; ?>">
+							<input class="form-control" type="text" name="best_username" value="<?php if (isset($best_tracker->Username)) echo $best_tracker->Username; ?>">
 							<?php echo form_error('best_username'); ?>
 						</div>
 					</form>
@@ -312,19 +312,19 @@
 					<form class="form" role="form">	
 						<div class="form-group">
 							<label>Date</label>
-							<input class="form-control" type="date" name="adept_date" value="<?php echo date('Y-m-d', strtotime($adept_tracker->Updated_At)); ?>">
+							<input class="form-control" type="date" name="adept_date" value="<?php if (isset($adept_tracker->Updated_At)) echo date('Y-m-d', strtotime($adept_tracker->Updated_At)); ?>">
 							<?php echo form_error('adept_date'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Control Number</label>	
-							<input class="form-control" type="text" name="adept_control_number" value="<?php echo $adept_tracker->Control_Number; ?>">
+							<input class="form-control" type="text" name="adept_control_number" value="<?php if (isset($adept_tracker->Control_Number)) echo $adept_tracker->Control_Number; ?>">
 							<?php echo form_error('adept_control_number'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Username</label>
-							<input class="form-control" type="text" name="adept_username" value="<?php echo $adept_tracker->Username; ?>">
+							<input class="form-control" type="text" name="adept_username" value="<?php if (isset($adept_tracker->Username)) echo $adept_tracker->Username; ?>">
 							<?php echo form_error('adept_username'); ?>
 						</div>			
 					</form>
@@ -498,87 +498,87 @@
 					<legend>Internship</legend>
 
 					<form class="form" role="form">
-						<div class="form-group">		
-							<label>Status</label>			
+						<div class="form-group">
+							<label>Status</label>
 							<input class="form-control" type="text" name="intern_status" value="<?php echo $internship->Name; ?>">
 							<?php echo form_error('intern_status'); ?>
-						</div>		
-						<div class="form-group">		
-							<label>Grades</label>			
+						</div>	
+						<div class="form-group">
+							<label>Grades</label>
 							<input class="form-control" type="text" name="intern_grades" value="<?php echo set_value('intern_grades'); ?>">
 							<?php echo form_error('intern_grades'); ?>
-						</div>		
-						<div class="form-group">		
-							<label>Remarks</label>			
+						</div>
+						<div class="form-group">
+							<label>Remarks</label>
 							<input class="form-control" type="text" name="intern_remarks" value="<?php echo $internship->Remarks; ?>">
 							<?php echo form_error('intern_remarks'); ?>
-						</div>							
-						<div class="form-group">		
-							<label>Year</label>			
+						</div>
+						<div class="form-group">
+							<label>Year</label>
 							<input class="form-control" type="text" name="intern_year" value="<?php echo set_value('intern_year'); ?>">
 							<?php echo form_error('intern_year'); ?>
-						</div>		
-						<div class="form-group">		
-							<label>Semester</label>			
+						</div>
+						<div class="form-group">
+							<label>Semester</label>
 							<input class="form-control" type="text" name="intern_year" value="<?php echo set_value('intern_year'); ?>">
 							<?php echo form_error('intern_year'); ?>
-						</div>		
-						<div class="form-group">		
-							<label>Company Information</label>			
+						</div>
+						<div class="form-group">
+							<label>Company Information</label>
 							<input class="form-control" type="text" name="company_information" value="<?php echo $internship->Company_Information; ?>">
 							<?php echo form_error('company_information'); ?>
-						</div>		
-						<div class="form-group">		
-							<label>Name of Company</label>			
+						</div>
+						<div class="form-group">
+							<label>Name of Company</label>
 							<input class="form-control" type="text" name="company_name" value="<?php echo set_value('company_name'); ?>">
 							<?php echo form_error('company_name'); ?>
 						</div>		
-						<div class="form-group">		
-							<label>Company Address</label>			
+						<div class="form-group">
+							<label>Company Address</label>
 							<input class="form-control" type="text" name="company_address" value="<?php echo $internship->Company_Address; ?>">
 							<?php echo form_error('company_address'); ?>
-						</div>		
-						<div class="form-group">		
-							<label>Department / Divison</label>			
+						</div>
+						<div class="form-group">
+							<label>Department / Divison</label>
 							<input class="form-control" type="text" name="department" value="<?php echo $internship->Task; ?>">
 							<?php echo form_error('department'); ?>
-						</div>		
-						<div class="form-group">		
-							<label>Supervisor / Mentor</label>			
+						</div>
+						<div class="form-group">
+							<label>Supervisor / Mentor</label>
 							<input class="form-control" type="text" name="supervisor" value="<?php echo $internship->Supervisor_Name; ?>">
 							<?php echo form_error('supervisor'); ?>
-						</div>		
-						<div class="form-group">		
-							<label>Supervisor's Contact Details</label>			
+						</div>
+						<div class="form-group">
+							<label>Supervisor's Contact Details</label>
 							<input class="form-control" type="text" name="supervisor_contact_details" value="<?php echo $internship->Supervisor_Contact; ?>">
 							<?php echo form_error('supervisor_contact_details'); ?>
-						</div>		
-						<div class="form-group">		
-							<label>Supervisor's Email</label>			
+						</div>
+						<div class="form-group">
+							<label>Supervisor's Email</label>
 							<input class="form-control" type="text" name="supervisor_email" value="<?php echo set_value('supervisor_email'); ?>">
 							<?php echo form_error('supervisor_email'); ?>
-						</div>		
-						<div class="form-group">		
-							<label>Date Started</label>			
+						</div>
+						<div class="form-group">
+							<label>Date Started</label>
 							<input class="form-control" type="date" name="start_date" value="<?php echo date('Y-m-d', strtotime($internship->Start_Date)); ?>">
 							<?php echo form_error('start_date'); ?>
-						</div>		
-						<div class="form-group">		
-							<label>Date Ended</label>			
+						</div>
+						<div class="form-group">
+							<label>Date Ended</label>
 							<input class="form-control" type="date" name="end_date" value="<?php echo date('Y-m-d', strtotime($internship->End_Date)); ?>">
 							<?php echo form_error('end_date'); ?>
-						</div>		
-						<div class="form-group">		
-							<label>Total Internship Hours</label>			
+						</div>
+						<div class="form-group">
+							<label>Total Internship Hours</label>
 							<input class="form-control" type="number" name="total_internship_hours" value="<?php echo $internship->Total_Work_Hours; ?>">
 							<?php echo form_error('total_internship_hours'); ?>
-						</div>		
-						<div class="form-group">		
+						</div>
+						<div class="form-group">
 							<label>Evaluation Form</label><br />
-							<input type="radio" name="evaluation_form" value="<?php echo set_value('evaluation_form'); ?>"> Yes
-							<input type="radio" name="evaluation_form" value="<?php echo set_value('evaluation_form'); ?>"> No
+							<input type="radio" name="evaluation_form" value="1" <?php if ($internship->Meet_Standards == 1) { echo 'checked="checked"'; } ?>> Yes
+							<input type="radio" name="evaluation_form" value="0" <?php if ($internship->Meet_Standards == 0) { echo 'checked="checked"'; } ?>> No
 							<?php echo form_error('evaluation_form'); ?>
-						</div>		
+						</div>
 					</form>
 				</div>
 			</div>

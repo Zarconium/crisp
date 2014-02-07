@@ -75,10 +75,10 @@ class Dbms_Controller extends CI_Controller
 		$data['schools'] = $this->school->getAllSchools();
 		$data['statuses'] = $this->status->getAllStatuses();
 		$data['student'] = $this->student->getStudentById($id);
-		$data['gcat_tracker'] = $this->student->getGcatTrackerByStudentIdOrCode($id);
-		$data['best_tracker'] = $this->student->getBestTrackerByStudentIdOrCode($id);
-		$data['adept_tracker'] = $this->student->getAdeptTrackerByStudentIdOrCode($id);
-		$data['smp_tracker'] = $this->student->getSmpTrackerByStudentIdOrCode($id);
+		$data['gcat_tracker'] = $this->student->getGcatStudentByStudentIdOrCode($id);
+		$data['best_tracker'] = $this->student->getBestStudentByStudentIdOrCode($id);
+		$data['adept_tracker'] = $this->student->getAdeptStudentByStudentIdOrCode($id);
+		$data['smp_tracker'] = $this->student->getSmpStudentByStudentIdOrCode($id);
 		$data['internship'] = $this->student->getInternshipByStudentId($id);
 		$data['bizcom'] = $this->student->getBizComByStudentId($id);
 		$data['bpo101'] = $this->student->getBpo101ByStudentId($id);
@@ -1587,7 +1587,7 @@ class Dbms_Controller extends CI_Controller
 
 				if ((bool) strcasecmp(trim($row['AD']), 'no')) //SMP-CHED
 				{
-					if (!$this->student->getSmpTrackerByStudentIdOrCode($student_code))
+					if (!$this->student->getSmpStudentByStudentIdOrCode($student_code))
 					{
 						$subject_id_array = array(4, 5, 6, 7, 10, 11);
 
@@ -1938,7 +1938,13 @@ class Dbms_Controller extends CI_Controller
 						redirect('dbms');
 					}
 				}
-				else //BEST Student Tracker does not exist -> Add
+				else
+				{
+					$this->session->set_flashdata('upload_error', 'BEST Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. BEST Product Tracker does not exist.');
+					$this->db->trans_rollback();
+					redirect('dbms');
+				}
+				/*else //BEST Student Tracker does not exist -> Add
 				{
 					if ($this->student->getTrackerByStudentCodeAndSubjectId($code, 2)) //Tracker exists -> Get Tracker ID
 					{
@@ -1970,7 +1976,7 @@ class Dbms_Controller extends CI_Controller
 						$this->db->trans_rollback();
 						redirect('dbms');
 					}
-				}
+				}*/
 			}
 			elseif ($subject == 'AdEPT')
 			{
@@ -1983,7 +1989,13 @@ class Dbms_Controller extends CI_Controller
 						redirect('dbms');
 					}
 				}
-				else //AdEPT Student Tracker does not exist -> Add
+				else
+				{
+					$this->session->set_flashdata('upload_error', 'AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. AdEPT Product Tracker does not exist.');
+					$this->db->trans_rollback();
+					redirect('dbms');
+				}
+				/*else //AdEPT Student Tracker does not exist -> Add
 				{
 					if ($this->student->getTrackerByStudentCodeAndSubjectId($code, 3)) //Tracker exists -> Get Tracker ID
 					{
@@ -2015,7 +2027,7 @@ class Dbms_Controller extends CI_Controller
 						$this->db->trans_rollback();
 						redirect('dbms');
 					}
-				}
+				}*/
 			}
 			else
 			{
@@ -2038,7 +2050,7 @@ class Dbms_Controller extends CI_Controller
 		redirect('dbms');
 	}
 
-	function upload_best_adept_student_tracker()
+	function upload_best_adept_student_tracker()  
 	{
 		if (!$_FILES)
 		{
@@ -2079,7 +2091,7 @@ class Dbms_Controller extends CI_Controller
 
 			if ($subject == 'BEST')
 			{
-				if ($this->student->getBestTrackerByStudentIdOrCode($code))
+				if ($this->student->getBestStudentByStudentIdOrCode($code))
 				{
 					if ($this->student->updateBestStudent($code, $subject, $subject_student))
 					{
@@ -2097,7 +2109,7 @@ class Dbms_Controller extends CI_Controller
 			}
 			elseif ($subject == 'AdEPT')
 			{
-				if ($this->student->getAdeptTrackerByStudentIdOrCode($code))
+				if ($this->student->getAdeptStudentByStudentIdOrCode($code))
 				{
 					if ($this->student->updateAdeptStudent($code, $subject, $subject_student))
 					{
@@ -2157,7 +2169,7 @@ class Dbms_Controller extends CI_Controller
 			(
 				'gcat_student.Session_ID' => $row['F'],
 				'gcat_student.Test_Date' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['G'], 'MM/DD/YYYY'))),
-				'tracker.Status' => $status_id
+				'tracker.Status_ID' => $status_id
 			);
 			
 			if (!$this->student->getStudentByCode($code))
@@ -2167,7 +2179,7 @@ class Dbms_Controller extends CI_Controller
 				redirect('dbms');
 			}
 
-			if ($this->student->getGcatTrackerByStudentIdOrCode($code))
+			if ($this->student->getGcatStudentByStudentIdOrCode($code))
 			{
 				if ($this->student->updateGcatStudent($code, $subject, $gcat_student))
 				{
@@ -2231,7 +2243,7 @@ class Dbms_Controller extends CI_Controller
 				redirect('dbms');					
 			}
 			
-			if ($this->student->getSmpTrackerByStudentIdOrCode($code))
+			if ($this->student->getSmpStudentByStudentIdOrCode($code))
 			{
 				if ($this->student->updateSmpStudent($code, $subject, $smp_student))
 				{
