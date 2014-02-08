@@ -145,3 +145,16 @@ margin-bottom: 5%;
 .highlight{
 color: #1abc9c;
 }
+
+table tbody, table thead{
+display: block;
+}
+
+table tbody{
+overflow: auto;
+height: 100px;
+}
+
+th{
+
+}

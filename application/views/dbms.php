@@ -337,7 +337,7 @@
 				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_program_best_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-					<button class="btn btn-success" data-toggle="modal" data-target="#batchbest">Batch Upload</button>
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchbest" onclick="$('[name=file_best_adept_student_tracker]').click();">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>
@@ -367,7 +367,7 @@
 				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_program_adept_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-					<button class="btn btn-success" data-toggle="modal" data-target="#batchadept">Batch Upload</button>
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchadept" onclick="$('[name=file_best_adept_student_tracker]').click();">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>
@@ -397,7 +397,7 @@
 				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_program_t3_best_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-					<button class="btn btn-success" data-toggle="modal" data-target="#batchBESTT3">Batch Upload</button>
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchBESTT3" onclick="$('[name=file_best_tracker]').click();">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>
@@ -431,7 +431,7 @@
 				<div class="button-groups">
 					<a href="<?php echo base_url('dbms/form_program_t3_adept_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
-					<button class="btn btn-success" data-toggle="modal" data-target="#batchBESTT3">Batch Upload</button>
+					<button class="btn btn-success" data-toggle="modal" data-target="#batchBESTT3" onclick="$('[name=file_adept_tracker]').click();">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>

@@ -4,8 +4,9 @@
 <div class="report-form">
 
 
-<div class="container_12">				
+<div class="container-table">	
 <table class="table" class="tryingThis">
+<div class="fixed">
 <thead>
 <tr>
 	<th>School</th>
@@ -14,6 +15,8 @@
 	<th>Total</th>
 </tr>
 </thead>
+<tbody>
+</div>
 	<?php foreach ($count_list as $count): ?>
 	<tr>
 		<td><?php echo $count->School; ?></td>
@@ -28,6 +31,7 @@
 		<td colspan="4"><?php echo $t->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
+</tbody>
 </table>
 </div>
 </div>
