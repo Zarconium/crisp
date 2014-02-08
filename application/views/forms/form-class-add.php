@@ -19,23 +19,24 @@
 			<div class="form-group">
 				<label for="Teacher">Teacher's Last Name</label>
 				<input class="form-control" type="text" name="teacher_last_name" value="<?php echo set_value('teacher_last_name'); ?>" maxlength="250" />
-				<?php echo form_error('teacher_last_name', '<div class="text-danger">', '</div>'); ?>
+				<?php echo form_error('teacher_last_name'); ?>
 			</div>
 
 			<div class="form-group">
 				<label for="Teacher">Teacher's First Name</label>
 				<input class="form-control" type="text" name="teacher_first_name" value="<?php echo set_value('teacher_first_name'); ?>" maxlength="250" />
-				<?php echo form_error('teacher_first_name', '<div class="text-danger">', '</div>'); ?>
+				<?php echo form_error('teacher_first_name'); ?>
 			</div>
 
-		<div class="form-group"><label for="Section">Section:</label>
-		<input class="form-control" type="text" name="section" value="<?php echo set_value('section'); ?>" maxlength="4" />
-		<?php echo form_error('section', '<div class="text-danger">', '</div>'); ?>
+			<div class="form-group">
+				<label for="Section">Section:</label>
+				<input class="form-control" type="text" name="section" value="<?php echo set_value('section'); ?>" maxlength="4" />
+				<?php echo form_error('section'); ?>
+			</div>
 		</div>
 	</form>
 
 	<script type="text/javascript">
-
 	function delete_student()
 	{
 		if (confirm('Delete selected institutions?'))
@@ -68,97 +69,103 @@
 	
 	<legend>Student List</legend>
  
-		<div class="col-md-3">
+	<div class="col-md-3">
 		<div class="panel panel-info">
-		<div class="panel-heading">Add or Edit Student</div>
-		<div class="panel-body">
-		<form class="form" role="form">
-			<div class="form-group">		
-				<label>Last Name</label>			
-				<input class="form-control" type="text" name="last_name" "<?php echo set_value('last_name'); ?>">
-				<?php echo form_error('last_name', '<div class="text-danger">', '</div>'); ?>
+			<div class="panel-heading">Add or Edit Student</div>
+			<div class="panel-body">
+				<form class="form" role="form">
+					<div class="form-group">
+						<label>Last Name</label>			
+						<input class="form-control" type="text" name="last_name" "<?php echo set_value('last_name'); ?>">
+						<?php echo form_error('last_name'); ?>
+					</div>
 
-			<div class="form-group">
-				<label for="Teacher">Teacher's Middle Initial</label>
-				<input class="form-control" type="text" name="teacher_middle_initial" value="<?php echo set_value('teacher_middle_initial'); ?>" maxlength="250" />
-				<?php echo form_error('teacher_middle_initial', '<div class="text-danger">', '</div>'); ?>
+					<div class="form-group">
+						<label for="Teacher">Teacher's Middle Initial</label>
+						<input class="form-control" type="text" name="teacher_middle_initial" value="<?php echo set_value('teacher_middle_initial'); ?>" maxlength="250" />
+						<?php echo form_error('teacher_middle_initial'); ?>
 
-			</div>
+					</div>
 
-			<div class="form-group">
-				<label for="Teacher">Teacher's Email</label>
-				<input class="form-control" type="email" name="teacher_first_name" value="<?php echo set_value('teacher_first_name'); ?>" maxlength="250" />
-				<?php echo form_error('teacher_first_name', '<div class="text-danger">', '</div>'); ?>
-			</div>
+					<div class="form-group">
+						<label for="Teacher">Teacher's Email</label>
+						<input class="form-control" type="email" name="teacher_first_name" value="<?php echo set_value('teacher_first_name'); ?>" maxlength="250" />
+						<?php echo form_error('teacher_first_name'); ?>
+					</div>
 
-			<div class="form-group">
-				<label for="Teacher">Teacher's Birthdate</label>
-				<input class="form-control" type="date" name="teacher_first_name" value="<?php echo set_value('teacher_first_name'); ?>" maxlength="250" />
-				<?php echo form_error('teacher_first_name', '<div class="text-danger">', '</div>'); ?>
-			</div>
+					<div class="form-group">
+						<label for="Teacher">Teacher's Birthdate</label>
+						<input class="form-control" type="date" name="teacher_first_name" value="<?php echo set_value('teacher_first_name'); ?>" maxlength="250" />
+						<?php echo form_error('teacher_first_name'); ?>
+					</div>
 
-			<br/>
-			
-			<div class="form-group">
-				<label for="Name">School:</label>
-				<select class="form-control" name="current_employer">
-				<?php foreach ($schools as $school): ?>
-					<option value="<?php echo $school->School_ID; ?>" <?php echo set_select('current_employer', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
-				<?php endforeach; ?>
-				</select>		
-			</div>
+					<br/>
+					
+					<div class="form-group">
+						<label for="Name">School:</label>
+						<select class="form-control" name="current_employer">
+						<?php foreach ($schools as $school): ?>
+							<option value="<?php echo $school->School_ID; ?>" <?php echo set_select('current_employer', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+						<?php endforeach; ?>
+						</select>		
+					</div>
 
-			<div class="form-group">
-				<label for="Subject">Subject:</label>
-				<select class="form-control" name="program_student_subject_subject">
-				<?php foreach ($subjects as $subject): ?>
-					<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Code; ?></option>
-				<?php endforeach; ?>
-				</select>
-			<?php echo form_error('subject', '<div class="text-danger">', '</div>'); ?>		
-			</div><br/>
+					<div class="form-group">
+						<label for="Subject">Subject:</label>
+						<select class="form-control" name="program_student_subject_subject">
+						<?php foreach ($subjects as $subject): ?>
+							<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Code; ?></option>
+						<?php endforeach; ?>
+						</select>
+					<?php echo form_error('subject'); ?>		
+					</div><br/>
 
-			<div class="form-group">
-				<label for="Semester">Semester:</label>
-				<input class="form-control" type="text" name="semester" value="<?php echo set_value('semester'); ?>" maxlength="10" />
-				<?php echo form_error('semester', '<div class="text-danger">', '</div>'); ?>
-			</div>
+					<div class="form-group">
+						<label for="Semester">Semester:</label>
+						<input class="form-control" type="text" name="semester" value="<?php echo set_value('semester'); ?>" maxlength="10" />
+						<?php echo form_error('semester'); ?>
+					</div>
 
-			<div class="form-group">
-				<label for="Year">Year:</label>
-				<input class="form-control" type="text" name="year" value="<?php echo set_value('year'); ?>" maxlength="4" />
-				<?php echo form_error('year', '<div class="text-danger">', '</div>'); ?>
-			</div>
+					<div class="form-group">
+						<label for="Year">Year:</label>
+						<input class="form-control" type="text" name="year" value="<?php echo set_value('year'); ?>" maxlength="4" />
+						<?php echo form_error('year'); ?>
+					</div>
 
-			<div class="form-group">
-				<label for="Section">Section:</label>
-				<input class="form-control" type="text" name="section" value="<?php echo set_value('section'); ?>" maxlength="4" />
-				<?php echo form_error('section', '<div class="text-danger">', '</div>'); ?>
+					<div class="form-group">
+						<label for="Section">Section:</label>
+						<input class="form-control" type="text" name="section" value="<?php echo set_value('section'); ?>" maxlength="4" />
+						<?php echo form_error('section'); ?>
+					</div>
+				</form>
 			</div>
 		</div>
+	</div>
 
 	<div class="col-md-9">
-	<legend>List of Students</legend>
-	<div class="customize-btn-group">
-		<?php $attributes = array('id' => 'upload_student_class_list', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_student_class_list', $attributes); ?>
-			<input type="file" name="file_student_class_list" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_student_class_list').submit();">
-			<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_student_class_list]').click();">Batch Upload</button>
-		<?php echo form_close(); ?>
+		<legend>List of Students</legend>
 
-		<button type="button" class="btn btn-danger" onclick="delete_student();">Delete</button>
-	</div>
-	<table class="table table-striped table-area" id="student_list_table">
-		<thead>
-			<tr>
-				<th>Check</th>
-				<th>Action</th>
-				<th>Last Name</th>
-				<th>First Name</th>
-				<th>Middle Initial</th>
-				<th>Student Number</th>
-			</tr>
-		</thead>
-			<?php if ($class_list) foreach ($class_list as $student): ?>
+		<div class="customize-btn-group">
+			<?php $attributes = array('id' => 'upload_student_class_list', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_student_class_list', $attributes); ?>
+				<input type="file" name="file_student_class_list" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_student_class_list').submit();">
+				<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_student_class_list]').click();">Batch Upload</button>
+			<?php echo form_close(); ?>
+
+			<button type="button" class="btn btn-danger" onclick="delete_student();">Delete</button>
+		</div>
+
+		<table class="table table-striped table-area" id="student_list_table">
+			<thead>
+				<tr>
+					<th>Check</th>
+					<th>Action</th>
+					<th>Last Name</th>
+					<th>First Name</th>
+					<th>Middle Initial</th>
+					<th>Student Number</th>
+				</tr>
+			</thead>
+			<?php if (isset($class_list)) foreach ($class_list as $student): ?>
 			<tr>
 				<td><input type="checkbox"></td>
 				<td><a href="<?php echo base_url('dbms/form_teacher_profile/' . $teacher->Teacher_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_teacher/' . $teacher->Teacher_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
@@ -168,9 +175,8 @@
 				<td><?php echo $student->Student_Number ?></td>
 			</tr>
 			<?php endforeach; ?>
-			</table>
-
-	</form>
+		</table>
+	</div>
 
 	<script type="text/javascript">
 	function delete_student()
@@ -243,6 +249,7 @@
 
 	<div class="col-md-9">
 		<legend>List of Students</legend>
+
 		<div class="customize-btn-group">
 			<?php $attributes = array('id' => 'upload_student_class_list', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/form_class_add', $attributes); ?>
 				<input type="file" name="file_student_class_list" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_student_class_list').submit();">
@@ -251,6 +258,7 @@
 
 			<button type="button" class="btn btn-danger" onclick="delete_student();">Delete</button>
 		</div>
+		
 		<table class="table table-striped table-area" id="student_list_table">
 			<thead>
 				<tr>
