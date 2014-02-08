@@ -75,10 +75,10 @@ class Dbms_Controller extends CI_Controller
 		$data['schools'] = $this->school->getAllSchools();
 		$data['statuses'] = $this->status->getAllStatuses();
 		$data['student'] = $this->student->getStudentById($id);
-		$data['gcat_tracker'] = $this->student->getGcatTrackerByStudentIdOrCode($id);
-		$data['best_tracker'] = $this->student->getBestTrackerByStudentIdOrCode($id);
-		$data['adept_tracker'] = $this->student->getAdeptTrackerByStudentIdOrCode($id);
-		$data['smp_tracker'] = $this->student->getSmpTrackerByStudentIdOrCode($id);
+		$data['gcat_tracker'] = $this->student->getGcatStudentByStudentIdOrCode($id);
+		$data['best_tracker'] = $this->student->getBestStudentByStudentIdOrCode($id);
+		$data['adept_tracker'] = $this->student->getAdeptStudentByStudentIdOrCode($id);
+		$data['smp_tracker'] = $this->student->getSmpStudentByStudentIdOrCode($id);
 		$data['internship'] = $this->student->getInternshipByStudentId($id);
 		$data['bizcom'] = $this->student->getBizComByStudentId($id);
 		$data['bpo101'] = $this->student->getBpo101ByStudentId($id);
@@ -1279,17 +1279,285 @@ class Dbms_Controller extends CI_Controller
 				'Interested_In_ITBPO' => (bool) strcasecmp($row['AC'], 'no')
 			);
 			
-			if (strcasecmp($row['F'], 'yes') == 0)
-			{
-				if (!$this->student->getStudentByCode($student_code))
-				{
-					$student['Code'] = $student_code;
-				
-					if (!$this->student->addStudent($student))
-					{
-						$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+			if (strcasecmp($row['F'], 'yes') == 0) //New Applicant -> Add student
+ 			{
+ 				if (!$this->student->getStudentByCode($student_code))
+ 				{
+ 					$student['Code'] = $student_code;
+					$student_id = $this->student->addStudent($student);
+ 				
+					if (!$student_id)
+ 					{
+						$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Student creation failed.');
 						$this->db->trans_rollback();
 						redirect('dbms');
+					}
+
+					if ((bool) strcasecmp(trim($row['AD']), 'no')) //SMP-CHED
+					{
+						$subject_id_array = array(4, 5, 6, 7, 10, 11);
+
+						foreach ($subject_id_array as $subject_id)
+						{
+							$student_application = array
+							(
+								'Contract' => (bool) strcasecmp(trim($row['AJ']), 'no'),
+								'Student_ID' => $student_id,
+								'Project_ID' => 1,
+								'Subject_ID' => $subject_id
+							);
+							$this->student->addStudentApplication($student_application);
+
+							$tracker = array
+							(
+								'Remarks' => NULL,
+								'Status_ID' => 3,
+								'Times_Taken' => 1,
+								'Subject_ID' => $subject_id
+							);
+							$tracker_id = $this->student->addTracker($tracker);
+
+							$student_tracker = array
+							(
+								'Tracker_ID' => $tracker_id,
+								'Student_ID' => $student_id,
+							);
+							$student_tracker_id = $this->student->addStudentTracker($student_tracker);
+
+							$subject_student = array
+							(
+								'Tracker_ID' => $tracker_id
+							);
+							$this->student->addSmpStudent($subject_student);
+							$this->student->addSmpStudentCoursesTaken($subject_student);
+
+							if ($this->db->_error_message())
+							{
+								$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. ' . $this->db->_error_message());
+								$this->db->trans_rollback();
+								redirect('dbms');
+							}
+						}
+					}
+
+					if ((bool) strcasecmp(trim($row['AE']), 'no')) //GCAT-CHED
+					{
+						$project_id = 1;
+						$subject_id = 1;
+
+						$student_application = array
+						(
+							'Contract' => (bool) strcasecmp(trim($row['AJ']), 'no'),
+							'Student_ID' => $student_id,
+							'Project_ID' => $project_id,
+							'Subject_ID' => $subject_id
+						);
+						$student_application_id = $this->student->addStudentApplication($student_application);
+
+						$tracker = array
+						(
+							'Remarks' => NULL,
+							'Status_ID' => 3,
+							'Times_Taken' => 1,
+							'Subject_ID' => $subject_id
+						);
+						$tracker_id = $this->student->addTracker($tracker);
+
+						$student_tracker = array
+						(
+							'Tracker_ID' => $tracker_id,
+							'Student_ID' => $student_id,
+						);
+						$student_tracker_id = $this->student->addStudentTracker($student_tracker);
+
+						$subject_student = array
+						(
+							'Tracker_ID' => $tracker_id
+						);
+						$this->student->addGcatStudent($subject_student);
+
+						if ($this->db->_error_message())
+						{
+							$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. ' . $this->db->_error_message());
+							$this->db->trans_rollback();
+							redirect('dbms');
+						}
+					}
+
+					if ((bool) strcasecmp(trim($row['AF']), 'no')) //BEST-CHED
+					{
+						$project_id = 1;
+						$subject_id = 2;
+
+						$student_application = array
+						(
+							'Contract' => (bool) strcasecmp(trim($row['AJ']), 'no'),
+							'Student_ID' => $student_id,
+							'Project_ID' => $project_id,
+							'Subject_ID' => $subject_id
+						);
+						$student_application_id = $this->student->addStudentApplication($student_application);
+
+						$tracker = array
+						(
+							'Remarks' => NULL,
+							'Status_ID' => 3,
+							'Times_Taken' => 1,
+							'Subject_ID' => $subject_id
+						);
+						$tracker_id = $this->student->addTracker($tracker);
+
+						$student_tracker = array
+						(
+							'Tracker_ID' => $tracker_id,
+							'Student_ID' => $student_id,
+						);
+						$student_tracker_id = $this->student->addStudentTracker($student_tracker);
+
+						$subject_student = array
+						(
+							'Tracker_ID' => $tracker_id
+						);
+						$this->student->addBestStudent($subject_student);
+
+						if ($this->db->_error_message())
+						{
+							$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. ' . $this->db->_error_message());
+							$this->db->trans_rollback();
+							redirect('dbms');
+						}
+					}
+
+					if ((bool) strcasecmp(trim($row['AG']), 'no')) //AdEPT-CHED
+					{
+						$project_id = 1;
+						$subject_id = 3;
+
+						$student_application = array
+						(
+							'Contract' => (bool) strcasecmp(trim($row['AJ']), 'no'),
+							'Student_ID' => $student_id,
+							'Project_ID' => $project_id,
+							'Subject_ID' => $subject_id
+						);
+						$student_application_id = $this->student->addStudentApplication($student_application);
+
+						$tracker = array
+						(
+							'Remarks' => NULL,
+							'Status_ID' => 3,
+							'Times_Taken' => 1,
+							'Subject_ID' => $subject_id
+						);
+						$tracker_id = $this->student->addTracker($tracker);
+
+						$student_tracker = array
+						(
+							'Tracker_ID' => $tracker_id,
+							'Student_ID' => $student_id,
+						);
+						$student_tracker_id = $this->student->addStudentTracker($student_tracker);
+
+						$subject_student = array
+						(
+							'Tracker_ID' => $tracker_id
+						);
+						$this->student->addAdeptStudent($subject_student);
+
+						if ($this->db->_error_message())
+						{
+							$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. ' . $this->db->_error_message());
+							$this->db->trans_rollback();
+							redirect('dbms');
+						}
+					}
+
+					if ((bool) strcasecmp(trim($row['AH']), 'no')) //BEST-SEI
+					{
+						$project_id = 2;
+						$subject_id = 2;
+
+						$student_application = array
+						(
+							'Contract' => (bool) strcasecmp(trim($row['AJ']), 'no'),
+							'Student_ID' => $student_id,
+							'Project_ID' => $project_id,
+							'Subject_ID' => $subject_id
+						);
+						$student_application_id = $this->student->addStudentApplication($student_application);
+
+						$tracker = array
+						(
+							'Remarks' => NULL,
+							'Status_ID' => 3,
+							'Times_Taken' => 1,
+							'Subject_ID' => $subject_id
+						);
+						$tracker_id = $this->student->addTracker($tracker);
+
+						$student_tracker = array
+						(
+							'Tracker_ID' => $tracker_id,
+							'Student_ID' => $student_id,
+						);
+						$student_tracker_id = $this->student->addStudentTracker($student_tracker);
+
+						$subject_student = array
+						(
+							'Tracker_ID' => $tracker_id
+						);
+						$this->student->addBestStudent($subject_student);
+
+						if ($this->db->_error_message())
+						{
+							$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. ' . $this->db->_error_message());
+							$this->db->trans_rollback();
+							redirect('dbms');
+						}
+					}
+
+					if ((bool) strcasecmp(trim($row['AI']), 'no')) //AdEPT-SEI
+					{
+						$project_id = 2;
+						$subject_id = 3;
+
+						$student_application = array
+						(
+							'Contract' => (bool) strcasecmp(trim($row['AJ']), 'no'),
+							'Student_ID' => $student_id,
+							'Project_ID' => $project_id,
+							'Subject_ID' => $subject_id
+						);
+						$student_application_id = $this->student->addStudentApplication($student_application);
+
+						$tracker = array
+						(
+							'Remarks' => NULL,
+							'Status_ID' => 3,
+							'Times_Taken' => 1,
+							'Subject_ID' => $subject_id
+						);
+						$tracker_id = $this->student->addTracker($tracker);
+
+						$student_tracker = array
+						(
+							'Tracker_ID' => $tracker_id,
+							'Student_ID' => $student_id,
+						);
+						$student_tracker_id = $this->student->addStudentTracker($student_tracker);
+
+						$subject_student = array
+						(
+							'Tracker_ID' => $tracker_id
+						);
+						$this->student->addAdeptStudent($subject_student);
+
+						if ($this->db->_error_message())
+						{
+							$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. ' . $this->db->_error_message());
+							$this->db->trans_rollback();
+							redirect('dbms');
+						}
 					}
 				}
 				else
@@ -1299,9 +1567,11 @@ class Dbms_Controller extends CI_Controller
 					redirect('dbms');
 				}
 			}
-			else if (strcasecmp($row['F'], 'no') == 0)
+			else if (strcasecmp($row['F'], 'no') == 0) //Former Applicant -> Update student
 			{
-				if (!$this->student->getStudentByCode($student_code))
+				$student_id = $this->student->getStudentByCode($student_code)->Student_ID;
+
+				if (!$student_id)
 				{
 					$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Student not found.');
 					$this->db->trans_rollback();
@@ -1317,27 +1587,287 @@ class Dbms_Controller extends CI_Controller
 
 				if ((bool) strcasecmp(trim($row['AD']), 'no')) //SMP-CHED
 				{
-					
+					if (!$this->student->getSmpStudentByStudentIdOrCode($student_code))
+					{
+						$subject_id_array = array(4, 5, 6, 7, 10, 11);
+
+						foreach ($subject_id_array as $subject_id)
+						{
+							$student_application = array
+							(
+								'Contract' => (bool) strcasecmp(trim($row['AJ']), 'no'),
+								'Student_ID' => $student_id,
+								'Project_ID' => 1,
+								'Subject_ID' => $subject_id
+							);
+							$this->student->addStudentApplication($student_application);
+
+							$tracker = array
+							(
+								'Remarks' => NULL,
+								'Status_ID' => 3,
+								'Times_Taken' => 1,
+								'Subject_ID' => $subject_id
+							);
+							$tracker_id = $this->student->addTracker($tracker);
+
+							$student_tracker = array
+							(
+								'Tracker_ID' => $tracker_id,
+								'Student_ID' => $student_id,
+							);
+							$student_tracker_id = $this->student->addStudentTracker($student_tracker);
+
+							$subject_student = array
+							(
+								'Tracker_ID' => $tracker_id
+							);
+							$this->student->addSmpStudent($subject_student);
+							$this->student->addSmpStudentCoursesTaken($subject_student);
+
+							if ($this->db->_error_message())
+							{
+								$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. ' . $this->db->_error_message());
+								$this->db->trans_rollback();
+								redirect('dbms');
+							}
+						}
+					}
 				}
 				
 				if ((bool) strcasecmp(trim($row['AE']), 'no')) //GCAT-CHED
 				{
+					if (!$this->student->getGcatStudentByStudentIdOrCode($student_code))
+					{
+						$project_id = 1;
+						$subject_id = 1;
+
+						$student_application = array
+						(
+							'Contract' => (bool) strcasecmp(trim($row['AJ']), 'no'),
+							'Student_ID' => $student_id,
+							'Project_ID' => $project_id,
+							'Subject_ID' => $subject_id
+						);
+						$student_application_id = $this->student->addStudentApplication($student_application);
+
+						$tracker = array
+						(
+							'Remarks' => NULL,
+							'Status_ID' => 3,
+							'Times_Taken' => 1,
+							'Subject_ID' => $subject_id
+						);
+						$tracker_id = $this->student->addTracker($tracker);
+
+						$student_tracker = array
+						(
+							'Tracker_ID' => $tracker_id,
+							'Student_ID' => $student_id,
+						);
+						$student_tracker_id = $this->student->addStudentTracker($student_tracker);
+
+						$subject_student = array
+						(
+							'Tracker_ID' => $tracker_id
+						);
+						$this->student->addGcatStudent($subject_student);
+
+						if ($this->db->_error_message())
+						{
+							$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. ' . $this->db->_error_message());
+							$this->db->trans_rollback();
+							redirect('dbms');
+						}
+					}
 				}
 
 				if ((bool) strcasecmp(trim($row['AF']), 'no')) //BEST-CHED
 				{
+					if (!$this->student->getBestStudentByStudentIdOrCode($student_code))
+					{
+						$project_id = 1;
+						$subject_id = 2;
+
+						$student_application = array
+						(
+							'Contract' => (bool) strcasecmp(trim($row['AJ']), 'no'),
+							'Student_ID' => $student_id,
+							'Project_ID' => $project_id,
+							'Subject_ID' => $subject_id
+						);
+						$student_application_id = $this->student->addStudentApplication($student_application);
+
+						$tracker = array
+						(
+							'Remarks' => NULL,
+							'Status_ID' => 3,
+							'Times_Taken' => 1,
+							'Subject_ID' => $subject_id
+						);
+						$tracker_id = $this->student->addTracker($tracker);
+
+						$student_tracker = array
+						(
+							'Tracker_ID' => $tracker_id,
+							'Student_ID' => $student_id,
+						);
+						$student_tracker_id = $this->student->addStudentTracker($student_tracker);
+
+						$subject_student = array
+						(
+							'Tracker_ID' => $tracker_id
+						);
+						$this->student->addBestStudent($subject_student);
+
+						if ($this->db->_error_message())
+						{
+							$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. ' . $this->db->_error_message());
+							$this->db->trans_rollback();
+							redirect('dbms');
+						}
+					}
 				}
 
 				if ((bool) strcasecmp(trim($row['AG']), 'no')) //AdEPT-CHED
 				{
+					if (!$this->student->getAdeptStudentByStudentIdOrCode($student_code))
+					{
+						$project_id = 1;
+						$subject_id = 3;
+
+						$student_application = array
+						(
+							'Contract' => (bool) strcasecmp(trim($row['AJ']), 'no'),
+							'Student_ID' => $student_id,
+							'Project_ID' => $project_id,
+							'Subject_ID' => $subject_id
+						);
+						$student_application_id = $this->student->addStudentApplication($student_application);
+
+						$tracker = array
+						(
+							'Remarks' => NULL,
+							'Status_ID' => 3,
+							'Times_Taken' => 1,
+							'Subject_ID' => $subject_id
+						);
+						$tracker_id = $this->student->addTracker($tracker);
+
+						$student_tracker = array
+						(
+							'Tracker_ID' => $tracker_id,
+							'Student_ID' => $student_id,
+						);
+						$student_tracker_id = $this->student->addStudentTracker($student_tracker);
+
+						$subject_student = array
+						(
+							'Tracker_ID' => $tracker_id
+						);
+						$this->student->addAdeptStudent($subject_student);
+
+						if ($this->db->_error_message())
+						{
+							$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. ' . $this->db->_error_message());
+							$this->db->trans_rollback();
+							redirect('dbms');
+						}
+					}
 				}
 
 				if ((bool) strcasecmp(trim($row['AH']), 'no')) //BEST-SEI
 				{
+					if (!$this->student->getBestStudentByStudentIdOrCode($student_code))
+					{
+						$project_id = 2;
+						$subject_id = 2;
+
+						$student_application = array
+						(
+							'Contract' => (bool) strcasecmp(trim($row['AJ']), 'no'),
+							'Student_ID' => $student_id,
+							'Project_ID' => $project_id,
+							'Subject_ID' => $subject_id
+						);
+						$student_application_id = $this->student->addStudentApplication($student_application);
+
+						$tracker = array
+						(
+							'Remarks' => NULL,
+							'Status_ID' => 3,
+							'Times_Taken' => 1,
+							'Subject_ID' => $subject_id
+						);
+						$tracker_id = $this->student->addTracker($tracker);
+
+						$student_tracker = array
+						(
+							'Tracker_ID' => $tracker_id,
+							'Student_ID' => $student_id,
+						);
+						$student_tracker_id = $this->student->addStudentTracker($student_tracker);
+
+						$subject_student = array
+						(
+							'Tracker_ID' => $tracker_id
+						);
+						$this->student->addBestStudent($subject_student);
+
+						if ($this->db->_error_message())
+						{
+							$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. ' . $this->db->_error_message());
+							$this->db->trans_rollback();
+							redirect('dbms');
+						}
+					}					
 				}
 
 				if ((bool) strcasecmp(trim($row['AI']), 'no')) //AdEPT-SEI
 				{
+					if (!$this->student->getAdeptStudentByStudentIdOrCode($student_code))
+					{
+						$project_id = 2;
+						$subject_id = 3;
+
+						$student_application = array
+						(
+							'Contract' => (bool) strcasecmp(trim($row['AJ']), 'no'),
+							'Student_ID' => $student_id,
+							'Project_ID' => $project_id,
+							'Subject_ID' => $subject_id
+						);
+						$student_application_id = $this->student->addStudentApplication($student_application);
+
+						$tracker = array
+						(
+							'Remarks' => NULL,
+							'Status_ID' => 3,
+							'Times_Taken' => 1,
+							'Subject_ID' => $subject_id
+						);
+						$tracker_id = $this->student->addTracker($tracker);
+
+						$student_tracker = array
+						(
+							'Tracker_ID' => $tracker_id,
+							'Student_ID' => $student_id,
+						);
+						$student_tracker_id = $this->student->addStudentTracker($student_tracker);
+
+						$subject_student = array
+						(
+							'Tracker_ID' => $tracker_id
+						);
+						$this->student->addAdeptStudent($subject_student);
+
+						if ($this->db->_error_message())
+						{
+							$this->session->set_flashdata('upload_error', 'Student Profile upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. ' . $this->db->_error_message());
+							$this->db->trans_rollback();
+							redirect('dbms');
+						}
+					}
 				}
 			}
 			else
@@ -1408,7 +1938,13 @@ class Dbms_Controller extends CI_Controller
 						redirect('dbms');
 					}
 				}
-				else //BEST Student Tracker does not exist -> Add
+				else
+				{
+					$this->session->set_flashdata('upload_error', 'BEST Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. BEST Product Tracker does not exist.');
+					$this->db->trans_rollback();
+					redirect('dbms');
+				}
+				/*else //BEST Student Tracker does not exist -> Add
 				{
 					if ($this->student->getTrackerByStudentCodeAndSubjectId($code, 2)) //Tracker exists -> Get Tracker ID
 					{
@@ -1440,7 +1976,7 @@ class Dbms_Controller extends CI_Controller
 						$this->db->trans_rollback();
 						redirect('dbms');
 					}
-				}
+				}*/
 			}
 			elseif ($subject == 'AdEPT')
 			{
@@ -1453,7 +1989,13 @@ class Dbms_Controller extends CI_Controller
 						redirect('dbms');
 					}
 				}
-				else //AdEPT Student Tracker does not exist -> Add
+				else
+				{
+					$this->session->set_flashdata('upload_error', 'AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. AdEPT Product Tracker does not exist.');
+					$this->db->trans_rollback();
+					redirect('dbms');
+				}
+				/*else //AdEPT Student Tracker does not exist -> Add
 				{
 					if ($this->student->getTrackerByStudentCodeAndSubjectId($code, 3)) //Tracker exists -> Get Tracker ID
 					{
@@ -1485,7 +2027,7 @@ class Dbms_Controller extends CI_Controller
 						$this->db->trans_rollback();
 						redirect('dbms');
 					}
-				}
+				}*/
 			}
 			else
 			{
@@ -1508,7 +2050,7 @@ class Dbms_Controller extends CI_Controller
 		redirect('dbms');
 	}
 
-	function upload_best_adept_student_tracker()
+	function upload_best_adept_student_tracker()  
 	{
 		if (!$_FILES)
 		{
@@ -1549,7 +2091,7 @@ class Dbms_Controller extends CI_Controller
 
 			if ($subject == 'BEST')
 			{
-				if ($this->student->getBestTrackerByStudentIdOrCode($code))
+				if ($this->student->getBestStudentByStudentIdOrCode($code))
 				{
 					if ($this->student->updateBestStudent($code, $subject, $subject_student))
 					{
@@ -1567,7 +2109,7 @@ class Dbms_Controller extends CI_Controller
 			}
 			elseif ($subject == 'AdEPT')
 			{
-				if ($this->student->getAdeptTrackerByStudentIdOrCode($code))
+				if ($this->student->getAdeptStudentByStudentIdOrCode($code))
 				{
 					if ($this->student->updateAdeptStudent($code, $subject, $subject_student))
 					{
@@ -1627,7 +2169,7 @@ class Dbms_Controller extends CI_Controller
 			(
 				'gcat_student.Session_ID' => $row['F'],
 				'gcat_student.Test_Date' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['G'], 'MM/DD/YYYY'))),
-				'tracker.Status' => $status_id
+				'tracker.Status_ID' => $status_id
 			);
 			
 			if (!$this->student->getStudentByCode($code))
@@ -1637,7 +2179,7 @@ class Dbms_Controller extends CI_Controller
 				redirect('dbms');
 			}
 
-			if ($this->student->getGcatTrackerByStudentIdOrCode($code))
+			if ($this->student->getGcatStudentByStudentIdOrCode($code))
 			{
 				if ($this->student->updateGcatStudent($code, $subject, $gcat_student))
 				{
@@ -1678,7 +2220,7 @@ class Dbms_Controller extends CI_Controller
 		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 3) continue;
+			if ($counter++ < 2) continue;
 			if ($counter > $highestRow) break;
 
 			$school_id = $this->school->getSchoolIdByCode(trim($row['F']))->School_ID; //Get School_ID
@@ -1701,7 +2243,7 @@ class Dbms_Controller extends CI_Controller
 				redirect('dbms');					
 			}
 			
-			if ($this->student->getSmpTrackerByStudentIdOrCode($code))
+			if ($this->student->getSmpStudentByStudentIdOrCode($code))
 			{
 				if ($this->student->updateSmpStudent($code, $subject, $smp_student))
 				{
@@ -1719,9 +2261,9 @@ class Dbms_Controller extends CI_Controller
 		}
 		$this->db->trans_commit();
 
-		if ($counter > 3)
+		if ($counter > 2)
 		{
-			$this->session->set_flashdata('upload_success', 'SMP Tracker successfully uploaded. ' . ($counter - 3) . ' of ' . ($highestRow - 3) . ' students added/updated.');
+			$this->session->set_flashdata('upload_success', 'SMP Tracker successfully uploaded. ' . ($counter - 2) . ' of ' . ($highestRow - 2) . ' students added/updated.');
 			$this->log->addLog('SMP Student Tracker Batch Upload');
 		}
 		else
@@ -3018,18 +3560,16 @@ class Dbms_Controller extends CI_Controller
 			if ($counter++ < 9) continue;
 			if ($counter > $highestRow) break;
 
-			$classlist = array
+			$teacher = array
 			(
 				'Last_Name' => $row['A'],
 				'First_Name' => $row['B'],
 				'Middle_Initial' => $row['C'],
-				'Birthdate' => $row['D']
+				'Code' => $row['D'],
+				'Birthdate' => $row['E']
 			);
 
-			$data['class_list']	= $classlist;
-			$this->load->view('header');
-			$this->load->view('forms/form-mastertrainer-classlist', $data);
-			$this->load->view('footer');
+			$classlist[]	= $teacher;
 		}
 
 		$this->db->trans_commit();

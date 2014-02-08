@@ -38,7 +38,7 @@
 				<?php if ($students) foreach ($students as $student){ ?>
 				<tr>
 					<td><input type="checkbox"></td>
-					<td><a href="<?php echo base_url('dbms/form_student_profile/' . $student->Student_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_student/' . $student->Student_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
+					<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_student_profile/' . $student->Student_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_student/' . $student->Student_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
 					<td><?php echo $student->Full_Name; ?></td>
 					<td><?php echo $student->School_Name; ?></td>
 					<td><?php echo $student->Subject_Codes; ?></td>
@@ -71,7 +71,7 @@
 				<?php if ($teachers) foreach ($teachers as $teacher): ?>
 				<tr>
 					<td><input type="checkbox"></td>
-					<td><a href="<?php echo base_url('dbms/form_teacher_profile/' . $teacher->Teacher_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_teacher/' . $teacher->Teacher_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
+					<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_teacher_profile/' . $teacher->Teacher_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_teacher/' . $teacher->Teacher_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
 					<td><?php echo $teacher->Full_Name; ?></td>
 					<td><?php echo $teacher->School_Name; ?></td>
 					<td><?php echo $teacher->Subject_Codes; ?></td>
@@ -103,7 +103,7 @@
 				<?php if ($proctors) foreach ($proctors as $proctor): ?>
 				<tr>
 					<td><input type="checkbox"></td>
-					<td><a href="<?php echo base_url('dbms/form_proctor_profile/' . $proctor->Proctor_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_proctor/' . $proctor->Proctor_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
+					<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_proctor_profile/' . $proctor->Proctor_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_proctor/' . $proctor->Proctor_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
 					<td><?php echo $proctor->Full_Name; ?></td>
 					<td><?php echo $proctor->School_Name; ?></td>
 					<td><?php echo $proctor->Subject_Code; ?></td>
@@ -136,7 +136,7 @@
 				<?php if ($mastertrainers) foreach ($mastertrainers as $mastertrainer): ?>
 				<tr>
 					<td><input type="checkbox"></td>
-					<td><a href="<?php echo base_url('dbms/form_mastertrainer_profile/' . $mastertrainer->Master_Trainer_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_mastertrainer/' . $mastertrainer->Master_Trainer_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
+					<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_mastertrainer_profile/' . $mastertrainer->Master_Trainer_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_mastertrainer/' . $mastertrainer->Master_Trainer_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
 					<td><?php echo $mastertrainer->Full_Name; ?></td>
 					<td><?php echo $mastertrainer->School_Name; ?></td>
 					<td><?php echo $mastertrainer->Subject_Codes; ?></td>
@@ -177,7 +177,7 @@
 					</thead>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td><a href="<?php echo base_url('dbms/form_class_add'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_class_add'); ?>">View</a> | <a href="#">Delete</a></td>
 						<td>Peralta, Philip</td>
 						<td>Ateneo de Manila University</td>
 						<td>Quezon City</td>
@@ -209,7 +209,7 @@
 					</tr>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td><a href="<?php echo base_url('dbms/form_mastertrainer_classlist'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_mastertrainer_classlist'); ?>">View</a> | <a href="#">Delete</a></td>
 						<td>Peralta, Philip</td>
 						<td>BPO101</td>
 						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfTeachersForMasterTrainer">View List</button></td>
@@ -253,7 +253,7 @@
 					</thead>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td><a href="<?php echo base_url('dbms/form_program_smp_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_smp_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
 						<td>103523</td>
 						<td>Simon, Dayanara F.</td>
 						<td>4</td>
@@ -285,7 +285,7 @@
 					</thead>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td><a href="<?php echo base_url('dbms/form_program_smp_internship_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_smp_internship_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
 						<td>103523</td>
 						<td>Simon, Dayanara F.</td>
 						<td>4</td>
@@ -320,7 +320,7 @@
 					</thead>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td><a href="<?php echo base_url('dbms/form_program_gcat_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_gcat_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
 						<td>Pulan, Max</td>
 						<td>Ateneo de Manila University</td>
 						<td>Quezon City</td>
@@ -354,7 +354,7 @@
 					</thead>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td><a href="<?php echo base_url('dbms/form_program_best_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_best_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
 						<td>11/21/2013</td>
 						<td>Ateneo de Manila University</td>
 						<td>Quezon City</td>
@@ -384,7 +384,7 @@
 					</thead>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td><a href="<?php echo base_url('dbms/form_program_adept_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_adept_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
 						<td>11/21/2013</td>
 						<td>Ateneo de Manila University</td>
 						<td>Quezon City</td>
@@ -416,7 +416,7 @@
 					</thead>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td><a href="<?php echo base_url('dbms/form_program_t3_adept_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_t3_adept_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
 						<td>Simon, Dayanara</td>
 						<td>Ateneo de Manila University</td>
 						<td>11/21/1993</td>
@@ -449,7 +449,7 @@
 					</thead>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td><a href="<?php echo base_url('dbms/form_program_t3_best_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_t3_best_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
 						<td>Simon, Dayanara</td>
 						<td>Ateneo de Manila University</td>
 						<td>11/21/2013</td>
@@ -467,140 +467,142 @@
 <!-- Dialogs and Stuff -->
 
 <div class="modal fade" id="batchStudent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title" id="myModalLabel">Batch Upload</h4>
-</div>
-<div class="modal-body">
-<div class="student-button-groups">
-	<?php $attributes = array('id' => 'upload_student_profile', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_student_profile', $attributes); ?>
-		<input type="file" name="file_student_profile" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_student_profile').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_student_profile]').click();">Upload Students</button>
-	<?php echo form_close(); ?>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Batch Upload - Student</h4>
+			</div>
+			<div class="modal-body">
+				<div class="student-button-groups">
+					<?php $attributes = array('id' => 'upload_student_profile', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_student_profile', $attributes); ?>
+						<input type="file" name="file_student_profile" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_student_profile').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_student_profile]').click();">Upload Students</button>
+					<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_best_adept_student_product_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_adept_student_product_tracker', $attributes); ?>
-		<input type="file" name="file_best_adept_student_product_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_adept_student_product_tracker').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_adept_student_product_tracker]').click();">Upload BEST/AdEPT Student Product Tracker</button>
-	<?php echo form_close(); ?>
+					<?php $attributes = array('id' => 'upload_best_adept_student_product_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_adept_student_product_tracker', $attributes); ?>
+						<input type="file" name="file_best_adept_student_product_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_adept_student_product_tracker').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_adept_student_product_tracker]').click();">Upload BEST/AdEPT Student Product Tracker</button>
+					<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_best_adept_student_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_adept_student_tracker', $attributes); ?>
-		<input type="file" name="file_best_adept_student_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_adept_student_tracker').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_adept_student_tracker]').click();">Upload BEST/AdEPT Student Tracker</button>
-	<?php echo form_close(); ?>
+					<?php $attributes = array('id' => 'upload_best_adept_student_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_adept_student_tracker', $attributes); ?>
+						<input type="file" name="file_best_adept_student_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_adept_student_tracker').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_adept_student_tracker]').click();">Upload BEST/AdEPT Student Tracker</button>
+					<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_gcat_student_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_gcat_student_tracker', $attributes); ?>
-		<input type="file" name="file_gcat_student_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_gcat_student_tracker').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_gcat_student_tracker]').click();">Upload GCAT Student Tracker</button>
-	<?php echo form_close(); ?>
+					<?php $attributes = array('id' => 'upload_gcat_student_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_gcat_student_tracker', $attributes); ?>
+						<input type="file" name="file_gcat_student_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_gcat_student_tracker').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_gcat_student_tracker]').click();">Upload GCAT Student Tracker</button>
+					<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_smp_student_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_smp_student_tracker', $attributes); ?>
-		<input type="file" name="file_smp_student_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_smp_student_tracker').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_smp_student_tracker]').click();">Upload SMP Student Tracker</button>
-	<?php echo form_close(); ?>
+					<?php $attributes = array('id' => 'upload_smp_student_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_smp_student_tracker', $attributes); ?>
+						<input type="file" name="file_smp_student_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_smp_student_tracker').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_smp_student_tracker]').click();">Upload SMP Student Tracker</button>
+					<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_internship', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_internship', $attributes); ?>
-		<input type="file" name="file_internship" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_internship').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_internship]').click();">Upload Student Internship Form</button>
-	<?php echo form_close(); ?>
+					<?php $attributes = array('id' => 'upload_internship', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_internship', $attributes); ?>
+						<input type="file" name="file_internship" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_internship').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_internship]').click();">Upload Student Internship Form</button>
+					<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_gcat_student_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_gcat_student_grades', $attributes); ?>
-		<input type="file" name="file_gcat_student_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_gcat_student_grades').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_gcat_student_grades]').click();">Upload GCAT Student Grades</button>
-	<?php echo form_close(); ?>
+					<?php $attributes = array('id' => 'upload_gcat_student_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_gcat_student_grades', $attributes); ?>
+						<input type="file" name="file_gcat_student_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_gcat_student_grades').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_gcat_student_grades]').click();">Upload GCAT Student Grades</button>
+					<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_best_student_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_student_grades', $attributes); ?>
-		<input type="file" name="file_best_student_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_student_grades').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_student_grades]').click();">Upload BEST Student Grades</button>
-	<?php echo form_close(); ?>
+					<?php $attributes = array('id' => 'upload_best_student_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_student_grades', $attributes); ?>
+						<input type="file" name="file_best_student_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_student_grades').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_student_grades]').click();">Upload BEST Student Grades</button>
+					<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_adept_student_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_adept_student_grades', $attributes); ?>
-		<input type="file" name="file_adept_student_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_adept_student_grades').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_adept_student_grades]').click();">Upload AdEPT Student Grades</button>
-	<?php echo form_close(); ?>
+					<?php $attributes = array('id' => 'upload_adept_student_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_adept_student_grades', $attributes); ?>
+						<input type="file" name="file_adept_student_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_adept_student_grades').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_adept_student_grades]').click();">Upload AdEPT Student Grades</button>
+					<?php echo form_close(); ?>
 
-	<button class="btn btn-primary btn-lg">Upload BEST Student Grades</button>
-	<button class="btn btn-primary btn-lg">Upload AdEPT Student Grades</button>
-</div>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-</div>
-</div>
-</div>
+					<?php $attributes = array('id' => 'upload_smp_student_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_smp_student_grades', $attributes); ?>
+						<input type="file" name="file_smp_student_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_smp_student_grades').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_smp_student_grades]').click();">Upload SMP Student Grades</button>
+					<?php echo form_close(); ?>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="modal fade" id="batchTeacher" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title" id="myModalLabel">Batch Upload</h4>
-</div>
-<div class="modal-body">
-<div class="student-button-groups">
-	<?php $attributes = array('id' => 'upload_best_adept_product_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_adept_product_tracker', $attributes); ?>
-		<input type="file" name="file_best_adept_product_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_adept_product_tracker').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_adept_product_tracker]').click();">Upload T3 BEST/AdEPT Product Tracker</button>
-	<?php echo form_close(); ?>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Batch Upload - Teacher</h4>
+			</div>
+			<div class="modal-body">
+				<div class="student-button-groups">
+					<?php $attributes = array('id' => 'upload_best_adept_product_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_adept_product_tracker', $attributes); ?>
+						<input type="file" name="file_best_adept_product_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_adept_product_tracker').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_adept_product_tracker]').click();">Upload T3 BEST/AdEPT Product Tracker</button>
+					<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_best_T3_attendance', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_T3_attendance', $attributes); ?>
-		<input type="file" name="file_best_T3_attendance" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_T3_attendance').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_T3_attendance]').click();">Upload BEST T3 Attendance</button>
-	<?php echo form_close(); ?>
+					<?php $attributes = array('id' => 'upload_best_T3_attendance', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_T3_attendance', $attributes); ?>
+						<input type="file" name="file_best_T3_attendance" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_T3_attendance').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_T3_attendance]').click();">Upload BEST T3 Attendance</button>
+					<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_best_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_tracker', $attributes); ?>
-		<input type="file" name="file_best_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_tracker').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_tracker]').click();">Upload T3 BEST Tracker</button>
-	<?php echo form_close(); ?>
+					<?php $attributes = array('id' => 'upload_best_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_tracker', $attributes); ?>
+						<input type="file" name="file_best_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_tracker').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_tracker]').click();">Upload T3 BEST Tracker</button>
+					<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_adept_T3_attendance', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_adept_T3_attendance', $attributes); ?>
-		<input type="file" name="file_adept_T3_attendance" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_adept_T3_attendance').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_adept_T3_attendance]').click();">Upload AdEPT T3 Attendance</button>
-	<?php echo form_close(); ?>
+					<?php $attributes = array('id' => 'upload_adept_T3_attendance', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_adept_T3_attendance', $attributes); ?>
+						<input type="file" name="file_adept_T3_attendance" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_adept_T3_attendance').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_adept_T3_attendance]').click();">Upload AdEPT T3 Attendance</button>
+					<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_adept_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_adept_tracker', $attributes); ?>
-		<input type="file" name="file_adept_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_adept_tracker').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_adept_tracker]').click();">Upload T3 AdEPT Tracker</button>
-	<?php echo form_close(); ?>
+					<?php $attributes = array('id' => 'upload_adept_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_adept_tracker', $attributes); ?>
+						<input type="file" name="file_adept_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_adept_tracker').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_adept_tracker]').click();">Upload T3 AdEPT Tracker</button>
+					<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_smp_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_smp_tracker', $attributes); ?>
-		<input type="file" name="file_smp_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_smp_tracker').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_smp_tracker]').click();">Upload T3 SMP Tracker</button>
-	<?php echo form_close(); ?>
+					<?php $attributes = array('id' => 'upload_smp_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_smp_tracker', $attributes); ?>
+						<input type="file" name="file_smp_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_smp_tracker').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_smp_tracker]').click();">Upload T3 SMP Tracker</button>
+					<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_smp_attendance', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_smp_attendance', $attributes); ?>
-		<input type="file" name="file_smp_attendance" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_smp_attendance').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_smp_attendance]').click();">Upload T3 SMP Attendance</button>
-	<?php echo form_close(); ?>
+					<?php $attributes = array('id' => 'upload_smp_attendance', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_smp_attendance', $attributes); ?>
+						<input type="file" name="file_smp_attendance" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_smp_attendance').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_smp_attendance]').click();">Upload T3 SMP Attendance</button>
+					<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_stipend_process_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_stipend_process_tracker', $attributes); ?>
-		<input type="file" name="file_stipend_process_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_stipend_process_tracker').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_stipend_process_tracker]').click();">Upload Stipend Process Tracker</button>
-	<?php echo form_close(); ?>
+					<?php $attributes = array('id' => 'upload_stipend_process_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_stipend_process_tracker', $attributes); ?>
+						<input type="file" name="file_stipend_process_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_stipend_process_tracker').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_stipend_process_tracker]').click();">Upload Stipend Process Tracker</button>
+					<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_gcat_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_gcat_grades', $attributes); ?>
-		<input type="file" name="file_gcat_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_gcat_grades').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_gcat_grades]').click();">Upload GCAT Grades</button>
-	<?php echo form_close(); ?>
+					<?php $attributes = array('id' => 'upload_gcat_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_gcat_grades', $attributes); ?>
+						<input type="file" name="file_gcat_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_gcat_grades').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_gcat_grades]').click();">Upload GCAT Grades</button>
+					<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_best_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_grades', $attributes); ?>
-		<input type="file" name="file_best_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_grades').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_grades]').click();">Upload BEST Grades</button>
-	<?php echo form_close(); ?>
+					<?php $attributes = array('id' => 'upload_best_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_grades', $attributes); ?>
+						<input type="file" name="file_best_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_grades').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_grades]').click();">Upload BEST Grades</button>
+					<?php echo form_close(); ?>
 
-	<?php $attributes = array('id' => 'upload_adept_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_adept_grades', $attributes); ?>
-		<input type="file" name="file_adept_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_adept_grades').submit();">
-		<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_adept_grades]').click();">Upload AdEPT Grades</button>
-	<?php echo form_close(); ?>
-</div>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-</div>
-</div>
-</div>
+					<?php $attributes = array('id' => 'upload_adept_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_adept_grades', $attributes); ?>
+						<input type="file" name="file_adept_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_adept_grades').submit();">
+						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_adept_grades]').click();">Upload AdEPT Grades</button>
+					<?php echo form_close(); ?>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="modal fade" id="printList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
