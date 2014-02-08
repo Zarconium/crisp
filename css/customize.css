@@ -152,5 +152,9 @@ display: block;
 
 table tbody{
 overflow: scroll;
-height: 400px;
+height: 500px;
+}
+
+.report-form th, .report-form td{
+width: 100px;
 }
