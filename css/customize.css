@@ -146,15 +146,15 @@ margin-bottom: 5%;
 color: #1abc9c;
 }
 
-table tbody, table thead{
+.report-form table tbody, .report-form  table thead{
 display: block;
 }
 
 table tbody{
-overflow: auto;
-height: 100px;
+overflow: scroll;
+height: 500px;
 }
 
-th{
-
+.report-form th, .report-form td{
+width: 100px;
 }

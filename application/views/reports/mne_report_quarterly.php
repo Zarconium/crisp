@@ -3,6 +3,7 @@
 <legend>CHED-LFA</legend>
 <div class="report-form">
 <table class="table">
+<thead>
 <tr>
 	<th>Description</th>
 	<th>LFA Targets</th>
@@ -23,6 +24,8 @@
 	<th>Annual %</th>
 	<th>Cumulative</th>
 </tr>
+</thead>
+<tbody>
 	<tr><td>T3<td></tr>
 	<tr>
 		<td>Teachers Trained in GCAT</td>
@@ -859,5 +862,6 @@
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
 	</tr>
+</tbody>
 </table>
 </div>

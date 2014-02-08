@@ -1,14 +1,20 @@
 <h1>Student Adept Program Report</h1>
 <h4>Period: <?php echo $start_date; ?> to <?php echo $end_date; ?> </h4>
 <legend>Pins Given </legend>
+
+
 <div class="report-form">
+
 <table class="table">
+<thead>
 <tr>
 	<th>School</th>
 	<th>Male</th>
 	<th>Female</th>
 	<th>Total</th>
 <tr>
+</thead>
+<tbody>
 	<?php foreach ($pin_count_list as $count): ?>
 	<tr>
 		<td><?php echo $count->School; ?></td>
@@ -23,14 +29,20 @@
 		<td colspan="4"><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
+</tbody>
 </table>
 
 <legend>Current Takers</legend>
 <table class="table">
+<thead>
+<tr>
 	<th>School</th>
 	<th>Male</th>
 	<th>Female</th>
 	<th>Total</th>
+</tr>
+</thead>
+<tbody>
 	<?php foreach ($current_takers_count_list as $count): ?>
 	<tr>
 		<td><?php echo $count->School; ?></td>
@@ -45,14 +57,20 @@
 		<td colspan="4"><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
+</tbody>
 </table>	
 
 <legend>Students Completed</legend>
 <table class="table">
+<thead>
+<tr>
 	<th>School</th>
 	<th>Male</th>
 	<th>Female</th>
 	<th>Total</th>
+</tr>
+</thead>
+<tbody>
 	<?php foreach ($completed_count_list as $count): ?>
 	<tr>
 		<td><?php echo $count->School; ?></td>
@@ -67,5 +85,6 @@
 		<td colspan="4"><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
+</tbody>
 </table>	
 </div>

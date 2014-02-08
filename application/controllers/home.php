@@ -18,6 +18,15 @@ class Home extends CI_Controller {
 
 	function index()
 	{
+		$useraccount = $this->session->userdata('logged_in')['type'];
+		
+		if ($useraccount != 'admin'){
+			$this->load->view('header');
+			$this->load->view('home_screen');
+			$this->load->view('footer');
+			return;
+		}
+		
 		$this->load->library('pagination');
 		$this->load->library('table');
 		
@@ -78,6 +87,8 @@ class Home extends CI_Controller {
 		$this->load->view('header');
 		$this->load->view('home_view', $data);
 		$this->load->view('footer');
+		
+		
 	}
 
 	function logout()
