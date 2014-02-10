@@ -4,15 +4,19 @@
 <h4>School: <?php echo $school->Name; ?></h4>
 <div class="report-form">
 <table class="table">
+<thead>
 	<tr>
 		<th>Class Name</th>
 		<th>Number of Students</th>
 	</tr>
+</thead>
+<tbody>
 	<?php foreach ($gcat_class_list as $count): ?>
 	<tr>
 		<td><?php echo $count->Class_Name; ?></td>
 		<td><?php echo $count->Number_of_Students; ?></td>
 	</tr>
 	<?php endforeach; ?>
+</tbody>
 </table>
 

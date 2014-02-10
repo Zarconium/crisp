@@ -5,15 +5,18 @@
 <h4>Class: <?php echo $class; ?></h4>
 <div class="report-form">
 <table class="table">
+<thead>
 	<tr>
 		<th>Control Number</th>
 		<th>Student Name</th>
 	</tr>
+</thead>
+<tbody>
 	<?php foreach ($best_student_list as $count): ?>
 	<tr>
 		<td><?php echo $count->Control_Number; ?></td>
 		<td><?php echo $count->Student_Names; ?></td>
 	</tr>
 	<?php endforeach; ?>
+</tbody>
 </table>
-

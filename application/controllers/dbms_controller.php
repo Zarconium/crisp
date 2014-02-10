@@ -3390,30 +3390,51 @@ class Dbms_Controller extends CI_Controller
 				$this->db->trans_rollback();
 				redirect('dbms');					
 			}
-			if (!$this->teacher->getStipendTrackingByTeacherCode($code))
+			//--stuff for stipend tracking.---
+			if (!$this->teacher->getStipendTrackingByTeacherCode($code)) //CHECK IF STIPEND TRACKING EXISTS 
 			{
-				$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
-				$this->db->trans_rollback();
-				redirect('dbms');					
+				$stipend_tracking_id = $this->teacher->addStipendTracking($stipend_tracking); // IF IT DOES NOT EXIST ADDS STIPEND TRACKING
+				if(!$stipend_tracking_id)
+				{
+					$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+					$this->db->trans_rollback();
+					redirect('dbms');
+				}		
 			}
-			if (!$this->teacher->getStipendTrackingListByTeacherCode($code))
+			else
 			{
-				$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
-				$this->db->trans_rollback();
-				redirect('dbms');					
+				//update IF STIPEND TRACKING EXISTS
+				if ($this->teacher->updateStipendTracking($code, $subject, $stipend_tracking))
+				{
+					$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $code . '');
+					$this->db->trans_rollback();
+					redirect('dbms');					
+				}
 			}
-			
-			if ($this->teacher->updateStipendTrackingList($code, $subject, $stipend_tracking_list))
+
+			//stuff for stipend tracking list 
+			if (!$this->teacher->getStipendTrackingListByTeacherCode($code)) //CHECKS IF STIPEND TRACKING LIST EXISTS
 			{
-				$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $code . '');
-				$this->db->trans_rollback();
-				redirect('dbms');					
+				$stipend_tracking_list['Stipend_Tracking_ID'] = $stipend_tracking_id;
+				$stipend_tracking_list['Subject_ID'] = $this->subject->getSubjectIdByCode($subject)->Subject_ID;
+				$stipend_tracking_list['Teacher_ID'] = $this->teacher->getTeacherIDByCode($code)->Teacher_ID;
+
+
+				if (!$this->teacher->addStipendTrackingList($stipend_tracking_list))
+				{
+					$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+					$this->db->trans_rollback();
+					redirect('dbms');
+				}					
 			}
-			if ($this->teacher->updateStipendTracking($code, $subject, $stipend_tracking))
+			else
 			{
-				$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $code . '');
-				$this->db->trans_rollback();
-				redirect('dbms');					
+				if ($this->teacher->updateStipendTrackingList($code, $subject, $stipend_tracking_list))
+				{
+					$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $code . '');
+					$this->db->trans_rollback();
+					redirect('dbms');					
+				}
 			}
 		}
 
