@@ -2257,6 +2257,11 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_gcat_student_tracker()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_gcat_student_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
@@ -2320,6 +2325,11 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_smp_student_tracker()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_smp_student_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
@@ -2384,6 +2394,11 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_internship()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_internship']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
@@ -2454,6 +2469,11 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_class_list()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_class_list']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
@@ -2509,6 +2529,11 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_gcat_student_grades()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_gcat_student_grades']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
