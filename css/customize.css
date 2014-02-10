@@ -159,5 +159,5 @@ width: 100px;
 }
 
 .report-form table thead tr > th:nth-child(1), .report-form tbody tr > td:nth-child(1){
-width: 70%;
+width: 60%;
 }

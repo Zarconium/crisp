@@ -22,12 +22,14 @@
 		<td><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
+</tbody>
+<tfoot>
 	<?php foreach ($total as $t): ?>
 	<tr>
 		<td>TOTAL</td>
 		<td colspan="4"><?php echo $t->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
-</tbody>
+</tfoot>
 </table>
 </div>
