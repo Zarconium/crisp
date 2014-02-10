@@ -138,7 +138,6 @@ margin-top: 5%;
 }
 
 .main-page{
-
 margin-bottom: 5%;
 }
 
@@ -146,7 +145,7 @@ margin-bottom: 5%;
 color: #1abc9c;
 }
 
-.report-form table tbody, .report-form  table thead{
+.report-form table tbody, .report-form  table thead, .report-form table tfoot{
 display: block;
 }
 
@@ -157,4 +156,8 @@ height: 500px;
 
 .report-form th, .report-form td{
 width: 100px;
+}
+
+.report-form table thead tr > th:nth-child(1), .report-form tbody tr > td:nth-child(1){
+width: 70%;
 }
