@@ -3,12 +3,15 @@
 <legend>Current Takers</legend>
 <div class="report-form">
 <table class="table">
+<thead>
 	<tr>
 		<th>School</th>
 		<th>Male</th>
 		<th>Female</th>
 		<th>Total</th>
 	</tr>
+</thead>
+<tbody>
 	<?php foreach ($currently_taking_list as $count): ?>
 	<tr>
 		<td><?php echo $count->School; ?></td>
@@ -23,6 +26,7 @@
 		<td colspan="4"><?php echo $t->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
+</tbody>
 </table>
 
 <legend>Number of Students Finished with a Subject</legend>

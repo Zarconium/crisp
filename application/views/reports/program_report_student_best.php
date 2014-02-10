@@ -3,13 +3,16 @@
 <h4>Period: <?php echo $start_date; ?> to <?php echo $end_date; ?> </h4>
 <div class="report-form">
 <table class="table">
+<thead>
 <tr>
 	<th>School</th>
 	<th>Male</th>
 	<th>Female</th>
 	<th>Total</th>
-	<?php foreach ($pin_count_list as $count): ?>
 </tr>
+</thead>
+<tbody>
+	<?php foreach ($pin_count_list as $count): ?>
 	<tr>
 		<td><?php echo $count->School; ?></td>
 		<td><?php echo $count->Male; ?></td>
@@ -23,6 +26,7 @@
 		<td colspan="4"><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
+</tbody>
 </table>
 
 
