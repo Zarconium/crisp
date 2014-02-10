@@ -4,6 +4,7 @@
 <legend>Teachers</legend>
 <div class="report-form">
 <table class="table">
+<thead>
 <tr>
 	<th>Description</th>
 	<th>BPO101</th>
@@ -15,6 +16,8 @@
 	<th>BEST</th>
 	<th>GCAT</th>
 </tr>
+</thead>
+<tbody>
 	<tr>
 		<td>Number of Teachers Trained</td>
 		<?php foreach ($teacher_count_list as $count): ?>
@@ -28,6 +31,7 @@
 			<td><?php echo $count->GCAT; ?></td>
 		<?php endforeach; ?>
 	</tr>
+</tbody>
 </table>
 
 <table class="table">
