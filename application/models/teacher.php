@@ -923,5 +923,18 @@ Class Teacher extends CI_Model
 		$this->db->join('T3_class', 'T3_class.T3_class_ID = teacher_class.T3_class_ID', 'left');
 		return $this->db->insert_id();
 	}
+
+	function addStipendTracking($stipend_tracking)
+
+	{
+		$this->db->insert('stipend_tracking', $stipend_tracking);
+		return $this->db->insert_id();
+	}
+
+	function addStipendTrackingList($stipend_tracking_list)
+	{
+		$this->db->insert('stipend_tracking_list', $stipend_tracking_list);
+		return $this->db->insert_id();
+	}
 }
 ?>
