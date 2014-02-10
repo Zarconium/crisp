@@ -237,7 +237,7 @@ Class Student extends CI_Model
 		}
 	}
 
-	function getInternshipByStudentId($id)
+	function getInternshipByStudentIdOrCode($id_code)
 	{
 		$this->db->select('*');
 		$this->db->from('internship_student');
@@ -245,7 +245,8 @@ Class Student extends CI_Model
 		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
 		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
 		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
-		$this->db->where('student.Student_ID', $id);
+		$this->db->where('student.Student_ID', $id_code);
+		$this->db->or_where('student.Code', $id_code);
 		$this->db->limit(1);
 		
 		$query = $this->db->get();
@@ -473,6 +474,12 @@ Class Student extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	function addInternshipStudent($data)
+	{
+		$this->db->insert('internship_student', $data);
+		return $this->db->insert_id();
+	}
+
 	function updateStudentByCode($code, $data)
 	{
 		$this->db->where('Code', $code);
@@ -517,6 +524,16 @@ Class Student extends CI_Model
 		$this->db->where('student.Code', $code);
 		$this->db->where('subject.Subject_Code', $subject);
 		$this->db->update('smp_student LEFT JOIN tracker ON smp_student.Tracker_ID = tracker.Tracker_ID LEFT JOIN student_tracker ON tracker.Tracker_ID = student_tracker.Tracker_ID LEFT JOIN student ON student_tracker.Student_ID = student.Student_ID LEFT JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
+
+		return $this->db->_error_message();
+	}
+
+	function updateInternshipStudent($code, $tracker)
+	{
+		$this->db->set($tracker);
+		$this->db->where('student.Code', $code);
+		$this->db->where('subject.Subject_Code', 'Intern');
+		$this->db->update('internship_student JOIN tracker ON internship_student.Tracker_ID = tracker.Tracker_ID JOIN student_tracker ON tracker.Tracker_ID = student_tracker.Tracker_ID JOIN student ON student_tracker.Student_ID = student.Student_ID JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
 
 		return $this->db->_error_message();
 	}

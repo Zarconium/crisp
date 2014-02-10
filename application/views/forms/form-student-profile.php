@@ -212,7 +212,7 @@
 				<div class="form-group">
 					<label>Are you willing to work for the IT-BPO sector</label><br/>
 					<input type="radio" name="work" value="1" <?php if ($student->Interested_in_ITBPO == 1) { echo 'checked="checked"'; } ?>> Yes
-					<input type="radio" name="work" value="0" <?php if ($student->Interested_in_ITBPO == 0) { echo 'checked="checked"'; } ?>> No		
+					<input type="radio" name="work" value="0" <?php if ($student->Interested_in_ITBPO == 0) { echo 'checked="checked"'; } ?>> No
 				</div>	
 				<?php echo form_error('work'); ?>
 			</form>
@@ -280,7 +280,11 @@
 
 						<div class="form-group">
 							<label>Status</label>
-							<input class="form-control" type="text" name="gcat_status" value="<?php if(isset($gcat_tracker->Status_Name)) echo $gcat_tracker->Status_Name; ?>">
+							<select class="form-control" name="gcat_status">
+							<?php foreach ($statuses as $status): ?>
+								<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($gcat_tracker->Status_ID)) if ($status->Status_ID == $gcat_tracker->Status_ID) echo 'selected="selected"' ?>><?php echo $status->Name; ?></option>
+							<?php endforeach; ?>
+							</select>
 							<?php echo form_error('gcat_status'); ?>
 						</div>
 					</form>
@@ -288,12 +292,6 @@
 
 				<div class="tab-pane" id="best">
 					<form class="form" role="form">
-						<div class="form-group">
-							<label>Date</label>
-							<input class="form-control" type="date" name="best_date" value="<?php if (isset($best_tracker->Updated_At)) echo date('Y-m-d', strtotime($best_tracker->Updated_At)); ?>">
-							<?php echo form_error('best_date'); ?>
-						</div>
-
 						<div class="form-group">
 							<label>Control Number</label>
 							<input class="form-control" type="text" name="best_control_number" value="<?php if (isset($best_tracker->Control_Number)) echo $best_tracker->Control_Number; ?>">
@@ -305,17 +303,34 @@
 							<input class="form-control" type="text" name="best_username" value="<?php if (isset($best_tracker->Username)) echo $best_tracker->Username; ?>">
 							<?php echo form_error('best_username'); ?>
 						</div>
+
+						<div class="form-group">
+							<label>Status</label>
+							<select class="form-control" name="best_status">
+							<?php foreach ($statuses as $status): ?>
+								<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($best_tracker->Status_ID)) if ($status->Status_ID == $best_tracker->Status_ID) echo 'selected="selected"' ?>><?php echo $status->Name; ?></option>
+							<?php endforeach; ?>
+							</select>
+							<?php echo form_error('best_status'); ?>
+						</div>
+
+						<div class="form-group">
+							<label>Remarks</label>
+							<input class="form-control" type="text" name="best_remarks" value="<?php if (isset($best_tracker->Remarks)) echo $best_tracker->Remarks; ?>">
+							<?php echo form_error('best_remarks'); ?>
+						</div>
+
+						<div class="form-group">
+							<label>CD</label><br>
+							<input type="radio" name="best_cd" value="1" <?php if (isset($best_tracker->Interested_in_ITBPO)) if ($best_tracker->Interested_in_ITBPO == 1) { echo 'checked="checked"'; } ?>> Yes
+							<input type="radio" name="best_cd" value="0" <?php if (isset($best_tracker->Interested_in_ITBPO)) if ($best_tracker->Interested_in_ITBPO == 0) { echo 'checked="checked"'; } ?>> No
+							<?php echo form_error('best_username'); ?>
+						</div>
 					</form>
 				</div>
 
 				<div class="tab-pane" id="adept">
 					<form class="form" role="form">	
-						<div class="form-group">
-							<label>Date</label>
-							<input class="form-control" type="date" name="adept_date" value="<?php if (isset($adept_tracker->Updated_At)) echo date('Y-m-d', strtotime($adept_tracker->Updated_At)); ?>">
-							<?php echo form_error('adept_date'); ?>
-						</div>
-
 						<div class="form-group">
 							<label>Control Number</label>	
 							<input class="form-control" type="text" name="adept_control_number" value="<?php if (isset($adept_tracker->Control_Number)) echo $adept_tracker->Control_Number; ?>">
@@ -326,25 +341,34 @@
 							<label>Username</label>
 							<input class="form-control" type="text" name="adept_username" value="<?php if (isset($adept_tracker->Username)) echo $adept_tracker->Username; ?>">
 							<?php echo form_error('adept_username'); ?>
-						</div>			
+						</div>
+
+						<div class="form-group">
+							<label>Status</label>
+							<select class="form-control" name="adept_status">
+							<?php foreach ($statuses as $status): ?>
+								<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($adept_tracker->Status_ID)) if ($status->Status_ID == $adept_tracker->Status_ID) echo 'selected="selected"' ?>><?php echo $status->Name; ?></option>
+							<?php endforeach; ?>
+							</select>
+							<?php echo form_error('adept_status'); ?>
+						</div>
+
+						<div class="form-group">
+							<label>Remarks</label>
+							<input class="form-control" type="text" name="adept_remarks" value="<?php if (isset($adept_tracker->Remarks)) echo $adept_tracker->Remarks; ?>">
+							<?php echo form_error('adept_remarks'); ?>
+						</div>
+
+						<div class="form-group">
+							<label>CD</label><br>
+							<input type="radio" name="adept_cd" value="1" <?php if (isset($adept_tracker->Interested_in_ITBPO)) if ($adept_tracker->Interested_in_ITBPO == 1) { echo 'checked="checked"'; } ?>> Yes
+							<input type="radio" name="adept_cd" value="0" <?php if (isset($adept_tracker->Interested_in_ITBPO)) if ($adept_tracker->Interested_in_ITBPO == 0) { echo 'checked="checked"'; } ?>> No
+							<?php echo form_error('adept_username'); ?>
+						</div>
 					</form>
 				</div>
 				
 				<div class="tab-pane" id="smp">
-					<legend>General Information</legend>
-					
-					<form class="form" role="form">
-						<div class="form-group">						
-							<label>Taking SMP as</label>
-							<select class="form-control" name="smp" value="<?php echo set_value('smp'); ?>">
-								<option>Option1</option>
-								<option>Option2</option>
-								<option>Option3</option>
-							</select>
-							<?php echo form_error('smp'); ?>
-						</div>
-					</form>
-					
 					<legend>Subjects</legend>
 
 					<form class="form" role="form">
@@ -500,7 +524,11 @@
 					<form class="form" role="form">
 						<div class="form-group">
 							<label>Status</label>
-							<input class="form-control" type="text" name="intern_status" value="<?php if (isset($internship->Name)) echo $internship->Name; ?>">
+							<select class="form-control" name="intern_status">
+							<?php foreach ($statuses as $status): ?>
+								<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($internship->Status_ID)) if ($status->Status_ID == $internship->Status_ID) echo 'selected="selected"' ?>><?php echo $status->Name; ?></option>
+							<?php endforeach; ?>
+							</select>
 							<?php echo form_error('intern_status'); ?>
 						</div>	
 						<div class="form-group">
