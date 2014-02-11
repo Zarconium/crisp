@@ -164,7 +164,7 @@
 			<div class="customize-btn-group">
 				<button type="button" class="btn btn-primary" onclick="$('[name=file_student_class_list]').click();">Batch Upload</button>
 				<button type="button" class="btn btn-danger" onclick="delete_student();">Delete</button>
-				<input type="file" name="file_student_class_list" accept=".xlsx" style="visibility:hidden" onchange="$('[name=save_draft]').click();">
+				<input type="file" name="file_student_class_list" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('[name=save_draft]').click();">
 			</div>
 
 			<table class="table table-striped table-area" id="student_list_table">
