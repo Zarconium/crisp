@@ -519,6 +519,14 @@ Class Student extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	function updateStudentById($id, $data)
+	{
+		$this->db->where('Student_ID', $id);
+		$this->db->update('student', $data);
+
+		return $this->db->_error_message();
+	}
+
 	function updateStudentByCode($code, $data)
 	{
 		$this->db->where('Code', $code);

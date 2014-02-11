@@ -85,11 +85,126 @@ class Dbms_Controller extends CI_Controller
 		$data['bpo102'] = $this->student->getBpo102ByStudentId($id);
 		$data['sc101'] = $this->student->getSc101ByStudentId($id);
 		$data['systh101'] = $this->student->getSysth101ByStudentId($id);
-		// $this->log->addLog('Updated Student Profile');
 
-		$this->load->view('header');
-		$this->load->view('forms/form-student-profile', $data);
-		$this->load->view('footer');
+		if($this->input->post())
+		{
+			$this->form_validation->set_rules('id_number', 'ID Number', 'trim|required|max_length[10]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[45]|alpha_numeric|xss_clean');
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[45]|alpha_numeric|xss_clean');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|max_length[4]|alpha|xss_clean');
+			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|max_length[5]|alpha_numeric|xss_clean');
+			$this->form_validation->set_rules('civil', 'Civil', 'trim|required|max_length[9]|xss_clean');
+			$this->form_validation->set_rules('birthday', 'Birthdate', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('birthplace', 'Birthplace', 'trim|required|max_length[45]|alpha_numeric|xss_clean');
+			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|exact_length[1]|xss_clean');
+			$this->form_validation->set_rules('nationality', 'Nationality', 'trim|required|max_length[45]|alpha|xss_clean');
+			$this->form_validation->set_rules('street_number', 'Street Number', 'trim|required|max_length[5]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('street_name', 'Street Name', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('city', 'City', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('province', 'Province', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('region', 'Region', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('alternate_address', 'Alternate Address', 'trim|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|max_length[13]|xss_clean');
+			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|max_length[9]|xss_clean');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[45]|valid_email|xss_clean');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('degree_type', 'AB/BS', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('degree', 'Degree', 'trim|required|max_length[97]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('year', 'Year Level', 'trim|required|integer|xss_clean');
+			$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('expected_year_of_graduation', 'Expected Year of Graduation', 'trim|required|integer|xss_clean');
+			$this->form_validation->set_rules('DOSTscholar', 'DOST Scholar', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('scholar', 'Scholar', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('work', 'Work', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('code', 'Code', 'trim|required|xss_clean');
+
+			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+			if($this->input->post('submit'))
+			{
+				if($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-student-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					$this->db->trans_begin();
+
+					$student = array
+					(
+						'School_ID' => $this->input->post('school'),
+						'Last_Name' => $this->input->post('last_name'),
+						'First_Name' => $this->input->post('first_name'),
+						'Middle_Initial' => $this->input->post('middle_initial'),
+						'Name_Suffix' => $this->input->post('name_suffix'),
+						'Student_ID_Number' => $this->input->post('id_number'),
+						'Civil_Status' => $this->input->post('civil'),
+						'Birthdate' => $this->input->post('birthday'),
+						'Birthplace' => $this->input->post('birthplace'),
+						'Gender' => $this->input->post('gender'),
+						'Nationality' => $this->input->post('nationality'),
+						'Street_Number' => $this->input->post('current_street_number'),
+						'Street_Name' => $this->input->post('current_street_name'),
+						'City' => $this->input->post('current_city'),
+						'Province' => $this->input->post('current_province'),
+						'Region' => $this->input->post('current_region'),
+						'Alternate_Address' => $this->input->post('alternate_address'),
+						'Mobile_Number' => $this->input->post('mobile'),
+						'Landline' => $this->input->post('landline'),
+						'Email' => $this->input->post('email'),
+						'Facebook' => $this->input->post('facebook'),
+						'Course' => $this->input->post('degree_type') . " " . $this->input->post('degree'),
+						'Year' => $this->input->post('year'),
+						'Expected_Year_of_Graduation' => $this->input->post('expected_year_of_graduation'),
+						'DOST_Scholar' => $this->input->post('DOSTscholar'),
+						'Scholar' => $this->input->post('scholar'),
+						'Interested_In_ITBPO' => $this->input->post('work'),
+						'Own_A_Computer' => $this->input->post('computer'),
+						'Internet_Access' => $this->input->post('internet'),
+						'Code' => $this->input->post('code')
+					);
+					
+					if ($this->student->updateStudentById($id, $student))
+					{
+						$this->db->trans_rollback();
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-student-profile', $data);
+						$this->load->view('footer');
+						return;
+					}
+
+					$this->db->trans_commit();
+					$data['form_success'] = TRUE;
+					$this->log->addLog('Updated Student Profile');
+
+					$this->load->view('header');
+					$this->load->view('forms/form-student-profile', $data);
+					$this->load->view('footer');
+				}
+			}
+			elseif($this->input->post('save_draft'))
+			{
+				$this->form_validation->run();
+
+				$data['draft_saved'] = TRUE;
+
+				$this->load->view('header');
+				$this->load->view('forms/form-student-profile', $data);
+				$this->load->view('footer');
+			}
+		}
+		else
+		{
+			$this->load->view('header');
+			$this->load->view('forms/form-student-profile', $data);
+			$this->load->view('footer');
+		}
 	}
 	
 	
@@ -2556,7 +2671,7 @@ class Dbms_Controller extends CI_Controller
 				'GCAT_Total_Cognitive' => trim($row['S']),
 				'GCAT_English_Proficiency' => trim($row['T']),
 				'GCAT_Computer_Literacy' => trim($row['U']),
-				'GCAT_Perceptual_Speed_&_Accuracy' => trim($row['V']),
+				'GCAT_Perceptual_Speed_And_Accuracy' => trim($row['V']),
 				'GCAT_Behavioral_Component_Overall_Score' => trim($row['W']),
 				'GCAT_Communication' => trim($row['X']),
 				'GCAT_Learning_Orientation' => trim($row['Y']),
