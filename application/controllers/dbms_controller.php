@@ -79,7 +79,7 @@ class Dbms_Controller extends CI_Controller
 		$data['best_tracker'] = $this->student->getBestStudentByStudentIdOrCode($id);
 		$data['adept_tracker'] = $this->student->getAdeptStudentByStudentIdOrCode($id);
 		$data['smp_tracker'] = $this->student->getSmpStudentByStudentIdOrCode($id);
-		$data['internship'] = $this->student->getInternshipByStudentId($id);
+		$data['internship'] = $this->student->getInternshipByStudentIdOrCode($id);
 		$data['bizcom'] = $this->student->getBizComByStudentId($id);
 		$data['bpo101'] = $this->student->getBpo101ByStudentId($id);
 		$data['bpo102'] = $this->student->getBpo102ByStudentId($id);
@@ -303,28 +303,28 @@ class Dbms_Controller extends CI_Controller
 		if($this->input->post())
 		{
 			$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[45]|xss_clean');
-			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[45]|xss_clean');
-			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim||max_length[4]xss_clean');
-			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|max_length[5]|xss_clean');
-			$this->form_validation->set_rules('id_number', 'ID Number', 'trim|required|max_length[10]|xss_clean');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[45]|alpha_numeric|xss_clean');
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[45]|alpha_numeric|xss_clean');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|max_length[4]|alpha|xss_clean');
+			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|max_length[5]|alpha_numeric|xss_clean');
+			$this->form_validation->set_rules('id_number', 'ID Number', 'trim|required|max_length[10]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('civil', 'Civil', 'trim|required|max_length[9]|xss_clean');
 			$this->form_validation->set_rules('birthday', 'Birthdate', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('birthplace', 'Birthplace', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('birthplace', 'Birthplace', 'trim|required|max_length[45]|alpha_numeric|xss_clean');
 			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|exact_length[1]|xss_clean');
-			$this->form_validation->set_rules('nationality', 'Nationality', 'trim|required|max_length[45]|xss_clean');
-			$this->form_validation->set_rules('current_street_number', 'Street Number', 'trim|required|max_length[5]|xss_clean');
-			$this->form_validation->set_rules('current_street_name', 'Street Name', 'trim|required|max_length[45]|xss_clean');
-			$this->form_validation->set_rules('current_city', 'City', 'trim|required|max_length[45]|xss_clean');
-			$this->form_validation->set_rules('current_province', 'Province', 'trim|required|max_length[45]|xss_clean');
-			$this->form_validation->set_rules('current_region', 'Region', 'trim|required|max_length[45]|xss_clean');
-			$this->form_validation->set_rules('alternate_address', 'Alternate Address', 'trim|xss_clean');
+			$this->form_validation->set_rules('nationality', 'Nationality', 'trim|required|max_length[45]|alpha|xss_clean');
+			$this->form_validation->set_rules('current_street_number', 'Street Number', 'trim|required|max_length[5]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('current_street_name', 'Street Name', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('current_city', 'City', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('current_province', 'Province', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('current_region', 'Region', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('alternate_address', 'Alternate Address', 'trim|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|max_length[13]|xss_clean');
 			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|max_length[9]|xss_clean');
-			$this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[45]|xss_clean');
-			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[45]|valid_email|xss_clean');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('degree_type', 'AB/BS', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('degree', 'Degree', 'trim|required|max_length[97]|xss_clean');
+			$this->form_validation->set_rules('degree', 'Degree', 'trim|required|max_length[97]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('year', 'Year Level', 'trim|required|integer|xss_clean');
 			$this->form_validation->set_rules('expected_year_of_graduation', 'Expected Year of Graduation', 'trim|required|integer|xss_clean');
 			$this->form_validation->set_rules('DOSTscholar', 'DOST Scholar', 'trim|required|xss_clean');
@@ -948,14 +948,107 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['subjects'] = $this->subject->getAllSubjects();
-		if ($_FILES) $data['class_list'] = $this->upload_student_class_list();
-		// $this->log->addLog('Added Class List');
+		if (!empty($_FILES['file_student_class_list']['tmp_name'])) $data['class_list'] = $this->upload_student_class_list();
 
 		if ($this->input->post())
 		{
-			$this->load->view('header');
-			$this->load->view('forms/form-class-add', $data);
-			$this->load->view('footer');
+			$this->form_validation->set_rules('teacher_last_name', 'Teacher\'s Last Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('teacher_first_name', 'Teacher\'s First Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('teacher_middle_initial', 'Teacher\'s Middle Initial', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('teacher_email', 'Teacher\'s Email', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('teacher_birthdate', 'Teacher\'s Birthdate', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('subject', 'Subject', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('semester', 'Semester', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('year', 'Year', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('section', 'Section', 'trim|required|xss_clean');
+
+			$this->form_validation->set_rules('last_name[]', 'Last Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('first_name[]', 'First Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('middle_initial[]', 'Middlte Initial', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('student_number[]', 'Student Number', 'trim|required|xss_clean');
+
+			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+			
+			if ($this->input->post('submit'))
+			{
+				if($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-class-add', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					$this->db->trans_begin();
+
+					$school_id = $this->input->post('school');
+
+					$class = array
+					(
+						'Name' => $this->input->post('section'),
+						'School_Year' => $this->input->post('year'),
+						'Semester' => $this->input->post('semester'),
+						'School_ID' => $school_id,
+						'Subject_ID' => $this->input->post('subject')
+					);
+					$class_id = $this->classess->addClass($class);
+
+					for ($i = 0; $i < count($this->input->post('student_number')); $i++)
+					{
+						$student_code = $school_id . $this->input->post('student_number')[$i];
+						$student_id = $this->student->getStudentByCode($student_code);
+
+						if (!$student_id)
+						{
+							$data['student_not_found'] = TRUE;
+							$this->db->trans_rollback();
+							$this->load->view('header');
+							$this->load->view('forms/form-class-add', $data);
+							$this->load->view('footer');
+							return;
+						}
+
+						$student_class = array
+						(
+							'Class_ID' => $class_id,
+							'Student_ID' => $student_id
+						);
+						$this->classes->addStudentClass($student_class);
+
+						if ($this->db->_error_message())
+						{
+							$data['student_not_found'] = TRUE;
+							$this->db->trans_rollback();
+							$this->load->view('header');
+							$this->load->view('forms/form-class-add', $data);
+							$this->load->view('footer');
+							return;
+						}
+					}
+
+					$this->db->trans_commit();
+
+					$data['form_success'] = TRUE;
+					$this->log->addLog('Added Class List');
+
+					$this->load->view('header');
+					$this->load->view('forms/form-class-add', $data);
+					$this->load->view('footer');
+				}
+			}
+			elseif ($this->input->post('save_draft'))
+			{
+				$this->form_validation->run();
+
+				$data['draft_saved'] = TRUE;
+
+				$this->load->view('header');
+				$this->load->view('forms/form-class-add', $data);
+				$this->load->view('footer');
+			}
 		}
 		else
 		{
@@ -1329,7 +1422,15 @@ class Dbms_Controller extends CI_Controller
 								'Tracker_ID' => $tracker_id
 							);
 							$this->student->addSmpStudent($subject_student);
-							$this->student->addSmpStudentCoursesTaken($subject_student);
+
+							if ($subject_id != 11)
+							{
+								$this->student->addSmpStudentCoursesTaken($subject_student);
+							}
+							else
+							{
+								$this->student->addInternshipStudent($subject_student);
+							}
 
 							if ($this->db->_error_message())
 							{
@@ -1623,7 +1724,15 @@ class Dbms_Controller extends CI_Controller
 								'Tracker_ID' => $tracker_id
 							);
 							$this->student->addSmpStudent($subject_student);
-							$this->student->addSmpStudentCoursesTaken($subject_student);
+
+							if ($subject_id != 11)
+							{
+								$this->student->addSmpStudentCoursesTaken($subject_student);
+							}
+							else
+							{
+								$this->student->addInternshipStudent($subject_student);
+							}
 
 							if ($this->db->_error_message())
 							{
@@ -2148,6 +2257,11 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_gcat_student_tracker()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_gcat_student_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
@@ -2211,6 +2325,11 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_smp_student_tracker()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_smp_student_tracker']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
@@ -2275,6 +2394,11 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_internship()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_internship']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
@@ -2290,31 +2414,39 @@ class Dbms_Controller extends CI_Controller
 			$school_id = $this->school->getSchoolIdByCode(trim($row['E']))->School_ID;
 			$subject = 'Intern';
 			
-			$code = $school_id . $row['D']; //Get Code
+			$code = $school_id . trim($row['D']); //Get Code
 
 			$intern = array
 			(
-				'Company_Information' => $row['G'],
-				'Company_Address' => $row['H'],
-				'Department' => $row['I'],
-				'Supervisor_Name' => $row['J'],
-				'Supervisor_Contact' => $row['K'],
-				'Start_Date' => $row['L'],
-				'End_Date' => $row['M'],
-				'Total_Work_Hours' => $row['N'],
-				'Status' => $row['P'],
-				'Remarks' => $row['Q']
+				'Company_Information' => trim($row['F']),
+				'Company_Address' => trim($row['H']),
+				'Task' => trim($row['I']),
+				'Supervisor_Name' => trim($row['J']),
+				'Supervisor_Contact' => trim($row['K']),
+				'Start_Date' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['M'], 'MM/DD/YYYY'))),
+				'End_Date' => date('Y-m-d', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['N'], 'MM/DD/YYYY'))),
+				'Total_Work_Hours' => trim($row['O']),
+				'tracker.Status_ID' => $this->status->getStatusIDByName(trim($row['P']))->Status_ID,
+				'Remarks' => trim($row['Q'])
 			);
 
-		
 			if (!$this->student->getStudentByCode($code))
 			{
 				$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Student does not exist.');
 				$this->db->trans_rollback();
-				redirect('dbms');					
+				redirect('dbms');
 			}
 
-			if ($this->student->updateStudentTracker($code, $subject, $intern))
+			if ($this->student->getInternshipByStudentIdOrCode($code))
+			{
+				if ($this->student->updateInternshipStudent($code, $intern))
+				{
+					$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Internship Tracker update failed.');
+					$this->db->trans_rollback();
+					redirect('dbms');
+				}
+			}
+			else
 			{
 				$this->session->set_flashdata('upload_error', 'Internship Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Internship Tracker does not exist.');
 				$this->db->trans_rollback();
@@ -2337,6 +2469,11 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_class_list()
 	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 		$objPHPExcel = $objReader->load($_FILES['file_class_list']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
@@ -2392,81 +2529,81 @@ class Dbms_Controller extends CI_Controller
 
 	function upload_gcat_student_grades()
 	{
-		$this->log->addLog('GCAT Student Grades Batch Upload');
-	}
-
-	function upload_best_student_grades()// please test
-	{
 		if (!$_FILES)
 		{
 			redirect(base_url('dbms'));
 		}
 
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-		$objPHPExcel = $objReader->load($_FILES['file_best_grades']['tmp_name']);
+		$objPHPExcel = $objReader->load($_FILES['file_gcat_student_grades']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
-		$counter = 4;
+		$counter = 0;
+		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
-			if ($counter++ < 4) continue;
+			if ($counter++ < 1) continue;
 			if ($counter > $highestRow) break;
 
-			//-----getting the student code-------------------
-			$this->db->select('Tracker_ID');
-			$this->db->from('best_student');
-			$this->db->where('Username', $row['D']);
-			$trackerId = $this->db->get(); //to get tracker ID
+			$email = trim($row['N']);
+			$code = $this->student->getStudentByEmail($email)->Code;
+			$subject = 'GCAT';
 
-			$this->db->select('Student_ID');
-			$this->db->from('student_tracker');
-			$this->db->where('Tracker_ID', $trackerId);
-			$studentId = $this->db->get(); //to get student id 
-
-			$this->db->select('Code');
-			$this->db->from('student');
-			$this->db->where('Student_ID', $studentId);
-			$code = $this->db->get(); //to get student code
-			//-------------------------------------------------
-			
-			$grades = array
+			$gcat_student = array
 			(
-				'Oral' => $row['I'],
-				'Retention' => $row['J'],
-				'Typing' => $row['K'],
-				'Grammar' => $row['L'],
-				'Comprehension' => $row['M'],
-				'Summary Scores' => $row['N'],
+				'GCAT_Basic_Skills_Test_Overall_Score' => trim($row['R']),
+				'GCAT_Total_Cognitive' => trim($row['S']),
+				'GCAT_English_Proficiency' => trim($row['T']),
+				'GCAT_Computer_Literacy' => trim($row['U']),
+				'GCAT_Perceptual_Speed_&_Accuracy' => trim($row['V']),
+				'GCAT_Behavioral_Component_Overall_Score' => trim($row['W']),
+				'GCAT_Communication' => trim($row['X']),
+				'GCAT_Learning_Orientation' => trim($row['Y']),
+				'GCAT_Courtesy' => trim($row['Z']),
+				'GCAT_Empathy' => trim($row['AA']),
+				'GCAT_Reliability' => trim($row['AB']),
+				'GCAT_Responsiveness' => trim($row['AC']),
 			);
-
-			$subject = 'BEST';
 			
-			if (!$this->student->getStudentByCode($Code))
+			if (!$code)
 			{
-				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $counter . '. Student does not exists');
-				redirect('dbms');					
+				$this->session->set_flashdata('upload_error', 'GCAT grades upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Student does not exist.');
+				$this->db->trans_rollback();
+				redirect('dbms');
 			}
-			else if (!$this->student->updateBestStudent($code, $subject, $trackerId))//tama bang trackerId = tracker?
+
+			if ($this->student->getGcatStudentByStudentIdOrCode($code))
 			{
-				$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Invalid data at row ' . $counter);
+				if ($this->student->updateGcatStudent($code, $subject, $gcat_student))
+				{
+					$this->session->set_flashdata('upload_error', 'GCAT grades upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Update failed.');
+					$this->db->trans_rollback();
+					redirect('dbms');
+				}
+			}
+			else
+			{
+				$this->session->set_flashdata('upload_error', 'GCAT grades upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. GCAT Tracker does not exist.');
+				$this->db->trans_rollback();
 				redirect('dbms');
 			}
 		}
+		$this->db->trans_commit();
 
-		if ($counter > 4)
+		if ($counter > 1)
 		{
-			$this->session->set_flashdata('upload_success', 'BEST Grades successfully uploaded. ' . ($counter - 4) . ' of ' . ($highestRow - 4) . ' teachers added/updated.');
-			$this->log->addLog('BEST Grades Batch Upload');	
+			$this->session->set_flashdata('upload_success', 'GCAT grades successfully uploaded. ' . ($counter - 1) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+			$this->log->addLog('GCAT Student Grades Batch Upload');
 		}
 		else
 		{
-			$this->session->set_flashdata('upload_error', 'BEST Grades upload failed. Empty file.');
+			$this->session->set_flashdata('upload_error', 'GCAT Tracker upload failed. Empty file.');
 		}
 		redirect('dbms');
 	}
 
-	function upload_adept_student_grades()// please test
+	function upload_best_student_grades()
 	{
 		if (!$_FILES)
 		{
@@ -2474,67 +2611,114 @@ class Dbms_Controller extends CI_Controller
 		}
 
 		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-		$objPHPExcel = $objReader->load($_FILES['file_adept_grades']['tmp_name']);
+		$objPHPExcel = $objReader->load($_FILES['file_best_student_grades']['tmp_name']);
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
 
-		$counter = 4;
+		$counter = 0;
+		$this->db->trans_begin();
 		foreach ($sheetData as $row)
 		{
 			if ($counter++ < 4) continue;
 			if ($counter > $highestRow) break;
 
-			//-----getting the student code-------------------
-			$this->db->select('Tracker_ID');
-			$this->db->from('adept_student');
-			$this->db->where('Username', $row['D']);
-			$trackerId = $this->db->get(); //to get tracker ID
+			$username = trim($row['D']);
+			$subject = 'BEST';
 
-			$this->db->select('Student_ID');
-			$this->db->from('student_tracker');
-			$this->db->where('Tracker_ID', $trackerId);
-			$studentId = $this->db->get(); //to get student id 
-
-			$this->db->select('Code');
-			$this->db->from('student');
-			$this->db->where('Student_ID', $studentId);
-			$code = $this->db->get(); //to get student code
-			//-------------------------------------------------
-			
-			$grades = array
+			$best_student = array
 			(
-				'Oral' => $row['I'],
-				'Retention' => $row['J'],
-				'Typing' => $row['K'],
-				'Grammar' => $row['L'],
-				'Comprehension' => $row['M'],
-				'Summary Scores' => $row['N'],
+				'Oral' => trim($row['I']),
+				'Retention' => trim($row['J']),
+				'Typing' => trim($row['K']),
+				'Grammar' => trim($row['L']),
+				'Comprehension' => trim($row['M']),
+				'Summary_Scores' => trim($row['N']),
 			);
-
-			$subject = 'AdEPT';
 			
-			if (!$this->student->getStudentByCode($Code))
+			if (!$this->student->getBestStudentByUsername($username))
 			{
-				$this->session->set_flashdata('upload_error', 'AdEPT Grades upload failed. Invalid data at row ' . $counter . '. Student does not exists');
-				redirect('dbms');					
+				$this->session->set_flashdata('upload_error', 'BEST grades upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. BEST Tracker does not exist.');
+				$this->db->trans_rollback();
+				redirect('dbms');
 			}
-			else if (!$this->student->updateAdeptStudent($code, $subject, $trackerId))//tama bang trackerId = tracker?
+
+			if ($this->student->updateBestStudentByUsername($username, $best_student))
 			{
-				$this->session->set_flashdata('upload_error', 'AdEPT Grades upload failed. Invalid data at row ' . $counter);
+				$this->session->set_flashdata('upload_error', 'BEST grades upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Update failed.');
+				$this->db->trans_rollback();
 				redirect('dbms');
 			}
 		}
-
 		$this->db->trans_commit();
 
 		if ($counter > 4)
 		{
-			$this->session->set_flashdata('upload_success', 'AdEPT Grades successfully uploaded. ' . ($counter - 4) . ' of ' . ($highestRow - 4) . ' teachers added/updated.');
-			$this->log->addLog('BEST Grades Batch Upload');	
+			$this->session->set_flashdata('upload_success', 'BEST grades successfully uploaded. ' . ($counter - 4) . ' of ' . ($highestRow - 4) . ' students added/updated.');
+			$this->log->addLog('BEST Student Grades Batch Upload');
 		}
 		else
 		{
-			$this->session->set_flashdata('upload_error', 'AdEPT Grades upload failed. Empty file.');
+			$this->session->set_flashdata('upload_error', 'BEST Tracker upload failed. Empty file.');
+		}
+		redirect('dbms');
+	}
+
+	function upload_adept_student_grades()
+	{
+		if (!$_FILES)
+		{
+			redirect(base_url('dbms'));
+		}
+
+		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+		$objPHPExcel = $objReader->load($_FILES['file_adept_student_grades']['tmp_name']);
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+		$highestRow = $objPHPExcel->getActiveSheet()->getHighestDataRow();
+
+		$counter = 0;
+		$this->db->trans_begin();
+		foreach ($sheetData as $row)
+		{
+			if ($counter++ < 4) continue;
+			if ($counter > $highestRow) break;
+
+			$username = trim($row['D']);
+			$subject = 'AdEPT';
+
+			$adept_student = array
+			(
+				'Oral' => trim($row['I']),
+				'Retention' => trim($row['J']),
+				'Typing' => trim($row['K']),
+				'Grammar' => trim($row['L']),
+				'Comprehension' => trim($row['M']),
+				'Summary_Scores' => trim($row['N']),
+			);
+			
+			if (!$this->student->getAdeptStudentByUsername($username))
+			{
+				$this->session->set_flashdata('upload_error', 'AdEPT grades upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. AdEPT Tracker does not exist.');
+				$this->db->trans_rollback();
+				redirect('dbms');
+			}
+
+			if ($this->student->updateAdeptStudentByUsername($username, $adept_student))
+			{
+				$this->session->set_flashdata('upload_error', 'AdEPT grades upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Update failed.');
+				$this->db->trans_rollback();
+				redirect('dbms');
+			}
+		}
+		$this->db->trans_commit();
+
+		if ($counter > 4)
+		{
+			$this->session->set_flashdata('upload_success', 'AdEPT grades successfully uploaded. ' . ($counter - 4) . ' of ' . ($highestRow - 4) . ' students added/updated.');
+			$this->log->addLog('AdEPT Student Grades Batch Upload');
+		}
+		else
+		{
+			$this->session->set_flashdata('upload_error', 'AdEPT Tracker upload failed. Empty file.');
 		}
 		redirect('dbms');
 	}
@@ -3594,15 +3778,6 @@ class Dbms_Controller extends CI_Controller
 			);
 
 			$classlist[] = $student;
-		}
-
-		if ($counter > 10)
-		{
-			$this->session->set_flashdata('upload_success', 'Student class list successfully uploaded. ' . ($counter - 10) . ' of ' . ($highestRow - 10) . ' students added/updated.');
-		}
-		else
-		{
-			$this->session->set_flashdata('upload_error', 'Student class list upload failed. Empty file.');
 		}
 
 		return $classlist;
