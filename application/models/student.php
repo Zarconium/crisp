@@ -64,11 +64,11 @@ Class Student extends CI_Model
 		}
 	}
 
-	function getStudentIDByCode($code)
+	function getStudentByCode($code)
 	{
-		$this->db->select('student.Student_ID');
+		$this->db->select('*');
 		$this->db->from('student');
-		$this->db->where('student.Code', $code);
+		$this->db->where('Code', $code);
 		$this->db->limit(1);
 		
 		$query = $this->db->get();
@@ -83,31 +83,30 @@ Class Student extends CI_Model
 		}
 	}
 
+	function getStudentByEmail($email)
+	{
+		$this->db->select('*');
+		$this->db->from('student');
+		$this->db->where('Email', $email);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	function getStudentByUsername($username)//<-- di pa final. same comment sa teacher user name. saan ba talaga galing? 
 	{
 		$this->db->select('*');
 		$this->db->from('student');
 		$this->db->where('User_name', $username);
-		$this->db->limit(1);
-		
-		$query = $this->db->get();
-		
-		if($query->num_rows() > 0)
-		{
-			return $query->row();
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	function getStudentByCode($code)
-	{
-		$this->db->select('*');
-		$this->db->from('student');
-		$this->db->where('Code', $code);
 		$this->db->limit(1);
 		
 		$query = $this->db->get();
@@ -214,6 +213,25 @@ Class Student extends CI_Model
 		}
 	}
 
+	function getBestStudentByUsername($username)
+	{
+		$this->db->select('*');
+		$this->db->from('best_student');
+		$this->db->where('Username', $username);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getAdeptStudentByStudentIdOrCode($id_code)
 	{
 		$this->db->select('*');
@@ -223,6 +241,25 @@ Class Student extends CI_Model
 		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
 		$this->db->where('student.Student_ID', $id_code);
 		$this->db->or_where('student.Code', $id_code);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAdeptStudentByUsername($username)
+	{
+		$this->db->select('*');
+		$this->db->from('adept_student');
+		$this->db->where('Username', $username);
 		$this->db->limit(1);
 		
 		$query = $this->db->get();
@@ -498,12 +535,28 @@ Class Student extends CI_Model
 		return $this->db->_error_message();
 	}
 
+	function updateBestStudentByUsername($username, $tracker)
+	{
+		$this->db->where('Username', $username);
+		$this->db->update('best_student', $tracker);
+
+		return $this->db->_error_message();
+	}
+
 	function updateAdeptStudent($code, $subject, $tracker)
 	{
 		$this->db->set($tracker);
 		$this->db->where('student.Code', $code);
 		$this->db->where('subject.Subject_Code', $subject);
 		$this->db->update('adept_student JOIN tracker ON adept_student.Tracker_ID = tracker.Tracker_ID JOIN student_tracker ON tracker.Tracker_ID = student_tracker.Tracker_ID JOIN student ON student_tracker.Student_ID = student.Student_ID JOIN subject ON tracker.Subject_ID = subject.Subject_ID');
+
+		return $this->db->_error_message();
+	}
+
+	function updateAdeptStudentByUsername($username, $tracker)
+	{
+		$this->db->where('Username', $username);
+		$this->db->update('adept_student', $tracker);
 
 		return $this->db->_error_message();
 	}
