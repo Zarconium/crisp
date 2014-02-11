@@ -192,9 +192,10 @@ Class Student extends CI_Model
 
 	function getBestStudentByStudentIdOrCode($id_code)
 	{
-		$this->db->select('*');
+		$this->db->select('*, status.Name as Status_Name');
 		$this->db->from('best_student');
 		$this->db->join('tracker', 'best_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
 		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
 		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
 		$this->db->where('student.Student_ID', $id_code);
@@ -234,9 +235,10 @@ Class Student extends CI_Model
 
 	function getAdeptStudentByStudentIdOrCode($id_code)
 	{
-		$this->db->select('*');
+		$this->db->select('*, status.Name as Status_Name');
 		$this->db->from('adept_student');
 		$this->db->join('tracker', 'adept_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
 		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
 		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
 		$this->db->where('student.Student_ID', $id_code);
@@ -276,7 +278,7 @@ Class Student extends CI_Model
 
 	function getInternshipByStudentIdOrCode($id_code)
 	{
-		$this->db->select('*');
+		$this->db->select('*, status.Name as Status_Name');
 		$this->db->from('internship_student');
 		$this->db->join('tracker', 'internship_student.Tracker_ID = tracker.Tracker_ID', 'left');
 		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');

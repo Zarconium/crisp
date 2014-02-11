@@ -220,29 +220,209 @@
 	  
 		<div class="tab-pane" id="grades">
 			<legend>Grades</legend>
-			<table class="table">
+			<table class="table table-striped">
+				<thead>
 				<tr>
 					<th>Program</th>
-					<th>Date</th>
 					<th>Grade</th>
 					<th>Status</th>
 				</tr>
+				</thead>
+				<tbody>
+				<?php if (isset($gcat_tracker)): ?>
 				<tr>
-					<td>GCAT</td>
-					<td>December 20, 2013</td>
-					<td>80</td>
-					<td>Pass</td>
+					<td><strong>GCAT</strong></td>
+					<td></td>
+					<td><?php if (isset($gcat_tracker->Status_Name)) echo $gcat_tracker->Status_Name; ?></td>
 				</tr>
+				<tr>
+					<td>Total Cognitive</td>
+					<td><?php if (isset($gcat_tracker->GCAT_Total_Cognitive)) echo $gcat_tracker->GCAT_Total_Cognitive; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Responsiveness</td>
+					<td><?php if (isset($gcat_tracker->GCAT_Responsiveness)) echo $gcat_tracker->GCAT_Responsiveness; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Reliability</td>
+					<td><?php if (isset($gcat_tracker->GCAT_Reliability)) echo $gcat_tracker->GCAT_Reliability; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Empathy</td>
+					<td><?php if (isset($gcat_tracker->GCAT_Empathy)) echo $gcat_tracker->GCAT_Empathy; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Courtesy</td>
+					<td><?php if (isset($gcat_tracker->GCAT_Courtesy)) echo $gcat_tracker->GCAT_Courtesy; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Learning Orientation</td>
+					<td><?php if (isset($gcat_tracker->GCAT_Learning_Orientation)) echo $gcat_tracker->GCAT_Learning_Orientation; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Communication</td>
+					<td><?php if (isset($gcat_tracker->GCAT_Communication)) echo $gcat_tracker->GCAT_Communication; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Behavioral Component Overall Score</td>
+					<td><?php if (isset($gcat_tracker->GCAT_Behavioral_Component_Overall_Score)) echo $gcat_tracker->GCAT_Behavioral_Component_Overall_Score; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Perceptual Speed &amp; Accuracy</td>
+					<td><?php if (isset($gcat_tracker->GCAT_Perceptual_Speed_And_Accuracy)) echo $gcat_tracker->GCAT_Perceptual_Speed_And_Accuracy; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Computer Literacy</td>
+					<td><?php if (isset($gcat_tracker->GCAT_Computer_Literacy)) echo $gcat_tracker->GCAT_Computer_Literacy; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>English Proficiency</td>
+					<td><?php if (isset($gcat_tracker->GCAT_English_Proficiency)) echo $gcat_tracker->GCAT_English_Proficiency; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Basic Skills Test Overall Score</td>
+					<td><?php if (isset($gcat_tracker->GCAT_Basic_Skills_Test_Overall_Score)) echo $gcat_tracker->GCAT_Basic_Skills_Test_Overall_Score; ?></td>
+					<td></td>
+				</tr>
+				<?php endif; ?>
+				<?php if (isset($best_tracker)): ?>
+				<tr>
+					<td><strong>BEST</strong></td>
+					<td></td>
+					<td><?php if (isset($best_tracker->Status_Name)) echo $best_tracker->Status_Name; ?></td>
+				</tr>
+				<tr>
+					<td>Oral</td>
+					<td><?php if (isset($best_tracker->Oral)) echo $best_tracker->Oral; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Retention</td>
+					<td><?php if (isset($best_tracker->Retention)) echo $best_tracker->Retention; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Typing</td>
+					<td><?php if (isset($best_tracker->Typing)) echo $best_tracker->Typing; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Grammar</td>
+					<td><?php if (isset($best_tracker->Grammar)) echo $best_tracker->Grammar; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Comprehension</td>
+					<td><?php if (isset($best_tracker->Comprehension)) echo $best_tracker->Comprehension; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Summary Scores</td>
+					<td><?php if (isset($best_tracker->Summary_Scores)) echo $best_tracker->Summary_Scores; ?></td>
+					<td></td>
+				</tr>
+				<?php endif; ?>
+				<?php if (isset($adept_tracker)): ?>
+				<tr>
+					<td><strong>AdEPT</strong></td>
+					<td></td>
+					<td><?php if (isset($adept_tracker->Status_Name)) echo $adept_tracker->Status_Name; ?></td>
+				</tr>
+				<tr>
+					<td>Oral</td>
+					<td><?php if (isset($adept_tracker->Oral)) echo $adept_tracker->Oral; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Retention</td>
+					<td><?php if (isset($adept_tracker->Retention)) echo $adept_tracker->Retention; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Typing</td>
+					<td><?php if (isset($adept_tracker->Typing)) echo $adept_tracker->Typing; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Grammar</td>
+					<td><?php if (isset($adept_tracker->Grammar)) echo $adept_tracker->Grammar; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Comprehension</td>
+					<td><?php if (isset($adept_tracker->Comprehension)) echo $adept_tracker->Comprehension; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Summary Scores</td>
+					<td><?php if (isset($adept_tracker->Summary_Scores)) echo $adept_tracker->Summary_Scores; ?></td>
+					<td></td>
+				</tr>
+				<?php endif; ?>
+				<?php if (isset($internship)): ?>
+				<tr>
+					<td><strong>SMP Internship</strong></td>
+					<td></td>
+					<td><?php if (isset($internship->Status_Name)) echo $internship->Status_Name; ?></td>
+				</tr>
+				<tr>
+					<td>English Proficiency</td>
+					<td><?php if (isset($internship->English_Proficiency)) echo $internship->English_Proficiency; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Computer Literacy</td>
+					<td><?php if (isset($internship->Computer_Literacy)) echo $internship->Computer_Literacy; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Learning Orientation</td>
+					<td><?php if (isset($internship->Learning_Orientation)) echo $internship->Learning_Orientation; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Perceptual Speed &amp; Accuracy</td>
+					<td><?php if (isset($internship->Perceptual_Speed_and_Accuracy)) echo $internship->Perceptual_Speed_and_Accuracy; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Reliability</td>
+					<td><?php if (isset($internship->Reliability)) echo $internship->Reliability; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Empathy</td>
+					<td><?php if (isset($internship->Empathy)) echo $internship->Empathy; ?></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Responsiveness</td>
+					<td><?php if (isset($internship->Responsiveness)) echo $internship->Responsiveness; ?></td>
+					<td></td>
+				</tr>
+				<?php endif; ?>
+				</tbody>
 			</table>
 		</div>
 	  
 		<div class="tab-pane" id="tracker">
 	
 			<ul class="nav nav-tabs">
-			  <li class="active"><a href="#gcat" data-toggle="tab">GCAT</a></li>
-			  <li><a href="#best" data-toggle="tab">BEST</a></li>
-			  <li><a href="#adept" data-toggle="tab">ADEPT</a></li>
-			  <li><a href="#smp" data-toggle="tab">SMP</a></li>
+				<li class="active"><a href="#gcat" data-toggle="tab">GCAT</a></li>
+				<li><a href="#best" data-toggle="tab">BEST</a></li>
+				<li><a href="#adept" data-toggle="tab">ADEPT</a></li>
+				<li><a href="#smp" data-toggle="tab">SMP</a></li>
 			</ul>
 			
 			<div class="tab-content">
@@ -251,31 +431,26 @@
 						<div class="form-group">
 							<label>Proctor</label>
 							<input class="form-control" type="text" name="gcat_proctor" value="<?php if (isset($this->proctor->getProctorFullNameById($gcat_tracker->Proctor_ID)->Full_Name)) echo $this->proctor->getProctorFullNameById($gcat_tracker->Proctor_ID)->Full_Name; ?>">
-							<?php echo form_error('gcat_proctor'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Semester</label>
 							<input class="form-control" type="text" name="gcat_semester" value="<?php if(isset($gcat_tracker->Semester)) echo $gcat_tracker->Semester; ?>">
-							<?php echo form_error('gcat_semester'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Year</label>
 							<input class="form-control" type="text" name="gcat_year" value="<?php if(isset($gcat_tracker->School_Year)) echo $gcat_tracker->School_Year; ?>">
-							<?php echo form_error('gcat_year'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Session ID</label>
 							<input class="form-control" type="text" name="gcat_session_id" value="<?php if(isset($gcat_tracker->Session_ID)) echo $gcat_tracker->Session_ID; ?>">
-							<?php echo form_error('gcat_session_id'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Test Date</label>
 							<input class="form-control" type="date" name="gcat_test_date" value="<?php if(isset($gcat_tracker->Test_Date)) echo date('Y-m-d', strtotime($gcat_tracker->Test_Date)); ?>">
-							<?php echo form_error('gcat_test_date'); ?>
 						</div>
 
 						<div class="form-group">
@@ -285,7 +460,6 @@
 								<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($gcat_tracker->Status_ID)) if ($status->Status_ID == $gcat_tracker->Status_ID) echo 'selected="selected"' ?>><?php echo $status->Name; ?></option>
 							<?php endforeach; ?>
 							</select>
-							<?php echo form_error('gcat_status'); ?>
 						</div>
 					</form>
 				</div>
@@ -295,13 +469,11 @@
 						<div class="form-group">
 							<label>Control Number</label>
 							<input class="form-control" type="text" name="best_control_number" value="<?php if (isset($best_tracker->Control_Number)) echo $best_tracker->Control_Number; ?>">
-							<?php echo form_error('best_control_number'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Username</label>
 							<input class="form-control" type="text" name="best_username" value="<?php if (isset($best_tracker->Username)) echo $best_tracker->Username; ?>">
-							<?php echo form_error('best_username'); ?>
 						</div>
 
 						<div class="form-group">
@@ -311,20 +483,17 @@
 								<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($best_tracker->Status_ID)) if ($status->Status_ID == $best_tracker->Status_ID) echo 'selected="selected"' ?>><?php echo $status->Name; ?></option>
 							<?php endforeach; ?>
 							</select>
-							<?php echo form_error('best_status'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Remarks</label>
 							<input class="form-control" type="text" name="best_remarks" value="<?php if (isset($best_tracker->Remarks)) echo $best_tracker->Remarks; ?>">
-							<?php echo form_error('best_remarks'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>CD</label><br>
 							<input type="radio" name="best_cd" value="1" <?php if (isset($best_tracker->Interested_in_ITBPO)) if ($best_tracker->Interested_in_ITBPO == 1) { echo 'checked="checked"'; } ?>> Yes
 							<input type="radio" name="best_cd" value="0" <?php if (isset($best_tracker->Interested_in_ITBPO)) if ($best_tracker->Interested_in_ITBPO == 0) { echo 'checked="checked"'; } ?>> No
-							<?php echo form_error('best_username'); ?>
 						</div>
 					</form>
 				</div>
@@ -334,13 +503,11 @@
 						<div class="form-group">
 							<label>Control Number</label>	
 							<input class="form-control" type="text" name="adept_control_number" value="<?php if (isset($adept_tracker->Control_Number)) echo $adept_tracker->Control_Number; ?>">
-							<?php echo form_error('adept_control_number'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Username</label>
 							<input class="form-control" type="text" name="adept_username" value="<?php if (isset($adept_tracker->Username)) echo $adept_tracker->Username; ?>">
-							<?php echo form_error('adept_username'); ?>
 						</div>
 
 						<div class="form-group">
@@ -350,20 +517,17 @@
 								<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($adept_tracker->Status_ID)) if ($status->Status_ID == $adept_tracker->Status_ID) echo 'selected="selected"' ?>><?php echo $status->Name; ?></option>
 							<?php endforeach; ?>
 							</select>
-							<?php echo form_error('adept_status'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Remarks</label>
 							<input class="form-control" type="text" name="adept_remarks" value="<?php if (isset($adept_tracker->Remarks)) echo $adept_tracker->Remarks; ?>">
-							<?php echo form_error('adept_remarks'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>CD</label><br>
 							<input type="radio" name="adept_cd" value="1" <?php if (isset($adept_tracker->Interested_in_ITBPO)) if ($adept_tracker->Interested_in_ITBPO == 1) { echo 'checked="checked"'; } ?>> Yes
 							<input type="radio" name="adept_cd" value="0" <?php if (isset($adept_tracker->Interested_in_ITBPO)) if ($adept_tracker->Interested_in_ITBPO == 0) { echo 'checked="checked"'; } ?>> No
-							<?php echo form_error('adept_username'); ?>
 						</div>
 					</form>
 				</div>
@@ -385,11 +549,9 @@
 								<td>Business Communication</td>
 								<td>
 									<input class="form-control" type="text" name="bizcon_year" value="<?php if (isset($bizcom->School_Year)) echo $bizcom->School_Year; ?>">
-									<?php echo form_error('bizcom_year'); ?>
 								</td>
 								<td>
 									<input class="form-control" type="number" name="bizcom_semester" value="<?php if (isset($bizcom->Semester)) echo $bizcom->Semester; ?>">
-									<?php echo form_error('bizcom_semester'); ?>
 								</td>
 								<td>
 									<select class="form-control" name="bizcom_status">
@@ -397,26 +559,21 @@
 										<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($bizcom->Status_ID)) if ($status->Status_ID == $bizcom->Status_ID) echo 'selected="selected"'; ?>><?php echo $status->Name; ?></option>
 									<?php endforeach; ?>
 									</select>
-									<?php echo form_error('bizcom_status'); ?>
 								</td>
 								<td>
 									<input class="form-control" type="text" name="bizcom_grade" value="<?php if (isset($bizcom->Grade)) echo $bizcom->Grade; ?>">
-									<?php echo form_error('bizcom_grade'); ?>	
 								</td>
 								<td>
 									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php if (isset($bizcom->Times_Taken)) echo $bizcom->Times_Taken; ?>">
-									<?php echo form_error('bizcom_times_taken'); ?>
 								</td>
 							</tr>	
 							<tr>
 								<td>BPO101</td>
 								<td>
 									<input class="form-control" type="text" name="bpo101_year" value="<?php if (isset($bpo101->School_Year)) echo $bpo101->School_Year; ?>">
-									<?php echo form_error('bpo101_year'); ?>
 								</td>
 								<td>
 									<input class="form-control" type="number" name="bizcom_semester" value="<?php if (isset($bpo101->Semester)) echo $bpo101->Semester; ?>">
-									<?php echo form_error('bpo101_semester'); ?>
 								</td>
 								<td>
 									<select class="form-control" name="bizcom_status">
@@ -424,26 +581,21 @@
 										<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($bpo101->Status_ID)) if ($status->Status_ID == $bpo101->Status_ID) echo 'selected="selected"' ?>><?php echo $status->Name; ?></option>
 									<?php endforeach; ?>
 									</select>
-									<?php echo form_error('bpo101_status'); ?>
 								</td>
 								<td>
 									<input class="form-control" type="text" name="bizcom_grade" value="<?php if (isset($bpo101->Grade)) echo $bpo101->Grade; ?>">
-									<?php echo form_error('bpo101_grade'); ?>	
 								</td>
 								<td>
 									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php if (isset($bpo101->Times_Taken)) echo $bpo101->Times_Taken; ?>">
-									<?php echo form_error('bpo101_times_taken'); ?>
 								</td>
 							</tr>
 							<tr>
 								<td>BPO102</td>
 								<td>
 									<input class="form-control" type="text" name="bpo102_year" value="<?php if (isset($bpo102->School_Year)) echo $bpo102->School_Year; ?>">
-									<?php echo form_error('bpo102_year'); ?>
 								</td>
 								<td>
 									<input class="form-control" type="number" name="bizcom_semester" value="<?php if (isset($bpo102->Semester)) echo $bpo102->Semester; ?>">
-									<?php echo form_error('bpo102_semester'); ?>
 								</td>
 								<td>
 									<select class="form-control" name="bizcom_status">
@@ -451,26 +603,21 @@
 										<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($bpo102->Status_ID)) if ($status->Status_ID == $bpo102->Status_ID) echo 'selected="selected"' ?>><?php echo $status->Name; ?></option>
 									<?php endforeach; ?>
 									</select>
-									<?php echo form_error('bpo102_status'); ?>
 								</td>
 								<td>
 									<input class="form-control" type="text" name="bizcom_grade" value="<?php if (isset($bpo102->Grade)) echo $bpo102->Grade; ?>">
-									<?php echo form_error('bpo102_grade'); ?>	
 								</td>
 								<td>
 									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php if (isset($bpo102->Times_Taken)) echo $bpo102->Times_Taken; ?>">
-									<?php echo form_error('bpo102_times_taken'); ?>
 								</td>
 							</tr>
 							<tr>
 								<td>Service Culture</td>
 								<td>
 									<input class="form-control" type="text" name="sc_year" value="<?php if (isset($sc101->School_Year)) echo $sc101->School_Year; ?>">
-									<?php echo form_error('sc_year'); ?>
 								</td>
 								<td>
 									<input class="form-control" type="number" name="bizcom_semester" value="<?php if (isset($sc101->Semester)) echo $sc101->Semester; ?>">
-									<?php echo form_error('sc_semester'); ?>
 								</td>
 								<td>
 									<select class="form-control" name="bizcom_status">
@@ -478,26 +625,21 @@
 										<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($sc101->Status_ID)) if ($status->Status_ID == $sc101->Status_ID) echo 'selected="selected"' ?>><?php echo $status->Name; ?></option>
 									<?php endforeach; ?>
 									</select>
-									<?php echo form_error('sc_status'); ?>
 								</td>
 								<td>
 									<input class="form-control" type="text" name="bizcom_grade" value="<?php if (isset($sc101->Grade)) echo $sc101->Grade; ?>">
-									<?php echo form_error('sc_grade'); ?>	
 								</td>
 								<td>
 									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php if (isset($sc101->Times_Taken)) echo $sc101->Times_Taken; ?>">
-									<?php echo form_error('sc_times_taken'); ?>
 								</td>
 							</tr>
 							<tr>
 								<td>Systems Thinking</td>
 								<td>
 									<input class="form-control" type="text" name="systh_year" value="<?php if (isset($systh101->School_Year)) echo $systh101->School_Year; ?>">
-									<?php echo form_error('st_year'); ?>
 								</td>
 								<td>
 									<input class="form-control" type="number" name="bizcom_semester" value="<?php if (isset($systh101->Semester)) echo $systh101->Semester; ?>">
-									<?php echo form_error('st_semester'); ?>
 								</td>
 								<td>
 									<select class="form-control" name="bizcom_status">
@@ -505,15 +647,12 @@
 										<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($systh101->Status_ID)) if ($status->Status_ID == $systh101->Status_ID) echo 'selected="selected"' ?>><?php echo $status->Name; ?></option>
 									<?php endforeach; ?>
 									</select>
-									<?php echo form_error('st_status'); ?>
 								</td>
 								<td>
 									<input class="form-control" type="text" name="bizcom_grade" value="<?php if (isset($systh101->Grade)) echo $systh101->Grade; ?>">
-									<?php echo form_error('st_grade'); ?>	
 								</td>
 								<td>
 									<input class="form-control" type="number" name="bizcom_times_taken" value="<?php if (isset($systh101->Times_Taken)) echo $systh101->Times_Taken; ?>">
-									<?php echo form_error('st_times_taken'); ?>
 								</td>
 							</tr>
 						</table>
@@ -529,83 +668,47 @@
 								<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($internship->Status_ID)) if ($status->Status_ID == $internship->Status_ID) echo 'selected="selected"' ?>><?php echo $status->Name; ?></option>
 							<?php endforeach; ?>
 							</select>
-							<?php echo form_error('intern_status'); ?>
 						</div>	
-						<div class="form-group">
-							<label>Grades</label>
-							<input class="form-control" type="text" name="intern_grades" value="<?php echo set_value('intern_grades'); ?>">
-							<?php echo form_error('intern_grades'); ?>
-						</div>
 						<div class="form-group">
 							<label>Remarks</label>
 							<input class="form-control" type="text" name="intern_remarks" value="<?php if (isset($internship->Remarks)) echo $internship->Remarks; ?>">
-							<?php echo form_error('intern_remarks'); ?>
-						</div>
-						<div class="form-group">
-							<label>Year</label>
-							<input class="form-control" type="text" name="intern_year" value="<?php echo set_value('intern_year'); ?>">
-							<?php echo form_error('intern_year'); ?>
-						</div>
-						<div class="form-group">
-							<label>Semester</label>
-							<input class="form-control" type="text" name="intern_year" value="<?php echo set_value('intern_year'); ?>">
-							<?php echo form_error('intern_year'); ?>
 						</div>
 						<div class="form-group">
 							<label>Company Information</label>
 							<input class="form-control" type="text" name="company_information" value="<?php if (isset($internship->Company_Information)) echo $internship->Company_Information; ?>">
-							<?php echo form_error('company_information'); ?>
 						</div>
-						<div class="form-group">
-							<label>Name of Company</label>
-							<input class="form-control" type="text" name="company_name" value="<?php echo set_value('company_name'); ?>">
-							<?php echo form_error('company_name'); ?>
-						</div>		
 						<div class="form-group">
 							<label>Company Address</label>
 							<input class="form-control" type="text" name="company_address" value="<?php if (isset($internship->Company_Address)) echo $internship->Company_Address; ?>">
-							<?php echo form_error('company_address'); ?>
 						</div>
 						<div class="form-group">
 							<label>Department / Divison</label>
 							<input class="form-control" type="text" name="department" value="<?php if (isset($internship->Task)) echo $internship->Task; ?>">
-							<?php echo form_error('department'); ?>
 						</div>
 						<div class="form-group">
 							<label>Supervisor / Mentor</label>
 							<input class="form-control" type="text" name="supervisor" value="<?php if (isset($internship->Supervisor_Name)) echo $internship->Supervisor_Name; ?>">
-							<?php echo form_error('supervisor'); ?>
 						</div>
 						<div class="form-group">
 							<label>Supervisor's Contact Details</label>
 							<input class="form-control" type="text" name="supervisor_contact_details" value="<?php if (isset($internship->Supervisor_Contact)) echo $internship->Supervisor_Contact; ?>">
-							<?php echo form_error('supervisor_contact_details'); ?>
-						</div>
-						<div class="form-group">
-							<label>Supervisor's Email</label>
-							<input class="form-control" type="text" name="supervisor_email" value="<?php echo set_value('supervisor_email'); ?>">
-							<?php echo form_error('supervisor_email'); ?>
 						</div>
 						<div class="form-group">
 							<label>Date Started</label>
 							<input class="form-control" type="date" name="start_date" value="<?php if (isset($internship->Start_Date)) echo date('Y-m-d', strtotime($internship->Start_Date)); ?>">
-							<?php echo form_error('start_date'); ?>
 						</div>
 						<div class="form-group">
 							<label>Date Ended</label>
 							<input class="form-control" type="date" name="end_date" value="<?php if (isset($internship->End_Date)) echo date('Y-m-d', strtotime($internship->End_Date)); ?>">
-							<?php echo form_error('end_date'); ?>
 						</div>
 						<div class="form-group">
 							<label>Total Internship Hours</label>
 							<input class="form-control" type="number" name="total_internship_hours" value="<?php if (isset($internship->Total_Work_Hours)) echo $internship->Total_Work_Hours; ?>">
-							<?php echo form_error('total_internship_hours'); ?>
 						</div>
 						<div class="form-group">
 							<label>Evaluation Form</label><br />
 							<input type="radio" name="evaluation_form" value="1" <?php if (isset($internship->Meet_Standards)) if ($internship->Meet_Standards == 1) { echo 'checked="checked"'; } ?>> Yes
 							<input type="radio" name="evaluation_form" value="0" <?php if (isset($internship->Meet_Standards)) if ($internship->Meet_Standards == 0) { echo 'checked="checked"'; } ?>> No
-							<?php echo form_error('evaluation_form'); ?>
 						</div>
 					</form>
 				</div>

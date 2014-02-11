@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2014 at 04:52 PM
+-- Generation Time: Feb 11, 2014 at 09:58 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -41,15 +41,7 @@ CREATE TABLE IF NOT EXISTS `adept_student` (
   UNIQUE KEY `Tracker_ID_UNIQUE` (`Tracker_ID`),
   UNIQUE KEY `Control_Number_UNIQUE` (`Control_Number`),
   UNIQUE KEY `Username_UNIQUE` (`Username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `adept_student`
---
-
-INSERT INTO `adept_student` (`Tracker_ID`, `Control_Number`, `Username`, `CD`, `Oral`, `Retention`, `Typing`, `Grammar`, `Comprehension`, `Summary_Scores`) VALUES
-(3, '2312', 'ara12', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, '12312', 'joy32', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -153,34 +145,6 @@ INSERT INTO `adept_t3_tracker` (`T3_Tracker_ID`, `Adept_T3_Grades_ID`, `Adept_T3
 -- --------------------------------------------------------
 
 --
--- Table structure for table `application`
---
-
-CREATE TABLE IF NOT EXISTS `application` (
-  `Application_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Answer_1` text,
-  `Answer_2` text,
-  `Contract` tinyint(1) NOT NULL DEFAULT '0',
-  `Date` datetime NOT NULL,
-  `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
-  PRIMARY KEY (`Application_ID`),
-  UNIQUE KEY `Application_ID_UNIQUE` (`Application_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `application`
---
-
-INSERT INTO `application` (`Application_ID`, `Answer_1`, `Answer_2`, `Contract`, `Date`, `Created_At`, `Updated_At`) VALUES
-(1, 'Really', 'Good', 1, '2011-11-11 00:00:00', '2012-12-12 00:00:00', '2019-12-12 00:00:00'),
-(2, 'No', 'Not Really', 0, '2011-11-21 00:00:00', '2012-12-16 00:00:00', '2013-12-12 00:00:00'),
-(3, 'Going', 'There', 0, '2012-11-23 00:00:00', '2012-08-22 00:00:00', '2014-11-12 00:00:00'),
-(4, 'Average', 'No', 1, '2012-11-15 00:00:00', '2014-12-12 00:00:00', '2016-06-05 00:00:00');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `best_adept_t3_application`
 --
 
@@ -214,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `best_student` (
   `Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Control_Number` varchar(5) DEFAULT NULL,
   `Username` varchar(45) DEFAULT NULL,
-  `CD` tinyint(1) DEFAULT NULL,
+  `CD` tinyint(1) DEFAULT '0',
   `Oral` decimal(10,0) DEFAULT NULL,
   `Retention` decimal(10,0) DEFAULT NULL,
   `Typing` decimal(10,0) DEFAULT NULL,
@@ -223,15 +187,7 @@ CREATE TABLE IF NOT EXISTS `best_student` (
   `Summary_Scores` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`Tracker_ID`),
   UNIQUE KEY `Tracker_ID_UNIQUE` (`Tracker_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `best_student`
---
-
-INSERT INTO `best_student` (`Tracker_ID`, `Control_Number`, `Username`, `CD`, `Oral`, `Retention`, `Typing`, `Grammar`, `Comprehension`, `Summary_Scores`) VALUES
-(1, '12341', 'jpphil', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, '54321', 'mac01', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -246,8 +202,8 @@ CREATE TABLE IF NOT EXISTS `best_t3_attendance` (
   `Day_1` datetime DEFAULT NULL,
   `Day_2` datetime DEFAULT NULL,
   `Day_3` datetime DEFAULT NULL,
-  `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Updated_At` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Best_T3_Attendance_ID`),
   UNIQUE KEY `Best_T3_Attendance_ID_UNIQUE` (`Best_T3_Attendance_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -421,7 +377,7 @@ CREATE TABLE IF NOT EXISTS `gcat_student` (
   `GCAT_Learning_Orientation` int(11) NOT NULL DEFAULT '0',
   `GCAT_Communication` int(11) NOT NULL DEFAULT '0',
   `GCAT_Behavioral_Component_Overall_Score` int(11) NOT NULL DEFAULT '0',
-  `GCAT_Perceptual_Speed_&_Accuracy` int(11) NOT NULL DEFAULT '0',
+  `GCAT_Perceptual_Speed_And_Accuracy` int(11) NOT NULL DEFAULT '0',
   `GCAT_Computer_Literacy` int(11) NOT NULL DEFAULT '0',
   `GCAT_English_Proficiency` int(11) NOT NULL DEFAULT '0',
   `GCAT_Basic_Skills_Test_Overall_Score` int(11) NOT NULL DEFAULT '0',
@@ -429,16 +385,7 @@ CREATE TABLE IF NOT EXISTS `gcat_student` (
   `Test_Date` datetime DEFAULT NULL,
   PRIMARY KEY (`Tracker_ID`),
   UNIQUE KEY `Session_ID_UNIQUE` (`Session_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
-
---
--- Dumping data for table `gcat_student`
---
-
-INSERT INTO `gcat_student` (`Tracker_ID`, `GCAT_Total_Cognitive`, `GCAT_Responsiveness`, `GCAT_Reliability`, `GCAT_Empathy`, `GCAT_Courtesy`, `GCAT_Learning_Orientation`, `GCAT_Communication`, `GCAT_Behavioral_Component_Overall_Score`, `GCAT_Perceptual_Speed_&_Accuracy`, `GCAT_Computer_Literacy`, `GCAT_English_Proficiency`, `GCAT_Basic_Skills_Test_Overall_Score`, `Session_ID`, `Test_Date`) VALUES
-(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'NT05', '2014-01-30 00:00:00'),
-(5, 4, 2, 4, 3, 2, 5, 6, 5, 2, 4, 2, 5, 'aa1', '2014-01-17 00:00:00'),
-(6, 6, 5, 4, 2, 9, 8, 4, 5, 6, 9, 3, 8, 'aa2', '2014-01-13 00:00:00');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -505,13 +452,6 @@ CREATE TABLE IF NOT EXISTS `internship_student` (
   PRIMARY KEY (`Tracker_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `internship_student`
---
-
-INSERT INTO `internship_student` (`Tracker_ID`, `Supervisor_Name`, `Supervisor_Position`, `Supervisor_Contact`, `Company_Information`, `Company_Address`, `Start_Date`, `End_Date`, `Total_Work_Hours`, `Task`, `English_Proficiency`, `Computer_Literacy`, `Learning_Orientation`, `Perceptual_Speed_and_Accuracy`, `Reliability`, `Empathy`, `Courtesy`, `Responsiveness`, `Comments`, `Meet_Standards`) VALUES
-(1, 'Philip', 'Peralta', 'phil@peralta.com', 'Phil''s Fish Market', 'Batanes', '2014-01-01 00:00:00', '2014-01-31 00:00:00', 300, 'Muro Ami Diver', 87, 67, 98, 75, 48, 96, 75, 75, 'N/A', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -526,7 +466,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   PRIMARY KEY (`Log_ID`),
   UNIQUE KEY `Log_ID_UNIQUE` (`Log_ID`),
   KEY `fk_Log_Users1_idx` (`User_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=135 ;
 
 --
 -- Dumping data for table `log`
@@ -567,7 +507,104 @@ INSERT INTO `log` (`Log_ID`, `User_ID`, `Changes`, `Created_At`) VALUES
 (32, 3, 'Deleted Student', '2014-02-01 14:34:40'),
 (33, 3, 'Deleted Student', '2014-02-01 14:34:58'),
 (34, 3, 'Deleted Student', '2014-02-01 14:42:39'),
-(35, 3, 'Deleted Student', '2014-02-01 14:42:50');
+(35, 3, 'Deleted Student', '2014-02-01 14:42:50'),
+(36, 3, 'Student Profile Batch Upload', '2014-02-03 09:51:21'),
+(37, 2, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-03 09:52:25'),
+(38, 2, 'Student Profile Batch Upload', '2014-02-03 10:13:18'),
+(39, 2, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-03 10:17:02'),
+(40, 3, 'Updated SMP Tracker', '2014-02-03 10:36:12'),
+(41, 3, 'Deleted Student', '2014-02-03 10:42:22'),
+(42, 3, 'Student Profile Batch Upload', '2014-02-03 10:51:42'),
+(43, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-03 10:52:24'),
+(44, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-03 10:52:48'),
+(45, 2, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-03 10:54:30'),
+(46, 3, 'Updated SMP Tracker', '2014-02-03 10:57:06'),
+(47, 3, 'Added Class List', '2014-02-03 10:57:25'),
+(48, 2, 'Student Profile Batch Upload', '2014-02-03 11:01:06'),
+(49, 2, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-03 11:01:24'),
+(50, 2, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-03 11:02:16'),
+(51, 2, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-03 11:03:35'),
+(52, 3, 'Added Class List', '2014-02-03 11:18:56'),
+(53, 3, 'Updated Mastertrainer Classlist', '2014-02-03 11:24:58'),
+(55, 3, 'BEST AdEPT Student Tracker Batch Upload', '2014-02-03 11:48:32'),
+(56, 3, 'Added Class List', '2014-02-03 12:05:42'),
+(58, 3, 'Added Class List', '2014-02-03 13:09:59'),
+(59, 3, 'Added Class List', '2014-02-03 13:26:45'),
+(60, 3, 'Added Class List', '2014-02-03 13:26:56'),
+(61, 3, 'Added Class List', '2014-02-03 13:26:59'),
+(62, 3, 'Added Class List', '2014-02-03 13:27:02'),
+(63, 3, 'Added Class List', '2014-02-03 13:27:06'),
+(64, 3, 'Added Class List', '2014-02-03 13:28:15'),
+(65, 3, 'Added Class List', '2014-02-03 13:34:47'),
+(66, 3, 'Added Class List', '2014-02-03 13:34:55'),
+(67, 3, 'Updated Proctor', '2014-02-04 06:43:20'),
+(68, 3, 'Updated Proctor', '2014-02-04 06:45:09'),
+(69, 3, 'Updated Proctor', '2014-02-04 06:46:09'),
+(70, 3, 'Updated Proctor', '2014-02-04 06:48:01'),
+(71, 3, 'Updated Proctor', '2014-02-04 06:59:18'),
+(72, 3, 'Updated Proctor', '2014-02-04 07:19:56'),
+(73, 3, 'Updated Proctor', '2014-02-04 07:20:03'),
+(74, 3, 'Student Profile Batch Upload', '2014-02-04 11:52:46'),
+(75, 3, 'Student Profile Batch Upload', '2014-02-04 13:22:25'),
+(76, 3, 'Student Profile Batch Upload', '2014-02-04 14:19:46'),
+(77, 3, 'Added Class List', '2014-02-05 00:47:02'),
+(78, 3, 'Added Class List', '2014-02-05 00:49:01'),
+(79, 3, 'Added Class List', '2014-02-05 01:01:16'),
+(80, 3, 'Student Profile Batch Upload', '2014-02-05 07:53:15'),
+(81, 3, 'Student Profile Batch Upload', '2014-02-05 08:10:22'),
+(82, 3, 'Student Profile Batch Upload', '2014-02-05 08:14:32'),
+(83, 3, 'Student Profile Batch Upload', '2014-02-05 08:23:31'),
+(84, 3, 'Updated Proctor', '2014-02-05 08:33:09'),
+(85, 3, 'Student Profile Batch Upload', '2014-02-05 08:59:59'),
+(86, 3, 'Student Profile Batch Upload', '2014-02-05 09:02:33'),
+(87, 3, 'Deleted Student', '2014-02-05 09:05:40'),
+(88, 3, 'Updated Proctor', '2014-02-05 09:11:46'),
+(89, 3, 'Student Profile Batch Upload', '2014-02-07 03:32:27'),
+(90, 3, 'Student Profile Batch Upload', '2014-02-07 04:51:50'),
+(91, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-07 05:14:24'),
+(92, 3, 'BEST AdEPT Student Tracker Batch Upload', '2014-02-07 05:19:45'),
+(93, 3, 'GCAT Student Tracker Batch Upload', '2014-02-07 06:46:42'),
+(94, 3, 'SMP Student Tracker Batch Upload', '2014-02-07 07:31:35'),
+(95, 3, 'Student Profile Batch Upload', '2014-02-07 10:03:46'),
+(96, 3, 'Student Profile Batch Upload', '2014-02-07 10:05:43'),
+(97, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-07 10:06:18'),
+(98, 3, 'BEST AdEPT Student Tracker Batch Upload', '2014-02-07 10:15:51'),
+(99, 3, 'GCAT Student Tracker Batch Upload', '2014-02-07 10:19:17'),
+(100, 3, 'SMP Student Tracker Batch Upload', '2014-02-07 14:47:28'),
+(101, 3, 'Added Class List', '2014-02-10 04:55:11'),
+(102, 3, 'Added Class List', '2014-02-10 05:01:31'),
+(103, 3, 'Updated Mastertrainer Classlist', '2014-02-10 07:32:34'),
+(104, 3, 'Updated Mastertrainer Classlist', '2014-02-10 09:32:36'),
+(105, 3, 'Student Profile Batch Upload', '2014-02-10 09:54:01'),
+(106, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-10 10:07:05'),
+(107, 3, 'BEST AdEPT Student Tracker Batch Upload', '2014-02-10 10:11:25'),
+(108, 3, 'Student Profile Batch Upload', '2014-02-10 12:24:03'),
+(109, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-10 12:24:18'),
+(110, 3, 'BEST AdEPT Student Tracker Batch Upload', '2014-02-10 12:24:31'),
+(111, 3, 'GCAT Student Tracker Batch Upload', '2014-02-10 13:16:17'),
+(112, 3, 'GCAT Student Tracker Batch Upload', '2014-02-10 13:17:33'),
+(113, 3, 'SMP Student Tracker Batch Upload', '2014-02-10 13:19:09'),
+(114, 3, 'Student Profile Batch Upload', '2014-02-10 14:12:11'),
+(115, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-10 14:12:24'),
+(116, 3, 'BEST AdEPT Student Tracker Batch Upload', '2014-02-10 14:12:38'),
+(117, 3, 'GCAT Student Tracker Batch Upload', '2014-02-10 14:12:52'),
+(118, 3, 'SMP Student Tracker Batch Upload', '2014-02-10 14:13:05'),
+(119, 3, 'Student Profile Batch Upload', '2014-02-10 14:16:48'),
+(120, 3, 'Student Profile Batch Upload', '2014-02-10 14:20:45'),
+(121, 3, 'SMP Internship Student Tracker Batch Upload', '2014-02-10 14:51:04'),
+(122, 3, 'SMP Internship Student Tracker Batch Upload', '2014-02-10 14:52:28'),
+(123, 3, 'SMP Internship Student Tracker Batch Upload', '2014-02-10 14:54:05'),
+(124, 3, 'SMP Internship Student Tracker Batch Upload', '2014-02-10 14:55:43'),
+(125, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-10 15:24:04'),
+(126, 3, 'BEST AdEPT Student Tracker Batch Upload', '2014-02-10 15:24:43'),
+(127, 3, 'GCAT Student Tracker Batch Upload', '2014-02-10 15:25:03'),
+(128, 3, 'SMP Student Tracker Batch Upload', '2014-02-10 15:25:20'),
+(129, 3, 'GCAT Student Grades Batch Upload', '2014-02-11 02:04:47'),
+(130, 3, 'BEST Student Grades Batch Upload', '2014-02-11 03:32:04'),
+(131, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-11 03:38:40'),
+(132, 3, 'AdEPT Student Grades Batch Upload', '2014-02-11 03:38:56'),
+(133, 3, 'GCAT Student Tracker Batch Upload', '2014-02-11 09:46:44'),
+(134, 3, 'Student Profile Batch Upload', '2014-02-11 13:54:34');
 
 -- --------------------------------------------------------
 
@@ -581,15 +618,15 @@ CREATE TABLE IF NOT EXISTS `master_trainer` (
   `First_Name` varchar(45) NOT NULL,
   `Middle_Initial` varchar(3) NOT NULL,
   `Name_Suffix` varchar(4) DEFAULT NULL,
+  `Gender` char(1) NOT NULL,
+  `Civil_Status` varchar(9) NOT NULL DEFAULT 'Single',
+  `Mobile_Number` varchar(13) NOT NULL,
+  `Landline` varchar(9) NOT NULL,
+  `Email` varchar(45) NOT NULL,
+  `Facebook` varchar(45) DEFAULT NULL,
   `Company_Name` varchar(100) NOT NULL,
   `Company_Address` text NOT NULL,
   `Position` varchar(45) NOT NULL,
-  `Email` varchar(45) NOT NULL,
-  `Facebook` varchar(45) DEFAULT NULL,
-  `Landline` varchar(9) NOT NULL,
-  `Mobile_Number` varchar(13) NOT NULL,
-  `Gender` char(1) NOT NULL,
-  `Civil_Status` varchar(9) NOT NULL DEFAULT 'Single',
   PRIMARY KEY (`Master_Trainer_ID`),
   UNIQUE KEY `Master_Trainer_ID_UNIQUE` (`Master_Trainer_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -598,11 +635,11 @@ CREATE TABLE IF NOT EXISTS `master_trainer` (
 -- Dumping data for table `master_trainer`
 --
 
-INSERT INTO `master_trainer` (`Master_Trainer_ID`, `Last_Name`, `First_Name`, `Middle_Initial`, `Name_Suffix`, `Company_Name`, `Company_Address`, `Position`, `Email`, `Facebook`, `Landline`, `Mobile_Number`, `Gender`, `Civil_Status`) VALUES
-(1, 'Peralta', 'Zara', 'A', NULL, 'GDP', 'Basco, Batanes', 'President', 'zara@gmail.com', 'zara', '323413', '09174628234', 'F', 'Single'),
-(2, 'Go', 'Amiel', 'B', 'Jr', 'AMF', 'Mindanao Avenue', 'Secretary', 'amiel@gmail.com', 'amiel', '343414', '09124834321', 'M', 'Married'),
-(3, 'Mandela', 'Nelson ', 'C', NULL, 'MDA', 'Africa, South Africa', 'President', 'nm@yahoo.com', NULL, '432422', '29482020392', 'M', 'Single'),
-(4, 'Razon', 'Henedina', 'B', NULL, 'MDJG', 'Basco, Batanes', 'Congressman', 'ha@gmail.com', NULL, '349382', '09832382828', 'F', 'Single');
+INSERT INTO `master_trainer` (`Master_Trainer_ID`, `Last_Name`, `First_Name`, `Middle_Initial`, `Name_Suffix`, `Gender`, `Civil_Status`, `Mobile_Number`, `Landline`, `Email`, `Facebook`, `Company_Name`, `Company_Address`, `Position`) VALUES
+(1, 'Peralta', 'Zara', 'A', '', 'F', 'single', '09174628234', '323413', 'zara@gmail.com', 'zara', 'GDP', 'Basco, Batanes', 'President'),
+(2, 'Stop', 'Amiel', 'B', 'Jr', 'M', 'married', '09124834321', '343414', 'amiel@gmail.com', 'amiel', 'AMF', 'Mindanao Avenue', 'Secretary'),
+(3, 'Mandela', 'Nelson ', 'C', NULL, 'M', 'Single', '29482020392', '432422', 'nm@yahoo.com', NULL, 'MDA', 'Africa, South Africa', 'President'),
+(4, 'Razon', 'Henedina', 'B', NULL, 'F', 'Single', '09832382828', '349382', 'ha@gmail.com', NULL, 'MDJG', 'Basco, Batanes', 'Congressman');
 
 -- --------------------------------------------------------
 
@@ -663,19 +700,19 @@ INSERT INTO `other_class` (`Class_ID`, `Teacher_ID`) VALUES
 
 CREATE TABLE IF NOT EXISTS `proctor` (
   `Proctor_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Last_Name` varchar(45) NOT NULL,
   `First_Name` varchar(45) NOT NULL,
   `Middle_Initial` varchar(5) NOT NULL,
-  `Last_Name` varchar(45) NOT NULL,
   `Name_Suffix` varchar(4) DEFAULT NULL,
+  `Gender` char(1) NOT NULL,
+  `Civil_Status` varchar(9) NOT NULL DEFAULT 'Single',
+  `Mobile_Number` varchar(13) NOT NULL,
+  `Landline` varchar(9) NOT NULL,
+  `Email` varchar(45) NOT NULL,
+  `Facebook` varchar(45) DEFAULT NULL,
   `Company_Name` varchar(45) NOT NULL,
   `Company_Address` varchar(255) NOT NULL,
   `Position` varchar(45) NOT NULL,
-  `Email` varchar(45) NOT NULL,
-  `Facebook` varchar(45) DEFAULT NULL,
-  `Landline` varchar(9) NOT NULL,
-  `Mobile_Number` varchar(13) NOT NULL,
-  `Gender` char(1) NOT NULL,
-  `Civil_Status` varchar(9) NOT NULL DEFAULT 'Single',
   PRIMARY KEY (`Proctor_ID`),
   UNIQUE KEY `Proctor_ID_UNIQUE` (`Proctor_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -684,11 +721,11 @@ CREATE TABLE IF NOT EXISTS `proctor` (
 -- Dumping data for table `proctor`
 --
 
-INSERT INTO `proctor` (`Proctor_ID`, `First_Name`, `Middle_Initial`, `Last_Name`, `Name_Suffix`, `Company_Name`, `Company_Address`, `Position`, `Email`, `Facebook`, `Landline`, `Mobile_Number`, `Gender`, `Civil_Status`) VALUES
-(1, 'John', 'A', 'Cruz', 'Jr.', 'Ateneo De Manila', 'Katipunan Avenue', 'President', 'jpc@gmail.com', 'John', '4311231', '09186542342', 'M', 'Married'),
-(2, 'Christal', 'B', 'Marcos', NULL, 'De La Salle', 'Taft Avenue', 'Vice President', 'c@yahoo.com', NULL, '3242412', '09159403688', 'F', 'Single'),
-(3, 'Eyana', 'C', 'Diana', 'II', 'Makati Business Club', 'Ayala Avenue, Makati', 'Secretary', 'ey@hotmail.com', 'Eyana', '3241412', '09124234231', 'F', 'Separated'),
-(4, 'Milo', 'B', 'Conception', NULL, 'SM', 'Pasay City, Philippines', 'Treasurer', 'sm@yahoo.com', 'Milo', '2342431', '09121834281', 'M', 'Single');
+INSERT INTO `proctor` (`Proctor_ID`, `Last_Name`, `First_Name`, `Middle_Initial`, `Name_Suffix`, `Gender`, `Civil_Status`, `Mobile_Number`, `Landline`, `Email`, `Facebook`, `Company_Name`, `Company_Address`, `Position`) VALUES
+(1, 'Fajardo', 'Paolo', 'A', 'Sr.', 'M', 'widowed', '09186542342', '4311231', 'jpc@gmail.com', 'John', 'Ateneo De Manila', 'Katipunan Avenue', 'President'),
+(2, 'Marcos', 'Christal', 'B', NULL, 'F', 'Single', '09159403688', '3242412', 'c@yahoo.com', NULL, 'De La Salle', 'Taft Avenue', 'Vice President'),
+(3, 'Diana', 'Eyana', 'C', 'II', 'F', 'Separated', '09124234231', '3241412', 'ey@hotmail.com', 'Eyana', 'Makati Business Club', 'Ayala Avenue, Makati', 'Secretary'),
+(4, 'Conception', 'Milo', 'B', NULL, 'M', 'Single', '09121834281', '2342431', 'sm@yahoo.com', 'Milo', 'SM', 'Pasay City, Philippines', 'Treasurer');
 
 -- --------------------------------------------------------
 
@@ -782,10 +819,10 @@ CREATE TABLE IF NOT EXISTS `school` (
   `Email` varchar(45) NOT NULL,
   `Point Person` varchar(45) NOT NULL,
   `Point_Person_Contact` varchar(13) NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
-  `Created_At` datetime NOT NULL,
   `Code` varchar(25) NOT NULL,
   `Branch` varchar(45) NOT NULL,
+  `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Updated_At` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`School_ID`),
   UNIQUE KEY `School_ID_UNIQUE` (`School_ID`),
   UNIQUE KEY `Code_UNIQUE` (`Code`)
@@ -873,6 +910,21 @@ INSERT INTO `school` (`School_ID`, `Name`, `Address`, `Landline`, `Email`, `Poin
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `school_project`
+--
+
+CREATE TABLE IF NOT EXISTS `school_project` (
+  `School_Project_ID` int(11) NOT NULL,
+  `School_ID` int(11) NOT NULL,
+  `Project_ID` int(11) NOT NULL,
+  PRIMARY KEY (`School_Project_ID`),
+  KEY `fk_School_Project_School1` (`School_ID`),
+  KEY `fk_School_Project_Project1` (`Project_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `school_subject`
 --
 
@@ -920,17 +972,7 @@ CREATE TABLE IF NOT EXISTS `smp_student` (
   PRIMARY KEY (`Tracker_ID`),
   UNIQUE KEY `Tracker_ID_UNIQUE` (`Tracker_ID`),
   KEY `fk_SMP_Student_Tracker1_idx` (`Tracker_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
-
---
--- Dumping data for table `smp_student`
---
-
-INSERT INTO `smp_student` (`Tracker_ID`, `Grade`) VALUES
-(7, '43'),
-(8, '32'),
-(9, '22'),
-(10, '100');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -946,20 +988,7 @@ CREATE TABLE IF NOT EXISTS `smp_student_courses_taken` (
   UNIQUE KEY `Student_Class_Student_Class_ID_UNIQUE` (`Student_Class_ID`),
   KEY `fk_SMP_Student_Courses_Taken_Student_Class1_idx` (`Student_Class_ID`),
   KEY `fk_SMP_Student_Courses_Taken_SMP_Student1_idx` (`Tracker_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
-
---
--- Dumping data for table `smp_student_courses_taken`
---
-
-INSERT INTO `smp_student_courses_taken` (`SMP_Student_Courses_Taken_ID`, `Student_Class_ID`, `Tracker_ID`) VALUES
-(1, 1, 7),
-(2, 2, 8),
-(3, 3, 7),
-(4, 4, 8),
-(5, 5, 9),
-(6, 6, 10),
-(7, 7, 8);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1012,8 +1041,8 @@ CREATE TABLE IF NOT EXISTS `smp_t3_attendance` (
   `PM_Snack` tinyint(1) NOT NULL DEFAULT '0',
   `Time_Out` tinyint(1) NOT NULL DEFAULT '0',
   `Date` datetime NOT NULL,
-  `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Updated_At` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`SMP_T3_Attendance_ID`),
   UNIQUE KEY `SMP_T3_Attendance_ID_UNIQUE` (`SMP_T3_Attendance_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -1067,8 +1096,8 @@ CREATE TABLE IF NOT EXISTS `smp_t3_site_visit` (
   `Company_Host` varchar(45) NOT NULL,
   `Event_Date` datetime NOT NULL,
   `Feedback_Form` tinyint(1) NOT NULL DEFAULT '0',
-  `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
+  `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Updated_At` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`SMP_T3_Site_Visit_ID`),
   UNIQUE KEY `SMP_T3_Site_Visit_ID_UNIQUE` (`SMP_T3_Site_Visit_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -1139,22 +1168,14 @@ CREATE TABLE IF NOT EXISTS `stipend_tracking` (
   `Stipend_Tracking_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Amount` double NOT NULL DEFAULT '0',
   `Claimed` tinyint(1) NOT NULL DEFAULT '0',
-  `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
-  `Teacher_ID` int(11) NOT NULL,
-  PRIMARY KEY (`Stipend_Tracking_ID`),
-  KEY `fk_Stipend_Tracking_Teacher1_idx` (`Teacher_ID`)
+  `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Updated_At` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`Stipend_Tracking_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `stipend_tracking`
 --
-
-INSERT INTO `stipend_tracking` (`Stipend_Tracking_ID`, `Amount`, `Claimed`, `Created_At`, `Updated_At`, `Teacher_ID`) VALUES
-(1, 1000, 0, '2011-12-12 00:00:00', '2013-12-11 00:00:00', 1),
-(2, 2123.23, 1, '2010-12-31 00:00:00', '2011-09-11 00:00:00', 2),
-(3, 21231123, 0, '2011-12-21 00:00:00', '2013-09-15 00:00:00', 3),
-(4, 7563, 1, '2009-09-09 00:00:00', '2012-11-18 00:00:00', 4);
 
 -- --------------------------------------------------------
 
@@ -1168,20 +1189,16 @@ CREATE TABLE IF NOT EXISTS `stipend_tracking_list` (
   `Checked_By` varchar(100) NOT NULL,
   `Stipend_Tracking_ID` int(11) NOT NULL,
   `Subject_ID` int(11) NOT NULL,
+  `Teacher_ID` int(11) NOT NULL,
   PRIMARY KEY (`Stipend_Tracking_List_ID`),
   KEY `fk_Stipend_Tracking_List_Stipend_Tracking1_idx` (`Stipend_Tracking_ID`),
-  KEY `fk_Stipend_Tracking_List_Subject_ID1_idx` (`Subject_ID`)
+  KEY `fk_Stipend_Tracking_List_Subject_ID1_idx` (`Subject_ID`),
+  KEY `fk_Stipend_Tracking_List_Teacher1_idx` (`Teacher_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `stipend_tracking_list`
 --
-
-INSERT INTO `stipend_tracking_list` (`Stipend_Tracking_List_ID`, `Date`, `Checked_By`, `Stipend_Tracking_ID`, `Subject_ID`) VALUES
-(1, '2012-12-11', 'Joy', 1, 1),
-(2, '2012-12-13', 'RJ', 1, 2),
-(3, '2012-12-11', 'Mike', 2, 2),
-(4, '2013-01-01', 'John', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -1225,33 +1242,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   UNIQUE KEY `Student_ID_UNIQUE` (`Student_ID`),
   UNIQUE KEY `Code` (`Code`),
   KEY `fk_Student_School1_idx` (`School_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
-
---
--- Dumping data for table `student`
---
-
-INSERT INTO `student` (`Student_ID`, `School_ID`, `Last_Name`, `First_Name`, `Middle_Initial`, `Name_Suffix`, `Student_ID_Number`, `Civil_Status`, `Birthdate`, `Birthplace`, `Gender`, `Nationality`, `Street_Number`, `Street_Name`, `City`, `Province`, `Region`, `Alternate_Address`, `Mobile_Number`, `Landline`, `Email`, `Facebook`, `Course`, `Year`, `Expected_Year_of_Graduation`, `DOST_Scholar`, `Scholar`, `Interested_in_ITBPO`, `Own_A_Computer`, `Internet_Access`, `Code`) VALUES
-(1, 1, 'Federico', 'Joy', 'H', 'II', '102222', 'Single', '1991-10-10 00:00:00', 'Beijing, China', 'F', 'Filipino', '8', 'Concorde', 'Caloocan City', 'Metro Manila', 'NCR', 'Commonwealth, Quezon City', '09152341231', '4321234', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2013, 0, 0, 1, 0, 0, '12345'),
-(2, 2, 'Fajardo', 'Francis', 'J', 'III', '132123', 'Single', '1990-12-12 00:00:00', 'Quezon City', 'M', 'Filipino', '2', 'Civic', 'Quezon City', 'Metro Manila', 'NCR', 'Caloocan City', '09138312341', '4312312', 'francis@gmail.com', 'Francis Yo', 'BS Management', 3, 2014, 0, 1, 0, 0, 1, '32333'),
-(3, 2, 'Cruz', 'Raymond', 'M', 'Jr', '243121', 'Single', '1991-12-11 00:00:00', 'Manila City', 'M', 'Russian', '3', 'Malakas', 'San Juan City', 'Metro Manila', 'NCR', 'Bonifacio Global City', '09135823842', '9384913', 'rj@yahoo.com', 'RJ', 'BS Management - H', 4, 2013, 1, 1, 1, 0, 1, '39293'),
-(4, 4, 'Luces', 'Paolo', 'J', NULL, '212311', 'Married', '1991-10-11 00:00:00', 'Caloocan City', 'M', 'Filipino', '2', 'Matalino', 'Caloocan City', 'Metro Manila', 'NCR', 'Tomas Morato', '02933481341', '3323421', 'pao@hotmail.com', 'Joi Federico', 'BS ME', 3, 2012, 1, 1, 0, 1, 0, '32323'),
-(5, 5, 'Simon', 'Ara', 'A', NULL, '101487', 'Married', '1991-10-11 00:00:00', 'Caloocan City', 'F', 'Filipino', '1', 'Mayabang', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '3614988', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 0, 0, 1, 1, 1, '13215'),
-(6, 6, 'Choi', 'Siwon', 'B', NULL, '101485', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '2', 'Maganda', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '3632266', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 0, 0, 0, 1, 1, '15454'),
-(7, 7, 'Lee', 'Seungri', 'C', NULL, '123654', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '3', 'Maginhawa', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '7894561', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 0, 0, 1, 1, 1, '15154'),
-(8, 8, 'Kwon', 'Jiyong', 'D', NULL, '654123', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '4', 'Maligo', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1234569', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 0, 0, 0, 1, 1, '15487'),
-(9, 9, 'Lee', 'Donghae', 'E', NULL, '789654', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '5', 'Busan', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '9638521', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 0, 0, 1, 1, 1, '99658'),
-(10, 10, 'Ok', 'Taecyeon', 'F', NULL, '789456', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '8', 'Seoul', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '7412589', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 0, 0, 0, 1, 1, '47744'),
-(11, 11, 'Lee', 'Chaerin', 'G', NULL, '123987', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '6', 'Ulsan', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '9745632', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 0, 0, 1, 0, 1, '12534'),
-(12, 12, 'Park', 'Sandara', 'H', NULL, '741852', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '7', 'Annam', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1547896', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 0, 0, 1, 0, 1, '23168'),
-(13, 13, 'Lee', 'Minho', 'I', NULL, '852963', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '9', 'Sinchon', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1654648', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 0, 0, 1, 0, 1, '16857'),
-(14, 14, 'Agloro', 'Paolo', 'J', NULL, '741963', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '10', 'Samseong', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '9878963', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 0, 0, 1, 0, 1, '15485'),
-(15, 15, 'De Vera', 'Jal', 'K', NULL, '369258', 'Signle', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '11', 'Gangnam', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1348674', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 1, 0, 1, 0, 1, '15645'),
-(16, 16, 'Alampay', 'Happy', 'L', NULL, '258369', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '12', 'Yeouido', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1348657', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 1, 0, 1, 0, 1, '87489'),
-(17, 17, 'Olpoc', 'Joselito', 'M', NULL, '258147', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '13', 'Hongdae', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1318695', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 1, 0, 0, 1, 1, '21311'),
-(18, 18, 'Federico', 'Jerome', 'N', NULL, '155788', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '14', 'Gyeongju', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1312354', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 1, 0, 1, 1, 1, '12348'),
-(19, 1, 'Federico', 'Jimmy', 'O', NULL, '789632', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '15', 'Gwangju', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1465465', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 1, 0, 1, 1, 1, '12346'),
-(20, 2, 'Lee', 'Sungmin', 'P', NULL, '102549', 'Single', '1991-10-11 00:00:00', 'South Korea', 'M', 'Korean', '16', 'Ilsan', 'Caloocan City', 'Metro Manila', 'NCR', 'Hongdae', '02933481341', '1346544', 'joy@yahoo.com', 'Joi Federico', 'BS MIS', 4, 2014, 1, 0, 1, 1, 1, '12487');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1270,7 +1261,7 @@ CREATE TABLE IF NOT EXISTS `student_application` (
   KEY `fk_Student_Application_Student1_idx` (`Student_ID`),
   KEY `fk_Student_Application_Project1_idx` (`Project_ID`),
   KEY `fk_Student_Application_Subject_ID1_idx` (`Subject_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1286,20 +1277,7 @@ CREATE TABLE IF NOT EXISTS `student_class` (
   UNIQUE KEY `Student_Class_ID_UNIQUE` (`Student_Class_ID`),
   KEY `fk_Student_Class_Class1_idx` (`Class_ID`),
   KEY `fk_Student_Class_Student1_idx` (`Student_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
-
---
--- Dumping data for table `student_class`
---
-
-INSERT INTO `student_class` (`Student_Class_ID`, `Class_ID`, `Student_ID`) VALUES
-(1, 1, 1),
-(2, 2, 2),
-(3, 3, 3),
-(4, 4, 4),
-(5, 5, 2),
-(6, 6, 1),
-(7, 3, 3);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1316,17 +1294,7 @@ CREATE TABLE IF NOT EXISTS `student_computer_skills` (
   UNIQUE KEY `Student_Computer_Skills_ID_UNIQUE` (`Student_Computer_Skills_ID`),
   KEY `fk_Student_Computer_Skills_Student1_idx` (`Student_ID`),
   KEY `fk_Student_Computer_Skills_Computer_Skills1_idx` (`Computer_Skills_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `student_computer_skills`
---
-
-INSERT INTO `student_computer_skills` (`Student_Computer_Skills_ID`, `Student_ID`, `Computer_Skills_ID`, `Level_Of_Proficiency`) VALUES
-(1, 1, 1, 'Professional'),
-(2, 2, 1, 'Average'),
-(3, 3, 1, 'Oks lang'),
-(4, 4, 2, 'Master');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1342,18 +1310,7 @@ CREATE TABLE IF NOT EXISTS `student_organization_affiliations` (
   UNIQUE KEY `Student_Organization_Affiliations_ID_UNIQUE` (`Student_Organization_Affiliations_ID`),
   KEY `fk_Student_Organization_Affiliations_Organization_Affiliati_idx` (`Organization_Affiliations_ID`),
   KEY `fk_Student_Organization_Affiliations_Student1_idx` (`Student_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
-
---
--- Dumping data for table `student_organization_affiliations`
---
-
-INSERT INTO `student_organization_affiliations` (`Student_Organization_Affiliations_ID`, `Organization_Affiliations_ID`, `Student_ID`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 2, 1),
-(4, 4, 3),
-(5, 1, 3);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1369,17 +1326,7 @@ CREATE TABLE IF NOT EXISTS `student_skills` (
   UNIQUE KEY `Student_Skills_ID_UNIQUE` (`Student_Skills_ID`),
   KEY `fk_Student_Skills_Student1_idx` (`Student_ID`),
   KEY `fk_Student_Skills_Skills1_idx` (`Skills_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `student_skills`
---
-
-INSERT INTO `student_skills` (`Student_Skills_ID`, `Student_ID`, `Skills_ID`) VALUES
-(1, 1, 1),
-(2, 2, 2),
-(3, 3, 1),
-(4, 3, 2);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1395,38 +1342,7 @@ CREATE TABLE IF NOT EXISTS `student_tracker` (
   UNIQUE KEY `Student_Tracker_ID_UNIQUE` (`Student_Tracker_ID`),
   KEY `fk_Student_Tracker_Tracker1_idx` (`Tracker_ID`),
   KEY `fk_Student_Tracker_Student1_idx` (`Student_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
-
---
--- Dumping data for table `student_tracker`
---
-
-INSERT INTO `student_tracker` (`Student_Tracker_ID`, `Tracker_ID`, `Student_ID`) VALUES
-(1, 1, 1),
-(2, 2, 2),
-(3, 3, 3),
-(4, 4, 4),
-(5, 5, 5),
-(6, 6, 6),
-(7, 7, 7),
-(8, 8, 8),
-(9, 9, 9),
-(10, 10, 10),
-(11, 11, 11),
-(12, 12, 12),
-(13, 13, 13),
-(14, 14, 14),
-(15, 15, 15),
-(16, 16, 16),
-(17, 17, 17),
-(18, 18, 18),
-(19, 19, 19),
-(20, 20, 20),
-(21, 21, 1),
-(22, 22, 2),
-(23, 23, 3),
-(24, 24, 4),
-(25, 25, 5);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1533,11 +1449,11 @@ INSERT INTO `t3_class` (`T3_Class_ID`, `School_ID`, `Subject_ID`, `Master_Traine
 CREATE TABLE IF NOT EXISTS `t3_tracker` (
   `T3_Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Status_ID` int(11) NOT NULL,
-  `Created_At` datetime NOT NULL,
-  `Updated_At` datetime DEFAULT NULL,
   `Contract` tinyint(1) NOT NULL DEFAULT '0',
   `Remarks` varchar(250) DEFAULT NULL,
   `Subject_ID` int(11) NOT NULL,
+  `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Updated_At` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`T3_Tracker_ID`),
   UNIQUE KEY `T3_Tracker_ID_UNIQUE` (`T3_Tracker_ID`),
   KEY `fk_Teacher_Tracker_Status1_idx` (`Status_ID`),
@@ -2002,45 +1918,14 @@ CREATE TABLE IF NOT EXISTS `tracker` (
   `Remarks` varchar(255) DEFAULT NULL,
   `Status_ID` int(11) NOT NULL,
   `Times_Taken` int(11) NOT NULL DEFAULT '1',
+  `Subject_ID` int(11) NOT NULL,
   `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Updated_At` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  `Subject_ID` int(11) NOT NULL,
   PRIMARY KEY (`Tracker_ID`),
   UNIQUE KEY `Tracker_ID_UNIQUE` (`Tracker_ID`),
   KEY `fk_Tracker_Status1_idx` (`Status_ID`),
   KEY `fk_Tracker_Subject1_idx` (`Subject_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
-
---
--- Dumping data for table `tracker`
---
-
-INSERT INTO `tracker` (`Tracker_ID`, `Remarks`, `Status_ID`, `Times_Taken`, `Created_At`, `Updated_At`, `Subject_ID`) VALUES
-(1, 'Average', 1, 2, '2012-12-31 16:00:00', '2014-01-31 08:17:37', 1),
-(2, 'Great', 2, 1, '2013-03-30 16:00:00', '0000-00-00 00:00:00', 1),
-(3, 'Bad', 1, 5, '2013-02-11 16:00:00', '0000-00-00 00:00:00', 1),
-(4, 'Worst', 2, 5, '2013-03-31 16:00:00', '0000-00-00 00:00:00', 1),
-(5, 'Great', 2, 1, '2013-06-29 16:00:00', '0000-00-00 00:00:00', 1),
-(6, 'See class', 1, 1, '2013-06-30 16:00:00', '0000-00-00 00:00:00', 1),
-(7, 'Reject', 1, 2, '2013-09-29 16:00:00', '0000-00-00 00:00:00', 1),
-(8, 'Singer', 1, 8, '2013-09-30 16:00:00', '0000-00-00 00:00:00', 1),
-(9, 'Failure', 2, 1, '2013-12-30 16:00:00', '0000-00-00 00:00:00', 1),
-(10, 'Great', 1, 2, '2011-02-11 16:00:00', '0000-00-00 00:00:00', 1),
-(11, NULL, 1, 1, '2013-04-01 16:00:00', '0000-00-00 00:00:00', 1),
-(12, NULL, 1, 1, '2013-05-01 16:00:00', '0000-00-00 00:00:00', 1),
-(13, NULL, 1, 1, '2013-06-01 16:00:00', '0000-00-00 00:00:00', 1),
-(14, NULL, 1, 1, '2013-07-01 16:00:00', '0000-00-00 00:00:00', 1),
-(15, NULL, 1, 1, '2013-08-01 16:00:00', '0000-00-00 00:00:00', 1),
-(16, NULL, 1, 1, '2013-09-01 16:00:00', '0000-00-00 00:00:00', 1),
-(17, NULL, 1, 1, '2013-10-01 16:00:00', '0000-00-00 00:00:00', 1),
-(18, NULL, 1, 1, '2013-11-01 16:00:00', '0000-00-00 00:00:00', 1),
-(19, NULL, 1, 1, '2013-10-01 16:00:00', '0000-00-00 00:00:00', 1),
-(20, NULL, 1, 1, '2013-12-01 16:00:00', '0000-00-00 00:00:00', 1),
-(21, NULL, 1, 1, '2013-04-01 16:00:00', '0000-00-00 00:00:00', 2),
-(22, NULL, 1, 1, '2012-04-01 16:00:00', '0000-00-00 00:00:00', 2),
-(23, NULL, 1, 1, '2012-04-01 16:00:00', '0000-00-00 00:00:00', 2),
-(24, NULL, 1, 1, '2013-04-01 16:00:00', '0000-00-00 00:00:00', 2),
-(25, NULL, 1, 1, '2013-04-01 16:00:00', '0000-00-00 00:00:00', 2);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -2058,7 +1943,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `School_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`User_ID`),
   KEY `fk_User_School1` (`School_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `users`
@@ -2080,7 +1965,8 @@ INSERT INTO `users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password
 (13, 'rcarrillo', 'Raphael', 'Carrillo', 'ea7b6298bf5045f78be77dadbc289142', 'admin', NULL),
 (14, 'arimbao', 'Alecx', 'Rimbao', 'ab38ea8c20eae607665c508887ec7333', 'admin', NULL),
 (15, 'tgerobiese', 'Trishia', 'Gerobiese', '663dfb18f856a06cd996651234c2aa23', 'admin', NULL),
-(16, 'cjaldon', 'Simone', 'Jaldon', '47eb752bac1c08c75e30d9624b3e58b7', 'admin', NULL);
+(16, 'cjaldon', 'Simone', 'Jaldon', '47eb752bac1c08c75e30d9624b3e58b7', 'admin', NULL),
+(17, 'encoder', 'Hi', 'Lol', '5f4dcc3b5aa765d61d8327deb882cf99', 'encoder', 1);
 
 --
 -- Constraints for dumped tables
@@ -2173,6 +2059,13 @@ ALTER TABLE `related_trainings_attended_by_a_teacher`
   ADD CONSTRAINT `fk_Related_Trainings_Attended_By_A_Teacher_SMP_T3_Application1` FOREIGN KEY (`SMP_T3_Application_ID`) REFERENCES `smp_t3_application` (`T3_Application_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `school_project`
+--
+ALTER TABLE `school_project`
+  ADD CONSTRAINT `fk_School_Project_School1` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_School_Project_Project1` FOREIGN KEY (`Project_ID`) REFERENCES `project` (`Project_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Constraints for table `school_subject`
 --
 ALTER TABLE `school_subject`
@@ -2184,6 +2077,12 @@ ALTER TABLE `school_subject`
 --
 ALTER TABLE `smp_student`
   ADD CONSTRAINT `fk_SMP_Student_Tracker1` FOREIGN KEY (`Tracker_ID`) REFERENCES `tracker` (`Tracker_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `smp_student_courses_taken`
+--
+ALTER TABLE `smp_student_courses_taken`
+  ADD CONSTRAINT `fk_SMP_Student_Subjects_Taken_Tracker1` FOREIGN KEY (`Tracker_ID`) REFERENCES `tracker` (`Tracker_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `smp_t3_application`
@@ -2206,17 +2105,12 @@ ALTER TABLE `smp_t3_tracker`
   ADD CONSTRAINT `fk_SMP_T3_Tracker_T3_Tracker1` FOREIGN KEY (`T3_Tracker_ID`) REFERENCES `t3_tracker` (`T3_Tracker_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `stipend_tracking`
---
-ALTER TABLE `stipend_tracking`
-  ADD CONSTRAINT `fk_Stipend_Tracking_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `stipend_tracking_list`
 --
 ALTER TABLE `stipend_tracking_list`
   ADD CONSTRAINT `fk_Stipend_Tracking_List_Stipend_Tracking1` FOREIGN KEY (`Stipend_Tracking_ID`) REFERENCES `stipend_tracking` (`Stipend_Tracking_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_Stipend_Tracking_List_Subject_ID1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_Stipend_Tracking_List_Subject_ID1` FOREIGN KEY (`Subject_ID`) REFERENCES `subject` (`Subject_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Stipend_Tracking_List_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student`
