@@ -2875,36 +2875,44 @@ class Dbms_Controller extends CI_Controller
 				$this->db->trans_rollback();
 				redirect('dbms');					
 			}
-
-			if ($subject == 'BEST')
+			else
 			{
-				if (!$this->teacher->getBestT3TrackerByTeacherCode($code)) //chcek if exiist
+				if ($subject == 'BEST')
 				{
-					$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . '. Teacher does not exist.');
-					$this->db->trans_rollback();
-					redirect('dbms');					
+					if (!$this->teacher->getBestT3TrackerByTeacherCode($code)) //chcek if exiist
+					{
+						$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter . '. Best T3 Tracker does not exist.');
+						$this->db->trans_rollback();
+						redirect('dbms');					
+					}
+					else
+					{
+						if ($this->teacher->updateBestT3Tracker($code,$subject,$tracker)) // the update method...
+						{
+							$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter .'');
+							$this->db->trans_rollback();
+							redirect('dbms');					
+						}
+					}
 				}
-				if ($this->teacher->updateBestT3Tracker($code,$subject,$tracker)) // the update method...
-				{
-					$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row ' . $counter .'');
-					$this->db->trans_rollback();
-					redirect('dbms');					
-				}
-			}
 
-			if ($subject == 'AdEPT')
-			{
-				if (!$this->teacher->getAdeptT3TrackerByTeacherCode($code)) //chcek if exiist
+				if ($subject == 'AdEPT')
 				{
-					$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row a' . $counter . '. Teacher does not exist.');
-					$this->db->trans_rollback();
-					redirect('dbms');					
-				}
-				if ($this->teacher->updateAdeptT3Tracker($code,$subject,$tracker)) // the update method...
-				{
-					$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row bs' . $counter .'');
-					$this->db->trans_rollback();
-					redirect('dbms');					
+					if (!$this->teacher->getAdeptT3TrackerByTeacherCode($code)) //chcek if exiist
+					{
+						$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row a' . $counter . '. Adept T3 Tracker does not exist.');
+						$this->db->trans_rollback();
+						redirect('dbms');					
+					}
+					else
+					{
+						if ($this->teacher->updateAdeptT3Tracker($code,$subject,$tracker)) // if exists..update...
+						{
+							$this->session->set_flashdata('upload_error', 'BEST/AdEPT Product Tracker upload failed. Invalid data at row bs' . $counter .'');
+							$this->db->trans_rollback();
+							redirect('dbms');					
+						}
+					}
 				}
 			}
 		}
@@ -3494,7 +3502,7 @@ class Dbms_Controller extends CI_Controller
 
 			$school_id = $this->school->getSchoolIdByCode($row['F'])->School_ID; //Get School_ID 
 			$code = $school_id . substr($row['C'],0,1). substr($row['D'],0,1). substr($row['B'],0,1). date('Ymd', strtotime(PHPExcel_Style_NumberFormat::toFormattedString($row['E'], 'MM/DD/YYYY'))); //Get Code
-
+			//PALITAN NIYO NG DATETIMEYUNG DATE COLUMN SA DB PLEASE KAYA DI SIYA NAGRERECORD.!!!!
 			$stipend_tracking_list = array
 			(
 				'Checked_By' => $row['I'],
@@ -3506,59 +3514,74 @@ class Dbms_Controller extends CI_Controller
 				'Claimed' => (bool) strcasecmp($row['H'], 'no')
 			);
 
-			$subject = $row['A'];
+			$subject = trim($row['A']);
 			
-			if (!$this->teacher->getTeacherByCode($code))
+			if (!$this->teacher->getTeacherByCode($code))//wala nakita na teacher
 			{
-				$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $code . '. Teacher does not exist');
+				$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Teacher does not exist');
 				$this->db->trans_rollback();
-				redirect('dbms');					
-			}
-			//--stuff for stipend tracking.---
-			if (!$this->teacher->getStipendTrackingByTeacherCode($code)) //CHECK IF STIPEND TRACKING EXISTS 
-			{
-				$stipend_tracking_id = $this->teacher->addStipendTracking($stipend_tracking); // IF IT DOES NOT EXIST ADDS STIPEND TRACKING
-				if(!$stipend_tracking_id)
-				{
-					$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
-					$this->db->trans_rollback();
-					redirect('dbms');
-				}		
+				redirect('dbms');
 			}
 			else
-			{
-				//update IF STIPEND TRACKING EXISTS
-				if ($this->teacher->updateStipendTracking($code, $subject, $stipend_tracking))
+			{		
+				//--stuff for stipend tracking.---
+				if (!$this->teacher->getStipendTrackingByTeacherCode($code)) //CHECK IF STIPEND TRACKING EXISTS 
 				{
-					$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $code . '');
-					$this->db->trans_rollback();
-					redirect('dbms');					
-				}
-			}
-
-			//stuff for stipend tracking list 
-			if (!$this->teacher->getStipendTrackingListByTeacherCode($code)) //CHECKS IF STIPEND TRACKING LIST EXISTS
-			{
-				$stipend_tracking_list['Stipend_Tracking_ID'] = $stipend_tracking_id;
-				$stipend_tracking_list['Subject_ID'] = $this->subject->getSubjectIdByCode($subject)->Subject_ID;
-				$stipend_tracking_list['Teacher_ID'] = $this->teacher->getTeacherIDByCode($code)->Teacher_ID;
-
-
-				if (!$this->teacher->addStipendTrackingList($stipend_tracking_list))
-				{
-					$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+					$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Stipend Tracker does not exist');
 					$this->db->trans_rollback();
 					redirect('dbms');
-				}					
-			}
-			else
-			{
-				if ($this->teacher->updateStipendTrackingList($code, $subject, $stipend_tracking_list))
-				{
-					$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $code . '');
-					$this->db->trans_rollback();
-					redirect('dbms');					
 				}
+				else
+				{
+					$stipend_tracking_id = $this->teacher->addStipendTracking($stipend_tracking); // IF IT DOES NOT EXIST ADDS STIPEND TRACKING
+					if(!$stipend_tracking_id)
+					{
+						$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+						$this->db->trans_rollback();
+						redirect('dbms');
+					}		
+				}
+				/*else
+				{
+					//update IF STIPEND TRACKING EXISTS
+					if ($this->teacher->updateStipendTracking($code, $subject, $stipend_tracking))
+					{
+						$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $code . '');
+						$this->db->trans_rollback();
+						redirect('dbms');					
+					}
+				}*/
+
+				//stuff for stipend tracking list 
+				if (!$this->teacher->getStipendTrackingListByTeacherCode($code)) //CHECKS IF STIPEND TRACKING LIST EXISTS
+				{
+					$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '. Stipend Tracking List does not exist');
+					$this->db->trans_rollback();
+					redirect('dbms');		
+				}
+				else
+				{
+
+					$stipend_tracking_list['Stipend_Tracking_ID'] = $stipend_tracking_id;
+					$stipend_tracking_list['Subject_ID'] = $this->subject->getSubjectByCode($subject)->Subject_ID;
+					$stipend_tracking_list['Teacher_ID'] = $this->teacher->getTeacherByCode($code)->Teacher_ID;
+
+					if (!$this->teacher->addStipendTrackingList($stipend_tracking_list))
+					{
+						$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+						$this->db->trans_rollback();
+						redirect('dbms');
+					}	
+				}
+				/*else
+				{
+					if ($this->teacher->updateStipendTrackingList($code, $subject, $stipend_tracking_list))
+					{
+						$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $code . '');
+						$this->db->trans_rollback();
+						redirect('dbms');					
+					}
+				}*/
 			}
 		}
 
@@ -3618,24 +3641,42 @@ class Dbms_Controller extends CI_Controller
 
 			$Email = $row['Q'];
 			
-			if (!$this->teacher->getTeacherByEmail($Email))
+			if (!$this->teacher->getTeacherByEmail($Email))//check if teacher exists
 			{
 				$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
 				$this->db->trans_rollback();
 				redirect('dbms');					
 			}
-			if (!$this->teacher->getGcatTrackerByTeacherEmail($Email))
+			else
 			{
-				$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
-				$this->db->trans_rollback();
-				redirect('dbms');					
-			}
+				if (!$this->teacher->getGcatTrackerByTeacherEmail($Email)) // check if gcat tracker exists
+				{
+					$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Invalid data at row ' . $counter . '. Teacher does not exist');
+					$this->db->trans_rollback();
+					redirect('dbms');					
+				}
 
-			if (!$this->teacher->$this->teacher->uploadGcatGrade($Email, $Gcat_Tracker))
-			{
-				$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Invalid data at row ' . $counter . '');
-				$this->db->trans_rollback();
-				redirect('dbms');					
+				else
+				{
+
+					$Gcat_Tracker['Stipend_Tracking_ID'] = $stipend_tracking_id;
+					$Gcat_Tracker['Subject_ID'] = $this->subject->getSubjectByCode($subject)->Subject_ID;
+					$Gcat_Tracker['Teacher_ID'] = $this->teacher->getTeacherByCode($code)->Teacher_ID;
+
+					if (!$this->teacher->addGcatTracker($Gcat_Tracker))
+					{
+						$this->session->set_flashdata('upload_error', 'Teacher Stipend Tracker upload failed. Invalid data at row ' . $counter . ' of ' . $highestRow . '.');
+						$this->db->trans_rollback();
+						redirect('dbms');
+					}	
+				}
+
+				/*if ($this->teacher->$this->teacher->uploadGcatGrade($Email, $Gcat_Tracker)) // pangupdate to 
+				{
+					$this->session->set_flashdata('upload_error', 'GCAT Grades upload failed. Invalid data at row ' . $counter . '');
+					$this->db->trans_rollback();
+					redirect('dbms');					
+				}*/	
 			}
 		}
 
