@@ -4034,5 +4034,14 @@ function getallStudentsBestCompletedMonthly($jan_start, $jan_end, $feb_start, $f
 			return false;
 		}
 	}
+	
+	function updateTargetQuarterly($id, $data)
+	{
+		$this->db->where('Target_Quarterly_ID', $id);
+		$this->db->update('target_quarterly', $data);
+		
+		return $this->db->_error_message();
+	}
+	
 }
 ?>

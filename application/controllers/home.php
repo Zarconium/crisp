@@ -47,7 +47,8 @@ class Home extends CI_Controller {
 		$config['cur_tag_close'] = '</a></li>';
 		$config['num_tag_open'] = '<li>';	
 		$config['num_tag_close'] = '</li>';
-		$config['num_links'] = 2;
+		$config['num_links'] = 5;
+		$config['total_rows'] = 50;
  
         $this->pagination->initialize($config);
 		
@@ -56,16 +57,15 @@ class Home extends CI_Controller {
 		$this->db->order_by('log.Created_At', 'desc');
 
 		$data['logs'] = $this->db->get('log', $config['per_page'], $this->uri->segment(3));
-		//$data['logs'] = $this->log->getAllLogs();
 		$data['links'] = $this->pagination->create_links();
 		
 		
 		$this->table->set_heading('Username', 'Description', 'Date');
 		$tmpl = array (
-                    'table_open'          => '<table class="table table-striped table-area">',
+                    'table_open'          => '<table class="table table-notifs table-striped table-area">',
 
-                    'heading_row_start'   => '<tr>',
-                    'heading_row_end'     => '</tr>',
+                    'heading_row_start'   => '<thead><tr>',
+                    'heading_row_end'     => '</tr></thead>',
                     'heading_cell_start'  => '<th>',
                     'heading_cell_end'    => '</th>',
 

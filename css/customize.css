@@ -4,12 +4,12 @@ text-align: center;
 
 .full{
 position:absolute;
-top:20;
-left:0; 
-right:0;
-margin:auto;
-height:240px;
-width:70%;
+top: 20%;
+left: 0; 
+right: 0;
+margin: auto;
+height: 60%;
+width: 70%;
 }
 
 .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"]{
@@ -145,19 +145,20 @@ margin-bottom: 5%;
 color: #1abc9c;
 }
 
+
 .report-form table tbody, .report-form  table thead, .report-form table tfoot{
 display: block;
 }
 
 table tbody{
 overflow: scroll;
-height: 500px;
+height: 80%;
 }
 
 .report-form th, .report-form td{
-width: 100px;
+width: 200px;
 }
 
-.report-form table thead tr > th:nth-child(1), .report-form tbody tr > td:nth-child(1){
-width: 60%;
+.header{
+text-align: center;
 }

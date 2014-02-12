@@ -17,6 +17,8 @@ class Reports_Controller extends CI_Controller {
 
 	function index()
 	{
+		$this->load->model('target_monthly_model');
+	
 		$data['schools'] = $this->school->getAllSchools();
 		$data['subjects'] = $this->subject->getAllSubjects();
 		$data['teachers'] = $this->teacher->getAllTeachersFormatted();
@@ -26,8 +28,11 @@ class Reports_Controller extends CI_Controller {
 		$data['gcat_classes'] = $this->classes->getAllGCATClasses();
 		$data['smp_subjects'] = $this->subject->getSMPSubjects();
 		$data['smp_classes'] = $this->classes->getAllSMPClasses();
-
-
+		$monthly_target = $this->target_monthly_model->getTargetMonthly();
+		foreach ($monthly_target as $target) :
+			$number = $target->target_number; 
+		endforeach;		
+		$data['number'] = $number;
 
 		$this->load->view('header');
 		$this->load->view('report', $data);
@@ -684,6 +689,19 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('header-print');
 		$this->load->view('reports/mne_report_monthly', $data);
 		$this->load->view('footer-print');	
+	}
+	
+	//assumes an existing target
+	//my table looks like this: target_monthly with properties Target_Monthly_ID and target_number
+	function saveTargetMonthly(){
+		$data = array
+		(
+			'Target_Monthly_ID' => 1,
+			'target_number' => $this->input->post('mande_month_target')
+		);
+		$id = 1;
+		$this->db->where('Target_Monthly_ID', $id);
+		$this->db->update('target_monthly', $data); 
 	}
 }
 ?>
