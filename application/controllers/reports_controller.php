@@ -686,6 +686,8 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('footer-print');	
 	}
 	
+	//assumes an existing target
+	//my table looks like this: target_monthly with properties Target_Monthly_ID and target_number
 	function saveTargetMonthly(){
 		$data = array
 		(
