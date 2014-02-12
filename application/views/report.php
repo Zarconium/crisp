@@ -869,7 +869,7 @@
 				</div>
 				<div id="mande_month" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form" action="<?php echo base_url('reports/mneMonthlyReport'); ?>" method="post" target="_blank">
+						<form class="form" role="form" action="<?php echo base_url('reports/saveTargetMonthly'); ?>" method="post" target="_blank">
 							<div class="form-group">
 								<label>Year</label>
 								<input class="form-control" type="number" name="mande_month_year" min="2011">

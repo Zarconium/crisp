@@ -145,21 +145,18 @@ margin-bottom: 5%;
 color: #1abc9c;
 }
 
+
 .report-form table tbody, .report-form  table thead, .report-form table tfoot{
 display: block;
 }
 
 table tbody{
 overflow: scroll;
-height: 500px;
+height: 80%;
 }
 
 .report-form th, .report-form td{
-width: 100px;
-}
-
-.report-form table thead tr > th:nth-child(1), .report-form tbody tr > td:nth-child(1){
-width: 60%;
+width: 200px;
 }
 
 .header{

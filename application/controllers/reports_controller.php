@@ -685,5 +685,16 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('reports/mne_report_monthly', $data);
 		$this->load->view('footer-print');	
 	}
+	
+	function saveTargetMonthly(){
+		$data = array
+		(
+			'Target_Monthly_ID' => 1,
+			'target_number' => $this->input->post('mande_month_target')
+		);
+		$id = 1;
+		$this->db->where('Target_Monthly_ID', $id);
+		$this->db->update('target_monthly', $data); 
+	}
 }
 ?>
