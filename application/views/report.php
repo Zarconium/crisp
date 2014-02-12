@@ -876,7 +876,7 @@
 							</div>				
 							<div class="form-group">
 								<label>Target</label>
-								<input class="form-control" type="number" name="mande_month_target">
+									<input class="form-control" type="number" name="mande_month_target" placeholder="<?php echo $number; ?>">
 							</div>
 							
 							<div class="button-groups">
