@@ -32,7 +32,6 @@
 							<label>Last Name</label>
 							<input class="form-control" type="text" name="last_name" value="<?php if(isset($teacher->Last_Name)) echo $teacher->Last_Name; ?>">
 							<?php echo form_error('last_name'); ?>
-							<?php echo validation_errors(); ?>
 						</div>
 
 						<div class="form-group">
@@ -1033,36 +1032,36 @@
 							<th>Amount</th>
 							<th>Claimed</th>
 						</tr>
-						<?php if ($stipends) foreach ($stipends as $stipend): ?>
+						<?php if (isset($stipends)) if ($stipends) foreach ($stipends as $stipend): ?>
 						<tr>
 							<td><?php echo $stipend->Checked_By; ?></td>
-							<td>BPO101</td>
-							<td>100</td>
-							<td>Yes</td>
+							<td><?php echo $stipend->Subject_Code; ?></td>
+							<td><?php echo $stipend->Amount; ?></td>
+							<td><?php echo $stipend->Claimed; ?></td>
 						</tr>
 						<?php endforeach; ?>
 					</table>
 				</div>
-			</div>	
+			</div>
 	
 			<div class="tab-pane" id="application">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#best_adept" data-toggle="tab">BEST and ADEPT</a></li>
+					<li class="active"><a href="#best_adept" data-toggle="tab">BEST and AdEPT</a></li>
 					<li><a href="#smp_app" data-toggle="tab">SMP</a></li>
-				</ul>	
+				</ul>
 
 				<div class="tab-content">
 					<div class="tab-pane active" id="best_adept">
 						<div class="form">
 							<div class="form-group">
 								<label>Date of Application</label>
-								<input class="form-control" type="date" name="date_of_application_best">
+								<input class="form-control" type="date" name="date_of_application_best" value="<?php if (isset($best_adept_application->Date)) echo $best_adept_application->Date;?>">
 							</div>
 
 							<div class="form-group">
 								<label>Subject Taking</label><br/>
-								<input type="checkbox" name="subject" value="best"> BEST
-								<input type="checkbox" name="subject" value="adept"> ADEPT
+								<input type="checkbox" name="subject" value="best" <?php if (isset($best_adept_application->Subject_Code)) if ($best_adept_application->Subject_Code == 'BEST/AdEPT' || $best_adept_application->Subject_Code == 'BEST') echo 'checked="checked"'; ?>> BEST
+								<input type="checkbox" name="subject" value="adept" <?php if (isset($best_adept_application->Subject_Code)) if ($best_adept_application->Subject_Code == 'BEST/AdEPT' || $best_adept_application->Subject_Code == 'AdEPT') echo 'checked="checked"'; ?>> ADEPT
 							</div>
 
 							<legend>Questions</legend>
@@ -1070,17 +1069,17 @@
 							<span class="help-block">Please share your thoughts on the following. Limit your answer to 100 to 500 words.</span>
 							<div class="form-group">
 								<label>What is your main motivation for participating in the certification program?</label>
-								<input class="form-control" type="text" name="main_motivation">
+								<input class="form-control" type="text" name="main_motivation" value="<?php if (isset($best_adept_application->Answer_1)) echo $best_adept_application->Answer_1;?>">
 							</div>
 
 							<div class="form-group">
 								<label>Are there any schedule / work / health / personal impediments to your participation in the certification process? If yes, please explain. Include dates and other relevant details.	</label>
-								<input class="form-control" type="text" name="problem_details">
+								<input class="form-control" type="text" name="problem_details" value="<?php if (isset($best_adept_application->Answer_2)) echo $best_adept_application->Answer_2;?>">
 							</div>
 
 							<div class="form-group">
 								<label>Please share any relevant information not mentioned above that might help you be considered for certification.</label>
-								<input class="form-control" type="" name="">
+								<input class="form-control" type="text" name="answer_3" value="<?php if (isset($best_adept_application->Answer_3)) echo $best_adept_application->Answer_3;?>">
 							</div>
 						</div>
 					</div>
@@ -1089,94 +1088,73 @@
 						<div class="form">
 							<div class="form-group">
 								<label>Date of Application</label>
-								<input class="form-control" type="date" name="date_of-application">
+								<input class="form-control" type="date" name="date_of-application" value="<?php if (isset($smp_application->Date)) echo $smp_application->Date;?>">
 							</div>
 
 							<div class="form-group">
-								<label>BPO101</label><br/>
-								<input type="radio" name="bpo101" value="yes"> Yes
-								<input type="radio" name="bpo101" value="yes"> No
+								<label>Subject</label>
+								<select class="form-control" name="subject">
+								<?php foreach ($subjects as $subject): ?>
+									<option value="<?php echo $subject->Subject_ID; ?>" <?php if (isset($smp_application->Subject_ID)) if ($smp_application->Subject_ID == $subject->Subject_ID) echo 'selected="selected"'; ?>><?php echo $subject->Subject_Code; ?></option>
+								<?php endforeach; ?>
+								</select>
 							</div>
 
-							<div class="form-group">
-								<label>BPO102</label><br/>
-								<input type="radio" name="bpo102" value="yes"> Yes
-								<input type="radio" name="bpo102" value="yes"> No
-							</div>
-							
-							<div class="form-group">
-								<label>Business Communication</label><br/>
-								<input type="radio" name="business" value="yes"> Yes
-								<input type="radio" name="business" value="yes"> No
-							</div>
-
-							<div class="form-group">
-								<label>Service Culture</label><br/>
-								<input type="radio" name="service_culture" value="yes"> Yes
-								<input type="radio" name="service_culture" value="yes"> No
-							</div>
-
-							<div class="form-group">
-								<label>Systems Thinking</label><br/>
-								<input type="radio" name="systems_thinking" value="yes"> Yes
-								<input type="radio" name="systems_thinking" value="yes"> No
-							</div>
-					
 							<div class="form-group">
 								<label>How do you think the BPO contributes to nation building?</label>
-								<input class="form-control" type="text" name="nation_building">
+								<input class="form-control" type="text" name="nation_building" value="<?php if (isset($smp_application->Answer_1)) echo $smp_application->Answer_1;?>">
 							</div>
 
 							<div class="form-group">
 								<label>What is the difference between a man and a woman?</label>
-								<input class="form-control" type="text" name="man_woman">
+								<input class="form-control" type="text" name="man_woman" value="<?php if (isset($smp_application->Answer_2)) echo $smp_application->Answer_2;?>">
 							</div>
 							
 							<legend>Additional Information</legend>
 
 							<div class="form-group">
 								<label>Approximate Total Numbers of Subjects Handled</label>
-								<input class="form-control" type="number">
+								<input class="form-control" type="number" value="<?php if (isset($smp_application->Total_Numbers_Of_Subjects_Handled)) echo $smp_application->Total_Numbers_Of_Subjects_Handled;?>">
 							</div>
 
 							<div class="form-group">
 								<label>Number of Years Teaching</label>
-								<input class="form-control" type="number">
+								<input class="form-control" type="number" value="<?php if (isset($smp_application->Years_Teaching)) echo $smp_application->Years_Teaching;?>">
 							</div>
 
 							<div class="form-group">
 								<label>Number of Years Teaching in Current Institution</label>
-								<input class="form-control" type="number">
+								<input class="form-control" type="number" value="<?php if (isset($smp_application->Years_Teaching_In_Current_Institution)) echo $smp_application->Years_Teaching_In_Current_Institution;?>">
 							</div>
 
 							<div class="form-group">
 								<label>Average Number of Students per Class</label>
-								<input class="form-control" type="number">
+								<input class="form-control" type="number" value="<?php if (isset($smp_application->Avg_Student_Per_Class)) echo $smp_application->Avg_Student_Per_Class;?>">
 							</div>
 													
 							<div class="form-group">
 								<label>What are the support offices available to you?</label>
-								<input class="form-control" type="text">
+								<input class="form-control" type="text" value="<?php if (isset($smp_application->Support_Offices_Available)) echo $smp_application->Support_Offices_Available;?>">
 							</div>
 
 							<div class="form-group">
 								<label>Instructional materials support?</label>
-								<input class="form-control" type="text">
+								<input class="form-control" type="text" value="<?php if (isset($smp_application->Instructional_Materials_Support)) echo $smp_application->Instructional_Materials_Support;?>">
 							</div>
 
 							<div class="form-group">
 								<label>Technology support?</label>
-								<input class="form-control" type="text">
+								<input class="form-control" type="text" value="<?php if (isset($smp_application->Technology_Support)) echo $smp_application->Technology_Support;?>">
 							</div>
 
 							<div class="form-group">
 								<label>Can you readily use a laboratory when needed?</label>
-								<input class="form-control" type="text">
+								<input class="form-control" type="text" value="<?php if (isset($smp_application->Readily_Use_Lab)) echo $smp_application->Readily_Use_Lab;?>">
 							</div>
 
 							<div class="form-group">
-								<label>Internet services? (school)	</label>
-								<input class="form-control" type="text">
+								<label>Internet services? (school)</label>
+								<input class="form-control" type="text" value="<?php if (isset($smp_application->Internet_Services)) echo $smp_application->Internet_Services;?>">
 							</div>
 					
 							<legend>Training</legend>
@@ -1236,20 +1214,20 @@
 
 							<div class="form-group">
 								<label>Contract</label><br/>
-								<input type="radio" name="contract" value="yes"> Yes
-								<input type="radio" name="contract" value="yes"> No
+								<input type="radio" name="contract" value="1" <?php if (isset($smp_application->Contract)) if ($smp_application->Contract == 1) echo 'checked="checked"'; ?>> Yes
+								<input type="radio" name="contract" value="0" <?php if (isset($smp_application->Contract)) if ($smp_application->Contract == 0) echo 'checked="checked"'; ?>> No
 							</div>
 
 							<div class="form-group">
 								<label>Self-Assesment Form<span class="help-block">Business Communcation</span></label><br/>
-								<input type="radio" name="assessment_bc" value="yes"> Yes
-								<input type="radio" name="assessment_bc" value="yes"> No
+								<input type="radio" name="assessment_bc" value="1" <?php if (isset($smp_application->Self_Assessment_Form_Business_Communication)) if ($smp_application->Self_Assessment_Form_Business_Communication == 1) echo 'checked="checked"'; ?>> Yes
+								<input type="radio" name="assessment_bc" value="0" <?php if (isset($smp_application->Self_Assessment_Form_Business_Communication)) if ($smp_application->Self_Assessment_Form_Business_Communication == 0) echo 'checked="checked"'; ?>> No
 							</div>
 
 							<div class="form-group">
 								<label>Self-Assesment Form<span class="help-block">Service Culture</span></label><br/>
-								<input type="radio" name="assessment_sc" value="yes"> Yes
-								<input type="radio" name="assessment_sc" value="yes"> No
+								<input type="radio" name="assessment_sc" value="1" <?php if (isset($smp_application->Self_Assessment_Form_Service_Culture)) if ($smp_application->Self_Assessment_Form_Service_Culture == 1) echo 'checked="checked"'; ?>> Yes
+								<input type="radio" name="assessment_sc" value="0" <?php if (isset($smp_application->Self_Assessment_Form_Service_Culture)) if ($smp_application->Self_Assessment_Form_Service_Culture == 0) echo 'checked="checked"'; ?>> No
 							</div>
 						</div>
 					</div>

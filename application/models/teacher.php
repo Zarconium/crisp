@@ -247,6 +247,52 @@ Class Teacher extends CI_Model
 		}
 	}
 
+	function getBestAdeptT3ApplicationByTeacherIdOrCode($id_code)
+	{
+		$this->db->select('*');
+		$this->db->from('best_adept_t3_application');
+		$this->db->join('t3_application', 'best_adept_t3_application.T3_Application_ID = t3_application.T3_Application_ID', 'left');
+		$this->db->join('teacher_t3_application', 't3_application.T3_Application_ID = teacher_t3_application.T3_Application_ID', 'left');
+		$this->db->join('teacher', 'teacher_t3_application.Teacher_ID = teacher.Teacher_ID', 'left');
+		$this->db->join('subject', 't3_application.Subject_ID = subject.Subject_ID', 'left');
+		$this->db->where('teacher.Teacher_ID', $id_code);
+		$this->db->or_where('teacher.Code', $id_code);
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getSmpT3ApplicationByTeacherIdOrCode($id_code)
+	{
+		$this->db->select('*');
+		$this->db->from('smp_t3_application');
+		$this->db->join('t3_application', 'smp_t3_application.T3_Application_ID = t3_application.T3_Application_ID', 'left');
+		$this->db->join('teacher_t3_application', 't3_application.T3_Application_ID = teacher_t3_application.T3_Application_ID', 'left');
+		$this->db->join('teacher', 'teacher_t3_application.Teacher_ID = teacher.Teacher_ID', 'left');
+		$this->db->join('subject', 't3_application.Subject_ID = subject.Subject_ID', 'left');
+		$this->db->where('teacher.Teacher_ID', $id_code);
+		$this->db->or_where('teacher.Code', $id_code);
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getBestT3AttendanceByTeacherId($id)
 	{
 		$this->db->select('*');
@@ -403,6 +449,7 @@ Class Teacher extends CI_Model
 		$this->db->select('*');
 		$this->db->from('stipend_tracking');
 		$this->db->join('stipend_tracking_list', 'stipend_tracking.Stipend_Tracking_ID = stipend_tracking_list.Stipend_Tracking_ID', 'left');
+		$this->db->join('subject', 'stipend_tracking_list.Subject_ID = subject.Subject_ID', 'left');
 		$this->db->join('teacher', 'stipend_tracking_list.Teacher_ID = teacher.Teacher_ID', 'left');
 		$this->db->where('teacher.Teacher_ID', $id_code);
 		$this->db->or_where('teacher.Code', $id_code);

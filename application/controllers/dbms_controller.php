@@ -212,6 +212,7 @@ class Dbms_Controller extends CI_Controller
 	function form_teacher_profile($id)
 	{
 		$data['schools'] = $this->school->getAllSchools();
+		$data['subjects'] = $this->subject->getAllSubjects();
 		$data['teacher'] = $this->teacher->getTeacherById($id);
 		$data['training_experiences'] = $this->teacher->getTrainingExperiencesByTeacherId($id);
 		$data['certifications'] = $this->teacher->getCertificationsByTeacherId($id);
@@ -223,6 +224,8 @@ class Dbms_Controller extends CI_Controller
 		$data['adept_t3_attendance'] = $this->teacher->getAdeptT3AttendanceByTeacherId($id);
 		$data['smp_t3_attendance'] = $this->teacher->getSmpT3AttendanceByTeacherId($id);
 		$data['stipends'] = $this->teacher->getStipendsByTeacherIdOrCode($id);
+		$data['best_adept_application'] = $this->teacher->getBestAdeptT3ApplicationByTeacherIdOrCode($id);
+		$data['smp_application'] = $this->teacher->getSmpT3ApplicationByTeacherIdOrCode($id);
 
 		if($this->input->post())
 		{
@@ -1437,6 +1440,7 @@ class Dbms_Controller extends CI_Controller
 	function form_teacher_application()
 	{
 		$data['schools'] = $this->school->getAllSchools();
+		$data['subjects'] = $this->subject->getAllSubjects();
 
 		if($this->input->post())
 		{
@@ -1503,7 +1507,7 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('other_work_position[]', 'Position', 'trim|xss_clean');
 			$this->form_validation->set_rules('other_work_description[]', 'Work Description', 'trim|xss_clean');
 			$this->form_validation->set_rules('other_work_date_started[]', 'Date Started', 'trim|xss_clean');
-
+			// Skills
 			$this->form_validation->set_rules('computer_proficient_skill', 'Computer Proficiency Skills', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('computer_familiar_skill', 'Computer Familiarity', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('skill', 'Other Skills', 'trim|required|xss_clean');
@@ -1518,11 +1522,34 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('affiliation_description[]', 'Affiliation Description', 'trim|xss_clean');
 			$this->form_validation->set_rules('affiliation_position[]', 'Affiliation Position', 'trim|xss_clean');
 			$this->form_validation->set_rules('affiliation_years[]', 'Years of Affiliation', 'trim|xss_clean');
-
+			// Documents
 			$this->form_validation->set_rules('resume', 'Resume', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('photo', 'Photo', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('proof', 'Proof of Certification', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('diploma', 'Diploma/TOR', 'trim|required|xss_clean');
+			// BEST/AdEPT Application
+			$this->form_validation->set_rules('best_adept_application_date', 'BEST/AdEPT Application Date', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('best_adept_subject', 'BEST/AdEPT Subject', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('best_adept_answer_1', 'BEST/AdEPT Answer 1', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('best_adept_answer_2', 'BEST/AdEPT Answer 2', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('best_adept_answer_3', 'BEST/AdEPT Answer 3', 'trim|required|xss_clean');
+			// SMP Application
+			$this->form_validation->set_rules('smp_application_date', 'SMP Application Date', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('smp_subject', 'SMP Subject', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('smp_answer_1', 'SMP Answer 1', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('smp_answer_2', 'SMP Answer 2', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('smp_subjects_handled', 'SMP Subjects Handled', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('smp_years_teaching', 'SMP Years Teaching', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('smp_years_teaching_current', 'SMP Years Teaching in Current Institution', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('smp_students_per_class', 'SMP Average Students per Class', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('smp_support_offices', 'SMP Support Offices', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('smp_materials_support', 'SMP Materials Support', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('smp_technology_support', 'SMP Technology Supprt', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('smp_laboratory', 'SMP Laboratory', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('smp_internet', 'SMP Internet Access', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('smp_contract', 'SMP Contract', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('smp_self_assessment_bizcom', 'SMP BizCom Self Assessment Form', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('smp_self_assessment_sc', 'SMP SC101 Self Assessment Form', 'trim|required|xss_clean');
 
 			$this->form_validation->set_message('is_unique', 'Teacher already exists.');
 			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
