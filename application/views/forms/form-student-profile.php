@@ -36,12 +36,6 @@
 				</div>
 
 				<div class="form-inline" role="form">
-					<div class="form-group">		
-						<label>Name Suffix</label>			
-						<input class="form-control" type="text" name="name_suffix" value="<?php echo $student->Name_Suffix; ?>">
-						<?php echo form_error('name_suffix'); ?>
-					</div>
-					
 					<div class="form-group">
 						<label>Last Name</label>
 						<input type="text" class="form-control" name="last_name" value="<?php echo $student->Last_Name; ?>">
@@ -58,6 +52,12 @@
 						<label>Middle Initial</label>
 						<input type="text" class="form-control" name="middle_initial" value="<?php echo $student->Middle_Initial; ?>">
 						<?php echo form_error('middle_initial'); ?>
+					</div>
+					
+					<div class="form-group">
+						<label>Name Suffix</label>
+						<input class="form-control" type="text" name="name_suffix" value="<?php echo $student->Name_Suffix; ?>">
+						<?php echo form_error('name_suffix'); ?>
 					</div>
 				</div>
 

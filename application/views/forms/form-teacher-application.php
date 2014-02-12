@@ -14,8 +14,6 @@
 			<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
 		</div>
 
-		<input type="hidden" name="code" value="<?php echo set_value('code'); ?>">
-		<?php echo form_error('code'); ?>
 	
 	<ul class="nav nav-tabs">
 	  <li class="active"><a href="#basic" data-toggle="tab">Basic Information</a></li>
@@ -27,8 +25,10 @@
 	
 	<legend>Personal Information</legend>
 	
-		<div class="form-inline">
-			
+		<input type="hidden" name="code" value="<?php echo set_value('code'); ?>">
+		<?php echo form_error('code'); ?>
+	
+		<div class="form-inline">		
 			<div class="form-group">
 				<label>Last Name</label>
 				<input class="form-control" type="text" name="last_name" value="<?php echo set_value('last_name'); ?>">
@@ -343,6 +343,7 @@
 				<input class="form-control" type="text" name="position_of_supervisor" value="<?php echo set_value('position_of_supervisor'); ?>">
 					<?php echo form_error('position_of_supervisor'); ?>
 			</div>
+			
 			<div class="form-group">
 				<label>Supervisor Contact Details</label>
 				<input class="form-control" type="text" name="supervisor_contact_details" value="<?php echo set_value('supervisor_contact_details'); ?>">

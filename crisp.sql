@@ -1576,7 +1576,7 @@ INSERT INTO `teacher` (`Teacher_ID`, `Code`, `Name_Suffix`, `Last_Name`, `First_
 --
 
 CREATE TABLE IF NOT EXISTS `teacher_affiliation_to_organization` (
-  `Teacher_Affliation_to_Organization_ID` int(11) NOT NULL,
+  `Teacher_Affiliation_to_Organization_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Organization` varchar(45) NOT NULL,
   `Description` varchar(45) DEFAULT NULL,
   `Positions` varchar(45) DEFAULT NULL,
@@ -1584,14 +1584,14 @@ CREATE TABLE IF NOT EXISTS `teacher_affiliation_to_organization` (
   `Teacher_ID` int(11) NOT NULL,
   PRIMARY KEY (`Teacher_Affliation_to_Organization_ID`),
   KEY `fk_Teacher_Affliation_to_Organization_Teacher1_idx` (`Teacher_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `teacher_affiliation_to_organization`
 --
 
 INSERT INTO `teacher_affiliation_to_organization` (`Teacher_Affliation_to_Organization_ID`, `Organization`, `Description`, `Positions`, `Years_Affiliated`, `Teacher_ID`) VALUES
-(0, 'Al Quaeda', 'Middle East', 'Suicide Bomber', 1, 32);
+(1, 'Al Quaeda', 'Middle East', 'Suicide Bomber', 1, 32);
 
 -- --------------------------------------------------------
 
