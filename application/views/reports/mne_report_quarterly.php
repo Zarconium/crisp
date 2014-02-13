@@ -75,19 +75,19 @@
 		<?php endforeach; ?>
 		<?php foreach ($teacher_best_completed_row as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($teacher_best_completed_row as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($teacher_best_completed_row as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($teacher_best_completed_row as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -129,29 +129,29 @@
 		<td>20,000</td>
 		<?php foreach ($getallTeacherSmpAnySubject as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherSmpAnySubject as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherSmpAnySubject as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherSmpAnySubject as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherSmpAnySubject as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherSmpAnySubject as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
