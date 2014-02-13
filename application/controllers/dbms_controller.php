@@ -212,6 +212,7 @@ class Dbms_Controller extends CI_Controller
 	function form_teacher_profile($id)
 	{
 		$data['schools'] = $this->school->getAllSchools();
+		$data['subjects'] = $this->subject->getAllSubjects();
 		$data['teacher'] = $this->teacher->getTeacherById($id);
 		$data['training_experiences'] = $this->teacher->getTrainingExperiencesByTeacherId($id);
 		$data['certifications'] = $this->teacher->getCertificationsByTeacherId($id);
@@ -223,6 +224,8 @@ class Dbms_Controller extends CI_Controller
 		$data['adept_t3_attendance'] = $this->teacher->getAdeptT3AttendanceByTeacherId($id);
 		$data['smp_t3_attendance'] = $this->teacher->getSmpT3AttendanceByTeacherId($id);
 		$data['stipends'] = $this->teacher->getStipendsByTeacherIdOrCode($id);
+		$data['best_adept_application'] = $this->teacher->getBestAdeptT3ApplicationByTeacherIdOrCode($id);
+		$data['smp_application'] = $this->teacher->getSmpT3ApplicationByTeacherIdOrCode($id);
 
 		if($this->input->post())
 		{
@@ -1437,6 +1440,7 @@ class Dbms_Controller extends CI_Controller
 	function form_teacher_application()
 	{
 		$data['schools'] = $this->school->getAllSchools();
+		$data['subjects'] = $this->subject->getAllSubjects();
 
 		if($this->input->post())
 		{
@@ -1503,7 +1507,7 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('other_work_position[]', 'Position', 'trim|xss_clean');
 			$this->form_validation->set_rules('other_work_description[]', 'Work Description', 'trim|xss_clean');
 			$this->form_validation->set_rules('other_work_date_started[]', 'Date Started', 'trim|xss_clean');
-
+			// Skills
 			$this->form_validation->set_rules('computer_proficient_skill', 'Computer Proficiency Skills', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('computer_familiar_skill', 'Computer Familiarity', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('skill', 'Other Skills', 'trim|required|xss_clean');
@@ -1518,11 +1522,46 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('affiliation_description[]', 'Affiliation Description', 'trim|xss_clean');
 			$this->form_validation->set_rules('affiliation_position[]', 'Affiliation Position', 'trim|xss_clean');
 			$this->form_validation->set_rules('affiliation_years[]', 'Years of Affiliation', 'trim|xss_clean');
-
+			// Documents
 			$this->form_validation->set_rules('resume', 'Resume', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('photo', 'Photo', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('proof', 'Proof of Certification', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('diploma', 'Diploma/TOR', 'trim|required|xss_clean');
+
+			$this->form_validation->set_rules('program[]', 'Programs Applied For', 'trim|xss_clean');
+			if ($this->input->post('program'))
+			{
+				foreach ($this->input->post('program') as $program)
+				{
+					if ($program == 'best_adept')// BEST/AdEPT Application
+					{
+						$this->form_validation->set_rules('best_adept_application_date', 'BEST/AdEPT Application Date', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('best_adept_subject', 'BEST/AdEPT Subject', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('best_adept_answer_1', 'BEST/AdEPT Answer 1', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('best_adept_answer_2', 'BEST/AdEPT Answer 2', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('best_adept_answer_3', 'BEST/AdEPT Answer 3', 'trim|required|xss_clean');
+					}
+					elseif ($program == 'smp')// SMP Application
+					{
+						$this->form_validation->set_rules('smp_application_date', 'SMP Application Date', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_subject', 'SMP Subject', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_answer_1', 'SMP Answer 1', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_answer_2', 'SMP Answer 2', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_subjects_handled', 'SMP Subjects Handled', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_years_teaching', 'SMP Years Teaching', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_years_teaching_current', 'SMP Years Teaching in Current Institution', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_students_per_class', 'SMP Average Students per Class', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_support_offices', 'SMP Support Offices', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_materials_support', 'SMP Materials Support', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_technology_support', 'SMP Technology Supprt', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_laboratory', 'SMP Laboratory', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_internet', 'SMP Internet Access', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_contract', 'SMP Contract', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_self_assessment_bizcom', 'SMP BizCom Self Assessment Form', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_self_assessment_sc', 'SMP SC101 Self Assessment Form', 'trim|required|xss_clean');
+					}
+				}
+			}
 
 			$this->form_validation->set_message('is_unique', 'Teacher already exists.');
 			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
@@ -1539,6 +1578,8 @@ class Dbms_Controller extends CI_Controller
 				}
 				else
 				{
+					$this->db->trans_begin();
+
 					$teacher = array
 					(
 						'Code' => $this->input->post('code'),
@@ -1659,12 +1700,151 @@ class Dbms_Controller extends CI_Controller
 						$this->teacher->addTeacherAffiliationToOrganization($teacher_affiliation_to_organization);
 					}
 
-					$data['form_success'] = TRUE;
-					$this->log->addLog('Added Teacher');
+					if ($this->input->post('program'))
+					{
+						foreach ($this->input->post('program') as $program)
+						{
+							if ($program == 'best_adept')
+							{
+								switch ($this->input->post('best_adept_subject'))
+								{
+									case 'best':
+										$subject_id = 2;
+										break;
+									
+									case 'adept':
+										$subject_id = 3;
+										break;
 
-					$this->load->view('header');
-					$this->load->view('forms/form-teacher-application', $data);
-					$this->load->view('footer');
+									case 'both':
+										$subject_id = 8;
+										break;
+
+									default:
+										break;
+								}
+
+								$t3_application = array
+								(
+									'Date' => $this->input->post('best_adept_application_date'),
+									'Subject_ID' => $subject_id
+								);
+								$t3_application_id = $this->teacher->addT3Application($t3_application);
+
+								$teacher_t3_application = array
+								(
+									'Teacher_ID' => $teacher_id,
+									'T3_Application_ID' => $t3_application_id
+								);
+								$this->teacher->addTeacherT3Application($teacher_t3_application);
+
+								$best_adept_t3_application = array
+								(
+									'T3_Application_ID' => $t3_application_id,
+									'Answer_1' => $this->input->post('best_adept_answer_1'),
+									'Answer_2' => $this->input->post('best_adept_answer_2'),
+									'Answer_3' => $this->input->post('best_adept_answer_3')
+									// 'Contract' => $this->input->post('best_adept_contract')
+								);
+								$this->teacher->addBestAdeptT3Application($best_adept_t3_application);
+
+								$t3_tracker = array
+								(
+									'Status_ID' => 3,
+									// 'Contract' => $this->input->post('best_adept_contract'),
+									'Subject_ID' => $subject_id
+								);
+								$t3_tracker_id = $this->teacher->addT3Tracker($t3_tracker);
+
+								$teacher_t3_tracker = array
+								(
+									'T3_Tracker_ID' => $t3_tracker_id,
+									'Teacher_ID' => $teacher_id
+								);
+								$this->teacher->addTeacherT3Tracker($teacher_t3_tracker);
+
+								if ($subject_id == 2 || $subject_id == 8)
+								{
+									$best_t3_tracker = array
+									(
+										'T3_Tracker_ID' => $t3_tracker_id,
+										'Best_T3_Attendance_ID' => $this->teacher->addBestT3Attendance(),
+										'Best_T3_Grades_ID' => $this->teacher->addBestT3Grades()
+									);
+									$this->teacher->addBestT3Tracker($best_t3_tracker);
+								}
+
+								if ($subject_id == 3 || $subject_id == 8)
+								{
+									$adept_t3_tracker = array
+									(
+										'T3_Tracker_ID' => $t3_tracker_id,
+										'Adept_T3_Attendance_ID' => $this->teacher->addAdeptT3Attendance(),
+										'Adept_T3_Grades_ID' => $this->teacher->addAdeptT3Grades()
+									);
+									$this->teacher->addAdeptT3Tracker($adept_t3_tracker);
+								}
+							}
+							elseif ($program == 'smp')
+							{
+								$t3_application = array
+								(
+									'Date' => $this->input->post('smp_application_date'),
+									'Subject_ID' => $this->input->post('smp_subject')
+								);
+								$t3_application_id = $this->teacher->addT3Application($t3_application);
+
+								$teacher_t3_application = array
+								(
+									'Teacher_ID' => $teacher_id,
+									'T3_Application_ID' => $t3_application_id
+								);
+								$this->teacher->addTeacherT3Application($teacher_t3_application);
+
+								$smp_t3_application = array
+								(
+									'T3_Application_ID' => $t3_application_id,
+									'Answer_1' => $this->input->post('smp_answer_1'),
+									'Answer_2' => $this->input->post('smp_answer_2'),
+									'Total_Number_Of_Subjects_Handled' => $this->input->post('smp_subjects_handled'),
+									'Years_Teaching' => $this->input->post('smp_years_teaching'),
+									'Years_Teaching_In_Current_Institution' => $this->input->post('smp_years_teaching_current'),
+									'Avg_Student_Per_Class' => $this->input->post('smp_students_per_class'),
+									'Support_Offices_Available' => $this->input->post('smp_support_offices'),
+									'Instructional_Materials_Support' => $this->input->post('smp_materials_support'),
+									'Technology_Support' => $this->input->post('smp_technology_support'),
+									'Readily_Use_Lab' => $this->input->post('smp_laboratory'),
+									'Internet_Services' => $this->input->post('smp_internet'),
+									'Self_Assessment_Form_Business_Communication' => $this->input->post('smp_self_assessment_bizcom'),
+									'Self_Assessment_Form_Service_Culture' => $this->input->post('smp_self_assessment_sc'),
+									'Contract' => $this->input->post('smp_contract'),
+								);
+								$this->teacher->addSmpT3Application($smp_t3_application);
+							}
+						}
+					}
+
+					if ($this->db->_error_message())
+					{
+						$this->db->trans_rollback();
+
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-teacher-application', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$this->db->trans_commit();
+
+						$data['form_success'] = TRUE;
+						$this->log->addLog('Added Teacher');
+
+						$this->load->view('header');
+						$this->load->view('forms/form-teacher-application', $data);
+						$this->load->view('footer');
+					}
 				}
 			}
 			elseif($this->input->post('save_draft'))
