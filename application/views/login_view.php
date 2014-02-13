@@ -10,8 +10,10 @@
 	<body>
 		<div class="wrapper full">
 			<div class="row">
-				<div class="col-md-3 col-md-offset-4">
+				<div class="col-md-6 col-md-offset-1">
 					<a href="<?php echo base_url(); ?>"><img src="<?php echo base_url('images/logo.jpg'); ?>" class="img-responsive logo avoid-me"/></a>
+				</div>
+				<div class="col-md-3">
 					<div class="text-danger"><?php echo validation_errors(); ?></div>
 					<?php echo form_open('verifylogin', 'role="form"'); ?>
 					<div class="form-group">

@@ -85,17 +85,134 @@ class Dbms_Controller extends CI_Controller
 		$data['bpo102'] = $this->student->getBpo102ByStudentId($id);
 		$data['sc101'] = $this->student->getSc101ByStudentId($id);
 		$data['systh101'] = $this->student->getSysth101ByStudentId($id);
-		// $this->log->addLog('Updated Student Profile');
 
-		$this->load->view('header');
-		$this->load->view('forms/form-student-profile', $data);
-		$this->load->view('footer');
+		if($this->input->post())
+		{
+			$this->form_validation->set_rules('id_number', 'ID Number', 'trim|required|max_length[10]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[45]|alpha_numeric|xss_clean');
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[45]|alpha_numeric|xss_clean');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|max_length[4]|alpha|xss_clean');
+			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|max_length[5]|alpha_numeric|xss_clean');
+			$this->form_validation->set_rules('civil', 'Civil', 'trim|required|max_length[9]|xss_clean');
+			$this->form_validation->set_rules('birthday', 'Birthdate', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('birthplace', 'Birthplace', 'trim|required|max_length[45]|alpha_numeric|xss_clean');
+			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|exact_length[1]|xss_clean');
+			$this->form_validation->set_rules('nationality', 'Nationality', 'trim|required|max_length[45]|alpha|xss_clean');
+			$this->form_validation->set_rules('street_number', 'Street Number', 'trim|required|max_length[5]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('street_name', 'Street Name', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('city', 'City', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('province', 'Province', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('region', 'Region', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('alternate_address', 'Alternate Address', 'trim|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|max_length[13]|xss_clean');
+			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|max_length[9]|xss_clean');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[45]|valid_email|xss_clean');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('degree_type', 'AB/BS', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('degree', 'Degree', 'trim|required|max_length[97]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('year', 'Year Level', 'trim|required|integer|xss_clean');
+			$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('expected_year_of_graduation', 'Expected Year of Graduation', 'trim|required|integer|xss_clean');
+			$this->form_validation->set_rules('DOSTscholar', 'DOST Scholar', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('scholar', 'Scholar', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('work', 'Work', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('code', 'Code', 'trim|required|xss_clean');
+
+			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+			if($this->input->post('submit'))
+			{
+				if($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-student-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					$this->db->trans_begin();
+
+					$student = array
+					(
+						'School_ID' => $this->input->post('school'),
+						'Last_Name' => $this->input->post('last_name'),
+						'First_Name' => $this->input->post('first_name'),
+						'Middle_Initial' => $this->input->post('middle_initial'),
+						'Name_Suffix' => $this->input->post('name_suffix'),
+						'Student_ID_Number' => $this->input->post('id_number'),
+						'Civil_Status' => $this->input->post('civil'),
+						'Birthdate' => $this->input->post('birthday'),
+						'Birthplace' => $this->input->post('birthplace'),
+						'Gender' => $this->input->post('gender'),
+						'Nationality' => $this->input->post('nationality'),
+						'Street_Number' => $this->input->post('street_number'),
+						'Street_Name' => $this->input->post('street_name'),
+						'City' => $this->input->post('city'),
+						'Province' => $this->input->post('province'),
+						'Region' => $this->input->post('region'),
+						'Alternate_Address' => $this->input->post('alternate_address'),
+						'Mobile_Number' => $this->input->post('mobile'),
+						'Landline' => $this->input->post('landline'),
+						'Email' => $this->input->post('email'),
+						'Facebook' => $this->input->post('facebook'),
+						'Course' => $this->input->post('degree_type') . " " . $this->input->post('degree'),
+						'Year' => $this->input->post('year'),
+						'Expected_Year_of_Graduation' => $this->input->post('expected_year_of_graduation'),
+						'DOST_Scholar' => $this->input->post('DOSTscholar'),
+						'Scholar' => $this->input->post('scholar'),
+						'Interested_In_ITBPO' => $this->input->post('work'),
+						'Own_A_Computer' => $this->input->post('computer'),
+						'Internet_Access' => $this->input->post('internet'),
+						'Code' => $this->input->post('code')
+					);
+					
+					if ($this->student->updateStudentById($id, $student))
+					{
+						$this->db->trans_rollback();
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-student-profile', $data);
+						$this->load->view('footer');
+						return;
+					}
+
+					$this->db->trans_commit();
+
+					$data['student'] = $this->student->getStudentById($id);
+					$data['form_success'] = TRUE;
+					$this->log->addLog('Updated Student Profile');
+
+					$this->load->view('header');
+					$this->load->view('forms/form-student-profile', $data);
+					$this->load->view('footer');
+				}
+			}
+			elseif($this->input->post('save_draft'))
+			{
+				$this->form_validation->run();
+
+				$data['draft_saved'] = TRUE;
+
+				$this->load->view('header');
+				$this->load->view('forms/form-student-profile', $data);
+				$this->load->view('footer');
+			}
+		}
+		else
+		{
+			$this->load->view('header');
+			$this->load->view('forms/form-student-profile', $data);
+			$this->load->view('footer');
+		}
 	}
-	
 	
 	function form_teacher_profile($id)
 	{
 		$data['schools'] = $this->school->getAllSchools();
+		$data['subjects'] = $this->subject->getAllSubjects();
 		$data['teacher'] = $this->teacher->getTeacherById($id);
 		$data['training_experiences'] = $this->teacher->getTrainingExperiencesByTeacherId($id);
 		$data['certifications'] = $this->teacher->getCertificationsByTeacherId($id);
@@ -106,12 +223,617 @@ class Dbms_Controller extends CI_Controller
 		$data['best_t3_attendance'] = $this->teacher->getBestT3AttendanceByTeacherId($id);
 		$data['adept_t3_attendance'] = $this->teacher->getAdeptT3AttendanceByTeacherId($id);
 		$data['smp_t3_attendance'] = $this->teacher->getSmpT3AttendanceByTeacherId($id);
+		$data['stipends'] = $this->teacher->getStipendsByTeacherIdOrCode($id);
+		$data['best_adept_application'] = $this->teacher->getBestAdeptT3ApplicationByTeacherIdOrCode($id);
+		$data['smp_application'] = $this->teacher->getSmpT3ApplicationByTeacherIdOrCode($id);
 
-		// $this->log->addLog('Updated Teacher Profile');
+		if($this->input->post())
+		{
+			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
 
-		$this->load->view('header');
-		$this->load->view('forms/form-teacher-profile', $data);
-		$this->load->view('footer');
+			if($this->input->post('submit'))
+			{
+				$this->form_validation->set_rules('code', 'Code', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|xss_clean');
+				$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('birthdate', 'Birthdate', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('birthplace', 'Birthplace', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('nationality', 'Nationality', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('total_year_teaching', 'Total Years of Teaching', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('civil', 'Civil Status', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('gender', 'Gender', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('desktop', 'Desktop', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('laptop', 'Laptop', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('access', 'Access', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('street_number', 'Street Number', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('street_name', 'Street Name', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('city', 'City', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('province', 'Province', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('region', 'Region', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('alternate_address', 'Alternate Address', 'trim|xss_clean');
+				$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('landline', 'Landline', 'trim|required||xss_clean');
+				$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean');
+				$this->form_validation->set_rules('degree_type', 'AB/BS', 'trim|xss_clean');
+				$this->form_validation->set_rules('degree', 'Degree', 'trim|xss_clean');
+				$this->form_validation->set_rules('school', 'School', 'trim|xss_clean');
+				$this->form_validation->set_rules('master_type', 'MA/MS', 'trim|xss_clean');
+				$this->form_validation->set_rules('master_degree', 'Masters Degree', 'trim|xss_clean');
+				$this->form_validation->set_rules('master_school', 'Masters School', 'trim|xss_clean');
+				$this->form_validation->set_rules('doctorate_type', 'Doctor', 'trim|xss_clean');
+				$this->form_validation->set_rules('doctorate_degree', 'Doctorate Degree', 'trim|xss_clean');
+				$this->form_validation->set_rules('doctorate_school', 'Doctorate School', 'trim|xss_clean');
+				$this->form_validation->set_rules('employment_status', 'Employment Status', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('current_position', 'Current Position', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('current_department', 'Current Department', 'trim|xss_clean');
+				$this->form_validation->set_rules('current_employer', 'Current Employer', 'trim|required|xss_clean'); //School ID
+				$this->form_validation->set_rules('employer_address', 'Employer Address', 'trim|xss_clean');
+				$this->form_validation->set_rules('name_of_supervisor', 'Name of Supervisor', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('position_of_supervisor', 'Position of Supervisor', 'trim|xss_clean');
+				$this->form_validation->set_rules('supervisor_contact_details', 'Supervisor Contact Details', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('other_positions_held', 'Other Positions Held', 'trim|xss_clean');
+				$this->form_validation->set_rules('classes_handling', 'Classes Handling', 'trim|xss_clean');
+
+				$this->form_validation->set_rules('computer_proficient_skill', 'Computer Proficiency Skills', 'trim|xss_clean');
+				$this->form_validation->set_rules('computer_familiar_skill', 'Computer Familiarity', 'trim|xss_clean');
+				$this->form_validation->set_rules('skill', 'Other Skills', 'trim|xss_clean');
+
+				$this->form_validation->set_rules('resume', 'Resume', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('photo', 'Photo', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('proof', 'Proof of Certification', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('diploma', 'Diploma/TOR', 'trim|required|xss_clean');
+
+				if($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					$this->db->trans_begin();
+
+					$teacher = array
+					(
+						'Code' => $this->input->post('code'),
+						'Name_Suffix' => $this->input->post('name_suffix'),
+						'Last_Name' => $this->input->post('last_name'),
+						'First_Name' => $this->input->post('first_name'),
+						'Middle_Initial' => $this->input->post('middle_initial'),
+						'Birthdate' => $this->input->post('birthdate'),
+						'Birthplace' => $this->input->post('birthplace'),
+						'Nationality' => $this->input->post('nationality'),
+						'Total_Year_of_Teaching' => $this->input->post('total_year_teaching'),
+						'Civil_Status' => $this->input->post('civil'),
+						'Gender' => $this->input->post('gender'),
+						'Desktop' => $this->input->post('desktop'),
+						'Laptop' => $this->input->post('laptop'),
+						'Internet' => $this->input->post('access'),
+						'Street_Number' => $this->input->post('street_number'),
+						'Street_Name' => $this->input->post('street_name'),
+						'City' => $this->input->post('city'),
+						'Province' => $this->input->post('province'),
+						'Region' => $this->input->post('region'),
+						'Alternate_Address' => $this->input->post('alternate_address'),
+						'Mobile_Number' => $this->input->post('mobile'),
+						'Landline' => $this->input->post('landline'),
+						'Email' => $this->input->post('email'),
+						'Facebook' => $this->input->post('facebook'),
+						'Employment_Status' => $this->input->post('employment_status'),
+						'Current_Position' => $this->input->post('current_position'),
+						'Current_Department' => $this->input->post('current_department'),
+						'School_ID' => $this->input->post('current_employer'),
+						'Name_of_Supervisor' => $this->input->post('name_of_supervisor'),
+						'Supervisor_Contact_Details' => $this->input->post('supervisor_contact_details'),
+						'Position_of_Supervisor' => $this->input->post('position_of_supervisor'),
+						'Classes_Handling' => $this->input->post('classes_handling'),
+						'Resume' => $this->input->post('resume'),
+						'Photo' => $this->input->post('photo'),
+						'Proof_of_Certification' => $this->input->post('proof'),
+						'Diploma_TOR' => $this->input->post('diploma')
+					);
+
+					if ($this->teacher->updateTeacherById($id, $teacher))
+					{
+						$this->db->trans_rollback();
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-teacher-profile', $data);
+						$this->load->view('footer');
+						return;
+					}
+
+					$this->db->trans_commit();
+
+					$data['teacher'] = $this->teacher->getTeacherById($id);
+					$data['form_success'] = TRUE;
+					$this->log->addLog('Updated Teacher Profile');
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+			}
+			elseif ($this->input->post('institutions_worked_add'))
+			{
+				$this->form_validation->set_rules('institutions_worked_institution_input', 'Institution', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('institutions_worked_position_input', 'Position', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('institutions_worked_year_started_input', 'Year Started', 'trim|required|numeric|xss_clean');
+				$this->form_validation->set_rules('institutions_worked_level_taught_input', 'Level Taught', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('institutions_worked_courses_taught_input', 'Courses Taught', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('institutions_worked_number_of_years_in_institution_input', 'Number of Years in Institution', 'trim|required|numeric|xss_clean');
+
+				if ($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					$this->db->trans_begin();
+
+					$teacher_training_experience = array
+					(
+						'Teacher_ID' => $id,
+						'Institution' => $this->input->post('institutions_worked_institution_input'),
+						'Position' => $this->input->post('institutions_worked_position_input'),
+						'Date' => $this->input->post('institutions_worked_year_started_input'),
+						'Level_Taught' => $this->input->post('institutions_worked_level_taught_input'),
+						'Courses_Taught' => $this->input->post('institutions_worked_courses_taught_input'),
+						'Number_of_Years_in_Institution' => $this->input->post('institutions_worked_number_of_years_in_institution_input')
+					);
+
+					if (!$this->teacher->addTeacherTrainingExperience($teacher_training_experience))
+					{
+						$this->db->trans_rollback();
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-teacher-profile', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$this->db->trans_commit();
+						$data['training_experiences'] = $this->teacher->getTrainingExperiencesByTeacherId($id);
+						$data['form_success'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-teacher-profile', $data);
+						$this->load->view('footer');
+					}
+				}
+			}
+			elseif ($this->input->post('institutions_worked_delete'))
+			{
+				$this->form_validation->set_rules('institutions_worked_id[]', 'Institutions Worked', 'trim|required|numeric|xss_clean');
+
+				if ($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					foreach ($this->input->post('institutions_worked_id') as $key)
+					{
+						$this->teacher->deleteTeacherTrainingExperienceById($key);
+					}
+
+					$data['training_experiences'] = $this->teacher->getTrainingExperiencesByTeacherId($id);
+					$data['form_success'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+			}
+			elseif ($this->input->post('certification_add'))
+			{
+				$this->form_validation->set_rules('certifications_certification_input', 'Certification', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('certifications_certifying_body_input', 'Certifying Body', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('certifications_date_received_input', 'Certification Date Received', 'trim|required|xss_clean');
+
+				if ($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					$this->db->trans_begin();
+
+					$teacher_certification = array
+					(
+						'Teacher_ID' => $id,
+						'Certification' => $this->input->post('certifications_certification_input'),
+						'Certifying_Body' => $this->input->post('certifications_certifying_body_input'),
+						'Date_Received' => $this->input->post('certifications_date_received_input')
+					);
+
+					if (!$this->teacher->addTeacherCertification($teacher_certification))
+					{
+						$this->db->trans_rollback();
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-teacher-profile', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$this->db->trans_commit();
+						$data['certifications'] = $this->teacher->getCertificationsByTeacherId($id);
+						$data['form_success'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-teacher-profile', $data);
+						$this->load->view('footer');
+					}
+				}
+			}
+			elseif ($this->input->post('certification_delete'))
+			{
+				$this->form_validation->set_rules('certification_id[]', 'Certifications', 'trim|required|numeric|xss_clean');
+
+				if ($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					foreach ($this->input->post('certification_id') as $key)
+					{
+						$this->teacher->deleteTeacherCertificationById($key);
+					}
+
+					$data['certifications'] = $this->teacher->getCertificationsByTeacherId($id);
+					$data['form_success'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+			}
+			elseif ($this->input->post('award_add'))
+			{
+				$this->form_validation->set_rules('awards_award_input', 'Award', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('awards_awarding_body_input', 'Awarding Body', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('awards_date_received_input', 'Award Date Received', 'trim|required|xss_clean');
+
+				if ($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					$this->db->trans_begin();
+
+					$teacher_awards = array
+					(
+						'Teacher_ID' => $id,
+						'Award' => $this->input->post('awards_award_input'),
+						'Awarding_Body' => $this->input->post('awards_awarding_body_input'),
+						'Date_Received' => $this->input->post('awards_date_received_input')
+					);
+
+					if (!$this->teacher->addTeacherAwards($teacher_awards))
+					{
+						$this->db->trans_rollback();
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-teacher-profile', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$this->db->trans_commit();
+						$data['awards'] = $this->teacher->getAwardsByTeacherId($id);
+						$data['form_success'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-teacher-profile', $data);
+						$this->load->view('footer');
+					}
+				}
+			}
+			elseif ($this->input->post('award_delete'))
+			{
+				$this->form_validation->set_rules('award_id[]', 'Awards', 'trim|required|numeric|xss_clean');
+
+				if ($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					foreach ($this->input->post('award_id') as $key)
+					{
+						$this->teacher->deleteTeacherAwardsById($key);
+					}
+
+					$data['awards'] = $this->teacher->getAwardsByTeacherId($id);
+					$data['form_success'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+			}
+			elseif ($this->input->post('other_work_add'))
+			{
+				$this->form_validation->set_rules('other_work_organization_input', 'Organization', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('other_work_position_input', 'Position', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('other_work_description_input', 'Work Description', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('other_work_date_started_input', 'Date Started', 'trim|required|xss_clean');
+
+				if ($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					$this->db->trans_begin();
+
+					$teacher_relevant_experiences = array
+					(
+						'Teacher_ID' => $id,
+						'Organization' => $this->input->post('other_work_organization_input'),
+						'Position' => $this->input->post('other_work_position_input'),
+						'Description' => $this->input->post('other_work_description_input'),
+						'Date' => $this->input->post('other_work_date_started_input')
+					);
+
+					if (!$this->teacher->addTeacherRelevantExperiences($teacher_relevant_experiences))
+					{
+						$this->db->trans_rollback();
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-teacher-profile', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$this->db->trans_commit();
+						$data['relevant_experiences'] = $this->teacher->getRelevantExperiencesByTeacherId($id);
+						$data['form_success'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-teacher-profile', $data);
+						$this->load->view('footer');
+					}
+				}
+			}
+			elseif ($this->input->post('other_work_delete'))
+			{
+				$this->form_validation->set_rules('other_work_id[]', 'Other Work', 'trim|required|numeric|xss_clean');
+
+				if ($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					foreach ($this->input->post('other_work_id') as $key)
+					{
+						$this->teacher->deleteTeacherRelevantExperiencesById($key);
+					}
+
+					$data['relevant_experiences'] = $this->teacher->getRelevantExperiencesByTeacherId($id);
+					$data['form_success'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+			}
+			elseif ($this->input->post('reference_add'))
+			{
+				$this->form_validation->set_rules('reference_name_input', 'Reference Name', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('reference_position_input', 'Reference Position', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('reference_company_input', 'Reference Company', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('reference_phone_input', 'Reference Phone', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('reference_email_input', 'Reference Email', 'trim|required|xss_clean');
+
+				if ($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					$this->db->trans_begin();
+
+					$teacher_professional_reference = array
+					(
+						'Teacher_ID' => $id,
+						'Name' => $this->input->post('reference_name_input'),
+						'Position' => $this->input->post('reference_position_input'),
+						'Company' => $this->input->post('reference_company_input'),
+						'Phone' => $this->input->post('reference_phone_input'),
+						'Email' => $this->input->post('reference_email_input')
+					);
+
+					if (!$this->teacher->addTeacherProfessionalReference($teacher_professional_reference))
+					{
+						$this->db->trans_rollback();
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-teacher-profile', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$this->db->trans_commit();
+						$data['professional_references'] = $this->teacher->getProfessionalReferencesByTeacherId($id);
+						$data['form_success'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-teacher-profile', $data);
+						$this->load->view('footer');
+					}
+				}
+			}
+			elseif ($this->input->post('reference_delete'))
+			{
+				$this->form_validation->set_rules('reference_id[]', 'Professional References', 'trim|required|numeric|xss_clean');
+
+				if ($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					foreach ($this->input->post('reference_id') as $key)
+					{
+						$this->teacher->deleteTeacherProfessionalReferenceById($key);
+					}
+
+					$data['professional_references'] = $this->teacher->getProfessionalReferencesByTeacherId($id);
+					$data['form_success'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+			}
+			elseif ($this->input->post('affiliation_to_organization_add'))
+			{
+				$this->form_validation->set_rules('affiliation_organization_input', 'Affiliation Organization', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('affiliation_description_input', 'Affiliation Description', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('affiliation_position_input', 'Affiliation Position', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('affiliation_years_input', 'Years of Affiliation', 'trim|required|numeric|xss_clean');
+
+				if ($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					$this->db->trans_begin();
+
+					$teacher_affiliation_to_organization = array
+					(
+						'Teacher_ID' => $id,
+						'Organization' => $this->input->post('affiliation_organization_input'),
+						'Description' => $this->input->post('affiliation_description_input'),
+						'Positions' => $this->input->post('affiliation_position_input'),
+						'Years_Affiliated' => $this->input->post('affiliation_years_input')
+					);
+					if (!$this->teacher->addTeacherAffiliationToOrganization($teacher_affiliation_to_organization))
+					{
+						$this->db->trans_rollback();
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-teacher-profile', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$this->db->trans_commit();
+						$data['affiliation_to_organizations'] = $this->teacher->getAffiliationToOrganizationsByTeacherId($id);
+						$data['form_success'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-teacher-profile', $data);
+						$this->load->view('footer');
+					}
+				}
+			}
+			elseif ($this->input->post('affiliation_to_organization_delete'))
+			{
+				$this->form_validation->set_rules('affiliation_to_organization_id[]', 'Affiliation to Organization', 'trim|required|numeric|xss_clean');
+
+				if ($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					foreach ($this->input->post('affiliation_to_organization_id') as $key)
+					{
+						$this->teacher->deleteTeacherAffiliationToOrganizationById($key);
+					}
+
+					$data['affiliation_to_organizations'] = $this->teacher->getAffiliationToOrganizationsByTeacherId($id);
+					$data['form_success'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-teacher-profile', $data);
+					$this->load->view('footer');
+				}
+			}
+			elseif($this->input->post('save_draft'))
+			{
+				$this->form_validation->run();
+
+				$data['draft_saved'] = TRUE;
+
+				$this->load->view('header');
+				$this->load->view('forms/form-teacher-profile', $data);
+				$this->load->view('footer');
+			}
+		}
+		else
+		{
+			$this->load->view('header');
+			$this->load->view('forms/form-teacher-profile', $data);
+			$this->load->view('footer');
+		}
 	}
 	
 	function form_proctor_profile($id)
@@ -148,6 +870,8 @@ class Dbms_Controller extends CI_Controller
 				}
 				else
 				{
+					$this->db->trans_begin();
+
 					$proctor = array
 					(
 						'Name_Suffix' => $this->input->post('name_suffix'),
@@ -168,6 +892,7 @@ class Dbms_Controller extends CI_Controller
 
 					if($this->proctor->updateProctorById($id, $proctor))
 					{
+						$this->db->trans_rollback();
 						$data['form_error'] = TRUE;
 
 						$this->load->view('header');
@@ -176,6 +901,7 @@ class Dbms_Controller extends CI_Controller
 					}
 					else
 					{
+						$this->db->trans_commit();
 						$data['proctor'] = $this->proctor->getProctorById($id);
 						$data['form_success'] = TRUE;
 						$this->log->addLog('Updated Proctor');
@@ -239,6 +965,8 @@ class Dbms_Controller extends CI_Controller
 				}
 				else
 				{
+					$this->db->trans_begin();
+
 					$mastertrainer = array
 					(
 						'Name_Suffix' => $this->input->post('name_suffix'),
@@ -259,6 +987,7 @@ class Dbms_Controller extends CI_Controller
 
 					if($this->mastertrainer->updateMasterTrainerById($id, $mastertrainer))
 					{
+						$this->db->trans_rollback();
 						$data['form_error'] = TRUE;
 
 						$this->load->view('header');
@@ -267,6 +996,7 @@ class Dbms_Controller extends CI_Controller
 					}
 					else
 					{
+						$this->db->trans_commit();
 						$data['mastertrainer'] = $this->mastertrainer->getMasterTrainerById($id);
 						$data['form_success'] = TRUE;
 						$this->log->addLog('Updated Proctor');
@@ -351,6 +1081,8 @@ class Dbms_Controller extends CI_Controller
 				}
 				else
 				{
+					$this->db->trans_begin();
+
 					$student = array
 					(
 						'School_ID' => $this->input->post('school'),
@@ -473,12 +1205,25 @@ class Dbms_Controller extends CI_Controller
 						}
 					}
 
-					$data['form_success'] = TRUE;
-					$this->log->addLog('Added Student');
+					if ($this->db->_error_message())
+					{
+						$this->db->trans_rollback();
+						$data['form_error'] = TRUE;
 
-					$this->load->view('header');
-					$this->load->view('forms/form-student', $data);
-					$this->load->view('footer');
+						$this->load->view('header');
+						$this->load->view('forms/form-student', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$this->db->trans_commit();
+						$data['form_success'] = TRUE;
+						$this->log->addLog('Added Student');
+
+						$this->load->view('header');
+						$this->load->view('forms/form-student', $data);
+						$this->load->view('footer');
+					}
 				}
 			}
 			elseif($this->input->post('save_draft'))
@@ -695,6 +1440,7 @@ class Dbms_Controller extends CI_Controller
 	function form_teacher_application()
 	{
 		$data['schools'] = $this->school->getAllSchools();
+		$data['subjects'] = $this->subject->getAllSubjects();
 
 		if($this->input->post())
 		{
@@ -722,24 +1468,24 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('landline', 'Landline', 'trim|required||xss_clean');
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean');
-			$this->form_validation->set_rules('degree_type', 'AB/BS', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('degree', 'Degree', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('master_type', 'MA/MS', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('master_degree', 'Masters Degree', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('master_school', 'Masters School', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('doctorate_type', 'Doctor', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('doctorate_degree', 'Doctorate Degree', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('doctorate_school', 'Doctorate School', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('degree_type', 'AB/BS', 'trim|xss_clean');
+			$this->form_validation->set_rules('degree', 'Degree', 'trim|xss_clean');
+			$this->form_validation->set_rules('school', 'School', 'trim|xss_clean');
+			$this->form_validation->set_rules('master_type', 'MA/MS', 'trim|xss_clean');
+			$this->form_validation->set_rules('master_degree', 'Masters Degree', 'trim|xss_clean');
+			$this->form_validation->set_rules('master_school', 'Masters School', 'trim|xss_clean');
+			$this->form_validation->set_rules('doctorate_type', 'Doctor', 'trim|xss_clean');
+			$this->form_validation->set_rules('doctorate_degree', 'Doctorate Degree', 'trim|xss_clean');
+			$this->form_validation->set_rules('doctorate_school', 'Doctorate School', 'trim|xss_clean');
 			$this->form_validation->set_rules('employment_status', 'Employment Status', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('current_position', 'Current Position', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('current_department', 'Current Department', 'trim|xss_clean');
 			$this->form_validation->set_rules('current_employer', 'Current Employer', 'trim|required|xss_clean'); //School ID
-			$this->form_validation->set_rules('employer_address', 'Employer Address', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('employer_address', 'Employer Address', 'trim|xss_clean');
 			$this->form_validation->set_rules('name_of_supervisor', 'Name of Supervisor', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('position_of_supervisor', 'Position of Supervisor', 'trim|xss_clean');
 			$this->form_validation->set_rules('supervisor_contact_details', 'Supervisor Contact Details', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('other_positions_held', 'Other Positions Held', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('other_positions_held', 'Other Positions Held', 'trim|xss_clean');
 			$this->form_validation->set_rules('classes_handling', 'Classes Handling', 'trim|xss_clean');
 			// Institutions
 			$this->form_validation->set_rules('institutions_worked_institution[]', 'Institution', 'trim|xss_clean');
@@ -761,7 +1507,7 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('other_work_position[]', 'Position', 'trim|xss_clean');
 			$this->form_validation->set_rules('other_work_description[]', 'Work Description', 'trim|xss_clean');
 			$this->form_validation->set_rules('other_work_date_started[]', 'Date Started', 'trim|xss_clean');
-
+			// Skills
 			$this->form_validation->set_rules('computer_proficient_skill', 'Computer Proficiency Skills', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('computer_familiar_skill', 'Computer Familiarity', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('skill', 'Other Skills', 'trim|required|xss_clean');
@@ -776,11 +1522,46 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('affiliation_description[]', 'Affiliation Description', 'trim|xss_clean');
 			$this->form_validation->set_rules('affiliation_position[]', 'Affiliation Position', 'trim|xss_clean');
 			$this->form_validation->set_rules('affiliation_years[]', 'Years of Affiliation', 'trim|xss_clean');
-
+			// Documents
 			$this->form_validation->set_rules('resume', 'Resume', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('photo', 'Photo', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('proof', 'Proof of Certification', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('diploma', 'Diploma/TOR', 'trim|required|xss_clean');
+
+			$this->form_validation->set_rules('program[]', 'Programs Applied For', 'trim|xss_clean');
+			if ($this->input->post('program'))
+			{
+				foreach ($this->input->post('program') as $program)
+				{
+					if ($program == 'best_adept')// BEST/AdEPT Application
+					{
+						$this->form_validation->set_rules('best_adept_application_date', 'BEST/AdEPT Application Date', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('best_adept_subject', 'BEST/AdEPT Subject', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('best_adept_answer_1', 'BEST/AdEPT Answer 1', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('best_adept_answer_2', 'BEST/AdEPT Answer 2', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('best_adept_answer_3', 'BEST/AdEPT Answer 3', 'trim|required|xss_clean');
+					}
+					elseif ($program == 'smp')// SMP Application
+					{
+						$this->form_validation->set_rules('smp_application_date', 'SMP Application Date', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_subject', 'SMP Subject', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_answer_1', 'SMP Answer 1', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_answer_2', 'SMP Answer 2', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_subjects_handled', 'SMP Subjects Handled', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_years_teaching', 'SMP Years Teaching', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_years_teaching_current', 'SMP Years Teaching in Current Institution', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_students_per_class', 'SMP Average Students per Class', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_support_offices', 'SMP Support Offices', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_materials_support', 'SMP Materials Support', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_technology_support', 'SMP Technology Supprt', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_laboratory', 'SMP Laboratory', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_internet', 'SMP Internet Access', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_contract', 'SMP Contract', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_self_assessment_bizcom', 'SMP BizCom Self Assessment Form', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_self_assessment_sc', 'SMP SC101 Self Assessment Form', 'trim|required|xss_clean');
+					}
+				}
+			}
 
 			$this->form_validation->set_message('is_unique', 'Teacher already exists.');
 			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
@@ -797,6 +1578,8 @@ class Dbms_Controller extends CI_Controller
 				}
 				else
 				{
+					$this->db->trans_begin();
+
 					$teacher = array
 					(
 						'Code' => $this->input->post('code'),
@@ -810,9 +1593,9 @@ class Dbms_Controller extends CI_Controller
 						'Total_Year_of_Teaching' => $this->input->post('total_year_teaching'),
 						'Civil_Status' => $this->input->post('civil'),
 						'Gender' => $this->input->post('gender'),
-						'Desktop?' => $this->input->post('desktop'),
-						'Laptop?' => $this->input->post('laptop'),
-						'Internet?' => $this->input->post('access'),
+						'Desktop' => $this->input->post('desktop'),
+						'Laptop' => $this->input->post('laptop'),
+						'Internet' => $this->input->post('access'),
 						'Street_Number' => $this->input->post('street_number'),
 						'Street_Name' => $this->input->post('street_name'),
 						'City' => $this->input->post('city'),
@@ -831,10 +1614,10 @@ class Dbms_Controller extends CI_Controller
 						'Supervisor_Contact_Details' => $this->input->post('supervisor_contact_details'),
 						'Position_of_Supervisor' => $this->input->post('position_of_supervisor'),
 						'Classes_Handling' => $this->input->post('classes_handling'),
-						'Resume?' => $this->input->post('resume'),
-						'Photo?' => $this->input->post('photo'),
-						'Proof_of_Certification?' => $this->input->post('proof'),
-						'Diploma/TOR' => $this->input->post('diploma')
+						'Resume' => $this->input->post('resume'),
+						'Photo' => $this->input->post('photo'),
+						'Proof_of_Certification' => $this->input->post('proof'),
+						'Diploma_TOR' => $this->input->post('diploma')
 					);
 					$teacher_id = $this->teacher->addTeacher($teacher);
 
@@ -917,12 +1700,151 @@ class Dbms_Controller extends CI_Controller
 						$this->teacher->addTeacherAffiliationToOrganization($teacher_affiliation_to_organization);
 					}
 
-					$data['form_success'] = TRUE;
-					$this->log->addLog('Added Teacher');
+					if ($this->input->post('program'))
+					{
+						foreach ($this->input->post('program') as $program)
+						{
+							if ($program == 'best_adept')
+							{
+								switch ($this->input->post('best_adept_subject'))
+								{
+									case 'best':
+										$subject_id = 2;
+										break;
+									
+									case 'adept':
+										$subject_id = 3;
+										break;
 
-					$this->load->view('header');
-					$this->load->view('forms/form-teacher-application', $data);
-					$this->load->view('footer');
+									case 'both':
+										$subject_id = 8;
+										break;
+
+									default:
+										break;
+								}
+
+								$t3_application = array
+								(
+									'Date' => $this->input->post('best_adept_application_date'),
+									'Subject_ID' => $subject_id
+								);
+								$t3_application_id = $this->teacher->addT3Application($t3_application);
+
+								$teacher_t3_application = array
+								(
+									'Teacher_ID' => $teacher_id,
+									'T3_Application_ID' => $t3_application_id
+								);
+								$this->teacher->addTeacherT3Application($teacher_t3_application);
+
+								$best_adept_t3_application = array
+								(
+									'T3_Application_ID' => $t3_application_id,
+									'Answer_1' => $this->input->post('best_adept_answer_1'),
+									'Answer_2' => $this->input->post('best_adept_answer_2'),
+									'Answer_3' => $this->input->post('best_adept_answer_3')
+									// 'Contract' => $this->input->post('best_adept_contract')
+								);
+								$this->teacher->addBestAdeptT3Application($best_adept_t3_application);
+
+								$t3_tracker = array
+								(
+									'Status_ID' => 3,
+									// 'Contract' => $this->input->post('best_adept_contract'),
+									'Subject_ID' => $subject_id
+								);
+								$t3_tracker_id = $this->teacher->addT3Tracker($t3_tracker);
+
+								$teacher_t3_tracker = array
+								(
+									'T3_Tracker_ID' => $t3_tracker_id,
+									'Teacher_ID' => $teacher_id
+								);
+								$this->teacher->addTeacherT3Tracker($teacher_t3_tracker);
+
+								if ($subject_id == 2 || $subject_id == 8)
+								{
+									$best_t3_tracker = array
+									(
+										'T3_Tracker_ID' => $t3_tracker_id,
+										'Best_T3_Attendance_ID' => $this->teacher->addBestT3Attendance(),
+										'Best_T3_Grades_ID' => $this->teacher->addBestT3Grades()
+									);
+									$this->teacher->addBestT3Tracker($best_t3_tracker);
+								}
+
+								if ($subject_id == 3 || $subject_id == 8)
+								{
+									$adept_t3_tracker = array
+									(
+										'T3_Tracker_ID' => $t3_tracker_id,
+										'Adept_T3_Attendance_ID' => $this->teacher->addAdeptT3Attendance(),
+										'Adept_T3_Grades_ID' => $this->teacher->addAdeptT3Grades()
+									);
+									$this->teacher->addAdeptT3Tracker($adept_t3_tracker);
+								}
+							}
+							elseif ($program == 'smp')
+							{
+								$t3_application = array
+								(
+									'Date' => $this->input->post('smp_application_date'),
+									'Subject_ID' => $this->input->post('smp_subject')
+								);
+								$t3_application_id = $this->teacher->addT3Application($t3_application);
+
+								$teacher_t3_application = array
+								(
+									'Teacher_ID' => $teacher_id,
+									'T3_Application_ID' => $t3_application_id
+								);
+								$this->teacher->addTeacherT3Application($teacher_t3_application);
+
+								$smp_t3_application = array
+								(
+									'T3_Application_ID' => $t3_application_id,
+									'Answer_1' => $this->input->post('smp_answer_1'),
+									'Answer_2' => $this->input->post('smp_answer_2'),
+									'Total_Number_Of_Subjects_Handled' => $this->input->post('smp_subjects_handled'),
+									'Years_Teaching' => $this->input->post('smp_years_teaching'),
+									'Years_Teaching_In_Current_Institution' => $this->input->post('smp_years_teaching_current'),
+									'Avg_Student_Per_Class' => $this->input->post('smp_students_per_class'),
+									'Support_Offices_Available' => $this->input->post('smp_support_offices'),
+									'Instructional_Materials_Support' => $this->input->post('smp_materials_support'),
+									'Technology_Support' => $this->input->post('smp_technology_support'),
+									'Readily_Use_Lab' => $this->input->post('smp_laboratory'),
+									'Internet_Services' => $this->input->post('smp_internet'),
+									'Self_Assessment_Form_Business_Communication' => $this->input->post('smp_self_assessment_bizcom'),
+									'Self_Assessment_Form_Service_Culture' => $this->input->post('smp_self_assessment_sc'),
+									'Contract' => $this->input->post('smp_contract'),
+								);
+								$this->teacher->addSmpT3Application($smp_t3_application);
+							}
+						}
+					}
+
+					if ($this->db->_error_message())
+					{
+						$this->db->trans_rollback();
+
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-teacher-application', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$this->db->trans_commit();
+
+						$data['form_success'] = TRUE;
+						$this->log->addLog('Added Teacher');
+
+						$this->load->view('header');
+						$this->load->view('forms/form-teacher-application', $data);
+						$this->load->view('footer');
+					}
 				}
 			}
 			elseif($this->input->post('save_draft'))
@@ -2556,7 +3478,7 @@ class Dbms_Controller extends CI_Controller
 				'GCAT_Total_Cognitive' => trim($row['S']),
 				'GCAT_English_Proficiency' => trim($row['T']),
 				'GCAT_Computer_Literacy' => trim($row['U']),
-				'GCAT_Perceptual_Speed_&_Accuracy' => trim($row['V']),
+				'GCAT_Perceptual_Speed_And_Accuracy' => trim($row['V']),
 				'GCAT_Behavioral_Component_Overall_Score' => trim($row['W']),
 				'GCAT_Communication' => trim($row['X']),
 				'GCAT_Learning_Orientation' => trim($row['Y']),

@@ -13,209 +13,255 @@
 	
 	<div class="tab-content">
 		<div class="tab-pane active" id="basic">
+			<?php echo form_open('/dbms/form_student_profile/' . $student->Student_ID); ?>
+				<div class="save">
+					<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
+					<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
+					<button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
+					<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
+				</div>
 
-			<legend>Personal Information</legend>
-			
-			<form class="form-inline" role="form">
-				<div class="form-group">
-					<label>ID Number</label>
-					<input type="text" class="form-control" name="id_number" value="<?php echo $student->Student_ID_Number; ?>">
-					<?php echo form_error('id_number'); ?>
-				</div>
-			</form>
+				<legend>Personal Information</legend>
 
-			<form class="form-inline" role="form">
-				<div class="form-group">		
-					<label>Name Suffix</label>			
-					<input class="form-control" type="text" name="name_suffix" value="<?php echo $student->Name_Suffix; ?>">
-					<?php echo form_error('name_suffix'); ?>
+				<input type="hidden" name="code" value="<?php echo set_value('code'); ?>">
+				<?php echo form_error('code'); ?>
+				
+				<div class="form-inline" role="form">
+					<div class="form-group">
+						<label>ID Number</label>
+						<input type="text" class="form-control" name="id_number" value="<?php echo $student->Student_ID_Number; ?>">
+						<?php echo form_error('id_number'); ?>
+						<?php echo validation_errors(); ?>
+					</div>
+				</div>
+
+				<div class="form-inline" role="form">
+					<div class="form-group">
+						<label>Last Name</label>
+						<input type="text" class="form-control" name="last_name" value="<?php echo $student->Last_Name; ?>">
+						<?php echo form_error('last_name'); ?>
+					</div>
+					
+					<div class="form-group">
+						<label>First Name</label>
+						<input type="text" class="form-control" name="first_name" value="<?php echo $student->First_Name; ?>">
+						<?php echo form_error('first_name'); ?>
+					</div>
+					
+					<div class="form-group">
+						<label>Middle Initial</label>
+						<input type="text" class="form-control" name="middle_initial" value="<?php echo $student->Middle_Initial; ?>">
+						<?php echo form_error('middle_initial'); ?>
+					</div>
+					
+					<div class="form-group">
+						<label>Name Suffix</label>
+						<input class="form-control" type="text" name="name_suffix" value="<?php echo $student->Name_Suffix; ?>">
+						<?php echo form_error('name_suffix'); ?>
+					</div>
+				</div>
+
+				<div class="form-inline" role="form">
+					<div class="form-group">
+						<label>Gender</label><br/>
+						<input type="radio" name="gender" value="M" <?php if (!strcasecmp($student->Gender, 'M')) { echo 'checked="checked"'; }?>> Male
+						<input type="radio" name="gender" value="F" <?php if (!strcasecmp($student->Gender, 'F')) { echo 'checked="checked"'; }?>> Female
+						<?php echo form_error('gender'); ?>
+					</div>
+				</div>
+					
+				<div class="form-inline" role="form">
+					<div class="form-group">
+						<label>Civil Status</label><br/>
+						<input type="radio" name="civil" value="married" <?php if (!strcasecmp($student->Civil_Status, 'married')) { echo 'checked="checked"'; }?>> Married
+						<input type="radio" name="civil" value="single" <?php if (!strcasecmp($student->Civil_Status, 'single')) { echo 'checked="checked"'; }?>> Single
+						<input type="radio" name="civil" value="separated" <?php if (!strcasecmp($student->Civil_Status, 'separated')) { echo 'checked="checked"'; }?>> Separated
+						<input type="radio" name="civil" value="widowed" <?php if (!strcasecmp($student->Civil_Status, 'widowed')) { echo 'checked="checked"'; }?>> Widowed
+						<?php echo form_error('civil'); ?>
+					</div>
 				</div>
 				
-				<div class="form-group">
-					<label>Last Name</label>
-					<input type="text" class="form-control" name="last_name" value="<?php echo $student->Last_Name; ?>">
-					<?php echo form_error('last_name'); ?>
+				<div class="form-inline" role="form">
+					<div class="form-group">
+						<label>Birthdate</label>
+						<input type="date" class="form-control" name="birthday" value="<?php echo date('Y-m-d', strtotime($student->Birthdate)); ?>">
+						<?php echo form_error('birthday'); ?>
+					</div>
+				</div>
+
+				<div class="form-inline" role="form">
+					<div class="form-group">
+						<label>Birthplace</label>
+						<input type="text" class="form-control" name="birthplace" value="<?php echo $student->Birthplace; ?>">
+						<?php echo form_error('birthplace'); ?>
+					</div>
 				</div>
 				
-				<div class="form-group">
-					<label>First Name</label>
-					<input type="text" class="form-control" name="first_name" value="<?php echo $student->First_Name; ?>">
-					<?php echo form_error('first_name'); ?>
+				<div class="form-inline" role="form">
+					<div class="form-group">
+						<label>Nationality</label>
+						<input type="text" class="form-control" name="nationality" value="<?php echo $student->Nationality; ?>">
+						<?php echo form_error('nationality'); ?>
+					</div>
 				</div>
-				
-				<div class="form-group">
-					<label>Middle Initial</label>
-					<input type="text" class="form-control" name="middle_initial" value="<?php echo $student->Middle_Initial; ?>">
-					<?php echo form_error('middle_initial'); ?>
-				</div>
-			</form>
-				
-			<form class="form-inline" role="form">
-				<div class="form-group">
-					<label>Civil Status</label><br/>
-					<input type="radio" name="civil" value="married" <?php if (!strcasecmp($student->Civil_Status, 'married')) { echo 'checked="checked"'; }?>> Married
-					<input type="radio" name="civil" value="single" <?php if (!strcasecmp($student->Civil_Status, 'single')) { echo 'checked="checked"'; }?>> Single
-					<input type="radio" name="civil" value="separated" <?php if (!strcasecmp($student->Civil_Status, 'separated')) { echo 'checked="checked"'; }?>> Separated
-					<input type="radio" name="civil" value="widowed" <?php if (!strcasecmp($student->Civil_Status, 'widowed')) { echo 'checked="checked"'; }?>> Widowed
-					<?php echo form_error('civil'); ?>
-				</div>
-			</form>
-			
-			<form class="form-inline" role="form">
-				<div class="form-group">
-					<label>Birth Day</label>
-					<input type="date" class="form-control" name="birthday" value="<?php echo date('Y-m-d', strtotime($student->Birthdate)); ?>">
-					<?php echo form_error('birthday'); ?>
-				</div>
-			</form>
-			
-			<form class="form-inline" role="form">
-				<div class="form-group">
-					<label>Nationality</label>
-					<input type="text" class="form-control" name="nationality" value="<?php echo $student->Nationality; ?>">
-					<?php echo form_error('nationality'); ?>
-				</div>
-			</form>
+							
+				<legend>Current Address</legend>
+					
+				<div class="form-inline" role="form">
+					<div class="form-group">
+						<label>Street Number</label>
+						<input type="text" class="form-control" name="street_number" value="<?php echo $student->Street_Number; ?>">
+						<?php echo form_error('street_number'); ?>
+					</div>
 						
-			<legend>Current Address</legend>
-				
-			<form class="form-inline" role="form">
-				<div class="form-group">
-					<label>Street Number</label>
-					<input type="text" class="form-control" name="street_number" value="<?php echo $student->Street_Number; ?>">
-					<?php echo form_error('street_number'); ?>
-				</div>
-					
-				<div class="form-group">
-					<label>Street Name</label>
-					<input type="text" class="form-control" name="street_name" value="<?php echo $student->Street_Name; ?>">
-					<?php echo form_error('street_name'); ?>
-				</div>
-					
-				<div class="form-group">
-					<label>City</label>
-					<input type="text" class="form-control" name="city" value="<?php echo $student->City; ?>">
-					<?php echo form_error('city'); ?>
-				</div>
-			</form>
-
-			<form class="form-inline" role="form">
-				<div class="form-group">
-					<label>Province</label>
-					<input type="text" class="form-control" name="province" value="<?php echo $student->Province; ?>">
-					<?php echo form_error('province'); ?>
-				</div>
-					
-				<div class="form-group">
-					<label>Region</label>
-					<input type="text" class="form-control" name="region" value="<?php echo $student->Region; ?>">
-					<?php echo form_error('region'); ?>
-				</div>
-			</form>
+					<div class="form-group">
+						<label>Street Name</label>
+						<input type="text" class="form-control" name="street_name" value="<?php echo $student->Street_Name; ?>">
+						<?php echo form_error('street_name'); ?>
+					</div>
 						
-			<legend>Alternate Address</legend>
-				
-			<form class="form-inline" role="form">
-				<div class="form-group">
-					<label>Alternate Address</label>
-					<input type="text" class="form-control" name="alternate_address" value="<?php echo $student->Alternate_Address; ?>">
-					<?php echo form_error('alternate_address'); ?>
+					<div class="form-group">
+						<label>City</label>
+						<input type="text" class="form-control" name="city" value="<?php echo $student->City; ?>">
+						<?php echo form_error('city'); ?>
+					</div>
 				</div>
-			</form>
-				
-			<legend>Contact Details</legend>
-				
-			<form class="form-inline" role="form">
-				<div class="form-group"><label>Mobile</label>
-					<input type="text" class="form-control" name="mobile" value="<?php echo $student->Mobile_Number; ?>">
-					<?php echo form_error('mobile'); ?>
-				</div>
-					
-				<div class="form-group"><label>Landline</label>
-					<input type="text" class="form-control" name="landline" value="<?php echo $student->Landline; ?>">
-					<?php echo form_error('landline'); ?>
-				</div>
-					
-				<div class="form-group"><label>Email</label>
-					<input type="text" class="form-control"name="email" value="<?php echo $student->Email; ?>">
-					<?php echo form_error('email'); ?>
-				</div>
-					
-				<div class="form-group"><label>Facebook</label>
-					<input type="text" class="form-control" name="facebook" value="<?php echo $student->Facebook; ?>">
-					<?php echo form_error('facebook'); ?>
-				</div>
-			</form>
 
-			<legend>Academic Background</legend>
-				
-			<form class="form-inline" role="form">
-				<div class="form-group">
-					<label>AB / BS</label>
-					<select class="form-control" name="degree_type">
-						<option value="BS" <?php if (substr($student->Course, 0, 2) == 'BS') { echo 'selected="selected"'; }?>>BS</option>
-						<option value="AB" <?php if (substr($student->Course, 0, 2) == 'AB') { echo 'selected="selected"'; }?>>AB</option>
-					</select>
-					<?php echo form_error('degree_type'); ?>
+				<div class="form-inline" role="form">
+					<div class="form-group">
+						<label>Province</label>
+						<input type="text" class="form-control" name="province" value="<?php echo $student->Province; ?>">
+						<?php echo form_error('province'); ?>
+					</div>
+						
+					<div class="form-group">
+						<label>Region</label>
+						<input type="text" class="form-control" name="region" value="<?php echo $student->Region; ?>">
+						<?php echo form_error('region'); ?>
+					</div>
 				</div>
-				
-				<div class="form-group">
-					<label>Degree</label>
-					<input class="form-control" type="text" name="degree" value="<?php echo substr($student->Course, 3); ?>">
-					<?php echo form_error('degree'); ?>
-				</div>
-				
-				<div class="form-group">
-					<label>Year Level</label>
-					<input class="form-control" type="text" name="year" value="<?php echo $student->Year; ?>">
-					<?php echo form_error('year'); ?>
-				</div>	
-			</form>
+							
+				<legend>Alternate Address</legend>
 					
-			<form class="form-inline" role="form">		
-				<div class="form-group">
-					<label>School</label>
-					<select class="form-control" name="school">
-					<?php foreach ($schools as $school): ?>
-						<option value="<?php echo $school->School_ID ?>" <?php if ($student->School_ID == $school->School_ID) { echo 'selected="selected"'; }?>><?php echo $school->Name . " - " . $school->Branch ?></option>
-					<?php endforeach; ?>
-					</select>
-					<?php echo form_error('school'); ?>
+				<div class="form-inline" role="form">
+					<div class="form-group">
+						<label>Alternate Address</label>
+						<input type="text" class="form-control" name="alternate_address" value="<?php echo $student->Alternate_Address; ?>">
+						<?php echo form_error('alternate_address'); ?>
+					</div>
 				</div>
 					
-				<div class="form-group">
-					<label>Expected Year of Graduation</label>
-					<input type="text" class="form-control" name="expected_year_of_graduation" value="<?php echo $student->Expected_Year_of_Graduation; ?>">
-					<?php echo form_error('expected_year_of_graduation'); ?>
-				</div>
-			</form>
+				<legend>Contact Details</legend>
 					
-			<form class="form-inline" role="form">	
-				<div class="form-group">
-					<label>Are you a DOST Scholar?</label><br />
-					<input type="radio" name="DOSTscholar" value="1" <?php if ($student->DOST_Scholar == 1) { echo 'checked="checked"'; } ?>> Yes
-					<input type="radio" name="DOSTscholar" value="0" <?php if ($student->DOST_Scholar == 0) { echo 'checked="checked"'; } ?>> No
-					<?php echo form_error('DOSTscholar'); ?>
+				<div class="form-inline" role="form">
+					<div class="form-group"><label>Mobile</label>
+						<input type="text" class="form-control" name="mobile" value="<?php echo $student->Mobile_Number; ?>">
+						<?php echo form_error('mobile'); ?>
+					</div>
+						
+					<div class="form-group"><label>Landline</label>
+						<input type="text" class="form-control" name="landline" value="<?php echo $student->Landline; ?>">
+						<?php echo form_error('landline'); ?>
+					</div>
+						
+					<div class="form-group"><label>Email</label>
+						<input type="text" class="form-control"name="email" value="<?php echo $student->Email; ?>">
+						<?php echo form_error('email'); ?>
+					</div>
+						
+					<div class="form-group"><label>Facebook</label>
+						<input type="text" class="form-control" name="facebook" value="<?php echo $student->Facebook; ?>">
+						<?php echo form_error('facebook'); ?>
+					</div>
+				</div>
+
+				<legend>Academic Background</legend>
+					
+				<div class="form-inline" role="form">
+					<div class="form-group">
+						<label>AB / BS</label>
+						<select class="form-control" name="degree_type">
+							<option value="BS" <?php if (substr($student->Course, 0, 2) == 'BS') { echo 'selected="selected"'; }?>>BS</option>
+							<option value="AB" <?php if (substr($student->Course, 0, 2) == 'AB') { echo 'selected="selected"'; }?>>AB</option>
+						</select>
+						<?php echo form_error('degree_type'); ?>
+					</div>
+					
+					<div class="form-group">
+						<label>Degree</label>
+						<input class="form-control" type="text" name="degree" value="<?php echo substr($student->Course, 3); ?>">
+						<?php echo form_error('degree'); ?>
+					</div>
+					
+					<div class="form-group">
+						<label>Year Level</label>
+						<input class="form-control" type="text" name="year" value="<?php echo $student->Year; ?>">
+						<?php echo form_error('year'); ?>
+					</div>	
+				</div>
+						
+				<div class="form-inline" role="form">		
+					<div class="form-group">
+						<label>School</label>
+						<select class="form-control" name="school">
+						<?php foreach ($schools as $school): ?>
+							<option value="<?php echo $school->School_ID ?>" <?php if ($student->School_ID == $school->School_ID) { echo 'selected="selected"'; }?>><?php echo $school->Name . " - " . $school->Branch ?></option>
+						<?php endforeach; ?>
+						</select>
+						<?php echo form_error('school'); ?>
+					</div>
+						
+					<div class="form-group">
+						<label>Expected Year of Graduation</label>
+						<input type="text" class="form-control" name="expected_year_of_graduation" value="<?php echo $student->Expected_Year_of_Graduation; ?>">
+						<?php echo form_error('expected_year_of_graduation'); ?>
+					</div>
+				</div>
+						
+				<div class="form-inline" role="form">	
+					<div class="form-group">
+						<label>Are you a DOST Scholar?</label><br />
+						<input type="radio" name="DOSTscholar" value="1" <?php if ($student->DOST_Scholar == 1) { echo 'checked="checked"'; } ?>> Yes
+						<input type="radio" name="DOSTscholar" value="0" <?php if ($student->DOST_Scholar == 0) { echo 'checked="checked"'; } ?>> No
+						<?php echo form_error('DOSTscholar'); ?>
+					</div>
+				</div>
+				
+				<div class="form-inline" role="form">	
+					<div class="form-group">
+						<label>If not, are you a recipient of any scholarship?</label><br />
+						<input type="radio" name="scholar" value="1" <?php if ($student->Scholar == 1) { echo 'checked="checked"'; } ?>> Yes
+						<input type="radio" name="scholar" value="0" <?php if ($student->Scholar == 0) { echo 'checked="checked"'; } ?>> No
+						<?php echo form_error('scholar'); ?>
+					</div>
+				</div>
+				
+				<div class="form-inline" role="form">	
+					<div class="form-group">
+						<label>Are you willing to work for the IT-BPO sector</label><br/>
+						<input type="radio" name="work" value="1" <?php if ($student->Interested_in_ITBPO == 1) { echo 'checked="checked"'; } ?>> Yes
+						<input type="radio" name="work" value="0" <?php if ($student->Interested_in_ITBPO == 0) { echo 'checked="checked"'; } ?>> No
+					</div>	
+					<?php echo form_error('work'); ?>
 				</div>
 			</form>
-			
-			<form class="form-inline" role="form">	
-				<div class="form-group">
-					<label>If not, are you a recipient of any scholarship?</label><br />
-					<input type="radio" name="scholar" value="1" <?php if ($student->Scholar == 1) { echo 'checked="checked"'; } ?>> Yes
-					<input type="radio" name="scholar" value="0" <?php if ($student->Scholar == 0) { echo 'checked="checked"'; } ?>> No
-					<?php echo form_error('scholar'); ?>
-				</div>
-			</form>
-			
-			<form class="form-inline" role="form">	
-				<div class="form-group">
-					<label>Are you willing to work for the IT-BPO sector</label><br/>
-					<input type="radio" name="work" value="1" <?php if ($student->Interested_in_ITBPO == 1) { echo 'checked="checked"'; } ?>> Yes
-					<input type="radio" name="work" value="0" <?php if ($student->Interested_in_ITBPO == 0) { echo 'checked="checked"'; } ?>> No
-				</div>	
-				<?php echo form_error('work'); ?>
-			</form>
+			<script type="text/javascript">
+			$('[name="save_draft"]').click
+			(
+				function()
+				{
+					$('[name="code"]').val($('[name="school"]').val() + $('[name="id_number"]').val());
+				}
+			);
+
+			$('[name="submit"]').click
+			(
+				function()
+				{
+					$('[name="code"]').val($('[name="school"]').val() + $('[name="id_number"]').val());
+				}
+			);
+			</script>
 		</div>
 	  
 		<div class="tab-pane" id="grades">
@@ -427,7 +473,7 @@
 			
 			<div class="tab-content">
 				<div class="tab-pane active" id="gcat">
-					<form class="form" role="form">
+					<div class="form" role="form">
 						<div class="form-group">
 							<label>Proctor</label>
 							<input class="form-control" type="text" name="gcat_proctor" value="<?php if (isset($this->proctor->getProctorFullNameById($gcat_tracker->Proctor_ID)->Full_Name)) echo $this->proctor->getProctorFullNameById($gcat_tracker->Proctor_ID)->Full_Name; ?>">
@@ -461,11 +507,11 @@
 							<?php endforeach; ?>
 							</select>
 						</div>
-					</form>
+					</div>
 				</div>
 
 				<div class="tab-pane" id="best">
-					<form class="form" role="form">
+					<div class="form" role="form">
 						<div class="form-group">
 							<label>Control Number</label>
 							<input class="form-control" type="text" name="best_control_number" value="<?php if (isset($best_tracker->Control_Number)) echo $best_tracker->Control_Number; ?>">
@@ -495,11 +541,11 @@
 							<input type="radio" name="best_cd" value="1" <?php if (isset($best_tracker->Interested_in_ITBPO)) if ($best_tracker->Interested_in_ITBPO == 1) { echo 'checked="checked"'; } ?>> Yes
 							<input type="radio" name="best_cd" value="0" <?php if (isset($best_tracker->Interested_in_ITBPO)) if ($best_tracker->Interested_in_ITBPO == 0) { echo 'checked="checked"'; } ?>> No
 						</div>
-					</form>
+					</div>
 				</div>
 
 				<div class="tab-pane" id="adept">
-					<form class="form" role="form">	
+					<div class="form" role="form">	
 						<div class="form-group">
 							<label>Control Number</label>	
 							<input class="form-control" type="text" name="adept_control_number" value="<?php if (isset($adept_tracker->Control_Number)) echo $adept_tracker->Control_Number; ?>">
@@ -529,13 +575,13 @@
 							<input type="radio" name="adept_cd" value="1" <?php if (isset($adept_tracker->Interested_in_ITBPO)) if ($adept_tracker->Interested_in_ITBPO == 1) { echo 'checked="checked"'; } ?>> Yes
 							<input type="radio" name="adept_cd" value="0" <?php if (isset($adept_tracker->Interested_in_ITBPO)) if ($adept_tracker->Interested_in_ITBPO == 0) { echo 'checked="checked"'; } ?>> No
 						</div>
-					</form>
+					</div>
 				</div>
 				
 				<div class="tab-pane" id="smp">
 					<legend>Subjects</legend>
 
-					<form class="form" role="form">
+					<div class="form" role="form">
 						<table class="table">
 							<tr>
 								<th>Subject</th>
@@ -656,11 +702,11 @@
 								</td>
 							</tr>
 						</table>
-					</form>
+					</div>
 					
 					<legend>Internship</legend>
 
-					<form class="form" role="form">
+					<div class="form" role="form">
 						<div class="form-group">
 							<label>Status</label>
 							<select class="form-control" name="intern_status">
@@ -710,7 +756,7 @@
 							<input type="radio" name="evaluation_form" value="1" <?php if (isset($internship->Meet_Standards)) if ($internship->Meet_Standards == 1) { echo 'checked="checked"'; } ?>> Yes
 							<input type="radio" name="evaluation_form" value="0" <?php if (isset($internship->Meet_Standards)) if ($internship->Meet_Standards == 0) { echo 'checked="checked"'; } ?>> No
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -17,6 +17,7 @@ class Reports_Controller extends CI_Controller {
 
 	function index()
 	{
+	
 		$data['schools'] = $this->school->getAllSchools();
 		$data['subjects'] = $this->subject->getAllSubjects();
 		$data['teachers'] = $this->teacher->getAllTeachersFormatted();
@@ -26,9 +27,7 @@ class Reports_Controller extends CI_Controller {
 		$data['gcat_classes'] = $this->classes->getAllGCATClasses();
 		$data['smp_subjects'] = $this->subject->getSMPSubjects();
 		$data['smp_classes'] = $this->classes->getAllSMPClasses();
-
-
-
+	
 		$this->load->view('header');
 		$this->load->view('report', $data);
 		$this->load->view('footer');
@@ -141,7 +140,7 @@ class Reports_Controller extends CI_Controller {
 		$data['total_ft'] = $this->report_program->getStudentProgramReportPerSubFinishedTotal($start_date, $end_date, $subject_id);
 		$data['start_date'] = $start_date;
 		$data['end_date'] = $end_date;
-		$data['subject'] = $this->subject->getSubjectNameByID($subject_id);
+		$data['subject'] = $this->subject->getSubjectByID($subject_id);
 		$this->load->view('header-print');
 		$this->load->view('reports/program_report_student_per_sub', $data);
 		$this->load->view('footer-print');
@@ -190,7 +189,7 @@ class Reports_Controller extends CI_Controller {
 		$data['class_count'] = $this->report_program->getT3ProgramReportPerSubClasses($subject_id);
 		$data['start_date'] = $start_date;
 		$data['end_date'] = $end_date;
-		$data['subject'] = $this->subject->getSubjectNameByID($subject_id);
+		$data['subject'] = $this->subject->getSubjectByID($subject_id);
 
 		$this->load->view('header-print');
 		$this->load->view('reports/program_report_t3_per_sub', $data);
@@ -685,5 +684,7 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('reports/mne_report_monthly', $data);
 		$this->load->view('footer-print');	
 	}
-}
+	
+	}
+
 ?>
