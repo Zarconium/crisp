@@ -3,6 +3,8 @@
 <h4>Period: <?php echo $annual_start; ?> to <?php echo $annual_end; ?> </h4>
 <legend>CHED-LFA</legend>
 <div class="report-form">
+
+<legend>Teachers Trained</legend>
 <table class="table">
 <thead>
 <tr>
@@ -27,7 +29,6 @@
 </tr>
 </thead>
 <tbody>
-	<tr><td>T3<td></tr>
 	<tr>
 		<td>Teachers Trained in GCAT</td>
 		<td>20,000</td>
@@ -349,7 +350,34 @@
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
 	</tr>
-	<tr><td>GCAT, BEST, AdEPT</td></tr>
+	</tbody>
+</table>
+
+<legend>Students in Programs</legend>
+<table class="table">
+<thead>
+<tr>
+	<th>Description</th>
+	<th>LFA Targets</th>
+	<th>Q1</th>
+	<th>Target</th>
+	<th>%</th>
+	<th>Q2</th>
+	<th>Target</th>
+	<th>%</th>
+	<th>Q3</th>
+	<th>Target</th>
+	<th>%</th>
+	<th>Q4</th>
+	<th>Target</th>
+	<th>%</th>
+	<th>Annual</th>
+	<th>Annual Target</th>
+	<th>Annual %</th>
+	<th>Cumulative</th>
+</tr>
+</thead>
+<tbody>
 	<tr>
 		<td>Students completed in GCAT</td>
 		<td>20,000</td>
@@ -446,7 +474,6 @@
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
 	</tr>
-	<tr><td>SMP Running</td></tr>
 	<tr>
 		<td>Students enrolled in any SMP</td>
 		<td>20,000</td>
@@ -639,7 +666,6 @@
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
 	</tr>
-	<tr><td>SMP Completion</td></tr>
 	<tr>
 		<td>Students Completed in any SMP</td>
 		<td>20,000</td>

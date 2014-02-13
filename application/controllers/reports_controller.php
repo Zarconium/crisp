@@ -17,7 +17,6 @@ class Reports_Controller extends CI_Controller {
 
 	function index()
 	{
-		$this->load->model('target_monthly_model');
 	
 		$data['schools'] = $this->school->getAllSchools();
 		$data['subjects'] = $this->subject->getAllSubjects();
@@ -28,12 +27,7 @@ class Reports_Controller extends CI_Controller {
 		$data['gcat_classes'] = $this->classes->getAllGCATClasses();
 		$data['smp_subjects'] = $this->subject->getSMPSubjects();
 		$data['smp_classes'] = $this->classes->getAllSMPClasses();
-		$monthly_target = $this->target_monthly_model->getTargetMonthly();
-		foreach ($monthly_target as $target) :
-			$number = $target->target_number; 
-		endforeach;		
-		$data['number'] = $number;
-
+	
 		$this->load->view('header');
 		$this->load->view('report', $data);
 		$this->load->view('footer');
