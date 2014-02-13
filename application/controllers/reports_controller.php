@@ -691,6 +691,6 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('footer-print');	
 	}
 	
-}
+	}
 
 ?>

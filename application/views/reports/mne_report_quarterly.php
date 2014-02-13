@@ -97,29 +97,30 @@
 		<td>20,000</td>
 		<?php foreach ($teacher_adept_completed_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($teacher_adept_completed_row as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($teacher_adept_completed_row as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($teacher_adept_completed_row as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($teacher_adept_completed_row as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
+		
 		<?php foreach ($teacher_adept_completed_row as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -161,29 +162,29 @@
 		<td>20,000</td>
 		<?php foreach ($getallTeacherBpo101 as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherBpo101 as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
-		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>	
+		<?php endforeach; ?>	
 		<?php foreach ($getallTeacherBpo101 as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherBpo101 as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherBpo101 as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherBpo101 as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -193,29 +194,29 @@
 		<td>20,000</td>
 		<?php foreach ($getallTeacherBpo102 as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherBpo102 as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherBpo102 as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherBpo102 as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherBpo102 as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherBpo102 as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -225,29 +226,29 @@
 		<td>20,000</td>
 		<?php foreach ($getallTeacherServiceCulture as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherServiceCulture as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherServiceCulture as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherServiceCulture as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherServiceCulture as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherServiceCulture as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -257,29 +258,29 @@
 		<td>20,000</td>
 		<?php foreach ($getallTeacherBusinessCommunication as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherBusinessCommunication as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherBusinessCommunication as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherBusinessCommunication as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherBusinessCommunication as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherBusinessCommunication as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -289,29 +290,29 @@
 		<td>20,000</td>
 		<?php foreach ($getallTeacherSystemsThinking as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherSystemsThinking as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherSystemsThinking as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherSystemsThinking as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherSystemsThinking as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherSystemsThinking as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -321,29 +322,29 @@
 		<td>20,000</td>
 		<?php foreach ($getallTeacherCompleteSmpSubjAndTrainedTeachers as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherCompleteSmpSubjAndTrainedTeachers as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherCompleteSmpSubjAndTrainedTeachers as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherCompleteSmpSubjAndTrainedTeachers as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherCompleteSmpSubjAndTrainedTeachers as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallTeacherCompleteSmpSubjAndTrainedTeachers as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -354,29 +355,29 @@
 		<td>20,000</td>
 		<?php foreach ($gcat_completed_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($gcat_completed_row as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($gcat_completed_row as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($gcat_completed_row as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($gcat_completed_row as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($gcat_completed_row as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -386,29 +387,29 @@
 		<td>20,000</td>
 		<?php foreach ($best_completed_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($best_completed_row as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($best_completed_row as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($best_completed_row as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($best_completed_row as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual/ $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($best_completed_row as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -418,29 +419,29 @@
 		<td>20,000</td>
 		<?php foreach ($adept_completed_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($adept_completed_row as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($adept_completed_row as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($adept_completed_row as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($adept_completed_row as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($adept_completed_row as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -451,29 +452,29 @@
 		<td>20,000</td>
 		<?php foreach ($smp_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($smp_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($smp_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($smp_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($smp_currently_taking_row as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($smp_currently_taking_row as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -483,29 +484,29 @@
 		<td>20,000</td>
 		<?php foreach ($bpo101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($bpo101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($bpo101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($bpo101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($bpo101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($bpo101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -515,29 +516,29 @@
 		<td>20,000</td>
 		<?php foreach ($bpo102_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($bpo102_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($bpo102_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($bpo102_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($bpo102_currently_taking_row as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($bpo102_currently_taking_row as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -547,29 +548,29 @@
 		<td>20,000</td>
 		<?php foreach ($sc101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($sc101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($sc101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($sc101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($sc101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($sc101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -579,29 +580,29 @@
 		<td>20,000</td>
 		<?php foreach ($bizcom_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($bizcom_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($bizcom_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($bizcom_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($bizcom_currently_taking_row as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($bizcom_currently_taking_row as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -611,29 +612,29 @@
 		<td>20,000</td>
 		<?php foreach ($systh101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($systh101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($systh101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($systh101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($systh101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($systh101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -644,29 +645,29 @@
 		<td>20,000</td>
 		<?php foreach ($getallStudentsSmpCompleted as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsSmpCompleted as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsSmpCompleted as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsSmpCompleted as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsSmpCompleted as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsSmpCompleted as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -676,29 +677,29 @@
 		<td>20,000</td>
 		<?php foreach ($getallStudentsBpo101Completed as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsBpo101Completed as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsBpo101Completed as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsBpo101Completed as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsBpo101Completed as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsBpo101Completed as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -708,29 +709,29 @@
 		<td>20,000</td>
 		<?php foreach ($getallStudentsBpo102Completed as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsBpo102Completed as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsBpo102Completed as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsBpo102Completed as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsBpo102Completed as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsBpo102Completed as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -739,30 +740,30 @@
 		<td>Students Completed in Service Culture</td>
 		<td>20,000</td>
 		<?php foreach ($getallStudentsServiceCultureCompleted as $count): ?>
-			<td><?php echo $count->Q1; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
+			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php foreach ($getallStudentsServiceCultureCompleted as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsServiceCultureCompleted as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsServiceCultureCompleted as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsServiceCultureCompleted as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsServiceCultureCompleted as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -772,29 +773,29 @@
 		<td>20,000</td>
 		<?php foreach ($getallStudentsBusinessCommunicationCompleted as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsBusinessCommunicationCompleted as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsBusinessCommunicationCompleted as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsBusinessCommunicationCompleted as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsBusinessCommunicationCompleted as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsBusinessCommunicationCompleted as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -804,29 +805,29 @@
 		<td>20,000</td>
 		<?php foreach ($getallStudentsSystemsThinkingCompleted as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsSystemsThinkingCompleted as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsSystemsThinkingCompleted as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsSystemsThinkingCompleted as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsSystemsThinkingCompleted as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsSystemsThinkingCompleted as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -836,29 +837,29 @@
 		<td>20,000</td>
 		<?php foreach ($getallStudentsInternshipCompleted as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsInternshipCompleted as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsInternshipCompleted as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsInternshipCompleted as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsInternshipCompleted as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Annual / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($getallStudentsInternshipCompleted as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
