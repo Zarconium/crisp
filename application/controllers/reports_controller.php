@@ -146,7 +146,7 @@ class Reports_Controller extends CI_Controller {
 		$data['total_ft'] = $this->report_program->getStudentProgramReportPerSubFinishedTotal($start_date, $end_date, $subject_id);
 		$data['start_date'] = $start_date;
 		$data['end_date'] = $end_date;
-		$data['subject'] = $this->subject->getSubjectNameByID($subject_id);
+		$data['subject'] = $this->subject->getSubjectByID($subject_id);
 		$this->load->view('header-print');
 		$this->load->view('reports/program_report_student_per_sub', $data);
 		$this->load->view('footer-print');
@@ -195,7 +195,7 @@ class Reports_Controller extends CI_Controller {
 		$data['class_count'] = $this->report_program->getT3ProgramReportPerSubClasses($subject_id);
 		$data['start_date'] = $start_date;
 		$data['end_date'] = $end_date;
-		$data['subject'] = $this->subject->getSubjectNameByID($subject_id);
+		$data['subject'] = $this->subject->getSubjectByID($subject_id);
 
 		$this->load->view('header-print');
 		$this->load->view('reports/program_report_t3_per_sub', $data);

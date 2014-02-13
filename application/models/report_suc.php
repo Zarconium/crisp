@@ -47,6 +47,7 @@ Class Report_Suc extends CI_Model
 		and school.School_ID = class.School_ID 
 		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
 		s.Subject_Code="' . $subject_code . '")
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
 		AND class.Semester =' . $semester . '
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
@@ -62,10 +63,11 @@ Class Report_Suc extends CI_Model
 		and school.School_ID = class.School_ID 
 		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
 		s.Subject_Code="' . $subject_code . '")
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
 		AND class.Semester =' . $semester . '
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '");
-');
+		');
 
 
 		if($query->num_rows() > 0)
@@ -92,6 +94,7 @@ Class Report_Suc extends CI_Model
 		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
 		s.Subject_ID="' . $subject_id . '")
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
 		AND class.Semester =' . $semester . '
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
 		AND class.Name = "' . $class_name . '" 
@@ -107,6 +110,7 @@ Class Report_Suc extends CI_Model
 		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
 		s.Subject_ID="' . $subject_id . '")
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
 		AND class.Semester =' . $semester . '
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
 		AND class.Name = "' . $class_name . '";');
@@ -130,6 +134,8 @@ Class Report_Suc extends CI_Model
 		AND ttt.Teacher_ID = t.Teacher_ID
 		AND t.School_ID in (SELECT sc.School_ID FROM School as sc WHERE 
 		 sc.Code="'. $school_code .'")
+		AND t.School_ID = s.School_ID
+		
 		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
 		UNION
 		SELECT "Total" as Control_Number, COUNT(DISTINCT t.teacher_id) as "Teachers"
@@ -139,6 +145,8 @@ Class Report_Suc extends CI_Model
 		AND ttt.Teacher_ID = t.Teacher_ID
 		AND t.School_ID in (SELECT sc.School_ID FROM School as sc WHERE 
 		 sc.Code="'. $school_code .'")
+		AND t.School_ID = s.School_ID
+		
 		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
 		');
 
@@ -161,6 +169,8 @@ Class Report_Suc extends CI_Model
 		AND ttt.Teacher_ID = t.Teacher_ID
 		AND t.School_ID in (SELECT sc.School_ID FROM School as sc WHERE 
 		 sc.Code="'. $school_code .'")
+		AND t.School_ID = s.School_ID
+		
 		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
 		UNION
 		SELECT "Total" as Control_Number, COUNT(DISTINCT t.teacher_id) as "Teachers"
@@ -170,6 +180,8 @@ Class Report_Suc extends CI_Model
 		AND ttt.Teacher_ID = t.Teacher_ID
 		AND t.School_ID in (SELECT sc.School_ID FROM School as sc WHERE 
 		 sc.Code="'. $school_code .'")
+		AND t.School_ID = s.School_ID
+		
 		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
 		');
 
@@ -192,6 +204,8 @@ Class Report_Suc extends CI_Model
 		AND ttt.Teacher_ID = t.Teacher_ID
 		AND t.School_ID in (SELECT sc.School_ID FROM School as sc WHERE 
 		 sc.Code="'. $school_code .'")
+		AND t.School_ID = s.School_ID
+		
 		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
 		UNION
 		SELECT "Total" as Control_Number, COUNT(DISTINCT t.teacher_id) as "Teachers"
@@ -201,6 +215,8 @@ Class Report_Suc extends CI_Model
 		AND ttt.Teacher_ID = t.Teacher_ID
 		AND t.School_ID in (SELECT sc.School_ID FROM School as sc WHERE 
 		 sc.Code="'. $school_code .'")
+		AND t.School_ID = s.School_ID
+		
 		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
 		');
 
@@ -227,6 +243,7 @@ Class Report_Suc extends CI_Model
 		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
 		s.Subject_Code="BEST" OR s.Subject_Code="BEST/AdEPT")
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
 		AND class.Semester =' . $semester . '
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
 		group by class.Name
@@ -241,6 +258,7 @@ Class Report_Suc extends CI_Model
 		and school.School_ID = class.School_ID 
 		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
 		s.Subject_Code="BEST" OR s.Subject_Code="BEST/AdEPT")
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
 		AND class.Semester =' . $semester . '
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '");');
@@ -269,6 +287,7 @@ Class Report_Suc extends CI_Model
 		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
 		s.Subject_Code="BEST" OR s.Subject_Code="BEST/AdEPT")
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "'.$school_code.'")
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
 		AND class.Semester = "'.$semester.'"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "'.$teacher_code.'")
 		AND class.Name = "'.$class_name.'"
@@ -286,6 +305,7 @@ Class Report_Suc extends CI_Model
 		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
 		s.Subject_Code="BEST" OR s.Subject_Code="BEST/AdEPT")
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "'.$school_code.'")
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
 		AND class.Semester = "'.$semester.'"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "'.$teacher_code.'")
 		AND class.Name = "'.$class_name.'"
@@ -315,6 +335,8 @@ Class Report_Suc extends CI_Model
 		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
 		s.Subject_Code="AdEPT" OR s.Subject_Code="BEST/AdEPT")
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
+				AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
+
 		AND class.Semester =' . $semester . '
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
 		group by class.Name
@@ -330,6 +352,8 @@ Class Report_Suc extends CI_Model
 		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
 		s.Subject_Code="AdEPT" OR s.Subject_Code="BEST/AdEPT")
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
+				AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
+
 		AND class.Semester =' . $semester . '
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '");');
 
@@ -357,6 +381,8 @@ Class Report_Suc extends CI_Model
 		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
 		s.Subject_Code="AdEPT" OR s.Subject_Code="BEST/AdEPT")
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "'.$school_code.'")
+				AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
+
 		AND class.Semester = "'.$semester.'"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "'.$teacher_code.'")
 		AND class.Name = "'.$class_name.'"
@@ -374,6 +400,8 @@ Class Report_Suc extends CI_Model
 		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
 		s.Subject_Code="AdEPT" OR s.Subject_Code="BEST/AdEPT")
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "'.$school_code.'")
+				AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
+
 		AND class.Semester = "'.$semester.'"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "'.$teacher_code.'")
 		AND class.Name = "'.$class_name.'"
@@ -403,6 +431,7 @@ Class Report_Suc extends CI_Model
 		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
 		s.Subject_Code="GCAT")
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "'.$school_code.'")
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
 		AND class.Semester = "'.$semester.'"
 		AND Proctor.Proctor_ID = "'.$proctor_id.'"
 		group by class.Name
@@ -418,6 +447,7 @@ Class Report_Suc extends CI_Model
 		AND subject.subject_ID IN (SELECT s.subject_id FROM subject AS s WHERE
 		s.Subject_Code="GCAT")
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "'.$school_code.'")
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
 		AND class.Semester = "'.$semester.'"
 		AND Proctor.Proctor_ID = "'.$proctor_id.'";');
 
@@ -443,6 +473,8 @@ Class Report_Suc extends CI_Model
 		AND subject.subject_id = class.Subject_ID
 		AND school.School_ID = class.School_ID
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
+				AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
+
 		AND class.Semester =' . $semester . '
 		AND class.Name = "' . $class_name . '" 
 		UNION
@@ -455,6 +487,8 @@ Class Report_Suc extends CI_Model
 		AND subject.subject_id = class.Subject_ID
 		AND school.School_ID = class.School_ID
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
+				AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
+
 		AND class.Semester =' . $semester . '
 		AND Proctor.Proctor_ID = "' . $proctor_id . '"
 		AND class.Name = "' . $class_name . '";');
@@ -480,8 +514,7 @@ Class Report_Suc extends CI_Model
 		$query = $this->db->query('SELECT CONCAT_WS(" ", t.First_Name, t.Middle_Initial, t.Last_Name ) AS Teacher, COUNT( DISTINCT sc.Student_ID ) as "Students", COUNT( DISTINCT oc.Class_ID ) as "Classes"
 		FROM School AS s, Subject AS su, Teacher AS t, Class AS c, Student_Class AS sc, Other_Class AS oc
 		WHERE s.School_ID
-		IN (SELECT school.School_ID
-		FROM School WHERE school.code = "'.$school_code.'") 
+		IN (SELECT school.School_ID FROM School WHERE school.code = "'.$school_code.'") 
 		AND su.Subject_ID IN ( SELECT subject.Subject_ID
 		FROM Subject WHERE subject.Subject_ID =  "'.$subject_id.'")
 		AND c.School_ID = s.School_ID
