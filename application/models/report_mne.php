@@ -43,37 +43,43 @@ Class Report_Mne extends CI_Model
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" ))as "Q1"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" )
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")))as "Q1"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )) as "Q2"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q2"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )) as "Q3"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q3"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )) as "Q4"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q4"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )) as "Annual"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT")) as "Cumulative");');
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT")
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");');
 		
 		if($query->num_rows() > 0)
 		{
@@ -93,37 +99,43 @@ Class Report_Mne extends CI_Model
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" ))as "Q1"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" )
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")))as "Q1"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )) as "Q2"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q2"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )) as "Q3"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q3"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )) as "Q4"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q4"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )) as "Annual"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST")) as "Cumulative");');
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST")
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");');
 		
 		if($query->num_rows() > 0)
 		{
@@ -142,37 +154,43 @@ Class Report_Mne extends CI_Model
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" ))as "Q1"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" )
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")))as "Q1"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )) as "Q2"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q2"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )) as "Q3"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q3"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )) as "Q4"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q4"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )) as "Annual"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT")) as "Cumulative");');
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT")
+		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");');
 
 		if($query->num_rows() > 0)
 		{
@@ -192,42 +210,42 @@ Class Report_Mne extends CI_Model
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" )) as "Q1"
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q1"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )) as "Q2"
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q2"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )) as "Q3"
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q3"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )) as "Q4"
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q4"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )) as "Annual"
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom"))) as "Cumulative");');
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom"))AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");');
 
 
 		if($query->num_rows() > 0)
@@ -248,37 +266,37 @@ Class Report_Mne extends CI_Model
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" ))as Q1
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q1"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" ))as Q2
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q2"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" ))as Q3
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q3"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" ))as Q4
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q4"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101"))as Cumulative);');
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");');
 		
 		if($query->num_rows() > 0)
 		{
@@ -297,37 +315,37 @@ Class Report_Mne extends CI_Model
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" ))as Q1
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q1"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" ))as Q2
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q2"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" ))as Q3
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q3"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" ))as Q4
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q4"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102"))as Cumulative);');
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");');
 		
 		if($query->num_rows() > 0)
 		{
@@ -347,37 +365,37 @@ Class Report_Mne extends CI_Model
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" ))as Q1
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q1"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" ))as Q2
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q2"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" ))as Q3
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q3"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" ))as Q4
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q4"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101"))as Cumulative);');
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");');
 		
 		if($query->num_rows() > 0)
 		{
@@ -397,37 +415,37 @@ Class Report_Mne extends CI_Model
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" ))as Q1
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q1"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" ))as Q2
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q2"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" ))as Q3
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q3"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" ))as Q4
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q4"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom"))as Cumulative);');
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");');
 		
 		if($query->num_rows() > 0)
 		{
@@ -447,37 +465,37 @@ Class Report_Mne extends CI_Model
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" ))as Q1
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q1"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" ))as Q2
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q2"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" ))as Q3
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q3"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" ))as Q4
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q4"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101"))as Cumulative);');
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");');
 		
 		if($query->num_rows() > 0)
 		{
@@ -1032,42 +1050,42 @@ Class Report_Mne extends CI_Model
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" ))as Q1
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q1"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" ))as Q2
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q2"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" ))as Q3
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q3"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" ))as Q4
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q4"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom")))as Cumulative);
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom"))AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");
 		');
 		
 		if($query->num_rows() > 0)
@@ -1088,37 +1106,37 @@ Class Report_Mne extends CI_Model
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" ))as Q1
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q1"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" ))as Q2
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q2"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" ))as Q3
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q3"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" ))as Q4
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q4"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101"))as Cumulative);
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");
 		');
 		
 		if($query->num_rows() > 0)
@@ -1139,37 +1157,37 @@ Class Report_Mne extends CI_Model
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" ))as Q1
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q1"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" ))as Q2
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q2"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" ))as Q3
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q3"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" ))as Q4
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q4"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102"))as Cumulative);
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");
 		');
 		
 		if($query->num_rows() > 0)
@@ -1190,37 +1208,37 @@ Class Report_Mne extends CI_Model
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" ))as Q1
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q1"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" ))as Q2
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q2"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" ))as Q3
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q3"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" ))as Q4
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q4"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom"))as Cumulative);
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");
 		');
 		
 		if($query->num_rows() > 0)
@@ -1241,37 +1259,37 @@ Class Report_Mne extends CI_Model
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" ))as Q1
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q1"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" ))as Q2
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q2"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" ))as Q3
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q3"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" ))as Q4
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q4"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101"))as Cumulative);
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");
 		');
 		
 		if($query->num_rows() > 0)
@@ -1292,37 +1310,37 @@ Class Report_Mne extends CI_Model
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" ))as Q1
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q1"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" ))as Q2
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q2"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" ))as Q3
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q3"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" ))as Q4
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q4"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101"))as Cumulative);
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");
 		');
 		
 		if($query->num_rows() > 0)
@@ -1343,37 +1361,37 @@ Class Report_Mne extends CI_Model
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" ))as Q1
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$qtr1_start.'" and "'.$qtr1_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q1"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" ))as Q2
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$qtr2_start.'" and "'.$qtr2_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q2"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" ))as Q3
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$qtr3_start.'" and "'.$qtr3_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q3"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" ))as Q4
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$qtr4_start.'" and "'.$qtr4_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Q4"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern"))as Cumulative);
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");
 		');
 		
 		if($query->num_rows() > 0)
@@ -1396,85 +1414,85 @@ function getallStudentsGcatCompletedMonthly($jan_start, $jan_end, $feb_start, $f
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" ))as "January"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "January"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )) as "February"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "February"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )) as "March"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "March"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )) as "April"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "April"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" )) as "May"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "May"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )) as "June"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "June"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )) as "July"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "July"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )) as "August"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "August"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )) as "September"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "September"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )) as "October"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "October"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )) as "November"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "November"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )) as "December"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "December"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )) as "Annual"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT")) as "Cumulative");');
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");');
 		
 		if($query->num_rows() > 0)
 		{
@@ -1494,86 +1512,86 @@ function getallStudentsBestCompletedMonthly($jan_start, $jan_end, $feb_start, $f
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" ))as "January"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "January"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )) as "February"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "February"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )) as "March"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "March"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )) as "April"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "April"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" ))as "May"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "May"
 		,
 		
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" ))as "June"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "June"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )) as "July"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "July"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )) as "August"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "August"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )) as "September"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "September"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" ))as "October"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "October"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )) as "November"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "November"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )) as "December"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "December"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )) as "Annual"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST")) as "Cumulative");');
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BEST")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");');
 		
 		if($query->num_rows() > 0)
 		{
@@ -1595,85 +1613,85 @@ function getallStudentsBestCompletedMonthly($jan_start, $jan_end, $feb_start, $f
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" ))as "January"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "January"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )) as "February"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "February"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )) as "March"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "March"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )) as "April"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "April"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" ))as "May"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "May"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )) as "June"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "June"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )) as "July"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "July"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )) as "August"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "August"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" ))as "September"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "September"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )) as "October"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "October"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )) as "November"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "November"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )) as "December"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "December"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )) as "Annual"
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID)
 		FROM Student_Tracker as student
 		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT")) as "Cumulative");');
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "AdEPT")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");');
 
 		if($query->num_rows() > 0)
 		{
@@ -1694,98 +1712,98 @@ function getallStudentsBestCompletedMonthly($jan_start, $jan_end, $feb_start, $f
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" )) as "January"
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "January"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )) as "February"
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "February"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )) as "March"
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "March"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )) as "April"
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "April"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$may_start.'" and "'.$may_end.'" )) as "May"
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$may_start.'" and "'.$may_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "May"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )) as "June"
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "June"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )) as "July"
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "July"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )) as "August"
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "August"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )) as "September"
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "September"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )) as "October"
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "October"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )) as "November"
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "November"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )) as "December"
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "December"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )) as "Annual"
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom"))) as "Cumulative");');
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom"))AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");');
 
 
 		if($query->num_rows() > 0)
@@ -1806,85 +1824,85 @@ function getallStudentsBestCompletedMonthly($jan_start, $jan_end, $feb_start, $f
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" ))as January
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "January"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" ))as February
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "February"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" ))as March
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "March"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" ))as April
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "April"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" ))as May
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "May"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" ))as June
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "June"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" ))as July
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "July"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" ))as August
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "August"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" ))as September
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "September"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" ))as October
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "October"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" ))as November
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "November"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" ))as December
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "December"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101"))as Cumulative);');
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");');
 		
 		if($query->num_rows() > 0)
 		{
@@ -1903,85 +1921,85 @@ function getallStudentsBestCompletedMonthly($jan_start, $jan_end, $feb_start, $f
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" ))as January
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "January"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" ))as February
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "February"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" ))as March
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "March"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" ))as April
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "April"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" ))as May
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "May"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" ))as June
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "June"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" ))as July
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "July"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" ))as August
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "August"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" ))as September
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "September"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" ))as October
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "October"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" ))as November
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "November"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" ))as December
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "December"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102"))as Cumulative);');
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");');
 		
 		if($query->num_rows() > 0)
 		{
@@ -2002,85 +2020,85 @@ function getallStudentsBestCompletedMonthly($jan_start, $jan_end, $feb_start, $f
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" ))as January
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "January"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" ))as February
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "February"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" ))as March
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "March"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" ))as April
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "April"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" ))as May
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "May"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" ))as June
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "June"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" ))as July
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "July"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" ))as August
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "August"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" ))as September
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "September"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" ))as October
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "October"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" ))as November
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "November"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" ))as December
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "December"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101"))as Cumulative);');
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");');
 		
 		if($query->num_rows() > 0)
 		{
@@ -2100,85 +2118,85 @@ function getallStudentsBestCompletedMonthly($jan_start, $jan_end, $feb_start, $f
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" ))as January
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "January"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" ))as February
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "February"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" ))as March
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "March"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" ))as April
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "April"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" ))as May
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "May"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" ))as June
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "June"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" ))as July
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "July"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" ))as August
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "August"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" ))as September
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "September"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" ))as October
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "October"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" ))as November
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "November"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" ))as December
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "December"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom"))as Cumulative);');
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");');
 		
 		if($query->num_rows() > 0)
 		{
@@ -2198,86 +2216,86 @@ function getallStudentsBestCompletedMonthly($jan_start, $jan_end, $feb_start, $f
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" ))as January
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "January"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" ))as February
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "February"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" ))as March
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "March"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" ))as April
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "April"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" ))as May
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "May"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" ))as June
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "June"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" ))as July
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "July"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" ))as August
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "August"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" ))as September
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "September"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" ))as October
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "October"
 
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" ))as November
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "November"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" ))as December
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "December"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
 		,
 		(SELECT COUNT(DISTINCT student.student_ID) 
 		FROM Student_Tracker as student
 		WHERE student.Tracker_ID IN (SELECT t.Tracker_ID 
 		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101"))as Cumulative);');
+		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");');
 		
 		if($query->num_rows() > 0)
 		{
@@ -2289,6 +2307,716 @@ function getallStudentsBestCompletedMonthly($jan_start, $jan_end, $feb_start, $f
 		}
 	}
 	
+	
+	
+	#######################################################################################################################################################################################################################################
+	function getallStudentsSmpCompletedMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end)
+	{
+		#SMP-completed
+		$query = $this->db->query('(select 
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "January"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "February"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "March"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "April"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$may_start.'" and "'.$may_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "May"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "June"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "July"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "August"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "September"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "October"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "November"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "December"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
+		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom"))AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");
+		');
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getallStudentsBpo101CompletedMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end)
+	{
+		#BPO101-completed
+		$query = $this->db->query('(select 
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "January"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "February"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "March"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "April"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "May"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "June"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "July"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "August"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "September"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "October"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "November"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "December"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");
+		');
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getallStudentsBpo102CompletedMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end)
+	{
+		#BPO102-completed
+		$query = $this->db->query('(select 
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "January"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "February"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "March"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "April"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "May"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "June"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "July"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "August"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "September"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "October"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "November"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "December"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");
+		');
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getallStudentsBusinessCommunicationCompletedMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end)
+	{
+		#Business Communication-completed
+		$query = $this->db->query('(select 
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "January"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "February"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "March"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "April"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "May"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "June"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "July"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "August"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "September"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "October"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "November"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "December"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");
+		');
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getallStudentsServiceCultureCompletedMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end)
+	{
+		#Service Culture-completed
+		$query = $this->db->query('(select 
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "January"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "February"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "March"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "April"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "May"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "June"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "July"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "August"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "September"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "October"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "November"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "December"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");
+		');
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getallStudentsSystemsThinkingCompletedMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end)
+	{
+		#Systems Thinking-completed
+		$query = $this->db->query('(select 
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "January"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "February"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "March"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "April"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "May"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "June"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "July"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "August"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "September"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "October"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "November"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "December"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");
+		');
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getallStudentsInternshipCompletedMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end)
+	{
+		#Internship-completed
+		$query = $this->db->query('(select 
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "January"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "February"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "March"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "April"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "May"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "June"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "July"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "August"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "September"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "October"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "November"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "December"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" )AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Annual"
+		,
+		(SELECT COUNT(DISTINCT student.student_ID) 
+		FROM Student_Tracker as student
+		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
+		FROM Tracker as t, Subject s
+		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern")AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))) as "Cumulative");
+		');
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getallTeacherGcatMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end)
 	{
 		#GCAT
@@ -3327,712 +4055,12 @@ function getallStudentsBestCompletedMonthly($jan_start, $jan_end, $feb_start, $f
 		}
 	}
 	
-	#######################################################################################################################################################################################################################################
-	function getallStudentsSmpCompletedMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end)
+	function updateTargetQuarterly($id, $data)
 	{
-		#SMP-completed
-		$query = $this->db->query('(select 
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" ))as January
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" ))as February
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" ))as March
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" ))as April
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$may_start.'" and "'.$may_end.'" ))as May
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" ))as June
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" ))as July
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" ))as August
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" ))as September
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" ))as October
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" ))as November
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" ))as December
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom") and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "SC101" or s.Subject_Code = "SYSTH101" or
-		 s.Subject_Code = "BPO101" or  s.Subject_Code = "BPO102"  or s.Subject_Code = "BizCom")))as Cumulative);
-		');
+		$this->db->where('Target_Quarterly_ID', $id);
+		$this->db->update('target_quarterly', $data);
 		
-		if($query->num_rows() > 0)
-		{
-			return $query->result();
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	function getallStudentsBpo101CompletedMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end)
-	{
-		#BPO101-completed
-		$query = $this->db->query('(select 
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" ))as January
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" ))as February
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" ))as March
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" ))as April
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" ))as May
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" ))as June
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" ))as July
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" ))as August
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" ))as September
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" ))as October
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" ))as November
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" ))as December
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101"))as Cumulative);
-		');
-		
-		if($query->num_rows() > 0)
-		{
-			return $query->result();
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	function getallStudentsBpo102CompletedMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end)
-	{
-		#BPO102-completed
-		$query = $this->db->query('(select 
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" ))as January
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" ))as February
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" ))as March
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" ))as April
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" ))as May
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" ))as June
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" ))as July
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" ))as August
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" ))as September
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" ))as October
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" ))as November
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" ))as December
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102"))as Cumulative);
-		');
-		
-		if($query->num_rows() > 0)
-		{
-			return $query->result();
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	function getallStudentsBusinessCommunicationCompletedMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end)
-	{
-		#Business Communication-completed
-		$query = $this->db->query('(select 
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" ))as January
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" ))as February
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" ))as March
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" ))as April
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" ))as May
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" ))as June
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" ))as July
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" ))as August
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" ))as September
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" ))as October
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" ))as November
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" ))as December
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom"))as Cumulative);
-		');
-		
-		if($query->num_rows() > 0)
-		{
-			return $query->result();
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	function getallStudentsServiceCultureCompletedMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end)
-	{
-		#Service Culture-completed
-		$query = $this->db->query('(select 
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" ))as January
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" ))as February
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" ))as March
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" ))as April
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" ))as May
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" ))as June
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" ))as July
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" ))as August
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" ))as September
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" ))as October
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" ))as November
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" ))as December
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101"))as Cumulative);
-		');
-		
-		if($query->num_rows() > 0)
-		{
-			return $query->result();
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	function getallStudentsSystemsThinkingCompletedMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end)
-	{
-		#Systems Thinking-completed
-		$query = $this->db->query('(select 
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" ))as January
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" ))as February
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" ))as March
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" ))as April
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" ))as May
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" ))as June
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" ))as July
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" ))as August
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" ))as September
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" ))as October
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" ))as November
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" ))as December
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYSTH101"))as Cumulative);
-		');
-		
-		if($query->num_rows() > 0)
-		{
-			return $query->result();
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	function getallStudentsInternshipCompletedMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end)
-	{
-		#Internship-completed
-		$query = $this->db->query('(select 
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$jan_start.'" and "'.$jan_end.'" ))as January
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$feb_start.'" and "'.$feb_end.'" ))as February
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$mar_start.'" and "'.$mar_end.'" ))as March
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$apr_start.'" and "'.$apr_end.'" ))as April
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$may_start.'" and "'.$may_end.'" ))as May
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$jun_start.'" and "'.$jun_end.'" ))as June
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$jul_start.'" and "'.$jul_end.'" ))as July
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$aug_start.'" and "'.$aug_end.'" ))as August
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$sep_start.'" and "'.$sep_end.'" ))as September
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$oct_start.'" and "'.$oct_end.'" ))as October
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$nov_start.'" and "'.$nov_end.'" ))as November
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$dec_start.'" and "'.$dec_end.'" ))as December
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern" and t.Created_At between "'.$annual_start.'" and "'.$annual_end.'" ))as Annual
-		,
-		(SELECT COUNT(DISTINCT student.student_ID) 
-		FROM Student_Tracker as student
-		WHERE student.Student_Tracker_ID IN (SELECT t.Tracker_ID 
-		FROM Tracker as t, Subject s
-		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "Intern"))as Cumulative);
-		');
-		
-		if($query->num_rows() > 0)
-		{
-			return $query->result();
-		}
-		else
-		{
-			return false;
-		}
+		return $this->db->_error_message();
 	}
 	
 }

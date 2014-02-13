@@ -7,15 +7,18 @@
 <legend>Number of Students Who Have Taken a Particular SMP Subject</legend>
 <div class="report-form">
 <table class="table">
+<thead>
 	<tr>
 		<th>Class Name</th>
 		<th>Number of Students</th>
 	</tr>
+</thead>
+<tbody>
 	<?php foreach ($class_list as $count): ?>
 	<tr>
 		<td><?php echo $count->Class_Name; ?></td>
 		<td><?php echo $count->Number_of_Students; ?></td>
 	</tr>
 	<?php endforeach; ?>
+</tbody>
 </table>
-

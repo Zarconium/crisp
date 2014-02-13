@@ -398,18 +398,20 @@ Class Teacher extends CI_Model
 		}
 	}
 
-	function getStipendByTeacherId($id)
+	function getStipendsByTeacherIdOrCode($id_code)
 	{
 		$this->db->select('*');
 		$this->db->from('stipend_tracking');
 		$this->db->join('stipend_tracking_list', 'stipend_tracking.Stipend_Tracking_ID = stipend_tracking_list.Stipend_Tracking_ID', 'left');
-		$this->db->where('teacher_t3_tracker.Teacher_ID', $id);
+		$this->db->join('teacher', 'stipend_tracking_list.Teacher_ID = teacher.Teacher_ID', 'left');
+		$this->db->where('teacher.Teacher_ID', $id_code);
+		$this->db->or_where('teacher.Code', $id_code);
 
 		$query = $this->db->get();
 		
 		if($query->num_rows() > 0)
 		{
-			return $query->row();
+			return $query->result();
 		}
 		else
 		{
@@ -518,10 +520,19 @@ Class Teacher extends CI_Model
 		$this->db->insert('teacher_affiliation_to_organization', $data);
 		return $this->db->insert_id();
 	}
+
 	function addTeacherBestT3Tracker($best_t3_tracker)
 	{
 		$this->db->insert ('best_t3_tracker', $best_t3_tracker);
 		return $this->db->insert_id(); 
+	}
+
+	function updateTeacherById($id, $data)
+	{
+		$this->db->where('Teacher_ID', $id);
+		$this->db->update('teacher', $data);
+
+		return $this->db->_error_message();
 	}
 
 	function updateTeacherByCode($code, $data)
@@ -537,6 +548,43 @@ Class Teacher extends CI_Model
 		$this->db->where('Teacher_ID', $id);
 		return $this->db->delete('teacher');
 	}
+
+	function deleteTeacherTrainingExperienceById($id)
+	{
+		$this->db->where('Teacher_Training_Experience_ID', $id);
+		return $this->db->delete('teacher_training_experience');
+	}
+
+	function deleteTeacherCertificationById($id)
+	{
+		$this->db->where('Teacher_Certification_ID', $id);
+		return $this->db->delete('teacher_certification');
+	}
+
+	function deleteTeacherAwardsById($id)
+	{
+		$this->db->where('Teacher_Awards_ID', $id);
+		return $this->db->delete('teacher_awards');
+	}
+
+	function deleteTeacherRelevantExperiencesById($id)
+	{
+		$this->db->where('Teacher_Relevant_Experiences_ID', $id);
+		return $this->db->delete('teacher_relevant_experiences');
+	}
+
+	function deleteTeacherProfessionalReferenceById($id)
+	{
+		$this->db->where('Teacher_Professional_Reference_ID', $id);
+		return $this->db->delete('teacher_professional_reference');
+	}
+
+	function deleteTeacherAffiliationToOrganizationById($id)
+	{
+		$this->db->where('Teacher_Affiliation_to_Organization_ID', $id);
+		return $this->db->delete('teacher_affiliation_to_organization');
+	}
+
 	function getBestT3TrackerByTeacherCode($Code)
 	{
 		$this->db->select('*');
@@ -770,7 +818,7 @@ Class Teacher extends CI_Model
 		$this->db->set($stipend_tracking_list);
 		$this->db->where('Teacher.Code', $code);
 		$this->db->where('Subject.Subject_Code', $subject);
-		$this->db->update('stipend_tracking_list JOIN subject ON stipend_tracking_list.Subject_ID = subject.Subject_ID JOIN stipend_tracking ON stipend_tracking_list.Stipend_Tracking_ID = stipend_tracking.Stipend_Tracking_ID JOIN teacher ON stipend_tracking.teacher_ID = teacher.Teacher_ID');
+		$this->db->update('stipend_tracking_list JOIN subject ON stipend_tracking_list.Subject_ID = subject.Subject_ID JOIN stipend_tracking ON stipend_tracking_list.Stipend_Tracking_ID = stipend_tracking.Stipend_Tracking_ID JOIN teacher ON stipend_tracking_list.teacher_ID = teacher.Teacher_ID');
 
 		return $this->db->_error_message();
 	}
@@ -779,7 +827,7 @@ Class Teacher extends CI_Model
 		$this->db->set($stipend_tracking);
 		$this->db->where('Teacher.Code', $code);
 		$this->db->where('Subject.Subject_Code', $subject);
-		$this->db->update('stipend_tracking JOIN stipend_tracking_list ON stipend_tracking.Stipend_Tracking_ID = stipend_tracking_list.Stipend_Tracking_ID JOIN subject ON stipend_tracking_list.Subject_ID = subject.Subject_ID JOIN teacher ON stipend_tracking.teacher_ID = teacher.Teacher_ID');
+		$this->db->update('stipend_tracking JOIN stipend_tracking_list ON stipend_tracking.Stipend_Tracking_ID = stipend_tracking_list.Stipend_Tracking_ID JOIN subject ON stipend_tracking_list.Subject_ID = subject.Subject_ID JOIN teacher ON stipend_tracking_list.Teacher_ID = teacher.Teacher_ID');
 
 		return $this->db->_error_message();
 	}
@@ -921,6 +969,25 @@ Class Teacher extends CI_Model
 		$this->db->insert('teacher_class', $data);
 		$this->db->join('teacher', 'teacher.teacher_ID = teacher_class.teacher_ID', 'left');
 		$this->db->join('T3_class', 'T3_class.T3_class_ID = teacher_class.T3_class_ID', 'left');
+		return $this->db->insert_id();
+	}
+
+	function addStipendTracking($stipend_tracking)
+
+	{
+		$this->db->insert('stipend_tracking', $stipend_tracking);
+		return $this->db->insert_id();
+	}
+
+	function addStipendTrackingList($stipend_tracking_list)
+	{
+		$this->db->insert('stipend_tracking_list', $stipend_tracking_list);
+		return $this->db->insert_id();
+	}
+
+	function addGcatTracker($Gcat_Tracker)
+	{
+		$this->db->insert('gcat_tracker', $Gcat_Tracker);
 		return $this->db->insert_id();
 	}
 }

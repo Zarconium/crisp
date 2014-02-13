@@ -4,12 +4,12 @@ text-align: center;
 
 .full{
 position:absolute;
-top:20;
-left:0; 
-right:0;
-margin:auto;
-height:240px;
-width:70%;
+top: 20%;
+left: 0; 
+right: 0;
+margin: auto;
+height: 60%;
+width: 70%;
 }
 
 .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"]{
@@ -138,7 +138,6 @@ margin-top: 5%;
 }
 
 .main-page{
-
 margin-bottom: 5%;
 }
 
@@ -146,19 +145,27 @@ margin-bottom: 5%;
 color: #1abc9c;
 }
 
-.report-form table tbody, .report-form  table thead{
+
+.report-form table tbody, .report-form  table thead, .report-form table tfoot{
 display: block;
 }
 
 table tbody{
 overflow: scroll;
-height: 500px;
+height: 80%;
 }
 
 .report-form th, .report-form td{
+<<<<<<< HEAD
 width: 500px;
 }
 
 .report-form thead th{
+=======
+width: 200px;
+}
+
+.header{
+>>>>>>> c9503a0a753d12088b0ef5eb2315155e23d48e39
 text-align: center;
 }

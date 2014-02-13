@@ -17,6 +17,8 @@ class Reports_Controller extends CI_Controller {
 
 	function index()
 	{
+		$this->load->model('target_monthly_model');
+	
 		$data['schools'] = $this->school->getAllSchools();
 		$data['subjects'] = $this->subject->getAllSubjects();
 		$data['teachers'] = $this->teacher->getAllTeachersFormatted();
@@ -26,8 +28,11 @@ class Reports_Controller extends CI_Controller {
 		$data['gcat_classes'] = $this->classes->getAllGCATClasses();
 		$data['smp_subjects'] = $this->subject->getSMPSubjects();
 		$data['smp_classes'] = $this->classes->getAllSMPClasses();
-
-
+		$monthly_target = $this->target_monthly_model->getTargetMonthly();
+		foreach ($monthly_target as $target) :
+			$number = $target->target_number; 
+		endforeach;		
+		$data['number'] = $number;
 
 		$this->load->view('header');
 		$this->load->view('report', $data);
@@ -141,7 +146,7 @@ class Reports_Controller extends CI_Controller {
 		$data['total_ft'] = $this->report_program->getStudentProgramReportPerSubFinishedTotal($start_date, $end_date, $subject_id);
 		$data['start_date'] = $start_date;
 		$data['end_date'] = $end_date;
-		$data['subject'] = $this->subject->getSubjectNameByID($subject_id);
+		$data['subject'] = $this->subject->getSubjectByID($subject_id);
 		$this->load->view('header-print');
 		$this->load->view('reports/program_report_student_per_sub', $data);
 		$this->load->view('footer-print');
@@ -190,7 +195,7 @@ class Reports_Controller extends CI_Controller {
 		$data['class_count'] = $this->report_program->getT3ProgramReportPerSubClasses($subject_id);
 		$data['start_date'] = $start_date;
 		$data['end_date'] = $end_date;
-		$data['subject'] = $this->subject->getSubjectNameByID($subject_id);
+		$data['subject'] = $this->subject->getSubjectByID($subject_id);
 
 		$this->load->view('header-print');
 		$this->load->view('reports/program_report_t3_per_sub', $data);
@@ -686,24 +691,6 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('footer-print');	
 	}
 	
-	function reportTargetsConfiguration() {
-		$this->load->view('header');
-		$this->load->view('forms/form-reports-configuration');
-		$this->load->view('footer');	
-	}
-	
-	function reportsTargetConfigurationSubmit(){
-		$target = array
-			(
-				'User_ID' => $this->session->userdata('logged_in')['id'], //Ask RJ
-				'LFA' => $this->input->post('teacher_lfa_gcat'),
-				'QTR_1' => $this->input->post('teacher_q1_gcat'),
-				'QTR_2' => $this->input->post('first_name'),
-				'QTR_3' => $this->input->post('first_name'),
-				'QTR_4' => $this->input->post('middle_initial'),
-				'Target_For' =>  $this->input->post('middle_initial')
-			);
-		$target_id = $this->target->addTarget($target);
 	}
 }
 ?>

@@ -476,53 +476,48 @@
 			<div class="modal-body">
 				<div class="student-button-groups">
 					<?php $attributes = array('id' => 'upload_student_profile', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_student_profile', $attributes); ?>
-						<input type="file" name="file_student_profile" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_student_profile').submit();">
+						<input type="file" name="file_student_profile" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_student_profile').submit(); $('#batchStudent').modal('hide'); $('#progressbar').modal('show');">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_student_profile]').click();">Upload Students</button>
 					<?php echo form_close(); ?>
 
 					<?php $attributes = array('id' => 'upload_best_adept_student_product_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_adept_student_product_tracker', $attributes); ?>
-						<input type="file" name="file_best_adept_student_product_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_adept_student_product_tracker').submit();">
+						<input type="file" name="file_best_adept_student_product_tracker" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_best_adept_student_product_tracker').submit(); $('#batchStudent').modal('hide'); $('#progressbar').modal('show');">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_adept_student_product_tracker]').click();">Upload BEST/AdEPT Student Product Tracker</button>
 					<?php echo form_close(); ?>
 
 					<?php $attributes = array('id' => 'upload_best_adept_student_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_adept_student_tracker', $attributes); ?>
-						<input type="file" name="file_best_adept_student_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_adept_student_tracker').submit();">
+						<input type="file" name="file_best_adept_student_tracker" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_best_adept_student_tracker').submit(); $('#batchStudent').modal('hide'); $('#progressbar').modal('show');">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_adept_student_tracker]').click();">Upload BEST/AdEPT Student Tracker</button>
 					<?php echo form_close(); ?>
 
 					<?php $attributes = array('id' => 'upload_gcat_student_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_gcat_student_tracker', $attributes); ?>
-						<input type="file" name="file_gcat_student_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_gcat_student_tracker').submit();">
+						<input type="file" name="file_gcat_student_tracker" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_gcat_student_tracker').submit(); $('#batchStudent').modal('hide'); $('#progressbar').modal('show');">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_gcat_student_tracker]').click();">Upload GCAT Student Tracker</button>
 					<?php echo form_close(); ?>
 
 					<?php $attributes = array('id' => 'upload_smp_student_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_smp_student_tracker', $attributes); ?>
-						<input type="file" name="file_smp_student_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_smp_student_tracker').submit();">
+						<input type="file" name="file_smp_student_tracker" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_smp_student_tracker').submit(); $('#batchStudent').modal('hide'); $('#progressbar').modal('show');">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_smp_student_tracker]').click();">Upload SMP Student Tracker</button>
 					<?php echo form_close(); ?>
 
 					<?php $attributes = array('id' => 'upload_internship', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_internship', $attributes); ?>
-						<input type="file" name="file_internship" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_internship').submit();">
+						<input type="file" name="file_internship" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_internship').submit(); $('#batchStudent').modal('hide'); $('#progressbar').modal('show');">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_internship]').click();">Upload Student Internship Form</button>
 					<?php echo form_close(); ?>
 
 					<?php $attributes = array('id' => 'upload_gcat_student_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_gcat_student_grades', $attributes); ?>
-						<input type="file" name="file_gcat_student_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_gcat_student_grades').submit();">
+						<input type="file" name="file_gcat_student_grades" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_gcat_student_grades').submit(); $('#batchStudent').modal('hide'); $('#progressbar').modal('show');">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_gcat_student_grades]').click();">Upload GCAT Student Grades</button>
 					<?php echo form_close(); ?>
 
 					<?php $attributes = array('id' => 'upload_best_student_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_student_grades', $attributes); ?>
-						<input type="file" name="file_best_student_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_student_grades').submit();">
+						<input type="file" name="file_best_student_grades" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_best_student_grades').submit(); $('#batchStudent').modal('hide'); $('#progressbar').modal('show');">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_student_grades]').click();">Upload BEST Student Grades</button>
 					<?php echo form_close(); ?>
 
 					<?php $attributes = array('id' => 'upload_adept_student_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_adept_student_grades', $attributes); ?>
-						<input type="file" name="file_adept_student_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_adept_student_grades').submit();">
+						<input type="file" name="file_adept_student_grades" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_adept_student_grades').submit(); $('#batchStudent').modal('hide'); $('#progressbar').modal('show');">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_adept_student_grades]').click();">Upload AdEPT Student Grades</button>
-					<?php echo form_close(); ?>
-
-					<?php $attributes = array('id' => 'upload_smp_student_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_smp_student_grades', $attributes); ?>
-						<input type="file" name="file_smp_student_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_smp_student_grades').submit();">
-						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_smp_student_grades]').click();">Upload SMP Student Grades</button>
 					<?php echo form_close(); ?>
 				</div>
 			</div>
@@ -543,57 +538,57 @@
 			<div class="modal-body">
 				<div class="student-button-groups">
 					<?php $attributes = array('id' => 'upload_best_adept_product_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_adept_product_tracker', $attributes); ?>
-						<input type="file" name="file_best_adept_product_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_adept_product_tracker').submit();">
+						<input type="file" name="file_best_adept_product_tracker" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_best_adept_product_tracker').submit();">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_adept_product_tracker]').click();">Upload T3 BEST/AdEPT Product Tracker</button>
 					<?php echo form_close(); ?>
 
 					<?php $attributes = array('id' => 'upload_best_T3_attendance', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_T3_attendance', $attributes); ?>
-						<input type="file" name="file_best_T3_attendance" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_T3_attendance').submit();">
+						<input type="file" name="file_best_T3_attendance" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_best_T3_attendance').submit();">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_T3_attendance]').click();">Upload BEST T3 Attendance</button>
 					<?php echo form_close(); ?>
 
 					<?php $attributes = array('id' => 'upload_best_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_tracker', $attributes); ?>
-						<input type="file" name="file_best_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_tracker').submit();">
+						<input type="file" name="file_best_tracker" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_best_tracker').submit();">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_tracker]').click();">Upload T3 BEST Tracker</button>
 					<?php echo form_close(); ?>
 
 					<?php $attributes = array('id' => 'upload_adept_T3_attendance', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_adept_T3_attendance', $attributes); ?>
-						<input type="file" name="file_adept_T3_attendance" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_adept_T3_attendance').submit();">
+						<input type="file" name="file_adept_T3_attendance" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_adept_T3_attendance').submit();">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_adept_T3_attendance]').click();">Upload AdEPT T3 Attendance</button>
 					<?php echo form_close(); ?>
 
 					<?php $attributes = array('id' => 'upload_adept_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_adept_tracker', $attributes); ?>
-						<input type="file" name="file_adept_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_adept_tracker').submit();">
+						<input type="file" name="file_adept_tracker" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_adept_tracker').submit();">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_adept_tracker]').click();">Upload T3 AdEPT Tracker</button>
 					<?php echo form_close(); ?>
 
 					<?php $attributes = array('id' => 'upload_smp_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_smp_tracker', $attributes); ?>
-						<input type="file" name="file_smp_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_smp_tracker').submit();">
+						<input type="file" name="file_smp_tracker" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_smp_tracker').submit();">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_smp_tracker]').click();">Upload T3 SMP Tracker</button>
 					<?php echo form_close(); ?>
 
 					<?php $attributes = array('id' => 'upload_smp_attendance', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_smp_attendance', $attributes); ?>
-						<input type="file" name="file_smp_attendance" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_smp_attendance').submit();">
+						<input type="file" name="file_smp_attendance" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_smp_attendance').submit();">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_smp_attendance]').click();">Upload T3 SMP Attendance</button>
 					<?php echo form_close(); ?>
 
 					<?php $attributes = array('id' => 'upload_stipend_process_tracker', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_stipend_process_tracker', $attributes); ?>
-						<input type="file" name="file_stipend_process_tracker" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_stipend_process_tracker').submit();">
+						<input type="file" name="file_stipend_process_tracker" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_stipend_process_tracker').submit();">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_stipend_process_tracker]').click();">Upload Stipend Process Tracker</button>
 					<?php echo form_close(); ?>
 
 					<?php $attributes = array('id' => 'upload_gcat_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_gcat_grades', $attributes); ?>
-						<input type="file" name="file_gcat_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_gcat_grades').submit();">
+						<input type="file" name="file_gcat_grades" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_gcat_grades').submit();">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_gcat_grades]').click();">Upload GCAT Grades</button>
 					<?php echo form_close(); ?>
 
 					<?php $attributes = array('id' => 'upload_best_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_best_grades', $attributes); ?>
-						<input type="file" name="file_best_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_best_grades').submit();">
+						<input type="file" name="file_best_grades" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_best_grades').submit();">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_best_grades]').click();">Upload BEST Grades</button>
 					<?php echo form_close(); ?>
 
 					<?php $attributes = array('id' => 'upload_adept_grades', 'class' => 'student-button-groups'); echo form_open_multipart('dbms/upload_adept_grades', $attributes); ?>
-						<input type="file" name="file_adept_grades" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_adept_grades').submit();">
+						<input type="file" name="file_adept_grades" accept=".xlsx" style="visibility:hidden;position:absolute" onchange="$('#upload_adept_grades').submit();">
 						<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_adept_grades]').click();">Upload AdEPT Grades</button>
 					<?php echo form_close(); ?>
 				</div>
@@ -606,526 +601,517 @@
 </div>
 
 <div class="modal fade" id="printList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title" id="myModalLabel">Print List</h4>
-</div>
-<div class="modal-body">
-<div class="student-button-groups">
-<div class="student-button-groups">
-	<button class="btn  btn-primary btn-lg">Print as Excel</button>
-	<button class="btn btn-primary btn-lg">Print as PDF</button>
-</div>
-</div>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-</div>
-</div>
-</div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Print List</h4>
+			</div>
+			<div class="modal-body">
+				<div class="student-button-groups">
+					<div class="student-button-groups">
+						<button class="btn  btn-primary btn-lg">Print as Excel</button>
+						<button class="btn btn-primary btn-lg">Print as PDF</button>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title" id="myModalLabel">Delete</h4>
-</div>
-<div class="modal-body">
-<div class="student-button-groups">
-	Are you sure you want to delete the selected participants?
-</div>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
-<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-</div>
-</div>
-</div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Delete</h4>
+			</div>
+			<div class="modal-body">
+				<div class="student-button-groups">
+					Are you sure you want to delete the selected participants?
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 
 <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
-</div>
-<div class="modal-body">
-<div class="student-button-groups">
-
-				
-		<form class="form" role="form">
-			<div class="form-group">
-				<label for="name">Name</label>
-				<input type="text" class="form-control" id="sname">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
 			</div>
-			<div class="form-group">
-				<label for="school">School</label>
-				<input type="text" class="form-control" id="sschool">
+			<div class="modal-body">
+				<div class="student-button-groups">
+					<form class="form" role="form">
+						<div class="form-group">
+							<label for="name">Name</label>
+							<input type="text" class="form-control" id="sname">
+						</div>
+						<div class="form-group">
+							<label for="school">School</label>
+							<input type="text" class="form-control" id="sschool">
+						</div>
+						<div class="form-group">
+							<label for="programs">Programs</label><br />
+							<input type="checkbox" name="sprogram" value="best"> BEST<br />	
+							<input type="checkbox" name="sprogram" value="smp"> SMP<br />	
+							<input type="checkbox" name="sprogram" value="adept"> ADEPT<br />
+							<input type="checkbox" name="sprogram" value="gcat"> GCAT<br />
+						</div>
+					</form>
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="programs">Programs</label><br />
-					 <input type="checkbox" name="sprogram" value="best"> BEST<br />	
-					 <input type="checkbox" name="sprogram" value="smp"> SMP<br />	
-					 <input type="checkbox" name="sprogram" value="adept"> ADEPT<br />
-					 <input type="checkbox" name="sprogram" value="gcat"> GCAT<br />
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 			</div>
-		</form>
-				
-
-</div>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-</div>
-</div>
-</div>
+		</div>
+	</div>
 </div>
 
 <div class="modal fade" id="searchClass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
-</div>
-<div class="modal-body">
-<div class="student-button-groups">
-
-				
-		<form class="form" role="form">
-			<div class="form-group">
-				<label for="name">Teacher's Name</label>
-				<input type="text" class="form-control" id="steachername">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
 			</div>
-			<div class="form-group">
-				<label for="name">School</label>
-				<input type="text" class="form-control" id="school">
+			<div class="modal-body">
+				<div class="student-button-groups">
+					<form class="form" role="form">
+						<div class="form-group">
+							<label for="name">Teacher's Name</label>
+							<input type="text" class="form-control" id="steachername">
+						</div>
+						<div class="form-group">
+							<label for="name">School</label>
+							<input type="text" class="form-control" id="school">
+						</div>
+						<div class="form-group">
+							<label for="school">Campus</label>
+							<input type="text" class="form-control" id="scampus">
+						</div>
+						<div class="form-group">
+							<label for="school">Semester</label>
+							<input type="number" class="form-control" id="semester">
+						</div>
+						<div class="form-group">
+							<label for="school">Year</label>
+							<input type="number" class="form-control" id="syear">
+						</div>
+						<div class="form-group">
+							<label for="school">Section</label>
+							<input type="text" class="form-control" id="ssection">
+						</div>
+						<div class="form-group">
+							<label for="programs">Subjects</label><br />
+							<input type="checkbox" name="ssubjects" value="best"> BEST<br />	
+							<input type="checkbox" name="ssubjects" value="adept"> ADEPT<br />
+							<input type="checkbox" name="ssubjects" value="bpo101"> BPO101<br />	
+							<input type="checkbox" name="ssubjects" value="bpo102"> BPO102<br />	
+							<input type="checkbox" name="ssubjects" value="sc"> Service Culture<br />	
+							<input type="checkbox" name="ssubjects" value="st"> Systems Thinking<br />	
+							<input type="checkbox" name="ssubjects" value="gcat"> GCAT<br />
+						</div>
+						<div class="form-group">
+							<label for="school">Students <span class="help-block">separated by a comma</span></label>
+							<input type="text" class="form-control" id="school">
+						</div>
+					</form>
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="school">Campus</label>
-				<input type="text" class="form-control" id="scampus">
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 			</div>
-			<div class="form-group">
-				<label for="school">Semester</label>
-				<input type="number" class="form-control" id="semester">
-			</div>
-			<div class="form-group">
-				<label for="school">Year</label>
-				<input type="number" class="form-control" id="syear">
-			</div>
-			<div class="form-group">
-				<label for="school">Section</label>
-				<input type="text" class="form-control" id="ssection">
-			</div>
-			<div class="form-group">
-				<label for="programs">Subjects</label><br />
-					 <input type="checkbox" name="ssubjects" value="best"> BEST<br />	
-					 <input type="checkbox" name="ssubjects" value="adept"> ADEPT<br />
-					 <input type="checkbox" name="ssubjects" value="bpo101"> BPO101<br />	
-					 <input type="checkbox" name="ssubjects" value="bpo102"> BPO102<br />	
-					 <input type="checkbox" name="ssubjects" value="sc"> Service Culture<br />	
-					 <input type="checkbox" name="ssubjects" value="st"> Systems Thinking<br />	
-					 <input type="checkbox" name="ssubjects" value="gcat"> GCAT<br />
-			</div>
-			<div class="form-group">
-				<label for="school">Students <span class="help-block">separated by a comma</span></label>
-				<input type="text" class="form-control" id="school">
-			</div>
-		</form>
-				
-
-</div>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-</div>
-</div>
-</div>
+		</div>
+	</div>
 </div>
 
 <div class="modal fade" id="searchClassForMasterTrainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
-</div>
-<div class="modal-body">
-<div class="student-button-groups">
-
-				
-		<form class="form" role="form">
-			<div class="form-group">
-				<label for="name">Master Trainer's Name</label>
-				<input type="text" class="form-control" id="steachername">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
 			</div>
-			<div class="form-group">
-				<label for="programs">Subjects</label><br />
-					 <input type="checkbox" name="ssubjects" value="best"> BEST<br />	
-					 <input type="checkbox" name="ssubjects" value="adept"> ADEPT<br />
-					 <input type="checkbox" name="ssubjects" value="bpo101"> BPO101<br />	
-					 <input type="checkbox" name="ssubjects" value="bpo102"> BPO102<br />	
-					 <input type="checkbox" name="ssubjects" value="sc"> Service Culture<br />	
-					 <input type="checkbox" name="ssubjects" value="st"> Systems Thinking<br />	
-					 <input type="checkbox" name="ssubjects" value="gcat"> GCAT<br />
+			<div class="modal-body">
+				<div class="student-button-groups">
+					<form class="form" role="form">
+						<div class="form-group">
+							<label for="name">Master Trainer's Name</label>
+							<input type="text" class="form-control" id="steachername">
+						</div>
+						<div class="form-group">
+							<label for="programs">Subjects</label><br />
+							<input type="checkbox" name="ssubjects" value="best"> BEST<br />	
+							<input type="checkbox" name="ssubjects" value="adept"> ADEPT<br />
+							<input type="checkbox" name="ssubjects" value="bpo101"> BPO101<br />	
+							<input type="checkbox" name="ssubjects" value="bpo102"> BPO102<br />	
+							<input type="checkbox" name="ssubjects" value="sc"> Service Culture<br />	
+							<input type="checkbox" name="ssubjects" value="st"> Systems Thinking<br />	
+							<input type="checkbox" name="ssubjects" value="gcat"> GCAT<br />
+						</div>
+						<div class="form-group">
+							<label for="school">Students <span class="help-block">separated by a comma</span></label>
+							<input type="text" class="form-control" id="school">
+						</div>
+					</form>
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="school">Students <span class="help-block">separated by a comma</span></label>
-				<input type="text" class="form-control" id="school">
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 			</div>
-		</form>
-				
-
-</div>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-</div>
-</div>
-</div>
+		</div>
+	</div>
 </div>
 
 <div class="modal fade" id="searchBestAdept" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
-</div>
-<div class="modal-body">
-<div class="student-button-groups">
-
-				
-		<form class="form" role="form">
-			<div class="form-group">
-				<label for="name">Date</label>
-				<input type="date" class="form-control" id="sdate">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
 			</div>
-			<div class="form-group">
-				<label for="name">School</label>
-				<input type="text" class="form-control" id="sschool">
+			<div class="modal-body">
+				<div class="student-button-groups">
+					<form class="form" role="form">
+						<div class="form-group">
+							<label for="name">Date</label>
+							<input type="date" class="form-control" id="sdate">
+						</div>
+						<div class="form-group">
+							<label for="name">School</label>
+							<input type="text" class="form-control" id="sschool">
+						</div>
+						<div class="form-group">
+							<label for="school">Campus</label>
+							<input type="text" class="form-control" id="scampus">
+						</div>
+						<div class="form-group">
+							<label for="school">Students <span class="help-block">separated by a comma</span></label>
+							<input type="text" class="form-control" id="sstudents">
+						</div>
+					</form>
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="school">Campus</label>
-				<input type="text" class="form-control" id="scampus">
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 			</div>
-			<div class="form-group">
-				<label for="school">Students <span class="help-block">separated by a comma</span></label>
-				<input type="text" class="form-control" id="sstudents">
-			</div>
-		</form>
-				
-
-</div>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-</div>
-</div>
-</div>
+		</div>
+	</div>
 </div>
 
 <div class="modal fade" id="viewListOfStudents" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title" id="myModalLabel">Print List</h4>
-</div>
-<div class="modal-body">
-<div class="student-button-groups">
-	This has the list of all the students in the class.
-</div>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-</div>
-</div>
-</div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Print List</h4>
+			</div>
+			<div class="modal-body">
+				<div class="student-button-groups">
+					This has the list of all the students in the class.
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="modal fade" id="viewListOfTeachersForMasterTrainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title" id="myModalLabel">Print List</h4>
-</div>
-<div class="modal-body">
-<div class="student-button-groups">
-	This has the list of all the teachers in the class.
-</div>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-</div>
-</div>
-</div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Print List</h4>
+			</div>
+			<div class="modal-body">
+				<div class="student-button-groups">
+					This has the list of all the teachers in the class.
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="modal fade" id="searchGCAT" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
-</div>
-<div class="modal-body">
-<div class="student-button-groups">
-
-				
-		<form class="form" role="form">
-			<div class="form-group">
-				<label for="name">Proctor</label>
-				<input type="text" class="form-control" id="sproctor">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
 			</div>
-			<div class="form-group">
-				<label for="school">School</label>
-				<input type="text" class="form-control" id="sschool">
+			<div class="modal-body">
+				<div class="student-button-groups">
+					<form class="form" role="form">
+						<div class="form-group">
+							<label for="name">Proctor</label>
+							<input type="text" class="form-control" id="sproctor">
+						</div>
+						<div class="form-group">
+							<label for="school">School</label>
+							<input type="text" class="form-control" id="sschool">
+						</div>
+						<div class="form-group">
+							<label for="school">Campus</label>
+							<input type="text" class="form-control" id="scampus">
+						</div>
+						<div class="form-group">
+							<label for="school">Subject</label>
+							<input type="text" class="form-control" id="ssubject">
+						</div>
+						<div class="form-group">
+							<label for="school">Semester</label>
+							<input type="number" class="form-control" id="ssemester">
+						</div>
+						<div class="form-group">
+							<label for="school">Year</label>
+							<input type="number" class="form-control" id="syear">
+						</div>
+						<div class="form-group">
+							<label for="school">Section</label>
+							<input type="number" class="form-control" id="ssection">
+						</div>
+						<div class="form-group">
+							<label for="school">Students <span class="help-block">separated by a comma</span></label>
+							<input type="text" class="form-control" id="sstudents">
+						</div>
+					</form>
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="school">Campus</label>
-				<input type="text" class="form-control" id="scampus">
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 			</div>
-			<div class="form-group">
-				<label for="school">Subject</label>
-				<input type="text" class="form-control" id="ssubject">
-			</div>
-			<div class="form-group">
-				<label for="school">Semester</label>
-				<input type="number" class="form-control" id="ssemester">
-			</div>
-			<div class="form-group">
-				<label for="school">Year</label>
-				<input type="number" class="form-control" id="syear">
-			</div>
-			<div class="form-group">
-				<label for="school">Section</label>
-				<input type="number" class="form-control" id="ssection">
-			</div>
-			<div class="form-group">
-				<label for="school">Students <span class="help-block">separated by a comma</span></label>
-				<input type="text" class="form-control" id="sstudents">
-			</div>
-		</form>
-				
-
-</div>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-</div>
-</div>
-</div>
+		</div>
+	</div>
 </div>
 
 <div class="modal fade" id="searchSMP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
-</div>
-<div class="modal-body">
-<div class="student-button-groups">
-
-		<form class="form" role="form">
-			<div class="form-group">
-				<label for="name">ID Number</label>
-				<input type="text" class="form-control" id="sid">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
 			</div>
-			<div class="form-group">
-				<label for="school">Name</label>
-				<input type="text" class="form-control" id="sname">
+			<div class="modal-body">
+				<div class="student-button-groups">
+					<form class="form" role="form">
+						<div class="form-group">
+							<label for="name">ID Number</label>
+							<input type="text" class="form-control" id="sid">
+						</div>
+						<div class="form-group">
+							<label for="school">Name</label>
+							<input type="text" class="form-control" id="sname">
+						</div>
+						<div class="form-group">
+							<label for="school">School </label>
+							<input type="text" class="form-control" id="sschool">
+						</div>
+						<div class="form-group">
+							<label for="school">Year </label>
+							<input type="text" class="form-control" id="syear">
+						</div>
+						<div class="form-group">
+							<label for="school">Course</label>
+							<input type="text" class="form-control" id="scourse">
+						</div>
+						<div class="form-group">
+							<label for="school">Subjects Passed</label><br />
+							<input type="checkbox" value="bc" name="ssubjects"> Business Communication<br />				
+							<input type="checkbox" value="bpo101" name="ssubjects"> BPO101<br />	
+							<input type="checkbox" value="bpo102" name="ssubjects"> BPO102<br />	
+							<input type="checkbox" value="sc" name="ssubjects"> Service Culture<br />	
+							<input type="checkbox" value="st" name="ssubjects"> Systems Thinking<br />	
+							<input type="checkbox" value="st" name="ssubjects"> Internship<br />
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="school">School </label>
-				<input type="text" class="form-control" id="sschool">
-			</div>
-			<div class="form-group">
-				<label for="school">Year </label>
-				<input type="text" class="form-control" id="syear">
-			</div>
-			<div class="form-group">
-				<label for="school">Course</label>
-				<input type="text" class="form-control" id="scourse">
-			</div>
-			<div class="form-group">
-				<label for="school">Subjects Passed</label><br />
-				<input type="checkbox" value="bc" name="ssubjects"> Business Communication<br />				
-				<input type="checkbox" value="bpo101" name="ssubjects"> BPO101<br />	
-				<input type="checkbox" value="bpo102" name="ssubjects"> BPO102<br />	
-				<input type="checkbox" value="sc" name="ssubjects"> Service Culture<br />	
-				<input type="checkbox" value="st" name="ssubjects"> Systems Thinking<br />	
-				<input type="checkbox" value="st" name="ssubjects"> Internship<br />
-			</div>
-		</form>
-				
-
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-</div>
-</div>
-</div>
-</div>
+		</div>
+	</div>
 </div>
 
 <div class="modal fade" id="viewSMPSubjects" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title" id="myModalLabel">SMP Subjects</h4>
-</div>
-<div class="modal-body">
-Taken by <span class="highlight">Dayanara Simon</span>.
-<table class="table">
-	<tr>
-		<th>Subject</th>
-		<th>Year Taken</th>
-		<th>Semester</th>
-		<th>Status</th>
-		<th>Grade Received</th>
-		<th>No. of Times Taken</th>
-	</tr>
-	<tr>
-		<td>Business Communication</td>
-		<td>1</td>
-		<td>2</td>
-		<td>Passed</td>
-		<td>90</td>
-		<td>1</td>
-	</tr>
-	<tr>
-		<td>BPO101</td>
-		<td>1</td>
-		<td>2</td>
-		<td>Passed</td>
-		<td>90</td>
-		<td>1</td>
-	</tr>
-	<tr>
-		<td>BPO102</td>
-		<td>1</td>
-		<td>2</td>
-		<td>Passed</td>
-		<td>90</td>
-		<td>1</td>
-	</tr>
-	<tr>
-		<td>Service Culture</td>
-		<td>1</td>
-		<td>2</td>
-		<td>Passed</td>
-		<td>90</td>
-		<td>1</td>
-	</tr>
-	<tr>
-		<td>Systems Thinking</td>
-		<td>1</td>
-		<td>2</td>
-		<td>Passed</td>
-		<td>90</td>
-		<td>1</td>
-	</tr>
-</table>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-</div>
-</div>
-</div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">SMP Subjects</h4>
+			</div>
+			<div class="modal-body">
+				Taken by <span class="highlight">Dayanara Simon</span>.
+				<table class="table">
+					<tr>
+						<th>Subject</th>
+						<th>Year Taken</th>
+						<th>Semester</th>
+						<th>Status</th>
+						<th>Grade Received</th>
+						<th>No. of Times Taken</th>
+					</tr>
+					<tr>
+						<td>Business Communication</td>
+						<td>1</td>
+						<td>2</td>
+						<td>Passed</td>
+						<td>90</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>BPO101</td>
+						<td>1</td>
+						<td>2</td>
+						<td>Passed</td>
+						<td>90</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>BPO102</td>
+						<td>1</td>
+						<td>2</td>
+						<td>Passed</td>
+						<td>90</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>Service Culture</td>
+						<td>1</td>
+						<td>2</td>
+						<td>Passed</td>
+						<td>90</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>Systems Thinking</td>
+						<td>1</td>
+						<td>2</td>
+						<td>Passed</td>
+						<td>90</td>
+						<td>1</td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="modal fade" id="viewT3BESTTasks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title" id="myModalLabel">BEST T3 Tasks</h4>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">BEST T3 Tasks</h4>
+			</div>
+			<div class="modal-body">
+				Taken by <span class="highlight">Dayanara Simon</span>.
+				<table class="table">
+					<tr>
+						<th>Task</th>
+						<th>Grade</th>
+					</tr>
+					<tr>
+						<td>Task 1</td>
+						<td>90</td>
+					</tr>
+					<tr>
+						<td>Task 2</td>
+						<td>90</td>
+					</tr>
+					<tr>
+						<td>Task 3</td>
+						<td>90</td>
+					</tr>
+					<tr>
+						<td>Task 4</td>
+						<td>90</td>
+					</tr>
+					<tr>
+						<td>Task 5</td>
+						<td>90</td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
 </div>
-<div class="modal-body">
-Taken by <span class="highlight">Dayanara Simon</span>.
-<table class="table">
-	<tr>
-		<th>Task</th>
-		<th>Grade</th>
-	</tr>
-	<tr>
-		<td>Task 1</td>
-		<td>90</td>
-	</tr>
-	<tr>
-		<td>Task 2</td>
-		<td>90</td>
-	</tr>
-	<tr>
-		<td>Task 3</td>
-		<td>90</td>
-	</tr>
-	<tr>
-		<td>Task 4</td>
-		<td>90</td>
-	</tr>
-	<tr>
-		<td>Task 5</td>
-		<td>90</td>
-	</tr>
-	
-</table>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-</div>
-</div>
-</div>
-</div>
-
 
 <div class="modal fade" id="viewT3ADEPTTasks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title" id="myModalLabel">BEST T3 Tasks</h4>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">BEST T3 Tasks</h4>
+			</div>
+			<div class="modal-body">
+				Taken by <span class="highlight">Dayanara Simon</span>.
+				<table class="table">
+					<tr>
+						<th>Task</th>
+						<th>Grade</th>
+					</tr>
+					<tr>
+						<td>Lesson Plan Demo</td>
+						<td>90</td>
+					</tr>
+					<tr>
+						<td>Total Weighted</td>
+						<td>90</td>
+					</tr>
+					<tr>
+						<td>Training Portfolio</td>
+						<td>90</td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
 </div>
-<div class="modal-body">
-Taken by <span class="highlight">Dayanara Simon</span>.
-<table class="table">
-	<tr>
-		<th>Task</th>
-		<th>Grade</th>
-	</tr>
-	<tr>
-		<td>Lesson Plan Demo</td>
-		<td>90</td>
-	</tr>
-	<tr>
-		<td>Total Weighted</td>
-		<td>90</td>
-	</tr>
-	<tr>
-		<td>Training Portfolio</td>
-		<td>90</td>
-	</tr>
-</table>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-</div>
-</div>
-</div>
+
+<div class="modal fade" id="progressbar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">Processing...</h4>
+			</div>
+			<div class="modal-body">
+				<div class="progress progress-striped active">
+					<div class="progress-bar"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

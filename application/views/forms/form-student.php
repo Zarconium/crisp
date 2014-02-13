@@ -8,7 +8,6 @@
 	<legend>Personal Information</legend>
 
 	<?php echo form_open('/dbms/form_student_application'); ?>
-		<!-- BUTTONS DIV -->
 		<div class="save">
 			<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
 			<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
@@ -16,7 +15,6 @@
 			<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
 		</div>
 
-		<!-- Fields -->
 		<input type="hidden" name="code" value="<?php echo set_value('code'); ?>">
 		<?php echo form_error('code'); ?>
 
@@ -29,12 +27,6 @@
 		</div>
 
 		<div class="form-inline">
-			<div class="form-group">
-				<label>Name Suffix</label>
-				<input class="form-control" type="text" name="name_suffix" value="<?php echo set_value('name_suffix'); ?>">
-				<?php echo form_error('name_suffix'); ?>
-			</div>
-			
 			<div class="form-group">
 				<label>Last Name</label>
 				<input type="text" class="form-control" name="last_name" value="<?php echo set_value('last_name'); ?>">
@@ -51,6 +43,12 @@
 				<label>Middle Initial</label>
 				<input type="text" class="form-control" name="middle_initial" value="<?php echo set_value('middle_initial'); ?>">
 				<?php echo form_error('middle_initial'); ?>
+			</div>
+			
+			<div class="form-group">
+				<label>Name Suffix</label>
+				<input class="form-control" type="text" name="name_suffix" value="<?php echo set_value('name_suffix'); ?>">
+				<?php echo form_error('name_suffix'); ?>
 			</div>
 		</div>
 

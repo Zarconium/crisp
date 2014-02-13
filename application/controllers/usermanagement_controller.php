@@ -197,11 +197,11 @@ class UserManagement_Controller extends CI_Controller {
 	}
 
 	function session_data()
-	{
-		$session_data = $this->session->userdata('logged_in');
+	{		
 		$data['users'] = $this->user->getAllUsersFormatted();
 		$data['schools'] = $this->school->getAllSchools();
-
+		
+		
 		return $data;
 	}
 }

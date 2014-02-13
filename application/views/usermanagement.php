@@ -1,44 +1,46 @@
-<!-- Start Page Content -->
-	<div class="area">
-		<div class="header">
-			<h1>User Management</h1>
-		</div>
-		<?php echo form_open('/usermanagement/delete_multiple'); ?>
-		<div class="menu-menu">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_user_form" data-backdrop="static" data-keyboard="false">
-				Add
-			</button>
-			<button type="submit" class="btn btn-danger" name="delete_multiple_button_submit" value="delete_multiple_button_submit">
-				Delete
-			</button>
-			<a href="<?php echo base_url('usermanagement/print_all_users'); ?>" target="_blank"><button type="button" class="btn btn-info">
-				Print List
-			</button></a>
-		</div>
-		<table class="table table-area">
-			<tr>
-				<th>Check</th>
-				<th>Action</th>
-				<th>Username</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Privileges</th>
-				<th>Assigned School</th>
-			</tr>
-			<?php foreach ($users as $row): ?>
-			<tr>
-				<td><?php echo form_checkbox('user_ids_to_delete[]', $row->User_ID); ?></td>
-				<td><?php echo anchor('usermanagement/edit/' . $row->User_ID, 'Edit'); ?> | <?php echo anchor('usermanagement/delete/' . $row->User_ID, 'Delete'); ?></td>
-				<td><?php echo $row->Username; ?></td>
-				<td><?php echo $row->First_Name; ?></td>
-				<td><?php echo $row->Last_Name; ?></td>
-				<td><?php echo $row->Type; ?></td>
-				<td><?php if($row->Type == 'encoder') { echo $row->School_Name; } else { echo 'All'; } ?></td>
-			</tr>
-			<?php endforeach; ?>
-		</table>
-		<?php echo form_close(); ?>
-	</div>
+
+<div class="header">
+	<h1>User Management</h1>
+</div>
+<?php echo form_open('/usermanagement/delete_multiple'); ?>
+<div class="menu-menu">
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_user_form" data-backdrop="static" data-keyboard="false">
+		Add
+	</button>
+	<button type="submit" class="btn btn-danger" name="delete_multiple_button_submit" value="delete_multiple_button_submit">
+		Delete
+	</button>
+	<a href="<?php echo base_url('usermanagement/print_all_users'); ?>" target="_blank"><button type="button" class="btn btn-info">
+		Print List
+	</button></a>
+</div>
+<table class="table table-striped table-area">
+	<thead>
+		<tr>
+			<th>Check</th>
+			<th>Action</th>
+			<th>Username</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Privileges</th>
+			<th>Assigned School</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach ($users as $row): ?>
+		<tr>
+			<td><?php echo form_checkbox('user_ids_to_delete[]', $row->User_ID); ?></td>
+			<td><?php echo anchor('usermanagement/edit/' . $row->User_ID, 'Edit'); ?> | <?php echo anchor('usermanagement/delete/' . $row->User_ID, 'Delete'); ?></td>
+			<td><?php echo $row->Username; ?></td>
+			<td><?php echo $row->First_Name; ?></td>
+			<td><?php echo $row->Last_Name; ?></td>
+			<td><?php echo $row->Type; ?></td>
+			<td><?php if($row->Type == 'encoder') { echo $row->School_Name; } else { echo 'All'; } ?></td>
+		</tr>
+		<?php endforeach; ?>
+	</tbody>
+</table>
+<?php echo form_close(); ?>
 
 <?php
 	if(validation_errors() || isset($user_to_edit))
