@@ -11,7 +11,7 @@
 	</tr>
 </thead>
 <tbody>
-	<?php foreach ($adept_class_list as $count): ?>
+	<?php if($adept_class_list) foreach ($adept_class_list as $count): ?>
 	<tr>
 		<td><?php echo $count->Class_Name; ?></td>
 		<td><?php echo $count->Number_of_Students; ?></td>

@@ -12,7 +12,7 @@
 	</tr>
 </thead>
 <tbody>
-	<?php foreach ($adept_student_list as $count): ?>
+	<?php if($adept_student_list) foreach ($adept_student_list as $count): ?>
 	<tr>
 		<td><?php echo $count->Control_Number; ?></td>
 		<td><?php echo $count->Student_Names; ?></td>

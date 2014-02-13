@@ -12,7 +12,7 @@
 </tr>
 </thead>
 <tbody>
-	<?php foreach ($t3_count_list as $count): ?>
+	<?php if($t3_count_list) foreach ($t3_count_list as $count): ?>
 	<tr>
 		<td><?php echo $count->School; ?></td>
 		<td><?php echo $count->Male; ?></td>
@@ -20,7 +20,7 @@
 		<td><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
-	<?php foreach ($t3_total as $count): ?>
+	<?php if($t3_total) foreach ($t3_total as $count): ?>
 	<tr>
 		<td>TOTAL</td>
 		<td colspan="4"><?php echo $count->Total; ?></td>
@@ -37,7 +37,7 @@
 </tr>
 </thead>
 <tbody>
-	<?php foreach ($class_count as $count): ?>
+	<?php if($class_count) foreach ($class_count as $count): ?>
 	<tr>
 		<td><?php echo $count->School; ?></td>
 		<td><?php echo $count->Count; ?></td>
