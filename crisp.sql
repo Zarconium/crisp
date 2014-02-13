@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2014 at 09:58 PM
+-- Generation Time: Feb 13, 2014 at 09:06 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `adept_student` (
   UNIQUE KEY `Tracker_ID_UNIQUE` (`Tracker_ID`),
   UNIQUE KEY `Control_Number_UNIQUE` (`Control_Number`),
   UNIQUE KEY `Username_UNIQUE` (`Username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1801 ;
 
 -- --------------------------------------------------------
 
@@ -187,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `best_student` (
   `Summary_Scores` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`Tracker_ID`),
   UNIQUE KEY `Tracker_ID_UNIQUE` (`Tracker_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1800 ;
 
 -- --------------------------------------------------------
 
@@ -206,7 +206,7 @@ CREATE TABLE IF NOT EXISTS `best_t3_attendance` (
   `Updated_At` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Best_T3_Attendance_ID`),
   UNIQUE KEY `Best_T3_Attendance_ID_UNIQUE` (`Best_T3_Attendance_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `best_t3_attendance`
@@ -216,7 +216,8 @@ INSERT INTO `best_t3_attendance` (`Best_T3_Attendance_ID`, `Orientation_Day`, `S
 (1, '2011-11-12 00:00:00', '2011-11-14 00:00:00', '2011-11-01 00:00:00', '2011-11-02 00:00:00', '2011-11-03 00:00:00', '2011-12-12 00:00:00', '2011-12-10 00:00:00'),
 (2, '2011-11-14 00:00:00', '2011-11-15 00:00:00', '2011-11-02 00:00:00', '2011-11-04 00:00:00', '2011-11-05 00:00:00', '2012-01-01 00:00:00', '2012-01-02 00:00:00'),
 (3, '2011-11-03 00:00:00', '2011-11-02 00:00:00', '2011-11-06 00:00:00', '2011-11-07 00:00:00', '2011-11-08 00:00:00', '2011-11-09 00:00:00', '2011-11-10 00:00:00'),
-(4, '2012-08-01 00:00:00', '2012-08-02 00:00:00', '2012-08-03 00:00:00', '2012-08-04 00:00:00', '2012-08-05 00:00:00', '2012-08-06 00:00:00', '2012-08-07 00:00:00');
+(4, '2012-08-01 00:00:00', '2012-08-02 00:00:00', '2012-08-03 00:00:00', '2012-08-04 00:00:00', '2012-08-05 00:00:00', '2012-08-06 00:00:00', '2012-08-07 00:00:00'),
+(6, NULL, NULL, NULL, NULL, NULL, '2014-02-13 08:53:57', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -385,7 +386,7 @@ CREATE TABLE IF NOT EXISTS `gcat_student` (
   `Test_Date` datetime DEFAULT NULL,
   PRIMARY KEY (`Tracker_ID`),
   UNIQUE KEY `Session_ID_UNIQUE` (`Session_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1799 ;
 
 -- --------------------------------------------------------
 
@@ -466,145 +467,39 @@ CREATE TABLE IF NOT EXISTS `log` (
   PRIMARY KEY (`Log_ID`),
   UNIQUE KEY `Log_ID_UNIQUE` (`Log_ID`),
   KEY `fk_Log_Users1_idx` (`User_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=135 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `log`
 --
 
 INSERT INTO `log` (`Log_ID`, `User_ID`, `Changes`, `Created_At`) VALUES
-(1, 1, 'Add Teacher', '2012-11-15 00:00:00'),
-(2, 2, 'Add Student', '2011-11-16 00:00:00'),
-(3, 3, 'Added Student', '2014-01-30 16:51:27'),
-(4, 3, 'Deleted Student', '2014-01-30 16:56:26'),
-(5, 3, 'Student Profile batch upload', '2014-01-30 16:56:38'),
-(6, 3, 'Deleted Student', '2014-01-30 16:56:46'),
-(7, 3, 'Updated Student Profile', '2014-01-31 04:59:33'),
-(8, 3, 'Updated Student Profile', '2014-01-31 04:59:58'),
-(9, 3, 'Updated Student Profile', '2014-01-31 05:00:10'),
-(10, 3, 'Updated Student Profile', '2014-01-31 05:00:30'),
-(11, 3, 'Updated Student Profile', '2014-01-31 05:12:19'),
-(12, 3, 'Updated Student Profile', '2014-01-31 05:12:42'),
-(13, 3, 'Updated Student Profile', '2014-01-31 05:13:38'),
-(14, 3, 'Updated Student Profile', '2014-01-31 05:19:08'),
-(15, 3, 'Updated Student Profile', '2014-01-31 05:31:06'),
-(16, 3, 'Updated Student Profile', '2014-01-31 05:35:57'),
-(17, 3, 'Updated Student Profile', '2014-01-31 05:36:21'),
-(18, 3, 'Updated Student Profile', '2014-01-31 05:36:35'),
-(19, 3, 'Updated Student Profile', '2014-01-31 06:25:46'),
-(20, 3, 'Updated Student Profile', '2014-01-31 06:28:31'),
-(21, 3, 'Updated Student Profile', '2014-01-31 06:29:06'),
-(22, 3, 'Updated Student Profile', '2014-01-31 06:31:39'),
-(23, 3, 'Updated Student Profile', '2014-01-31 06:33:19'),
-(24, 3, 'Updated Student Profile', '2014-01-31 06:33:39'),
-(25, 3, 'Updated Student Profile', '2014-01-31 08:00:10'),
-(26, 3, 'Added Class List', '2014-02-01 08:02:42'),
-(27, 3, 'Updated Mastertrainer Classlist', '2014-02-01 08:04:40'),
-(28, 3, 'Updated SMP Tracker', '2014-02-01 08:04:51'),
-(29, 3, 'Updated SMP Tracker', '2014-02-01 08:05:51'),
-(30, 3, 'Updated SMP Internship Tracker', '2014-02-01 08:06:15'),
-(31, 3, 'Updated Proctor Profile', '2014-02-01 09:06:35'),
-(32, 3, 'Deleted Student', '2014-02-01 14:34:40'),
-(33, 3, 'Deleted Student', '2014-02-01 14:34:58'),
-(34, 3, 'Deleted Student', '2014-02-01 14:42:39'),
-(35, 3, 'Deleted Student', '2014-02-01 14:42:50'),
-(36, 3, 'Student Profile Batch Upload', '2014-02-03 09:51:21'),
-(37, 2, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-03 09:52:25'),
-(38, 2, 'Student Profile Batch Upload', '2014-02-03 10:13:18'),
-(39, 2, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-03 10:17:02'),
-(40, 3, 'Updated SMP Tracker', '2014-02-03 10:36:12'),
-(41, 3, 'Deleted Student', '2014-02-03 10:42:22'),
-(42, 3, 'Student Profile Batch Upload', '2014-02-03 10:51:42'),
-(43, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-03 10:52:24'),
-(44, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-03 10:52:48'),
-(45, 2, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-03 10:54:30'),
-(46, 3, 'Updated SMP Tracker', '2014-02-03 10:57:06'),
-(47, 3, 'Added Class List', '2014-02-03 10:57:25'),
-(48, 2, 'Student Profile Batch Upload', '2014-02-03 11:01:06'),
-(49, 2, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-03 11:01:24'),
-(50, 2, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-03 11:02:16'),
-(51, 2, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-03 11:03:35'),
-(52, 3, 'Added Class List', '2014-02-03 11:18:56'),
-(53, 3, 'Updated Mastertrainer Classlist', '2014-02-03 11:24:58'),
-(55, 3, 'BEST AdEPT Student Tracker Batch Upload', '2014-02-03 11:48:32'),
-(56, 3, 'Added Class List', '2014-02-03 12:05:42'),
-(58, 3, 'Added Class List', '2014-02-03 13:09:59'),
-(59, 3, 'Added Class List', '2014-02-03 13:26:45'),
-(60, 3, 'Added Class List', '2014-02-03 13:26:56'),
-(61, 3, 'Added Class List', '2014-02-03 13:26:59'),
-(62, 3, 'Added Class List', '2014-02-03 13:27:02'),
-(63, 3, 'Added Class List', '2014-02-03 13:27:06'),
-(64, 3, 'Added Class List', '2014-02-03 13:28:15'),
-(65, 3, 'Added Class List', '2014-02-03 13:34:47'),
-(66, 3, 'Added Class List', '2014-02-03 13:34:55'),
-(67, 3, 'Updated Proctor', '2014-02-04 06:43:20'),
-(68, 3, 'Updated Proctor', '2014-02-04 06:45:09'),
-(69, 3, 'Updated Proctor', '2014-02-04 06:46:09'),
-(70, 3, 'Updated Proctor', '2014-02-04 06:48:01'),
-(71, 3, 'Updated Proctor', '2014-02-04 06:59:18'),
-(72, 3, 'Updated Proctor', '2014-02-04 07:19:56'),
-(73, 3, 'Updated Proctor', '2014-02-04 07:20:03'),
-(74, 3, 'Student Profile Batch Upload', '2014-02-04 11:52:46'),
-(75, 3, 'Student Profile Batch Upload', '2014-02-04 13:22:25'),
-(76, 3, 'Student Profile Batch Upload', '2014-02-04 14:19:46'),
-(77, 3, 'Added Class List', '2014-02-05 00:47:02'),
-(78, 3, 'Added Class List', '2014-02-05 00:49:01'),
-(79, 3, 'Added Class List', '2014-02-05 01:01:16'),
-(80, 3, 'Student Profile Batch Upload', '2014-02-05 07:53:15'),
-(81, 3, 'Student Profile Batch Upload', '2014-02-05 08:10:22'),
-(82, 3, 'Student Profile Batch Upload', '2014-02-05 08:14:32'),
-(83, 3, 'Student Profile Batch Upload', '2014-02-05 08:23:31'),
-(84, 3, 'Updated Proctor', '2014-02-05 08:33:09'),
-(85, 3, 'Student Profile Batch Upload', '2014-02-05 08:59:59'),
-(86, 3, 'Student Profile Batch Upload', '2014-02-05 09:02:33'),
-(87, 3, 'Deleted Student', '2014-02-05 09:05:40'),
-(88, 3, 'Updated Proctor', '2014-02-05 09:11:46'),
-(89, 3, 'Student Profile Batch Upload', '2014-02-07 03:32:27'),
-(90, 3, 'Student Profile Batch Upload', '2014-02-07 04:51:50'),
-(91, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-07 05:14:24'),
-(92, 3, 'BEST AdEPT Student Tracker Batch Upload', '2014-02-07 05:19:45'),
-(93, 3, 'GCAT Student Tracker Batch Upload', '2014-02-07 06:46:42'),
-(94, 3, 'SMP Student Tracker Batch Upload', '2014-02-07 07:31:35'),
-(95, 3, 'Student Profile Batch Upload', '2014-02-07 10:03:46'),
-(96, 3, 'Student Profile Batch Upload', '2014-02-07 10:05:43'),
-(97, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-07 10:06:18'),
-(98, 3, 'BEST AdEPT Student Tracker Batch Upload', '2014-02-07 10:15:51'),
-(99, 3, 'GCAT Student Tracker Batch Upload', '2014-02-07 10:19:17'),
-(100, 3, 'SMP Student Tracker Batch Upload', '2014-02-07 14:47:28'),
-(101, 3, 'Added Class List', '2014-02-10 04:55:11'),
-(102, 3, 'Added Class List', '2014-02-10 05:01:31'),
-(103, 3, 'Updated Mastertrainer Classlist', '2014-02-10 07:32:34'),
-(104, 3, 'Updated Mastertrainer Classlist', '2014-02-10 09:32:36'),
-(105, 3, 'Student Profile Batch Upload', '2014-02-10 09:54:01'),
-(106, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-10 10:07:05'),
-(107, 3, 'BEST AdEPT Student Tracker Batch Upload', '2014-02-10 10:11:25'),
-(108, 3, 'Student Profile Batch Upload', '2014-02-10 12:24:03'),
-(109, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-10 12:24:18'),
-(110, 3, 'BEST AdEPT Student Tracker Batch Upload', '2014-02-10 12:24:31'),
-(111, 3, 'GCAT Student Tracker Batch Upload', '2014-02-10 13:16:17'),
-(112, 3, 'GCAT Student Tracker Batch Upload', '2014-02-10 13:17:33'),
-(113, 3, 'SMP Student Tracker Batch Upload', '2014-02-10 13:19:09'),
-(114, 3, 'Student Profile Batch Upload', '2014-02-10 14:12:11'),
-(115, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-10 14:12:24'),
-(116, 3, 'BEST AdEPT Student Tracker Batch Upload', '2014-02-10 14:12:38'),
-(117, 3, 'GCAT Student Tracker Batch Upload', '2014-02-10 14:12:52'),
-(118, 3, 'SMP Student Tracker Batch Upload', '2014-02-10 14:13:05'),
-(119, 3, 'Student Profile Batch Upload', '2014-02-10 14:16:48'),
-(120, 3, 'Student Profile Batch Upload', '2014-02-10 14:20:45'),
-(121, 3, 'SMP Internship Student Tracker Batch Upload', '2014-02-10 14:51:04'),
-(122, 3, 'SMP Internship Student Tracker Batch Upload', '2014-02-10 14:52:28'),
-(123, 3, 'SMP Internship Student Tracker Batch Upload', '2014-02-10 14:54:05'),
-(124, 3, 'SMP Internship Student Tracker Batch Upload', '2014-02-10 14:55:43'),
-(125, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-10 15:24:04'),
-(126, 3, 'BEST AdEPT Student Tracker Batch Upload', '2014-02-10 15:24:43'),
-(127, 3, 'GCAT Student Tracker Batch Upload', '2014-02-10 15:25:03'),
-(128, 3, 'SMP Student Tracker Batch Upload', '2014-02-10 15:25:20'),
-(129, 3, 'GCAT Student Grades Batch Upload', '2014-02-11 02:04:47'),
-(130, 3, 'BEST Student Grades Batch Upload', '2014-02-11 03:32:04'),
-(131, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-11 03:38:40'),
-(132, 3, 'AdEPT Student Grades Batch Upload', '2014-02-11 03:38:56'),
-(133, 3, 'GCAT Student Tracker Batch Upload', '2014-02-11 09:46:44'),
-(134, 3, 'Student Profile Batch Upload', '2014-02-11 13:54:34');
+(1, 3, 'Student Profile Batch Upload', '2014-02-11 14:51:18'),
+(2, 3, 'BEST AdEPT Student Product Tracker Batch Upload', '2014-02-11 14:51:44'),
+(3, 3, 'BEST AdEPT Student Tracker Batch Upload', '2014-02-11 14:52:09'),
+(4, 3, 'GCAT Student Tracker Batch Upload', '2014-02-11 14:52:32'),
+(5, 3, 'SMP Student Tracker Batch Upload', '2014-02-11 14:52:57'),
+(6, 3, 'SMP Internship Student Tracker Batch Upload', '2014-02-11 14:53:35'),
+(7, 3, 'GCAT Student Grades Batch Upload', '2014-02-11 14:54:39'),
+(8, 3, 'AdEPT Student Grades Batch Upload', '2014-02-11 14:55:32'),
+(9, 3, 'Updated Student Profile', '2014-02-11 15:22:10'),
+(10, 3, 'Updated Student Profile', '2014-02-11 15:29:11'),
+(11, 3, 'Updated Student Profile', '2014-02-11 15:29:38'),
+(12, 3, 'Updated Student Profile', '2014-02-12 01:59:16'),
+(13, 3, 'Updated Teacher Profile', '2014-02-12 07:16:22'),
+(14, 3, 'Updated Teacher Profile', '2014-02-12 07:17:15'),
+(15, 3, 'Updated Teacher Profile', '2014-02-12 07:17:23'),
+(16, 3, 'Updated Teacher Profile', '2014-02-12 07:22:33'),
+(17, 3, 'Updated Teacher Profile', '2014-02-12 07:22:53'),
+(18, 3, 'Updated Teacher Profile', '2014-02-12 07:28:33'),
+(19, 3, 'Updated Teacher Profile', '2014-02-12 07:28:39'),
+(20, 3, 'Updated Teacher Profile', '2014-02-12 07:28:44'),
+(21, 3, 'Updated Teacher Profile', '2014-02-12 07:29:04'),
+(22, 3, 'Updated Teacher Profile', '2014-02-12 07:29:15'),
+(23, 3, 'Updated Teacher Profile', '2014-02-12 07:30:16'),
+(24, 3, 'Updated Teacher Profile', '2014-02-12 07:30:24'),
+(25, 3, 'Updated Teacher Profile', '2014-02-12 07:43:18'),
+(26, 3, 'Updated Teacher Profile', '2014-02-12 08:08:53');
 
 -- --------------------------------------------------------
 
@@ -763,47 +658,22 @@ CREATE TABLE IF NOT EXISTS `related_trainings_attended` (
   `Training` varchar(45) NOT NULL,
   `Training_Body` varchar(250) NOT NULL,
   `Training_Date` datetime NOT NULL,
+  `Teacher_ID` int(11) NOT NULL,
   PRIMARY KEY (`Related_Trainings_Attended_ID`),
-  UNIQUE KEY `Related_Trainings_Attended_ID_UNIQUE` (`Related_Trainings_Attended_ID`)
+  UNIQUE KEY `Related_Trainings_Attended_ID_UNIQUE` (`Related_Trainings_Attended_ID`),
+  KEY `fk_Related_Trainings_Attended_Teacher1` (`Teacher_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `related_trainings_attended`
 --
 
-INSERT INTO `related_trainings_attended` (`Related_Trainings_Attended_ID`, `Training`, `Training_Body`, `Training_Date`) VALUES
-(1, 'Cooking', 'CHED', '2012-11-11 00:00:00'),
-(2, 'Programming', 'Ateneo', '1993-12-11 00:00:00'),
-(3, 'Teaching', 'CHED', '1992-12-01 00:00:00'),
-(4, 'Visual Aid', 'Visual Aid Body', '1992-11-02 00:00:00'),
-(5, 'Fashion', 'Fashion Body', '2012-11-12 00:00:00');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `related_trainings_attended_by_a_teacher`
---
-
-CREATE TABLE IF NOT EXISTS `related_trainings_attended_by_a_teacher` (
-  `Related_Trainings_Attended_By_A_Teacher` int(11) NOT NULL AUTO_INCREMENT,
-  `Related_Trainings_Attended_ID` int(11) NOT NULL,
-  `SMP_T3_Application_ID` int(11) NOT NULL,
-  PRIMARY KEY (`Related_Trainings_Attended_By_A_Teacher`),
-  UNIQUE KEY `Related_Trainings_Attended_By_A_Teacher_UNIQUE` (`Related_Trainings_Attended_By_A_Teacher`),
-  KEY `fk_Related_Trainings_Attended_By_A_Teacher_Related_Training_idx` (`Related_Trainings_Attended_ID`),
-  KEY `fk_Related_Trainings_Attended_By_A_Teacher_SMP_T3_Applicati_idx` (`SMP_T3_Application_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
-
---
--- Dumping data for table `related_trainings_attended_by_a_teacher`
---
-
-INSERT INTO `related_trainings_attended_by_a_teacher` (`Related_Trainings_Attended_By_A_Teacher`, `Related_Trainings_Attended_ID`, `SMP_T3_Application_ID`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 2, 1),
-(4, 2, 1),
-(5, 2, 3);
+INSERT INTO `related_trainings_attended` (`Related_Trainings_Attended_ID`, `Training`, `Training_Body`, `Training_Date`, `Teacher_ID`) VALUES
+(1, 'Cooking', 'CHED', '2012-11-11 00:00:00', 1),
+(2, 'Programming', 'Ateneo', '1993-12-11 00:00:00', 2),
+(3, 'Teaching', 'CHED', '1992-12-01 00:00:00', 3),
+(4, 'Visual Aid', 'Visual Aid Body', '1992-11-02 00:00:00', 4),
+(5, 'Fashion', 'Fashion Body', '2012-11-12 00:00:00', 5);
 
 -- --------------------------------------------------------
 
@@ -832,80 +702,80 @@ CREATE TABLE IF NOT EXISTS `school` (
 -- Dumping data for table `school`
 --
 
-INSERT INTO `school` (`School_ID`, `Name`, `Address`, `Landline`, `Email`, `Point Person`, `Point_Person_Contact`, `Updated_At`, `Created_At`, `Code`, `Branch`) VALUES
-(1, 'Batangas State University', 'Batangas City', '4101111', 'batstatu@yahoo.com', 'Raymond Cruz', '09151234567', '2012-12-09 00:32:22', '2012-12-12 00:32:22', 'BatStateU-Lipa', 'Lipa'),
-(2, 'Batangas State University', 'Batangas City', '4102222', 'batstatu@yahoo.com', 'Michelle Armario', '09129876789', '2012-12-10 00:32:22', '2012-12-12 00:32:22', 'BatStateU-Lemery', 'Lemery'),
-(3, 'Batangas State University', 'Batangas City', '3212222', 'batstatu@yahoo.com', 'Michael Tan', '09182341234', '2011-12-11 00:32:22', '2011-10-31 00:32:22', 'BatStateU-Malvar', 'Malvar'),
-(4, 'Batangas State University', 'Batangas City', '3232123', 'batstatu@yahoo.com', 'Joan Joner', '09182483211', '2011-12-12 00:00:00', '2012-10-11 00:00:00', 'BatStateU-Rosario', 'Rosario'),
-(5, 'Batangas State University', 'Batangas City', '3232123', 'batstatu@yahoo.com', 'Joan Joner', '09182341234', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'BatStateU-San Juan', 'San Juan'),
-(6, 'Batangas State University', 'Batangas City', '3232123', 'batstatu@yahoo.com', 'Joan Joner', '09182341234', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'BatStateU-Balayan', 'Balayan'),
-(7, 'Batangas State University', 'Batangas City', '3232123', 'batstatu@yahoo.com', 'Joan Joner', '09182341234', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'BatStateU-Main', 'Main Campus 1'),
-(8, 'Batangas State University', 'Batangas City', '3232123', 'batstatu@yahoo.com', 'Joan Joner', '09182341234', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'BatStateU-Main 2', 'Main Campus 2'),
-(9, 'Adamson University', 'NCR', '3232123', 'adamson@gmail.com', 'Philip Peralta', '09182341234', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'AdU-NCR', 'NCR'),
-(10, 'Cavite State University', 'Cavite', '3232123', 'cvsu@gmail.com', 'Dayanara Simon', '09182341234', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'CVSU-Imus', 'Imus'),
-(11, 'Cavite State University', 'Cavite', '3232123', 'cvsu@gmail.com', 'Dayanara Simon', '09182341234', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'CVSU-Indang', 'Indang'),
-(12, 'Cavite State University', 'Cavite', '3232123', 'cvsu@gmail.com', 'Dayanara Simon', '09182341234', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'CVSU-Rosario', 'Rosario'),
-(13, 'Cavite State University', 'Cavite', '3232123', 'cvsu@gmail.com', 'Dayanara Simon', '09182341234', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'CVSU-Carmona', 'Carmona'),
-(14, 'Laguna State Polytechnic University', 'Laguna', '1556465', 'lvsu@gmail.com', 'Jerome Federico', '09177353228', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'LSPU-Siniloan', 'Siniloan'),
-(15, 'Laguna State Polytechnic University', 'Laguna', '1556465', 'lvsu@gmail.com', 'Jerome Federico', '09177353228', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'LSPU-Los Banos', 'Los Banos'),
-(16, 'Laguna State Polytechnic University', 'Laguna', '1556465', 'lvsu@gmail.com', 'Jerome Federico', '09177353228', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'LSPU-San Pablo', 'San Pablo'),
-(17, 'Laguna State Polytechnic University', 'Laguna', '1556465', 'lvsu@gmail.com', 'Jerome Federico', '09177353228', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'LSPU-Sta Cruz', 'Sta Cruz'),
-(18, 'Negros Oriental State University', 'Negros Oriental', '3235566', 'norsu@gmail.com', 'Paolo Luces', '09064939966', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'NORSU-Main', 'Main'),
-(19, 'Negros Oriental State University', 'Negros Oriental', '3235566', 'norsu@gmail.com', 'Paolo Luces', '09064939966', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'NORSU-Bayawan', 'Bayawan'),
-(20, 'Negros Oriental State University', 'Negros Oriental', '3235566', 'norsu@gmail.com', 'Paolo Luces', '09064939966', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'NORSU-Guihulngan', 'Guihulngan'),
-(21, 'Negros Oriental State University', 'Negros Oriental', '3235566', 'norsu@gmail.com', 'Paolo Luces', '09064939966', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'NORSU-Bais', 'Bais'),
-(22, 'Negros Oriental State University', 'Negros Oriental', '3235566', 'norsu@gmail.com', 'Paolo Luces', '09064939966', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'NORSU-Siaton', 'Siaton'),
-(23, 'Negros Oriental State University', 'Negros Oriental', '3235566', 'norsu@gmail.com', 'Paolo Luces', '09064939966', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'NORSU-Mabinay', 'Mabinay'),
-(24, 'Philippine Normal Univeristy', 'NCR', '4346578', 'pnu@gmail.com', 'Francisco Fajardo', '09071234564', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'PNU-Main', 'Main'),
-(25, 'Polytechnic University of the Philippines ', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', '2011-12-12 00:00:00', '2011-12-12 00:00:00', 'PUP', 'Main'),
-(26, 'Don Mariano Marcos State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'DMMMSU', 'Main'),
-(27, 'Pangasinan State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'PangSU', 'Main'),
-(28, 'Benguet State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'BengSU', 'Main'),
-(29, 'University of South Eastern Philippines', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'USEP', 'Main'),
-(30, 'Western Visayas State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'WVCST', 'Main'),
-(31, 'Western Visayas College of Science and Technology', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'WVSU', 'Main'),
-(32, 'Carlos Hilado Memorial State College', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'CHMSC', 'Main'),
-(33, 'Nothern Iloilo Polytechnic State College', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'NIPSC', 'Main'),
-(34, 'Batangas State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'BatStateU-Lobo', 'Lobo'),
-(35, 'Batangas State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'BatStateU-Nasugbu', 'Nasugbu'),
-(36, 'Laguna State Polytechnic University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'LSPU-Naic', 'Naic'),
-(37, 'Laguna State Polytechnic University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'LSPU-Cavite City', 'Cavite City'),
-(38, 'Laguna State Polytechnic University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'LSPU-Bacoor', 'Bacoor'),
-(39, 'Laguna State Polytechnic University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'LSPU-Silang', 'Silang'),
-(40, 'Laguna State Polytechnic University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'LSPU-General Trias', 'General Trias'),
-(41, 'Laguna State Polytechnic University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'LSPU-Tanza', 'Tanza'),
-(42, 'Laguna State Polytechnic University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'LSPU-Trece Martires', 'Trece Martires'),
-(43, 'Bulacan State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'BulSU-Malolos', 'Malolos'),
-(44, 'Bulacan State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'BulSU-Bustos', 'Bustos'),
-(45, 'Bulacan State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'BulSU-Meneses', 'Meneses'),
-(46, 'Bulacan State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'BulSU-Sarmiento', 'Sarmiento'),
-(47, 'Bulacan State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'BulSU-Hagonoy', 'Hagonoy'),
-(48, 'University of Sto Tomas', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'UST', 'Main'),
-(49, 'Technological University of the Philippines', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'TUP-Manila', 'Manila'),
-(50, 'Ateneo De Manila University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'TUP-Taguig', 'Taguig'),
-(51, 'Asia Pacific College', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'AdMU', 'Main'),
-(52, 'Mapua Institute of Technology', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'APC', 'Main'),
-(53, 'Mapua Institute of Technology', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'MIT-Main', 'Main'),
-(54, 'University of the East', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'MIT-Makati', 'Makati'),
-(55, 'Technological Institute of the Philippines', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'UE', 'Main'),
-(56, 'Technological Institute of the Philippines', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'TIP-Manila', 'Manila'),
-(57, 'Far Eastern University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'TIP-QC', 'Quezon City'),
-(58, 'Far Eastern University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'FEU-Main', 'Main'),
-(59, 'De La Salle University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'FEU-EAC', 'EAC'),
-(60, 'University of the Philippines', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'DLSU', 'Main'),
-(61, 'Univeristy of the Philippines', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'UP-Diliman', 'Diliman'),
-(62, 'Pamantasan Lungsod ng Maynila', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'UP-Manila', 'Manila'),
-(63, 'Rizal Technological University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'RTU', 'Main'),
-(64, 'Our Lady of Fatima', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'Our Lady of Fatima', 'Main'),
-(65, 'Arellano University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'Arellano University', 'Main'),
-(66, 'STI', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'STI', 'Main'),
-(67, 'Miriam College', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'Meriam College', 'Main'),
-(68, 'Far Easten University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'FEU-FERN', 'Main'),
-(69, 'Jose Rizal University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'JRU', 'Main'),
-(70, 'Informatics', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'Informatics', 'Main'),
-(71, 'Don Bosco Manila', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'Don Bosco Manila', 'Main'),
-(72, 'De La Salle - College of Saint Benilde', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'DLS-CSB', 'Main'),
-(73, 'Tarlac State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'TarSU', 'Main');
+INSERT INTO `school` (`School_ID`, `Name`, `Address`, `Landline`, `Email`, `Point Person`, `Point_Person_Contact`, `Code`, `Branch`, `Created_At`, `Updated_At`) VALUES
+(1, 'Batangas State University', 'Batangas City', '4101111', 'batstatu@yahoo.com', 'Raymond Cruz', '09151234567', 'BatStateU-Lipa', 'Lipa', '2012-12-12 00:32:22', '2012-12-09 00:32:22'),
+(2, 'Batangas State University', 'Batangas City', '4102222', 'batstatu@yahoo.com', 'Michelle Armario', '09129876789', 'BatStateU-Lemery', 'Lemery', '2012-12-12 00:32:22', '2012-12-10 00:32:22'),
+(3, 'Batangas State University', 'Batangas City', '3212222', 'batstatu@yahoo.com', 'Michael Tan', '09182341234', 'BatStateU-Malvar', 'Malvar', '2011-10-31 00:32:22', '2011-12-11 00:32:22'),
+(4, 'Batangas State University', 'Batangas City', '3232123', 'batstatu@yahoo.com', 'Joan Joner', '09182483211', 'BatStateU-Rosario', 'Rosario', '2012-10-11 00:00:00', '2011-12-12 00:00:00'),
+(5, 'Batangas State University', 'Batangas City', '3232123', 'batstatu@yahoo.com', 'Joan Joner', '09182341234', 'BatStateU-San Juan', 'San Juan', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(6, 'Batangas State University', 'Batangas City', '3232123', 'batstatu@yahoo.com', 'Joan Joner', '09182341234', 'BatStateU-Balayan', 'Balayan', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(7, 'Batangas State University', 'Batangas City', '3232123', 'batstatu@yahoo.com', 'Joan Joner', '09182341234', 'BatStateU-Main', 'Main Campus 1', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(8, 'Batangas State University', 'Batangas City', '3232123', 'batstatu@yahoo.com', 'Joan Joner', '09182341234', 'BatStateU-Main 2', 'Main Campus 2', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(9, 'Adamson University', 'NCR', '3232123', 'adamson@gmail.com', 'Philip Peralta', '09182341234', 'AdU-NCR', 'NCR', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(10, 'Cavite State University', 'Cavite', '3232123', 'cvsu@gmail.com', 'Dayanara Simon', '09182341234', 'CVSU-Imus', 'Imus', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(11, 'Cavite State University', 'Cavite', '3232123', 'cvsu@gmail.com', 'Dayanara Simon', '09182341234', 'CVSU-Indang', 'Indang', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(12, 'Cavite State University', 'Cavite', '3232123', 'cvsu@gmail.com', 'Dayanara Simon', '09182341234', 'CVSU-Rosario', 'Rosario', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(13, 'Cavite State University', 'Cavite', '3232123', 'cvsu@gmail.com', 'Dayanara Simon', '09182341234', 'CVSU-Carmona', 'Carmona', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(14, 'Laguna State Polytechnic University', 'Laguna', '1556465', 'lvsu@gmail.com', 'Jerome Federico', '09177353228', 'LSPU-Siniloan', 'Siniloan', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(15, 'Laguna State Polytechnic University', 'Laguna', '1556465', 'lvsu@gmail.com', 'Jerome Federico', '09177353228', 'LSPU-Los Banos', 'Los Banos', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(16, 'Laguna State Polytechnic University', 'Laguna', '1556465', 'lvsu@gmail.com', 'Jerome Federico', '09177353228', 'LSPU-San Pablo', 'San Pablo', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(17, 'Laguna State Polytechnic University', 'Laguna', '1556465', 'lvsu@gmail.com', 'Jerome Federico', '09177353228', 'LSPU-Sta Cruz', 'Sta Cruz', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(18, 'Negros Oriental State University', 'Negros Oriental', '3235566', 'norsu@gmail.com', 'Paolo Luces', '09064939966', 'NORSU-Main', 'Main', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(19, 'Negros Oriental State University', 'Negros Oriental', '3235566', 'norsu@gmail.com', 'Paolo Luces', '09064939966', 'NORSU-Bayawan', 'Bayawan', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(20, 'Negros Oriental State University', 'Negros Oriental', '3235566', 'norsu@gmail.com', 'Paolo Luces', '09064939966', 'NORSU-Guihulngan', 'Guihulngan', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(21, 'Negros Oriental State University', 'Negros Oriental', '3235566', 'norsu@gmail.com', 'Paolo Luces', '09064939966', 'NORSU-Bais', 'Bais', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(22, 'Negros Oriental State University', 'Negros Oriental', '3235566', 'norsu@gmail.com', 'Paolo Luces', '09064939966', 'NORSU-Siaton', 'Siaton', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(23, 'Negros Oriental State University', 'Negros Oriental', '3235566', 'norsu@gmail.com', 'Paolo Luces', '09064939966', 'NORSU-Mabinay', 'Mabinay', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(24, 'Philippine Normal Univeristy', 'NCR', '4346578', 'pnu@gmail.com', 'Francisco Fajardo', '09071234564', 'PNU-Main', 'Main', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(25, 'Polytechnic University of the Philippines ', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'PUP', 'Main', '2011-12-12 00:00:00', '2011-12-12 00:00:00'),
+(26, 'Don Mariano Marcos State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'DMMMSU', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(27, 'Pangasinan State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'PangSU', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(28, 'Benguet State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'BengSU', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(29, 'University of South Eastern Philippines', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'USEP', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(30, 'Western Visayas State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'WVCST', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(31, 'Western Visayas College of Science and Technology', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'WVSU', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(32, 'Carlos Hilado Memorial State College', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'CHMSC', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(33, 'Nothern Iloilo Polytechnic State College', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'NIPSC', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(34, 'Batangas State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'BatStateU-Lobo', 'Lobo', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(35, 'Batangas State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'BatStateU-Nasugbu', 'Nasugbu', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(36, 'Laguna State Polytechnic University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'LSPU-Naic', 'Naic', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(37, 'Laguna State Polytechnic University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'LSPU-Cavite City', 'Cavite City', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(38, 'Laguna State Polytechnic University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'LSPU-Bacoor', 'Bacoor', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(39, 'Laguna State Polytechnic University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'LSPU-Silang', 'Silang', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(40, 'Laguna State Polytechnic University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'LSPU-General Trias', 'General Trias', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(41, 'Laguna State Polytechnic University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'LSPU-Tanza', 'Tanza', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(42, 'Laguna State Polytechnic University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'LSPU-Trece Martires', 'Trece Martires', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(43, 'Bulacan State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'BulSU-Malolos', 'Malolos', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(44, 'Bulacan State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'BulSU-Bustos', 'Bustos', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(45, 'Bulacan State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'BulSU-Meneses', 'Meneses', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(46, 'Bulacan State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'BulSU-Sarmiento', 'Sarmiento', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(47, 'Bulacan State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'BulSU-Hagonoy', 'Hagonoy', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(48, 'University of Sto Tomas', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'UST', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(49, 'Technological University of the Philippines', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'TUP-Manila', 'Manila', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(50, 'Ateneo De Manila University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'TUP-Taguig', 'Taguig', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(51, 'Asia Pacific College', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'AdMU', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(52, 'Mapua Institute of Technology', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'APC', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(53, 'Mapua Institute of Technology', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'MIT-Main', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(54, 'University of the East', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'MIT-Makati', 'Makati', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(55, 'Technological Institute of the Philippines', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'UE', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(56, 'Technological Institute of the Philippines', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'TIP-Manila', 'Manila', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(57, 'Far Eastern University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'TIP-QC', 'Quezon City', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(58, 'Far Eastern University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'FEU-Main', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(59, 'De La Salle University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'FEU-EAC', 'EAC', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(60, 'University of the Philippines', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'DLSU', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(61, 'Univeristy of the Philippines', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'UP-Diliman', 'Diliman', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(62, 'Pamantasan Lungsod ng Maynila', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'UP-Manila', 'Manila', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(63, 'Rizal Technological University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'RTU', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(64, 'Our Lady of Fatima', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'Our Lady of Fatima', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(65, 'Arellano University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'Arellano University', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(66, 'STI', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'STI', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(67, 'Miriam College', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'Meriam College', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(68, 'Far Easten University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'FEU-FERN', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(69, 'Jose Rizal University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'JRU', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(70, 'Informatics', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'Informatics', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(71, 'Don Bosco Manila', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'Don Bosco Manila', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(72, 'De La Salle - College of Saint Benilde', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'DLS-CSB', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09'),
+(73, 'Tarlac State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', 'TarSU', 'Main', '2011-12-12 00:00:00', '2014-02-11 14:22:09');
 
 -- --------------------------------------------------------
 
@@ -972,7 +842,7 @@ CREATE TABLE IF NOT EXISTS `smp_student` (
   PRIMARY KEY (`Tracker_ID`),
   UNIQUE KEY `Tracker_ID_UNIQUE` (`Tracker_ID`),
   KEY `fk_SMP_Student_Tracker1_idx` (`Tracker_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1798 ;
 
 -- --------------------------------------------------------
 
@@ -988,7 +858,7 @@ CREATE TABLE IF NOT EXISTS `smp_student_courses_taken` (
   UNIQUE KEY `Student_Class_Student_Class_ID_UNIQUE` (`Student_Class_ID`),
   KEY `fk_SMP_Student_Courses_Taken_Student_Class1_idx` (`Student_Class_ID`),
   KEY `fk_SMP_Student_Courses_Taken_SMP_Student1_idx` (`Tracker_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1001 ;
 
 -- --------------------------------------------------------
 
@@ -1000,7 +870,6 @@ CREATE TABLE IF NOT EXISTS `smp_t3_application` (
   `T3_Application_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Answer_1` text,
   `Answer_2` text,
-  `Answer_3` text,
   `Total_Numbers_Of_Subjects_Handled` int(11) NOT NULL,
   `Years_Teaching` int(11) NOT NULL,
   `Years_Teaching_In_Current_Institution` int(11) NOT NULL,
@@ -1022,10 +891,10 @@ CREATE TABLE IF NOT EXISTS `smp_t3_application` (
 -- Dumping data for table `smp_t3_application`
 --
 
-INSERT INTO `smp_t3_application` (`T3_Application_ID`, `Answer_1`, `Answer_2`, `Answer_3`, `Total_Numbers_Of_Subjects_Handled`, `Years_Teaching`, `Years_Teaching_In_Current_Institution`, `Avg_Student_Per_Class`, `Support_Offices_Available`, `Instructional_Materials_Support`, `Technology_Support`, `Readily_Use_Lab`, `Internet_Services`, `Self_Assessment_Form_Business_Communication`, `Self_Assessment_Form_Service_Culture`, `Contract`) VALUES
-(1, 'Yes', 'No', 'Yes', 123, 2, 3, 32, 'No.', 'Books', 'Computer', 0, 1, 1, 0, 1),
-(2, 'Yes', 'No', 'I don''t', 232, 2, 24, 3, 'YES.', 'IPAD', 'Notebook', 0, 0, 1, 1, 0),
-(3, 'No', 'No', 'No', 2, 33, 3, 20, 'No', 'None', 'None', 0, 0, 1, 1, 0);
+INSERT INTO `smp_t3_application` (`T3_Application_ID`, `Answer_1`, `Answer_2`, `Total_Numbers_Of_Subjects_Handled`, `Years_Teaching`, `Years_Teaching_In_Current_Institution`, `Avg_Student_Per_Class`, `Support_Offices_Available`, `Instructional_Materials_Support`, `Technology_Support`, `Readily_Use_Lab`, `Internet_Services`, `Self_Assessment_Form_Business_Communication`, `Self_Assessment_Form_Service_Culture`, `Contract`) VALUES
+(1, 'Yes', 'No', 123, 2, 3, 32, 'No.', 'Books', 'Computer', 0, 1, 1, 0, 1),
+(2, 'Yes', 'No', 232, 2, 24, 3, 'YES.', 'IPAD', 'Notebook', 0, 0, 1, 1, 0),
+(3, 'No', 'No', 2, 33, 3, 20, 'No', 'None', 'None', 0, 0, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1040,7 +909,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_attendance` (
   `Lunch` tinyint(1) NOT NULL DEFAULT '0',
   `PM_Snack` tinyint(1) NOT NULL DEFAULT '0',
   `Time_Out` tinyint(1) NOT NULL DEFAULT '0',
-  `Date` datetime NOT NULL,
+  `Date` datetime DEFAULT NULL,
   `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Updated_At` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`SMP_T3_Attendance_ID`),
@@ -1171,11 +1040,7 @@ CREATE TABLE IF NOT EXISTS `stipend_tracking` (
   `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Updated_At` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Stipend_Tracking_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `stipend_tracking`
---
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1194,11 +1059,7 @@ CREATE TABLE IF NOT EXISTS `stipend_tracking_list` (
   KEY `fk_Stipend_Tracking_List_Stipend_Tracking1_idx` (`Stipend_Tracking_ID`),
   KEY `fk_Stipend_Tracking_List_Subject_ID1_idx` (`Subject_ID`),
   KEY `fk_Stipend_Tracking_List_Teacher1_idx` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `stipend_tracking_list`
---
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1242,7 +1103,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   UNIQUE KEY `Student_ID_UNIQUE` (`Student_ID`),
   UNIQUE KEY `Code` (`Code`),
   KEY `fk_Student_School1_idx` (`School_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=201 ;
 
 -- --------------------------------------------------------
 
@@ -1261,7 +1122,7 @@ CREATE TABLE IF NOT EXISTS `student_application` (
   KEY `fk_Student_Application_Student1_idx` (`Student_ID`),
   KEY `fk_Student_Application_Project1_idx` (`Project_ID`),
   KEY `fk_Student_Application_Subject_ID1_idx` (`Subject_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1801 ;
 
 -- --------------------------------------------------------
 
@@ -1342,7 +1203,7 @@ CREATE TABLE IF NOT EXISTS `student_tracker` (
   UNIQUE KEY `Student_Tracker_ID_UNIQUE` (`Student_Tracker_ID`),
   KEY `fk_Student_Tracker_Tracker1_idx` (`Tracker_ID`),
   KEY `fk_Student_Tracker_Student1_idx` (`Student_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=901 ;
 
 -- --------------------------------------------------------
 
@@ -1398,11 +1259,11 @@ CREATE TABLE IF NOT EXISTS `t3_application` (
 --
 
 INSERT INTO `t3_application` (`T3_Application_ID`, `Date`, `Created_At`, `Updated_At`, `Subject_ID`) VALUES
-(1, '2011-12-11', '2012-12-12 00:00:00', '2012-11-11 00:00:00', 1),
-(2, '2013-11-24', '2009-11-11 00:00:00', '2012-09-13 00:00:00', 2),
-(3, '2019-12-11', '2008-12-12 00:00:00', '2001-11-18 00:00:00', 3),
-(4, '2012-11-11', '2006-06-09 00:00:00', '2012-12-12 00:00:00', 4),
-(5, '2009-09-22', '2006-05-22 00:00:00', '2012-12-12 00:00:00', 3),
+(1, '2011-12-11', '2012-12-12 00:00:00', '2014-02-12 13:37:43', 4),
+(2, '2013-11-24', '2009-11-11 00:00:00', '2014-02-12 13:37:43', 5),
+(3, '2019-12-11', '2008-12-12 00:00:00', '2014-02-12 13:37:43', 6),
+(4, '2012-11-11', '2006-06-09 00:00:00', '2014-02-12 13:22:28', 8),
+(5, '2009-09-22', '2006-05-22 00:00:00', '2014-02-12 13:22:29', 2),
 (6, '2011-11-12', '2012-09-22 00:00:00', '2012-11-12 00:00:00', 3);
 
 -- --------------------------------------------------------
@@ -1464,32 +1325,32 @@ CREATE TABLE IF NOT EXISTS `t3_tracker` (
 -- Dumping data for table `t3_tracker`
 --
 
-INSERT INTO `t3_tracker` (`T3_Tracker_ID`, `Status_ID`, `Created_At`, `Updated_At`, `Contract`, `Remarks`, `Subject_ID`) VALUES
-(1, 1, '2013-01-01 00:00:00', '2013-11-13 00:00:00', 0, 'Really', 1),
-(2, 1, '2013-03-31 00:00:00', '2001-01-01 00:00:00', 1, 'Go ', 1),
-(3, 1, '2013-02-14 00:00:00', '2011-12-11 00:00:00', 0, 'Hell Yeah Im Halfway', 1),
-(4, 1, '2013-04-01 00:00:00', '2011-11-02 00:00:00', 1, 'At 14 they asked', 1),
-(5, 1, '2013-06-30 00:00:00', '2011-11-06 00:00:00', 0, 'Owowow', 1),
-(6, 1, '2011-11-06 00:00:00', '2011-11-01 00:00:00', 1, 'Schoolin''', 1),
-(7, 2, '2012-11-09 00:00:00', '2011-11-02 00:00:00', 1, 'Don''t stop running', 4),
-(8, 1, '2011-11-08 00:00:00', '2011-11-03 00:00:00', 0, 'Who needs it', 3),
-(9, 2, '2012-11-08 00:00:00', '2011-11-03 00:00:00', 1, 'Whoa', 4),
-(10, 1, '2012-11-08 00:00:00', NULL, 1, NULL, 2),
-(11, 1, '2012-11-08 00:00:00', NULL, 1, NULL, 3),
-(12, 1, '2012-11-08 00:00:00', NULL, 1, NULL, 1),
-(13, 1, '2012-11-08 00:00:00', NULL, 1, NULL, 1),
-(14, 1, '2012-11-08 00:00:00', NULL, 1, NULL, 1),
-(15, 1, '2012-11-08 00:00:00', NULL, 1, NULL, 1),
-(16, 1, '2012-11-08 00:00:00', NULL, 1, NULL, 1),
-(17, 1, '2012-11-08 00:00:00', NULL, 1, NULL, 1),
-(18, 1, '2012-11-08 00:00:00', NULL, 1, NULL, 1),
-(19, 1, '2012-11-08 00:00:00', NULL, 1, NULL, 1),
-(20, 1, '2012-11-08 00:00:00', NULL, 1, NULL, 1),
-(21, 1, '2012-11-08 00:00:00', NULL, 1, NULL, 1),
-(22, 1, '2012-11-08 00:00:00', NULL, 1, NULL, 1),
-(23, 1, '2012-11-08 00:00:00', NULL, 0, NULL, 1),
-(24, 1, '2012-11-08 00:00:00', NULL, 0, NULL, 1),
-(25, 1, '2012-11-08 00:00:00', NULL, 1, NULL, 1);
+INSERT INTO `t3_tracker` (`T3_Tracker_ID`, `Status_ID`, `Contract`, `Remarks`, `Subject_ID`, `Created_At`, `Updated_At`) VALUES
+(1, 1, 0, 'Really', 1, '2013-01-01 00:00:00', '2013-11-13 00:00:00'),
+(2, 1, 1, 'Go ', 1, '2013-03-31 00:00:00', '2001-01-01 00:00:00'),
+(3, 1, 0, 'Hell Yeah Im Halfway', 1, '2013-02-14 00:00:00', '2011-12-11 00:00:00'),
+(4, 1, 1, 'At 14 they asked', 1, '2013-04-01 00:00:00', '2011-11-02 00:00:00'),
+(5, 1, 0, 'Owowow', 1, '2013-06-30 00:00:00', '2011-11-06 00:00:00'),
+(6, 1, 1, 'Schoolin''', 1, '2011-11-06 00:00:00', '2011-11-01 00:00:00'),
+(7, 2, 1, 'Don''t stop running', 4, '2012-11-09 00:00:00', '2011-11-02 00:00:00'),
+(8, 1, 0, 'Who needs it', 3, '2011-11-08 00:00:00', '2011-11-03 00:00:00'),
+(9, 2, 1, 'Whoa', 4, '2012-11-08 00:00:00', '2011-11-03 00:00:00'),
+(10, 1, 1, NULL, 2, '2012-11-08 00:00:00', '2014-02-11 14:22:36'),
+(11, 1, 1, NULL, 3, '2012-11-08 00:00:00', '2014-02-11 14:22:36'),
+(12, 1, 1, NULL, 1, '2012-11-08 00:00:00', '2014-02-11 14:22:36'),
+(13, 1, 1, NULL, 1, '2012-11-08 00:00:00', '2014-02-11 14:22:36'),
+(14, 1, 1, NULL, 1, '2012-11-08 00:00:00', '2014-02-11 14:22:36'),
+(15, 1, 1, NULL, 1, '2012-11-08 00:00:00', '2014-02-11 14:22:36'),
+(16, 1, 1, NULL, 1, '2012-11-08 00:00:00', '2014-02-11 14:22:36'),
+(17, 1, 1, NULL, 1, '2012-11-08 00:00:00', '2014-02-11 14:22:36'),
+(18, 1, 1, NULL, 1, '2012-11-08 00:00:00', '2014-02-11 14:22:36'),
+(19, 1, 1, NULL, 1, '2012-11-08 00:00:00', '2014-02-11 14:22:36'),
+(20, 1, 1, NULL, 1, '2012-11-08 00:00:00', '2014-02-11 14:22:36'),
+(21, 1, 1, NULL, 1, '2012-11-08 00:00:00', '2014-02-11 14:22:36'),
+(22, 1, 1, NULL, 1, '2012-11-08 00:00:00', '2014-02-11 14:22:36'),
+(23, 1, 0, NULL, 1, '2012-11-08 00:00:00', '2014-02-11 14:22:36'),
+(24, 1, 0, NULL, 1, '2012-11-08 00:00:00', '2014-02-11 14:22:36'),
+(25, 1, 1, NULL, 1, '2012-11-08 00:00:00', '2014-02-11 14:22:36');
 
 -- --------------------------------------------------------
 
@@ -1567,7 +1428,7 @@ INSERT INTO `teacher` (`Teacher_ID`, `Code`, `Name_Suffix`, `Last_Name`, `First_
 (18, '484', NULL, 'Zhong', 'Khaki', 'N', '1967-11-14 00:24:34', 'Manila', 'Filipino', 4, 'Single', 'm', 0, 1, 0, '14', 'Arnais', 'Makati', 'Metro Manila', 'NCR', 'Bacolod', '165148574897', '9773214', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 14, 'Joy Federico', '31235146545', 'Dean', 'CS21', 0, 1, 0, 0, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
 (19, '646', NULL, 'Leong', 'Maroon', 'O', '1967-11-14 00:24:34', 'Manila', 'Filipino', 5, 'Married', 'm', 1, 0, 0, '15', 'Katipunan', 'Quezon City', 'Metro Manila', 'NCR', 'Sulu', '874885748567', '9873216', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 15, 'Joy Federico', '15314531455', 'Dean', 'CS21', 1, 0, 0, 0, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
 (20, '231', NULL, 'Jeong', 'Cyan', 'P', '1967-11-14 00:24:34', 'Manila', 'Filipino', 10, 'Widowed', 'f', 1, 1, 0, '16', 'Esteban', 'Quezon City', 'Metro Manila', 'NCR', 'Mindoro', '148564768787', '2654878', 'iza@yahoo.com', 'Iza', 'Full', 'Teacher', 'DISCS', 16, 'Joy Federico', '10231032153', 'Deam', 'CS21', 1, 0, 1, 0, '2012-11-23 16:00:00', '2014-02-01 09:16:11'),
-(32, '8PAP20140118', '', 'Peralta', 'Phil', 'A', '2014-01-18 00:00:00', 'Caloocan', 'Ibatan', 1, 'widowed', 'f', 1, 0, 1, '54 C.', 'efsadf', 'Caloocan', 'Metro Manila', 'asdfsa', '54 C. Cordero', '1', '1', 'joi_4real@yahoo.com', '', 'Part', 'Prof', '', 8, 'Joy Federico', '090909', '', '', 1, 1, 1, 1, '2014-01-20 14:55:58', '2014-02-01 08:55:24');
+(32, '8PAP20140118', '', 'Peralta', 'Phil', 'A', '2014-01-18 00:00:00', 'Caloocan', 'Ibatan', 1, 'single', 'm', 1, 0, 1, '54 C.', 'efsadf', 'Caloocan', 'Metro Manila', 'asdfsa', '54 C. Cordero', '56', '14', 'joi_4real@yahoo.com', '', 'Part', 'Prof', '', 8, 'Joy Federico', '090909', '', '', 1, 0, 1, 0, '2014-01-20 14:55:58', '2014-02-12 08:08:53');
 
 -- --------------------------------------------------------
 
@@ -1582,16 +1443,16 @@ CREATE TABLE IF NOT EXISTS `teacher_affiliation_to_organization` (
   `Positions` varchar(45) DEFAULT NULL,
   `Years_Affiliated` int(11) DEFAULT NULL,
   `Teacher_ID` int(11) NOT NULL,
-  PRIMARY KEY (`Teacher_Affliation_to_Organization_ID`),
+  PRIMARY KEY (`Teacher_Affiliation_to_Organization_ID`),
   KEY `fk_Teacher_Affliation_to_Organization_Teacher1_idx` (`Teacher_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `teacher_affiliation_to_organization`
 --
 
-INSERT INTO `teacher_affiliation_to_organization` (`Teacher_Affliation_to_Organization_ID`, `Organization`, `Description`, `Positions`, `Years_Affiliated`, `Teacher_ID`) VALUES
-(1, 'Al Quaeda', 'Middle East', 'Suicide Bomber', 1, 32);
+INSERT INTO `teacher_affiliation_to_organization` (`Teacher_Affiliation_to_Organization_ID`, `Organization`, `Description`, `Positions`, `Years_Affiliated`, `Teacher_ID`) VALUES
+(3, 'Taliban', 'Middle East', 'Insurgent', 4, 32);
 
 -- --------------------------------------------------------
 
@@ -1818,7 +1679,7 @@ CREATE TABLE IF NOT EXISTS `teacher_t3_application` (
   UNIQUE KEY `Teacher_ID_UNIQUE` (`Teacher_ID`),
   KEY `fk_Teacher_T3_Application_Teacher1_idx` (`Teacher_ID`),
   KEY `fk_Teacher_T3_Application_T3_Application1_idx` (`T3_Application_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `teacher_t3_application`
@@ -1827,7 +1688,10 @@ CREATE TABLE IF NOT EXISTS `teacher_t3_application` (
 INSERT INTO `teacher_t3_application` (`Teacher_T3_Application_ID`, `Teacher_ID`, `T3_Application_ID`) VALUES
 (1, 1, 1),
 (2, 2, 2),
-(3, 3, 3);
+(3, 3, 3),
+(4, 4, 4),
+(5, 5, 5),
+(6, 6, 6);
 
 -- --------------------------------------------------------
 
@@ -1894,7 +1758,7 @@ CREATE TABLE IF NOT EXISTS `teacher_training_experience` (
   PRIMARY KEY (`Teacher_Training_Experience_ID`),
   UNIQUE KEY `Teacher_Training_Experience_ID_UNIQUE` (`Teacher_Training_Experience_ID`),
   KEY `fk_Teacher_Training_Experience_Teacher_idx` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `teacher_training_experience`
@@ -1905,7 +1769,7 @@ INSERT INTO `teacher_training_experience` (`Teacher_Training_Experience_ID`, `Te
 (2, 1, 'De La Salle', 'President', 2011, 'High School', 'Geography', 4),
 (3, 3, 'PUP', 'Teacher', 2012, 'Tertiary', 'Math, Science', 3),
 (4, 3, 'Makati Science High School', 'Teacher', 2013, 'Grade School', 'Algebra, Calculus', 2),
-(9, 32, 'Ateneo de Manila University', 'Professor', 2011, 'College', 'En11, Lit13', 3);
+(10, 32, 'Ateneo de Manila University', 'Professor', 2011, 'College', 'En11, Lit13', 3);
 
 -- --------------------------------------------------------
 
@@ -1925,7 +1789,7 @@ CREATE TABLE IF NOT EXISTS `tracker` (
   UNIQUE KEY `Tracker_ID_UNIQUE` (`Tracker_ID`),
   KEY `fk_Tracker_Status1_idx` (`Status_ID`),
   KEY `fk_Tracker_Subject1_idx` (`Subject_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1801 ;
 
 -- --------------------------------------------------------
 
@@ -1997,7 +1861,8 @@ ALTER TABLE `best_adept_t3_application`
 --
 ALTER TABLE `best_student`
   ADD CONSTRAINT `fk_BEST_Student_Tracker1` FOREIGN KEY (`Tracker_ID`) REFERENCES `tracker` (`Tracker_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
+ALTER TABLE `related_trainings_attended`
+  ADD CONSTRAINT `fk_Related_Trainings_Attended_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 --
 -- Constraints for table `best_t3_tracker`
 --
@@ -2052,18 +1917,11 @@ ALTER TABLE `other_class`
   ADD CONSTRAINT `fk_Other_Class_Teacher1` FOREIGN KEY (`Teacher_ID`) REFERENCES `teacher` (`Teacher_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `related_trainings_attended_by_a_teacher`
---
-ALTER TABLE `related_trainings_attended_by_a_teacher`
-  ADD CONSTRAINT `fk_Related_Trainings_Attended_By_A_Teacher_Related_Trainings_1` FOREIGN KEY (`Related_Trainings_Attended_ID`) REFERENCES `related_trainings_attended` (`Related_Trainings_Attended_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_Related_Trainings_Attended_By_A_Teacher_SMP_T3_Application1` FOREIGN KEY (`SMP_T3_Application_ID`) REFERENCES `smp_t3_application` (`T3_Application_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `school_project`
 --
 ALTER TABLE `school_project`
-  ADD CONSTRAINT `fk_School_Project_School1` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_School_Project_Project1` FOREIGN KEY (`Project_ID`) REFERENCES `project` (`Project_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_School_Project_Project1` FOREIGN KEY (`Project_ID`) REFERENCES `project` (`Project_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_School_Project_School1` FOREIGN KEY (`School_ID`) REFERENCES `school` (`School_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `school_subject`

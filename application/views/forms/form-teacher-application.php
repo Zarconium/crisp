@@ -1141,7 +1141,7 @@
 
 							function training_delete()
 							{
-								if (confirm('Delete selected institutions?'))
+								if (confirm('Delete selected related trainings?'))
 								{
 									$('#training_table input[type="checkbox"]:checked').each(function(i, item) { $(item).closest('tr').remove(); });
 								}

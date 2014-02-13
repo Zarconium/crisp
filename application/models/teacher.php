@@ -247,6 +247,24 @@ Class Teacher extends CI_Model
 		}
 	}
 
+	function getRelatedTrainingsByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('related_trainings_attended');
+		$this->db->where('Teacher_ID', $id);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getBestAdeptT3ApplicationByTeacherIdOrCode($id_code)
 	{
 		$this->db->select('*');
@@ -580,6 +598,12 @@ Class Teacher extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	function addRelatedTrainingsAttended($data)
+	{
+		$this->db->insert('related_trainings_attended', $data);
+		return $this->db->insert_id();
+	}
+
 	function addBestAdeptT3Application($data)
 	{
 		$this->db->insert('best_adept_t3_application', $data);
@@ -606,28 +630,36 @@ Class Teacher extends CI_Model
 
 	function addBestT3Attendance()
 	{
-		// $this->db->insert('best_t3_attendance', $data);
 		$this->db->query('INSERT INTO best_t3_attendance () VALUES ();');
-		return $this->db->insert_id();
-	}
-
-	function addBestT3Grades()
-	{
-		// $this->db->insert('best_t3_grades', $data);
-		$this->db->query('INSERT INTO best_t3_grades () VALUES ();');
 		return $this->db->insert_id();
 	}
 
 	function addAdeptT3Attendance()
 	{
-		// $this->db->insert('adept_t3_attendance', $data);
 		$this->db->query('INSERT INTO adept_t3_attendance () VALUES ();');
+		return $this->db->insert_id();
+	}
+
+	function addSmpT3Attendance()
+	{
+		$this->db->query('INSERT INTO smp_t3_attendance () VALUES ();');
+		return $this->db->insert_id();
+	}
+
+	function addSmpT3AttendanceTracking($data)
+	{
+		$this->db->insert('smp_t3_attendance_tracking', $data);
+		return $this->db->insert_id(); 
+	}
+
+	function addBestT3Grades()
+	{
+		$this->db->query('INSERT INTO best_t3_grades () VALUES ();');
 		return $this->db->insert_id();
 	}
 
 	function addAdeptT3Grades()
 	{
-		// $this->db->insert('adept_t3_grades', $data);
 		$this->db->query('INSERT INTO adept_t3_grades () VALUES ();');
 		return $this->db->insert_id();
 	}

@@ -1192,19 +1192,17 @@
 										</div>
 										<table class="table">
 											<tr>
-												<th></th>
-												<th>Action</th>
 												<th>Training</th>
 												<th>Training Body</th>
 												<th>Training Date</th>
 											</tr>
+											<?php if ($related_trainings) foreach ($related_trainings as $related_training): ?>
 											<tr>
-												<td><input type="checkbox"></td>
-												<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-												<td>Example</td>
-												<td>2011</td>
-												<td>2011</td>
+												<td><?php echo $related_training->Training; ?></td>
+												<td><?php echo $related_training->Training_Body; ?></td>
+												<td><?php echo $related_training->Training_Date; ?></td>
 											</tr>
+											<?php endforeach; ?>
 										</table>
 									</div>
 								</div>

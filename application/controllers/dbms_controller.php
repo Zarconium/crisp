@@ -226,6 +226,7 @@ class Dbms_Controller extends CI_Controller
 		$data['stipends'] = $this->teacher->getStipendsByTeacherIdOrCode($id);
 		$data['best_adept_application'] = $this->teacher->getBestAdeptT3ApplicationByTeacherIdOrCode($id);
 		$data['smp_application'] = $this->teacher->getSmpT3ApplicationByTeacherIdOrCode($id);
+		$data['related_trainings'] = $this->teacher->getRelatedTrainingsByTeacherId($id);
 
 		if($this->input->post())
 		{
@@ -1508,9 +1509,9 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('other_work_description[]', 'Work Description', 'trim|xss_clean');
 			$this->form_validation->set_rules('other_work_date_started[]', 'Date Started', 'trim|xss_clean');
 			// Skills
-			$this->form_validation->set_rules('computer_proficient_skill', 'Computer Proficiency Skills', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('computer_familiar_skill', 'Computer Familiarity', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('skill', 'Other Skills', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('computer_proficient_skill', 'Computer Proficiency Skills', 'trim|xss_clean');
+			$this->form_validation->set_rules('computer_familiar_skill', 'Computer Familiarity', 'trim|xss_clean');
+			$this->form_validation->set_rules('skill', 'Other Skills', 'trim|xss_clean');
 			// Reference
 			$this->form_validation->set_rules('reference_name[]', 'Reference Name', 'trim|xss_clean');
 			$this->form_validation->set_rules('reference_position[]', 'Reference Position', 'trim|xss_clean');
@@ -1559,6 +1560,9 @@ class Dbms_Controller extends CI_Controller
 						$this->form_validation->set_rules('smp_contract', 'SMP Contract', 'trim|required|xss_clean');
 						$this->form_validation->set_rules('smp_self_assessment_bizcom', 'SMP BizCom Self Assessment Form', 'trim|required|xss_clean');
 						$this->form_validation->set_rules('smp_self_assessment_sc', 'SMP SC101 Self Assessment Form', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('training[]', 'Related Training', 'trim|xss_clean');
+						$this->form_validation->set_rules('training_body[]', 'Related Training Body', 'trim|xss_clean');
+						$this->form_validation->set_rules('training_date[]', 'Related Training Date', 'trim|xss_clean');
 					}
 				}
 			}
@@ -1621,7 +1625,7 @@ class Dbms_Controller extends CI_Controller
 					);
 					$teacher_id = $this->teacher->addTeacher($teacher);
 
-					for ($i = 0; $i < count($this->input->post('institutions_worked_institution')); $i++)
+					if ($this->input->post('institutions_worked_institution')) for ($i = 0; $i < count($this->input->post('institutions_worked_institution')); $i++)
 					{ 
 						$teacher_training_experience = array
 						(
@@ -1636,7 +1640,7 @@ class Dbms_Controller extends CI_Controller
 						$this->teacher->addTeacherTrainingExperience($teacher_training_experience);
 					}
 
-					for ($i = 0; $i < count($this->input->post('certifications_certification')); $i++)
+					if ($this->input->post('certifications_certification')) for ($i = 0; $i < count($this->input->post('certifications_certification')); $i++)
 					{ 
 						$teacher_certification = array
 						(
@@ -1648,7 +1652,7 @@ class Dbms_Controller extends CI_Controller
 						$this->teacher->addTeacherCertification($teacher_certification);
 					}
 
-					for ($i = 0; $i < count($this->input->post('awards_award')); $i++)
+					if ($this->input->post('awards_award')) for ($i = 0; $i < count($this->input->post('awards_award')); $i++)
 					{ 
 						$teacher_awards = array
 						(
@@ -1660,7 +1664,7 @@ class Dbms_Controller extends CI_Controller
 						$this->teacher->addTeacherAwards($teacher_awards);
 					}
 
-					for ($i = 0; $i < count($this->input->post('other_work_organization')); $i++)
+					if ($this->input->post('other_work_organization')) for ($i = 0; $i < count($this->input->post('other_work_organization')); $i++)
 					{ 
 						$teacher_relevant_experiences = array
 						(
@@ -1673,7 +1677,7 @@ class Dbms_Controller extends CI_Controller
 						$this->teacher->addTeacherRelevantExperiences($teacher_relevant_experiences);
 					}
 
-					for ($i = 0; $i < count($this->input->post('reference_name')); $i++)
+					if ($this->input->post('reference_name')) for ($i = 0; $i < count($this->input->post('reference_name')); $i++)
 					{ 
 						$teacher_professional_reference = array
 						(
@@ -1687,7 +1691,7 @@ class Dbms_Controller extends CI_Controller
 						$this->teacher->addTeacherProfessionalReference($teacher_professional_reference);
 					}
 
-					for ($i = 0; $i < count($this->input->post('affiliation_organization')); $i++)
+					if ($this->input->post('affiliation_organization')) for ($i = 0; $i < count($this->input->post('affiliation_organization')); $i++)
 					{ 
 						$teacher_affiliation_to_organization = array
 						(
@@ -1820,6 +1824,40 @@ class Dbms_Controller extends CI_Controller
 									'Contract' => $this->input->post('smp_contract'),
 								);
 								$this->teacher->addSmpT3Application($smp_t3_application);
+
+								$t3_tracker = array
+								(
+									'Status_ID' => 3,
+									// 'Contract' => $this->input->post('smp_contract'),
+									'Subject_ID' => $this->input->post('smp_subject')
+								);
+								$t3_tracker_id = $this->teacher->addT3Tracker($t3_tracker);
+
+								$teacher_t3_tracker = array
+								(
+									'T3_Tracker_ID' => $t3_tracker_id,
+									'Teacher_ID' => $teacher_id
+								);
+								$this->teacher->addTeacherT3Tracker($teacher_t3_tracker);
+
+								/*$smp_t3_attendance_tracking = array
+								(
+									'SMP_T3_Attendance_ID' => $this->teacher->addSmpT3Application($smp_t3_application),
+									'T3_Tracker_ID' => $t3_tracker_id
+								);
+								$this->teacher->addSmpT3AttendanceTracking($smp_t3_attendance_tracking);*/
+
+								if ($this->input->post('training')) for ($i = 0; $i < count($this->input->post('training')); $i++)
+								{ 
+									$related_training_attended = array
+									(
+										'Teacher_ID' => $teacher_id,
+										'Training' => $this->input->post('training')[$i],
+										'Training_Body' => $this->input->post('training_body')[$i],
+										'Training_Date' => $this->input->post('training_date')[$i]
+									);
+									$this->teacher->addRelatedTrainingsAttended($related_training_attended);
+								}
 							}
 						}
 					}
