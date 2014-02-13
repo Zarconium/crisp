@@ -568,9 +568,79 @@ Class Teacher extends CI_Model
 		return $this->db->insert_id();
 	}
 
-	function addTeacherBestT3Tracker($best_t3_tracker)
+	function addT3Application($data)
 	{
-		$this->db->insert ('best_t3_tracker', $best_t3_tracker);
+		$this->db->insert('t3_application', $data);
+		return $this->db->insert_id();
+	}
+
+	function addTeacherT3Application($data)
+	{
+		$this->db->insert('teacher_t3_application', $data);
+		return $this->db->insert_id();
+	}
+
+	function addBestAdeptT3Application($data)
+	{
+		$this->db->insert('best_adept_t3_application', $data);
+		return $this->db->insert_id();
+	}
+
+	function addSmpT3Application($data)
+	{
+		$this->db->insert('smp_t3_application', $data);
+		return $this->db->insert_id();
+	}
+
+	function addT3Tracker($data)
+	{
+		$this->db->insert('t3_tracker', $data);
+		return $this->db->insert_id();
+	}
+
+	function addTeacherT3Tracker($data)
+	{
+		$this->db->insert('teacher_t3_tracker', $data);
+		return $this->db->insert_id();
+	}
+
+	function addBestT3Attendance()
+	{
+		// $this->db->insert('best_t3_attendance', $data);
+		$this->db->query('INSERT INTO best_t3_attendance () VALUES ();');
+		return $this->db->insert_id();
+	}
+
+	function addBestT3Grades()
+	{
+		// $this->db->insert('best_t3_grades', $data);
+		$this->db->query('INSERT INTO best_t3_grades () VALUES ();');
+		return $this->db->insert_id();
+	}
+
+	function addAdeptT3Attendance()
+	{
+		// $this->db->insert('adept_t3_attendance', $data);
+		$this->db->query('INSERT INTO adept_t3_attendance () VALUES ();');
+		return $this->db->insert_id();
+	}
+
+	function addAdeptT3Grades()
+	{
+		// $this->db->insert('adept_t3_grades', $data);
+		$this->db->query('INSERT INTO adept_t3_grades () VALUES ();');
+		return $this->db->insert_id();
+	}
+
+	function addBestT3Tracker($data)
+	{
+		$this->db->insert('best_t3_tracker', $data);
+		return $this->db->insert_id(); 
+	}
+
+	function addAdeptT3Tracker($data)
+	{
+		$this->db->insert('adept_t3_tracker', $data);
 		return $this->db->insert_id(); 
 	}
 

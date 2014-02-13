@@ -984,6 +984,12 @@
 					<div class="tab-pane active" id="best_adept">
 						<div class="form">
 							<div class="form-group">
+								<label>Application</label><br/>
+								<input type="checkbox" name="program[]" value="best_adept" <?php echo set_checkbox('program[]', 'best_adept'); ?>> Applying for BEST/AdEPT?<br/>
+								<?php echo form_error('program[]'); ?>
+							</div>
+
+							<div class="form-group">
 								<label>Date of Application</label>
 								<input class="form-control" type="date" name="best_adept_application_date" value="<?php echo set_value('best_adept_application_date'); ?>">
 								<?php echo form_error('best_adept_application_date'); ?>
@@ -1021,6 +1027,12 @@
 				  
 					<div class="tab-pane" id="smp_app">
 						<div class="form">
+							<div class="form-group">
+								<label>Application</label><br/>
+								<input type="checkbox" name="program[]" value="smp" <?php echo set_checkbox('program[]', 'smp'); ?>> Applying for SMP?<br/>
+								<?php echo form_error('program[]'); ?>
+							</div>
+
 							<div class="form-group">
 								<label>Date of Application</label>
 								<input class="form-control" type="date" name="smp_application_date" value="<?php echo set_value('smp_application_date'); ?>">
@@ -1107,6 +1119,35 @@
 							
 							<legend>Training</legend>
 
+							<script type="text/javascript">
+							function training_add()
+							{
+								$training = $('[name="training_input"]').val().trim();
+								$training_body = $('[name="training_body_input"]').val().trim();
+								$training_date = $('[name="training_date_input"]').val().trim();
+
+								if ($training && $training_body && $training_date)
+								{
+									$('#training_table').append('<tr><td><input type="checkbox"></td>' +
+										'<td><input type="hidden" name="training[]" value="' + $training + '">' + $training + '</td>' +
+										'<td><input type="hidden" name="training_body[]" value="' + $training_body + '">' + $training_body + '</td>' +
+										'<td><input type="hidden" name="training_date[]" value="' + $training_date + '">' + $training_date + '</td></tr>');
+								}
+								else
+								{
+									alert('Invalid input. Please check fields and try again.');
+								}
+							}
+
+							function training_delete()
+							{
+								if (confirm('Delete selected institutions?'))
+								{
+									$('#training_table input[type="checkbox"]:checked').each(function(i, item) { $(item).closest('tr').remove(); });
+								}
+							}
+							</script>
+
 							<div class="col-md-12">
 								<div class="row">
 									<div class="col-md-3">
@@ -1118,43 +1159,35 @@
 												<div class="form">
 													<div class="form-group">
 														<label>Training</label>
-														<input class="form-control" type="text"name="Training" value="<?php echo set_value('Training'); ?>">
-														<?php echo form_error('Training'); ?>
+														<input class="form-control" type="text" name="training_input">
 													</div>
 													<div class="form-group">
 														<label>Training Body</label>
-														<input class="form-control" type="text"name="Training_Body" value="<?php echo set_value('Training_Body'); ?>">
-														<?php echo form_error('Training_Body'); ?>
+														<input class="form-control" type="text" name="training_body_input">
 													</div>
 													<div class="form-group">
 														<label>Training Date</label>
-														<input class="form-control" type="date"name="Training_Date" value="<?php echo set_value('Training_Date'); ?>">
-														<?php echo form_error('Training_Date'); ?>
+														<input class="form-control" type="date" name="training_date_input">
 													</div>
-												</div>	
+													<div class="submit-button">
+														<button type="button" class="btn btn-primary" name="submit" onclick="training_add();">Add to List</button>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
-								
+
 									<div class="col-md-9">
 										<h3>List of Training</h3>
 										<div class="customize-btn-group">
-											<button type="button" class="btn btn-danger">Delete</button>
+											<button type="button" class="btn btn-danger" onclick="training_delete();">Delete</button>
 										</div>	
-										<table class="table">
+										<table class="table" id="training_table">
 											<tr>
 												<th></th>
-												<th>Action</th>
 												<th>Training</th>
 												<th>Training Body</th>
 												<th>Training Date</th>
-											</tr>
-											<tr>
-												<td><input type="checkbox"></td>
-												<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-												<td>Example</td>
-												<td>2011</td>
-												<td>2011</td>
 											</tr>
 										</table>
 									</div>
@@ -1165,22 +1198,22 @@
 
 							<div class="form-group">
 								<label>Contract</label><br/>
-								<input type="radio" name="smp_contract" value="Yes" <?php echo set_radio('smp_contract', 'Yes'); ?>> Yes
-								<input type="radio" name="smp_contract" value="No" <?php echo set_radio('smp_contract', 'No'); ?>> No
+								<input type="radio" name="smp_contract" value="1" <?php echo set_radio('smp_contract', '1'); ?>> Yes
+								<input type="radio" name="smp_contract" value="0" <?php echo set_radio('smp_contract', '0'); ?>> No
 								<?php echo form_error('smp_contract'); ?>
 							</div>
 
 							<div class="form-group">
 								<label>Self-Assesment Form<span class="help-block">Business Communcation</span></label><br/>
-								<input type="radio" name="smp_self_assessment_bizcom" value="Yes" <?php echo set_radio('smp_self_assessment_bizcom', 'Yes'); ?>> Yes
-								<input type="radio" name="smp_self_assessment_bizcom" value="No" <?php echo set_radio('smp_self_assessment_bizcom', 'No'); ?>> No
+								<input type="radio" name="smp_self_assessment_bizcom" value="1" <?php echo set_radio('smp_self_assessment_bizcom', '1'); ?>> Yes
+								<input type="radio" name="smp_self_assessment_bizcom" value="0" <?php echo set_radio('smp_self_assessment_bizcom', '0'); ?>> No
 								<?php echo form_error('smp_self_assessment_bizcom'); ?>
 							</div>
 
 							<div class="form-group">
 								<label>Self-Assesment Form<span class="help-block">Service Culture</span></label><br/>
-								<input type="radio" name="smp_self_assessment_sc" value="Yes" <?php echo set_radio('smp_self_assessment_sc', 'Yes'); ?>> Yes
-								<input type="radio" name="smp_self_assessment_sc" value="No" <?php echo set_radio('smp_self_assessment_sc', 'No'); ?>> No
+								<input type="radio" name="smp_self_assessment_sc" value="1" <?php echo set_radio('smp_self_assessment_sc', '1'); ?>> Yes
+								<input type="radio" name="smp_self_assessment_sc" value="0" <?php echo set_radio('smp_self_assessment_sc', '0'); ?>> No
 								<?php echo form_error('smp_self_assessment_sc'); ?>
 							</div>
 						</div>
