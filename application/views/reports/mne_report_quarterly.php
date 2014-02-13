@@ -1,3 +1,4 @@
+<?php $number = 1000; ?>
 <h1>MNE Quarterly Report</h1>
 <h4>Period: <?php echo $annual_start; ?> to <?php echo $annual_end; ?> </h4>
 <legend>CHED-LFA</legend>
@@ -32,24 +33,24 @@
 		<td>20,000</td>
 		<?php foreach ($teacher_gcat_completed_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($teacher_gcat_completed_row as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($teacher_gcat_completed_row as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q3 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($teacher_gcat_completed_row as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
+			<td>1000</td>
+			<td>.<?php echo $count->Q4 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($teacher_gcat_completed_row as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
 		<?php endforeach; ?>
@@ -64,14 +65,14 @@
 		<td>20,000</td>
 		<?php foreach ($teacher_best_completed_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q1 / $number; ?></td>	
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($teacher_best_completed_row as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
+			<td>1000</td>
+			<td><?php echo $count->Q2 / $number; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
 		<?php foreach ($teacher_best_completed_row as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
 		<?php endforeach; ?>

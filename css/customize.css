@@ -156,5 +156,9 @@ height: 500px;
 }
 
 .report-form th, .report-form td{
-width: 100px;
+width: 500px;
+}
+
+.report-form thead th{
+text-align: center;
 }

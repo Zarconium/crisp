@@ -685,5 +685,25 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('reports/mne_report_monthly', $data);
 		$this->load->view('footer-print');	
 	}
+	
+	function reportTargetsConfiguration() {
+		$this->load->view('header');
+		$this->load->view('forms/form-reports-configuration');
+		$this->load->view('footer');	
+	}
+	
+	function reportsTargetConfigurationSubmit(){
+		$target = array
+			(
+				'User_ID' => $this->session->userdata('logged_in')['id'], //Ask RJ
+				'LFA' => $this->input->post('teacher_lfa_gcat'),
+				'QTR_1' => $this->input->post('teacher_q1_gcat'),
+				'QTR_2' => $this->input->post('first_name'),
+				'QTR_3' => $this->input->post('first_name'),
+				'QTR_4' => $this->input->post('middle_initial'),
+				'Target_For' =>  $this->input->post('middle_initial')
+			);
+		$target_id = $this->target->addTarget($target);
+	}
 }
 ?>
