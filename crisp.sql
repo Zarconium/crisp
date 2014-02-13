@@ -905,7 +905,8 @@ INSERT INTO `school` (`School_ID`, `Name`, `Address`, `Landline`, `Email`, `Poin
 (70, 'Informatics', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'Informatics', 'Main'),
 (71, 'Don Bosco Manila', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'Don Bosco Manila', 'Main'),
 (72, 'De La Salle - College of Saint Benilde', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'DLS-CSB', 'Main'),
-(73, 'Tarlac State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'TarSU', 'Main');
+(73, 'Tarlac State University', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'TarSU', 'Main'),
+(74, 'Polytechnic University of the Philippines', 'NCR', '4346578', 'school@gmail.com', 'Person Name', '09000000000', NULL, '2011-12-12 00:00:00', 'PUP', 'Main');
 
 -- --------------------------------------------------------
 
