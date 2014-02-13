@@ -152,20 +152,14 @@ display: block;
 
 table tbody{
 overflow: scroll;
-height: 80%;
+height: 500px;
 }
 
 .report-form th, .report-form td{
-<<<<<<< HEAD
 width: 500px;
 }
 
-.report-form thead th{
-=======
-width: 200px;
-}
 
 .header{
->>>>>>> c9503a0a753d12088b0ef5eb2315155e23d48e39
 text-align: center;
 }
