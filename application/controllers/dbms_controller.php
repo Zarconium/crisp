@@ -3553,7 +3553,7 @@ class Dbms_Controller extends CI_Controller
 
 		if ($counter > 1)
 		{
-			$this->session->set_flashdata('upload_success', 'GCAT grades successfully uploaded. ' . ($counter - 1) . ' of ' . ($highestRow - 1) . ' students added/updated.');
+			$this->session->set_flashdata('upload_success', 'GCAT grades successfully uploaded. ' . ($counter - 1) . ' of ' . ($highestRow - 1) . ' Teachers updated.');
 			$this->log->addLog('GCAT Student Grades Batch Upload');
 		}
 		else
@@ -4381,7 +4381,7 @@ class Dbms_Controller extends CI_Controller
 		redirect('dbms');
 	}
 
-	function upload_stipend_process_tracker()
+	function upload_stipend_process_tracker() //checked done it works - francis
 	{
 		if (!$_FILES)
 		{
@@ -4505,7 +4505,7 @@ class Dbms_Controller extends CI_Controller
 	}
 
 
-	function upload_gcat_grades()//parang sakto na yung logic pero di pa tested  
+	function upload_gcat_grades() //checked done it works - francis  
 	{
 		if (!$_FILES)
 		{
@@ -4601,7 +4601,7 @@ class Dbms_Controller extends CI_Controller
 		redirect('dbms');
 	}
 
-	function upload_best_grades()//please test 
+	function upload_best_grades()//PAKI AYOS NUNG DECIMAL PLACES SA DB PLEASEE BUT IT WORKS! 
 	{
 		if (!$_FILES)
 		{
@@ -4676,7 +4676,7 @@ class Dbms_Controller extends CI_Controller
 		redirect('dbms');
 	}
 
-	function upload_adept_grades()//please test
+	function upload_adept_grades()//PAKI AYOS NUNG DECIMAL PLACES SA DB PLEASEE BUT IT WORKS! 
 	{
 		if (!$_FILES)
 		{
