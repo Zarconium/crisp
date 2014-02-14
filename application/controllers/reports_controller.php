@@ -17,6 +17,7 @@ class Reports_Controller extends CI_Controller {
 
 	function index()
 	{
+	
 		$data['schools'] = $this->school->getAllSchools();
 		$data['subjects'] = $this->subject->getAllSubjects();
 		$data['teachers'] = $this->teacher->getAllTeachersFormatted();
@@ -29,6 +30,7 @@ class Reports_Controller extends CI_Controller {
 
 
 
+	
 		$this->load->view('header');
 		$this->load->view('report', $data);
 		$this->load->view('footer');
@@ -160,7 +162,7 @@ class Reports_Controller extends CI_Controller {
 		$end_date = $this->input->post('program_t3_end_date');
 
 		/*$start_date = "1990-01-01"; $end_date= "2020-01-01";*/
-
+f
 		$data['t3_count_list'] = $this->report_program->gett3ProgramReportGCAT($start_date, $end_date);
 		$data['t3_total'] = $this->report_program->getT3ProgramReportGCATTotal($start_date, $end_date);
 		$data['start_date'] = $start_date;
