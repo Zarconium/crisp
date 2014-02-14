@@ -239,7 +239,7 @@ class Reports_Controller extends CI_Controller {
 		$semester="4";
 		$school_code="BatStateU-Lipa";
 		$start_date = "1990-01-01"; 
-		$end_date= "2020-01-01";*/*/
+		$end_date= "2020-01-01";*/
 		
 		
 		
