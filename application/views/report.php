@@ -569,7 +569,7 @@
 				</div>
 				<div id="suc_adept_student_list" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form" action="<?php echo base_url('reports/BestStudentsSUCReport'); ?>" method="post" target="_blank">							
+						<form class="form" role="form" action="<?php echo base_url('reports/AdeptStudentsSUCReport'); ?>" method="post" target="_blank">							
 							
 							<div class="form-group">
 								<label>Teacher</label>
@@ -882,6 +882,15 @@
 										<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Name; ?></option>
 									<?php endforeach; ?>
 								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Date Start</label>
+								<input type="date" class="form-control" name="suc_t3_smp_date_start">
+							</div>
+							<div class="form-group">
+								<label>Date End</label>
+								<input type="date" class="form-control" name="suc_t3_smp_date_end">
 							</div>
 
 							<div class="form-group">

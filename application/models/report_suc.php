@@ -57,7 +57,7 @@ Class Report_Suc extends CI_Model
 		group by class.Name
 		UNION
 		select "Total: ", COUNT(DISTINCT Student_Class.Student_ID)as "Number_of_Students"
-		from Student_Class, Student, Class,subject, school, other_class, teacher
+		from Student_Class, Student, Class,subject, school, other_class, teacher, tracker, student_tracker
 		where Student_Class.student_id = student.Student_ID 
 		and class.Class_ID = student_class.Class_ID
 		and other_class.Class_ID = class.Class_ID 
@@ -109,7 +109,7 @@ Class Report_Suc extends CI_Model
 		AND class.Name = "' . $class_name . '" 
 		UNION
 		SELECT CONCAT_WS(" ", "Total:", COUNT(Student.Student_ID)) as "Student_Names"
-		FROM Student_Class, Student, Class, subject, school, other_class, teacher
+		FROM Student_Class, Student, Class, subject, school, other_class, teacher, tracker, student_tracker
 		WHERE Student_Class.student_id = student.Student_ID
 		AND class.Class_ID = student_class.Class_ID
 		AND other_class.Class_ID = class.Class_ID
@@ -295,7 +295,7 @@ Class Report_Suc extends CI_Model
 	function getBestStudents($school_code,$semester,$teacher_code,$class_name, $start_date, $end_date)
 	{
 		$query = $this->db->query(' SELECT best_student.control_number as "Control_Number", CONCAT_WS(  " ", student.Last_Name,  ",", student.First_Name, student.middle_initial ) AS "Student_Names"
-		FROM Student_Class, Student, Class, subject, school, other_class, teacher, student_tracker, best_student, tracker, student_tracker
+		FROM Student_Class, Student, Class, subject, school, other_class, teacher, student_tracker, best_student, tracker
 		WHERE Student_Class.student_id = student.Student_ID
 		AND class.Class_ID = student_class.Class_ID
 		AND other_class.Class_ID = class.Class_ID
@@ -316,7 +316,7 @@ Class Report_Suc extends CI_Model
 		AND student_tracker.tracker_id=best_student.tracker_id
 		UNION
 		SELECT "Total", CONCAT_WS(" ", "Total:", COUNT(Student.Student_ID)) as "Student_Names"
-		FROM Student_Class, Student, Class, subject, school, other_class, teacher, student_tracker, best_student
+		FROM Student_Class, Student, Class, subject, school, other_class, teacher, student_tracker, best_student, tracker
 		WHERE Student_Class.student_id = student.Student_ID
 		AND class.Class_ID = student_class.Class_ID
 		AND other_class.Class_ID = class.Class_ID
@@ -369,7 +369,7 @@ Class Report_Suc extends CI_Model
 		group by class.Name
 		UNION
 		select "Total: ", COUNT(DISTINCT Student_Class.Student_ID)as "Number_of_Students"
-		from Student_Class, Student, Class,subject, school, other_class, teacher
+		from Student_Class, Student, Class,subject, school, other_class, teacher, tracker, student_tracker
 		where Student_Class.student_id = student.Student_ID 
 		and class.Class_ID = student_class.Class_ID
 		and other_class.Class_ID = class.Class_ID 
@@ -401,7 +401,7 @@ Class Report_Suc extends CI_Model
 	function getAdeptStudents($school_code,$semester,$teacher_code,$class_name, $start_date, $end_date)
 	{
 		$query = $this->db->query(' SELECT adept_student.control_number as "Control_Number", CONCAT_WS(  " ", student.Last_Name,  ",", student.First_Name, student.middle_initial ) AS "Student_Names"
-		FROM Student_Class, Student, Class, subject, school, other_class, teacher, student_tracker, adept_student, tracker, student_tracker
+		FROM Student_Class, Student, Class, subject, school, other_class, teacher, student_tracker, adept_student, tracker
 		WHERE Student_Class.student_id = student.Student_ID
 		AND class.Class_ID = student_class.Class_ID
 		AND other_class.Class_ID = class.Class_ID
@@ -423,7 +423,7 @@ Class Report_Suc extends CI_Model
 		AND student_tracker.tracker_id=adept_student.tracker_id
 		UNION
 		SELECT "Total", CONCAT_WS(" ", "Total:", COUNT(Student.Student_ID)) as "Student_Names"
-		FROM Student_Class, Student, Class, subject, school, other_class, teacher, student_tracker, adept_student
+		FROM Student_Class, Student, Class, subject, school, other_class, teacher, student_tracker, adept_student, tracker 
 		WHERE Student_Class.student_id = student.Student_ID
 		AND class.Class_ID = student_class.Class_ID
 		AND other_class.Class_ID = class.Class_ID
@@ -476,7 +476,7 @@ Class Report_Suc extends CI_Model
 		group by class.Name
 		UNION
 		select "Total: ", COUNT(DISTINCT Student_Class.Student_ID)as "Number_of_Students"
-		from Student_Class, Student, Class,subject, school, gcat_class, Proctor
+		from Student_Class, Student, Class,subject, school, gcat_class, Proctor, tracker, student_tracker
 		where Student_Class.student_id = student.Student_ID 
 		and class.Class_ID = student_class.Class_ID
 		and gcat_class.class_id = class.Class_ID 
@@ -506,7 +506,7 @@ Class Report_Suc extends CI_Model
 
 	function getGCATStudent($school_code,$semester,$proctor_id,$class_name, $start_date, $end_date)
 	{
-		$query = $this->db->query('SELECT CONCAT_WS(  " ", student.Last_Name,  ",", student.First_Name, student.middle_initial ) AS "Student_Names"
+		$query = $this->db->query('SELECT DISTINCT CONCAT_WS( " ", student.Last_Name,  ",", student.First_Name, student.middle_initial ) AS "Student_Names"
 		FROM Student_Class, Student, Class, subject, school, gcat_class, Proctor, tracker, student_tracker
 		WHERE Student_Class.student_id = student.Student_ID
 		AND class.Class_ID = student_class.Class_ID
@@ -523,8 +523,8 @@ Class Report_Suc extends CI_Model
 		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
 		AND class.Name = "' . $class_name . '" 
 		UNION
-		SELECT CONCAT_WS(" ", "Total:", COUNT(Student.Student_ID)) as "Student_Names"
-		FROM Student_Class, Student, Class, subject, school, gcat_class, Proctor
+		SELECT CONCAT_WS(" ", "Total:", COUNT(DISTINCT Student.Student_ID)) as "Student_Names"
+		FROM Student_Class, Student, Class, subject, school, gcat_class, Proctor, tracker, student_tracker
 		WHERE Student_Class.student_id = student.Student_ID
 		AND class.Class_ID = student_class.Class_ID
 		AND gcat_class.Class_ID = class.Class_ID
@@ -560,7 +560,7 @@ Class Report_Suc extends CI_Model
 	function getSMPTotal($school_code,$subject_id,$semester, $start_date, $end_date)
 	{
 		$query = $this->db->query('SELECT CONCAT_WS(" ", t.First_Name, t.Middle_Initial, t.Last_Name ) AS Teacher, COUNT( DISTINCT sc.Student_ID ) as "Students", COUNT( DISTINCT oc.Class_ID ) as "Classes"
-		FROM School AS s, Subject AS su, Teacher AS t, Class AS c, Student_Class AS sc, Other_Class AS oc
+		FROM School AS s, Subject AS su, Teacher AS t, Class AS c, Student_Class AS sc, Other_Class AS oc, tracker as tr, student_tracker as st
 		WHERE s.School_ID
 		IN (SELECT school.School_ID FROM School WHERE school.code = "'.$school_code.'") 
 		AND su.Subject_ID IN ( SELECT subject.Subject_ID
@@ -571,13 +571,13 @@ Class Report_Suc extends CI_Model
 		AND c.Class_ID = sc.Class_ID
 		AND oc.Teacher_ID = t.Teacher_ID
 		AND c.Semester = "'.$semester.'"
-		AND tracker.tracker_id = student_tracker.tracker_id
-		AND student_tracker.student_id=student.student_id
-		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND tr.tracker_id = st.tracker_id
+		AND st.student_id=sc.student_id
+		AND tr.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
 		GROUP BY Teacher
 		UNION
 		SELECT CONCAT_WS(" ", "Total: ", COUNT(DISTINCT t.teacher_ID)) AS "Teacher", COUNT( DISTINCT sc.Student_ID ) as "Students", COUNT( DISTINCT oc.Class_ID ) as "Classes"
-		FROM School AS s, Subject AS su, Teacher AS t, Class AS c, Student_Class AS sc, Other_Class AS oc
+		FROM School AS s, Subject AS su, Teacher AS t, Class AS c, Student_Class AS sc, Other_Class AS oc, tracker as tr, student_tracker as st
 		WHERE s.School_ID
 		IN (SELECT school.School_ID
 		FROM School WHERE school.code = "'.$school_code.'") 
@@ -589,9 +589,9 @@ Class Report_Suc extends CI_Model
 		AND c.Class_ID = sc.Class_ID
 		AND oc.Teacher_ID = t.Teacher_ID
 		AND c.Semester = "'.$semester.'"
-		AND tracker.tracker_id = student_tracker.tracker_id
-		AND student_tracker.student_id=student.student_id
-		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'";');
+		AND tr.tracker_id = st.tracker_id
+		AND st.student_id=sc.student_id
+		AND tr.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'";');
 
 		if($query->num_rows() > 0)
 		{

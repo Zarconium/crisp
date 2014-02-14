@@ -574,12 +574,17 @@ class Reports_Controller extends CI_Controller {
 		$school_code = $this->input->post('suc_t3_smp_school');
 		$semester = $this->input->post('suc_t3_smp_semester');
 		$subject_id = $this->input->post('suc_t3_smp_subject');
+		$start_date = $this->input->post('suc_t3_smp_date_start');
+		$end_date = $this->input->post('suc_t3_smp_date_end');
+
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
 
 		/*$school_code="BatStateU-Malvar";
 		$semester=3;
 		$subject = 1;*/
 
-		$data['smp_total_list'] = $this->report_suc->getSMPTotal($school_code,$subject_id,$semester);
+		$data['smp_total_list'] = $this->report_suc->getSMPTotal($school_code,$subject_id,$semester,$start_date,$end_date);
 		$data['subject'] = $this->subject->getSubjectByID($subject_id);
 		$data['semester'] = $semester;
 		$data['school'] = $this->school->getSchoolByCode($school_code);
