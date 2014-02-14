@@ -197,7 +197,7 @@
 							<div class="form-group">
 								<label>Subject</label>
 								<select class="form-control" name="program_student_t3_subject">
-									<?php foreach ($subjects as $subject): ?>
+									<?php foreach ($subjects_except_gcat as $subject): ?>
 										<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Name; ?></option>
 									<?php endforeach; ?>
 								</select>
@@ -288,6 +288,15 @@
 									<option value="<?php echo $subject->Subject_Code ?>"><?php echo $subject->Subject_Name ?></option>
 								<?php endforeach; ?>
 								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Date Start</label>
+								<input type="date" class="form-control" name="suc_startdate_class">
+							</div>
+							<div class="form-group">
+								<label>Date End</label>
+								<input type="date" class="form-control" name="suc_enddate_class">
 							</div>
 
 							<div class="form-group">

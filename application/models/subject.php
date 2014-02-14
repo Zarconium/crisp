@@ -52,6 +52,21 @@ Class Subject extends CI_Model
 		}
 	}
 
+	function getSubjectsExceptGcat()
+	{
+		$query = $this->db->query('SELECT * FROM subject 
+			WHERE subject.subject_code !="GCAT";');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getSubjectByID($ID)
 	{
 		$query = $this->db->query('SELECT * FROM subject WHERE subject.subject_id = "'. $ID .'";');

@@ -33,12 +33,12 @@ Class Report_Suc extends CI_Model
 		}
 	}
 
-	function getStudentClass($subject_code,$school_code,$semester,$teacher_code)
+	function getStudentClass($subject_code,$school_code,$semester,$teacher_code, $start_date, $end_date)
 	{
 
 
 		$query = $this->db->query('select class.Name as "Class_Name", COUNT(DISTINCT Student_Class.Student_ID)as "Number_of_Students"
-		from Student_Class, Student, Class,subject, school, other_class, teacher
+		from Student_Class, Student, Class,subject, school, other_class, teacher, tracker, student_tracker
 		where Student_Class.student_id = student.Student_ID 
 		and class.Class_ID = student_class.Class_ID
 		and other_class.Class_ID = class.Class_ID 
@@ -50,6 +50,9 @@ Class Report_Suc extends CI_Model
 		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
 		AND class.Semester =' . $semester . '
+		AND tracker.tracker_id = student_tracker.tracker_id
+		AND student_tracker.student_id=student.student_id
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
 		group by class.Name
 		UNION
@@ -66,6 +69,9 @@ Class Report_Suc extends CI_Model
 		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
 		AND class.Semester =' . $semester . '
+		AND tracker.tracker_id = student_tracker.tracker_id
+		AND student_tracker.student_id=student.student_id
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '");
 		');
 
@@ -81,7 +87,7 @@ Class Report_Suc extends CI_Model
 	}
 
 	#done
-	function getAllSMPStudent($subject_id,$school_code,$semester,$teacher_code,$class_name)
+	function getAllSMPStudent($subject_id,$school_code,$semester,$teacher_code,$class_name, $start_date, $end_date)
 	{
 		$query = $this->db->query('SELECT CONCAT_WS(  " ", student.Last_Name,  ",", student.First_Name, student.middle_initial ) AS "Student_Names"
 		FROM Student_Class, Student, Class, subject, school, other_class, teacher
@@ -96,6 +102,9 @@ Class Report_Suc extends CI_Model
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
 		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
 		AND class.Semester =' . $semester . '
+		AND tracker.tracker_id = student_tracker.tracker_id
+		AND student_tracker.student_id=student.student_id
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
 		AND class.Name = "' . $class_name . '" 
 		UNION
@@ -112,6 +121,9 @@ Class Report_Suc extends CI_Model
 		AND school.School_ID in (SELECT sc.school_ID FROM school AS sc WHERE sc.Code =  "' . $school_code . '")
 		AND student.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
 		AND class.Semester =' . $semester . '
+		AND tracker.tracker_id = student_tracker.tracker_id
+		AND student_tracker.student_id=student.student_id
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
 		AND class.Name = "' . $class_name . '";');
 

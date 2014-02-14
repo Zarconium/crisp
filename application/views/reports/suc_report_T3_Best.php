@@ -6,8 +6,8 @@
 <table class="table">
 <thead>
 	<tr>
-		<th>Class Name</th>
-		<th>Number of Students</th>
+		<th>Control Number</th>
+		<th>Teacher Name</th>
 	</tr>
 </thead>
 <tbody>

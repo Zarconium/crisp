@@ -27,6 +27,8 @@ class Reports_Controller extends CI_Controller {
 		$data['gcat_classes'] = $this->classes->getAllGCATClasses();
 		$data['smp_subjects'] = $this->subject->getSMPSubjects();
 		$data['smp_classes'] = $this->classes->getAllSMPClasses();
+		$data['subjects_except_gcat'] = $this->subject->getSubjectsExceptGcat();
+
 	
 		$this->load->view('header');
 		$this->load->view('report', $data);
@@ -159,7 +161,7 @@ class Reports_Controller extends CI_Controller {
 		$end_date = $this->input->post('program_t3_end_date');
 
 		/*$start_date = "1990-01-01"; $end_date= "2020-01-01";*/
-f
+
 		$data['t3_count_list'] = $this->report_program->gett3ProgramReportGCAT($start_date, $end_date);
 		$data['t3_total'] = $this->report_program->getT3ProgramReportGCATTotal($start_date, $end_date);
 		$data['start_date'] = $start_date;
@@ -231,11 +233,13 @@ f
 	//SUC Controller
 	function smpClassesSUCReport()
 	{
-		
+		#here
 		/*$teacher_code="CODE432";
 		$subject_code="SC101";
 		$semester="4";
-		$school_code="BatStateU-Lipa";*/
+		$school_code="BatStateU-Lipa";
+		$start_date = "1990-01-01"; 
+		$end_date= "2020-01-01";*/*/
 		
 		
 		
@@ -251,7 +255,7 @@ f
 		
 		
 
-		$data['class_list'] = $this->report_suc->getStudentClass($subject_code,$school_code,$semester,$teacher_code);
+		$data['class_list'] = $this->report_suc->getStudentClass($subject_code,$school_code,$semester,$teacher_code, $start_date, $end_date);
 		$data['teacher'] = $this->teacher->getTeacherByCode($teacher_code);
 		$data['subject'] = $this->subject->getSubjectByCode($subject_code);
 		$data['semester'] = $semester;
@@ -463,7 +467,7 @@ f
 		$subject_id=1;
 		$class_name="BPO101-C";*/
 
-		$data['smp_student_list'] = $this->report_suc->getallSMPStudent($subject_id,$school_code,$semester,$teacher_code,$class_name);
+		$data['smp_student_list'] = $this->report_suc->getallSMPStudent($subject_id,$school_code,$semester,$teacher_code,$class_name, $start_date, $end_date);
 		$data['teacher'] = $this->teacher->getTeacherByCode($teacher_code);
 		$data['subject'] = $this->subject->getSubjectByID($subject_id);
 		$data['semester'] = $semester;
