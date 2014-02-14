@@ -44,8 +44,8 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>Gender</label><br/>
-				<input type="radio" name="gender" value="male" <?php echo set_radio('gender', 'male'); ?>> Male
-				<input type="radio" name="gender" value="female" <?php echo set_radio('gender', 'female'); ?>> Female
+				<input type="radio" name="gender" value="M" <?php echo set_radio('gender', 'M'); ?>> Male
+				<input type="radio" name="gender" value="F" <?php echo set_radio('gender', 'F'); ?>> Female
 				<?php echo form_error('gender'); ?>
 			</div>
 		</div>

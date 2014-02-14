@@ -3,6 +3,7 @@
 	<?php if (isset($form_success)) { echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Class list successfully updated.</div>';} ?>
 	<?php if (isset($form_error)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>There were errors in your input. Please check the fields and try again.</div>';} ?>	
 	<?php if (isset($student_not_found)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Student not found. Please check the fields and try again.</div>';} ?>	
+	<?php if (isset($teacher_not_found)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Teacher not found. Please check the fields and try again.</div>';} ?>	
 
     <h1>Student Class List</h1>
 
@@ -15,6 +16,9 @@
 		</div>
 			
 		<legend>Class Information</legend>
+
+		<input type="hidden" name="code" value="<?php echo set_value('code'); ?>">
+		<?php echo form_error('code'); ?>
 		
 		<div class="form-inline">
 			<div class="form-group">
@@ -63,7 +67,7 @@
 				<label for="Subject">Subject:</label>
 				<select class="form-control" name="subject">
 				<?php foreach ($subjects as $subject): ?>
-					<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Code; ?></option>
+					<option value="<?php echo $subject->Subject_ID; ?>" <?php echo set_select('subject', $subject->Subject_ID); ?>><?php echo $subject->Subject_Code; ?></option>
 				<?php endforeach; ?>
 				</select>
 				<?php echo form_error('subject'); ?>
@@ -192,3 +196,21 @@
 		</div>
 	</form>
 </div>
+
+<script type="text/javascript">
+$('[name="save_draft"]').click
+(
+	function()
+	{
+		$('[name="code"]').val($('[name="school"]').val() + $('[name="teacher_first_name"]').val().charAt(0)+ $('[name="teacher_middle_initial"]').val().charAt(0)+ $('[name="teacher_last_name"]').val().charAt(0)+ $('[name="teacher_birthdate"]').val().replace(/-/gi,''));
+	}
+);
+
+$('[name="submit"]').click
+(
+	function()
+	{
+		$('[name="code"]').val($('[name="school"]').val() + $('[name="teacher_first_name"]').val().charAt(0)+ $('[name="teacher_middle_initial"]').val().charAt(0)+ $('[name="teacher_last_name"]').val().charAt(0)+ $('[name="teacher_birthdate"]').val().replace(/-/gi,''));
+	}
+);
+</script>

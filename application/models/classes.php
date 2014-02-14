@@ -83,15 +83,21 @@ Class Classes extends CI_Model
 		}
 	}
 
-	function addClass($class)
+	function addClass($data)
 	{
-		$this->db->insert('class', $class);
+		$this->db->insert('class', $data);
 		return $this->db->insert_id();
 	}
 
-	function addStudentClass($student_class)
+	function addStudentClass($data)
 	{
-		$this->db->insert('student_class', $student_class);
+		$this->db->insert('student_class', $data);
+		return $this->db->insert_id();
+	}
+
+	function addOtherClass($data)
+	{
+		$this->db->insert('other_class', $data);
 		return $this->db->insert_id();
 	}
 }
