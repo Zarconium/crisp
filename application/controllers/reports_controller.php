@@ -27,9 +27,6 @@ class Reports_Controller extends CI_Controller {
 		$data['gcat_classes'] = $this->classes->getAllGCATClasses();
 		$data['smp_subjects'] = $this->subject->getSMPSubjects();
 		$data['smp_classes'] = $this->classes->getAllSMPClasses();
-
-
-
 	
 		$this->load->view('header');
 		$this->load->view('report', $data);
