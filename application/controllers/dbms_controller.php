@@ -939,19 +939,19 @@ class Dbms_Controller extends CI_Controller
 
 		if ($this->input->post())
 		{
-			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|max_length[4]|xss_clean');
-			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[45]|xss_clean');
-			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[45]|xss_clean');
-			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|max_length[3]|xss_clean');
+			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|max_length[4]|xss_clean|alpha_dash');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[45]|xss_clean|alpha_dash');
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[45]|xss_clean|alpha_dash');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|max_length[3]|xss_clean|alpha_dash');
 			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('civil', 'Civil Status', 'trim|required|xss_clean|max_length[9]|alpha_dash');
-			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|max_length[13]|xss_clean');
-			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|max_length[9]|xss_clean');
+			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|max_length[13]|xss_clean|alpha_dash');
+			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|max_length[9]|xss_clean|alpha_dash');
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[45]|valid_email|xss_clean');
-			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|xss_clean');
-			$this->form_validation->set_rules('company_name', 'Company Name', 'trim|required|max_length[100]|xss_clean');
-			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|max_length[255]|xss_clean');
-			$this->form_validation->set_rules('position', 'Position', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|xss_clean|alpha_dash');
+			$this->form_validation->set_rules('company_name', 'Company Name', 'trim|required|max_length[100]|xss_clean|alpha_dash');
+			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|xss_clean|alpha_dash');
+			$this->form_validation->set_rules('position', 'Position', 'trim|required|max_length[45]|xss_clean|alpha_dash');
 
 			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
 
