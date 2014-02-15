@@ -27,6 +27,8 @@ class Reports_Controller extends CI_Controller {
 		$data['gcat_classes'] = $this->classes->getAllGCATClasses();
 		$data['smp_subjects'] = $this->subject->getSMPSubjects();
 		$data['smp_classes'] = $this->classes->getAllSMPClasses();
+		$data['subjects_except_gcat'] = $this->subject->getSubjectsExceptGcat();
+
 	
 		$this->load->view('header');
 		$this->load->view('report', $data);
@@ -231,11 +233,13 @@ class Reports_Controller extends CI_Controller {
 	//SUC Controller
 	function smpClassesSUCReport()
 	{
-		
+		#here
 		/*$teacher_code="CODE432";
 		$subject_code="SC101";
 		$semester="4";
-		$school_code="BatStateU-Lipa";*/
+		$school_code="BatStateU-Lipa";
+		$start_date = "1990-01-01"; 
+		$end_date= "2020-01-01";*/
 		
 		
 		
@@ -248,13 +252,16 @@ class Reports_Controller extends CI_Controller {
 		$subject_code = $this->input->post('suc_subject_class');
 		$semester = $this->input->post('suc_semester_class');
 		$school_code = $this->input->post('suc_school_class');
-		
+		$start_date = $this->input->post('suc_start_date_smp_class');
+		$end_date = $this->input->post('suc_end_date_smp_class');
 		
 
-		$data['class_list'] = $this->report_suc->getStudentClass($subject_code,$school_code,$semester,$teacher_code);
+		$data['class_list'] = $this->report_suc->getStudentClass($subject_code,$school_code,$semester,$teacher_code, $start_date, $end_date);
 		$data['teacher'] = $this->teacher->getTeacherByCode($teacher_code);
 		$data['subject'] = $this->subject->getSubjectByCode($subject_code);
 		$data['semester'] = $semester;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
 		$data['school'] = $this->school->getSchoolByCode($school_code);
 		$this->load->view('header-print');
 		$this->load->view('reports/suc_report_smp_classes', $data);
@@ -273,15 +280,19 @@ class Reports_Controller extends CI_Controller {
 		$teacher_code = $this->input->post('suc_best_teacher_class');
 		$semester = $this->input->post('suc_best_semester_class');
 		$school_code = $this->input->post('suc_best_school_class');
+		$start_date = $this->input->post('suc_start_date_best_class');
+		$end_date = $this->input->post('suc_end_date_best_class');
 
 		/*$school_code="BatStateU-Malvar";
 		$semester=3;
 		$teacher_code="CODE123";*/
 
 		
-		$data['best_class_list'] = $this->report_suc->getBestStudentClasses ($school_code,$semester, $teacher_code);
+		$data['best_class_list'] = $this->report_suc->getBestStudentClasses ($school_code,$semester, $teacher_code, $start_date, $end_date);
 		$data['teacher'] = $this->teacher->getTeacherByCode($teacher_code);
 		$data['semester'] = $semester;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
 		$data['school'] = $this->school->getSchoolByCode($school_code);
 		$this->load->view('header-print');
 		$this->load->view('reports/suc_report_best_student_classes', $data);
@@ -300,13 +311,17 @@ class Reports_Controller extends CI_Controller {
 		$teacher_code = $this->input->post('suc_adept_teacher_class');
 		$semester = $this->input->post('suc_adept_semester_class');
 		$school_code = $this->input->post('suc_adept_school_class');
+		$start_date = $this->input->post('suc_start_date_adept_class');
+		$end_date = $this->input->post('suc_end_date_adept_class');
 		/*$school_code="BatStateU-Malvar";
 		$semester=3;
 		$teacher_code="CODE123";*/
 
-		$data['adept_class_list'] = $this->report_suc->getAdeptStudentClasses ($school_code,$semester, $teacher_code);
+		$data['adept_class_list'] = $this->report_suc->getAdeptStudentClasses ($school_code,$semester, $teacher_code, $start_date, $end_date);
 		$data['teacher'] = $this->teacher->getTeacherByCode($teacher_code);
 		$data['semester'] = $semester;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
 		$data['school'] = $this->school->getSchoolByCode($school_code);
 		$this->load->view('header-print');
 		$this->load->view('reports/suc_report_adept_student_classes', $data);
@@ -327,14 +342,18 @@ class Reports_Controller extends CI_Controller {
 		$school_code = $this->input->post('suc_gcat_school_class');
 		$semester = $this->input->post('suc_gcat_semester_class');
 		$proctor_id = $this->input->post('suc_gcat_proctor_class');
+		$start_date = $this->input->post('suc_start_date_gcat_class');
+		$end_date = $this->input->post('suc_end_date_gcat_class');
 
 	/*	$school_code="BatStateU-Lipa";
 		$semester=1;
 		$proctor_id=1;
 */
-		$data['gcat_class_list'] = $this->report_suc->getGCATStudentClasses($school_code, $semester, $proctor_id);
+		$data['gcat_class_list'] = $this->report_suc->getGCATStudentClasses($school_code, $semester, $proctor_id, $start_date, $end_date);
 		$data['proctor'] = $this->proctor->getProctorById($proctor_id);
 		$data['semester'] = $semester;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
 		$data['school'] = $this->school->getSchoolByCode($school_code);
 	
 		$this->load->view('header-print');
@@ -354,9 +373,13 @@ class Reports_Controller extends CI_Controller {
 		$semester = $this->input->post('suc_best_semester_students');
 		$school_code = $this->input->post('suc_best_school_students');
 		$class_name = $this->input->post('suc_best_class_students');
+		$start_date = $this->input->post('suc_start_date_best_students');
+		$end_date = $this->input->post('suc_end_date_best_students');
 
 		$data['teacher'] = $this->teacher->getTeacherByCode($teacher_code);
 		$data['semester'] = $semester;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
 		$data['school'] = $this->school->getSchoolByCode($school_code);
 		$data['class']=$class_name;
 		
@@ -370,9 +393,11 @@ class Reports_Controller extends CI_Controller {
 		$semester=4;*/
 		
 
-		$data['best_student_list'] = $this->report_suc->getBestStudents($school_code,$semester,$teacher_code,$class_name);
+		$data['best_student_list'] = $this->report_suc->getBestStudents($school_code,$semester,$teacher_code,$class_name, $start_date, $end_date);
 		$data['teacher'] = $this->teacher->getTeacherByCode($teacher_code);
 		$data['semester'] = $semester;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
 		$data['school'] = $this->school->getSchoolByCode($school_code);
 		$data['class']=$class_name;
 		$this->load->view('header-print');
@@ -393,15 +418,19 @@ class Reports_Controller extends CI_Controller {
 		$semester = $this->input->post('suc_adept_semester_students');
 		$school_code = $this->input->post('suc_adept_school_students');
 		$class_name = $this->input->post('suc_adept_class_students');
+		$start_date = $this->input->post('suc_start_date_adept_students');
+		$end_date = $this->input->post('suc_end_date_adept_students');
 
 		/*$class_name="BPO101-D";
 		$school_code="BatStateU-Lipa";
 		$semester=4;
 		$teacher_code="CODE432";*/
 
-		$data['adept_student_list'] = $this->report_suc->getAdeptStudents($school_code,$semester,$teacher_code,$class_name);
+		$data['adept_student_list'] = $this->report_suc->getAdeptStudents($school_code,$semester,$teacher_code,$class_name, $start_date, $end_date);
 		$data['teacher'] = $this->teacher->getTeacherByCode($teacher_code);
 		$data['semester'] = $semester;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
 		$data['school'] = $this->school->getSchoolByCode($school_code);
 		$data['class']=$class_name;
 		$this->load->view('header-print');
@@ -422,15 +451,19 @@ class Reports_Controller extends CI_Controller {
 		$semester = $this->input->post('suc_gcat_semester_students');
 		$school_code = $this->input->post('suc_gcat_school_students');
 		$class_name = $this->input->post('suc_gcat_class_students');
+		$start_date = $this->input->post('suc_start_date_gcat_students');
+		$end_date = $this->input->post('suc_end_date_gcat_students');
 		
 		/*$proctor_id=1;
 		$school_code="BatStateU-Lipa";
 		$semester=1;
 		$class_name="GCAT";*/
 
-		$data['gcat_student_list'] = $this->report_suc->getGCATStudent($school_code,$semester, $proctor_id ,$class_name);
+		$data['gcat_student_list'] = $this->report_suc->getGCATStudent($school_code,$semester, $proctor_id ,$class_name, $start_date, $end_date);
 		$data['proctor'] = $this->proctor->getProctorById($proctor_id);		
 		$data['semester'] = $semester;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
 		$data['school'] = $this->school->getSchoolByCode($school_code);
 		$data['class']=$class_name;
 		$this->load->view('header-print');
@@ -456,6 +489,8 @@ class Reports_Controller extends CI_Controller {
 		$school_code = $this->input->post('suc_smp_school_students');
 		$semester = $this->input->post('suc_smp_semester_students');
 		$class_name = $this->input->post('suc_smp_class_students');
+		$start_date = $this->input->post('suc_start_date_smp_students');
+		$end_date = $this->input->post('suc_end_date_smp_students');
 
 		/*$teacher_code="CODE432";
 		$semester=4;
@@ -463,10 +498,12 @@ class Reports_Controller extends CI_Controller {
 		$subject_id=1;
 		$class_name="BPO101-C";*/
 
-		$data['smp_student_list'] = $this->report_suc->getallSMPStudent($subject_id,$school_code,$semester,$teacher_code,$class_name);
+		$data['smp_student_list'] = $this->report_suc->getallSMPStudent($subject_id,$school_code,$semester,$teacher_code,$class_name, $start_date, $end_date);
 		$data['teacher'] = $this->teacher->getTeacherByCode($teacher_code);
 		$data['subject'] = $this->subject->getSubjectByID($subject_id);
 		$data['semester'] = $semester;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
 		$data['school'] = $this->school->getSchoolByCode($school_code);
 		$data['class']=$class_name;
 		$this->load->view('header-print');
@@ -537,12 +574,17 @@ class Reports_Controller extends CI_Controller {
 		$school_code = $this->input->post('suc_t3_smp_school');
 		$semester = $this->input->post('suc_t3_smp_semester');
 		$subject_id = $this->input->post('suc_t3_smp_subject');
+		$start_date = $this->input->post('suc_t3_smp_date_start');
+		$end_date = $this->input->post('suc_t3_smp_date_end');
+
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
 
 		/*$school_code="BatStateU-Malvar";
 		$semester=3;
 		$subject = 1;*/
 
-		$data['smp_total_list'] = $this->report_suc->getSMPTotal($school_code,$subject_id,$semester);
+		$data['smp_total_list'] = $this->report_suc->getSMPTotal($school_code,$subject_id,$semester,$start_date,$end_date);
 		$data['subject'] = $this->subject->getSubjectByID($subject_id);
 		$data['semester'] = $semester;
 		$data['school'] = $this->school->getSchoolByCode($school_code);
@@ -609,6 +651,13 @@ class Reports_Controller extends CI_Controller {
 		$data['getallStudentsInternshipCompleted'] = $this->report_mne-> getallStudentsInternshipCompleted($qtr1_start, $qtr1_end, $qtr2_start, $qtr2_end, $qtr3_start, $qtr3_end, $qtr4_start, $qtr4_end, $annual_start, $annual_end);
 
 
+		$this->load->model('target_monthly_model');
+		$monthly_target = $this->target_monthly_model->getTargetMonthly();
+		foreach ($monthly_target as $target) :
+			$number = $target->target_number; 
+		endforeach;		
+		$data['number'] = $number;
+		
 		$this->load->view('header-print');
 		$this->load->view('reports/mne_report_quarterly', $data);
 		$this->load->view('footer-print');
@@ -680,11 +729,17 @@ class Reports_Controller extends CI_Controller {
 
 		$data['annual_start']=$annual_start;
 		$data['annual_end'] = $annual_end;
+		
+		$this->load->model('target_monthly_model');
+		$monthly_target = $this->target_monthly_model->getTargetMonthly();
+		foreach ($monthly_target as $target) :
+			$number = $target->target_number; 
+		endforeach;		
+		$data['number'] = $number;
+		
 		$this->load->view('header-print');
 		$this->load->view('reports/mne_report_monthly', $data);
 		$this->load->view('footer-print');	
 	}
-	
-	}
-
+}
 ?>

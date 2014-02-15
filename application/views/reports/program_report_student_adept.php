@@ -15,7 +15,7 @@
 <tr>
 </thead>
 <tbody>
-	<?php foreach ($pin_count_list as $count): ?>
+	<?php if($pin_count_list) foreach ($pin_count_list as $count): ?>
 	<tr>
 		<td><?php echo $count->School; ?></td>
 		<td><?php echo $count->Male; ?></td>
@@ -23,13 +23,15 @@
 		<td><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
-	<?php foreach ($pin_total as $count): ?>
+</tbody>
+<tfoot>
+	<?php if($pin_total) foreach ($pin_total as $count): ?>
 	<tr>
 		<td>TOTAL</td>
 		<td colspan="4"><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
-</tbody>
+</tfoot>
 </table>
 
 <legend>Current Takers</legend>
@@ -43,7 +45,7 @@
 </tr>
 </thead>
 <tbody>
-	<?php foreach ($current_takers_count_list as $count): ?>
+	<?php if($current_takers_count_list) foreach ($current_takers_count_list as $count): ?>
 	<tr>
 		<td><?php echo $count->School; ?></td>
 		<td><?php echo $count->Male; ?></td>
@@ -51,13 +53,15 @@
 		<td><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
-	<?php foreach ($current_takers_total as $count): ?>
+</tbody>
+<tfoot>
+	<?php if($current_takers_total) foreach ($current_takers_total as $count): ?>
 	<tr>
 		<td>TOTAL</td>
 		<td colspan="4"><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
-</tbody>
+</tfoot>
 </table>	
 
 <legend>Students Completed</legend>
@@ -71,7 +75,7 @@
 </tr>
 </thead>
 <tbody>
-	<?php foreach ($completed_count_list as $count): ?>
+	<?php if($completed_count_list) foreach ($completed_count_list as $count): ?>
 	<tr>
 		<td><?php echo $count->School; ?></td>
 		<td><?php echo $count->Male; ?></td>
@@ -79,12 +83,14 @@
 		<td><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
-		<?php foreach ($completed_total as $count): ?>
+</tbody>
+<tfoot>
+	<?php if($completed_total) foreach ($completed_total as $count): ?>
 	<tr>
 		<td>TOTAL</td>
 		<td colspan="4"><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
-</tbody>
+</tfoot>
 </table>	
 </div>

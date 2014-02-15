@@ -197,7 +197,7 @@
 							<div class="form-group">
 								<label>Subject</label>
 								<select class="form-control" name="program_student_t3_subject">
-									<?php foreach ($subjects as $subject): ?>
+									<?php foreach ($subjects_except_gcat as $subject): ?>
 										<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Name; ?></option>
 									<?php endforeach; ?>
 								</select>
@@ -291,6 +291,15 @@
 							</div>
 
 							<div class="form-group">
+								<label>Date Start</label>
+								<input type="date" class="form-control" name="suc_start_date_smp_class">
+							</div>
+							<div class="form-group">
+								<label>Date End</label>
+								<input type="date" class="form-control" name="suc_end_date_smp_class">
+							</div>
+
+							<div class="form-group">
 								<label>Semester</label>
 									<input type="number" class="form-control" name="suc_semester_class">
 							</div>
@@ -334,6 +343,15 @@
 									<option value="<?php echo $teacher->Code ?>"><?php echo $teacher->Full_Name ?></option>
 								<?php endforeach; ?>
 								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Date Start</label>
+								<input type="date" class="form-control" name="suc_start_date_best_class">
+							</div>
+							<div class="form-group">
+								<label>Date End</label>
+								<input type="date" class="form-control" name="suc_end_date_best_class">
 							</div>
 
 							<div class="form-group">
@@ -381,6 +399,15 @@
 									<option value="<?php echo $teacher->Code ?>"><?php echo $teacher->Full_Name ?></option>
 								<?php endforeach; ?>
 								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Date Start</label>
+								<input type="date" class="form-control" name="suc_start_date_adept_class">
+							</div>
+							<div class="form-group">
+								<label>Date End</label>
+								<input type="date" class="form-control" name="suc_end_date_adept_class">
 							</div>
 
 							<div class="form-group">
@@ -433,6 +460,15 @@
 							</div>
 
 							<div class="form-group">
+								<label>Date Start</label>
+								<input type="date" class="form-control" name="suc_start_date_gcat_class">
+							</div>
+							<div class="form-group">
+								<label>Date End</label>
+								<input type="date" class="form-control" name="suc_end_date_gcat_class">
+							</div>
+
+							<div class="form-group">
 								<label>Semester</label>
 									<input type="number" class="form-control" name="suc_gcat_semester_class">
 							</div>
@@ -476,6 +512,15 @@
 									<option value="<?php echo $teacher->Code ?>"><?php echo $teacher->Full_Name ?></option>
 								<?php endforeach; ?>
 								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Date Start</label>
+								<input type="date" class="form-control" name="suc_start_date_best_students">
+							</div>
+							<div class="form-group">
+								<label>Date End</label>
+								<input type="date" class="form-control" name="suc_end_date_best_students">
 							</div>
 
 							<div class="form-group">
@@ -524,7 +569,7 @@
 				</div>
 				<div id="suc_adept_student_list" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form" action="<?php echo base_url('reports/BestStudentsSUCReport'); ?>" method="post" target="_blank">							
+						<form class="form" role="form" action="<?php echo base_url('reports/AdeptStudentsSUCReport'); ?>" method="post" target="_blank">							
 							
 							<div class="form-group">
 								<label>Teacher</label>
@@ -533,6 +578,15 @@
 									<option value="<?php echo $teacher->Code ?>"><?php echo $teacher->Full_Name ?></option>
 								<?php endforeach; ?>
 								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Date Start</label>
+								<input type="date" class="form-control" name="suc_start_date_adept_students">
+							</div>
+							<div class="form-group">
+								<label>Date End</label>
+								<input type="date" class="form-control" name="suc_end_date_adept_students">
 							</div>
 
 							<div class="form-group">
@@ -590,6 +644,15 @@
 									<option value="<?php echo $proctor->Proctor_ID ?>"><?php echo $proctor->Full_Name ?></option>
 								<?php endforeach; ?>
 								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Date Start</label>
+								<input type="date" class="form-control" name="suc_start_date_gcat_students">
+							</div>
+							<div class="form-group">
+								<label>Date End</label>
+								<input type="date" class="form-control" name="suc_end_date_gcat_students">
 							</div>
 
 							<div class="form-group">
@@ -656,6 +719,16 @@
 										<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Name; ?></option>
 									<?php endforeach; ?>
 								</select>
+							</div>
+
+
+							<div class="form-group">
+								<label>Date Start</label>
+								<input type="date" class="form-control" name="suc_start_date_smp_students">
+							</div>
+							<div class="form-group">
+								<label>Date End</label>
+								<input type="date" class="form-control" name="suc_end_date_smp_students">
 							</div>
 
 							<div class="form-group">
@@ -812,6 +885,15 @@
 							</div>
 
 							<div class="form-group">
+								<label>Date Start</label>
+								<input type="date" class="form-control" name="suc_t3_smp_date_start">
+							</div>
+							<div class="form-group">
+								<label>Date End</label>
+								<input type="date" class="form-control" name="suc_t3_smp_date_end">
+							</div>
+
+							<div class="form-group">
 								<label>Semester</label>
 									<input type="number" class="form-control" name="suc_t3_smp_semester">
 							</div>
@@ -869,14 +951,14 @@
 				</div>
 				<div id="mande_month" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form" action="<?php echo base_url('reports/saveTargetMonthly'); ?>" method="post" target="_blank">
+						<form class="form" role="form" action="<?php echo base_url('reports/mneMonthlyReport'); ?>" method="post" target="_blank">
 							<div class="form-group">
 								<label>Year</label>
 								<input class="form-control" type="number" name="mande_month_year" min="2011">
 							</div>				
 							<div class="form-group">
 								<label>Target</label>
-									<input class="form-control" type="number" name="mande_month_target" placeholder="<?php echo $number; ?>">
+								<input class="form-control" type="number" name="mande_month_target" placeholder="<?php echo $number; ?>">
 							</div>
 							
 							<div class="button-groups">
