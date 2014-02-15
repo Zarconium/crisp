@@ -31,12 +31,15 @@
 
 <legend>Number of Students Finished with a Subject</legend>
 <table class="table">
+<thead>
 	<tr>
 		<th>School</th>
 		<th>Male</th>
 		<th>Female</th>
 		<th>Total</th>
 	</tr>
+</thead>
+<tbody>
 	<?php if($finished_list) foreach ($finished_list as $count): ?>
 	<tr>
 		<td><?php echo $count->School; ?></td>
@@ -45,11 +48,14 @@
 		<td><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
+</tbody>
+<tfoot>
 	<?php if($total_ft) foreach ($total_ft as $t): ?>
 	<tr>
 		<td>TOTAL</td>
 		<td colspan="4"><?php echo $t->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
+</tfoot>
 </table>
 </div>

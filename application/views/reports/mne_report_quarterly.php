@@ -31,7 +31,7 @@
 <tbody>
 	<tr>
 		<td>Teachers Trained in GCAT</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($teacher_gcat_completed_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -63,7 +63,7 @@
 	</tr>
 	<tr>
 		<td>Teachers Trained in Best</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($teacher_best_completed_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -95,7 +95,7 @@
 	</tr>
 	<tr>
 		<td>Teachers Trained in AdEPT</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($teacher_adept_completed_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -128,7 +128,7 @@
 	</tr>
 	<tr>
 		<td>Teachers Trained in SMP Subjects</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($getallTeacherSmpAnySubject as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -160,7 +160,7 @@
 	</tr>
 	<tr>
 		<td>Teachers Trained in BPO101</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($getallTeacherBpo101 as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -192,7 +192,7 @@
 	</tr>
 	<tr>
 		<td>Teachers Trained in BPO102</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($getallTeacherBpo102 as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -224,7 +224,7 @@
 	</tr>
 	<tr>
 		<td>Teachers Trained in Service Culture</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($getallTeacherServiceCulture as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -256,7 +256,7 @@
 	</tr>
 	<tr>
 		<td>Teachers Trained in Business Communication</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($getallTeacherBusinessCommunication as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -288,7 +288,7 @@
 	</tr>
 	<tr>
 		<td>Teachers Trained in Systems Thinking</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($getallTeacherSystemsThinking as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -320,7 +320,7 @@
 	</tr>
 	<tr>
 		<td>SUC's with complete SMP Subjects and Trained Teachers</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($getallTeacherCompleteSmpSubjAndTrainedTeachers as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -380,7 +380,7 @@
 <tbody>
 	<tr>
 		<td>Students completed in GCAT</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($gcat_completed_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -412,7 +412,7 @@
 	</tr>
 	<tr>
 		<td>Students completed in BEST</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($best_completed_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -444,7 +444,7 @@
 	</tr>
 	<tr>
 		<td>Students completed in AdEPT</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($adept_completed_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -476,7 +476,7 @@
 	</tr>
 	<tr>
 		<td>Students enrolled in any SMP</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($smp_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -508,7 +508,7 @@
 	</tr>
 	<tr>
 		<td>Students enrolled in BPO101</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($bpo101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -540,7 +540,7 @@
 	</tr>
 	<tr>
 		<td>Students enrolled in BPO102</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($bpo102_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -572,7 +572,7 @@
 	</tr>
 	<tr>
 		<td>Students enrolled in Service Culture</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($sc101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -604,7 +604,7 @@
 	</tr>
 	<tr>
 		<td>Students enrolled in Business Communication</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($bizcom_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -636,7 +636,7 @@
 	</tr>
 	<tr>
 		<td>Students enrolled in Systems Thinking</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($systh101_currently_taking_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -668,7 +668,7 @@
 	</tr>
 	<tr>
 		<td>Students Completed in any SMP</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($getallStudentsSmpCompleted as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>
@@ -700,7 +700,7 @@
 	</tr>
 	<tr>
 		<td>Students Completed in BPO101</td>
-		<td>20,000</td>
+		<td><?php echo $number; ?></td>
 		<?php foreach ($getallStudentsBpo101Completed as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td>1000</td>

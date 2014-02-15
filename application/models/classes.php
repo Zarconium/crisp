@@ -1,6 +1,40 @@
 <?php
 Class Classes extends CI_Model
 {
+	function getAllClasses()
+	{
+		$this->db->select('*');
+		$this->db->from('class');
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAllClasses()
+	{
+		$this->db->select('*');
+		$this->db->from('class');
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getAllBestClasses()
 	{
 		$query = $this->db->query('SELECT *
@@ -83,15 +117,21 @@ Class Classes extends CI_Model
 		}
 	}
 
-	function addClass($class)
+	function addClass($data)
 	{
-		$this->db->insert('class', $class);
+		$this->db->insert('class', $data);
 		return $this->db->insert_id();
 	}
 
-	function addStudentClass($student_class)
+	function addStudentClass($data)
 	{
-		$this->db->insert('student_class', $student_class);
+		$this->db->insert('student_class', $data);
+		return $this->db->insert_id();
+	}
+
+	function addOtherClass($data)
+	{
+		$this->db->insert('other_class', $data);
 		return $this->db->insert_id();
 	}
 }

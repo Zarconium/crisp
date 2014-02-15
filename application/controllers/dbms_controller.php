@@ -881,7 +881,6 @@ class Dbms_Controller extends CI_Controller
 						'Middle_Initial' => $this->input->post('middle_initial'),
 						'Gender' => $this->input->post('gender'),
 						'Civil_Status' => $this->input->post('civil'),
-						// 'Birthdate' => $this->input->post('birthday'),
 						'Mobile_Number' => $this->input->post('mobile_number'),
 						'Landline' => $this->input->post('landline'),
 						'Email' => $this->input->post('email'),
@@ -1281,7 +1280,9 @@ class Dbms_Controller extends CI_Controller
 				}
 				else
 				{
-					$student = array
+					$this->db->trans_begin();
+
+					$proctor = array
 					(
 						'Name_Suffix' => $this->input->post('name_suffix'),
 						'Last_Name' => $this->input->post('last_name'),
@@ -1289,7 +1290,6 @@ class Dbms_Controller extends CI_Controller
 						'Middle_Initial' => $this->input->post('middle_initial'),
 						'Gender' => $this->input->post('gender'),
 						'Civil_Status' => $this->input->post('civil'),
-						'Birthdate' => $this->input->post('birthday'),
 						'Mobile_Number' => $this->input->post('mobile_number'),
 						'Landline' => $this->input->post('landline'),
 						'Email' => $this->input->post('email'),
@@ -1299,14 +1299,25 @@ class Dbms_Controller extends CI_Controller
 						'Position' => $this->input->post('position'),
 					);
 
-					//$this->student->addStudent($student);
+					if (!$this->proctor->addProctor($proctor))
+					{
+						$this->db->trans_rollback();
+						$data['form_error'] = TRUE;
 
-					$data['form_success'] = TRUE;
-					$this->log->addLog('Added Proctor');
+						$this->load->view('header');
+						$this->load->view('forms/form-proctor-application', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$this->db->trans_commit();
+						$data['form_success'] = TRUE;
+						$this->log->addLog('Added Proctor');
 
-					$this->load->view('header');
-					$this->load->view('forms/form-proctor-application', $data);
-					$this->load->view('footer');
+						$this->load->view('header');
+						$this->load->view('forms/form-proctor-application', $data);
+						$this->load->view('footer');
+					}
 				}
 			}
 			elseif($this->input->post('save_draft'))
@@ -1363,7 +1374,9 @@ class Dbms_Controller extends CI_Controller
 				}
 				else
 				{
-					$proctor = array
+					$this->db->trans_begin();
+
+					$mastertrainer = array
 					(
 						'Name_Suffix' => $this->input->post('name_suffix'),
 						'Last_Name' => $this->input->post('last_name'),
@@ -1371,7 +1384,6 @@ class Dbms_Controller extends CI_Controller
 						'Middle_Initial' => $this->input->post('middle_initial'),
 						'Gender' => $this->input->post('gender'),
 						'Civil_Status' => $this->input->post('civil'),
-						'Birthdate' => $this->input->post('birthday'),
 						'Mobile_Number' => $this->input->post('mobile_number'),
 						'Landline' => $this->input->post('landline'),
 						'Email' => $this->input->post('email'),
@@ -1381,14 +1393,25 @@ class Dbms_Controller extends CI_Controller
 						'Position' => $this->input->post('position'),
 					);
 
-					// $this->student->addStudent($student);
+					if (!$this->mastertrainer->addMasterTrainer($mastertrainer))
+					{
+						$this->db->trans_rollback();
+						$data['form_error'] = TRUE;
 
-					$data['form_success'] = TRUE;
-					$this->log->addLog('Added Mastertrainer');
+						$this->load->view('header');
+						$this->load->view('forms/form-mastertrainer-application', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$this->db->trans_commit();
+						$data['form_success'] = TRUE;
+						$this->log->addLog('Added Master Trainer');
 
-					$this->load->view('header');
-					$this->load->view('forms/form-mastertrainer-application', $data);
-					$this->load->view('footer');
+						$this->load->view('header');
+						$this->load->view('forms/form-mastertrainer-application', $data);
+						$this->load->view('footer');
+					}
 				}
 			}
 			elseif($this->input->post('save_draft'))
@@ -1912,6 +1935,7 @@ class Dbms_Controller extends CI_Controller
 
 		if ($this->input->post())
 		{
+			$this->form_validation->set_rules('code', 'Code', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('teacher_last_name', 'Teacher\'s Last Name', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('teacher_first_name', 'Teacher\'s First Name', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('teacher_middle_initial', 'Teacher\'s Middle Initial', 'trim|required|xss_clean');
@@ -1945,6 +1969,17 @@ class Dbms_Controller extends CI_Controller
 					$this->db->trans_begin();
 
 					$school_id = $this->input->post('school');
+					$teacher = $this->teacher->getTeacherByCode($this->input->post('code'));
+
+					if (!$teacher)
+					{
+						$data['teacher_not_found'] = TRUE;
+						$this->db->trans_rollback();
+						$this->load->view('header');
+						$this->load->view('forms/form-class-add', $data);
+						$this->load->view('footer');
+						return;
+					}
 
 					$class = array
 					(
@@ -1954,14 +1989,21 @@ class Dbms_Controller extends CI_Controller
 						'School_ID' => $school_id,
 						'Subject_ID' => $this->input->post('subject')
 					);
-					$class_id = $this->classess->addClass($class);
+					$class_id = $this->classes->addClass($class);
+
+					$other_class = array
+					(
+						'Class_ID' => $class_id,
+						'Teacher_ID' => $teacher->Teacher_ID
+					);
+					$this->classes->addOtherClass($other_class);
 
 					for ($i = 0; $i < count($this->input->post('student_number')); $i++)
 					{
 						$student_code = $school_id . $this->input->post('student_number')[$i];
-						$student_id = $this->student->getStudentByCode($student_code);
+						$student = $this->student->getStudentByCode($student_code);
 
-						if (!$student_id)
+						if (!$student)
 						{
 							$data['student_not_found'] = TRUE;
 							$this->db->trans_rollback();
@@ -1974,7 +2016,7 @@ class Dbms_Controller extends CI_Controller
 						$student_class = array
 						(
 							'Class_ID' => $class_id,
-							'Student_ID' => $student_id
+							'Student_ID' => $student->Student_ID
 						);
 						$this->classes->addStudentClass($student_class);
 

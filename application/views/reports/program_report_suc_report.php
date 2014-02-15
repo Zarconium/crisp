@@ -35,6 +35,7 @@
 </table>
 
 <table class="table">
+<thead>
 <tr>
 	<th>Description</th>
 	<th>BPO101</th>
@@ -46,6 +47,8 @@
 	<th>BEST</th>
 	<th>GCAT</th>
 </tr>
+</thead>
+<tbody>
 	<tr>
 		<td>Number of Students Completed</td>
 		<?php if($student_completed_count_list) foreach ($student_completed_count_list as $count): ?>
@@ -59,9 +62,11 @@
 			<td><?php echo $count->GCAT; ?></td>
 		<?php endforeach; ?>
 	</tr>
+</tbody>
 </table>
 
 <table class="table">
+<thead>
 <tr>
 	<th>Description</th>
 	<th>BPO101</th>
@@ -73,6 +78,8 @@
 	<th>BEST</th>
 	<th>GCAT</th>
 </tr>
+</thead>
+<tbody>
 	<tr>
 		<td>Number of Students Currently Taking</td>
 		<?php if($student_currently_taking_count_list) foreach ($student_currently_taking_count_list as $count): ?>
@@ -86,5 +93,6 @@
 			<td><?php echo $count->GCAT; ?></td>
 		<?php endforeach; ?>
 	</tr>
+</tbody>
 </table>
 </div>

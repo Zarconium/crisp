@@ -20,11 +20,13 @@
 		<td><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
+</tbody>
+<tfoot>
 	<?php if($t3_total) foreach ($t3_total as $count): ?>
 	<tr>
 		<td>TOTAL</td>
 		<td colspan="4"><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
-</tbody>
+</tfoot>
 </table>

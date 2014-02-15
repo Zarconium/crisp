@@ -840,6 +840,13 @@ class Reports_Controller extends CI_Controller {
 		$data['getallStudentsInternshipCompleted'] = $this->report_mne-> getallStudentsInternshipCompleted($qtr1_start, $qtr1_end, $qtr2_start, $qtr2_end, $qtr3_start, $qtr3_end, $qtr4_start, $qtr4_end, $annual_start, $annual_end);
 
 
+		$this->load->model('target_monthly_model');
+		$monthly_target = $this->target_monthly_model->getTargetMonthly();
+		foreach ($monthly_target as $target) :
+			$number = $target->target_number; 
+		endforeach;		
+		$data['number'] = $number;
+		
 		$this->load->view('header-print');
 		$this->load->view('reports/mne_report_quarterly', $data);
 		$this->load->view('footer-print');
@@ -911,6 +918,14 @@ class Reports_Controller extends CI_Controller {
 
 		$data['annual_start']=$annual_start;
 		$data['annual_end'] = $annual_end;
+		
+		$this->load->model('target_monthly_model');
+		$monthly_target = $this->target_monthly_model->getTargetMonthly();
+		foreach ($monthly_target as $target) :
+			$number = $target->target_number; 
+		endforeach;		
+		$data['number'] = $number;
+		
 		$this->load->view('header-print');
 		$this->load->view('reports/mne_report_monthly', $data);
 		$this->load->view('footer-print');	
