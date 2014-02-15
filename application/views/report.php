@@ -4,20 +4,21 @@
 
 
 <ul class="nav nav-tabs">
-	<li class="active"><a href="#program" data-toggle="tab">Program</a></li>
+	<li class="active"><a href="#program_ched" data-toggle="tab">CHED Program</a></li>
+	<li><a href="#program_sei" data-toggle="tab">SEI Program</a></li>
 	<li><a href="#SUC" data-toggle="tab">SUC</a></li>
 	<li><a href="#MandE" data-toggle="tab">Monitoring and Evaluation</a></li>
 </ul>
 
 <div class="tab-content">
-	<div class="tab-pane active" id="program">
+	<div class="tab-pane active" id="program_ched">
 
 		<div class="panel-group" id="accordion">
 			<!-- Student Program Report GCAT -->
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_gcat">&#x25BC; Student Program Report GCAT</a>
+						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_gcat">&#x25BC; Student Program Report GCAT - CHED</a>
 					</h4>
 				</div>
 				<div id="program_student_gcat" class="panel-collapse collapse">
@@ -47,7 +48,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_best">&#x25BC; Student Program Report BEST</a>
+						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_best">&#x25BC; Student Program Report BEST - CHED</a>
 					</h4>
 				</div>
 				<div id="program_student_best" class="panel-collapse collapse">
@@ -77,7 +78,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_adept">&#x25BC; Student Program Report ADEPT</a>
+						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_adept">&#x25BC; Student Program Report ADEPT - CHED</a>
 					</h4>
 				</div>
 				<div id="program_student_adept" class="panel-collapse collapse">
@@ -107,7 +108,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_subject">&#x25BC; Student Program Report Per Subject</a>
+						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_subject">&#x25BC; Student Program Report Per Subject - CHED</a>
 					</h4>
 				</div>
 				<div id="program_student_subject" class="panel-collapse collapse">
@@ -148,7 +149,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#program_t3">&#x25BC; T3 Program Report GCAT</a>
+						<a data-toggle="collapse" data-parent="#accordion" href="#program_t3">&#x25BC; T3 Program Report GCAT - CHED</a>
 					</h4>
 				</div>
 				<div id="program_t3" class="panel-collapse collapse">
@@ -178,7 +179,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#program_t3_subject">&#x25BC; T3 Program Report Per Subject</a>
+						<a data-toggle="collapse" data-parent="#accordion" href="#program_t3_subject">&#x25BC; T3 Program Report Per Subject - CHED</a>
 					</h4>
 				</div>
 				<div id="program_t3_subject" class="panel-collapse collapse">
@@ -218,7 +219,7 @@
 	<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_report">&#x25BC; SUC Report</a>
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_report">&#x25BC; SUC Report - CHED</a>
 					</h4>
 				</div>
 				<div id="suc_report" class="panel-collapse collapse">
@@ -256,6 +257,254 @@
 			</div>
 		</div>
 	</div>
+<!--SEI Program -->
+	<div class="tab-pane" id="program_sei">
+
+		<div class="panel-group" id="accordion">
+			<!-- Student Program Report GCAT -->
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_gcat_sei">&#x25BC; Student Program Report GCAT - SEI</a>
+					</h4>
+				</div>
+				<div id="program_student_gcat_sei" class="panel-collapse collapse">
+					<div class="panel-body">
+						<!-- CHANGE THIS --><form class="form" role="form" action="<?php echo base_url('reports/studentProgramReportGCATSei'); ?>" method="post" target="_blank">
+							<div class="form-group">
+								<label>Start Date</label>
+								<input type="date" class="form-control" name="program_student_gcat_start_date_sei">
+							</div>
+
+							<div class="form-group">
+								<label>End Date</label>
+								<input type="date" class="form-control" name="program_student_gcat_end_date_sei">
+							</div>
+
+							<div class="button-groups">
+								<!-- CHANGE THIS ALSO --><button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
+								<button type="button" class="btn btn-info">Print as Excel</button>
+								<button type="button" class="btn btn-info">Print as PDF</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<!-- Student Program Report BEST -->
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_best_sei">&#x25BC; Student Program Report BEST - SEI</a>
+					</h4>
+				</div>
+				<div id="program_student_best_sei" class="panel-collapse collapse">
+					<div class="panel-body">
+						<form class="form" role="form" action="<?php echo base_url('reports/studentBestProgramReport'); ?>" method="post" target="_blank">
+							<div class="form-group">
+								<label>Start Date</label>
+								<input type="date" class="form-control" name="program_student_best_start_date_sei">
+							</div>
+							
+							<div class="form-group">
+								<label>End Date</label>
+								<input type="date" class="form-control" name="program_student_best_end_date_sei">
+							</div>
+							
+							<div class="button-groups">
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
+								<button type="button" class="btn btn-info">Print as Excel</button>
+								<button type="button" class="btn btn-info">Print as PDF</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<!-- Student Program Report ADEPT -->
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_adept_sei">&#x25BC; Student Program Report ADEPT - SEI</a>
+					</h4>
+				</div>
+				<div id="program_student_adept_sei" class="panel-collapse collapse">
+					<div class="panel-body">
+						<form class="form" role="form" action="<?php echo base_url('reports/studentAdeptProgramReportSei'); ?>" method="post" target="_blank">
+							<div class="form-group">
+								<label>Start Date</label>
+								<input type="date" class="form-control" name="program_student_adept_start_date_sei">
+							</div>
+							
+							<div class="form-group">
+								<label>End Date</label>
+								<input type="date" class="form-control" name="program_student_adept_end_date_sei">
+							</div>
+							
+							<div class="button-groups">
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
+								<button type="button" class="btn btn-info">Print as Excel</button>
+								<button type="button" class="btn btn-info">Print as PDF</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<!-- Student Program Report per Subject -->
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_subject_sei">&#x25BC; Student Program Report Per Subject - SEI</a>
+					</h4>
+				</div>
+				<div id="program_student_subject_sei" class="panel-collapse collapse">
+					<div class="panel-body">
+						<form class="form" role="form" action="<?php echo base_url('reports/studentProgramReportPerSubSei'); ?>" method="post" target="_blank">
+							<div class="form-group">
+								<label>Start Date</label>
+								<input type="date" class="form-control" name="program_student_subject_start_date_sei">
+							</div>
+							
+							<div class="form-group">
+								<label>End Date</label>
+								<input type="date" class="form-control" name="program_student_subject_end_date_sei">
+							</div>
+							
+							<div class="form-group">
+								<label>Subject</label>
+								<select class="form-control" name="program_student_subject_subject_sei">
+									<?php foreach ($subjects as $subject): ?>
+										<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Name; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+							
+							<div class="button-groups">
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
+								<button type="button" class="btn btn-info">Print as Excel</button>
+								<button type="button" class="btn btn-info">Print as PDF</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<!-- T3 Program Report GCAT
+			NOT YET DONE
+			-->
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#program_t3_sei">&#x25BC; T3 Program Report GCAT - SEI</a>
+					</h4>
+				</div>
+				<div id="program_t3_sei" class="panel-collapse collapse">
+					<div class="panel-body">
+						<form class="form" role="form" action="<?php echo base_url('reports/t3ProgramReportGCAT'); ?>" method="post" target="_blank">
+							<div class="form-group">
+								<label>Start Date</label>
+								<input type="date" class="form-control" name="program_t3_start_date_sei">
+							</div>
+							
+							<div class="form-group">
+								<label>End Date</label>
+								<input type="date" class="form-control" name="program_t3_end_date_sei">
+							</div>
+							
+							<div class="button-groups">
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
+								<button type="button" class="btn btn-info">Print as Excel</button>
+								<button type="button" class="btn btn-info">Print as PDF</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<!-- T3 Program Report per Subject-->
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#program_t3_subject_sei">&#x25BC; T3 Program Report Per Subject - SEI</a>
+					</h4>
+				</div>
+				<div id="program_t3_subject_sei" class="panel-collapse collapse">
+					<div class="panel-body">
+						<form class="form" role="form" action="<?php echo base_url('reports/T3ProgramReportPerSubSei'); ?>" method="post" target="_blank">
+							<div class="form-group">
+								<label>Start Date</label>
+								<input type="date" class="form-control" name="program_t3_subject_start_date_sei">
+							</div>
+							
+							<div class="form-group">
+								<label>End Date</label>
+								<input type="date" class="form-control" name="program_t3_subject_end_date_sei">
+							</div>
+							
+							<div class="form-group">
+								<label>Subject</label>
+								<select class="form-control" name="program_student_t3_subject_sei">
+									<?php foreach ($subjects_except_gcat as $subject): ?>
+										<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Name; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+							
+							<div class="button-groups">
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
+								<button type="button" class="btn btn-info">Print as Excel</button>
+								<button type="button" class="btn btn-info">Print as PDF</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	
+
+<!-- SUC Report-->
+	<div class="panel panel-info">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_report_sei">&#x25BC; SUC Report - SEI</a>
+					</h4>
+				</div>
+				<div id="suc_report_sei" class="panel-collapse collapse">
+					<div class="panel-body">
+						<form class="form" role="form" action="<?php echo base_url('reports/sucReportSei'); ?>" method="post" target="_blank">
+							
+							<div class="form-group">
+								<label>School</label>
+								<select class="form-control" name="program_suc_report_school_code_sei">
+								<?php foreach ($schools as $school): ?>
+									<option value="<?php echo $school->Code ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
+								<?php endforeach; ?>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Start Date</label>
+								<input type="date" class="form-control" name="program_suc_report_start_date_sei">
+							</div>
+							
+							<div class="form-group">
+								<label>End Date</label>
+								<input type="date" class="form-control" name="program_suc_report_end_date_sei">
+							</div>
+							
+							
+							<div class="button-groups">
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
+								<button type="button" class="btn btn-info">Print as Excel</button>
+								<button type="button" class="btn btn-info">Print as PDF</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	
 	<div class="tab-pane" id="SUC">	

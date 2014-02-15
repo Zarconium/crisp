@@ -229,6 +229,195 @@ class Reports_Controller extends CI_Controller {
 
 	}
 
+	//PROGRAM - SEI
+
+	function studentAdeptProgramReportSei()
+	{
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+
+		$start_date = $this->input->post('program_student_adept_start_date_sei');
+		$end_date = $this->input->post('program_student_adept_end_date_sei');
+
+
+/*		$start_date = "1990-01-01"; $end_date= "2020-01-01";
+*/		
+		$data['pin_count_list'] = $this->report_program_sei->getStudentAdeptProgramReportPins($start_date, $end_date);
+		$data['pin_total'] = $this->report_program_sei->getStudentAdeptProgramReportPinsTotal($start_date, $end_date);
+		$data['current_takers_count_list'] = $this->report_program_sei->getStudentAdeptProgramReportCurrentTakers($start_date, $end_date);
+		$data['current_takers_total'] = $this->report_program_sei->getStudentAdeptProgramReportCurrentTakersTotal($start_date, $end_date);
+		$data['completed_count_list'] = $this->report_program_sei->getStudentAdeptProgramReportCompleted($start_date, $end_date);
+		$data['completed_total'] = $this->report_program_sei->getStudentAdeptProgramReportCompletedTotal($start_date, $end_date);
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
+		$this->load->view('header-print');
+		$this->load->view('reports/program_report_student_adept', $data);
+		$this->load->view('footer-print');
+	}
+	
+
+	function studentBestProgramReportSei()
+	{
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+
+		$start_date = $this->input->post('program_student_best_start_date_sei');
+		$end_date = $this->input->post('program_student_best_end_date_sei');
+
+		$data['pin_count_list'] = $this->report_program_sei->getStudentBestProgramReportPins($start_date, $end_date);
+		$data['pin_total'] = $this->report_program_sei->getStudentBestProgramReportPinsTotal($start_date, $end_date);
+		$data['current_takers_count_list'] = $this->report_program_sei->getStudentBestProgramReportCurrentTakers($start_date, $end_date);
+		$data['current_takers_total'] = $this->report_program_sei->getStudentBestProgramReportCurrentTakersTotal($start_date, $end_date);
+		$data['completed_count_list'] = $this->report_program_sei->getStudentBestProgramReportCompleted($start_date, $end_date);
+		$data['completed_total'] = $this->report_program_sei->getStudentBestProgramReportCompletedTotal($start_date, $end_date);
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
+		$this->load->view('header-print');
+		$this->load->view('reports/program_report_student_best', $data);
+		$this->load->view('footer-print');
+
+	}
+
+	function studentProgramReportGCATSei()
+	{
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+
+		$start_date = $this->input->post('program_student_gcat_start_date_sei');
+		$end_date = $this->input->post('program_student_gcat_end_date_sei');
+		//$this->load->model('report_program_sei');
+
+		$data['count_list'] = $this->report_program_sei->getStudentProgramReportGCAT($start_date, $end_date);
+		$data['total'] = $this->report_program_sei->getStudentProgramReportGCATTotal($start_date, $end_date);
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
+		$this->load->view('header-print');
+		$this->load->view('reports/program_report_student_gcat', $data);
+		$this->load->view('footer-print');
+	}
+
+	
+	function studentProgramReportPerSubSei()
+	{
+
+		
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+		
+		
+		$start_date = $this->input->post('program_student_subject_start_date_sei');
+		$end_date = $this->input->post('program_student_subject_end_date_sei');
+		$subject_id = $this->input->post('program_student_subject_subject_sei');
+		
+		
+		/*
+			$subject_id=1;
+			$start_date = "1990-01-01"; $end_date= "2020-01-01";
+		*/
+		$data['currently_taking_list'] = $this->report_program_sei->getStudentProgramReportPerSubCurrentTakers($start_date, $end_date, $subject_id);
+		$data['total_ct'] = $this->report_program_sei->getStudentProgramReportPerSubCurrentTakersTotal($start_date, $end_date, $subject_id);
+		$data['finished_list'] = $this->report_program_sei->getStudentProgramReportPerSubFinished($start_date, $end_date, $subject_id);
+		$data['total_ft'] = $this->report_program_sei->getStudentProgramReportPerSubFinishedTotal($start_date, $end_date, $subject_id);
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
+		$data['subject'] = $this->subject->getSubjectByID($subject_id);
+		$this->load->view('header-print');
+		$this->load->view('reports/program_report_student_per_sub', $data);
+		$this->load->view('footer-print');
+	}
+
+	function t3ProgramReportGCATSei()
+	{
+		
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+		
+		
+		$start_date = $this->input->post('program_t3_start_date_sei');
+		$end_date = $this->input->post('program_t3_end_date_sei');
+
+		/*$start_date = "1990-01-01"; $end_date= "2020-01-01";*/
+
+		$data['t3_count_list'] = $this->report_program_sei->gett3ProgramReportGCAT($start_date, $end_date);
+		$data['t3_total'] = $this->report_program_sei->getT3ProgramReportGCATTotal($start_date, $end_date);
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
+		$this->load->view('header-print');
+		$this->load->view('reports/program_report_t3_gcat', $data);
+		$this->load->view('footer-print');
+
+
+	}
+	
+	function T3ProgramReportPerSubSei()
+	{
+		/*$start_date = "1990-01-01"; $end_date= "2020-01-01"; $subject_id="1";*/
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+		
+		
+		$start_date = $this->input->post('program_t3_subject_start_date_sei');
+		$end_date = $this->input->post('program_t3_subject_end_date_sei');
+		$subject_id = $this->input->post('program_student_t3_subject_sei');
+		
+		$data['t3_count_list'] = $this->report_program_sei->getT3ProgramReportPerSub($start_date, $end_date, $subject_id);
+		$data['t3_total'] = $this->report_program_sei->getT3ProgramReportPerSubTotal($start_date, $end_date, $subject_id);
+		$data['class_count'] = $this->report_program_sei->getT3ProgramReportPerSubClasses($subject_id);
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
+		$data['subject'] = $this->subject->getSubjectByID($subject_id);
+
+		$this->load->view('header-print');
+		$this->load->view('reports/program_report_t3_per_sub', $data);
+		$this->load->view('footer-print');
+	}
+
+	function sucReportSei()
+	{
+		
+		/*$schoolcode="BatStateU-Lipa";
+		$start_date = "1990-01-01"; 
+		$end_date= "2020-01-01";*/
+		
+
+		
+		if (!$this->input->post())
+		{
+			redirect(base_url('reports'));
+		}
+		
+		$schoolcode = $this->input->post('program_suc_report_school_code_sei');
+		$start_date = $this->input->post('program_suc_report_start_date_sei');
+		$end_date = $this->input->post('program_suc_report_end_date_sei');
+		
+
+		$data['teacher_count_list'] = $this->report_program_sei->getSucReportTeachers($schoolcode, $start_date, $end_date);
+		$data['student_completed_count_list'] = $this->report_program_sei->getSucReportStudentsCompleted($schoolcode, $start_date, $end_date);
+		$data['student_currently_taking_count_list'] = $this->report_program_sei->getSucReportStudentsCurrentlyTaking($schoolcode, $start_date, $end_date);
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
+		$data['school'] = $this->school->getSchoolByCode($schoolcode);
+		$this->load->view('header-print');
+		$this->load->view('reports/program_report_suc_report', $data);
+		$this->load->view('footer-print');
+
+	}
+
+
+
+
 
 	//SUC Controller
 	function smpClassesSUCReport()

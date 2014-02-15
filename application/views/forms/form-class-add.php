@@ -2,12 +2,12 @@
 	<?php if (isset($draft_saved)) { echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Draft saved.</div>';} ?>
 	<?php if (isset($form_success)) { echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Class list successfully updated.</div>';} ?>
 	<?php if (isset($form_error)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>There were errors in your input. Please check the fields and try again.</div>';} ?>	
-	<?php if (isset($student_not_found)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Student not found. Please check the fields and try again.</div>';} ?>	
-	<?php if (isset($teacher_not_found)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Teacher not found. Please check the fields and try again.</div>';} ?>	
+	<?php if (isset($student_not_found)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Student not found. Please check the fields and try again.</div>';} ?>
+	<?php if (isset($teacher_not_found)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Teacher not found. Please check the fields and try again.</div>';} ?>
 
-    <h1>Student Class List</h1>
+	<h1>Student Class List</h1>
 
-    <?php $attributes = array('id' => 'upload_student_class_list'); echo form_open_multipart('dbms/form_class_add', $attributes); ?>
+	<?php echo form_open_multipart('dbms/form_class_add'); ?>
 		<div class="save">
 			<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
 			<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
@@ -133,25 +133,21 @@
 						<div class="form-group">
 							<label>Last Name</label>
 							<input class="form-control" type="text" name="last_name_input">
-							<?php echo form_error('last_name'); ?>
 						</div>
 						
 						<div class="form-group">
 							<label>First Name</label>
 							<input type="text" class="form-control" name="first_name_input">
-							<?php echo form_error('first_name'); ?>
 						</div>
 						
 						<div class="form-group">
 							<label>Middle Initial</label>
 							<input type="text" class="form-control" name="middle_initial_input">
-							<?php echo form_error('middle_initial'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Student Number</label>
 							<input type="text" class="form-control" name="student_number_input">
-							<?php echo form_error('student_number'); ?>
 						</div>
 						
 						<div class="submit-button">
