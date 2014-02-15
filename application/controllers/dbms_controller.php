@@ -43,6 +43,8 @@ class Dbms_Controller extends CI_Controller
 		$data['teachers'] = $this->teacher->getAllTeachersFormatted();
 		$data['proctors'] = $this->proctor->getAllProctorsFormatted();
 		$data['mastertrainers'] = $this->mastertrainer->getAllMasterTrainersFormatted();
+		$data['student_classes'] = $this->classes->getAllStudentClasses();
+		$data['t3_classes'] = $this->classes->getAllT3Classes();
 
 		$this->load->view('header');
 		$this->load->view('dbms', $data);
@@ -2294,15 +2296,124 @@ class Dbms_Controller extends CI_Controller
 		$this->load->view('footer');
 	}
 	
-	
 	function form_mastertrainer_classlist()
 	{
-		$this->log->addLog('Updated Mastertrainer Classlist');
+		$data['schools'] = $this->school->getAllSchools();
+		$data['subjects'] = $this->subject->getAllSubjects();
+		if (!empty($_FILES['file_student_class_list']['tmp_name'])) $data['class_list'] = $this->upload_student_class_list();
 
-		$this->load->view('header');
-		$this->load->view('forms/form-mastertrainer-classlist');
-		$this->load->view('footer');
+		if ($this->input->post())
+		{
+			$this->form_validation->set_rules('trainer_email', 'Trainer Email', 'trim|required|valid_email|xss_clean');
+			$this->form_validation->set_rules('subject', 'Subject', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('section', 'Section', 'trim|required|xss_clean');
+
+			$this->form_validation->set_rules('last_name[]', 'Last Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('first_name[]', 'First Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('middle_initial[]', 'Middlte Initial', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('school[]', 'School', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('birthdate[]', 'Birthdate', 'trim|required|xss_clean');
+
+			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+			
+			if ($this->input->post('submit'))
+			{
+				if($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-mastertrainer-classlist', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					$this->db->trans_begin();
+
+					$mastertrainer = $this->mastertrainer->getMasterTrainerByEmail($this->input->post('trainer_email'));
+
+					if (!$mastertrainer)
+					{
+						$data['mastertrainer_not_found'] = TRUE;
+						$this->db->trans_rollback();
+						$this->load->view('header');
+						$this->load->view('forms/form-mastertrainer-classlist', $data);
+						$this->load->view('footer');
+						return;
+					}
+
+					$t3_class = array
+					(
+						'Name' => $this->input->post('section'),
+						// 'School_Year' => $this->input->post('year'),
+						// 'Semester' => $this->input->post('semester'),
+						// 'School_ID' => $school_id,
+						'Subject_ID' => $this->input->post('subject')
+					);
+					$t3_class_id = $this->classes->addT3Class($t3_class);
+
+					for ($i = 0; $i < count($this->input->post('student_number')); $i++)
+					{
+						$teacher_code = $school_id . $this->input->post('first_name')[$i] . $this->input->post('middle_initial')[$i] . $this->input->post('last_name')[$i] . $this->input->post('birthdate')[$i];
+						$teacher = $this->teacher->getTeacherByCode($teacher_code);
+
+						if (!$teacher)
+						{
+							$data['teacher_not_found'] = TRUE;
+							$this->db->trans_rollback();
+							$this->load->view('header');
+							$this->load->view('forms/form-mastertrainer-classlist', $data);
+							$this->load->view('footer');
+							return;
+						}
+
+						$teacher_class = array
+						(
+							'T3_Class_ID' => $class_id,
+							'Teacher_ID' => $teacher->Teacher_ID
+						);
+						$this->classes->addTeacherClass($teacher_class);
+
+						if ($this->db->_error_message())
+						{
+							$data['teacher_not_found'] = TRUE;
+							$this->db->trans_rollback();
+							$this->load->view('header');
+							$this->load->view('forms/form-mastertrainer-classlist', $data);
+							$this->load->view('footer');
+							return;
+						}
+					}
+
+					$this->db->trans_commit();
+
+					$data['form_success'] = TRUE;
+					$this->log->addLog('Added Class List');
+
+					$this->load->view('header');
+					$this->load->view('forms/form-mastertrainer-classlist', $data);
+					$this->load->view('footer');
+				}
+			}
+			elseif ($this->input->post('save_draft'))
+			{
+				$this->form_validation->run();
+
+				$data['draft_saved'] = TRUE;
+
+				$this->load->view('header');
+				$this->load->view('forms/form-mastertrainer-classlist', $data);
+				$this->load->view('footer');
+			}
+		}
+		else
+		{
+			$this->load->view('header');
+			$this->load->view('forms/form-mastertrainer-classlist', $data);
+			$this->load->view('footer');
+		}
 	}
+	
 	function form_program_t3_best_tracker()
 	{
 		$this->log->addLog('Updated T3 BEST Tracker');
