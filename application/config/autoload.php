@@ -116,6 +116,7 @@ $autoload['model'] = array
 		'proctor',
 		'report_mne',
 		'report_program',
+		'report_program_sei',
 		'report_suc',
 		'school',
 		'status',

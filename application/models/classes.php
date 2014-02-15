@@ -18,7 +18,11 @@ Class Classes extends CI_Model
 		}
 	}
 
+<<<<<<< HEAD
 	function getAllStudentClasses()
+=======
+	/*function getAllClasses()
+>>>>>>> 15ffbc6f8f844c8f86e99c11b10d26b5ff9350e6
 	{
 		$this->db->select('*, CONCAT_WS("", IF(LENGTH(teacher.Last_Name), teacher.Last_Name, NULL), ", ", IF(LENGTH(teacher.First_Name), teacher.First_Name, NULL), " ", IF(LENGTH(teacher.Middle_Initial), teacher.Middle_Initial, NULL), ". ", IF(LENGTH(teacher.Name_Suffix), teacher.Name_Suffix, NULL)) as Full_Name, school.Name as School_Name, school.Branch as School_Branch, class.Name as Section', false);
 		$this->db->from('other_class');
@@ -57,7 +61,7 @@ Class Classes extends CI_Model
 		{
 			return false;
 		}
-	}
+	}*/
 
 	function getAllBestClasses()
 	{

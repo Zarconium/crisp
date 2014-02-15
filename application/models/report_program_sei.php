@@ -1,5 +1,5 @@
 <?php
-Class Report_Program extends CI_Model
+Class Report_Program_SEI extends CI_Model
 {
 	function getAllStudents()
 	{
@@ -63,7 +63,7 @@ Class Report_Program extends CI_Model
 		, Adept_Trackers as bt
 		, Tracker as t
 		WHERE bt.Tracker_ID = stt.Tracker_ID
-		AND st.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
+		AND st.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI"))
 		AND t.Tracker_ID = bt.Tracker_ID
 		AND st.Student_ID=stt.Student_ID;');  
 
@@ -132,7 +132,7 @@ Class Report_Program extends CI_Model
 		, Adept_Trackers as bt
 		, Tracker as t
 		WHERE bt.Tracker_ID = stt.Tracker_ID
-		AND st.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
+		AND st.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI"))
 		AND t.Tracker_ID = bt.Tracker_ID
 		AND t.Status_ID = 3
 		AND st.Student_ID=stt.Student_ID;');  
@@ -203,7 +203,7 @@ Class Report_Program extends CI_Model
 		, Adept_Trackers as bt
 		, Tracker as t
 		WHERE bt.Tracker_ID = stt.Tracker_ID
-		AND st.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
+		AND st.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI"))
 		AND t.Tracker_ID = bt.Tracker_ID
 		AND t.Status_ID = 1
 		AND st.Student_ID=stt.Student_ID;');  
@@ -270,7 +270,7 @@ Class Report_Program extends CI_Model
 		, BEST_Trackers as bt
 		, Tracker as t
 		WHERE bt.Tracker_ID = stt.Tracker_ID
-		AND st.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
+		AND st.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI"))
 		AND t.Tracker_ID = bt.Tracker_ID
 		AND st.Student_ID=stt.Student_ID;');  
 
@@ -335,7 +335,7 @@ Class Report_Program extends CI_Model
 		, BEST_Trackers as bt
 		, Tracker as t
 		WHERE bt.Tracker_ID = stt.Tracker_ID
-		AND st.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
+		AND st.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI"))
 		AND t.Tracker_ID = bt.Tracker_ID
 		AND t.Status_ID = 3
 		AND st.Student_ID=stt.Student_ID;');  
@@ -404,7 +404,7 @@ Class Report_Program extends CI_Model
 		, BEST_Trackers as bt
 		, Tracker as t
 		WHERE bt.Tracker_ID = stt.Tracker_ID
-		AND st.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
+		AND st.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI"))
 		AND t.Tracker_ID = bt.Tracker_ID
 		AND t.Status_ID = 1
 		AND st.Student_ID=stt.Student_ID;');  
@@ -462,7 +462,7 @@ Class Report_Program extends CI_Model
 		, Tracker as t
 		, Student_Tracker as stt
 		WHERE stt.Student_ID = st.Student_ID
-		AND st.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
+		AND st.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI"))
 		AND gs.Tracker_ID = stt.Tracker_ID
 		AND gs.Tracker_ID = t.Tracker_ID
 		AND t.Status_ID=1
@@ -531,7 +531,7 @@ Class Report_Program extends CI_Model
 		, School as sc
 		, Student_Tracker as stt
 		WHERE stt.Student_ID = st.Student_ID
-		AND st.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
+		AND st.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI"))
 		AND st.School_ID = sc.School_ID
 		AND stt.Tracker_ID IN (Select t.Tracker_ID
 		FROM Tracker as t
@@ -602,7 +602,7 @@ Class Report_Program extends CI_Model
 		, School as sc
 		, Student_Tracker as stt
 		WHERE stt.Student_ID = st.Student_ID
-		AND st.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED"))
+		AND st.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI"))
 		AND st.School_ID = sc.School_ID
 		AND stt.Tracker_ID IN (Select t.Tracker_ID
 		FROM Tracker as t
@@ -845,56 +845,56 @@ Class Report_Program extends CI_Model
 	{
 		$query = $this->db->query('(select(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
-		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")) 
+		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI")) 
 		AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
 		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "BPO101"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
-		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")) 
+		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI")) 
 		AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
 		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "BPO102"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
-		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")) 
+		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI")) 
 		AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
 		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "ServiceCulture"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
-		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")) 
+		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI")) 
 		AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
 		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "BusinessCommunication"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
-		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")) 
+		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI")) 
 		AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
 		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYS101" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "SystemsThinking"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
-		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")) 
+		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI")) 
 		AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
 		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "AdEPT" or s.Subject_Code = "BEST/AdEPT" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"))) as "AdEPT"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
-		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")) 
+		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI")) 
 		AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
 		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "BEST" or s.Subject_Code = "BEST/AdEPT" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"))) as "BEST"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
-		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")) 
+		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI")) 
 		AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
 		WHERE t.Status_ID=1 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "GCAT");');
@@ -913,56 +913,56 @@ Class Report_Program extends CI_Model
 	{
 		$query = $this->db->query('(select(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
-		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")) 
+		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI")) 
 		AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO101" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "BPO101"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
-		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")) 
+		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI")) 
 		AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BPO102" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "BPO102"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
-		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")) 
+		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI")) 
 		AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SC101" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "ServiceCulture"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
-		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")) 
+		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI")) 
 		AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "BizCom" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "BusinessCommunication"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
-		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")) 
+		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI")) 
 		AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "SYS101" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "SystemsThinking"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
-		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")) 
+		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI")) 
 		AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "AdEPT" or s.Subject_Code = "BEST/AdEPT" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"))) as "AdEPT"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
-		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")) 
+		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI")) 
 		AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and (s.Subject_Code = "BEST" or s.Subject_Code = "BEST/AdEPT" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"))) as "BEST"
 		,
 		(SELECT COUNT(DISTINCT st.Student_ID)
 		FROM Student_Tracker as st, School as sc, Student as s
-		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="CHED")) 
+		WHERE s.student_id = st.Student_id AND s.School_id = sc.school_id AND sc.Code="'.$schoolcode.'" AND s.Student_Id IN (SELECT sa.Student_ID FROM Student_Application as sa WHERE sa.Project_ID IN(SELECT p.Project_ID FROM Project as p WHERE p.Name="SEI")) 
 		AND st.Tracker_ID IN (SELECT t.Tracker_ID
 		FROM Tracker as t, Subject as s
 		WHERE t.Status_ID=3 and t.Subject_ID= s.Subject_ID and s.Subject_Code = "GCAT" AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'")) as "GCAT");');
