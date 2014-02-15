@@ -18,7 +18,7 @@ Class Classes extends CI_Model
 		}
 	}
 
-	function getAllClasses()
+	/*function getAllClasses()
 	{
 		$this->db->select('*');
 		$this->db->from('class');
@@ -33,7 +33,7 @@ Class Classes extends CI_Model
 		{
 			return false;
 		}
-	}
+	}*/
 
 	function getAllBestClasses()
 	{
