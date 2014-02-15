@@ -21,12 +21,14 @@
 	</tr>
 	<?php endforeach; ?>
 	<?php if($t3_total) foreach ($t3_total as $count): ?>
+</tbody>
+<tfoot>
 	<tr>
 		<td>TOTAL</td>
 		<td colspan="4"><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
-</tbody>
+</tfoot>
 </table>
 <legend>Number of Classes in School</legend>
 <table class="table">
