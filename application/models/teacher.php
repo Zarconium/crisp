@@ -247,6 +247,70 @@ Class Teacher extends CI_Model
 		}
 	}
 
+	function getRelatedTrainingsByTeacherId($id)
+	{
+		$this->db->select('*');
+		$this->db->from('related_trainings_attended');
+		$this->db->where('Teacher_ID', $id);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getBestAdeptT3ApplicationByTeacherIdOrCode($id_code)
+	{
+		$this->db->select('*');
+		$this->db->from('best_adept_t3_application');
+		$this->db->join('t3_application', 'best_adept_t3_application.T3_Application_ID = t3_application.T3_Application_ID', 'left');
+		$this->db->join('teacher_t3_application', 't3_application.T3_Application_ID = teacher_t3_application.T3_Application_ID', 'left');
+		$this->db->join('teacher', 'teacher_t3_application.Teacher_ID = teacher.Teacher_ID', 'left');
+		$this->db->join('subject', 't3_application.Subject_ID = subject.Subject_ID', 'left');
+		$this->db->where('teacher.Teacher_ID', $id_code);
+		$this->db->or_where('teacher.Code', $id_code);
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getSmpT3ApplicationByTeacherIdOrCode($id_code)
+	{
+		$this->db->select('*');
+		$this->db->from('smp_t3_application');
+		$this->db->join('t3_application', 'smp_t3_application.T3_Application_ID = t3_application.T3_Application_ID', 'left');
+		$this->db->join('teacher_t3_application', 't3_application.T3_Application_ID = teacher_t3_application.T3_Application_ID', 'left');
+		$this->db->join('teacher', 'teacher_t3_application.Teacher_ID = teacher.Teacher_ID', 'left');
+		$this->db->join('subject', 't3_application.Subject_ID = subject.Subject_ID', 'left');
+		$this->db->where('teacher.Teacher_ID', $id_code);
+		$this->db->or_where('teacher.Code', $id_code);
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getBestT3AttendanceByTeacherId($id)
 	{
 		$this->db->select('*');
@@ -403,6 +467,7 @@ Class Teacher extends CI_Model
 		$this->db->select('*');
 		$this->db->from('stipend_tracking');
 		$this->db->join('stipend_tracking_list', 'stipend_tracking.Stipend_Tracking_ID = stipend_tracking_list.Stipend_Tracking_ID', 'left');
+		$this->db->join('subject', 'stipend_tracking_list.Subject_ID = subject.Subject_ID', 'left');
 		$this->db->join('teacher', 'stipend_tracking_list.Teacher_ID = teacher.Teacher_ID', 'left');
 		$this->db->where('teacher.Teacher_ID', $id_code);
 		$this->db->or_where('teacher.Code', $id_code);
@@ -462,10 +527,10 @@ Class Teacher extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('gcat_tracker');
-		$this->db->join('t3_tracker', 'Gcat_Tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->join('t3_tracker', 'gcat_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
 		$this->db->join('teacher_t3_tracker', 't3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID', 'left');
-		$this->db->join('teacher', 'teacher_t3_tracker.Teacher_ID.teacher.Teacher_ID', 'left');
-		$this->db->where('teacher.Teacher_ID', $Email);
+		$this->db->join('teacher', 'teacher_t3_tracker.Teacher_ID = teacher.Teacher_ID', 'left');
+		$this->db->where('teacher.Email', $Email);
 
 		$query = $this->db->get();
 		
@@ -521,9 +586,93 @@ Class Teacher extends CI_Model
 		return $this->db->insert_id();
 	}
 
-	function addTeacherBestT3Tracker($best_t3_tracker)
+	function addT3Application($data)
 	{
-		$this->db->insert ('best_t3_tracker', $best_t3_tracker);
+		$this->db->insert('t3_application', $data);
+		return $this->db->insert_id();
+	}
+
+	function addTeacherT3Application($data)
+	{
+		$this->db->insert('teacher_t3_application', $data);
+		return $this->db->insert_id();
+	}
+
+	function addRelatedTrainingsAttended($data)
+	{
+		$this->db->insert('related_trainings_attended', $data);
+		return $this->db->insert_id();
+	}
+
+	function addBestAdeptT3Application($data)
+	{
+		$this->db->insert('best_adept_t3_application', $data);
+		return $this->db->insert_id();
+	}
+
+	function addSmpT3Application($data)
+	{
+		$this->db->insert('smp_t3_application', $data);
+		return $this->db->insert_id();
+	}
+
+	function addT3Tracker($data)
+	{
+		$this->db->insert('t3_tracker', $data);
+		return $this->db->insert_id();
+	}
+
+	function addTeacherT3Tracker($data)
+	{
+		$this->db->insert('teacher_t3_tracker', $data);
+		return $this->db->insert_id();
+	}
+
+	function addBestT3Attendance()
+	{
+		$this->db->query('INSERT INTO best_t3_attendance () VALUES ();');
+		return $this->db->insert_id();
+	}
+
+	function addAdeptT3Attendance()
+	{
+		$this->db->query('INSERT INTO adept_t3_attendance () VALUES ();');
+		return $this->db->insert_id();
+	}
+
+	function addSmpT3Attendance()
+	{
+		$this->db->query('INSERT INTO smp_t3_attendance () VALUES ();');
+		return $this->db->insert_id();
+	}
+
+	function addSmpT3AttendanceTracking($data)
+	{
+		$this->db->insert('smp_t3_attendance_tracking', $data);
+		return $this->db->insert_id(); 
+	}
+
+	function addBestT3Grades()
+	{
+		$this->db->query('INSERT INTO best_t3_grades () VALUES ();');
+		return $this->db->insert_id();
+	}
+
+	function addAdeptT3Grades()
+	{
+		$this->db->query('INSERT INTO adept_t3_grades () VALUES ();');
+		return $this->db->insert_id();
+	}
+
+	function addBestT3Tracker($data)
+	{
+		$this->db->insert('best_t3_tracker', $data);
+		return $this->db->insert_id(); 
+	}
+
+	function addAdeptT3Tracker($data)
+	{
+		$this->db->insert('adept_t3_tracker', $data);
 		return $this->db->insert_id(); 
 	}
 
@@ -589,9 +738,9 @@ Class Teacher extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('teacher');
-		$this->db->join('teacher_t3_tracker', 'teacher.teacher_ID = teacher_t3_tracker.Teacher_ID', 'left');
-		$this->db->join('t3_tracker', 'teacher_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
-		$this->db->join('best_t3_tracker', 't3_tracker.T3_Tracker_ID = best_t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->join('teacher_t3_tracker', 'teacher.teacher_ID = teacher_t3_tracker.Teacher_ID', 'right');
+		$this->db->join('t3_tracker', 'teacher_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'right');
+		$this->db->join('best_t3_tracker', 't3_tracker.T3_Tracker_ID = best_t3_tracker.T3_Tracker_ID', 'right');
 		$this->db->where('teacher.code', $Code);
 
 		$query = $this->db->get();
@@ -609,9 +758,9 @@ Class Teacher extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('teacher');
-		$this->db->join('teacher_t3_tracker', 'teacher.teacher_ID = teacher_t3_tracker.Teacher_ID', 'left');
-		$this->db->join('t3_tracker', 'teacher_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
-		$this->db->join('adept_t3_tracker', 't3_tracker.T3_Tracker_ID = adept_t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->join('teacher_t3_tracker', 'teacher.teacher_ID = teacher_t3_tracker.Teacher_ID', 'right');
+		$this->db->join('t3_tracker', 'teacher_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'right');
+		$this->db->join('adept_t3_tracker', 't3_tracker.T3_Tracker_ID = adept_t3_tracker.T3_Tracker_ID', 'right');
 		$this->db->where('teacher.code', $Code);
 
 		$query = $this->db->get();
@@ -647,8 +796,8 @@ Class Teacher extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('teacher');
-		$this->db->join('teacher_t3_tracker', 'teacher.teacher_ID = teacher_t3_tracker.Teacher_ID', 'left');
-		$this->db->join('t3_tracker', 'teacher_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->join('teacher_t3_tracker', 'teacher.teacher_ID = teacher_t3_tracker.Teacher_ID', 'right');
+		$this->db->join('t3_tracker', 'teacher_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'right');
 		$this->db->where('teacher.code', $Code);
 
 		$query = $this->db->get();
@@ -832,7 +981,7 @@ Class Teacher extends CI_Model
 		return $this->db->_error_message();
 	}
 
-	function uploadBestGrade($Best_T3_Tracker, $Best_T3_Grades)
+	function updateBestGrade($Best_T3_Tracker, $Best_T3_Grades)
 	{
 		$this->db->set($Best_T3_Grades);
 		$this->db->where('best_t3_tracker.User_Name', $Best_T3_Tracker);
@@ -840,7 +989,7 @@ Class Teacher extends CI_Model
 
 		return $this->db->_error_message();
 	}
-	function uploadAdeptGrade($Adept_T3_Tracker, $Adept_T3_Grades)
+	function updateAdeptGrade($Adept_T3_Tracker, $Adept_T3_Grades)
 	{
 		$this->db->set($Adept_T3_Grades);
 		$this->db->where('adept_t3_tracker.User_Name', $Adept_T3_Tracker);
@@ -944,7 +1093,7 @@ Class Teacher extends CI_Model
 		}
 	}
 	
-	function uploadGcatGrade($Email, $Gcat_Tracker)
+	function updateGcatGrade($Email, $Gcat_Tracker)
 	{
 		$this->db->set($Gcat_Tracker);
 		$this->db->where('teacher.Email', $Email);

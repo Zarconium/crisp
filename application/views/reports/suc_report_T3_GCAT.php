@@ -4,8 +4,7 @@
 <table class="table">
 <thead>
 	<tr>
-		<th>Sem/period</th>
-		<td>it goes here</td>
+		<td>Teacher Name</td>
 	</tr>
 </thead>
 <tbody>

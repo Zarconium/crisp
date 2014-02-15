@@ -152,12 +152,13 @@ display: block;
 
 table tbody{
 overflow: scroll;
-height: 80%;
+height: 500px;
 }
 
 .report-form th, .report-form td{
-width: 200px;
+width: 500px;
 }
+
 
 .header{
 text-align: center;

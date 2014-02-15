@@ -20,7 +20,7 @@
 <tbody>
 	<tr>
 		<td>Number of Teachers Trained</td>
-		<?php foreach ($teacher_count_list as $count): ?>
+		<?php if($teacher_count_list) foreach ($teacher_count_list as $count): ?>
 			<td><?php echo $count->BPO101; ?></td>
 			<td><?php echo $count->BPO102; ?></td>
 			<td><?php echo $count->ServiceCulture; ?></td>
@@ -48,7 +48,7 @@
 </tr>
 	<tr>
 		<td>Number of Students Completed</td>
-		<?php foreach ($student_completed_count_list as $count): ?>
+		<?php if($student_completed_count_list) foreach ($student_completed_count_list as $count): ?>
 			<td><?php echo $count->BPO101; ?></td>
 			<td><?php echo $count->BPO102; ?></td>
 			<td><?php echo $count->ServiceCulture; ?></td>
@@ -75,7 +75,7 @@
 </tr>
 	<tr>
 		<td>Number of Students Currently Taking</td>
-		<?php foreach ($student_currently_taking_count_list as $count): ?>
+		<?php if($student_currently_taking_count_list) foreach ($student_currently_taking_count_list as $count): ?>
 			<td><?php echo $count->BPO101; ?></td>
 			<td><?php echo $count->BPO102; ?></td>
 			<td><?php echo $count->ServiceCulture; ?></td>
