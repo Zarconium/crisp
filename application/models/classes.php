@@ -1,6 +1,40 @@
 <?php
 Class Classes extends CI_Model
 {
+	function getAllClasses()
+	{
+		$this->db->select('*');
+		$this->db->from('class');
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAllClasses()
+	{
+		$this->db->select('*');
+		$this->db->from('class');
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getAllBestClasses()
 	{
 		$query = $this->db->query('SELECT *
