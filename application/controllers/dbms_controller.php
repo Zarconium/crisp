@@ -244,7 +244,7 @@ class Dbms_Controller extends CI_Controller
 				$this->form_validation->set_rules('birthdate', 'Birthdate', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('birthplace', 'Birthplace', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 				$this->form_validation->set_rules('nationality', 'Nationality', 'trim|required|xss_clean|max_length[45]|alpha_dash');
-				$this->form_validation->set_rules('total_year_teaching', 'Total Years of Teaching', 'trim|required|xss_clean|max_length[11]|integer');
+				$this->form_validation->set_rules('total_year_teaching', 'Total Years of Teaching', 'trim|required|xss_clean|integer');
 				$this->form_validation->set_rules('civil', 'Civil Status', 'trim|required|xss_clean|max_length[9]|alpha_dash');
 				$this->form_validation->set_rules('gender', 'Gender', 'trim|required|xss_clean|max_length[1]');
 				$this->form_validation->set_rules('desktop', 'Desktop', 'trim|required|xss_clean|max_length[1]');
@@ -370,7 +370,7 @@ class Dbms_Controller extends CI_Controller
 				$this->form_validation->set_rules('institutions_worked_year_started_input', 'Year Started', 'trim|required|numeric|xss_clean');//-----//
 				$this->form_validation->set_rules('institutions_worked_level_taught_input', 'Level Taught', 'trim|required|xss_clean|max_length[250]|alpha_dash');
 				$this->form_validation->set_rules('institutions_worked_courses_taught_input', 'Courses Taught', 'trim|required|xss_clean');
-				$this->form_validation->set_rules('institutions_worked_number_of_years_in_institution_input', 'Number of Years in Institution', 'trim|required|numeric|xss_clean|max_length[11]|integer');
+				$this->form_validation->set_rules('institutions_worked_number_of_years_in_institution_input', 'Number of Years in Institution', 'trim|required|numeric|xss_clean|integer');
 
 				if ($this->form_validation->run() == FALSE)
 				{
@@ -750,7 +750,7 @@ class Dbms_Controller extends CI_Controller
 				$this->form_validation->set_rules('affiliation_organization_input', 'Affiliation Organization', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 				$this->form_validation->set_rules('affiliation_description_input', 'Affiliation Description', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 				$this->form_validation->set_rules('affiliation_position_input', 'Affiliation Position', 'trim|required|xss_clean|max_length[45]|alpha_dash');
-				$this->form_validation->set_rules('affiliation_years_input', 'Years of Affiliation', 'trim|required|numeric|xss_clean|max_length[11]|integer');
+				$this->form_validation->set_rules('affiliation_years_input', 'Years of Affiliation', 'trim|required|numeric|xss_clean|integer');
 
 				if ($this->form_validation->run() == FALSE)
 				{
@@ -1034,7 +1034,7 @@ class Dbms_Controller extends CI_Controller
 
 		if($this->input->post())
 		{
-			$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean|integer');
 			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[45]|alpha_numeric|xss_clean');
 			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[45]|alpha_numeric|xss_clean');
 			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|max_length[4]|alpha|xss_clean');
@@ -1253,19 +1253,19 @@ class Dbms_Controller extends CI_Controller
 
 		if($this->input->post())
 		{
-			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|xss_clean');
-			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|xss_clean|max_length[4]|alpha_dash');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean|max_length[5]|alpha_dash');
 			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('civil', 'Civil Status', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean');
-			$this->form_validation->set_rules('company_name', 'Company Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('position', 'Position', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('civil', 'Civil Status', 'trim|required|xss_clean|max_length[9]|alpha_dash');
+			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|xss_clean|max_length[13]|alpha_dash');
+			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|xss_clean|max_length[9]|alpha_dash');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('company_name', 'Company Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|xss_clean|max_length[255]|alpha_dash');
+			$this->form_validation->set_rules('position', 'Position', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 
 			$this->form_validation->set_message('is_unique', 'Proctor already exists.');
 			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
@@ -1347,19 +1347,19 @@ class Dbms_Controller extends CI_Controller
 
 		if($this->input->post())
 		{
-			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|xss_clean');
-			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|xss_clean|max_length[4]|alpha_dash');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean|max_length[3]|alpha');
 			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('civil', 'Civil Status', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean');
-			$this->form_validation->set_rules('company_name', 'Company Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('position', 'Position', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('civil', 'Civil Status', 'trim|required|xss_clean|max_length[9]|alpha_dash');
+			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|xss_clean|max_length[13]|alpha_dash');
+			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|xss_clean|max_length[9]|alpha_dash');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('company_name', 'Company Name', 'trim|required|xss_clean|max_length[100]|alpha_dash');
+			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|xss_clean|alpha_dash');
+			$this->form_validation->set_rules('position', 'Position', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 
 			$this->form_validation->set_message('is_unique', 'Master Trainer already exists.');
 			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
@@ -1471,83 +1471,83 @@ class Dbms_Controller extends CI_Controller
 		if($this->input->post())
 		{
 			$this->form_validation->set_rules('code', 'Code', 'trim|required|xss_clean|is_unique[teacher.Code]');
-			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|xss_clean');
-			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|xss_clean|max_length[5]|alpha_dash');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean|max_length[1]|alpha');
 			$this->form_validation->set_rules('birthdate', 'Birthdate', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('birthplace', 'Birthplace', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('nationality', 'Nationality', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('total_year_teaching', 'Total Years of Teaching', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('birthplace', 'Birthplace', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('nationality', 'Nationality', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('total_year_teaching', 'Total Years of Teaching', 'trim|required|xss_clean|integer');
 			$this->form_validation->set_rules('civil', 'Civil Status', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('desktop', 'Desktop', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('laptop', 'Laptop', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('access', 'Access', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('street_number', 'Street Number', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('street_name', 'Street Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('city', 'City', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('province', 'Province', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('region', 'Region', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('alternate_address', 'Alternate Address', 'trim|xss_clean');
-			$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('landline', 'Landline', 'trim|required||xss_clean');
-			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean');
-			$this->form_validation->set_rules('degree_type', 'AB/BS', 'trim|xss_clean');
-			$this->form_validation->set_rules('degree', 'Degree', 'trim|xss_clean');
+			$this->form_validation->set_rules('street_number', 'Street Number', 'trim|required|xss_clean|max_length[5]|alpha_dash');
+			$this->form_validation->set_rules('street_name', 'Street Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('city', 'City', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('province', 'Province', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('region', 'Region', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('alternate_address', 'Alternate Address', 'trim|xss_clean|alpha_dash');
+			$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|xss_clean|max_length[13]|alpha_dash');
+			$this->form_validation->set_rules('landline', 'Landline', 'trim|required||xss_clean|max_length[9]|alpha_dash');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('degree_type', 'AB/BS', 'trim|xss_clean');//wala po ulit sa db itong mga ito--- //
+			$this->form_validation->set_rules('degree', 'Degree', 'trim|xss_clean');//wala po ulit sa db itong mga ito--- //
 			$this->form_validation->set_rules('school', 'School', 'trim|xss_clean');
-			$this->form_validation->set_rules('master_type', 'MA/MS', 'trim|xss_clean');
-			$this->form_validation->set_rules('master_degree', 'Masters Degree', 'trim|xss_clean');
-			$this->form_validation->set_rules('master_school', 'Masters School', 'trim|xss_clean');
-			$this->form_validation->set_rules('doctorate_type', 'Doctor', 'trim|xss_clean');
-			$this->form_validation->set_rules('doctorate_degree', 'Doctorate Degree', 'trim|xss_clean');
-			$this->form_validation->set_rules('doctorate_school', 'Doctorate School', 'trim|xss_clean');
-			$this->form_validation->set_rules('employment_status', 'Employment Status', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('current_position', 'Current Position', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('current_department', 'Current Department', 'trim|xss_clean');
+			$this->form_validation->set_rules('master_type', 'MA/MS', 'trim|xss_clean');//wala po ulit sa db itong mga ito--- //
+			$this->form_validation->set_rules('master_degree', 'Masters Degree', 'trim|xss_clean');//wala po ulit sa db itong mga ito--- //
+			$this->form_validation->set_rules('master_school', 'Masters School', 'trim|xss_clean');//wala po ulit sa db itong mga ito--- //
+			$this->form_validation->set_rules('doctorate_type', 'Doctor', 'trim|xss_clean');//wala po ulit sa db itong mga ito--- //
+			$this->form_validation->set_rules('doctorate_degree', 'Doctorate Degree', 'trim|xss_clean');//wala po ulit sa db itong mga ito--- //
+			$this->form_validation->set_rules('doctorate_school', 'Doctorate School', 'trim|xss_clean');//wala po ulit sa db itong mga ito--- //
+			$this->form_validation->set_rules('employment_status', 'Employment Status', 'trim|required|xss_clean|max_length[4]|alpha_dash');
+			$this->form_validation->set_rules('current_position', 'Current Position', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('current_department', 'Current Department', 'trim|xss_clean|max_length[250]|alpha_dash');
 			$this->form_validation->set_rules('current_employer', 'Current Employer', 'trim|required|xss_clean'); //School ID
-			$this->form_validation->set_rules('employer_address', 'Employer Address', 'trim|xss_clean');
-			$this->form_validation->set_rules('name_of_supervisor', 'Name of Supervisor', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('position_of_supervisor', 'Position of Supervisor', 'trim|xss_clean');
-			$this->form_validation->set_rules('supervisor_contact_details', 'Supervisor Contact Details', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('other_positions_held', 'Other Positions Held', 'trim|xss_clean');
-			$this->form_validation->set_rules('classes_handling', 'Classes Handling', 'trim|xss_clean');
+			$this->form_validation->set_rules('employer_address', 'Employer Address', 'trim|xss_clean');//wala po ulit sa db itong mga to--- //
+			$this->form_validation->set_rules('name_of_supervisor', 'Name of Supervisor', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('position_of_supervisor', 'Position of Supervisor', 'trim|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('supervisor_contact_details', 'Supervisor Contact Details', 'trim|required|xss_clean|max_length[11]|alpha_dash');
+			$this->form_validation->set_rules('other_positions_held', 'Other Positions Held', 'trim|xss_clean');//wala ata rin ito
+			$this->form_validation->set_rules('classes_handling', 'Classes Handling', 'trim|xss_clean|alpha_dash');
 			// Institutions
-			$this->form_validation->set_rules('institutions_worked_institution[]', 'Institution', 'trim|xss_clean');
-			$this->form_validation->set_rules('institutions_worked_position[]', 'Position', 'trim|xss_clean');
-			$this->form_validation->set_rules('institutions_worked_year_started[]', 'Year Started', 'trim|xss_clean');
-			$this->form_validation->set_rules('institutions_worked_level_taught[]', 'Level Taught', 'trim|xss_clean');
-			$this->form_validation->set_rules('institutions_worked_courses_taught[]', 'Courses Taught', 'trim|xss_clean');
-			$this->form_validation->set_rules('institutions_worked_number_of_years_in_institution[]', 'Number of Years in Institution', 'trim|xss_clean');
+			$this->form_validation->set_rules('institutions_worked_institution[]', 'Institution', 'trim|xss_clean|max_length[250]|alpha_dash');
+			$this->form_validation->set_rules('institutions_worked_position[]', 'Position', 'trim|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('institutions_worked_year_started[]', 'Year Started', 'trim|xss_clean');//date siya sa db
+			$this->form_validation->set_rules('institutions_worked_level_taught[]', 'Level Taught', 'trim|xss_clean|max_length[250]|alpha_dash');
+			$this->form_validation->set_rules('institutions_worked_courses_taught[]', 'Courses Taught', 'trim|xss_clean|alpha_dash');
+			$this->form_validation->set_rules('institutions_worked_number_of_years_in_institution[]', 'Number of Years in Institution', 'trim|xss_clean|integer');
 			// Certifications
-			$this->form_validation->set_rules('certifications_certification[]', 'Certification', 'trim|xss_clean');
-			$this->form_validation->set_rules('certifications_certifying_body[]', 'Certifying Body', 'trim|xss_clean');
+			$this->form_validation->set_rules('certifications_certification[]', 'Certification', 'trim|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('certifications_certifying_body[]', 'Certifying Body', 'trim|xss_clean|max_length[250]|alpha_dash');
 			$this->form_validation->set_rules('certifications_date_received[]', 'Certification Date Received', 'trim|xss_clean');
 			// Awards
-			$this->form_validation->set_rules('awards_award[]', 'Award', 'trim|xss_clean');
-			$this->form_validation->set_rules('awards_awarding_body[]', 'Awarding Body', 'trim|xss_clean');
+			$this->form_validation->set_rules('awards_award[]', 'Award', 'trim|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('awards_awarding_body[]', 'Awarding Body', 'trim|xss_clean|max_length[45]|alpha_dash');
 			$this->form_validation->set_rules('awards_date_received[]', 'Award Date Received', 'trim|xss_clean');
 			// Other Work
-			$this->form_validation->set_rules('other_work_organization[]', 'Organization', 'trim|xss_clean');
-			$this->form_validation->set_rules('other_work_position[]', 'Position', 'trim|xss_clean');
-			$this->form_validation->set_rules('other_work_description[]', 'Work Description', 'trim|xss_clean');
+			$this->form_validation->set_rules('other_work_organization[]', 'Organization', 'trim|xss_clean|max_length[250]|alpha_dash');
+			$this->form_validation->set_rules('other_work_position[]', 'Position', 'trim|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('other_work_description[]', 'Work Description', 'trim|xss_clean|max_length[250]|alpha_dash');
 			$this->form_validation->set_rules('other_work_date_started[]', 'Date Started', 'trim|xss_clean');
 			// Skills
 			$this->form_validation->set_rules('computer_proficient_skill', 'Computer Proficiency Skills', 'trim|xss_clean');
 			$this->form_validation->set_rules('computer_familiar_skill', 'Computer Familiarity', 'trim|xss_clean');
 			$this->form_validation->set_rules('skill', 'Other Skills', 'trim|xss_clean');
 			// Reference
-			$this->form_validation->set_rules('reference_name[]', 'Reference Name', 'trim|xss_clean');
-			$this->form_validation->set_rules('reference_position[]', 'Reference Position', 'trim|xss_clean');
-			$this->form_validation->set_rules('reference_company[]', 'Reference Company', 'trim|xss_clean');
-			$this->form_validation->set_rules('reference_phone[]', 'Reference Phone', 'trim|xss_clean');
-			$this->form_validation->set_rules('reference_email[]', 'Reference Email', 'trim|xss_clean');
+			$this->form_validation->set_rules('reference_name[]', 'Reference Name', 'trim|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('reference_position[]', 'Reference Position', 'trim|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('reference_company[]', 'Reference Company', 'trim|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('reference_phone[]', 'Reference Phone', 'trim|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('reference_email[]', 'Reference Email', 'trim|xss_clean|valid_email');
 			// Affiliations
-			$this->form_validation->set_rules('affiliation_organization[]', 'Affiliation Organization', 'trim|xss_clean');
-			$this->form_validation->set_rules('affiliation_description[]', 'Affiliation Description', 'trim|xss_clean');
-			$this->form_validation->set_rules('affiliation_position[]', 'Affiliation Position', 'trim|xss_clean');
-			$this->form_validation->set_rules('affiliation_years[]', 'Years of Affiliation', 'trim|xss_clean');
+			$this->form_validation->set_rules('affiliation_organization[]', 'Affiliation Organization', 'trim|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('affiliation_description[]', 'Affiliation Description', 'trim|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('affiliation_position[]', 'Affiliation Position', 'trim|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('affiliation_years[]', 'Years of Affiliation', 'trim|xss_clean|integer');
 			// Documents
 			$this->form_validation->set_rules('resume', 'Resume', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('photo', 'Photo', 'trim|required|xss_clean');
@@ -1562,31 +1562,31 @@ class Dbms_Controller extends CI_Controller
 					if ($program == 'best_adept')// BEST/AdEPT Application
 					{
 						$this->form_validation->set_rules('best_adept_application_date', 'BEST/AdEPT Application Date', 'trim|required|xss_clean');
-						$this->form_validation->set_rules('best_adept_subject', 'BEST/AdEPT Subject', 'trim|required|xss_clean');
-						$this->form_validation->set_rules('best_adept_answer_1', 'BEST/AdEPT Answer 1', 'trim|required|xss_clean');
-						$this->form_validation->set_rules('best_adept_answer_2', 'BEST/AdEPT Answer 2', 'trim|required|xss_clean');
-						$this->form_validation->set_rules('best_adept_answer_3', 'BEST/AdEPT Answer 3', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('best_adept_subject', 'BEST/AdEPT Subject', 'trim|required|xss_clean|is_unique[t3_application.Subject_ID]');
+						$this->form_validation->set_rules('best_adept_answer_1', 'BEST/AdEPT Answer 1', 'trim|required|xss_clean|alpha_dash');
+						$this->form_validation->set_rules('best_adept_answer_2', 'BEST/AdEPT Answer 2', 'trim|required|xss_clean|alpha_dash');
+						$this->form_validation->set_rules('best_adept_answer_3', 'BEST/AdEPT Answer 3', 'trim|required|xss_clean|alpha_dash');
 					}
 					elseif ($program == 'smp')// SMP Application
 					{
 						$this->form_validation->set_rules('smp_application_date', 'SMP Application Date', 'trim|required|xss_clean');
-						$this->form_validation->set_rules('smp_subject', 'SMP Subject', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_subject', 'SMP Subject', 'trim|required|xss_clean|is_unique[t3_application.Subject_ID');
 						$this->form_validation->set_rules('smp_answer_1', 'SMP Answer 1', 'trim|required|xss_clean');
 						$this->form_validation->set_rules('smp_answer_2', 'SMP Answer 2', 'trim|required|xss_clean');
-						$this->form_validation->set_rules('smp_subjects_handled', 'SMP Subjects Handled', 'trim|required|xss_clean');
-						$this->form_validation->set_rules('smp_years_teaching', 'SMP Years Teaching', 'trim|required|xss_clean');
-						$this->form_validation->set_rules('smp_years_teaching_current', 'SMP Years Teaching in Current Institution', 'trim|required|xss_clean');
-						$this->form_validation->set_rules('smp_students_per_class', 'SMP Average Students per Class', 'trim|required|xss_clean');
-						$this->form_validation->set_rules('smp_support_offices', 'SMP Support Offices', 'trim|required|xss_clean');
-						$this->form_validation->set_rules('smp_materials_support', 'SMP Materials Support', 'trim|required|xss_clean');
-						$this->form_validation->set_rules('smp_technology_support', 'SMP Technology Supprt', 'trim|required|xss_clean');
+						$this->form_validation->set_rules('smp_subjects_handled', 'SMP Subjects Handled', 'trim|required|xss_clean|integer');
+						$this->form_validation->set_rules('smp_years_teaching', 'SMP Years Teaching', 'trim|required|xss_clean|integer');
+						$this->form_validation->set_rules('smp_years_teaching_current', 'SMP Years Teaching in Current Institution', 'trim|required|xss_clean|integer');
+						$this->form_validation->set_rules('smp_students_per_class', 'SMP Average Students per Class', 'trim|required|xss_clean|integer');
+						$this->form_validation->set_rules('smp_support_offices', 'SMP Support Offices', 'trim|required|xss_clean|alpha_dash');
+						$this->form_validation->set_rules('smp_materials_support', 'SMP Materials Support', 'trim|required|xss_clean|alpha_dash');
+						$this->form_validation->set_rules('smp_technology_support', 'SMP Technology Supprt', 'trim|required|xss_clean|alpha_dash');
 						$this->form_validation->set_rules('smp_laboratory', 'SMP Laboratory', 'trim|required|xss_clean');
 						$this->form_validation->set_rules('smp_internet', 'SMP Internet Access', 'trim|required|xss_clean');
 						$this->form_validation->set_rules('smp_contract', 'SMP Contract', 'trim|required|xss_clean');
 						$this->form_validation->set_rules('smp_self_assessment_bizcom', 'SMP BizCom Self Assessment Form', 'trim|required|xss_clean');
 						$this->form_validation->set_rules('smp_self_assessment_sc', 'SMP SC101 Self Assessment Form', 'trim|required|xss_clean');
-						$this->form_validation->set_rules('training[]', 'Related Training', 'trim|xss_clean');
-						$this->form_validation->set_rules('training_body[]', 'Related Training Body', 'trim|xss_clean');
+						$this->form_validation->set_rules('training[]', 'Related Training', 'trim|xss_clean|max_length[45]|alpha_dash');
+						$this->form_validation->set_rules('training_body[]', 'Related Training Body', 'trim|xss_clean|max_length[250]|alpha_dash');
 						$this->form_validation->set_rules('training_date[]', 'Related Training Date', 'trim|xss_clean');
 					}
 				}
@@ -1938,20 +1938,20 @@ class Dbms_Controller extends CI_Controller
 		if ($this->input->post())
 		{
 			$this->form_validation->set_rules('code', 'Code', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('teacher_last_name', 'Teacher\'s Last Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('teacher_first_name', 'Teacher\'s First Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('teacher_middle_initial', 'Teacher\'s Middle Initial', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('teacher_email', 'Teacher\'s Email', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('teacher_last_name', 'Teacher\'s Last Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('teacher_first_name', 'Teacher\'s First Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('teacher_middle_initial', 'Teacher\'s Middle Initial', 'trim|required|xss_clean|max_length[1]|alpha');
+			$this->form_validation->set_rules('teacher_email', 'Teacher\'s Email', 'trim|required|xss_clean|valid_email');
 			$this->form_validation->set_rules('teacher_birthdate', 'Teacher\'s Birthdate', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('subject', 'Subject', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('semester', 'Semester', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('year', 'Year', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('section', 'Section', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('semester', 'Semester', 'trim|required|xss_clean|integer');
+			$this->form_validation->set_rules('year', 'Year', 'trim|required|xss_clean|max_length[10]|alpha_dash');
+			$this->form_validation->set_rules('section', 'Section', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 
-			$this->form_validation->set_rules('last_name[]', 'Last Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('first_name[]', 'First Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('middle_initial[]', 'Middlte Initial', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('last_name[]', 'Last Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('first_name[]', 'First Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('middle_initial[]', 'Middlte Initial', 'trim|required|xss_clean|max_length[1]|alpha');
 			$this->form_validation->set_rules('student_number[]', 'Student Number', 'trim|required|xss_clean');
 
 			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
