@@ -1336,7 +1336,7 @@ INSERT INTO `subject` (`Subject_ID`, `Subject_Name`, `Subject_Code`) VALUES
 
 CREATE TABLE IF NOT EXISTS `t3_application` (
   `T3_Application_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Date` varchar(45) NOT NULL,
+  `Date` datetime NOT NULL,
   `Created_At` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Updated_At` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   `Subject_ID` int(11) NOT NULL,
