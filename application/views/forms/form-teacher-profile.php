@@ -1161,7 +1161,7 @@
 
 							<div class="col-md-12">
 								<div class="row">
-									<div class="col-md-3">
+									<!-- <div class="col-md-3">
 										<div class="panel panel-info">
 											<div class="panel-heading">Add to List</div>
 											<div class="panel-body">
@@ -1183,13 +1183,13 @@
 												</div>	
 											</div>
 										</div>
-									</div>
+									</div> -->
 				
 									<div class="col-md-9">
 										<h3>List of Training</h3>
-										<div class="customize-btn-group">
+										<!-- <div class="customize-btn-group">
 											<button type="button" class="btn btn-danger">Delete</button>
-										</div>
+										</div> -->
 										<table class="table">
 											<tr>
 												<th>Training</th>

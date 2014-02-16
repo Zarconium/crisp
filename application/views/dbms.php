@@ -175,18 +175,20 @@
 						<th>Students</th>
 					</tr>
 					</thead>
+					<?php if ($student_classes) foreach ($student_classes as $student_class): ?>
 					<tr>
 						<td><input type="checkbox"></td>
 						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_class_add'); ?>">View</a> | <a href="#">Delete</a></td>
-						<td>Peralta, Philip</td>
-						<td>Ateneo de Manila University</td>
-						<td>Quezon City</td>
-						<td>ITM</td>
-						<td>1st Semester</td>
-						<td>2</td>
-						<td>A</td>
+						<td><?php echo $student_class->Full_Name; ?></td>
+						<td><?php echo $student_class->School_Name; ?></td>
+						<td><?php echo $student_class->School_Branch; ?></td>
+						<td><?php echo $student_class->Subject_Code; ?></td>
+						<td><?php echo $student_class->Semester; ?></td>
+						<td><?php echo $student_class->School_Year; ?></td>
+						<td><?php echo $student_class->Section; ?></td>
 						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfStudents">View List</button></td>
 					</tr>
+					<?php endforeach; ?>
 				</table>
 			</div>
 			
@@ -207,13 +209,15 @@
 						<th>Teachers</th>
 					</thead>
 					</tr>
+					<?php if ($t3_classes) foreach ($t3_classes as $t3_class): ?>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_mastertrainer_classlist'); ?>">View</a> | <a href="#">Delete</a></td>
-						<td>Peralta, Philip</td>
-						<td>BPO101</td>
-						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfTeachersForMasterTrainer">View List</button></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_class_add'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td><?php echo $t3_class->Full_Name; ?></td>
+						<td><?php echo $t3_class->Subject_Code; ?></td>
+						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfStudents">View List</button></td>
 					</tr>
+					<?php endforeach; ?>
 				</table>
 			</div>
 		</div>

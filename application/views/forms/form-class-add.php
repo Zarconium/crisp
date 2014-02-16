@@ -2,11 +2,12 @@
 	<?php if (isset($draft_saved)) { echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Draft saved.</div>';} ?>
 	<?php if (isset($form_success)) { echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Class list successfully updated.</div>';} ?>
 	<?php if (isset($form_error)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>There were errors in your input. Please check the fields and try again.</div>';} ?>	
-	<?php if (isset($student_not_found)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Student not found. Please check the fields and try again.</div>';} ?>	
+	<?php if (isset($student_not_found)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Student not found. Please check the fields and try again.</div>';} ?>
+	<?php if (isset($teacher_not_found)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Teacher not found. Please check the fields and try again.</div>';} ?>
 
-    <h1>Student Class List</h1>
+	<h1>Student Class List</h1>
 
-    <?php $attributes = array('id' => 'upload_student_class_list'); echo form_open_multipart('dbms/form_class_add', $attributes); ?>
+	<?php echo form_open_multipart('dbms/form_class_add'); ?>
 		<div class="save">
 			<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
 			<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
@@ -15,6 +16,9 @@
 		</div>
 			
 		<legend>Class Information</legend>
+
+		<input type="hidden" name="code" value="<?php echo set_value('code'); ?>">
+		<?php echo form_error('code'); ?>
 		
 		<div class="form-inline">
 			<div class="form-group">
@@ -63,7 +67,7 @@
 				<label for="Subject">Subject:</label>
 				<select class="form-control" name="subject">
 				<?php foreach ($subjects as $subject): ?>
-					<option value="<?php echo $subject->Subject_ID; ?>"><?php echo $subject->Subject_Code; ?></option>
+					<option value="<?php echo $subject->Subject_ID; ?>" <?php echo set_select('subject', $subject->Subject_ID); ?>><?php echo $subject->Subject_Code; ?></option>
 				<?php endforeach; ?>
 				</select>
 				<?php echo form_error('subject'); ?>
@@ -129,25 +133,21 @@
 						<div class="form-group">
 							<label>Last Name</label>
 							<input class="form-control" type="text" name="last_name_input">
-							<?php echo form_error('last_name'); ?>
 						</div>
 						
 						<div class="form-group">
 							<label>First Name</label>
 							<input type="text" class="form-control" name="first_name_input">
-							<?php echo form_error('first_name'); ?>
 						</div>
 						
 						<div class="form-group">
 							<label>Middle Initial</label>
 							<input type="text" class="form-control" name="middle_initial_input">
-							<?php echo form_error('middle_initial'); ?>
 						</div>
 
 						<div class="form-group">
 							<label>Student Number</label>
 							<input type="text" class="form-control" name="student_number_input">
-							<?php echo form_error('student_number'); ?>
 						</div>
 						
 						<div class="submit-button">
@@ -192,3 +192,21 @@
 		</div>
 	</form>
 </div>
+
+<script type="text/javascript">
+$('[name="save_draft"]').click
+(
+	function()
+	{
+		$('[name="code"]').val($('[name="school"]').val() + $('[name="teacher_first_name"]').val().charAt(0)+ $('[name="teacher_middle_initial"]').val().charAt(0)+ $('[name="teacher_last_name"]').val().charAt(0)+ $('[name="teacher_birthdate"]').val().replace(/-/gi,''));
+	}
+);
+
+$('[name="submit"]').click
+(
+	function()
+	{
+		$('[name="code"]').val($('[name="school"]').val() + $('[name="teacher_first_name"]').val().charAt(0)+ $('[name="teacher_middle_initial"]').val().charAt(0)+ $('[name="teacher_last_name"]').val().charAt(0)+ $('[name="teacher_birthdate"]').val().replace(/-/gi,''));
+	}
+);
+</script>
