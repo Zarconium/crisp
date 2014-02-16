@@ -57,7 +57,7 @@ Class Classes extends CI_Model
 		{
 			return false;
 		}
-	}*/
+	}
 
 	function getAllBestClasses()
 	{
