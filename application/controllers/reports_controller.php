@@ -741,5 +741,11 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('reports/mne_report_monthly', $data);
 		$this->load->view('footer-print');	
 	}
+	
+	function reportTargetConfigurationQuarterly(){
+		$this->load->view('header');
+		$this->load->view('forms/form-reports-configuration');
+		$this->load->view('footer');	
+	}
 }
 ?>

@@ -912,7 +912,12 @@
 	</div>
 	
 	<div class="tab-pane" id="MandE">
+		<div class="button-groups">
+			<a href="<?php echo base_url('reports/reportTargetConfigurationQuarterly'); ?>"><button type="submit" class="btn btn-primary">Set Targets</button></a>
+		</div><br/>
+		
 		<div class="panel-group" id="accordion3">
+		
 		<!-- Quarterly Reports -->
 			<div class="panel panel-info">
 				<div class="panel-heading">
@@ -927,11 +932,6 @@
 								<label>Year</label>
 								<input class="form-control" type="number" name="mande_quarter_year" min="2011">
 							</div>
-							<div class="form-group">
-								<label>Target</label>
-								<input class="form-control" type="number" name="mande_quarter_target">
-							</div>
-							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
 								<button type="button" class="btn btn-info">Print as Excel</button>
@@ -955,11 +955,7 @@
 							<div class="form-group">
 								<label>Year</label>
 								<input class="form-control" type="number" name="mande_month_year" min="2011">
-							</div>				
-							<div class="form-group">
-								<label>Target</label>
-								<input class="form-control" type="number" name="mande_month_target" placeholder="<?php echo $number; ?>">
-							</div>
+							</div>		
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
