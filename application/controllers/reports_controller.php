@@ -17,8 +17,15 @@ class Reports_Controller extends CI_Controller {
 
 	function index()
 	{
-	
-		$data['schools'] = $this->school->getAllSchools();
+		if ($this->session->userdata('logged_in')['type'] == 'encoder')
+		{
+			$data['schools'] = $this->school->getSchoolById($this->session->userdata('logged_in')['School_ID']);
+		}
+		else
+		{
+			$data['schools'] = $this->school->getAllSchools();
+		}
+
 		$data['subjects'] = $this->subject->getAllSubjects();
 		$data['teachers'] = $this->teacher->getAllTeachersFormatted();
 		$data['proctors'] = $this->proctor->getAllProctorsFormatted();

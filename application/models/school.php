@@ -48,10 +48,6 @@ Class School extends CI_Model
 		}
 	}
 
-
-
-
-
 	function getSchoolById($id)
 	{
 		$this->db->select('*');
@@ -63,7 +59,7 @@ Class School extends CI_Model
 		
 		if($query->num_rows() == 1)
 		{
-			return $query->row();
+			return $query->result();
 		}
 		else
 		{

@@ -46,7 +46,8 @@ class VerifyLogin extends CI_Controller {
 				$sess_array = array(
 					'id' => $row->User_ID,
 					'username' => $row->Username,
-					'type' => $row->Type
+					'type' => $row->Type,
+					'School_ID' => $row->School_ID
 					);
 				$this->session->set_userdata('logged_in', $sess_array);
 			}

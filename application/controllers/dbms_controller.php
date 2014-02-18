@@ -2532,21 +2532,22 @@ class Dbms_Controller extends CI_Controller
 		}
 	}
 
-	function form_class($id)
+	function form_mastertrainer_classlist($id)
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['subjects'] = $this->subject->getAllSubjects();
-		$data['class'] = $this->classes->getOtherClassById($id);
-		$data['students'] = $this->classes->getOtherClassStudentsById($id);
+		$data['t3_class'] = $this->classes->getT3ClassById($id);
+		$data['teachers'] = $this->classes->getT3ClassTeachersById($id);
 
 		if ($this->input->post())
 		{
-			if ($this->input->post('add_student'))
+			if ($this->input->post('add_teacher'))
 			{
 				$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 				$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 				$this->form_validation->set_rules('middle_initial', 'Middlte Initial', 'trim|required|xss_clean|max_length[1]|alpha');
-				$this->form_validation->set_rules('student_number', 'Student Number', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('birthdate', 'Birthdate', 'trim|required|xss_clean');
 
 				$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
 				
@@ -2562,14 +2563,14 @@ class Dbms_Controller extends CI_Controller
 				{
 					$this->db->trans_begin();
 
-					$school_id = $data['mastertrainer-classlist']->School_ID;
+					$school_id = $data['t3_class']->School_ID;
 
-					$student_code = $school_id . $this->input->post('student_number');
-					$student = $this->student->getStudentByCode($student_code);
+					$teacher_code = $school_id . substr($this->input->post('first_name'), 0, 1) . substr($this->input->post('middle_initial'), 0, 1) . substr($this->input->post('last_name'), 0, 1) . date("Ymd", strtotime($this->input->post('birthdate')));
+					$teacher = $this->teacher->getTeacherByCode($teacher_code);
 
 					if (!$student)
 					{
-						$data['student_not_found'] = TRUE;
+						$data['teacher_not_found'] = TRUE;
 						$this->db->trans_rollback();
 						$this->load->view('header');
 						$this->load->view('forms/form-mastertrainer-classlist', $data);
@@ -2577,16 +2578,16 @@ class Dbms_Controller extends CI_Controller
 						return;
 					}
 
-					$student_class = array
+					$teacher_class = array
 					(
-						'Class_ID' => $id,
-						'Student_ID' => $student->Student_ID
+						'T3_Class_ID' => $id,
+						'Teacher_ID' => $teacher->Teacher_ID
 					);
-					$this->classes->addStudentClass($student_class);
+					$this->classes->addT3Class($teacher_class);
 
 					if ($this->db->_error_message())
 					{
-						$data['student_not_found'] = TRUE;
+						$data['teacher_not_found'] = TRUE;
 						$this->db->trans_rollback();
 						$this->load->view('header');
 						$this->load->view('forms/form-mastertrainer-classlist', $data);
@@ -2596,7 +2597,7 @@ class Dbms_Controller extends CI_Controller
 
 					$this->db->trans_commit();
 
-					$data['students'] = $this->classes->getOtherClassStudentsById($id);
+					$data['teachers'] = $this->classes->getT3ClassTeachersById($id);
 					$data['form_success'] = TRUE;
 					$this->log->addLog('Updated Class List');
 
@@ -2606,9 +2607,9 @@ class Dbms_Controller extends CI_Controller
 				}
 				
 			}
-			elseif ($this->input->post('delete_student'))
+			elseif ($this->input->post('delete_teacher'))
 			{
-				$this->form_validation->set_rules('student_id[]', 'Student', 'trim|required|numeric|xss_clean');
+				$this->form_validation->set_rules('teacher_id[]', 'Teacher', 'trim|required|numeric|xss_clean');
 
 				if ($this->form_validation->run() == FALSE)
 				{
@@ -2620,12 +2621,12 @@ class Dbms_Controller extends CI_Controller
 				}
 				else
 				{
-					foreach ($this->input->post('student_id') as $key)
+					foreach ($this->input->post('teacher_id') as $key)
 					{
-						$this->classes->deleteStudentClassById($key);
+						$this->classes->deleteT3ClassById($key);
 					}
 
-					$data['students'] = $this->classes->getOtherClassStudentsById($id);
+					$data['teachers'] = $this->classes->getT3ClassTeachersById($id);
 					$data['form_success'] = TRUE;
 
 					$this->load->view('header');
