@@ -44,7 +44,6 @@ Class Student extends CI_Model
 		}	
 	}
 
-
 	function getStudentById($id)
 	{
 		$this->db->select('*');
@@ -102,11 +101,11 @@ Class Student extends CI_Model
 		}
 	}
 
-	function getStudentByUsername($username)//<-- di pa final. same comment sa teacher user name. saan ba talaga galing? 
+	function getStudentFullNameById($id)
 	{
-		$this->db->select('*');
+		$this->db->select('CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
 		$this->db->from('student');
-		$this->db->where('User_name', $username);
+		$this->db->where('Student_ID', $id);
 		$this->db->limit(1);
 		
 		$query = $this->db->get();
@@ -143,18 +142,24 @@ Class Student extends CI_Model
 		}
 	}
 
-	function getStudentFullNameById($id)
+	function getAllGcatStudents()
 	{
-		$this->db->select('CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
-		$this->db->from('student');
-		$this->db->where('Student_ID', $id);
-		$this->db->limit(1);
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(proctor.Last_Name), proctor.Last_Name, NULL), ", ", IF(LENGTH(proctor.First_Name), proctor.First_Name, NULL), " ", IF(LENGTH(proctor.Middle_Initial), proctor.Middle_Initial, NULL), ". ", IF(LENGTH(proctor.Name_Suffix), proctor.Name_Suffix, NULL)) as Full_Name', false);
+		$this->db->from('gcat_student');
+		$this->db->join('tracker', 'gcat_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+		$this->db->join('student_class', 'student.Student_ID = student_class.Student_ID', 'left');
+		$this->db->join('class', 'student_class.Class_ID = class.Class_ID', 'left');
+		$this->db->join('gcat_class', 'class.Class_ID = gcat_class.Class_ID', 'left');
+		$this->db->join('proctor', 'gcat_class.Proctor_ID = proctor.Proctor_ID', 'left');
 		
 		$query = $this->db->get();
 		
 		if($query->num_rows() > 0)
 		{
-			return $query->row();
+			return $query->result();
 		}
 		else
 		{
@@ -183,6 +188,27 @@ Class Student extends CI_Model
 		if($query->num_rows() > 0)
 		{
 			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAllBestStudents()
+	{
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
+		$this->db->from('best_student');
+		$this->db->join('tracker', 'best_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
 		}
 		else
 		{
@@ -233,6 +259,27 @@ Class Student extends CI_Model
 		}
 	}
 
+	function getAllAdeptStudents()
+	{
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
+		$this->db->from('adept_student');
+		$this->db->join('tracker', 'adept_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getAdeptStudentByStudentIdOrCode($id_code)
 	{
 		$this->db->select('*, status.Name as Status_Name');
@@ -276,6 +323,28 @@ Class Student extends CI_Model
 		}
 	}
 
+	function getAllInternshipStudents()
+	{
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
+		$this->db->from('internship_student');
+		$this->db->join('tracker', 'internship_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+		// $this->db->group_by('Full_Name');
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getInternshipByStudentIdOrCode($id_code)
 	{
 		$this->db->select('*, status.Name as Status_Name');
@@ -293,6 +362,28 @@ Class Student extends CI_Model
 		if($query->num_rows() > 0)
 		{
 			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAllSmpStudents()
+	{
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
+		$this->db->from('smp_student');
+		$this->db->join('tracker', 'smp_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+		$this->db->group_by('Full_Name');
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
 		}
 		else
 		{
@@ -606,37 +697,5 @@ Class Student extends CI_Model
 		$this->db->where('Student_ID', $id);
 		return $this->db->delete('student');
 	}
-
-	function addOtherClassList($data, $code)
-	{
-		$this->db->insert('class', $data);
-		$this->db->join('other_class', 'other_class.class_ID = other_class.class_ID', 'left');
-		$this->db->join('teacher', 'teacher.Teacher_ID = other_class.Teacher_ID', 'left');
-		$this->db->join('school', 'school.School_ID = class.School_ID', 'left');
-		$this->db->join('subject', 'subject.Subject_ID = class.Subject_ID', 'left');
-		$this->db->where('teacher.teacher_code', $code);
-		return $this->db->insert_id();
-	}
-
-
-	function addGCATClassList($data, $email)
-	{
-		$this->db->insert('class', $data);
-		$this->db->join('gcat_class', 'gcat_class.class_ID = gcat_class.gcat_class', 'left');
-		$this->db->join('proctor', 'proctor.Proctor_ID = proctor.Proctor_ID', 'left');
-		$this->db->join('school', 'school.School_ID = class.School_ID', 'left');
-		$this->db->join('subject', 'subject.Subject_ID = class.Subject_ID', 'left');
-		$this->db->where('proctor.email', $email);
-		return $this->db->insert_id();
-	}
-
-	function addStudentClassList($data)
-	{
-		$this->db->insert('student_class', $data);
-		$this->db->join('student', 'Student.Student_ID = student_class.Student_ID', 'left');
-		$this->db->join('class', 'class.class_ID = student_class.class_ID', 'left');
-		return $this->db->insert_id();
-	}
-
 }
 ?>

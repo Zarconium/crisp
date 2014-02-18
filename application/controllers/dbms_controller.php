@@ -45,6 +45,13 @@ class Dbms_Controller extends CI_Controller
 		$data['mastertrainers'] = $this->mastertrainer->getAllMasterTrainersFormatted();
 		$data['student_classes'] = $this->classes->getAllStudentClasses();
 		$data['t3_classes'] = $this->classes->getAllT3Classes();
+		$data['smp_students'] = $this->student->getAllSmpStudents();
+		$data['internship_students'] = $this->student->getAllInternshipStudents();
+		$data['gcat_classes'] = $this->classes->getAllGcatClassesFormatted();
+		$data['best_students'] = $this->student->getAllBestStudents();
+		$data['adept_students'] = $this->student->getAllAdeptStudents();
+		$data['best_t3_trackers'] = $this->teacher->getAllBestT3Trackers();
+		$data['adept_t3_trackers'] = $this->teacher->getAllAdeptT3Trackers();
 
 		$this->load->view('header');
 		$this->load->view('dbms', $data);
@@ -2061,6 +2068,116 @@ class Dbms_Controller extends CI_Controller
 			$this->load->view('footer');
 		}
 	}
+
+	function form_class($id)
+	{
+		$data['schools'] = $this->school->getAllSchools();
+		$data['subjects'] = $this->subject->getAllSubjects();
+		$data['class'] = $this->classes->getOtherClassById($id);
+		$data['students'] = $this->classes->getOtherClassStudentsById($id);
+
+		if ($this->input->post())
+		{
+			if ($this->input->post('add_student'))
+			{
+				$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+				$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+				$this->form_validation->set_rules('middle_initial', 'Middlte Initial', 'trim|required|xss_clean|max_length[1]|alpha');
+				$this->form_validation->set_rules('student_number', 'Student Number', 'trim|required|xss_clean');
+
+				$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+				
+				if($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-class', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					$this->db->trans_begin();
+
+					$school_id = $data['class']->School_ID;
+
+					$student_code = $school_id . $this->input->post('student_number');
+					$student = $this->student->getStudentByCode($student_code);
+
+					if (!$student)
+					{
+						$data['student_not_found'] = TRUE;
+						$this->db->trans_rollback();
+						$this->load->view('header');
+						$this->load->view('forms/form-class', $data);
+						$this->load->view('footer');
+						return;
+					}
+
+					$student_class = array
+					(
+						'Class_ID' => $id,
+						'Student_ID' => $student->Student_ID
+					);
+					$this->classes->addStudentClass($student_class);
+
+					if ($this->db->_error_message())
+					{
+						$data['student_not_found'] = TRUE;
+						$this->db->trans_rollback();
+						$this->load->view('header');
+						$this->load->view('forms/form-class', $data);
+						$this->load->view('footer');
+						return;
+					}
+
+					$this->db->trans_commit();
+
+					$data['students'] = $this->classes->getOtherClassStudentsById($id);
+					$data['form_success'] = TRUE;
+					$this->log->addLog('Updated Class List');
+
+					$this->load->view('header');
+					$this->load->view('forms/form-class', $data);
+					$this->load->view('footer');
+				}
+				
+			}
+			elseif ($this->input->post('delete_student'))
+			{
+				$this->form_validation->set_rules('student_id[]', 'Student', 'trim|required|numeric|xss_clean');
+
+				if ($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-class', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					foreach ($this->input->post('student_id') as $key)
+					{
+						$this->classes->deleteStudentClassById($key);
+					}
+
+					$data['students'] = $this->classes->getOtherClassStudentsById($id);
+					$data['form_success'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-class', $data);
+					$this->load->view('footer');
+				}
+			}
+		}
+		else
+		{
+			$this->load->view('header');
+			$this->load->view('forms/form-class', $data);
+			$this->load->view('footer');
+		}
+	}
 	
 	function form_program_gcat_tracker()
 	{
@@ -2296,7 +2413,7 @@ class Dbms_Controller extends CI_Controller
 		$this->load->view('footer');
 	}
 	
-	function form_mastertrainer_classlist()
+	function form_mastertrainer_classlist_add()
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['subjects'] = $this->subject->getAllSubjects();
@@ -2323,7 +2440,7 @@ class Dbms_Controller extends CI_Controller
 					$data['form_error'] = TRUE;
 
 					$this->load->view('header');
-					$this->load->view('forms/form-mastertrainer-classlist', $data);
+					$this->load->view('forms/form-mastertrainer-classlist-add', $data);
 					$this->load->view('footer');
 				}
 				else
@@ -2331,13 +2448,14 @@ class Dbms_Controller extends CI_Controller
 					$this->db->trans_begin();
 
 					$mastertrainer = $this->mastertrainer->getMasterTrainerByEmail($this->input->post('trainer_email'));
+					$school = $this->school->getSchoolById($this->input->post('school'));
 
 					if (!$mastertrainer)
 					{
 						$data['mastertrainer_not_found'] = TRUE;
 						$this->db->trans_rollback();
 						$this->load->view('header');
-						$this->load->view('forms/form-mastertrainer-classlist', $data);
+						$this->load->view('forms/form-mastertrainer-classlist-add', $data);
 						$this->load->view('footer');
 						return;
 					}
@@ -2345,16 +2463,16 @@ class Dbms_Controller extends CI_Controller
 					$t3_class = array
 					(
 						'Name' => $this->input->post('section'),
-						// 'School_Year' => $this->input->post('year'),
-						// 'Semester' => $this->input->post('semester'),
-						// 'School_ID' => $school_id,
+						'School_Year' => $this->input->post('year'),
+						'Semester' => $this->input->post('semester'),
+						'School_ID' => $school,
 						'Subject_ID' => $this->input->post('subject')
 					);
 					$t3_class_id = $this->classes->addT3Class($t3_class);
 
 					for ($i = 0; $i < count($this->input->post('student_number')); $i++)
 					{
-						$teacher_code = $school_id . $this->input->post('first_name')[$i] . $this->input->post('middle_initial')[$i] . $this->input->post('last_name')[$i] . $this->input->post('birthdate')[$i];
+						$teacher_code = $school->School_ID . substr($this->input->post('first_name')[$i], 0, 1) . substr($this->input->post('middle_initial')[$i], 0, 1) . substr($this->input->post('last_name')[$i], 0, 1) . $this->input->post('birthdate')[$i];
 						$teacher = $this->teacher->getTeacherByCode($teacher_code);
 
 						if (!$teacher)
@@ -2362,7 +2480,7 @@ class Dbms_Controller extends CI_Controller
 							$data['teacher_not_found'] = TRUE;
 							$this->db->trans_rollback();
 							$this->load->view('header');
-							$this->load->view('forms/form-mastertrainer-classlist', $data);
+							$this->load->view('forms/form-mastertrainer-classlist-add', $data);
 							$this->load->view('footer');
 							return;
 						}
@@ -2379,7 +2497,7 @@ class Dbms_Controller extends CI_Controller
 							$data['teacher_not_found'] = TRUE;
 							$this->db->trans_rollback();
 							$this->load->view('header');
-							$this->load->view('forms/form-mastertrainer-classlist', $data);
+							$this->load->view('forms/form-mastertrainer-classlist-add', $data);
 							$this->load->view('footer');
 							return;
 						}
@@ -2391,7 +2509,7 @@ class Dbms_Controller extends CI_Controller
 					$this->log->addLog('Added Class List');
 
 					$this->load->view('header');
-					$this->load->view('forms/form-mastertrainer-classlist', $data);
+					$this->load->view('forms/form-mastertrainer-classlist-add', $data);
 					$this->load->view('footer');
 				}
 			}
@@ -2402,8 +2520,118 @@ class Dbms_Controller extends CI_Controller
 				$data['draft_saved'] = TRUE;
 
 				$this->load->view('header');
-				$this->load->view('forms/form-mastertrainer-classlist', $data);
+				$this->load->view('forms/form-mastertrainer-classlist-add', $data);
 				$this->load->view('footer');
+			}
+		}
+		else
+		{
+			$this->load->view('header');
+			$this->load->view('forms/form-mastertrainer-classlist-add', $data);
+			$this->load->view('footer');
+		}
+	}
+
+	function form_class($id)
+	{
+		$data['schools'] = $this->school->getAllSchools();
+		$data['subjects'] = $this->subject->getAllSubjects();
+		$data['class'] = $this->classes->getOtherClassById($id);
+		$data['students'] = $this->classes->getOtherClassStudentsById($id);
+
+		if ($this->input->post())
+		{
+			if ($this->input->post('add_student'))
+			{
+				$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+				$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+				$this->form_validation->set_rules('middle_initial', 'Middlte Initial', 'trim|required|xss_clean|max_length[1]|alpha');
+				$this->form_validation->set_rules('student_number', 'Student Number', 'trim|required|xss_clean');
+
+				$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+				
+				if($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-mastertrainer-classlist', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					$this->db->trans_begin();
+
+					$school_id = $data['mastertrainer-classlist']->School_ID;
+
+					$student_code = $school_id . $this->input->post('student_number');
+					$student = $this->student->getStudentByCode($student_code);
+
+					if (!$student)
+					{
+						$data['student_not_found'] = TRUE;
+						$this->db->trans_rollback();
+						$this->load->view('header');
+						$this->load->view('forms/form-mastertrainer-classlist', $data);
+						$this->load->view('footer');
+						return;
+					}
+
+					$student_class = array
+					(
+						'Class_ID' => $id,
+						'Student_ID' => $student->Student_ID
+					);
+					$this->classes->addStudentClass($student_class);
+
+					if ($this->db->_error_message())
+					{
+						$data['student_not_found'] = TRUE;
+						$this->db->trans_rollback();
+						$this->load->view('header');
+						$this->load->view('forms/form-mastertrainer-classlist', $data);
+						$this->load->view('footer');
+						return;
+					}
+
+					$this->db->trans_commit();
+
+					$data['students'] = $this->classes->getOtherClassStudentsById($id);
+					$data['form_success'] = TRUE;
+					$this->log->addLog('Updated Class List');
+
+					$this->load->view('header');
+					$this->load->view('forms/form-mastertrainer-classlist', $data);
+					$this->load->view('footer');
+				}
+				
+			}
+			elseif ($this->input->post('delete_student'))
+			{
+				$this->form_validation->set_rules('student_id[]', 'Student', 'trim|required|numeric|xss_clean');
+
+				if ($this->form_validation->run() == FALSE)
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-mastertrainer-classlist', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					foreach ($this->input->post('student_id') as $key)
+					{
+						$this->classes->deleteStudentClassById($key);
+					}
+
+					$data['students'] = $this->classes->getOtherClassStudentsById($id);
+					$data['form_success'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-mastertrainer-classlist', $data);
+					$this->load->view('footer');
+				}
 			}
 		}
 		else

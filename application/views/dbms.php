@@ -178,7 +178,7 @@
 					<?php if ($student_classes) foreach ($student_classes as $student_class): ?>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_class_add'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_class/' . $student_class->Class_ID); ?>">View</a> | <a href="#">Delete</a></td>
 						<td><?php echo $student_class->Full_Name; ?></td>
 						<td><?php echo $student_class->School_Name; ?></td>
 						<td><?php echo $student_class->School_Branch; ?></td>
@@ -194,7 +194,7 @@
 			
 			<div class="tab-pane" id="class_mastertrainer">
 				<div class="button-groups">
-					<a href="<?php echo base_url('dbms/form_mastertrainer_classlist'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
+					<a href="<?php echo base_url('dbms/form_mastertrainer_classlist_add'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchClassForMasterTrainer">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
@@ -212,7 +212,7 @@
 					<?php if ($t3_classes) foreach ($t3_classes as $t3_class): ?>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_class_add'); ?>">View</a> | <a href="#">Delete</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_mastertrainer_classlist/' . $t3_class->T3_Class_ID); ?>">View</a>
 						<td><?php echo $t3_class->Full_Name; ?></td>
 						<td><?php echo $t3_class->Subject_Code; ?></td>
 						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfStudents">View List</button></td>
@@ -237,8 +237,6 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="smp">
 				<div class="button-groups">
-					<a href="<?php echo base_url('dbms/form_program_smp_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
-					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchSMP">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchSMP">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
@@ -246,31 +244,27 @@
 				<table class="table table-striped table-area">
 					<thead>
 					<tr>
-						<th>Check</th>
 						<th>Action</th>
 						<th>ID Number</th>
 						<th>Name</th>
 						<th>Year</th>
 						<th>Course</th>
-						<th>Subjects</th>
 					</tr>
 					</thead>
+					<?php if ($smp_students) foreach ($smp_students as $smp_student): ?>
 					<tr>
-						<td><input type="checkbox"></td>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_smp_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
-						<td>103523</td>
-						<td>Simon, Dayanara F.</td>
-						<td>4</td>
-						<td>BS Management Information Systems</td>
-						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewSMPSubjects">View List</button></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_smp_tracker'); ?>">View</a></td>
+						<td><?php echo $smp_student->Student_ID_Number; ?></td>
+						<td><?php echo $smp_student->Full_Name; ?></td>
+						<td><?php echo $smp_student->Year; ?></td>
+						<td><?php echo $smp_student->Course; ?></td>
 					</tr>
+					<?php endforeach; ?>
 				</table>
 			</div>
 			
 			<div class="tab-pane fade" id="internship">
 				<div class="button-groups">
-					<a href="<?php echo base_url('dbms/form_program_smp_internship_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
-					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchSMP">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchSMP">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
@@ -278,31 +272,27 @@
 				<table class="table table-striped table-area">
 					<thead>
 					<tr>
-						<th>Check</th>
 						<th>Action</th>
 						<th>ID Number</th>
 						<th>Name</th>
 						<th>Year</th>
 						<th>Course</th>
-						<th>Subjects</th>
 					</tr>
 					</thead>
+					<?php if ($internship_students) foreach ($internship_students as $internship_student): ?>
 					<tr>
-						<td><input type="checkbox"></td>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_smp_internship_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
-						<td>103523</td>
-						<td>Simon, Dayanara F.</td>
-						<td>4</td>
-						<td>BS Management Information Systems</td>
-						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewSMPSubjects">View List</button></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_smp_internship_tracker'); ?>">View</a></td>
+						<td><?php echo $internship_student->Student_ID_Number; ?></td>
+						<td><?php echo $internship_student->Full_Name; ?></td>
+						<td><?php echo $internship_student->Year; ?></td>
+						<td><?php echo $internship_student->Course; ?></td>
 					</tr>
+					<?php endforeach; ?>
 				</table>
 			</div>
 			
 			<div class="tab-pane fade" id="gcat">
 				<div class="button-groups">
-					<a href="<?php echo base_url('dbms/form_program_gcat_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
-					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchgcat">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchGCAT">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
@@ -310,37 +300,29 @@
 				<table class="table table-striped table-area">
 					<thead>
 					<tr>
-						<th>Check</th>
 						<th>Action</th>
 						<th>Proctor</th>
 						<th>School</th>
-						<th>Campus</th>
-						<th>Subject</th>
 						<th>Semester</th>
 						<th>Year</th>
 						<th>Section</th>
-						<th>List of Students</th>
 					</tr>
 					</thead>
+					<?php if ($gcat_classes) foreach ($gcat_classes as $gcat_class): ?>
 					<tr>
-						<td><input type="checkbox"></td>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_gcat_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
-						<td>Pulan, Max</td>
-						<td>Ateneo de Manila University</td>
-						<td>Quezon City</td>
-						<td>ITM</td>
-						<td>1st</td>
-						<td>2</td>
-						<td>AA</td>
-						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfStudents">View List</button></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_gcat_tracker'); ?>">View</a></td>
+						<td><?php echo $gcat_class->Full_Name; ?></td>
+						<td><?php echo $gcat_class->School_Name; ?></td>
+						<td><?php echo $gcat_class->Semester; ?></td>
+						<td><?php echo $gcat_class->School_Year; ?></td>
+						<td><?php echo $gcat_class->Section; ?></td>
 					</tr>
+					<?php endforeach; ?>
 				</table>
 			</div>
 			
 			<div class="tab-pane fade" id="best">
 				<div class="button-groups">
-					<a href="<?php echo base_url('dbms/form_program_best_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
-					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchbest" onclick="$('[name=file_best_adept_student_tracker]').click();">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
@@ -348,29 +330,27 @@
 				<table class="table table-striped table-area">
 					<thead>
 					<tr>
-						<th>Check</th>
 						<th>Action</th>
-						<th>Date</th>
-						<th>School</th>
-						<th>Campus</th>
-						<th>List of Students</th>
+						<th>ID Number</th>
+						<th>Name</th>
+						<th>Year</th>
+						<th>Course</th>
 					</tr>
 					</thead>
+					<?php if ($best_students) foreach ($best_students as $best_student): ?>
 					<tr>
-						<td><input type="checkbox"></td>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_best_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
-						<td>11/21/2013</td>
-						<td>Ateneo de Manila University</td>
-						<td>Quezon City</td>
-						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfStudents">View List</button></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_best_tracker'); ?>">View</a></td>
+						<td><?php echo $best_student->Student_ID_Number; ?></td>
+						<td><?php echo $best_student->Full_Name; ?></td>
+						<td><?php echo $best_student->Year; ?></td>
+						<td><?php echo $best_student->Course; ?></td>
 					</tr>
+					<?php endforeach; ?>
 				</table>
 			</div>
 			
 			<div class="tab-pane fade" id="adept">
 				<div class="button-groups">
-					<a href="<?php echo base_url('dbms/form_program_adept_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
-					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchadept" onclick="$('[name=file_best_adept_student_tracker]').click();">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
@@ -378,29 +358,27 @@
 				<table class="table table-striped table-area">
 					<thead>
 					<tr>
-						<th>Check</th>
 						<th>Action</th>
-						<th>Date</th>
-						<th>School</th>
-						<th>Campus</th>
-						<th>List of Students</th>
+						<th>ID Number</th>
+						<th>Name</th>
+						<th>Year</th>
+						<th>Course</th>
 					</tr>
 					</thead>
+					<?php if ($adept_students) foreach ($adept_students as $adept_student): ?>
 					<tr>
-						<td><input type="checkbox"></td>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_adept_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
-						<td>11/21/2013</td>
-						<td>Ateneo de Manila University</td>
-						<td>Quezon City</td>
-						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfStudents">View List</button></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_adept_tracker'); ?>">View</a></td>
+						<td><?php echo $adept_student->Student_ID_Number; ?></td>
+						<td><?php echo $adept_student->Full_Name; ?></td>
+						<td><?php echo $adept_student->Year; ?></td>
+						<td><?php echo $adept_student->Course; ?></td>
 					</tr>
+					<?php endforeach; ?>
 				</table>
 			</div>
 			
 			<div class="tab-pane fade" id="best_t3">
 				<div class="button-groups">
-					<a href="<?php echo base_url('dbms/form_program_t3_best_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
-					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchBESTT3" onclick="$('[name=file_best_tracker]').click();">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
@@ -408,7 +386,6 @@
 				<table class="table table-striped table-area">
 					<thead>
 					<tr>
-						<th>Check</th>
 						<th>Action</th>
 						<th>Name</th>
 						<th>School</th>
@@ -418,23 +395,32 @@
 						<th>Grade of Tasks</th>
 					</tr>
 					</thead>
+					<?php if ($best_t3_trackers) foreach ($best_t3_trackers as $best_t3_tracker): ?>
 					<tr>
-						<td><input type="checkbox"></td>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_t3_adept_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
-						<td>Simon, Dayanara</td>
-						<td>Ateneo de Manila University</td>
-						<td>11/21/1993</td>
-						<td>P</td>
-						<td>Contract, Interview Form, Site Visit Form, </td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_t3_adept_tracker'); ?>">View</a></td>
+						<td><?php echo $best_t3_tracker->Full_Name; ?></td>
+						<td><?php echo $best_t3_tracker->School_Name; ?></td>
+						<td><?php echo date("m/d/Y", strtotime($best_t3_tracker->Birthdate)); ?></td>
+						<td><?php echo $best_t3_tracker->Status; ?></td>
+						<td>
+							<?php 
+								if (!$best_t3_tracker->Interview_Form) { echo "Interview Form, "; }
+								if (!$best_t3_tracker->Site_Visit_Form) { echo "Site Visit Form, "; }
+								if (!$best_t3_tracker->Best_T3_Feedback) { echo "Best T3 Feedback, "; }
+								if (!$best_t3_tracker->Best_ELearning_Feedback) { echo "Best E-Learning Feedback, "; }
+								if (!$best_t3_tracker->Best_CD) { echo "Best CD, "; }
+								if (!$best_t3_tracker->Certificate_Of_Attendance) { echo "Certificate of Attendance, "; }
+								if (!$best_t3_tracker->Best_Certified_Trainers) { echo "Best Certified Trainers"; }
+							?>
+						</td>
 						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewT3BESTTasks">View List</button></td>
 					</tr>
+					<?php endforeach; ?>
 				</table>
 			</div>
 			
 			<div class="tab-pane fade" id="adept_t3">
 				<div class="button-groups">
-					<a href="<?php echo base_url('dbms/form_program_t3_adept_tracker'); ?>"><button class="btn btn-primary">Add</button></a>
-					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchBESTT3" onclick="$('[name=file_adept_tracker]').click();">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
@@ -442,24 +428,36 @@
 				<table class="table table-striped table-area">
 					<thead>
 					<tr>
-						<th>Check</th>
 						<th>Action</th>
 						<th>Name</th>
 						<th>School</th>
 						<th>Birthday</th>
+						<th>Status</th>
 						<th>Unsubmitted Documents</th>
 						<th>Grade of Tasks</th>
 					</tr>
 					</thead>
+					<?php if ($adept_t3_trackers) foreach ($adept_t3_trackers as $adept_t3_tracker): ?>
 					<tr>
-						<td><input type="checkbox"></td>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_t3_best_tracker'); ?>">View</a> | <a href="#">Delete</a></td>
-						<td>Simon, Dayanara</td>
-						<td>Ateneo de Manila University</td>
-						<td>11/21/2013</td>
-						<td>CD</td>
-						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewT3ADEPTTasks">View List</button></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_t3_adept_tracker'); ?>">View</a></td>
+						<td><?php echo $adept_t3_tracker->Full_Name; ?></td>
+						<td><?php echo $adept_t3_tracker->School_Name; ?></td>
+						<td><?php echo date("m/d/Y", strtotime($adept_t3_tracker->Birthdate)); ?></td>
+						<td><?php echo $adept_t3_tracker->Status; ?></td>
+						<td>
+							<?php 
+								if (!$adept_t3_tracker->Interview_Form) { echo "Interview Form, "; }
+								if (!$adept_t3_tracker->Site_Visit_Form) { echo "Site Visit Form, "; }
+								if (!$adept_t3_tracker->Adept_T3_Feedback) { echo "Adept T3 Feedback, "; }
+								if (!$adept_t3_tracker->Adept_ELearning_Feedback) { echo "Adept E-Learning Feedback, "; }
+								if (!$adept_t3_tracker->Manual_and_Kit) { echo "Manual & Kit, "; }
+								if (!$adept_t3_tracker->Certificate_Of_Attendance) { echo "Certificate of Attendance, "; }
+								if (!$adept_t3_tracker->Adept_Certified_Trainers) { echo "Adept Certified Trainers"; }
+							?>
+						</td>
+						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewT3BESTTasks">View List</button></td>
 					</tr>
+					<?php endforeach; ?>
 				</table>
 			</div>
 		</div>

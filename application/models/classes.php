@@ -141,6 +141,113 @@ Class Classes extends CI_Model
 		}
 	}
 
+	function getAllGcatClassesFormatted()
+	{
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(proctor.Last_Name), proctor.Last_Name, NULL), ", ", IF(LENGTH(proctor.First_Name), proctor.First_Name, NULL), " ", IF(LENGTH(proctor.Middle_Initial), proctor.Middle_Initial, NULL), ". ", IF(LENGTH(proctor.Name_Suffix), proctor.Name_Suffix, NULL)) as Full_Name, CONCAT(school.name, " - ", school.Branch) as School_Name, class.Name as Section', false);
+		$this->db->from('gcat_class');
+		$this->db->join('proctor', 'gcat_class.Proctor_ID = proctor.Proctor_ID', 'left');
+		$this->db->join('class', 'gcat_class.Class_ID = class.Class_ID', 'left');
+		$this->db->join('school', 'class.School_ID = school.School_ID', 'left');
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getOtherClassById($id)
+	{
+		$this->db->select('*, teacher.Email as Teacher_Email, class.Name as Section');
+		$this->db->from('other_class');
+		$this->db->join('class', 'other_class.Class_ID = class.Class_ID', 'left');
+		$this->db->join('teacher', 'other_class.Teacher_ID = teacher.Teacher_ID', 'left');
+		$this->db->join('school', 'class.School_ID = school.School_ID', 'left');
+		$this->db->join('subject', 'class.Subject_ID = subject.Subject_ID', 'left');
+		$this->db->where('other_class.Class_ID', $id);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getOtherClassStudentsById($id)
+	{
+		$this->db->select('*');
+		$this->db->from('other_class');
+		$this->db->join('class', 'other_class.Class_ID = class.Class_ID', 'left');
+		$this->db->join('student_class', 'class.Class_ID = student_class.Class_ID', 'left');
+		$this->db->join('student', 'student_class.Student_ID = student.Student_ID', 'left');
+		$this->db->where('other_class.Class_ID', $id);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getT3ClassById($id)
+	{
+		$this->db->select('*, master_trainer.Email as Mastertrainer_Email, t3_class.Name as Section');
+		$this->db->from('t3_class');
+		$this->db->join('master_trainer', 't3_class.Master_Trainer_ID = master_trainer.Master_Trainer_ID', 'left');
+		$this->db->join('school', 't3_class.School_ID = school.School_ID', 'left');
+		$this->db->join('subject', 't3_class.Subject_ID = subject.Subject_ID', 'left');
+		$this->db->where('t3_class.T3_Class_ID', $id);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getT3ClassTeachersById($id)
+	{
+		$this->db->select('*');
+		$this->db->from('other_class');
+		$this->db->join('class', 'other_class.Class_ID = class.Class_ID', 'left');
+		$this->db->join('student_class', 'class.Class_ID = student_class.Class_ID', 'left');
+		$this->db->join('student', 'student_class.Student_ID = student.Student_ID', 'left');
+		$this->db->where('other_class.Class_ID', $id);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function addClass($data)
 	{
 		$this->db->insert('class', $data);
@@ -175,6 +282,12 @@ Class Classes extends CI_Model
 	{
 		$this->db->insert('teacher_class', $data);
 		return $this->db->insert_id();
+	}
+
+	function deleteStudentClassById($id)
+	{
+		$this->db->where('Student_Class_ID', $id);
+		return $this->db->delete('student_class');
 	}
 }
 ?>

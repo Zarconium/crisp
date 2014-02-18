@@ -101,25 +101,6 @@ Class Teacher extends CI_Model
 		}
 	}
 
-	function getTeacherByUsername($username)// di pa to tama. saan ba kunin yung username ng teacher? 
-	{
-		$this->db->select('*');
-		$this->db->from('teacher');
-		$this->db->where('User_Name', $username);
-		$this->db->limit(1);
-		
-		$query = $this->db->get();
-		
-		if($query->num_rows() > 0)
-		{
-			return $query->row();
-		}
-		else
-		{
-			return false;
-		}
-	}
-
 	function getTeacherFullNameById($id)
 	{
 		$this->db->select('CONCAT_WS("", IF(LENGTH(teacher.Last_Name), teacher.Last_Name, NULL), ", ", IF(LENGTH(teacher.First_Name), teacher.First_Name, NULL), " ", IF(LENGTH(teacher.Middle_Initial), teacher.Middle_Initial, NULL), ". ", IF(LENGTH(teacher.Name_Suffix), teacher.Name_Suffix, NULL)) as Full_Name', false);
@@ -252,6 +233,50 @@ Class Teacher extends CI_Model
 		$this->db->select('*');
 		$this->db->from('related_trainings_attended');
 		$this->db->where('Teacher_ID', $id);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAllBestT3Trackers()
+	{
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(teacher.Last_Name), teacher.Last_Name, NULL), ", ", IF(LENGTH(teacher.First_Name), teacher.First_Name, NULL), " ", IF(LENGTH(teacher.Middle_Initial), teacher.Middle_Initial, NULL), ". ", IF(LENGTH(teacher.Name_Suffix), teacher.Name_Suffix, NULL)) as Full_Name, CONCAT(school.name, " - ", school.Branch) as School_Name, status.Name as Status' ,false);
+		$this->db->from('best_t3_tracker');
+		$this->db->join('t3_tracker', 'best_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->join('teacher_t3_tracker', 'best_t3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->join('teacher', 'teacher_t3_tracker.Teacher_ID = teacher.Teacher_ID', 'left');
+		$this->db->join('school', 'teacher.School_ID = school.School_ID', 'left');
+		$this->db->join('status', 't3_tracker.Status_ID = status.Status_ID', 'left');
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAllAdeptT3Trackers()
+	{
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(teacher.Last_Name), teacher.Last_Name, NULL), ", ", IF(LENGTH(teacher.First_Name), teacher.First_Name, NULL), " ", IF(LENGTH(teacher.Middle_Initial), teacher.Middle_Initial, NULL), ". ", IF(LENGTH(teacher.Name_Suffix), teacher.Name_Suffix, NULL)) as Full_Name, CONCAT(school.name, " - ", school.Branch) as School_Name, status.Name as Status' ,false);
+		$this->db->from('adept_t3_tracker');
+		$this->db->join('t3_tracker', 'adept_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->join('teacher_t3_tracker', 'adept_t3_tracker.T3_Tracker_ID = teacher_t3_tracker.T3_Tracker_ID', 'left');
+		$this->db->join('teacher', 'teacher_t3_tracker.Teacher_ID = teacher.Teacher_ID', 'left');
+		$this->db->join('school', 'teacher.School_ID = school.School_ID', 'left');
+		$this->db->join('status', 't3_tracker.Status_ID = status.Status_ID', 'left');
 		
 		$query = $this->db->get();
 		
