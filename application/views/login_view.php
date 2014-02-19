@@ -42,16 +42,14 @@
 						<label for="password">Password</label>
 						<input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
 					</div>
-					<div class="form-group">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="remember_me" value="true"> Remember Me
-							</label>
-							
-						</div>
-						<div class="center">
-							<button type="submit" class="btn btn-primary">Log in</button>
-						</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" name="remember_me" value="true"> Remember Me
+						</label>
+						
+					</div>
+					<div class="center">
+						<button type="submit" class="btn btn-primary">Log in</button>
 					</div>
 					<?php echo form_close(); ?>
 				</div>

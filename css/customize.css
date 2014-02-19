@@ -15,6 +15,9 @@ width: 70%;
 .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"]{
 float: center;
 }
+.panel-default > .panel-heading {
+background-color: #fff !important;
+}
 
 .front-logo{
 height: 200px;

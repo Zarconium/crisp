@@ -216,6 +216,7 @@
 	
 
 <!-- SUC Report-->
+<div class="panel-group" id="accordion">
 	<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -462,7 +463,6 @@
 			</div>
 	
 
-<!-- SUC Report-->
 	<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -505,8 +505,8 @@
 		</div>
 	</div>
 
+<!-- SUC Report-->
 
-	
 	<div class="tab-pane" id="SUC">	
 		
 		<!-- SMP Class List DONE -->
@@ -514,7 +514,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_smp_class_list">&#x25BC;</a> SMP Class List
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_smp_class_list">&#x25BC; SMP Class List</a>
 					</h4>
 				</div>
 				<div id="suc_smp_class_list" class="panel-collapse collapse">
@@ -578,7 +578,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_best_class_list">&#x25BC;</a> BEST Class List
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_best_class_list">&#x25BC; BEST Class List</a>
 					</h4>
 				</div>
 				<div id="suc_best_class_list" class="panel-collapse collapse">
@@ -634,7 +634,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_adept_class_list">&#x25BC;</a> AdEPT Class List
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_adept_class_list">&#x25BC; AdEPT Class List</a>
 					</h4>
 				</div>
 				<div id="suc_adept_class_list" class="panel-collapse collapse">
@@ -692,7 +692,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_gcat_class_list">&#x25BC;</a> GCAT Classes
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_gcat_class_list">&#x25BC; GCAT Classes</a>
 					</h4>
 				</div>
 				<div id="suc_gcat_class_list" class="panel-collapse collapse">
@@ -747,7 +747,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_best_student_list">&#x25BC;</a> BEST Student List
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_best_student_list">&#x25BC; BEST Student List</a>
 					</h4>
 				</div>
 				<div id="suc_best_student_list" class="panel-collapse collapse">
@@ -813,7 +813,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_adept_student_list">&#x25BC;</a> AdEPT Student List
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_adept_student_list">&#x25BC; AdEPT Student List</a>
 					</h4>
 				</div>
 				<div id="suc_adept_student_list" class="panel-collapse collapse">
@@ -879,7 +879,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_gcat_student_list">&#x25BC;</a> GCAT Student List
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_gcat_student_list">&#x25BC; GCAT Student List</a>
 					</h4>
 				</div>
 				<div id="suc_gcat_student_list" class="panel-collapse collapse">
@@ -945,7 +945,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_smp_student_list">&#x25BC;</a> SMP Student List
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_smp_student_list">&#x25BC; SMP Student List</a>
 					</h4>
 				</div>
 				<div id="suc_smp_student_list" class="panel-collapse collapse">
@@ -1026,7 +1026,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_t3_best_class_list">&#x25BC;</a> T3 BEST
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_t3_best_class_list">&#x25BC; T3 BEST</a>
 					</h4>
 				</div>
 				<div id="suc_t3_best_class_list" class="panel-collapse collapse">
@@ -1066,7 +1066,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_t3_adept_class_list">&#x25BC;</a> T3 ADEPT
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_t3_adept_class_list">&#x25BC; T3 ADEPT</a>
 					</h4>
 				</div>
 				<div id="suc_t3_adept_class_list" class="panel-collapse collapse">
@@ -1109,7 +1109,7 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_smp">&#x25BC;</a> T3 SMP
+						<a data-toggle="collapse" data-parent="#accordion" href="#suc_smp">&#x25BC; T3 SMP</a>
 					</h4>
 				</div>
 				<div id="suc_smp" class="panel-collapse collapse">
@@ -1159,7 +1159,8 @@
 			</div>
 		</div>
 	</div>
-	
+</div>
+
 	<div class="tab-pane" id="MandE">
 		<div class="button-groups">
 			<a href="<?php echo base_url('reports/reportTargetConfigurationQuarterly'); ?>"><button type="submit" class="btn btn-primary">Set Targets</button></a>
