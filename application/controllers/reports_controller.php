@@ -19,7 +19,7 @@ class Reports_Controller extends CI_Controller {
 	{
 		if ($this->session->userdata('logged_in')['type'] == 'encoder')
 		{
-			$data['schools'] = $this->school->getSchoolById($this->session->userdata('logged_in')['School_ID']);
+			$data['schools'] = $this->school->getEncoderSchool();
 		}
 		else
 		{
@@ -847,12 +847,31 @@ class Reports_Controller extends CI_Controller {
 		$data['getallStudentsInternshipCompleted'] = $this->report_mne-> getallStudentsInternshipCompleted($qtr1_start, $qtr1_end, $qtr2_start, $qtr2_end, $qtr3_start, $qtr3_end, $qtr4_start, $qtr4_end, $annual_start, $annual_end);
 
 
-		$this->load->model('target_monthly_model');
-		$monthly_target = $this->target_monthly_model->getTargetMonthly();
-		foreach ($monthly_target as $target) :
-			$number = $target->target_number; 
+		/*$this->load->model('target_monthly_model');*/
+		$data['lfa_target1'] = $this->users_targets->getLFATargets1();
+		$data['lfa_target2'] = $this->users_targets->getLFATargets2();
+		$data['lfa_target3'] = $this->users_targets->getLFATargets3();
+		$data['lfa_target4'] = $this->users_targets->getLFATargets4();
+		$data['lfa_target5'] = $this->users_targets->getLFATargets5();
+		$data['lfa_target6'] = $this->users_targets->getLFATargets6();
+		$data['lfa_target7'] = $this->users_targets->getLFATargets7();
+		$data['lfa_target8'] = $this->users_targets->getLFATargets8();
+		$data['lfa_target9'] = $this->users_targets->getLFATargets9();
+		$data['lfa_target10'] = $this->users_targets->getLFATargets10();
+		$data['lfa_target11'] = $this->users_targets->getLFATargets11();
+		$data['lfa_target12'] = $this->users_targets->getLFATargets12();
+		$data['lfa_target13'] = $this->users_targets->getLFATargets13();
+		$data['lfa_target14'] = $this->users_targets->getLFATargets14();
+		$data['lfa_target15'] = $this->users_targets->getLFATargets15();
+		$data['lfa_target16'] = $this->users_targets->getLFATargets16();
+		$data['lfa_target17'] = $this->users_targets->getLFATargets17();
+		$data['lfa_target18'] = $this->users_targets->getLFATargets18();
+		$data['lfa_target19'] = $this->users_targets->getLFATargets19();
+		$data['lfa_target20'] = $this->users_targets->getLFATargets20();
+		/*foreach ($monthly_target as $target) :
+			$number = $target->LFA; 
 		endforeach;		
-		$data['number'] = $number;
+		$data['number'] = $number;*/
 		
 		$this->load->view('header-print');
 		$this->load->view('reports/mne_report_quarterly', $data);
@@ -926,12 +945,12 @@ class Reports_Controller extends CI_Controller {
 		$data['annual_start']=$annual_start;
 		$data['annual_end'] = $annual_end;
 		
-		$this->load->model('target_monthly_model');
-		$monthly_target = $this->target_monthly_model->getTargetMonthly();
+		/*$this->load->model('target_monthly_model');*/
+		/*$monthly_target = $this->target_monthly_model->getTargetMonthly();
 		foreach ($monthly_target as $target) :
-			$number = $target->target_number; 
+			$number = $target->LFA; 
 		endforeach;		
-		$data['number'] = $number;
+		$data['number'] = $number;*/
 		
 		$this->load->view('header-print');
 		$this->load->view('reports/mne_report_monthly', $data);

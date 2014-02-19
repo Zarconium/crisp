@@ -124,7 +124,8 @@ $autoload['model'] = array
 		'subject',
 		'teacher',
 		'user',
-		'classes'
+		'classes',
+		'users_targets'
 	);
 
 
