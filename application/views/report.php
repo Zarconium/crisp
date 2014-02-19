@@ -213,10 +213,8 @@
 					</div>
 				</div>
 			</div>
-	
 
-<!-- SUC Report-->
-<div class="panel-group" id="accordion">
+	<!-- SUC CHED Report-->
 	<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -507,12 +505,11 @@
 	</div>
 
 <!-- SUC Report-->
-	<div class="tab-pane" id="SUC">	
->>>>>>> e458fa7177feb5e5d6e0b2f1769d5cd35f3bdd3f
+<div class="tab-pane" id="SUC">	
 		
 <div class="panel-group" id="accordion4">
-		<!-- SMP Class List DONE -->
 		<div class="panel-group" id="accordion">
+		<!-- SMP Class List DONE -->
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -573,7 +570,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
 
 		<!-- BEST Class List -->
 		<div class="panel-group" id="accordion">
@@ -1160,9 +1156,11 @@
 				</div>
 			</div>
 		</div>
+		</div>
 	</div>
 </div>
 
+<!-- MandE Report-->
 	<div class="tab-pane" id="MandE">
 		<div class="button-groups">
 			<a href="<?php echo base_url('reports/reportTargetConfigurationQuarterly'); ?>"><button type="submit" class="btn btn-primary">Set Targets</button></a>
