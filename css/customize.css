@@ -15,9 +15,26 @@ width: 70%;
 .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"]{
 float: center;
 }
+.panel-default > .panel-heading {
+background-color: #fff !important;
+}
 
-.avoid-me{
-margin-bottom: 15%;
+.front-logo{
+height: 200px;
+}
+
+.front{
+text-align: right;
+}
+
+.front-whisper{
+font-size: 90%;
+color: #999;
+}
+
+.front-welcome{
+margin-bottom: 5px !important;
+margin-top: 5px !important;
 }
 
 .nav-me{
