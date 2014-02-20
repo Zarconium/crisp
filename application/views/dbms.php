@@ -24,6 +24,21 @@
 				<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
 				<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 			</div>
+				<!-- CUT THIS OFF
+				<?php
+					foreach ($students as $student)
+					{
+						// Build the custom actions links.
+						// Adding a new table row.
+						//$this->table->add_row($key['title'], $key['slug'], $actions);
+						$this->table->add_row('action', 'action', $student->Full_Name, $student->School_Name, $student->Subject_Codes);
+					}
+		
+				echo $this->table->generate(); 	
+				echo $this->pagination->create_links();
+				?>
+				-->
+				
 			<table class="table table-striped table-area">
 				<thead>
 				<tr>
@@ -44,7 +59,7 @@
 				</tr>
 				<?php } ?>
 			</table>
-				<?php //echo $links; ?>
+			
 		</div>
 	</div>
 		  
