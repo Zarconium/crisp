@@ -36,8 +36,8 @@
 
 							<div class="button-groups">
 								<!-- CHANGE THIS ALSO --><button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 						</form>
 					</div>
@@ -66,8 +66,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 						</form>
 					</div>
@@ -96,8 +96,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 						</form>
 					</div>
@@ -135,8 +135,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 						</form>
 					</div>
@@ -167,8 +167,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 						</form>
 					</div>
@@ -206,8 +206,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 						</form>
 					</div>
@@ -247,8 +247,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 						</form>
 					</div>
@@ -283,8 +283,8 @@
 
 							<div class="button-groups">
 								<!-- CHANGE THIS ALSO --><button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 						</form>
 					</div>
@@ -313,8 +313,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 						</form>
 					</div>
@@ -343,8 +343,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 						</form>
 					</div>
@@ -382,8 +382,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 						</form>
 					</div>
@@ -414,8 +414,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 						</form>
 					</div>
@@ -453,8 +453,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 						</form>
 					</div>
@@ -494,8 +494,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 						</form>
 					</div>
@@ -563,8 +563,8 @@
 
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 						</form>
 					</div>
@@ -617,8 +617,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 							
 						</form>
@@ -673,8 +673,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 							
 						</form>
@@ -731,8 +731,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 						</form>
 					</div>
@@ -795,8 +795,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 							
 						</form>
@@ -861,8 +861,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 							
 						</form>
@@ -927,8 +927,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 							
 						</form>
@@ -1005,8 +1005,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 							
 						</form>
@@ -1049,8 +1049,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 							
 						</form>
@@ -1089,8 +1089,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 							
 						</form>
@@ -1147,8 +1147,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 							
 						</form>
@@ -1184,8 +1184,8 @@
 							</div>
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 						</form>
 					</div>
@@ -1209,8 +1209,8 @@
 							
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								<button type="button" class="btn btn-info">Print as Excel</button>
-								<button type="button" class="btn btn-info">Print as PDF</button>
+								<button type="button" class="btn btn-info disabled">Print as Excel</button>
+								<button type="button" class="btn btn-info disabled">Print as PDF</button>
 							</div>
 						</form>
 					</div>

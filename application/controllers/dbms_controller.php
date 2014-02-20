@@ -36,6 +36,7 @@ class Dbms_Controller extends CI_Controller
 		//$data['students'] = $this->post->limit($limit, $offset)->student->getAllStudentsFormatted();	
 		//$data['students'] = $this->db->get('student', $config['per_page'], $this->uri->segment(3));
 		//$data['students'] = $this->student->getAllStudentsFormattedLimit($config['per_page'], $this->uri->segment(3));
+		
 		$data['students'] = $this->student->getAllStudentsFormatted();
 		
 		$data['links'] = $this->pagination->create_links();
