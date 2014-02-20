@@ -25,10 +25,6 @@ Class Student extends CI_Model
 		$this->db->join('tracker', 'student_tracker.Tracker_ID = tracker.Tracker_ID', 'left');
 		$this->db->join('subject', 'tracker.Subject_ID = subject.Subject_ID', 'left');
 		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
-		// $this->db->where('status.Name', 'Passed');
-		// $this->db->or_where('status.Name', 'Fail');
-		// $this->db->or_where('status.Name', 'Currently Taking');
-		// $this->db->or_where('status.Name', 'Dropped');
 		$this->db->group_by('Full_Name');
 		$this->db->order_by('student.Student_ID', 'asc');
 
@@ -67,6 +63,32 @@ Class Student extends CI_Model
 			if (isset($params['school']))
 			{
 				$this->db->where('student.School_ID', $params['school']);
+			}
+			$programs = FALSE;
+			if (isset($params['gcat']))
+			{
+				$programs[] = 1;
+			}
+			if (isset($params['best']))
+			{
+				$programs[] = 2;
+			}
+			if (isset($params['adept']))
+			{
+				$programs[] = 3;
+			}
+			if (isset($params['smp']))
+			{
+				$programs[] = 4;
+				$programs[] = 5;
+				$programs[] = 6;
+				$programs[] = 7;
+				$programs[] = 10;
+				$programs[] = 11;
+			}
+			if ($programs)
+			{
+				$this->db->where_in('tracker.Subject_ID', $programs);
 			}
 		}
 

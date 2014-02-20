@@ -58,7 +58,7 @@ class Dbms_Controller extends CI_Controller
 
 		if ($this->input->post())
 		{
-			if ($this->input->post('search_student'))
+			if ($this->input->post('search_student') || $this->input->post('search_teacher'))
 			{
 				$this->form_validation->set_rules('name', 'Name', 'trim|xss_clean');
 				$this->form_validation->set_rules('school', 'School', 'trim|xss_clean');
@@ -104,7 +104,14 @@ class Dbms_Controller extends CI_Controller
 						}
 					}
 
-					$data['students'] = $this->student->getStudentSearchResults($params);
+					if ($this->input->post('search_student'))
+					{
+						$data['students'] = $this->student->getStudentSearchResults($params);
+					}
+					elseif ($this->input->post('search_teacher'))
+					{
+						$data['teachers'] = $this->teacher->getTeacherSearchResults($params);
+					}
 				}
 			}
 		}
