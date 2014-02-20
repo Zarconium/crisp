@@ -36,10 +36,11 @@ class Dbms_Controller extends CI_Controller
 		//$data['students'] = $this->post->limit($limit, $offset)->student->getAllStudentsFormatted();	
 		//$data['students'] = $this->db->get('student', $config['per_page'], $this->uri->segment(3));
 		//$data['students'] = $this->student->getAllStudentsFormattedLimit($config['per_page'], $this->uri->segment(3));
-		$data['students'] = $this->student->getAllStudentsFormatted();
 		
 		$data['links'] = $this->pagination->create_links();
 		
+		$data['schools'] = $this->school->getAllSchools();
+		$data['students'] = $this->student->getAllStudentsFormatted();
 		$data['teachers'] = $this->teacher->getAllTeachersFormatted();
 		$data['proctors'] = $this->proctor->getAllProctorsFormatted();
 		$data['mastertrainers'] = $this->mastertrainer->getAllMasterTrainersFormatted();
@@ -52,6 +53,59 @@ class Dbms_Controller extends CI_Controller
 		$data['adept_students'] = $this->student->getAllAdeptStudents();
 		$data['best_t3_trackers'] = $this->teacher->getAllBestT3Trackers();
 		$data['adept_t3_trackers'] = $this->teacher->getAllAdeptT3Trackers();
+
+		if ($this->input->post())
+		{
+			if ($this->input->post('search_student'))
+			{
+				$this->form_validation->set_rules('name', 'Name', 'trim|xss_clean');
+				$this->form_validation->set_rules('school', 'School', 'trim|xss_clean');
+				$this->form_validation->set_rules('program[]', 'Programs', 'trim|xss_clean');
+
+				if ($this->form_validation->run())
+				{
+					$params = FALSE;
+
+					if ($this->input->post('name'))
+					{
+						$params['name'] = $this->input->post('name');
+					}
+					if ($this->input->post('school'))
+					{
+						$params['school'] = $this->input->post('school');
+					}
+					if ($this->input->post('program'))
+					{
+						foreach ($this->input->post('program') as $program)
+						{
+							switch ($program)
+							{
+								case 'gcat':
+									$params['gcat'] = TRUE;
+									break;
+
+								case 'best':
+								$params['best'] = TRUE;
+								break;
+
+								case 'adept':
+								$params['adept'] = TRUE;
+								break;
+
+								case 'smp':
+								$params['smp'] = TRUE;
+								break;
+								
+								default:
+									break;
+							}
+						}
+					}
+
+					$data['students'] = $this->student->getStudentSearchResults($params);
+				}
+			}
+		}
 
 		$this->load->view('header');
 		$this->load->view('dbms', $data);
@@ -1499,7 +1553,7 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('alternate_address', 'Alternate Address', 'trim|xss_clean|alpha_dash');
 			$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|xss_clean|max_length[13]|alpha_dash');
 			$this->form_validation->set_rules('landline', 'Landline', 'trim|required||xss_clean|max_length[9]|alpha_dash');
-			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|max_length[45]|valid_email');
 			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean|max_length[45]|alpha_dash');
 			$this->form_validation->set_rules('degree_type', 'AB/BS', 'trim|xss_clean');//wala po ulit sa db itong mga ito--- //
 			$this->form_validation->set_rules('degree', 'Degree', 'trim|xss_clean');//wala po ulit sa db itong mga ito--- //

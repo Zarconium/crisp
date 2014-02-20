@@ -41,7 +41,48 @@ Class Student extends CI_Model
 		else
 		{
 			return false;
-		}	
+		}
+	}
+
+	function getStudentSearchResults($params)
+	{
+		$this->db->distinct();
+		$this->db->select('student.Student_ID, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name, CONCAT(school.name, " - ", school.Branch) as School_Name, GROUP_CONCAT(subject.Subject_Code SEPARATOR ", ") as Subject_Codes', false);
+		$this->db->from('student');
+		$this->db->join('school', 'student.School_ID = school.School_ID', 'left');
+		$this->db->join('student_tracker', 'student.Student_ID = student_tracker.Student_ID', 'left');
+		$this->db->join('tracker', 'student_tracker.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('subject', 'tracker.Subject_ID = subject.Subject_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+
+		if ($params)
+		{
+			if (isset($params['name']))
+			{
+				$this->db->like('student.Last_Name', $params['name']);
+				$this->db->or_like('student.First_Name', $params['name']);
+				$this->db->or_like('student.Middle_Initial', $params['name']);
+				$this->db->or_like('student.Name_Suffix', $params['name']);
+			}
+			if (isset($params['school']))
+			{
+				$this->db->where('student.School_ID', $params['school']);
+			}
+		}
+
+		$this->db->group_by('Full_Name');
+		$this->db->order_by('student.Student_ID', 'asc');
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	function getStudentById($id)
