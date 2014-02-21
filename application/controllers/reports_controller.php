@@ -942,6 +942,27 @@ class Reports_Controller extends CI_Controller {
 		$data['getMonthlyCompletedSystemsThinking'] = $this->report_mne-> getallStudentsSystemsThinkingCompletedMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end);
 		$data['getMonthlyStudentsUndergoneInternship'] = $this->report_mne-> getallStudentsInternshipCompletedMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end);
 
+		
+		$data['lfa_target1'] = $this->users_targets->getLFATargets1();
+		$data['lfa_target2'] = $this->users_targets->getLFATargets2();
+		$data['lfa_target3'] = $this->users_targets->getLFATargets3();
+		$data['lfa_target4'] = $this->users_targets->getLFATargets4();
+		$data['lfa_target5'] = $this->users_targets->getLFATargets5();
+		$data['lfa_target6'] = $this->users_targets->getLFATargets6();
+		$data['lfa_target7'] = $this->users_targets->getLFATargets7();
+		$data['lfa_target8'] = $this->users_targets->getLFATargets8();
+		$data['lfa_target9'] = $this->users_targets->getLFATargets9();
+		$data['lfa_target10'] = $this->users_targets->getLFATargets10();
+		$data['lfa_target11'] = $this->users_targets->getLFATargets11();
+		$data['lfa_target12'] = $this->users_targets->getLFATargets12();
+		$data['lfa_target13'] = $this->users_targets->getLFATargets13();
+		$data['lfa_target14'] = $this->users_targets->getLFATargets14();
+		$data['lfa_target15'] = $this->users_targets->getLFATargets15();
+		$data['lfa_target16'] = $this->users_targets->getLFATargets16();
+		$data['lfa_target17'] = $this->users_targets->getLFATargets17();
+		$data['lfa_target18'] = $this->users_targets->getLFATargets18();
+		$data['lfa_target19'] = $this->users_targets->getLFATargets19();
+		$data['lfa_target20'] = $this->users_targets->getLFATargets20();
 		$data['annual_start']=$annual_start;
 		$data['annual_end'] = $annual_end;
 		
@@ -955,6 +976,8 @@ class Reports_Controller extends CI_Controller {
 		$this->load->view('header-print');
 		$this->load->view('reports/mne_report_monthly', $data);
 		$this->load->view('footer-print');	
+
+
 	}
 	
 	function reportTargetConfigurationQuarterly(){

@@ -54,72 +54,72 @@
 <tbody>
 	<tr>
 		<td>Teachers Trained in GCAT</td>
-		<td>20,000</td>
+		<td><?php echo $lfa_target1->LFA; ?></td>
 		<?php foreach ($getMonthlyTeachersCompletedGcat as $count): ?>
 			<td><?php echo $count->January; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
+		<td><?php echo round($lfa_target1->QTR_1 / 3); ?></td>
+		<td><?php echo number_format((float)($count->January / ($lfa_target1->QTR_1 / 3)) * 100, 2, '.', ''); ?>%</td>
 		<?php foreach ($getMonthlyTeachersCompletedGcat as $count): ?>
 			<td><?php echo $count->February; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
+		<td><?php echo round($lfa_target1->QTR_1 / 3); ?></td>
+		<td><?php echo number_format((float)($count->February / ($lfa_target1->QTR_1 / 3)) * 100, 2, '.', ''); ?>%</td>
 		<?php foreach ($getMonthlyTeachersCompletedGcat as $count): ?>
 			<td><?php echo $count->March; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
+		<td><?php echo round($lfa_target1->QTR_1 / 3); ?></td>
+		<td><?php echo number_format((float)($count->March / ($lfa_target1->QTR_1 / 3)) * 100, 2, '.', ''); ?>%</td>
 		<?php foreach ($getMonthlyTeachersCompletedGcat as $count): ?>
 			<td><?php echo $count->April; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
+		<td><?php echo round($lfa_target1->QTR_2 / 3); ?></td>
+		<td><?php echo number_format((float)($count->April / ($lfa_target1->QTR_1 / 3)) * 100, 2, '.', ''); ?>%</td>
 		<?php foreach ($getMonthlyTeachersCompletedGcat as $count): ?>
 			<td><?php echo $count->May; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
+		<td><?php echo round($lfa_target1->QTR_2 / 3); ?></td>
+		<td><?php echo number_format((float)($count->May / ($lfa_target1->QTR_1 / 3)) * 100, 2, '.', ''); ?>%</td>
 		<?php foreach ($getMonthlyTeachersCompletedGcat as $count): ?>
 			<td><?php echo $count->June; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
+		<td><?php echo round($lfa_target1->QTR_2 / 3); ?></td>
+		<td><?php echo number_format((float)($count->June / ($lfa_target1->QTR_1 / 3)) * 100, 2, '.', ''); ?>%</td>
 		<?php foreach ($getMonthlyTeachersCompletedGcat as $count): ?>
 			<td><?php echo $count->July; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
+		<td><?php echo round($lfa_target1->QTR_3 / 3); ?></td>
+		<td><?php echo number_format((float)($count->July / ($lfa_target1->QTR_1 / 3)) * 100, 2, '.', ''); ?>%</td>
 		<?php foreach ($getMonthlyTeachersCompletedGcat as $count): ?>
 			<td><?php echo $count->August; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
+		<td><?php echo round($lfa_target1->QTR_3 / 3); ?></td>
+		<td><?php echo number_format((float)($count->August / ($lfa_target1->QTR_1 / 3)) * 100, 2, '.', ''); ?>%</td>
 		<?php foreach ($getMonthlyTeachersCompletedGcat as $count): ?>
 			<td><?php echo $count->September; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
+		<td><?php echo round($lfa_target1->QTR_3 / 3); ?></td>
+		<td><?php echo number_format((float)($count->September / ($lfa_target1->QTR_1 / 3)) * 100, 2, '.', ''); ?>%</td>
 		<?php foreach ($getMonthlyTeachersCompletedGcat as $count): ?>
 			<td><?php echo $count->October; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
+		<td><?php echo round($lfa_target1->QTR_4 / 3); ?></td>
+		<td><?php echo number_format((float)($count->October / ($lfa_target1->QTR_1 / 3)) * 100, 2, '.', ''); ?>%</td>
 		<?php foreach ($getMonthlyTeachersCompletedGcat as $count): ?>
 			<td><?php echo $count->November; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
+		<td><?php echo round($lfa_target1->QTR_4 / 3); ?></td>
+		<td><?php echo number_format((float)($count->November / ($lfa_target1->QTR_1 / 3)) * 100, 2, '.', ''); ?>%</td>
 		<?php foreach ($getMonthlyTeachersCompletedGcat as $count): ?>
 			<td><?php echo $count->December; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
+		<td><?php echo round($lfa_target1->QTR_4 / 3); ?></td>
+		<td><?php echo number_format((float)($count->December / ($lfa_target1->QTR_1 / 3)) * 100, 2, '.', ''); ?>%</td>
 		<?php foreach ($getMonthlyTeachersCompletedGcat as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
 		<?php endforeach; ?>
-		<td>1000</td>
-		<td>.05</td>
+		<td><?php echo $lfa_target1->LFA; ?></td>
+		<td><?php echo number_format((float)($count->Annual / ($lfa_target1->LFA)) * 100, 2, '.', ''); ?>%</td>
 		<?php foreach ($getMonthlyTeachersCompletedGcat as $count): ?>
 			<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
