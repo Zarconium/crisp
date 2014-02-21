@@ -6,7 +6,7 @@
 
 	<h1>SMP Tracker</h1>
 
-	<?php echo form_open('/dbms/form_program_smp_tracker'); ?>
+	<?php echo form_open('/dbms/form_program_smp_tracker/' . $smp_tracker->Student_ID); ?>
 		<div class="save">
 			<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
 			<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
@@ -19,48 +19,33 @@
 		<div class="form-inline">
 			<div class="form-group">
 				<label>ID Number</label>
-				<input type="text" class="form-control" name="id_number" value="<?php echo set_value('id_number'); ?>">
-				<?php echo form_error('id_number'); ?>
+				<input type="text" class="form-control" name="id_number" value="<?php if($smp_tracker->Student_ID_Number) echo $smp_tracker->Student_ID_Number; ?>" readonly="true">
 			</div>
 
 			<div class="form-group">
 				<label>Name</label>
-				<input type="text" class="form-control" name="name" value="<?php echo set_value('name'); ?>">
-				<?php echo form_error('name'); ?>
+				<input type="text" class="form-control" name="name" value="<?php if($smp_tracker->Full_Name) echo $smp_tracker->Full_Name; ?>" readonly="true">
 			</div>
 
 			<div class="form-group">
 				<label>School</label>
-				<select class="form-control" name="school">
+				<select class="form-control" name="school" disabled="true">
 				<?php foreach ($schools as $school): ?>
-					<option value="<?php echo $school->School_ID ?>"><?php echo $school->Name . " - " . $school->Branch ?></option>
+					<option value="<?php echo $school->School_ID ?>" <?php if ($smp_tracker->School_ID == $school->School_ID) echo 'selected="selected"';?>><?php echo $school->Name . " - " . $school->Branch ?></option>
 				<?php endforeach; ?>
 				</select>
-				<?php echo form_error('school'); ?>
 			</div>
 
 			<div class="form-group">
 				<label>Year</label>
-				<input type="text" class="form-control" name="year" value="<?php echo set_value('year'); ?>">
-				<?php echo form_error('year'); ?>
+				<input type="text" class="form-control" name="year" value="<?php if($smp_tracker->Year) echo $smp_tracker->Year; ?>" readonly="true">
 			</div>
 
 			<div class="form-group">
 				<label>Course</label>
-				<input type="text" class="form-control" name="course" value="<?php echo set_value('course'); ?>">
-				<?php echo form_error('course'); ?>
+				<input type="text" class="form-control" name="course" value="<?php if($smp_tracker->Course) echo $smp_tracker->Course; ?>" readonly="true">
 			</div>
 
-			<div class="form-group">
-				<label>Taking SMP as</label>
-				<select class="form-control" name="smp" value="<?php echo set_value('smp'); ?>">
-					<option>Option1</option>
-					<option>Option2</option>
-					<option>Option3</option>
-				</select>
-				<?php echo form_error('smp'); ?>
-			</div>
-				
 			<legend>Subjects</legend>
 				
 			<table class="table">

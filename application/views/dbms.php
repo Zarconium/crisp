@@ -69,7 +69,7 @@
 				<a href="<?php echo base_url('dbms/form_teacher_application'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
 				<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 				<button class="btn btn-success" data-toggle="modal" data-target="#batchTeacher">Batch Upload</button>
-				<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
+				<button class="btn btn-warning" data-toggle="modal" data-target="#searchTeacher">Search</button>
 				<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 			</div>
 			<table class="table table-striped table-area">
@@ -267,7 +267,7 @@
 					</thead>
 					<?php if ($smp_students) foreach ($smp_students as $smp_student): ?>
 					<tr>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_smp_tracker'); ?>">View</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_smp_tracker/' . $smp_student->Student_ID); ?>">View</a></td>
 						<td><?php echo $smp_student->Student_ID_Number; ?></td>
 						<td><?php echo $smp_student->Full_Name; ?></td>
 						<td><?php echo $smp_student->Year; ?></td>
@@ -477,11 +477,7 @@
 		</div>
 	</div>
 </div>
-  
-
-
 <!-- Dialogs and Stuff -->
-
 <div class="modal fade" id="batchStudent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -658,7 +654,6 @@
 	</div>
 </div>
 
-
 <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -666,31 +661,77 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
 			</div>
-			<div class="modal-body">
-				<div class="student-button-groups">
-					<form class="form" role="form">
-						<div class="form-group">
-							<label for="name">Name</label>
-							<input type="text" class="form-control" id="sname">
-						</div>
-						<div class="form-group">
-							<label for="school">School</label>
-							<input type="text" class="form-control" id="sschool">
-						</div>
-						<div class="form-group">
-							<label for="programs">Programs</label><br />
-							<input type="checkbox" name="sprogram" value="best"> BEST<br />	
-							<input type="checkbox" name="sprogram" value="smp"> SMP<br />	
-							<input type="checkbox" name="sprogram" value="adept"> ADEPT<br />
-							<input type="checkbox" name="sprogram" value="gcat"> GCAT<br />
-						</div>
-					</form>
+			<form class="form" role="form" action="<?php echo base_url('dbms'); ?>" method="post">
+				<div class="modal-body">
+					<div class="student-button-groups">
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" class="form-control" name="name" value="<?php echo set_value('name'); ?>">
+							</div>
+							<div class="form-group">
+								<label for="school">School</label>
+								<select class="form-control" name="school">
+									<option></option>
+									<?php if ($schools) foreach ($schools as $school): ?>
+									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="programs">Programs</label><br />
+								<input type="checkbox" name="program[]" value="gcat" <?php echo set_checkbox('program[]', 'gcat'); ?>> GCAT<br />
+								<input type="checkbox" name="program[]" value="best" <?php echo set_checkbox('program[]', 'best'); ?>> BEST<br />	
+								<input type="checkbox" name="program[]" value="adept" <?php echo set_checkbox('program[]', 'adept'); ?>> ADEPT<br />
+								<input type="checkbox" name="program[]" value="smp" <?php echo set_checkbox('program[]', 'smp'); ?>> SMP<br />	
+							</div>
+					</div>
 				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" name="search_student" value="search_student">Search</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="searchTeacher" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-			</div>
+			<form class="form" role="form" action="<?php echo base_url('dbms'); ?>" method="post">
+				<div class="modal-body">
+					<div class="student-button-groups">
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" class="form-control" name="name" <?php echo set_value('name'); ?>>
+							</div>
+							<div class="form-group">
+								<label for="school">School</label>
+								<select class="form-control" name="school">
+									<option></option>
+									<?php if ($schools) foreach ($schools as $school): ?>
+									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="programs">Programs</label><br />
+								<input type="checkbox" name="program[]" value="gcat" <?php echo set_checkbox('program[]', 'gcat'); ?>> GCAT<br />
+								<input type="checkbox" name="program[]" value="best" <?php echo set_checkbox('program[]', 'best'); ?>> BEST<br />	
+								<input type="checkbox" name="program[]" value="adept" <?php echo set_checkbox('program[]', 'adept'); ?>> ADEPT<br />
+								<input type="checkbox" name="program[]" value="smp" <?php echo set_checkbox('program[]', 'smp'); ?>> SMP<br />	
+							</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" name="search_teacher" value="search_student">Search</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
