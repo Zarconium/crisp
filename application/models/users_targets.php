@@ -280,4 +280,85 @@ Class users_targets extends CI_Model
 		}
 	}
 
+	function getLFATargets21()
+	{
+		$query = $this->db->query('SELECT * FROM users_targets where users_targets.users_targets_id=21;');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getLFATargets22()
+	{
+		$query = $this->db->query('SELECT * FROM users_targets where users_targets.users_targets_id=22;');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getLFATargets23()
+	{
+		$query = $this->db->query('SELECT * FROM users_targets where users_targets.users_targets_id=23;');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	function getLFATargets24()
+	{
+		$query = $this->db->query('SELECT * FROM users_targets where users_targets.users_targets_id=24;');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	function getLFATargets25()
+	{
+		$query = $this->db->query('SELECT * FROM users_targets where users_targets.users_targets_id=25;');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	function getLFATargets26()
+	{
+		$query = $this->db->query('SELECT * FROM users_targets where users_targets.users_targets_id=26;');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 }
