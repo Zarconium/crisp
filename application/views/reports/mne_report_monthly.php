@@ -4,7 +4,7 @@
 	
 <div class="report-form">
 <legend>T3</legend>
-<table class="table">
+<table class="table table-striped table-bordered">
 <thead>
 <tr>
 	<th>Description</th>
@@ -777,7 +777,7 @@
 
 
 <legend>GCAT, BEST, AdEPT</legend>
-<table class="table"><thead>
+<table class="table table-striped table-bordered"><thead>
 <tr>
 	<th>Description</th>
 	<th>LFA Targets</th>
@@ -1478,7 +1478,7 @@
 
 
 <legend>SMP Completion</legend>
-<table class="table"><thead>
+<table class="table table-striped table-bordered"><thead>
 <tr>
 	<th>Description</th>
 	<th>LFA Targets</th>

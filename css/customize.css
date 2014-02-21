@@ -180,3 +180,14 @@ width: 500px;
 .header{
 text-align: center;
 }
+
+.welcome-logo{
+height: 100px;
+text-align: center;
+margin-left: 0 auto;
+}
+
+.group-logos{
+width: 410px;	
+margin: 0 auto;
+}

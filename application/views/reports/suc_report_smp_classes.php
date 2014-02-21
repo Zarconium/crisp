@@ -7,7 +7,7 @@
 
 <legend>Number of Students Who Have Taken a Particular SMP Subject</legend>
 <div class="report-form">
-<table class="table">
+<table class="table table-striped table-bordered">
 <thead>
 	<tr>
 		<th>Class Name</th>
