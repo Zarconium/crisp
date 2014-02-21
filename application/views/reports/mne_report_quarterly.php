@@ -33,29 +33,29 @@
 		<td><?php echo $lfa_target1->LFA; ?></td>
 		<?php foreach ($teacher_gcat_completed_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
-			<td><?php echo round($lfa_target1->QTR_1 / 3); ?></td>
+			<td><?php echo round($lfa_target1->QTR_1 ); ?></td>
 			<td><?php echo number_format((float)($count->Q1 / ($lfa_target1->QTR_1)) * 100, 2, '.', ''); ?>%</td>
 		<?php endforeach; ?>
 		<?php foreach ($teacher_gcat_completed_row as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
-			<td><?php echo round($lfa_target1->QTR_2 / 3); ?></td>
+			<td><?php echo round($lfa_target1->QTR_2 ); ?></td>
 			<td><?php echo number_format((float)($count->Q2 / ($lfa_target1->QTR_2)) * 100, 2, '.', ''); ?>%</td>
 		<?php endforeach; ?>
 		<?php foreach ($teacher_gcat_completed_row as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
-			<td><?php echo round($lfa_target1->QTR_3 / 3); ?></td>
+			<td><?php echo round($lfa_target1->QTR_3 ); ?></td>
 			<td><?php echo number_format((float)($count->Q3 / ($lfa_target1->QTR_3)) * 100, 2, '.', ''); ?>%</td>
 		<?php endforeach; ?>
 		<?php foreach ($teacher_gcat_completed_row as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
-			<td><?php echo round($lfa_target1->QTR_4 / 3); ?></td>
+			<td><?php echo round($lfa_target1->QTR_4 ); ?></td>
 			<td><?php echo number_format((float)($count->Q4 / ($lfa_target1->QTR_4)) * 100, 2, '.', ''); ?>%</td>
 		<?php endforeach; ?>
 		<?php foreach ($teacher_gcat_completed_row as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
 		<?php endforeach; ?>
-		<td><?php echo $lfa_target1->LFA; ?></td>
-		<td><?php echo number_format((float)$count->Annual / $lfa_target1->LFA * 100, 2, '.', ''); ?>%</td>
+		<td><?php echo $lfa_target1->QTR_1 + $lfa_target1->QTR_2 + $lfa_target1->QTR_3 + $lfa_target1->QTR_4 ; ?></td>
+		<td><?php echo number_format((float)($count->Annual / ($lfa_target1->QTR_1 + $lfa_target1->QTR_2 + $lfa_target1->QTR_3 + $lfa_target1->QTR_4)) * 100, 2, '.', ''); ?>%</td>
 		<?php foreach ($teacher_gcat_completed_row as $count): ?>
 		<td><?php echo $count->Cumulative; ?></td>
 		<?php endforeach; ?>
@@ -65,8 +65,8 @@
 		<td><?php echo $lfa_target2->LFA; ?></td>
 		<?php foreach ($teacher_best_completed_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
-			<td>1000</td>
-			<td><?php echo $count->Q1 / $lfa_target; ?></td>	
+			<td><?php echo round($lfa_target2->QTR_1 ); ?></td>
+			<td><?php echo number_format((float)($count->Q1 / ($lfa_target1->QTR_1)) * 100, 2, '.', ''); ?>%</td>
 		<?php endforeach; ?>
 		<?php foreach ($teacher_best_completed_row as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
