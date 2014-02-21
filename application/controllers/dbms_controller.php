@@ -2444,12 +2444,15 @@ class Dbms_Controller extends CI_Controller
 		}
 	}
 
-	function form_program_smp_tracker()
+	function form_program_smp_tracker($id)
 	{
-		$this->log->addLog('Updated SMP Tracker');
+		$data['schools'] = $this->school->getAllSchools();
+		$data['statuses'] = $this->status->getAllStatuses();
+		$data['smp_tracker'] = $this->student->getSmpStudentByStudentIdOrCode($id);
+		// $this->log->addLog('Updated SMP Tracker');
 
 		$this->load->view('header');
-		$this->load->view('forms/form-program-smp-tracker');
+		$this->load->view('forms/form-program-smp-tracker', $data);
 		$this->load->view('footer');
 	}
 
