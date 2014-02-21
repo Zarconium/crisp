@@ -9,7 +9,6 @@
 <thead>
 <tr>
 	<th>Description</th>
-	<th>LFA Targets</th>
 	<th>Q1</th>
 	<th>Target</th>
 	<th>%</th>
@@ -35,22 +34,22 @@
 		<?php foreach ($teacher_gcat_completed_row as $count): ?>
 			<td><?php echo $count->Q1; ?></td>
 			<td><?php echo round($lfa_target1->QTR_1 / 3); ?></td>
-			<td><?php echo number_format((float)($count->Q1 / ($lfa_target1->QTR_1 / 3)) * 100, 2, '.', ''); ?>%</td>
+			<td><?php echo number_format((float)($count->Q1 / ($lfa_target1->QTR_1)) * 100, 2, '.', ''); ?>%</td>
 		<?php endforeach; ?>
 		<?php foreach ($teacher_gcat_completed_row as $count): ?>
 			<td><?php echo $count->Q2; ?></td>
 			<td><?php echo round($lfa_target1->QTR_2 / 3); ?></td>
-			<td><?php echo number_format((float)($count->Q2 / ($lfa_target1->QTR_2 / 3)) * 100, 2, '.', ''); ?>%</td>
+			<td><?php echo number_format((float)($count->Q2 / ($lfa_target1->QTR_2)) * 100, 2, '.', ''); ?>%</td>
 		<?php endforeach; ?>
 		<?php foreach ($teacher_gcat_completed_row as $count): ?>
 			<td><?php echo $count->Q3; ?></td>
 			<td><?php echo round($lfa_target1->QTR_3 / 3); ?></td>
-			<td><?php echo number_format((float)($count->Q3 / ($lfa_target1->QTR_3 / 3)) * 100, 2, '.', ''); ?>%</td>
+			<td><?php echo number_format((float)($count->Q3 / ($lfa_target1->QTR_3)) * 100, 2, '.', ''); ?>%</td>
 		<?php endforeach; ?>
 		<?php foreach ($teacher_gcat_completed_row as $count): ?>
 			<td><?php echo $count->Q4; ?></td>
 			<td><?php echo round($lfa_target1->QTR_4 / 3); ?></td>
-			<td><?php echo number_format((float)($count->Q4 / ($lfa_target1->QTR_4 / 3)) * 100, 2, '.', ''); ?>%</td>
+			<td><?php echo number_format((float)($count->Q4 / ($lfa_target1->QTR_4)) * 100, 2, '.', ''); ?>%</td>
 		<?php endforeach; ?>
 		<?php foreach ($teacher_gcat_completed_row as $count): ?>
 			<td><?php echo $count->Annual; ?></td>
