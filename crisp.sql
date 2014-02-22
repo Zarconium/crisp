@@ -2519,7 +2519,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_application` (
   `T3_Application_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Answer_1` text,
   `Answer_2` text,
-  `Total_Numbers_Of_Subjects_Handled` int(11) NOT NULL,
+  `Total_Number_Of_Subjects_Handled` int(11) NOT NULL,
   `Years_Teaching` int(11) NOT NULL,
   `Years_Teaching_In_Current_Institution` int(11) NOT NULL,
   `Avg_Student_Per_Class` int(11) NOT NULL,
@@ -2540,7 +2540,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_application` (
 -- Dumping data for table `smp_t3_application`
 --
 
-INSERT INTO `smp_t3_application` (`T3_Application_ID`, `Answer_1`, `Answer_2`, `Total_Numbers_Of_Subjects_Handled`, `Years_Teaching`, `Years_Teaching_In_Current_Institution`, `Avg_Student_Per_Class`, `Support_Offices_Available`, `Instructional_Materials_Support`, `Technology_Support`, `Readily_Use_Lab`, `Internet_Services`, `Self_Assessment_Form_Business_Communication`, `Self_Assessment_Form_Service_Culture`, `Contract`) VALUES
+INSERT INTO `smp_t3_application` (`T3_Application_ID`, `Answer_1`, `Answer_2`, `Total_Number_Of_Subjects_Handled`, `Years_Teaching`, `Years_Teaching_In_Current_Institution`, `Avg_Student_Per_Class`, `Support_Offices_Available`, `Instructional_Materials_Support`, `Technology_Support`, `Readily_Use_Lab`, `Internet_Services`, `Self_Assessment_Form_Business_Communication`, `Self_Assessment_Form_Service_Culture`, `Contract`) VALUES
 (1, 'Yes', 'No', 123, 2, 3, 32, 'No.', 'Books', 'Computer', 0, 1, 1, 0, 1),
 (2, 'Yes', 'No', 232, 2, 24, 3, 'YES.', 'IPAD', 'Notebook', 0, 0, 1, 1, 0),
 (3, 'No', 'No', 2, 33, 3, 20, 'No', 'None', 'None', 0, 0, 1, 1, 0);
