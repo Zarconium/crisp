@@ -283,7 +283,7 @@ Class Student extends CI_Model
 
 	function getBestStudentByStudentIdOrCode($id_code)
 	{
-		$this->db->select('*, status.Name as Status_Name');
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name, status.Name as Status_Name', false);
 		$this->db->from('best_student');
 		$this->db->join('tracker', 'best_student.Tracker_ID = tracker.Tracker_ID', 'left');
 		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
@@ -348,7 +348,7 @@ Class Student extends CI_Model
 
 	function getAdeptStudentByStudentIdOrCode($id_code)
 	{
-		$this->db->select('*, status.Name as Status_Name');
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name, status.Name as Status_Name', false);
 		$this->db->from('adept_student');
 		$this->db->join('tracker', 'adept_student.Tracker_ID = tracker.Tracker_ID', 'left');
 		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');

@@ -353,7 +353,7 @@
 					</thead>
 					<?php if ($best_students) foreach ($best_students as $best_student): ?>
 					<tr>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_best_tracker'); ?>">View</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_best_tracker/' . $best_student->Student_ID); ?>">View</a></td>
 						<td><?php echo $best_student->Student_ID_Number; ?></td>
 						<td><?php echo $best_student->Full_Name; ?></td>
 						<td><?php echo $best_student->Year; ?></td>
@@ -381,7 +381,7 @@
 					</thead>
 					<?php if ($adept_students) foreach ($adept_students as $adept_student): ?>
 					<tr>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_adept_tracker'); ?>">View</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_adept_tracker/' . $adept_student->Student_ID); ?>">View</a></td>
 						<td><?php echo $adept_student->Student_ID_Number; ?></td>
 						<td><?php echo $adept_student->Full_Name; ?></td>
 						<td><?php echo $adept_student->Year; ?></td>
@@ -410,7 +410,7 @@
 					</thead>
 					<?php if ($best_t3_trackers) foreach ($best_t3_trackers as $best_t3_tracker): ?>
 					<tr>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_t3_adept_tracker'); ?>">View</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_t3_best_tracker/' . $best_t3_tracker->Teacher_ID); ?>">View</a></td>
 						<td><?php echo $best_t3_tracker->Full_Name; ?></td>
 						<td><?php echo $best_t3_tracker->School_Name; ?></td>
 						<td><?php echo date("m/d/Y", strtotime($best_t3_tracker->Birthdate)); ?></td>
@@ -451,7 +451,7 @@
 					</thead>
 					<?php if ($adept_t3_trackers) foreach ($adept_t3_trackers as $adept_t3_tracker): ?>
 					<tr>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_t3_adept_tracker'); ?>">View</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_t3_adept_tracker/' . $adept_t3_tracker->Teacher_ID); ?>">View</a></td>
 						<td><?php echo $adept_t3_tracker->Full_Name; ?></td>
 						<td><?php echo $adept_t3_tracker->School_Name; ?></td>
 						<td><?php echo date("m/d/Y", strtotime($adept_t3_tracker->Birthdate)); ?></td>

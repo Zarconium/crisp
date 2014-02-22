@@ -21,29 +21,12 @@
 		<div class="form-inline">
 			<div class="form-group">		
 				<label>ID Number</label>			
-				<input class="form-control" type="text" name="last_name" value="<?php echo set_value('id_number'); ?>">
+				<input class="form-control" type="text" name="id_number" value="<?php if ($best_student->Student_ID_Number) echo $best_student->Student_ID_Number; ?>" readonly="true">
 			</div>
 			
 			<div class="form-group">
 				<label>Name</label>
 				<input class="form-control" type="text" name="name" value="<?php if ($best_student->Full_Name) echo $best_student->Full_Name; ?>" readonly="true">
-			</div>
-			
-			<div class="form-group">
-				<label>Student Number</label><br/>
-				<input class="form-control" type="text" name="student_number" value="<?php echo set_value('student_number'); ?>">
-			</div>
-			
-			<div class="form-group">
-				<label>Control Number</label><br/>
-				<input class="form-control" type="text" name="control_number" value="<?php echo set_value('control number'); ?>">
-				<?php echo form_error('control_number'); ?>
-			</div>		
-
-			<div class="form-group">
-				<label>Username</label>
-				<input class="form-control" type="text" name="username value="<?php echo set_value('username'); ?>>
-				<?php echo form_error('username'); ?>
 			</div>
 
 			<div class="form-group">
@@ -54,6 +37,45 @@
 				<?php endforeach; ?>
 				</select>
 			</div>
-		</div>	
+		</div>
+
+		<legend>BEST</legend>
+			
+		<div class="form">
+			<div class="form-group">
+				<label>Control Number</label><br/>
+				<input class="form-control" type="text" name="control_number" value="<?php if ($best_student->Control_Number) echo $best_student->Control_Number; ?>">
+				<?php echo form_error('control_number'); ?>
+			</div>		
+
+			<div class="form-group">
+				<label>Username</label>
+				<input class="form-control" type="text" name="username" value="<?php if ($best_student->Username) echo $best_student->Username; ?>">
+				<?php echo form_error('username'); ?>
+			</div>
+
+			<div class="form-group">
+				<label>Status</label><br />
+				<select class="form-control" name="status">
+				<?php foreach ($statuses as $status): ?>
+					<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($best_student->Status_ID)) if ($status->Status_ID == $best_student->Status_ID) echo 'selected="selected"'; ?>><?php echo $status->Name; ?></option>
+				<?php endforeach; ?>
+				</select>
+				<?php echo form_error('status'); ?>
+			</div>
+
+			<div class="form-group">
+				<label>Remarks</label>
+				<input class="form-control" type="text" name="remarks" value="<?php if ($best_student->Remarks) echo $best_student->Remarks; ?>">
+				<?php echo form_error('remarks'); ?>
+			</div>
+
+			<div class="form-group">
+				<label>CD</label><br />
+				<input type="radio" name="cd" value="1" <?php if ($best_student->CD == 1) echo 'checked="checked"'; ?>> Yes
+				<input type="radio" name="cd" value="0" <?php if ($best_student->CD == 0) echo 'checked="checked"'; ?>> No
+				<?php echo form_error('cd'); ?>
+			</div>
+		</div>
 	</form>
-</div>	
+</div>

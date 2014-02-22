@@ -47,7 +47,6 @@
 				<label>Course</label>
 				<input type="text" class="form-control" name="course" value="<?php if($internship->Course) echo $internship->Course; ?>" readonly="true">
 			</div>
-		
 		</div>
 		
 		<div class="form">
