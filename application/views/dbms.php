@@ -186,7 +186,7 @@
 						<th>Semester</th>
 						<th>Year</th>
 						<th>Section</th>
-						<th>Students</th>
+						<!--<th>Students</th>-->
 					</tr>
 					</thead>
 					<?php if ($student_classes) foreach ($student_classes as $student_class): ?>
@@ -200,7 +200,7 @@
 						<td><?php echo $student_class->Semester; ?></td>
 						<td><?php echo $student_class->School_Year; ?></td>
 						<td><?php echo $student_class->Section; ?></td>
-						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfStudents">View List</button></td>
+						<!--<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfStudents">View List</button></td>-->
 					</tr>
 					<?php endforeach; ?>
 				</table>
@@ -220,7 +220,7 @@
 						<th>Action</th>
 						<th>Trainer's Name</th>
 						<th>Subject</th>
-						<th>Teachers</th>
+						<!--<th>Teachers</th>-->
 					</thead>
 					</tr>
 					<?php if ($t3_classes) foreach ($t3_classes as $t3_class): ?>
@@ -229,7 +229,7 @@
 						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_mastertrainer_classlist/' . $t3_class->T3_Class_ID); ?>">View</a>
 						<td><?php echo $t3_class->Full_Name; ?></td>
 						<td><?php echo $t3_class->Subject_Code; ?></td>
-						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfStudents">View List</button></td>
+						<!--<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfStudents">View List</button></td>-->
 					</tr>
 					<?php endforeach; ?>
 				</table>
@@ -406,7 +406,6 @@
 						<th>Birthday</th>
 						<th>Status</th>
 						<th>Unsubmitted Documents</th>
-						<th>Grade of Tasks</th>
 					</tr>
 					</thead>
 					<?php if ($best_t3_trackers) foreach ($best_t3_trackers as $best_t3_tracker): ?>
@@ -427,7 +426,7 @@
 								if (!$best_t3_tracker->Best_Certified_Trainers) { echo "Best Certified Trainers"; }
 							?>
 						</td>
-						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewT3BESTTasks">View List</button></td>
+						<!--<td><button class="btn btn-default" data-toggle="modal" data-target="#viewT3BESTTasks">View List</button></td>-->
 					</tr>
 					<?php endforeach; ?>
 				</table>
@@ -448,7 +447,6 @@
 						<th>Birthday</th>
 						<th>Status</th>
 						<th>Unsubmitted Documents</th>
-						<th>Grade of Tasks</th>
 					</tr>
 					</thead>
 					<?php if ($adept_t3_trackers) foreach ($adept_t3_trackers as $adept_t3_tracker): ?>
@@ -469,7 +467,7 @@
 								if (!$adept_t3_tracker->Adept_Certified_Trainers) { echo "Adept Certified Trainers"; }
 							?>
 						</td>
-						<td><button class="btn btn-default" data-toggle="modal" data-target="#viewT3BESTTasks">View List</button></td>
+						<!--<td><button class="btn btn-default" data-toggle="modal" data-target="#viewT3BESTTasks">View List</button></td>-->
 					</tr>
 					<?php endforeach; ?>
 				</table>
@@ -477,6 +475,7 @@
 		</div>
 	</div>
 </div>
+
 <!-- Dialogs and Stuff -->
 <div class="modal fade" id="batchStudent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
