@@ -2449,20 +2449,211 @@ class Dbms_Controller extends CI_Controller
 		$data['schools'] = $this->school->getAllSchools();
 		$data['statuses'] = $this->status->getAllStatuses();
 		$data['smp_tracker'] = $this->student->getSmpStudentByStudentIdOrCode($id);
-		// $this->log->addLog('Updated SMP Tracker');
+		$data['bizcom'] = $this->student->getBizComByStudentId($id);
+		$data['bpo101'] = $this->student->getBpo101ByStudentId($id);
+		$data['bpo102'] = $this->student->getBpo102ByStudentId($id);
+		$data['sc101'] = $this->student->getSc101ByStudentId($id);
+		$data['systh101'] = $this->student->getSysth101ByStudentId($id);
 
-		$this->load->view('header');
-		$this->load->view('forms/form-program-smp-tracker', $data);
-		$this->load->view('footer');
+		if ($this->input->post())
+		{
+			$this->form_validation->set_rules('code', 'Code', 'trim|required|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('bizcom_status', 'BizCom Status', 'trim|required|numeric|xss_clean');
+			$this->form_validation->set_rules('bizcom_grade', 'BizCom Grade', 'trim|required|numeric|xss_clean');
+			$this->form_validation->set_rules('bpo101_status', 'BPO101 Status', 'trim|required|numeric|xss_clean');
+			$this->form_validation->set_rules('bpo101_grade', 'BPO101 Grade', 'trim|required|numeric|xss_clean');
+			$this->form_validation->set_rules('bpo102_status', 'BPO102 Status', 'trim|required|numeric|xss_clean');
+			$this->form_validation->set_rules('bpo102_grade', 'BPO102 Grade', 'trim|required|numeric|xss_clean');
+			$this->form_validation->set_rules('sc101_status', 'SC101 Status', 'trim|required|numeric|xss_clean');
+			$this->form_validation->set_rules('sc101_grade', 'SC101 Grade', 'trim|required|numeric|xss_clean');
+			$this->form_validation->set_rules('systh101_status', 'SYSTH101 Status', 'trim|required|numeric|xss_clean');
+			$this->form_validation->set_rules('systh101_grade', 'SYSTH101 Grade', 'trim|required|numeric|xss_clean');
+
+			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+			if ($this->input->post('submit'))
+			{
+				if ($this->form_validation->run())
+				{
+					$this->db->trans_begin();
+
+					$student_code = $this->input->post('code');
+
+					$bizcom = array
+					(
+						'tracker.Status_ID' => $this->input->post('bizcom_status'),
+						'smp_student.Grade' => $this->input->post('bizcom_grade')
+					);
+					$this->student->updateSmpStudent($student_code, 'BizCom', $bizcom);
+
+					$bpo101 = array
+					(
+						'tracker.Status_ID' => $this->input->post('bpo101_status'),
+						'smp_student.Grade' => $this->input->post('bpo101_grade')
+					);
+					$this->student->updateSmpStudent($student_code, 'BPO101', $bpo101);
+
+					$bpo102 = array
+					(
+						'tracker.Status_ID' => $this->input->post('bpo102_status'),
+						'smp_student.Grade' => $this->input->post('bpo102_grade')
+					);
+					$this->student->updateSmpStudent($student_code, 'BPO102', $bpo102);
+
+					$sc101 = array
+					(
+						'tracker.Status_ID' => $this->input->post('sc101_status'),
+						'smp_student.Grade' => $this->input->post('sc101_grade')
+					);
+					$this->student->updateSmpStudent($student_code, 'SC101', $sc101);
+
+					$systh101 = array
+					(
+						'tracker.Status_ID' => $this->input->post('systh101_status'),
+						'smp_student.Grade' => $this->input->post('systh101_grade')
+					);
+					$this->student->updateSmpStudent($student_code, 'SYSTH101', $systh101);
+
+					if ($this->db->_error_message())
+					{
+						$this->db->trans_rollback();
+
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-program-smp-tracker', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$this->db->trans_commit();
+
+						$data['bizcom'] = $this->student->getBizComByStudentId($id);
+						$data['bpo101'] = $this->student->getBpo101ByStudentId($id);
+						$data['bpo102'] = $this->student->getBpo102ByStudentId($id);
+						$data['sc101'] = $this->student->getSc101ByStudentId($id);
+						$data['systh101'] = $this->student->getSysth101ByStudentId($id);
+						$data['form_success'] = TRUE;
+						$this->log->addLog('Updated SMP Tracker');
+
+						$this->load->view('header');
+						$this->load->view('forms/form-program-smp-tracker', $data);
+						$this->load->view('footer');
+					}
+				}
+				else
+				{
+					$this->form_validation->run();
+
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-program-smp-tracker', $data);
+					$this->load->view('footer');
+				}
+			}
+			elseif ($this->input->post('save_draft'))
+			{
+				$this->form_validation->run();
+
+				$data['draft_saved'] = TRUE;
+
+				$this->load->view('header');
+				$this->load->view('forms/form-program-smp-tracker', $data);
+				$this->load->view('footer');
+			}
+		}
+		else
+		{
+			$this->load->view('header');
+			$this->load->view('forms/form-program-smp-tracker', $data);
+			$this->load->view('footer');
+		}
 	}
 
-	function form_program_smp_internship_tracker()
+	function form_program_smp_internship_tracker($id)
 	{
-		$this->log->addLog('Updated SMP Internship Tracker');
+		$data['schools'] = $this->school->getAllSchools();
+		$data['statuses'] = $this->status->getAllStatuses();
+		$data['internship'] = $this->student->getInternshipByStudentIdOrCode($id);
 
-		$this->load->view('header');
-		$this->load->view('forms/form-program-smp-internship-tracker');
-		$this->load->view('footer');
+		if ($this->input->post())
+		{
+			$this->form_validation->set_rules('code', 'Code', 'trim|required|alpha_dash|xss_clean');
+
+			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+			if ($this->input->post('submit'))
+			{
+				if ($this->form_validation->run())
+				{
+					$this->db->trans_begin();
+
+					$student_code = $this->input->post('code');
+
+					$internship = array
+					(
+						'tracker.Status_ID' => $this->input->post('bizcom_status'),
+						'smp_student.Grade' => $this->input->post('bizcom_grade')
+					);
+					$this->student->updateInternshipStudent($student_code, 'BizCom', $internship);
+
+					if ($this->db->_error_message())
+					{
+						$this->db->trans_rollback();
+
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-program-smp-tracker', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$this->db->trans_commit();
+
+						$data['bizcom'] = $this->student->getBizComByStudentId($id);
+						$data['bpo101'] = $this->student->getBpo101ByStudentId($id);
+						$data['bpo102'] = $this->student->getBpo102ByStudentId($id);
+						$data['sc101'] = $this->student->getSc101ByStudentId($id);
+						$data['systh101'] = $this->student->getSysth101ByStudentId($id);
+						$data['form_success'] = TRUE;
+						$this->log->addLog('Updated SMP Tracker');
+						$this->log->addLog('Updated SMP Internship Tracker');
+
+						$this->load->view('header');
+						$this->load->view('forms/form-program-smp-internship-tracker', $data);
+						$this->load->view('footer');
+					}
+				}
+				else
+				{
+					$this->form_validation->run();
+
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-program-smp-internship-tracker', $data);
+					$this->load->view('footer');
+				}
+			}
+			elseif ($this->input->post('save_draft'))
+			{
+				$this->form_validation->run();
+
+				$data['draft_saved'] = TRUE;
+
+				$this->load->view('header');
+				$this->load->view('forms/form-program-smp-internship-tracker', $data);
+				$this->load->view('footer');
+			}
+		}
+		else
+		{
+			$this->load->view('header');
+			$this->load->view('forms/form-program-smp-internship-tracker', $data);
+			$this->load->view('footer');
+		}
 	}
 
 	function form_teacher_best_attendance()

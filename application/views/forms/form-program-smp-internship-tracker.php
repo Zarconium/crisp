@@ -1,9 +1,11 @@
-
 <div class="info-form">
 	<?php if (isset($draft_saved)) { echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Draft saved.</div>';} ?>
+	<?php if (isset($form_success)) { echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>SMP Internship Tracker successfully updated.</div>';} ?>
+	<?php if (isset($form_error)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>There were errors in your input. Please check the fields and try again.</div>';} ?>	
+
 	<h1>SMP Internship Tracker</h1>
 
-	<?php echo form_open('/dbms/form_program_smp_tracker'); ?>
+	<?php echo form_open('/dbms/form_program_smp_tracker/' . $internship->Student_ID); ?>
 					
 		<div class="save">
 			<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
