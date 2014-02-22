@@ -2581,10 +2581,16 @@ class Dbms_Controller extends CI_Controller
 		{
 			$this->form_validation->set_rules('code', 'Code', 'trim|required|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('status', 'Status', 'trim|required|numeric|xss_clean');
-			$this->form_validation->set_rules('remarks', 'Remarks', 'trim|required|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('remarks', 'Remarks', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('company_information', 'Company Information', 'trim|required|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('department', 'Department', 'trim|required|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('supervisor', 'Supervisor', 'trim|required|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('supervisor_contact_details', 'Supervisor Contact Details', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('start_date', 'Start Date', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('end_date', 'End Date', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('total_internship_hours', 'Total Internship Hours', 'trim|required|numeric|xss_clean');
+			$this->form_validation->set_rules('evaluation_form', 'Evaluation Form', 'trim|required|numeric|xss_clean');
 
 			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
 
@@ -2598,10 +2604,19 @@ class Dbms_Controller extends CI_Controller
 
 					$internship = array
 					(
-						'tracker.Status_ID' => $this->input->post('bizcom_status'),
-						'smp_student.Grade' => $this->input->post('bizcom_grade')
+						'tracker.Status_ID' => $this->input->post('status'),
+						'tracker.Remarks' => $this->input->post('remarks'),
+						'internship_student.Company_Information' => $this->input->post('company_information'),
+						'internship_student.Company_Address' => $this->input->post('company_address'),
+						'internship_student.Task' => $this->input->post('department'),
+						'internship_student.Supervisor_Name' => $this->input->post('supervisor'),
+						'internship_student.Supervisor_Contact' => $this->input->post('supervisor_contact_details'),
+						'internship_student.Start_Date' => $this->input->post('start_date'),
+						'internship_student.End_Date' => $this->input->post('end_date'),
+						'internship_student.Total_Work_Hours' => $this->input->post('total_internship_hours'),
+						'internship_student.Meet_Standards' => $this->input->post('evaluation_form')
 					);
-					$this->student->updateInternshipStudent($student_code, 'BizCom', $internship);
+					$this->student->updateInternshipStudent($student_code, $internship);
 
 					if ($this->db->_error_message())
 					{
@@ -2617,11 +2632,7 @@ class Dbms_Controller extends CI_Controller
 					{
 						$this->db->trans_commit();
 
-						$data['bizcom'] = $this->student->getBizComByStudentId($id);
-						$data['bpo101'] = $this->student->getBpo101ByStudentId($id);
-						$data['bpo102'] = $this->student->getBpo102ByStudentId($id);
-						$data['sc101'] = $this->student->getSc101ByStudentId($id);
-						$data['systh101'] = $this->student->getSysth101ByStudentId($id);
+						$data['internship'] = $this->student->getInternshipByStudentIdOrCode($id);
 						$data['form_success'] = TRUE;
 						$this->log->addLog('Updated SMP Tracker');
 						$this->log->addLog('Updated SMP Internship Tracker');
