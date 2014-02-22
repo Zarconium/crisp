@@ -15,9 +15,26 @@ width: 70%;
 .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"]{
 float: center;
 }
+.panel-default > .panel-heading {
+background-color: #fff !important;
+}
 
-.avoid-me{
-margin-bottom: 15%;
+.front-logo{
+height: 200px;
+}
+
+.front{
+text-align: right;
+}
+
+.front-whisper{
+font-size: 90%;
+color: #999;
+}
+
+.front-welcome{
+margin-bottom: 5px !important;
+margin-top: 5px !important;
 }
 
 .nav-me{
@@ -145,7 +162,6 @@ margin-bottom: 5%;
 color: #1abc9c;
 }
 
-
 .report-form table tbody, .report-form  table thead, .report-form table tfoot{
 display: block;
 }
@@ -156,10 +172,30 @@ height: 500px;
 }
 
 .report-form th, .report-form td{
-width: 500px;
+width: 300px !important;
+}
+
+.report-form table{
+table-layout: fixed !important;
+}
+
+table thead{
+overflow-y: scroll; 
+overflow-x: hidden;
 }
 
 
 .header{
 text-align: center;
+}
+
+.welcome-logo{
+height: 100px;
+text-align: center;
+margin-left: 0 auto;
+}
+
+.group-logos{
+width: 410px;	
+margin: 0 auto;
 }

@@ -1,162 +1,136 @@
 <div class="info-form">
-
 	<?php if (isset($draft_saved)) { echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Draft saved.</div>';} ?>
 	<?php if (isset($form_success)) { echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Class list successfully updated.</div>';} ?>
 	<?php if (isset($form_error)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>There were errors in your input. Please check the fields and try again.</div>';} ?>	
-
+	<?php if (isset($mastertrainer_not_found)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Master Trainer not found. Please check the fields and try again.</div>';} ?>
+	<?php if (isset($teacher_not_found)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Teacher not found. Please check the fields and try again.</div>';} ?>
 	
 	<h1>Master Trainer Class List</h1>
 	
-	<?php echo form_open('/dbms/form_mastertrainer_class_add'); ?>
+	<?php echo form_open_multipart('dbms/form_mastertrainer_classlist/' . $t3_class->T3_Class_ID); ?>
+		<div class="save">
+			<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
+			<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
+		</div>
 
-	<!-- BUTTONS DIV -->
-	<div class="save">
-		<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
-		<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
-		<button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
-		<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
-	</div>
+		<legend>Class Information</legend>
 
-	<legend>Class Information</legend>
-		<form class="form" role="form"> 
-				
+		<div class="form-inline" role="form">
 			<div class="form-group">
 				<label>Trainer Email</label>
-				<input type="email" class="form-control" id="trainer" name="Trainer" value="<?php echo set_value('Trainer'); ?>">
-				<?php echo form_error('Trainer'); ?>
+				<input type="email" class="form-control" name="trainer_email" value="<?php echo $t3_class->Mastertrainer_Email; ?>" readonly="true">
+			</div>
+			<br />
+
+			<div class="form-group">
+				<label for="Name">School</label>
+				<select class="form-control" name="school" disabled="true">
+				<?php foreach ($schools as $school): ?>
+					<option value="<?php echo $school->School_ID; ?>" <?php if ($t3_class->School_ID == $school->School_ID) echo 'selected="selected"'; ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+				<?php endforeach; ?>
+				</select>
 			</div>
 				
 			<div class="form-group">
 				<label>Subject</label>
-				<input type="text" class="form-control" id="subject" name="Subject" value="<?php echo set_value('Subject'); ?>">
-				<?php echo form_error('Subject'); ?>
+				<select class="form-control" name="subject" disabled="true">
+					<?php foreach ($subjects as $subject): ?>
+					<option value="<?php echo $subject->Subject_ID; ?>" <?php if ($t3_class->Subject_ID == $subject->Subject_ID) echo 'selected="selected"'; ?>><?php echo $subject->Subject_Code; ?></option>
+					<?php endforeach; ?>
+				</select>
 			</div>
+			<br />
 			
 			<div class="form-group">
-				<label>Class Name</label>
-				<input type="text" class="form-control" id="class_name" name="Subject" value="<?php echo set_value('class_name'); ?>">
-				<?php echo form_error('class_name'); ?>
+				<label>Section</label>
+				<input type="text" class="form-control" name="section" value="<?php echo $t3_class->Section; ?>" readonly="true">
 			</div>
-			
-		</form>
 
-	<script type="text/javascript">
+			<div class="form-group">
+				<label for="Year">School Year</label>
+				<input class="form-control" type="text" name="year" value="<?php echo $t3_class->School_Year; ?>" readonly="true">
+			</div>
+		</div>
 
-		function delete_teacher()
-		{
-			if (confirm('Delete selected teachers?'))
-			{
-				$('#teacher_list_table input[type="checkbox"]:checked').each(function(i, item) { $(item).closest('tr').remove(); });
-			}
-		}
-		
-		function add_teacher()
-		{
-			$Last_Name = $('[name="last_name_input"]').val().trim();
-			$First_Name = $('[name="first_name_input"]').val().trim();
-			$Middle_Initial = $('[name="middle_initial_input"]').val().trim();
-			$Code = $('[name="code_input"]').val().trim();
-			$birthdate = $('[name="birthdate_input"]').val().trim();
+		<legend>Teacher List</legend>
 
-			if ($Last_Name && $First_Name && $Middle_Initial && $birthdate)
-			{
-				$('#teacher_list_table').append('<tr><td><input type="checkbox"></td>' +
-					'<td><input type="hidden" name="Last_Name[]" value="' + $Last_Name + '">' + $Last_Name + '</td>' +
-					'<td><input type="hidden" name="First_Name[]" value="' + $First_Name + '">' + $First_Name + '</td>' +
-					'<td><input type="hidden" name="Middle_Initial[]" value="' + $Middle_Initial + '">' + $Middle_Initial + '</td>' +
-					'<td><input type="hidden" name="Code[]" value="' + $Code + '">' + $Code + '</td>' +
-					'<td><input type="hidden" name="birthdate[]" value="' + $birthdate + '">' + $birthdate + '</td></tr>');
-			}
-			else
-			{
-				alert('Invalid input. Please check fields and try again.');
-			}
-		}
-	</script>	
-	
-	<legend>Teacher List</legend>
 		<div class="col-md-3">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					Add to List
 				</div>
 				<div class="panel-body">
-					<form class="form">
+					<div class="form">
 						<div class="form-group">
 							<label>Last Name</label>
-							<input type="text" class="form-control" id="Last_Name"name="Last_Name" value="<?php echo set_value('Last_Name'); ?>">
-				<?php echo form_error('Name'); ?>
+							<input type="text" class="form-control" name="last_name">
+							<?php echo form_error('last_name'); ?>
 						</div>
+
 						<div class="form-group">
 							<label>First Name</label>
-							<input type="text" class="form-control" id="First_Name"name="First_Name" value="<?php echo set_value('First_Name'); ?>">
-				<?php echo form_error('Name'); ?>
+							<input type="text" class="form-control" name="first_name">
+							<?php echo form_error('first_name'); ?>
 						</div>
+
 						<div class="form-group">
 							<label>Middle Initial</label>
-							<input type="text" class="form-control" id="Middle_Initial"name="Middle_Initial" value="<?php echo set_value('Middle_Initial'); ?>">
-				<?php echo form_error('Name'); ?>
+							<input type="text" class="form-control" name="middle_initial">
+							<?php echo form_error('middle_initial'); ?>
 						</div>
+
 						<div class="form-group"><label for="Name">School:</label>
-						<select class="form-control" name="current_employer">
+							<select class="form-control" name="school">
 							<?php foreach ($schools as $school): ?>
-							<option value="<?php echo $school->School_ID; ?>" <?php echo set_select('Code', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+								<option value="<?php echo $school->Code; ?>"><?php echo $school->Name . " - " . $school->Branch; ?></option>
 							<?php endforeach; ?>
-						</select>		
+							<?php echo form_error('school'); ?>
+							</select>
 						</div>
+
 						<div class="form-group">
-							<label>Contact Details</label>
-							<input type="text" class="form-control" id="contact"name="Contact_Details" value="<?php echo set_value('Contact_Details'); ?>">
-				<?php echo form_error('Contact_Details'); ?>
+							<label>Birthdate</label>
+							<input type="date" class="form-control" name="birthdate">
+							<?php echo form_error('birthdate'); ?>
 						</div>
-						<div class="form-group">
-							<label>Email</label>
-							<input type="email" class="form-control" id="email"name="Email" value="<?php echo set_value('Email'); ?>">
-				<?php echo form_error('Email'); ?>
-						</div>
-							
+
 						<div class="submit-button">
-							<button class="btn btn-primary" name="submit" onclick="add_teacher();">Add to List</button>
+							<button type="submit" class="btn btn-primary" name="add_teacher" value="add_teacher">Add to List</button>
 						</div>
-					
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>
-			
 
 		<div class="col-md-9">
-			<h3>List of Teachers</h3>	
+			<h3>List of Teachers</h3>
 			<div class="customize-btn-group">
-				<?php $attributes = array('id' => 'upload_teacher_class_list', 'class' => 'teacher-button-groups'); echo form_open_multipart('dbms/upload_teacher_class_list', $attributes); ?>
-					<input type="file" name="file_teacher_class_list" accept=".xlsx" style="visibility:hidden" onchange="$('#upload_teacher_class_list').submit();">
-					<button type="button" class="btn btn-primary btn-lg" onclick="$('[name=file_teacher_class_list]').click();">Batch Upload</button>
-				<?php echo form_close(); ?>
-				<button type="button" class="btn btn-danger" onclick="delete_teacher();">Delete</button>
-				<button type="button" class="btn btn-success">Refresh</button>
+				<button type="submit" class="btn btn-danger" name="delete_teacher" value="delete_teacher">Delete</button>
 			</div>
-			<table class="table">
+			<table class="table" id="teacher_table">
 				<thead>
+				<tr>
 					<th></th>
-					<th>Action</th>
 					<th>Last Name</th>
 					<th>First Name</th>
 					<th>Middle Initial</th>
 					<th>School</th>
-					<th>Birthday</th>
-			</thead>
+					<th>Birthdate</th>
+				</tr>
+				</thead>
 				<tbody>
-				<?php if (isset($class_list)) foreach ($class_list as $teacher): ?>
+				<?php if ($teachers) foreach ($teachers as $teacher): ?>
 				<tr>
-					<td><input type="checkbox"></td>
-					<td><?php echo $teacher['Last_Name'] ?></td>
-					<td><?php echo $teacher['First_Name'] ?></td>
-					<td><?php echo $teacher['Middle_Initial'] ?></td>
-					<td><?php echo $teacher['School'] ?></td>
-					<td><?php echo $teacher['Birthdate'] ?></td>
+					<td><input type="checkbox" name="teacher_id[]" value="<?php echo $teacher->Teacher_Class_ID;?>"></td>
+					<td><?php echo $teacher->Last_Name; ?></td>
+					<td><?php echo $teacher->First_Name; ?></td>
+					<td><?php echo $teacher->Middle_Initial; ?></td>
+					<td><?php echo $teacher->School_Name; ?></td>
+					<td><?php echo $teacher->Birthdate; ?></td>
 				</tr>
 				<?php endforeach; ?>
 				</tbody>
 			</table>
 		</div>
-	</div>
+	</form>
+</div>

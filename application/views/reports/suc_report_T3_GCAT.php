@@ -1,11 +1,10 @@
 <h1>GCAT - T3</h1>
 <legend>Teacher List</legend>
 <div class="report-form">
-<table class="table">
+<table class="table table-striped table-bordered">
 <thead>
 	<tr>
-		<th>Sem/period</th>
-		<td>it goes here</td>
+		<td>Teacher Name</td>
 	</tr>
 </thead>
 <tbody>

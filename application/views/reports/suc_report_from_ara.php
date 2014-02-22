@@ -1,6 +1,7 @@
 <legend>ADEPT - Student</legend>
 <div class="report-form">
-<table class="table">
+<table class="table table-striped table-bordered">
+<thead>
 	<tr>
 		<th>Teacher</th>
 		<td>Teacher name</td>
@@ -21,16 +22,21 @@
 		<td>Class name here</td>
 		<td>size here</td>
 	</tr>
+</thead>
+<tbody>
+</tbody>
+<tfoot>
 	<tr>
 		<td>TOTAL</td>
 		<td colspan="4"><?php echo $count->Total; ?></td>
 	</tr>
+</tfoot>
 </table>
 </div>
 
 <legend>ADEPT - Student</legend>
 <div class="report-form">
-<table class="table">
+<table class="table table-striped table-bordered">
 	<tr>
 		<th>Student List</th>
 	</tr>

@@ -4,7 +4,7 @@
 <div class="report-form">
 
 
-<table class="table">
+<table class="table table-striped table-bordered">
 <thead>
 <tr>
 	<th>School</th>
@@ -14,7 +14,7 @@
 </tr>
 </thead>
 <tbody>
-	<?php foreach ($count_list as $count): ?>
+	<?php if($count_list) foreach ($count_list as $count): ?>
 	<tr>
 		<td><?php echo $count->School; ?></td>
 		<td><?php echo $count->Male; ?></td>
@@ -24,7 +24,7 @@
 	<?php endforeach; ?>
 </tbody>
 <tfoot>
-	<?php foreach ($total as $t): ?>
+	<?php if($total) foreach ($total as $t): ?>
 	<tr>
 		<td>TOTAL</td>
 		<td colspan="4"><?php echo $t->Total; ?></td>

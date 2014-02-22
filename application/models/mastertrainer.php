@@ -61,6 +61,24 @@ Class Mastertrainer extends CI_Model
 		}
 	}
 
+	function getMasterTrainerByEmail($email)
+	{
+		$this->db->select('*');
+		$this->db->from('master_trainer');
+		$this->db->where('Email', $email);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	function getMasterTrainerFullNameById($id)
 	{

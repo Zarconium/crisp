@@ -1,7 +1,7 @@
 <h1>Title of Form</h1>
 <legend>Title of Table</legend>
 <div class="report-form">
-<table class="table">
+<table class="table table-striped table-bordered">
 	<tr>
 		<th>Header 1</th>
 		<th>Header 2</th>

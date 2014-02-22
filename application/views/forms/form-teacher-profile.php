@@ -1161,7 +1161,7 @@
 
 							<div class="col-md-12">
 								<div class="row">
-									<div class="col-md-3">
+									<!-- <div class="col-md-3">
 										<div class="panel panel-info">
 											<div class="panel-heading">Add to List</div>
 											<div class="panel-body">
@@ -1183,28 +1183,26 @@
 												</div>	
 											</div>
 										</div>
-									</div>
+									</div> -->
 				
 									<div class="col-md-9">
 										<h3>List of Training</h3>
-										<div class="customize-btn-group">
+										<!-- <div class="customize-btn-group">
 											<button type="button" class="btn btn-danger">Delete</button>
-										</div>
+										</div> -->
 										<table class="table">
 											<tr>
-												<th></th>
-												<th>Action</th>
 												<th>Training</th>
 												<th>Training Body</th>
 												<th>Training Date</th>
 											</tr>
+											<?php if ($related_trainings) foreach ($related_trainings as $related_training): ?>
 											<tr>
-												<td><input type="checkbox"></td>
-												<td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-												<td>Example</td>
-												<td>2011</td>
-												<td>2011</td>
+												<td><?php echo $related_training->Training; ?></td>
+												<td><?php echo $related_training->Training_Body; ?></td>
+												<td><?php echo $related_training->Training_Date; ?></td>
 											</tr>
+											<?php endforeach; ?>
 										</table>
 									</div>
 								</div>
