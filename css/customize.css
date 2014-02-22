@@ -162,7 +162,6 @@ margin-bottom: 5%;
 color: #1abc9c;
 }
 
-
 .report-form table tbody, .report-form  table thead, .report-form table tfoot{
 display: block;
 }
@@ -173,7 +172,16 @@ height: 500px;
 }
 
 .report-form th, .report-form td{
-width: 500px;
+width: 300px !important;
+}
+
+.report-form table{
+table-layout: fixed !important;
+}
+
+table thead{
+overflow-y: scroll; 
+overflow-x: hidden;
 }
 
 
