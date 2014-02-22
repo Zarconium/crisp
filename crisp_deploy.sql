@@ -776,7 +776,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_application` (
   `T3_Application_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Answer_1` text,
   `Answer_2` text,
-  `Total_Numbers_Of_Subjects_Handled` int(11) NOT NULL,
+  `Total_Number_Of_Subjects_Handled` int(11) NOT NULL,
   `Years_Teaching` int(11) NOT NULL,
   `Years_Teaching_In_Current_Institution` int(11) NOT NULL,
   `Avg_Student_Per_Class` int(11) NOT NULL,

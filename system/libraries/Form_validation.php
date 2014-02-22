@@ -1098,7 +1098,7 @@ class CI_Form_validation {
 	 */
 	public function alpha($str)
 	{
-		return ( ! preg_match("/^([a-z])+$/i", $str)) ? FALSE : TRUE;
+		return ( ! preg_match("/^([a-z ])+$/i", $str)) ? FALSE : TRUE;
 	}
 
 	// --------------------------------------------------------------------
@@ -1112,7 +1112,7 @@ class CI_Form_validation {
 	 */
 	public function alpha_numeric($str)
 	{
-		return ( ! preg_match("/^([a-z0-9])+$/i", $str)) ? FALSE : TRUE;
+		return ( ! preg_match("/^([a-z0-9 ])+$/i", $str)) ? FALSE : TRUE;
 	}
 
 	// --------------------------------------------------------------------
@@ -1126,7 +1126,7 @@ class CI_Form_validation {
 	 */
 	public function alpha_dash($str)
 	{
-		return ( ! preg_match("/^([-a-z0-9_-])+$/i", $str)) ? FALSE : TRUE;
+		return ( ! preg_match("/^([-a-z0-9 _-])+$/i", $str)) ? FALSE : TRUE;
 	}
 
 	// --------------------------------------------------------------------

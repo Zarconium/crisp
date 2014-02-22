@@ -295,7 +295,7 @@
 					</thead>
 					<?php if ($internship_students) foreach ($internship_students as $internship_student): ?>
 					<tr>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_smp_internship_tracker'); ?>">View</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_smp_internship_tracker/' . $internship_student->Student_ID); ?>">View</a></td>
 						<td><?php echo $internship_student->Student_ID_Number; ?></td>
 						<td><?php echo $internship_student->Full_Name; ?></td>
 						<td><?php echo $internship_student->Year; ?></td>
@@ -324,7 +324,7 @@
 					</thead>
 					<?php if ($gcat_classes) foreach ($gcat_classes as $gcat_class): ?>
 					<tr>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_gcat_tracker'); ?>">View</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_gcat_tracker/' . $gcat_class->Class_ID); ?>">View</a></td>
 						<td><?php echo $gcat_class->Full_Name; ?></td>
 						<td><?php echo $gcat_class->School_Name; ?></td>
 						<td><?php echo $gcat_class->Semester; ?></td>
