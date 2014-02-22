@@ -4,12 +4,7 @@
 	
 <div class="report-form">
 <legend>T3</legend>
-<<<<<<< HEAD
-
-<table class="table">
-=======
 <table class="table table-striped table-bordered">
->>>>>>> 6f5f0d8272fe6941b416abfe494baaaaf7f44f32
 <thead>
 <tr>
 	<th>Description</th>
