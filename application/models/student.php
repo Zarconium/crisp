@@ -217,6 +217,7 @@ Class Student extends CI_Model
 		$this->db->join('class', 'student_class.Class_ID = class.Class_ID', 'left');
 		$this->db->join('gcat_class', 'class.Class_ID = gcat_class.Class_ID', 'left');
 		$this->db->join('proctor', 'gcat_class.Proctor_ID = proctor.Proctor_ID', 'left');
+		$this->db->order_by('student.Student_ID', 'asc');
 		
 		$query = $this->db->get();
 		
@@ -266,6 +267,7 @@ Class Student extends CI_Model
 		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
 		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
 		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+		$this->db->order_by('student.Student_ID', 'asc');
 
 		$query = $this->db->get();
 		
@@ -330,6 +332,7 @@ Class Student extends CI_Model
 		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
 		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
 		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+		$this->db->order_by('student.Student_ID', 'asc');
 
 		$query = $this->db->get();
 		
@@ -394,7 +397,7 @@ Class Student extends CI_Model
 		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
 		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
 		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
-		// $this->db->group_by('Full_Name');
+		$this->db->order_by('student.Student_ID', 'asc');
 
 		$query = $this->db->get();
 		
@@ -441,6 +444,7 @@ Class Student extends CI_Model
 		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
 		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
 		$this->db->group_by('Full_Name');
+		$this->db->order_by('student.Student_ID', 'asc');
 
 		$query = $this->db->get();
 		

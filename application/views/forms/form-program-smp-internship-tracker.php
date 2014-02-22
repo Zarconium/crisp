@@ -24,7 +24,6 @@
 			<div class="form-group">		
 				<label>Name</label>			
 				<input class="form-control" type="text" name="name" value="<?php if ($internship->Full_Name) echo $internship->Full_Name; ?>" readonly="true">
-				<?php echo form_error('name'); ?>
 			</div>
 
 			<div class="form-group">

@@ -2580,6 +2580,7 @@ class Dbms_Controller extends CI_Controller
 		if ($this->input->post())
 		{
 			$this->form_validation->set_rules('code', 'Code', 'trim|required|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('status', 'Status', 'trim|required|alpha_dash|xss_clean');
 
 			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
 
