@@ -2,7 +2,7 @@
 <h4>Period: <?php echo $start_date; ?> to <?php echo $end_date; ?> </h4>
 <legend>Number of Teachers Finished Training in <?php echo $subject->Subject_Name; ?> </legend>
 <div class="report-form">
-<table class="table">
+<table class="table table-striped table-bordered">
 <thead>
 <tr>
 	<th>School</th>
@@ -31,7 +31,7 @@
 </tfoot>
 </table>
 <legend>Number of Classes in School</legend>
-<table class="table">
+<table class="table table-striped table-bordered">
 <thead>
 <tr>
 	<th>School</th>

@@ -5,7 +5,7 @@
 <div class="report-form">
 
 <legend>Teachers Trained</legend>
-<table class="table">
+<table class="table table-striped table-bordered">
 <thead>
 <tr>
 	<th>Description</th>
@@ -353,7 +353,7 @@
 </table>
 
 <legend>Students in Programs</legend>
-<table class="table">
+<table class="table table-striped table-bordered">
 <thead>
 <tr>
 	<th>Description</th>

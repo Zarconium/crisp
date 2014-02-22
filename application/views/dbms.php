@@ -267,7 +267,7 @@
 					</thead>
 					<?php if ($smp_students) foreach ($smp_students as $smp_student): ?>
 					<tr>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_smp_tracker'); ?>">View</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_smp_tracker/' . $smp_student->Student_ID); ?>">View</a></td>
 						<td><?php echo $smp_student->Student_ID_Number; ?></td>
 						<td><?php echo $smp_student->Full_Name; ?></td>
 						<td><?php echo $smp_student->Year; ?></td>
