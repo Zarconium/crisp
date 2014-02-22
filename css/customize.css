@@ -179,10 +179,6 @@ width: 300px !important;
 table-layout: fixed !important;
 }
 
-table thead{
-overflow-y: scroll; 
-overflow-x: hidden;
-}
 
 
 .header{
