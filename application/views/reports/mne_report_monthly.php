@@ -4,6 +4,7 @@
 	
 <div class="report-form">
 <legend>T3</legend>
+
 <table class="table">
 <thead>
 <tr>
