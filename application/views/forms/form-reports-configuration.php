@@ -3,6 +3,13 @@
 </div>
 <div class="report-form">
 
+<div class="save">
+	<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
+	<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
+	<button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
+	<a href="<?php echo base_url('reports'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
+</div>
+					
 <legend>General Information</legend>
 
 <div class="form-group">
@@ -675,3 +682,4 @@
 	</table>
 </form>
 </div>
+<br/>
