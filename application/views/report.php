@@ -2,6 +2,11 @@
 	<h1>Reports</h1>
 </div>
 
+<?php
+$date = date('Y-m-d');
+$year = date('Y');
+?>
+
 
 <ul class="nav nav-tabs">
 	<li class="active"><a href="#program_ched" data-toggle="tab">CHED Program</a></li>
@@ -25,13 +30,13 @@
 					<div class="panel-body">
 						<!-- CHANGE THIS --><form class="form" role="form" action="<?php echo base_url('reports/studentProgramReportGCAT'); ?>" method="post" target="_blank">
 							<div class="form-group">
-								<label>Start Date</label>
-								<input type="date" class="form-control" name="program_student_gcat_start_date">
+								<label>Date Start</label>
+								<input type="date" value="1990-01-01" class="form-control" name="program_student_gcat_start_date">
 							</div>
 
 							<div class="form-group">
-								<label>End Date</label>
-								<input type="date" class="form-control" name="program_student_gcat_end_date">
+								<label>Date End</label>
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="program_student_gcat_end_date">
 							</div>
 
 							<div class="button-groups">
@@ -55,13 +60,13 @@
 					<div class="panel-body">
 						<form class="form" role="form" action="<?php echo base_url('reports/studentBestProgramReport'); ?>" method="post" target="_blank">
 							<div class="form-group">
-								<label>Start Date</label>
-								<input type="date" class="form-control" name="program_student_best_start_date">
+								<label>Date Start</label>
+								<input type="date" value="1990-01-01" class="form-control" name="program_student_best_start_date">
 							</div>
 							
 							<div class="form-group">
-								<label>End Date</label>
-								<input type="date" class="form-control" name="program_student_best_end_date">
+								<label>Date End</label>
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="program_student_best_end_date">
 							</div>
 							
 							<div class="button-groups">
@@ -85,13 +90,13 @@
 					<div class="panel-body">
 						<form class="form" role="form" action="<?php echo base_url('reports/studentAdeptProgramReport'); ?>" method="post" target="_blank">
 							<div class="form-group">
-								<label>Start Date</label>
-								<input type="date" class="form-control" name="program_student_adept_start_date">
+								<label>Date Start</label>
+								<input type="date" value="1990-01-01" class="form-control" name="program_student_adept_start_date">
 							</div>
 							
 							<div class="form-group">
-								<label>End Date</label>
-								<input type="date" class="form-control" name="program_student_adept_end_date">
+								<label>Date End</label>
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="program_student_adept_end_date">
 							</div>
 							
 							<div class="button-groups">
@@ -115,13 +120,13 @@
 					<div class="panel-body">
 						<form class="form" role="form" action="<?php echo base_url('reports/studentProgramReportPerSub'); ?>" method="post" target="_blank">
 							<div class="form-group">
-								<label>Start Date</label>
-								<input type="date" class="form-control" name="program_student_subject_start_date">
+								<label>Date Start</label>
+								<input type="date" value="1990-01-01" class="form-control" name="program_student_subject_start_date">
 							</div>
 							
 							<div class="form-group">
-								<label>End Date</label>
-								<input type="date" class="form-control" name="program_student_subject_end_date">
+								<label>Date End</label>
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="program_student_subject_end_date">
 							</div>
 							
 							<div class="form-group">
@@ -156,13 +161,13 @@
 					<div class="panel-body">
 						<form class="form" role="form" action="<?php echo base_url('reports/t3ProgramReportGCAT'); ?>" method="post" target="_blank">
 							<div class="form-group">
-								<label>Start Date</label>
-								<input type="date" class="form-control" name="program_t3_start_date">
+								<label>Date Start</label>
+								<input type="date" value="1990-01-01" class="form-control" name="program_t3_start_date">
 							</div>
 							
 							<div class="form-group">
-								<label>End Date</label>
-								<input type="date" class="form-control" name="program_t3_end_date">
+								<label>Date End</label>
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="program_t3_end_date">
 							</div>
 							
 							<div class="button-groups">
@@ -186,13 +191,13 @@
 					<div class="panel-body">
 						<form class="form" role="form" action="<?php echo base_url('reports/T3ProgramReportPerSub'); ?>" method="post" target="_blank">
 							<div class="form-group">
-								<label>Start Date</label>
-								<input type="date" class="form-control" name="program_t3_subject_start_date">
+								<label>Date Start</label>
+								<input type="date" value="1990-01-01" class="form-control" name="program_t3_subject_start_date">
 							</div>
 							
 							<div class="form-group">
-								<label>End Date</label>
-								<input type="date" class="form-control" name="program_t3_subject_end_date">
+								<label>Date End</label>
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="program_t3_subject_end_date">
 							</div>
 							
 							<div class="form-group">
@@ -235,13 +240,13 @@
 							</div>
 
 							<div class="form-group">
-								<label>Start Date</label>
-								<input type="date" class="form-control" name="program_suc_report_start_date">
+								<label>Date Start</label>
+								<input type="date" value="1990-01-01" class="form-control" name="program_suc_report_start_date">
 							</div>
 							
 							<div class="form-group">
-								<label>End Date</label>
-								<input type="date" class="form-control" name="program_suc_report_end_date">
+								<label>Date End</label>
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="program_suc_report_end_date">
 							</div>
 							
 							
@@ -260,25 +265,25 @@
 <!--SEI Program -->
 	<div class="tab-pane" id="program_sei">
 
-		<div class="panel-group" id="accordion">
+		<div class="panel-group" id="accordion2">
 			<!-- Student Program Report GCAT -->
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_gcat_sei">&#x25BC; Student Program Report GCAT - SEI</a>
+						<a data-toggle="collapse" data-parent="#accordion2" href="#program_student_gcat_sei">&#x25BC; Student Program Report GCAT - SEI</a>
 					</h4>
 				</div>
 				<div id="program_student_gcat_sei" class="panel-collapse collapse">
 					<div class="panel-body">
 						<!-- CHANGE THIS --><form class="form" role="form" action="<?php echo base_url('reports/studentProgramReportGCATSei'); ?>" method="post" target="_blank">
 							<div class="form-group">
-								<label>Start Date</label>
-								<input type="date" class="form-control" name="program_student_gcat_start_date_sei">
+								<label>Date Start</label>
+								<input type="date" value="1990-01-01" class="form-control" name="program_student_gcat_start_date_sei">
 							</div>
 
 							<div class="form-group">
-								<label>End Date</label>
-								<input type="date" class="form-control" name="program_student_gcat_end_date_sei">
+								<label>Date End</label>
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="program_student_gcat_end_date_sei">
 							</div>
 
 							<div class="button-groups">
@@ -295,20 +300,20 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_best_sei">&#x25BC; Student Program Report BEST - SEI</a>
+						<a data-toggle="collapse" data-parent="#accordion2" href="#program_student_best_sei">&#x25BC; Student Program Report BEST - SEI</a>
 					</h4>
 				</div>
 				<div id="program_student_best_sei" class="panel-collapse collapse">
 					<div class="panel-body">
 						<form class="form" role="form" action="<?php echo base_url('reports/studentBestProgramReport'); ?>" method="post" target="_blank">
 							<div class="form-group">
-								<label>Start Date</label>
-								<input type="date" class="form-control" name="program_student_best_start_date_sei">
+								<label>Date Start</label>
+								<input type="date" value="1990-01-01" class="form-control" name="program_student_best_start_date_sei">
 							</div>
 							
 							<div class="form-group">
-								<label>End Date</label>
-								<input type="date" class="form-control" name="program_student_best_end_date_sei">
+								<label>Date End</label>
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="program_student_best_end_date_sei">
 							</div>
 							
 							<div class="button-groups">
@@ -325,20 +330,20 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_adept_sei">&#x25BC; Student Program Report ADEPT - SEI</a>
+						<a data-toggle="collapse" data-parent="#accordion2" href="#program_student_adept_sei">&#x25BC; Student Program Report ADEPT - SEI</a>
 					</h4>
 				</div>
 				<div id="program_student_adept_sei" class="panel-collapse collapse">
 					<div class="panel-body">
 						<form class="form" role="form" action="<?php echo base_url('reports/studentAdeptProgramReportSei'); ?>" method="post" target="_blank">
 							<div class="form-group">
-								<label>Start Date</label>
-								<input type="date" class="form-control" name="program_student_adept_start_date_sei">
+								<label>Date Start</label>
+								<input type="date" value="1990-01-01" class="form-control" name="program_student_adept_start_date_sei">
 							</div>
 							
 							<div class="form-group">
-								<label>End Date</label>
-								<input type="date" class="form-control" name="program_student_adept_end_date_sei">
+								<label>Date End</label>
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="program_student_adept_end_date_sei">
 							</div>
 							
 							<div class="button-groups">
@@ -355,20 +360,20 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#program_student_subject_sei">&#x25BC; Student Program Report Per Subject - SEI</a>
+						<a data-toggle="collapse" data-parent="#accordion2" href="#program_student_subject_sei">&#x25BC; Student Program Report Per Subject - SEI</a>
 					</h4>
 				</div>
 				<div id="program_student_subject_sei" class="panel-collapse collapse">
 					<div class="panel-body">
 						<form class="form" role="form" action="<?php echo base_url('reports/studentProgramReportPerSubSei'); ?>" method="post" target="_blank">
 							<div class="form-group">
-								<label>Start Date</label>
-								<input type="date" class="form-control" name="program_student_subject_start_date_sei">
+								<label>Date Start</label>
+								<input type="date" value="1990-01-01" class="form-control" name="program_student_subject_start_date_sei">
 							</div>
 							
 							<div class="form-group">
-								<label>End Date</label>
-								<input type="date" class="form-control" name="program_student_subject_end_date_sei">
+								<label>Date End</label>
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="program_student_subject_end_date_sei">
 							</div>
 							
 							<div class="form-group">
@@ -396,20 +401,20 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#program_t3_sei">&#x25BC; T3 Program Report GCAT - SEI</a>
+						<a data-toggle="collapse" data-parent="#accordion2" href="#program_t3_sei">&#x25BC; T3 Program Report GCAT - SEI</a>
 					</h4>
 				</div>
 				<div id="program_t3_sei" class="panel-collapse collapse">
 					<div class="panel-body">
 						<form class="form" role="form" action="<?php echo base_url('reports/t3ProgramReportGCAT'); ?>" method="post" target="_blank">
 							<div class="form-group">
-								<label>Start Date</label>
-								<input type="date" class="form-control" name="program_t3_start_date_sei">
+								<label>Date Start</label>
+								<input type="date" value="1990-01-01" class="form-control" name="program_t3_start_date_sei">
 							</div>
 							
 							<div class="form-group">
-								<label>End Date</label>
-								<input type="date" class="form-control" name="program_t3_end_date_sei">
+								<label>Date End</label>
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="program_t3_end_date_sei">
 							</div>
 							
 							<div class="button-groups">
@@ -426,20 +431,20 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#program_t3_subject_sei">&#x25BC; T3 Program Report Per Subject - SEI</a>
+						<a data-toggle="collapse" data-parent="#accordion2" href="#program_t3_subject_sei">&#x25BC; T3 Program Report Per Subject - SEI</a>
 					</h4>
 				</div>
 				<div id="program_t3_subject_sei" class="panel-collapse collapse">
 					<div class="panel-body">
 						<form class="form" role="form" action="<?php echo base_url('reports/T3ProgramReportPerSubSei'); ?>" method="post" target="_blank">
 							<div class="form-group">
-								<label>Start Date</label>
-								<input type="date" class="form-control" name="program_t3_subject_start_date_sei">
+								<label>Date Start</label>
+								<input type="date" value="1990-01-01" class="form-control" name="program_t3_subject_start_date_sei">
 							</div>
 							
 							<div class="form-group">
-								<label>End Date</label>
-								<input type="date" class="form-control" name="program_t3_subject_end_date_sei">
+								<label>Date End</label>
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="program_t3_subject_end_date_sei">
 							</div>
 							
 							<div class="form-group">
@@ -465,7 +470,7 @@
 	<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#suc_report_sei">&#x25BC; SUC Report - SEI</a>
+						<a data-toggle="collapse" data-parent="#accordion2" href="#suc_report_sei">&#x25BC; SUC Report - SEI</a>
 					</h4>
 				</div>
 				<div id="suc_report_sei" class="panel-collapse collapse">
@@ -482,13 +487,13 @@
 							</div>
 
 							<div class="form-group">
-								<label>Start Date</label>
-								<input type="date" class="form-control" name="program_suc_report_start_date_sei">
+								<label>Date Start</label>
+								<input type="date" value="1990-01-01" class="form-control" name="program_suc_report_start_date_sei">
 							</div>
 							
 							<div class="form-group">
-								<label>End Date</label>
-								<input type="date" class="form-control" name="program_suc_report_end_date_sei">
+								<label>Date End</label>
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="program_suc_report_end_date_sei">
 							</div>
 							
 							
@@ -507,8 +512,7 @@
 <!-- SUC Report-->
 <div class="tab-pane" id="SUC">	
 		
-<div class="panel-group" id="accordion4">
-		<div class="panel-group" id="accordion">
+	<div class="panel-group" id="accordion4">
 		<!-- SMP Class List DONE -->
 			<div class="panel panel-info">
 				<div class="panel-heading">
@@ -540,16 +544,16 @@
 
 							<div class="form-group">
 								<label>Date Start</label>
-								<input type="date" class="form-control" name="suc_start_date_smp_class">
+								<input type="date" value="1990-01-01" class="form-control" name="suc_start_date_smp_class">
 							</div>
 							<div class="form-group">
 								<label>Date End</label>
-								<input type="date" class="form-control" name="suc_end_date_smp_class">
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="suc_end_date_smp_class">
 							</div>
 
 							<div class="form-group">
 								<label>Semester</label>
-									<input type="number" class="form-control" name="suc_semester_class">
+									<input type="number" class="form-control" name="suc_semester_class" min="0" value="1">
 							</div>
 
 							<div class="form-group">
@@ -572,7 +576,6 @@
 			</div>
 
 		<!-- BEST Class List -->
-		<div class="panel-group" id="accordion">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -594,16 +597,16 @@
 
 							<div class="form-group">
 								<label>Date Start</label>
-								<input type="date" class="form-control" name="suc_start_date_best_class">
+								<input type="date" value="1990-01-01" class="form-control" name="suc_start_date_best_class">
 							</div>
 							<div class="form-group">
 								<label>Date End</label>
-								<input type="date" class="form-control" name="suc_end_date_best_class">
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="suc_end_date_best_class">
 							</div>
 
 							<div class="form-group">
 								<label>Semester</label>
-									<input type="number" class="form-control" name="suc_best_semester_class">
+									<input type="number" class="form-control" name="suc_best_semester_class" min="0" value="1">
 							</div>
 
 							<div class="form-group">
@@ -625,10 +628,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
-
+		
 		<!-- Adept Class List -->
-		<div class="panel-group" id="accordion">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -650,16 +651,16 @@
 
 							<div class="form-group">
 								<label>Date Start</label>
-								<input type="date" class="form-control" name="suc_start_date_adept_class">
+								<input type="date" value="1990-01-01" class="form-control" name="suc_start_date_adept_class">
 							</div>
 							<div class="form-group">
 								<label>Date End</label>
-								<input type="date" class="form-control" name="suc_end_date_adept_class">
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="suc_end_date_adept_class">
 							</div>
 
 							<div class="form-group">
 								<label>Semester</label>
-									<input type="number" class="form-control" name="suc_adept_semester_class">
+									<input type="number" class="form-control" name="suc_adept_semester_class" min="0" value="1">
 							</div>
 
 							<div class="form-group">
@@ -681,12 +682,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
 					
-					
-	
 	<!-- GCAT Class List -->
-		<div class="panel-group" id="accordion">
+	
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -708,16 +706,16 @@
 
 							<div class="form-group">
 								<label>Date Start</label>
-								<input type="date" class="form-control" name="suc_start_date_gcat_class">
+								<input type="date" value="1990-01-01" class="form-control" name="suc_start_date_gcat_class">
 							</div>
 							<div class="form-group">
 								<label>Date End</label>
-								<input type="date" class="form-control" name="suc_end_date_gcat_class">
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="suc_end_date_gcat_class">
 							</div>
 
 							<div class="form-group">
 								<label>Semester</label>
-									<input type="number" class="form-control" name="suc_gcat_semester_class">
+									<input type="number" class="form-control" name="suc_gcat_semester_class" min="0" value="1">
 							</div>
 							
 							<div class="form-group">
@@ -738,10 +736,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
 					
 	<!-- Best Students List  -->
-		<div class="panel-group" id="accordion">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -763,16 +759,16 @@
 
 							<div class="form-group">
 								<label>Date Start</label>
-								<input type="date" class="form-control" name="suc_start_date_best_students">
+								<input type="date" value="1990-01-01" class="form-control" name="suc_start_date_best_students">
 							</div>
 							<div class="form-group">
 								<label>Date End</label>
-								<input type="date" class="form-control" name="suc_end_date_best_students">
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="suc_end_date_best_students">
 							</div>
 
 							<div class="form-group">
 								<label>Semester</label>
-									<input type="number" class="form-control" name="suc_best_semester_students">
+									<input type="number" class="form-control" name="suc_best_semester_students" min="0" value="1">
 							</div>
 
 							<div class="form-group">
@@ -803,11 +799,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		
 
 	<!-- AdEPT Students List  -->
-
-		<div class="panel-group" id="accordion">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -829,16 +823,16 @@
 
 							<div class="form-group">
 								<label>Date Start</label>
-								<input type="date" class="form-control" name="suc_start_date_adept_students">
+								<input type="date" value="1990-01-01" class="form-control" name="suc_start_date_adept_students">
 							</div>
 							<div class="form-group">
 								<label>Date End</label>
-								<input type="date" class="form-control" name="suc_end_date_adept_students">
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="suc_end_date_adept_students">
 							</div>
 
 							<div class="form-group">
 								<label>Semester</label>
-									<input type="number" class="form-control" name="suc_adept_semester_students">
+									<input type="number" class="form-control" name="suc_adept_semester_students" min="0" value="1">
 							</div>
 
 							<div class="form-group">
@@ -869,11 +863,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
+	
 
 		<!-- GCAT Students List   -->
-
-		<div class="panel-group" id="accordion">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -895,16 +887,16 @@
 
 							<div class="form-group">
 								<label>Date Start</label>
-								<input type="date" class="form-control" name="suc_start_date_gcat_students">
+								<input type="date" value="1990-01-01" class="form-control" name="suc_start_date_gcat_students">
 							</div>
 							<div class="form-group">
 								<label>Date End</label>
-								<input type="date" class="form-control" name="suc_end_date_gcat_students">
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="suc_end_date_gcat_students">
 							</div>
 
 							<div class="form-group">
 								<label>Semester</label>
-									<input type="number" class="form-control" name="suc_gcat_semester_students">
+									<input type="number" class="form-control" name="suc_gcat_semester_students" min="0" value="1">
 							</div>
 
 							<div class="form-group">
@@ -935,11 +927,10 @@
 					</div>
 				</div>
 			</div>
-		</div>
+	
 
 		<!-- SMP Students List here  -->
 
-		<div class="panel-group" id="accordion">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -971,16 +962,16 @@
 
 							<div class="form-group">
 								<label>Date Start</label>
-								<input type="date" class="form-control" name="suc_start_date_smp_students">
+								<input type="date" value="1990-01-01" class="form-control" name="suc_start_date_smp_students">
 							</div>
 							<div class="form-group">
 								<label>Date End</label>
-								<input type="date" class="form-control" name="suc_end_date_smp_students">
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="suc_end_date_smp_students">
 							</div>
 
 							<div class="form-group">
 								<label>Semester</label>
-									<input type="number" class="form-control" name="suc_smp_semester_students">
+									<input type="number" class="form-control" name="suc_smp_semester_students" min="0" value="1">
 							</div>
 
 							<div class="form-group">
@@ -1013,14 +1004,12 @@
 					</div>
 				</div>
 			</div>
-		</div>
 
 
 
 					
 					
 		<!-- T3 BEST -->
-		<div class="panel-group" id="accordion">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -1040,11 +1029,11 @@
 							</div>
 							<div class="form-group">
 								<label>Date Start</label>
-								<input type="date" class="form-control" name="suc_t3_best_class_list_date_start">
+								<input type="date" value="1990-01-01" class="form-control" name="suc_t3_best_class_list_date_start">
 							</div>
 							<div class="form-group">
 								<label>Date End</label>
-								<input type="date" class="form-control" name="suc_t3_best_class_list_date_end">
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="suc_t3_best_class_list_date_end">
 							</div>
 							
 							<div class="button-groups">
@@ -1057,10 +1046,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
 
 	<!-- T3 ADEPT -->
-		<div class="panel-group" id="accordion">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -1080,11 +1067,11 @@
 							</div>
 							<div class="form-group">
 								<label>Date Start</label>
-								<input type="date" class="form-control" name="suc_t3_adept_class_list_date_start">
+								<input type="date" value="1990-01-01" class="form-control" name="suc_t3_adept_class_list_date_start">
 							</div>
 							<div class="form-group">
 								<label>Date End</label>
-								<input type="date" class="form-control" name="suc_t3_adept_class_list_date_end">
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="suc_t3_adept_class_list_date_end">
 							</div>
 							
 							<div class="button-groups">
@@ -1097,13 +1084,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
-
-			
-		
 
 	<!-- T3 SMP -->
-		<div class="panel-group" id="accordion">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -1133,16 +1115,16 @@
 
 							<div class="form-group">
 								<label>Date Start</label>
-								<input type="date" class="form-control" name="suc_t3_smp_date_start">
+								<input type="date" value="1990-01-01" class="form-control" name="suc_t3_smp_date_start">
 							</div>
 							<div class="form-group">
 								<label>Date End</label>
-								<input type="date" class="form-control" name="suc_t3_smp_date_end">
+								<input type="date" value="<?php echo $date; ?>" class="form-control" name="suc_t3_smp_date_end">
 							</div>
 
 							<div class="form-group">
 								<label>Semester</label>
-									<input type="number" class="form-control" name="suc_t3_smp_semester">
+									<input type="number" class="form-control" name="suc_t3_smp_semester" min="0" value="1">
 							</div>
 							
 							<div class="button-groups">
@@ -1156,9 +1138,8 @@
 				</div>
 			</div>
 		</div>
-		</div>
 	</div>
-</div>
+
 
 <!-- MandE Report-->
 	<div class="tab-pane" id="MandE">
@@ -1180,7 +1161,7 @@
 						<form class="form" role="form" action="<?php echo base_url('reports/mneQuarterlyReport'); ?>" method="post" target="_blank">
 							<div class="form-group">
 								<label>Year</label>
-								<input class="form-control" type="number" name="mande_quarter_year" min="2011">
+								<input class="form-control" type="number" name="mande_quarter_year" min="1990" value="<?php echo $year; ?>">
 							</div>
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
@@ -1204,7 +1185,7 @@
 						<form class="form" role="form" action="<?php echo base_url('reports/mneMonthlyReport'); ?>" method="post" target="_blank">
 							<div class="form-group">
 								<label>Year</label>
-								<input class="form-control" type="number" name="mande_month_year" min="2011">
+								<input class="form-control" type="number" name="mande_month_year" min="1990" value="<?php echo $year; ?>">
 							</div>		
 							
 							<div class="button-groups">

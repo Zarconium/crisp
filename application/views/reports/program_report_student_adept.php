@@ -5,7 +5,7 @@
 
 <div class="report-form">
 
-<table class="table">
+<table class="table table-striped table-bordered">
 <thead>
 <tr>
 	<th>School</th>
@@ -35,7 +35,7 @@
 </table>
 
 <legend>Current Takers</legend>
-<table class="table">
+<table class="table table-striped table-bordered">
 <thead>
 <tr>
 	<th>School</th>
@@ -65,7 +65,7 @@
 </table>	
 
 <legend>Students Completed</legend>
-<table class="table">
+<table class="table table-striped table-bordered">
 <thead>
 <tr>
 	<th>School</th>

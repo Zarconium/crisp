@@ -410,7 +410,7 @@ Class Student extends CI_Model
 
 	function getInternshipByStudentIdOrCode($id_code)
 	{
-		$this->db->select('*, status.Name as Status_Name');
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name, status.Name as Status_Name', false);
 		$this->db->from('internship_student');
 		$this->db->join('tracker', 'internship_student.Tracker_ID = tracker.Tracker_ID', 'left');
 		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
@@ -456,7 +456,7 @@ Class Student extends CI_Model
 
 	function getSmpStudentByStudentIdOrCode($id_code)
 	{
-		$this->db->select('*');
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
 		$this->db->from('smp_student');
 		$this->db->join('tracker', 'smp_student.Tracker_ID = tracker.Tracker_ID', 'left');
 		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');

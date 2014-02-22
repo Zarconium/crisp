@@ -1,7 +1,7 @@
 <h1>GCAT - T3</h1>
 <legend>Teacher List</legend>
 <div class="report-form">
-<table class="table">
+<table class="table table-striped table-bordered">
 <thead>
 	<tr>
 		<td>Teacher Name</td>

@@ -4,7 +4,7 @@
 <div class="report-form">
 
 
-<table class="table">
+<table class="table table-striped table-bordered">
 <thead>
 <tr>
 	<th>School</th>

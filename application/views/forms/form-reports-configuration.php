@@ -2,8 +2,26 @@
 	<h1>Target Configuration</h1>
 </div>
 <div class="report-form">
+
+<div class="save">
+	<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
+	<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
+	<button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
+	<a href="<?php echo base_url('reports'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
+</div>
+					
+<legend>General Information</legend>
+
+<div class="form-group">
+	<label>Target Year</label>
+	<input class="form-control" type="number" name="target_year" value="<?php echo date('Y'); ?>" min="1990">
+	<?php echo form_error('target_year'); ?>
+</div>
+	
 <legend>Teachers Trained</legend>
 <form class="form" role="form">
+
+	
 	<table class="table table-striped">
 		<thead>
 		<tr>
@@ -233,7 +251,7 @@
 		</tr>	
 		
 		<tr>
-			<td>SUC's with complete SMP Subjects and Trained Teachers</td>
+			<td>SUCs with complete SMP Subjects and Trained Teachers</td>
 			<td>
 				<input class="form-control" value="0" type="number" name="teacher_lfa_suc_smp">
 				<?php echo form_error('teacher_lfa_suc_smp'); ?>
@@ -664,3 +682,4 @@
 	</table>
 </form>
 </div>
+<br/>

@@ -1,6 +1,6 @@
 <legend>ADEPT - Student</legend>
 <div class="report-form">
-<table class="table">
+<table class="table table-striped table-bordered">
 <thead>
 	<tr>
 		<th>Teacher</th>
@@ -36,7 +36,7 @@
 
 <legend>ADEPT - Student</legend>
 <div class="report-form">
-<table class="table">
+<table class="table table-striped table-bordered">
 	<tr>
 		<th>Student List</th>
 	</tr>

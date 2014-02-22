@@ -1114,7 +1114,7 @@
 
 							<div class="form-group">
 								<label>Approximate Total Numbers of Subjects Handled</label>
-								<input class="form-control" type="number" value="<?php if (isset($smp_application->Total_Numbers_Of_Subjects_Handled)) echo $smp_application->Total_Numbers_Of_Subjects_Handled;?>">
+								<input class="form-control" type="number" value="<?php if (isset($smp_application->Total_Number_Of_Subjects_Handled)) echo $smp_application->Total_Number_Of_Subjects_Handled;?>">
 							</div>
 
 							<div class="form-group">

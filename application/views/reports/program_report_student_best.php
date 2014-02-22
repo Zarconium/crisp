@@ -2,7 +2,7 @@
 <legend>Pins Given</legend>
 <h4>Period: <?php echo $start_date; ?> to <?php echo $end_date; ?> </h4>
 <div class="report-form">
-<table class="table">
+<table class="table table-striped table-bordered">
 <thead>
 <tr>
 	<th>School</th>
@@ -33,7 +33,7 @@
 
 
 <legend>Current Takers</legend>
-<table class="table">
+<table class="table table-striped table-bordered">
 <thead>
 <tr>
 	<th>School</th>
@@ -63,7 +63,7 @@
 </table>	
 
 <legend>Students Completed</legend>
-<table class="table">
+<table class="table table-striped table-bordered">
 <thead>
 <tr>
 	<th>School</th>

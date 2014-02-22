@@ -4,7 +4,7 @@
 <h4>Semester: <?php echo $semester; ?></h4>
 <h4>School: <?php echo $school->Name; ?></h4>
 <div class="report-form">
-<table class="table">
+<table class="table table-striped table-bordered">
 <thead>
 	<tr>
 		<th>Class Name</th>
