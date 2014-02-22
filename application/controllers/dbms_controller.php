@@ -137,8 +137,15 @@ class Dbms_Controller extends CI_Controller
 
 	function delete_proctor($id)
 	{
-		$this->teacher->deleteProctorById($id);
+		$this->proctor->deleteProctorById($id);
 		$this->log->addLog('Deleted Proctor');
+		redirect('dbms');
+	}
+
+	function delete_mastertrainer($id)
+	{
+		$this->mastertrainer->deleteMasterTrainerById($id);
+		$this->log->addLog('Deleted Master Trainer');
 		redirect('dbms');
 	}
 
