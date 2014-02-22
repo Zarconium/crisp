@@ -164,11 +164,11 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('current_city', 'City', 'trim|required|max_length[45]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('current_province', 'Province', 'trim|required|max_length[45]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('current_region', 'Region', 'trim|required|max_length[45]|alpha_dash|xss_clean');
-			$this->form_validation->set_rules('alternate_address', 'Alternate Address', 'trim|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('alternate_address', 'Alternate Address', 'trim|xss_clean');
 			$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|max_length[13]|xss_clean');
 			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|max_length[9]|xss_clean');
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[45]|valid_email|xss_clean');
-			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|xss_clean');
 			$this->form_validation->set_rules('degree_type', 'AB/BS', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('degree', 'Degree', 'trim|required|max_length[97]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('year', 'Year Level', 'trim|required|integer|xss_clean');
@@ -394,11 +394,11 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('city', 'City', 'trim|required|max_length[45]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('province', 'Province', 'trim|required|max_length[45]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('region', 'Region', 'trim|required|max_length[45]|alpha_dash|xss_clean');
-			$this->form_validation->set_rules('alternate_address', 'Alternate Address', 'trim|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('alternate_address', 'Alternate Address', 'trim|xss_clean');
 			$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|max_length[13]|xss_clean');
 			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|max_length[9]|xss_clean');
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[45]|valid_email|xss_clean');
-			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|xss_clean');
 			$this->form_validation->set_rules('degree_type', 'AB/BS', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('degree', 'Degree', 'trim|required|max_length[97]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('year', 'Year Level', 'trim|required|integer|xss_clean');
@@ -526,11 +526,11 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('city', 'City', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 			$this->form_validation->set_rules('province', 'Province', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 			$this->form_validation->set_rules('region', 'Region', 'trim|required|xss_clean|max_length[45]|alpha_dash');
-			$this->form_validation->set_rules('alternate_address', 'Alternate Address', 'trim|xss_clean|alpha_dash');
+			$this->form_validation->set_rules('alternate_address', 'Alternate Address', 'trim|xss_clean');
 			$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|xss_clean|max_length[13]|alpha_dash');
 			$this->form_validation->set_rules('landline', 'Landline', 'trim|required||xss_clean|max_length[9]|alpha_dash');
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|max_length[45]|valid_email');
-			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean|max_length[45]');
 			$this->form_validation->set_rules('degree_type', 'AB/BS', 'trim|xss_clean');//wala po ulit sa db itong mga ito--- //
 			$this->form_validation->set_rules('degree', 'Degree', 'trim|xss_clean');//wala po ulit sa db itong mga ito--- //
 			$this->form_validation->set_rules('school', 'School', 'trim|xss_clean');
@@ -1014,7 +1014,7 @@ class Dbms_Controller extends CI_Controller
 				$this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|xss_clean|max_length[13]|alpha_dash');
 				$this->form_validation->set_rules('landline', 'Landline', 'trim|required||xss_clean|max_length[9]|alpha_dash');
 				$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|max_length[45]|valid_email');
-				$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean|max_length[45]|alpha_dash');
+				$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean|max_length[45]');
 				$this->form_validation->set_rules('degree_type', 'AB/BS', 'trim|xss_clean|max_length[45]');//nawawala sa db pakshit
 				$this->form_validation->set_rules('degree', 'Degree', 'trim|xss_clean|max_length[250]');//nawawala sa db pakshit
 				$this->form_validation->set_rules('school', 'School', 'trim|xss_clean');//nawawala sa db pakshit
@@ -1609,9 +1609,9 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|xss_clean|max_length[13]|alpha_dash');
 			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|xss_clean|max_length[9]|alpha_dash');
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
-			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean|max_length[45]');
 			$this->form_validation->set_rules('company_name', 'Company Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
-			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|xss_clean|max_length[255]|alpha_dash');
+			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|xss_clean|max_length[255]');
 			$this->form_validation->set_rules('position', 'Position', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 
 			$this->form_validation->set_message('is_unique', 'Proctor already exists.');
@@ -1703,9 +1703,9 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|max_length[13]|xss_clean|alpha_dash');
 			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|max_length[9]|xss_clean|alpha_dash');
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[45]|valid_email|xss_clean');
-			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|xss_clean|alpha_dash');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|xss_clean');
 			$this->form_validation->set_rules('company_name', 'Company Name', 'trim|required|max_length[45]|xss_clean|alpha_dash');
-			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|max_length[255]|xss_clean|alpha_dash');
+			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|max_length[255]|xss_clean');
 			$this->form_validation->set_rules('position', 'Position', 'trim|required|max_length[45]|xss_clean|alpha_dash');
 
 			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
@@ -1797,9 +1797,9 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|xss_clean|max_length[13]|alpha_dash');
 			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|xss_clean|max_length[9]|alpha_dash');
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
-			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|xss_clean|max_length[45]');
 			$this->form_validation->set_rules('company_name', 'Company Name', 'trim|required|xss_clean|max_length[100]|alpha_dash');
-			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|xss_clean|alpha_dash');
+			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('position', 'Position', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 
 			$this->form_validation->set_message('is_unique', 'Master Trainer already exists.');
@@ -1891,9 +1891,9 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|max_length[13]|xss_clean|alpha_dash');
 			$this->form_validation->set_rules('landline', 'Landline', 'trim|required|max_length[9]|xss_clean|alpha_dash');
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[45]|valid_email|xss_clean');
-			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|xss_clean|alpha_dash');
+			$this->form_validation->set_rules('facebook', 'Facebook', 'trim|max_length[45]|xss_clean');
 			$this->form_validation->set_rules('company_name', 'Company Name', 'trim|required|max_length[100]|xss_clean|alpha_dash');
-			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|xss_clean|alpha_dash');
+			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('position', 'Position', 'trim|required|max_length[45]|xss_clean|alpha_dash');
 
 			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
@@ -2585,7 +2585,7 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('status', 'Status', 'trim|required|numeric|xss_clean');
 			$this->form_validation->set_rules('remarks', 'Remarks', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('company_information', 'Company Information', 'trim|required|alpha_dash|xss_clean');
-			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('company_address', 'Company Address', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('department', 'Department', 'trim|required|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('supervisor', 'Supervisor', 'trim|required|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('supervisor_contact_details', 'Supervisor Contact Details', 'trim|required|xss_clean');
