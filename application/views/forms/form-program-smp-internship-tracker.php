@@ -49,12 +49,12 @@
 
 			<div class="form-group">
 				<label>Status</label><br />
-				<select class="form-control" name="intern_stat" value="<?php if ($internship->Student_ID_Number) echo $internship->Student_ID_Number; ?>">
+				<select class="form-control" name="status" value="<?php if ($internship->Student_ID_Number) echo $internship->Student_ID_Number; ?>">
 				<?php foreach ($statuses as $status): ?>
 					<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($internship->Status_ID)) if ($status->Status_ID == $internship->Status_ID) echo 'selected="selected"'; ?>><?php echo $status->Name; ?></option>
 				<?php endforeach; ?>
 				</select>
-				<?php echo form_error('intern_stat'); ?>
+				<?php echo form_error('status'); ?>
 			</div>
 
 			<div class="form-group">
