@@ -48,83 +48,75 @@
 
 			<legend>Internship</legend>
 
-			<div class="form-group">		
-				<label>Company Information</label>			
-				<input class="form-control" type="text" name="company_information" value="<?php if ($internship->Student_ID_Number) echo $internship->Student_ID_Number; ?>">
+			<div class="form-group">
+				<label>Status</label><br />
+				<select class="form-control" name="intern_stat" value="<?php if ($internship->Student_ID_Number) echo $internship->Student_ID_Number; ?>">
+				<?php foreach ($statuses as $status): ?>
+					<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($internship->Status_ID)) if ($status->Status_ID == $internship->Status_ID) echo 'selected="selected"'; ?>><?php echo $status->Name; ?></option>
+				<?php endforeach; ?>
+				</select>
+				<?php echo form_error('intern_stat'); ?>
+			</div>
+
+			<div class="form-group">
+				<label>Remarks</label>
+				<input class="form-control" type="text" name="remarks" value="<?php if ($internship->Remarks) echo $internship->Remarks; ?>">
+				<?php echo form_error('remarks'); ?>
+			</div>
+
+			<div class="form-group">
+				<label>Company Information</label>
+				<input class="form-control" type="text" name="company_information" value="<?php if ($internship->Company_Information) echo $internship->Company_Information; ?>">
 				<?php echo form_error('company_information'); ?>
 			</div>
 
-			<div class="form-group">		
-				<label>Name of Company</label>			
-				<input class="form-control" type="text" name="company_name" value="<?php if ($internship->Student_ID_Number) echo $internship->Student_ID_Number; ?>">
-				<?php echo form_error('company_name'); ?>
-			</div>
-
-			<div class="form-group">		
-				<label>Company Address</label>			
-				<input class="form-control" type="text" name="company_address" value="<?php if ($internship->Student_ID_Number) echo $internship->Student_ID_Number; ?>">
+			<div class="form-group">
+				<label>Company Address</label>
+				<input class="form-control" type="text" name="company_address" value="<?php if ($internship->Company_Address) echo $internship->Company_Address; ?>">
 				<?php echo form_error('company_address'); ?>
 			</div>
 
-			<div class="form-group">		
-				<label>Department / Divison</label>			
-				<input class="form-control" type="text" name="department" value="<?php if ($internship->Student_ID_Number) echo $internship->Student_ID_Number; ?>">
+			<div class="form-group">
+				<label>Department / Divison</label>
+				<input class="form-control" type="text" name="department" value="<?php if ($internship->Task) echo $internship->Task; ?>">
 				<?php echo form_error('department'); ?>
 			</div>
 
-			<div class="form-group">		
-				<label>Supervisor / Mentor</label>			
-				<input class="form-control" type="text" name="supervisor" value="<?php if ($internship->Student_ID_Number) echo $internship->Student_ID_Number; ?>">
+			<div class="form-group">
+				<label>Supervisor / Mentor</label>
+				<input class="form-control" type="text" name="supervisor" value="<?php if ($internship->Supervisor_Name) echo $internship->Supervisor_Name; ?>">
 				<?php echo form_error('supervisor'); ?>
 			</div>
 
-			<div class="form-group">		
-				<label>Supervisor's Contact Details</label>			
-				<input class="form-control" type="text" name="supervisor_contact_details" value="<?php if ($internship->Student_ID_Number) echo $internship->Student_ID_Number; ?>">
+			<div class="form-group">
+				<label>Supervisor's Contact Details</label>
+				<input class="form-control" type="text" name="supervisor_contact_details" value="<?php if ($internship->Supervisor_Contact) echo $internship->Supervisor_Contact; ?>">
 				<?php echo form_error('supervisor_contact_details'); ?>
 			</div>
 
-			<div class="form-group">		
-				<label>Supervisor's Email</label>			
-				<input class="form-control" type="text" name="supervisor_email" value="<?php if ($internship->Student_ID_Number) echo $internship->Student_ID_Number; ?>">
-				<?php echo form_error('supervisor_email'); ?>
-			</div>
-
-			<div class="form-group">		
-				<label>Date Started</label>			
-				<input class="form-control" type="date" name="start_date" value="<?php if ($internship->Student_ID_Number) echo $internship->Student_ID_Number; ?>">
+			<div class="form-group">
+				<label>Date Started</label>
+				<input class="form-control" type="date" name="start_date" value="<?php if ($internship->Start_Date) echo date('Y-m-d', strtotime($internship->Start_Date)); ?>">
 				<?php echo form_error('start_date'); ?>
 			</div>
 
-			<div class="form-group">		
-				<label>Date Ended</label>			
-				<input class="form-control" type="date" name="end_date" value="<?php if ($internship->Student_ID_Number) echo $internship->Student_ID_Number; ?>">
+			<div class="form-group">
+				<label>Date Ended</label>
+				<input class="form-control" type="date" name="end_date" value="<?php if ($internship->End_Date) echo date('Y-m-d', strtotime($internship->End_Date)); ?>">
 				<?php echo form_error('end_date'); ?>
 			</div>
 
-			<div class="form-group">		
-				<label>Total Internship Hours</label>			
-				<input class="form-control" type="number" name="total_internship_hours" value="<?php if ($internship->Student_ID_Number) echo $internship->Student_ID_Number; ?>">
+			<div class="form-group">
+				<label>Total Internship Hours</label>
+				<input class="form-control" type="number" name="total_internship_hours" value="<?php if ($internship->Total_Work_Hours) echo $internship->Total_Work_Hours; ?>">
 				<?php echo form_error('total_internship_hours'); ?>
 			</div>
 
-			<div class="form-group">		
+			<div class="form-group">
 				<label>Evaluation Form</label><br />
-				<input type="radio" name="evaluation_form" value="1"> Yes
-				<input type="radio" name="evaluation_form" value="0"> No
+				<input type="radio" name="evaluation_form" value="1" <?php if ($internship->Meet_Standards == 1) echo 'selected="selected"'; ?>> Yes
+				<input type="radio" name="evaluation_form" value="0" <?php if ($internship->Meet_Standards == 0) echo 'selected="selected"'; ?>> No
 				<?php echo form_error('evaluation_form'); ?>
-			</div>
-
-			<div class="form-group">		
-				<label>Status</label><br />
-				<select class="form-control" name="intern_stat" value="<?php if ($internship->Student_ID_Number) echo $internship->Student_ID_Number; ?>">
-					<option value="pass">Pass</option>
-					<option value="fail">Fail</option>
-					<option value="incomplete">Incomplete</option>
-					<option value="dropped">Dropped</option>
-					<option value="taking">Currently Taking</option>
-				</select>
-				<?php echo form_error('intern_stat'); ?>
 			</div>
 		</div>
 	</form>
