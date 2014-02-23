@@ -18,13 +18,13 @@ Class Proctor extends CI_Model
 	function getAllProctorsFormatted()
 	{
 		$this->db->distinct();
-		$this->db->select('proctor.Proctor_ID, CONCAT_WS("", IF(LENGTH(proctor.Last_Name), proctor.Last_Name, NULL), ", ", IF(LENGTH(proctor.First_Name), proctor.First_Name, NULL), " ", IF(LENGTH(proctor.Middle_Initial), proctor.Middle_Initial, NULL), ". ", IF(LENGTH(proctor.Name_Suffix), proctor.Name_Suffix, NULL)) as Full_Name, CONCAT(school.Name, " - ", school.Branch) as School_Name, subject.Subject_Code', false);
+		$this->db->select('proctor.Proctor_ID, CONCAT_WS("", IF(LENGTH(proctor.Last_Name), proctor.Last_Name, NULL), ", ", IF(LENGTH(proctor.First_Name), proctor.First_Name, NULL), " ", IF(LENGTH(proctor.Middle_Initial), proctor.Middle_Initial, NULL), ". ", IF(LENGTH(proctor.Name_Suffix), proctor.Name_Suffix, NULL)) as Full_Name, GROUP_CONCAT(school.Name, " - ", school.Branch SEPARATOR ", ") as School_Name, GROUP_CONCAT(DISTINCT subject.Subject_Code SEPARATOR ", ") as Subject_Code', false);
 		$this->db->from('proctor');
 		$this->db->join('gcat_class', 'proctor.Proctor_ID = gcat_class.Proctor_ID', 'left');
 		$this->db->join('class', 'gcat_class.Class_ID = class.Class_ID', 'left');
 		$this->db->join('school', 'class.School_ID = school.School_ID', 'left');
 		$this->db->join('subject', 'class.Subject_ID = subject.Subject_ID', 'left');
-		// $this->db->group_by('Full_Name');
+		$this->db->group_by('Full_Name');
 		$this->db->order_by('proctor.Proctor_ID', 'asc');
 
 		$query = $this->db->get();
@@ -42,7 +42,7 @@ Class Proctor extends CI_Model
 	function getProctorSearchResults($params)
 	{
 		$this->db->distinct();
-		$this->db->select('proctor.Proctor_ID, proctor.Code, CONCAT_WS("", IF(LENGTH(proctor.Last_Name), proctor.Last_Name, NULL), ", ", IF(LENGTH(proctor.First_Name), proctor.First_Name, NULL), " ", IF(LENGTH(proctor.Middle_Initial), proctor.Middle_Initial, NULL), ". ", IF(LENGTH(proctor.Name_Suffix), proctor.Name_Suffix, NULL)) as Full_Name, CONCAT(school.name, " - ", school.Branch) as School_Name, GROUP_CONCAT(subject.Subject_Code SEPARATOR ", ") as Subject_Codes', false);
+		$this->db->select('proctor.Proctor_ID, CONCAT_WS("", IF(LENGTH(proctor.Last_Name), proctor.Last_Name, NULL), ", ", IF(LENGTH(proctor.First_Name), proctor.First_Name, NULL), " ", IF(LENGTH(proctor.Middle_Initial), proctor.Middle_Initial, NULL), ". ", IF(LENGTH(proctor.Name_Suffix), proctor.Name_Suffix, NULL)) as Full_Name, CONCAT(school.name, " - ", school.Branch) as School_Name, GROUP_CONCAT(DISTINCT subject.Subject_Code SEPARATOR ", ") as Subject_Code', false);
 		$this->db->from('proctor');
 		$this->db->join('gcat_class', 'proctor.Proctor_ID = gcat_class.Proctor_ID', 'left');
 		$this->db->join('class', 'gcat_class.Class_ID = class.Class_ID', 'left');
@@ -60,7 +60,7 @@ Class Proctor extends CI_Model
 			}
 			if (isset($params['school']))
 			{
-				$this->db->where('proctor.School_ID', $params['school']);
+				$this->db->where('school.School_ID', $params['school']);
 			}
 			$programs = FALSE;
 			if (isset($params['gcat']))
@@ -88,12 +88,12 @@ Class Proctor extends CI_Model
 			}
 			if ($programs)
 			{
-				$this->db->where_in('t3_tracker.Subject_ID', $programs);
+				$this->db->where_in('subject.Subject_ID', $programs);
 			}
 		}
 
 		$this->db->group_by('Full_Name');
-		$this->db->order_by('proctor.Teacher_ID', 'asc');
+		$this->db->order_by('proctor.Proctor_ID', 'asc');
 
 		$query = $this->db->get();
 		
