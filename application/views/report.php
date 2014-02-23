@@ -149,7 +149,7 @@ $year = date('Y');
 			</div>
 
 			<!-- T3 Program Report GCAT
-			NOT YET DONE
+			
 			-->
 			<div class="panel panel-info">
 				<div class="panel-heading">
@@ -305,7 +305,7 @@ $year = date('Y');
 				</div>
 				<div id="program_student_best_sei" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form" action="<?php echo base_url('reports/studentBestProgramReport'); ?>" method="post" target="_blank">
+						<form class="form" role="form" action="<?php echo base_url('reports/studentBestProgramReportSei'); ?>" method="post" target="_blank">
 							<div class="form-group">
 								<label>Date Start</label>
 								<input type="date" value="1990-01-01" class="form-control" name="program_student_best_start_date_sei">
