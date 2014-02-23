@@ -17,7 +17,6 @@
 
 		<input type="hidden" name="code" value="<?php echo set_value('code'); ?>">
 		<?php echo form_error('code'); ?>
-
 		<div class="form-inline">
 			<div class="form-group">
 				<label>ID Number</label>
@@ -41,7 +40,7 @@
 			
 			<div class="form-group">
 				<label>Middle Initial</label>
-				<input type="text" class="form-control" name="middle_initial" value="<?php echo set_value('middle_initial'); ?>">
+				<input type="text" class="form-control" name="middle_initial" placeholder="Please put a '-' if there is no MI" value="<?php echo set_value('middle_initial'); ?>">
 				<?php echo form_error('middle_initial'); ?>
 			</div>
 			

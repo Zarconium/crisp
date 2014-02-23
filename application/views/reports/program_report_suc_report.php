@@ -1,7 +1,7 @@
-<h1>SUC Report</h1>
+<h1>Program SUC Report</h1>
 <h4>School: <?php echo $school->Name; ?></h4>
-<h4>Period: <?php echo $start_date; ?> to <?php echo $end_date; ?> </h4>
-<div class="report-form">
+<h4>Period: <?php echo date('F j\, Y', strtotime($start_date)); ?> to <?php echo date('F j\, Y', strtotime($end_date)); ?> </h4>
+<div class="report-form-long">
 <table class="table table-striped table-bordered">
 <thead>
 <tr>

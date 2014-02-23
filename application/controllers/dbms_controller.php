@@ -88,16 +88,16 @@ class Dbms_Controller extends CI_Controller
 									break;
 
 								case 'best':
-								$params['best'] = TRUE;
-								break;
+									$params['best'] = TRUE;
+									break;
 
 								case 'adept':
-								$params['adept'] = TRUE;
-								break;
+									$params['adept'] = TRUE;
+									break;
 
 								case 'smp':
-								$params['smp'] = TRUE;
-								break;
+									$params['smp'] = TRUE;
+									break;
 								
 								default:
 									break;
@@ -138,16 +138,16 @@ class Dbms_Controller extends CI_Controller
 									break;
 
 								case 'best':
-								$params['best'] = TRUE;
-								break;
+									$params['best'] = TRUE;
+									break;
 
 								case 'adept':
-								$params['adept'] = TRUE;
-								break;
+									$params['adept'] = TRUE;
+									break;
 
 								case 'smp':
-								$params['smp'] = TRUE;
-								break;
+									$params['smp'] = TRUE;
+									break;
 								
 								default:
 									break;
@@ -156,6 +156,263 @@ class Dbms_Controller extends CI_Controller
 					}
 
 					$data['teachers'] = $this->teacher->getTeacherSearchResults($params);
+				}
+			}
+
+			if ($this->input->post('search_proctor'))
+			{
+				$this->form_validation->set_rules('proctor_name', 'Name', 'trim|xss_clean');
+				$this->form_validation->set_rules('proctor_school', 'School', 'trim|xss_clean');
+				$this->form_validation->set_rules('proctor_program[]', 'Programs', 'trim|xss_clean');
+
+				if ($this->form_validation->run())
+				{
+					$params = FALSE;
+
+					if ($this->input->post('proctor_name'))
+					{
+						$params['name'] = $this->input->post('proctor_name');
+					}
+					if ($this->input->post('proctor_school'))
+					{
+						$params['school'] = $this->input->post('proctor_school');
+					}
+					if ($this->input->post('proctor_program'))
+					{
+						foreach ($this->input->post('proctor_program') as $program)
+						{
+							switch ($program)
+							{
+								case 'gcat':
+									$params['gcat'] = TRUE;
+									break;
+
+								case 'best':
+									$params['best'] = TRUE;
+									break;
+
+								case 'adept':
+									$params['adept'] = TRUE;
+									break;
+
+								case 'smp':
+									$params['smp'] = TRUE;
+									break;
+								
+								default:
+									break;
+							}
+						}
+					}
+
+					$data['proctors'] = $this->proctor->getProctorSearchResults($params);
+				}
+			}
+
+			if ($this->input->post('search_mastertrainer'))
+			{
+				$this->form_validation->set_rules('mastertrainer_name', 'Name', 'trim|xss_clean');
+				$this->form_validation->set_rules('mastertrainer_school', 'School', 'trim|xss_clean');
+				$this->form_validation->set_rules('mastertrainer_program[]', 'Programs', 'trim|xss_clean');
+
+				if ($this->form_validation->run())
+				{
+					$params = FALSE;
+
+					if ($this->input->post('mastertrainer_name'))
+					{
+						$params['name'] = $this->input->post('mastertrainer_name');
+					}
+					if ($this->input->post('mastertrainer_school'))
+					{
+						$params['school'] = $this->input->post('mastertrainer_school');
+					}
+					if ($this->input->post('mastertrainer_program'))
+					{
+						foreach ($this->input->post('mastertrainer_program') as $program)
+						{
+							switch ($program)
+							{
+								case 'gcat':
+									$params['gcat'] = TRUE;
+									break;
+
+								case 'best':
+									$params['best'] = TRUE;
+									break;
+
+								case 'adept':
+									$params['adept'] = TRUE;
+									break;
+
+								case 'smp':
+									$params['smp'] = TRUE;
+									break;
+								
+								default:
+									break;
+							}
+						}
+					}
+
+					$data['mastertrainers'] = $this->mastertrainer->getMasterTrainerSearchResults($params);
+				}
+			}
+
+			if ($this->input->post('search_class'))
+			{
+				$this->form_validation->set_rules('class_teacher', 'Teacher', 'trim|xss_clean');
+				$this->form_validation->set_rules('class_school', 'School', 'trim|xss_clean');
+				$this->form_validation->set_rules('class_semester', 'Semester', 'trim|xss_clean');
+				$this->form_validation->set_rules('class_year', 'Year', 'trim|xss_clean');
+				$this->form_validation->set_rules('class_section', 'Section', 'trim|xss_clean');
+				$this->form_validation->set_rules('class_program[]', 'Programs', 'trim|xss_clean');
+
+				if ($this->form_validation->run())
+				{
+					$params = FALSE;
+
+					if ($this->input->post('class_teacher'))
+					{
+						$params['name'] = $this->input->post('class_teacher');
+					}
+					if ($this->input->post('class_school'))
+					{
+						$params['school'] = $this->input->post('class_school');
+					}
+					if ($this->input->post('class_semester'))
+					{
+						$params['semester'] = $this->input->post('class_semester');
+					}
+					if ($this->input->post('class_year'))
+					{
+						$params['year'] = $this->input->post('class_year');
+					}
+					if ($this->input->post('class_section'))
+					{
+						$params['section'] = $this->input->post('class_section');
+					}
+					if ($this->input->post('class_program'))
+					{
+						foreach ($this->input->post('class_program') as $program)
+						{
+							switch ($program)
+							{
+								case 'gcat':
+									$params['gcat'] = TRUE;
+									break;
+
+								case 'best':
+									$params['best'] = TRUE;
+									break;
+
+								case 'adept':
+									$params['adept'] = TRUE;
+									break;
+
+								case 'bizcom':
+									$params['bizcom'] = TRUE;
+									break;
+
+								case 'bpo101':
+									$params['bpo101'] = TRUE;
+									break;
+
+								case 'bpo102':
+									$params['bpo102'] = TRUE;
+									break;
+
+								case 'sc101':
+									$params['sc101'] = TRUE;
+									break;
+
+								case 'systh101':
+									$params['systh101'] = TRUE;
+									break;
+								
+								default:
+									break;
+							}
+						}
+					}
+
+					$data['student_classes'] = $this->classes->getClassSearchResults($params);
+				}
+			}
+
+			if ($this->input->post('search_t3_class'))
+			{
+				$this->form_validation->set_rules('t3_class_teacher', 'Teacher', 'trim|xss_clean');
+				$this->form_validation->set_rules('t3_class_school', 'School', 'trim|xss_clean');
+				$this->form_validation->set_rules('t3_class_year', 'Year', 'trim|xss_clean');
+				$this->form_validation->set_rules('t3_class_section', 'Section', 'trim|xss_clean');
+				$this->form_validation->set_rules('t3_class_program[]', 'Programs', 'trim|xss_clean');
+
+				if ($this->form_validation->run())
+				{
+					$params = FALSE;
+
+					if ($this->input->post('t3_class_teacher'))
+					{
+						$params['name'] = $this->input->post('t3_class_teacher');
+					}
+					if ($this->input->post('t3_class_school'))
+					{
+						$params['school'] = $this->input->post('t3_class_school');
+					}
+					if ($this->input->post('t3_class_year'))
+					{
+						$params['year'] = $this->input->post('t3_class_year');
+					}
+					if ($this->input->post('t3_class_section'))
+					{
+						$params['section'] = $this->input->post('t3_class_section');
+					}
+					if ($this->input->post('t3_class_program'))
+					{
+						foreach ($this->input->post('t3_class_program') as $program)
+						{
+							switch ($program)
+							{
+								case 'gcat':
+									$params['gcat'] = TRUE;
+									break;
+
+								case 'best':
+									$params['best'] = TRUE;
+									break;
+
+								case 'adept':
+									$params['adept'] = TRUE;
+									break;
+
+								case 'bizcom':
+									$params['bizcom'] = TRUE;
+									break;
+
+								case 'bpo101':
+									$params['bpo101'] = TRUE;
+									break;
+
+								case 'bpo102':
+									$params['bpo102'] = TRUE;
+									break;
+
+								case 'sc101':
+									$params['sc101'] = TRUE;
+									break;
+
+								case 'systh101':
+									$params['systh101'] = TRUE;
+									break;
+								
+								default:
+									break;
+							}
+						}
+					}
+
+					$data['t3_classes'] = $this->classes->getT3ClassSearchResults($params);
 				}
 			}
 		}
@@ -193,6 +450,20 @@ class Dbms_Controller extends CI_Controller
 		redirect('dbms');
 	}
 
+	function delete_class($id)
+	{
+		$this->classes->deleteStudentClassById($id);
+		$this->log->addLog('Deleted Master Trainer');
+		redirect('dbms');
+	}
+
+	function delete_t3_class($id)
+	{
+		$this->classes->deleteT3ClassById($id);
+		$this->log->addLog('Deleted Master Trainer');
+		redirect('dbms');
+	}
+
 	function form_student_application()
 	{
 		$data['schools'] = $this->school->getAllSchools();
@@ -200,18 +471,18 @@ class Dbms_Controller extends CI_Controller
 		if($this->input->post())
 		{
 			$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean|integer');
-			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[45]|alpha_numeric|xss_clean');
-			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[45]|alpha_numeric|xss_clean');
-			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|max_length[4]|alpha|xss_clean');
-			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|max_length[5]|alpha_numeric|xss_clean');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|max_length[5]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|max_length[5]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('id_number', 'ID Number', 'trim|required|max_length[10]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('civil', 'Civil', 'trim|required|max_length[9]|xss_clean');
 			$this->form_validation->set_rules('birthday', 'Birthdate', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('birthplace', 'Birthplace', 'trim|required|max_length[45]|alpha_numeric|xss_clean');
+			$this->form_validation->set_rules('birthplace', 'Birthplace', 'trim|required|max_length[45]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|exact_length[1]|xss_clean');
 			$this->form_validation->set_rules('nationality', 'Nationality', 'trim|required|max_length[45]|alpha|xss_clean');
-			$this->form_validation->set_rules('current_street_number', 'Street Number', 'trim|required|max_length[5]|alpha_dash|xss_clean');
-			$this->form_validation->set_rules('current_street_name', 'Street Name', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('current_street_number', 'Street Number', 'trim|required|max_length[5]|xss_clean');
+			$this->form_validation->set_rules('current_street_name', 'Street Name', 'trim|required|max_length[45]|xss_clean');
 			$this->form_validation->set_rules('current_city', 'City', 'trim|required|max_length[45]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('current_province', 'Province', 'trim|required|max_length[45]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('current_region', 'Region', 'trim|required|max_length[45]|alpha_dash|xss_clean');
@@ -431,17 +702,17 @@ class Dbms_Controller extends CI_Controller
 		if($this->input->post()) //trim at xss clean dapat meron, 
 		{
 			$this->form_validation->set_rules('id_number', 'ID Number', 'trim|required|max_length[10]|alpha_dash|xss_clean');
-			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[45]|alpha_numeric|xss_clean');
-			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[45]|alpha_numeric|xss_clean');
-			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|max_length[4]|alpha|xss_clean');
-			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|max_length[5]|alpha_numeric|xss_clean');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|max_length[5]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|max_length[5]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('civil', 'Civil', 'trim|required|max_length[9]|xss_clean');
 			$this->form_validation->set_rules('birthday', 'Birthdate', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('birthplace', 'Birthplace', 'trim|required|max_length[45]|alpha_numeric|xss_clean');
+			$this->form_validation->set_rules('birthplace', 'Birthplace', 'trim|required|max_length[45]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|exact_length[1]|xss_clean');
 			$this->form_validation->set_rules('nationality', 'Nationality', 'trim|required|max_length[45]|alpha|xss_clean');
-			$this->form_validation->set_rules('street_number', 'Street Number', 'trim|required|max_length[5]|alpha_dash|xss_clean');
-			$this->form_validation->set_rules('street_name', 'Street Name', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('street_number', 'Street Number', 'trim|required|max_length[5]|xss_clean');
+			$this->form_validation->set_rules('street_name', 'Street Name', 'trim|required|max_length[45]|xss_clean');
 			$this->form_validation->set_rules('city', 'City', 'trim|required|max_length[45]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('province', 'Province', 'trim|required|max_length[45]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('region', 'Region', 'trim|required|max_length[45]|alpha_dash|xss_clean');
@@ -562,7 +833,7 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|xss_clean|max_length[5]|alpha_dash');
 			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
-			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean|max_length[1]|alpha');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean|max_length[5]|alpha_dash');
 			$this->form_validation->set_rules('birthdate', 'Birthdate', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('birthplace', 'Birthplace', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 			$this->form_validation->set_rules('nationality', 'Nationality', 'trim|required|xss_clean|max_length[45]|alpha_dash');
@@ -572,8 +843,8 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('desktop', 'Desktop', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('laptop', 'Laptop', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('access', 'Access', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('street_number', 'Street Number', 'trim|required|xss_clean|max_length[5]|alpha_dash');
-			$this->form_validation->set_rules('street_name', 'Street Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('street_number', 'Street Number', 'trim|required|xss_clean|max_length[5]');
+			$this->form_validation->set_rules('street_name', 'Street Name', 'trim|required|xss_clean|max_length[45]');
 			$this->form_validation->set_rules('city', 'City', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 			$this->form_validation->set_rules('province', 'Province', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 			$this->form_validation->set_rules('region', 'Region', 'trim|required|xss_clean|max_length[45]|alpha_dash');
@@ -1046,7 +1317,7 @@ class Dbms_Controller extends CI_Controller
 				$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|xss_clean|max_length[5]|alpha_dash');
 				$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 				$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
-				$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean|max_length[1]|alpha_dash');
+				$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean|max_length[5]|alpha_dash');
 				$this->form_validation->set_rules('birthdate', 'Birthdate', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('birthplace', 'Birthplace', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 				$this->form_validation->set_rules('nationality', 'Nationality', 'trim|required|xss_clean|max_length[45]|alpha_dash');
@@ -1056,8 +1327,8 @@ class Dbms_Controller extends CI_Controller
 				$this->form_validation->set_rules('desktop', 'Desktop', 'trim|required|xss_clean|max_length[1]');
 				$this->form_validation->set_rules('laptop', 'Laptop', 'trim|required|xss_clean|max_length[1]');
 				$this->form_validation->set_rules('access', 'Access', 'trim|required|xss_clean|max_length[1]');
-				$this->form_validation->set_rules('street_number', 'Street Number', 'trim|required|xss_clean|max_length[5]|alpha_dash');
-				$this->form_validation->set_rules('street_name', 'Street Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+				$this->form_validation->set_rules('street_number', 'Street Number', 'trim|required|xss_clean|max_length[5]');
+				$this->form_validation->set_rules('street_name', 'Street Name', 'trim|required|xss_clean|max_length[45]');
 				$this->form_validation->set_rules('city', 'City', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 				$this->form_validation->set_rules('province', 'Province', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 				$this->form_validation->set_rules('region', 'Region', 'trim|required|xss_clean|max_length[45]|alpha_dash');
@@ -1842,7 +2113,7 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|xss_clean|max_length[4]|alpha_dash');
 			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
-			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean|max_length[3]|alpha');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|xss_clean|max_length[5]|alpha_dash');
 			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('civil', 'Civil Status', 'trim|required|xss_clean|max_length[9]|alpha_dash');
 			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|xss_clean|max_length[13]|alpha_dash');
@@ -1936,7 +2207,7 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('name_suffix', 'Name Suffix', 'trim|max_length[4]|xss_clean|alpha_dash');
 			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[45]|xss_clean|alpha_dash');
 			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[45]|xss_clean|alpha_dash');
-			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|max_length[3]|xss_clean|alpha_dash');
+			$this->form_validation->set_rules('middle_initial', 'Middle Initial', 'trim|required|max_length[5]|xss_clean|alpha_dash');
 			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('civil', 'Civil Status', 'trim|required|xss_clean|max_length[9]|alpha_dash');
 			$this->form_validation->set_rules('mobile_number', 'Mobile Number', 'trim|required|max_length[13]|xss_clean|alpha_dash');
@@ -2033,7 +2304,7 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('code', 'Code', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('teacher_last_name', 'Teacher\'s Last Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 			$this->form_validation->set_rules('teacher_first_name', 'Teacher\'s First Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
-			$this->form_validation->set_rules('teacher_middle_initial', 'Teacher\'s Middle Initial', 'trim|required|xss_clean|max_length[1]|alpha');
+			$this->form_validation->set_rules('teacher_middle_initial', 'Teacher\'s Middle Initial', 'trim|required|xss_clean|max_length[5]|alpha_dash');
 			$this->form_validation->set_rules('teacher_email', 'Teacher\'s Email', 'trim|required|xss_clean|valid_email');
 			$this->form_validation->set_rules('teacher_birthdate', 'Teacher\'s Birthdate', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean');
@@ -2044,7 +2315,7 @@ class Dbms_Controller extends CI_Controller
 
 			$this->form_validation->set_rules('last_name[]', 'Last Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 			$this->form_validation->set_rules('first_name[]', 'First Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
-			$this->form_validation->set_rules('middle_initial[]', 'Middlte Initial', 'trim|required|xss_clean|max_length[1]|alpha');
+			$this->form_validation->set_rules('middle_initial[]', 'Middlte Initial', 'trim|required|xss_clean|max_length[5]|alpha_dash');
 			$this->form_validation->set_rules('student_number[]', 'Student Number', 'trim|required|xss_clean');
 
 			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
@@ -2168,7 +2439,7 @@ class Dbms_Controller extends CI_Controller
 			{
 				$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 				$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
-				$this->form_validation->set_rules('middle_initial', 'Middlte Initial', 'trim|required|xss_clean|max_length[1]|alpha');
+				$this->form_validation->set_rules('middle_initial', 'Middlte Initial', 'trim|required|xss_clean|max_length[5]|alpha_dash');
 				$this->form_validation->set_rules('student_number', 'Student Number', 'trim|required|xss_clean');
 
 				$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
@@ -2398,7 +2669,7 @@ class Dbms_Controller extends CI_Controller
 			{
 				$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 				$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
-				$this->form_validation->set_rules('middle_initial', 'Middlte Initial', 'trim|required|xss_clean|max_length[1]|alpha');
+				$this->form_validation->set_rules('middle_initial', 'Middlte Initial', 'trim|required|xss_clean|max_length[5]|alpha_dash');
 				$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('birthdate', 'Birthdate', 'trim|required|xss_clean');
 
@@ -2596,8 +2867,6 @@ class Dbms_Controller extends CI_Controller
 				}
 				else
 				{
-					$this->form_validation->run();
-
 					$data['form_error'] = TRUE;
 
 					$this->load->view('header');
@@ -2677,7 +2946,7 @@ class Dbms_Controller extends CI_Controller
 						$data['form_error'] = TRUE;
 
 						$this->load->view('header');
-						$this->load->view('forms/form-program-smp-tracker', $data);
+						$this->load->view('forms/form-program-smp-internship-tracker', $data);
 						$this->load->view('footer');
 					}
 					else
@@ -2695,8 +2964,6 @@ class Dbms_Controller extends CI_Controller
 				}
 				else
 				{
-					$this->form_validation->run();
-
 					$data['form_error'] = TRUE;
 
 					$this->load->view('header');
@@ -2725,68 +2992,62 @@ class Dbms_Controller extends CI_Controller
 
 	function form_program_gcat_tracker($id)
 	{
-		$data['proctors'] = $this->proctor->getAllProctorsFormatted();
 		$data['schools'] = $this->school->getAllSchools();
-		$data['subjects'] = $this->subject->getAllSubjects();
 		$data['statuses'] = $this->status->getAllStatuses();
 		$data['gcat_student'] = $this->student->getGcatStudentByStudentIdOrCode($id);
 
 		if($this->input->post())
 		{
-			$this->form_validation->set_rules('proctor', 'Proctor', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('subject', 'Subject', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('semester', 'Semester', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('year', 'Year Level', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('section', 'Section', 'trim|required|xss_clean');
-			// Student list
-			$this->form_validation->set_rules('student_full_name[]', 'Student Full Name', 'trim|xss_clean');
-			$this->form_validation->set_rules('student_student_number[]', 'Student Number', 'trim|xss_clean');
-			$this->form_validation->set_rules('student_session_id[]', 'Session ID', 'trim|xss_clean');
-			$this->form_validation->set_rules('student_test_date[]', 'Test Date', 'trim|xss_clean');
-			$this->form_validation->set_rules('student_status[]', 'Status', 'trim|xss_clean');
-			$this->form_validation->set_rules('student_remarks[]', 'Remarks', 'trim|xss_clean');
+			$this->form_validation->set_rules('code', 'Code', 'trim|required|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('session_id', 'Session ID', 'trim|required|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('test_date', 'Test Date', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('status', 'Status', 'trim|required||xss_clean');
+			$this->form_validation->set_rules('remarks', 'Remarks', 'trim|required|xss_clean');
 
 			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
 			
-			if($this->input->post('submit'))
+			if ($this->input->post('submit'))
 			{
-				if($this->form_validation->run() == FALSE)
+				if ($this->form_validation->run())
 				{
-					$data['form_error'] = TRUE;
+					$this->db->trans_begin();
 
-					$this->load->view('header');
-					$this->load->view('forms/form-program-gcat-tracker', $data);
-					$this->load->view('footer');
+					$student_code = $this->input->post('code');
+
+					$gcat_student = array
+					(
+						'tracker.Status_ID' => $this->input->post('status'),
+						'tracker.Remarks' => $this->input->post('remarks'),
+						'gcat_student.Session_ID' => $this->input->post('session_id'),
+						'gcat_student.Test_Date' => $this->input->post('test_date')
+					);
+
+					if ($this->student->updateGcatStudent($student_code, 'GCAT', $gcat_student))
+					{
+						$this->db->trans_rollback();
+
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-program-gcat-tracker', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$this->db->trans_commit();
+
+						$data['gcat_student'] = $this->student->getGcatStudentByStudentIdOrCode($id);
+						$data['form_success'] = TRUE;
+						$this->log->addLog('Updated GCAT Tracker');
+
+						$this->load->view('header');
+						$this->load->view('forms/form-program-gcat-tracker', $data);
+						$this->load->view('footer');
+					}
 				}
 				else
 				{
-					$t3_tracker = array
-					(
-						'Status_ID' => $this->input->post('status'),
-						'Contract' => $this->input->post('contract'),
-						'Remarks' => $this->input->post('remarks'),
-						'Subject_ID' => $this->input->post('subject')
-					);
-					$t3_tracker_id = $this->teacher->addTeacher($t3_tracker);
-
-					for ($i = 0; $i < count($this->input->post('institutions_worked_institution')); $i++)
-					{ 
-						$teacher_training_experience = array
-						(
-							'Teacher_ID' => $teacher_id,
-							'Institution' => $this->input->post('institutions_worked_institution')[$i],
-							'Position' => $this->input->post('institutions_worked_position')[$i],
-							'Date' => $this->input->post('institutions_worked_year_started')[$i],
-							'Level_Taught' => $this->input->post('institutions_worked_level_taught')[$i],
-							'Courses_Taught' => $this->input->post('institutions_worked_courses_taught')[$i],
-							'Number_of_Years_in_Institution' => $this->input->post('institutions_worked_number_of_years_in_institution')[$i]
-						);
-						$this->teacher->addTeacherTrainingExperience($teacher_training_experience);
-					}
-
-					$data['form_success'] = TRUE;
-					$this->log->addLog('Program GCAT Tracker Added');
+					$data['form_error'] = TRUE;
 
 					$this->load->view('header');
 					$this->load->view('forms/form-program-gcat-tracker', $data);
@@ -2810,6 +3071,9 @@ class Dbms_Controller extends CI_Controller
 			$this->load->view('forms/form-program-gcat-tracker', $data);
 			$this->load->view('footer');
 		}
+			$this->load->view('header');
+			$this->load->view('forms/form-program-gcat-tracker', $data);
+			$this->load->view('footer');
 	}
 	
 	function form_program_best_tracker($id)
@@ -3182,33 +3446,6 @@ class Dbms_Controller extends CI_Controller
 			$this->load->view('forms/form-program-t3-adept-tracker', $data);
 			$this->load->view('footer');
 		}
-	}
-
-	function form_teacher_best_attendance() // Unused
-	{
-		$this->log->addLog('Updated Teacher Best Attendance');
-
-		$this->load->view('header');
-		$this->load->view('forms/form-teacher-best-attendance');
-		$this->load->view('footer');
-	}
-
-	function form_student_best_adept_product() // Unused
-	{
-		$this->log->addLog('Added Student Best Adept Product');
-
-		$this->load->view('header');
-		$this->load->view('forms/form-tracker-best-adept-encoder');
-		$this->load->view('footer');
-	}
-
-	function form_teacher_best_adept_product() // Unused
-	{
-		$this->log->addLog('Added Teacher Best Adept Product');
-
-		$this->load->view('header');
-		$this->load->view('forms/form-tracker-best-adept-teacher');
-		$this->load->view('footer');
 	}
 	// Student Batch Upload
 	function upload_student_profile()
