@@ -1,6 +1,6 @@
 <h1>SUC Adept Students Classes</h1>
 <h4>Subject: <?php echo $subject->Subject_Name; ?></h4>
-<h4>Period: <?php echo $start_date; ?> to <?php echo $end_date; ?> </h4>
+<h4>Period: <?php echo date('F j\, Y', strtotime($start_date)); ?> to <?php echo date('F j\, Y', strtotime($end_date)); ?> </h4>
 <h4>Semester: <?php echo $semester; ?></h4>
 <h4>School: <?php echo $school->Name; ?></h4><div class="report-form">
 <table class="table table-striped table-bordered">
