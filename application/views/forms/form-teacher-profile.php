@@ -1,4 +1,4 @@
-<div class="info-form">
+`<div class="info-form">
 	<?php if (isset($draft_saved)) { echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Draft saved.</div>';} ?>
 	<?php if (isset($form_success)) { echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Teacher successfully updated.</div>';} ?>
 	<?php if (isset($form_error)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>There were errors in your input. Please check the fields and try again.</div>';} ?>
@@ -42,7 +42,7 @@
 
 						<div class="form-group">
 							<label>Middle Initial</label>
-							<input class="form-control" type="text" name="middle_initial" value="<?php if(isset($teacher->Middle_Initial)) echo $teacher->Middle_Initial; ?>">
+							<input class="form-control" type="text" name="middle_initial" placeholder="Please put a '-' if there is no MI" value="<?php if(isset($teacher->Middle_Initial)) echo $teacher->Middle_Initial; ?>">
 							<?php echo form_error('middle_initial'); ?>
 						</div>
 
