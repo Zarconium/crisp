@@ -8,7 +8,7 @@
 <thead>
 <tr>
 	<th>Description</th>
-	<th>LFAT</th>
+	<th>LFA Target</th>
 	<th>January</th>
 	<th>Target</th>
 	<th>%</th>
@@ -789,7 +789,7 @@
 <table class="table table-striped table-bordered"><thead>
 <tr>
 	<th>Description</th>
-	<th>LFA Targets</th>
+	<th>LFA Target</th>
 	<th>January</th>
 	<th>Target</th>
 	<th>%</th>

@@ -22,7 +22,7 @@ $female = 0;
 	<tr>
 		<td><?php echo $count->School; ?></td>
 		<td><?php echo $count->Male; $male = $male + $count->Male; ?></td>
-		<td><?php echo $count->Female; $female = $female + $count->Femle;  ?></td>
+		<td><?php echo $count->Female; $female = $female + $count->Female;  ?></td>
 		<td><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
