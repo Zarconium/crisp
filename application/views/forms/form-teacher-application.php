@@ -41,7 +41,7 @@
 
 					<div class="form-group">
 						<label>Middle Initial</label>
-						<input class="form-control" type="text" name="middle_initial" value="<?php echo set_value('middle_initial'); ?>">
+						<input class="form-control" type="text" name="middle_initial" placeholder="Please put a '-' if there is no MI" value="<?php echo set_value('middle_initial'); ?>">
 						<?php echo form_error('middle_initial'); ?>
 					</div>
 					
