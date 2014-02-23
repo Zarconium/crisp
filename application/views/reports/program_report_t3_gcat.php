@@ -1,5 +1,5 @@
 <h1>T3 GCAT Program Report</h1>
-<h4>Period: <?php echo $start_date; ?> to <?php echo $end_date; ?> </h4>
+<h4>Period: <?php echo date('F j\, Y', strtotime($start_date)); ?> to <?php echo date('F j\, Y', strtotime($end_date)); ?> </h4>
 <legend>Number of Teachers Finished with T3 GCAT</legend>
 <div class="report-form">
 <table class="table table-striped table-bordered">

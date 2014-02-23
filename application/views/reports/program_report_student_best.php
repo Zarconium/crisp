@@ -1,6 +1,6 @@
 <h1>Student BEST Program Report</h1>
+<h4>Period: <?php echo date('F j\, Y', strtotime($start_date)); ?> to <?php echo date('F j\, Y', strtotime($end_date)); ?> </h4>
 <legend>Pins Given</legend>
-<h4>Period: <?php echo $start_date; ?> to <?php echo $end_date; ?> </h4>
 <div class="report-form">
 
 <?php

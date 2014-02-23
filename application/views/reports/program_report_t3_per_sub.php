@@ -1,5 +1,5 @@
 <h1>T3 Program Report For <?php echo $subject->Subject_Name; ?></h1>
-<h4>Period: <?php echo date("M j, Y", strtotime($start_date)); ?> to <?php echo $end_date; ?> </h4>
+<h4>Period: <?php echo date('F j\, Y', strtotime($start_date)); ?> to <?php echo date('F j\, Y', strtotime($end_date)); ?> </h4>
 <legend>Number of Teachers Finished Training in <?php echo $subject->Subject_Name; ?> </legend>
 <div class="report-form">
 <table class="table table-striped table-bordered">

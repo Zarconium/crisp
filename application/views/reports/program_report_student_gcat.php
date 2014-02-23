@@ -1,5 +1,5 @@
 <h1>GCAT Student Program Report</h1>
-<h4>Period: <?php echo $start_date; ?> to <?php echo $end_date; ?> </h4>
+<h4>Period: <?php echo date('F j\, Y', strtotime($start_date)); ?> to <?php echo date('F j\, Y', strtotime($end_date)); ?> </h4>
 <legend>Number of Students Who Have Taken GCAT</legend>
 <div class="report-form">
 
