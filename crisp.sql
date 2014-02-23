@@ -224,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `adept_t3_tracker` (
   `Adept_ELearning_Feedback` tinyint(1) NOT NULL DEFAULT '0',
   `Manual_and_Kit` tinyint(1) NOT NULL DEFAULT '0',
   `Certificate_Of_Attendance` tinyint(1) NOT NULL DEFAULT '0',
-  `Adept_Certified_Trainers` tinyint(1) NOT NULL,
+  `Adept_Certified_Trainers` tinyint(1) NOT NULL DEFAULT '0',
   `Lesson_Plan` double DEFAULT '0',
   `Demo` double DEFAULT '0',
   `Total_Weighted` double DEFAULT '0',
