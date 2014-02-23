@@ -926,7 +926,7 @@ class Reports_Controller extends CI_Controller {
 		$data['getMonthlyStudentsUndergoneInternship'] = $this->report_mne-> getallStudentsInternshipCompletedMonthly($jan_start, $jan_end, $feb_start, $feb_end, $mar_start, $mar_end, $apr_start, $apr_end, $may_start, $may_end, $jun_start, $jun_end, $jul_start, $jul_end, $aug_start, $aug_end, $sep_start, $sep_end, $oct_start, $oct_end, $nov_start, $nov_end, $dec_start, $dec_end, $annual_start, $annual_end);
 
 
-		$data['lfa_targets'] = $this->users_targets->getLFATargets($this->input->post('mande_quarter_year'));
+		$data['lfa_targets'] = $this->users_targets->getLFATargets($this->input->post('mande_monthly_year'));
 		$data['annual_start']=$annual_start;
 		$data['annual_end'] = $annual_end;
 		

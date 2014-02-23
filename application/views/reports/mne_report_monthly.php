@@ -2,13 +2,13 @@
 <h4>Period: <?php echo $annual_start; ?> to <?php echo $annual_end; ?> </h4>
 <legend>CHED-LFA</legend>
 	
-<div class="report-form">
+<div class="report-form-long">
 <legend>T3</legend>
 <table class="table table-striped table-bordered">
 <thead>
 <tr>
 	<th>Description</th>
-	<th>LFA Targets</th>
+	<th>LFAT</th>
 	<th>January</th>
 	<th>Target</th>
 	<th>%</th>
