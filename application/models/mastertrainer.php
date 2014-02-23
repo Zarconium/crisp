@@ -38,6 +38,30 @@ Class Mastertrainer extends CI_Model
 		}	
 	}
 
+	function getAllMasterTrainersFormattedEncoder()
+	{
+		$this->db->distinct();
+		$this->db->select('master_trainer.Master_Trainer_ID, CONCAT_WS("", IF(LENGTH(master_trainer.Last_Name), master_trainer.Last_Name, NULL), ", ", IF(LENGTH(master_trainer.First_Name), master_trainer.First_Name, NULL), " ", IF(LENGTH(master_trainer.Middle_Initial), master_trainer.Middle_Initial, NULL), ". ", IF(LENGTH(master_trainer.Name_Suffix), master_trainer.Name_Suffix, NULL)) as Full_Name, CONCAT(school.name, " - ", school.Branch) as School_Name, GROUP_CONCAT(DISTINCT subject.Subject_Code SEPARATOR ", ") as Subject_Codes', false);
+		$this->db->from('master_trainer');
+		$this->db->join('t3_class', 'master_trainer.Master_Trainer_ID = t3_class.Master_Trainer_ID', 'left');
+		$this->db->join('school', 't3_class.School_ID = school.School_ID', 'left');
+		$this->db->join('subject', 't3_class.Subject_ID = subject.Subject_ID', 'left');
+		$this->db->where('school.School_ID', $this->session->userdata('logged_in')['School_ID']);
+		$this->db->group_by('Full_Name');
+		$this->db->order_by('Master_Trainer.Master_Trainer_ID', 'asc');
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}	
+	}
+
 	function getMasterTrainerSearchResults($params)
 	{
 		$this->db->distinct();
@@ -46,15 +70,14 @@ Class Mastertrainer extends CI_Model
 		$this->db->join('t3_class', 'master_trainer.Master_Trainer_ID = t3_class.Master_Trainer_ID', 'left');
 		$this->db->join('school', 't3_class.School_ID = school.School_ID', 'left');
 		$this->db->join('subject', 't3_class.Subject_ID = subject.Subject_ID', 'left');
+		$this->db->group_by('Full_Name');
+		$this->db->order_by('Master_Trainer.Master_Trainer_ID', 'asc');
 
 		if ($params)
 		{
 			if (isset($params['name']))
 			{
-				$this->db->like('master_trainer.Last_Name', $params['name']);
-				$this->db->or_like('master_trainer.First_Name', $params['name']);
-				$this->db->or_like('master_trainer.Middle_Initial', $params['name']);
-				$this->db->or_like('master_trainer.Name_Suffix', $params['name']);
+				$this->db->like('CONCAT_WS("", IF(LENGTH(master_trainer.Last_Name), master_trainer.Last_Name, NULL), ", ", IF(LENGTH(master_trainer.First_Name), master_trainer.First_Name, NULL), " ", IF(LENGTH(master_trainer.Middle_Initial), master_trainer.Middle_Initial, NULL), ". ", IF(LENGTH(master_trainer.Name_Suffix), master_trainer.Name_Suffix, NULL))', $params['name']);
 			}
 			if (isset($params['school']))
 			{
@@ -89,9 +112,6 @@ Class Mastertrainer extends CI_Model
 				$this->db->where_in('subject.Subject_ID', $programs);
 			}
 		}
-
-		$this->db->group_by('Full_Name');
-		$this->db->order_by('Master_Trainer.Master_Trainer_ID', 'asc');
 
 		$query = $this->db->get();
 		

@@ -50,15 +50,14 @@ Class Student extends CI_Model
 		$this->db->join('tracker', 'student_tracker.Tracker_ID = tracker.Tracker_ID', 'left');
 		$this->db->join('subject', 'tracker.Subject_ID = subject.Subject_ID', 'left');
 		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+		$this->db->group_by('Full_Name');
+		$this->db->order_by('student.Student_ID', 'asc');
 
 		if ($params)
 		{
 			if (isset($params['name']))
 			{
-				$this->db->like('student.Last_Name', $params['name']);
-				$this->db->or_like('student.First_Name', $params['name']);
-				$this->db->or_like('student.Middle_Initial', $params['name']);
-				$this->db->or_like('student.Name_Suffix', $params['name']);
+				$this->db->like('CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL))', $params['name']);
 			}
 			if (isset($params['school']))
 			{
@@ -92,9 +91,224 @@ Class Student extends CI_Model
 			}
 		}
 
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAllStudentsFormattedEncoder()
+	{
+		$this->db->distinct();
+		$this->db->select('student.Student_ID, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name, CONCAT(school.name, " - ", school.Branch) as School_Name, GROUP_CONCAT(DISTINCT subject.Subject_Code SEPARATOR ", ") as Subject_Codes', false);
+		$this->db->from('student');
+		$this->db->join('school', 'student.School_ID = school.School_ID', 'left');
+		$this->db->join('student_tracker', 'student.Student_ID = student_tracker.Student_ID', 'left');
+		$this->db->join('tracker', 'student_tracker.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('subject', 'tracker.Subject_ID = subject.Subject_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+		$this->db->where('school.School_ID', $this->session->userdata('logged_in')['School_ID']);
 		$this->db->group_by('Full_Name');
 		$this->db->order_by('student.Student_ID', 'asc');
 
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getSmpStudentSearchResults($params)
+	{
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
+		$this->db->from('smp_student');
+		$this->db->join('tracker', 'smp_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+		$this->db->group_by('Full_Name');
+		$this->db->order_by('student.Student_ID', 'asc');
+
+		if ($params)
+		{
+			if (isset($params['name']))
+			{
+				$this->db->like('CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL))', $params['name']);
+			}
+			if (isset($params['school']))
+			{
+				$this->db->where('student.School_ID', $params['school']);
+			}
+			$programs = FALSE;
+			if (isset($params['bizcom']))
+			{
+				$programs[] = 10;
+			}
+			if (isset($params['bpo101']))
+			{
+				$programs[] = 6;
+			}
+			if (isset($params['bpo102']))
+			{
+				$programs[] = 7;
+			}
+			if (isset($params['sc101']))
+			{
+				$programs[] = 4;
+			}
+			if (isset($params['systh101']))
+			{
+				$programs[] = 5;
+			}
+			if ($programs)
+			{
+				$this->db->where_in('tracker.Subject_ID', $programs);
+			}
+		}
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getInternshipStudentSearchResults($params)
+	{
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name, status.Name as Status_Name', false);
+		$this->db->from('internship_student');
+		$this->db->join('tracker', 'internship_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+
+		if ($params)
+		{
+			if (isset($params['name']))
+			{
+				$this->db->like('CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL))', $params['name']);
+			}
+			if (isset($params['school']))
+			{
+				$this->db->where('student.School_ID', $params['school']);
+			}
+		}
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getGcatStudentSearchResults($params)
+	{
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
+		$this->db->from('gcat_student');
+		$this->db->join('tracker', 'gcat_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+
+		if ($params)
+		{
+			if (isset($params['name']))
+			{
+				$this->db->like('CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL))', $params['name']);
+			}
+			if (isset($params['school']))
+			{
+				$this->db->where('student.School_ID', $params['school']);
+			}
+		}
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getBestStudentSearchResults($params)
+	{
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
+		$this->db->from('best_student');
+		$this->db->join('tracker', 'best_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+
+		if ($params)
+		{
+			if (isset($params['name']))
+			{
+				$this->db->like('CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL))', $params['name']);
+			}
+			if (isset($params['school']))
+			{
+				$this->db->where('student.School_ID', $params['school']);
+			}
+		}
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAdeptStudentSearchResults($params)
+	{
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
+		$this->db->from('adept_student');
+		$this->db->join('tracker', 'adept_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+
+		if ($params)
+		{
+			if (isset($params['name']))
+			{
+				$this->db->like('CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL))', $params['name']);
+			}
+			if (isset($params['school']))
+			{
+				$this->db->where('student.School_ID', $params['school']);
+			}
+		}
+		
 		$query = $this->db->get();
 		
 		if($query->num_rows() > 0)
@@ -231,9 +445,33 @@ Class Student extends CI_Model
 		}
 	}
 
+	function getAllGcatStudentsEncoder()
+	{
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
+		$this->db->from('gcat_student');
+		$this->db->join('tracker', 'gcat_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->join('school', 'student.School_ID = school.School_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+		$this->db->where('school.School_ID', $this->session->userdata('logged_in')['School_ID']);
+		$this->db->order_by('student.Student_ID', 'asc');
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getGcatStudentByStudentIdOrCode($id_code)
 	{
-		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name, status.Name as Status_Name', false);
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name, student.School_ID as School, status.Name as Status_Name', false);
 		$this->db->from('gcat_student');
 		$this->db->join('tracker', 'gcat_student.Tracker_ID = tracker.Tracker_ID', 'left');
 		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
@@ -267,6 +505,30 @@ Class Student extends CI_Model
 		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
 		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
 		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+		$this->db->order_by('student.Student_ID', 'asc');
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAllBestStudentsEncoder()
+	{
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
+		$this->db->from('best_student');
+		$this->db->join('tracker', 'best_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->join('school', 'student.School_ID = school.School_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+		$this->db->where('school.School_ID', $this->session->userdata('logged_in')['School_ID']);
 		$this->db->order_by('student.Student_ID', 'asc');
 
 		$query = $this->db->get();
@@ -346,6 +608,30 @@ Class Student extends CI_Model
 		}
 	}
 
+	function getAllAdeptStudentsEncoder()
+	{
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
+		$this->db->from('adept_student');
+		$this->db->join('tracker', 'adept_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->join('school', 'student.School_ID = school.School_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+		$this->db->where('school.School_ID', $this->session->userdata('logged_in')['School_ID']);
+		$this->db->order_by('student.Student_ID', 'asc');
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getAdeptStudentByStudentIdOrCode($id_code)
 	{
 		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name, status.Name as Status_Name', false);
@@ -411,6 +697,30 @@ Class Student extends CI_Model
 		}
 	}
 
+	function getAllInternshipStudentsEncoder()
+	{
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
+		$this->db->from('internship_student');
+		$this->db->join('tracker', 'internship_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->join('school', 'student.School_ID = school.School_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+		$this->db->where('school.School_ID', $this->session->userdata('logged_in')['School_ID']);
+		$this->db->order_by('student.Student_ID', 'asc');
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getInternshipByStudentIdOrCode($id_code)
 	{
 		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name, status.Name as Status_Name', false);
@@ -443,6 +753,31 @@ Class Student extends CI_Model
 		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
 		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
 		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+		$this->db->group_by('Full_Name');
+		$this->db->order_by('student.Student_ID', 'asc');
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getAllSmpStudentsEncoder()
+	{
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(student.Last_Name), student.Last_Name, NULL), ", ", IF(LENGTH(student.First_Name), student.First_Name, NULL), " ", IF(LENGTH(student.Middle_Initial), student.Middle_Initial, NULL), ". ", IF(LENGTH(student.Name_Suffix), student.Name_Suffix, NULL)) as Full_Name', false);
+		$this->db->from('smp_student');
+		$this->db->join('tracker', 'smp_student.Tracker_ID = tracker.Tracker_ID', 'left');
+		$this->db->join('student_tracker', 'tracker.Tracker_ID = student_tracker.Tracker_ID', 'left');
+		$this->db->join('student', 'student_tracker.Student_ID = student.Student_ID', 'left');
+		$this->db->join('school', 'student.School_ID = school.School_ID', 'left');
+		$this->db->join('status', 'tracker.Status_ID = status.Status_ID', 'left');
+		$this->db->where('school.School_ID', $this->session->userdata('logged_in')['School_ID']);
 		$this->db->group_by('Full_Name');
 		$this->db->order_by('student.Student_ID', 'asc');
 
@@ -763,6 +1098,12 @@ Class Student extends CI_Model
 	{
 		$this->db->where('Student_ID', $id);
 		return $this->db->delete('student');
+	}
+
+	function deleteTrackers()
+	{
+		$this->db->where('Student_ID', NULL);
+		return $this->db->delete('tracker USING tracker LEFT JOIN student_tracker ON tracker.Tracker_ID = student_tracker.Tracker_ID');	
 	}
 }
 ?>

@@ -284,7 +284,7 @@
 			<div class="tab-pane fade" id="internship">
 				<div class="button-groups">
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchSMP">Batch Upload</button>
-					<button class="btn btn-warning" data-toggle="modal" data-target="#searchSMP">Search</button>
+					<button class="btn btn-warning" data-toggle="modal" data-target="#searchSMPInternship">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>
 				<table class="table table-striped table-area">
@@ -312,7 +312,7 @@
 			<div class="tab-pane fade" id="gcat">
 				<div class="button-groups">
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchgcat">Batch Upload</button>
-					<button class="btn btn-warning" data-toggle="modal" data-target="#searchGCAT">Search</button>
+					<button class="btn btn-warning" data-toggle="modal" data-target="#searchGcat">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>
 				<table class="table table-striped table-area">
@@ -362,7 +362,7 @@
 			<div class="tab-pane fade" id="best">
 				<div class="button-groups">
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchbest" onclick="$('[name=file_best_adept_student_tracker]').click();">Batch Upload</button>
-					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
+					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBest">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>
 				<table class="table table-striped table-area">
@@ -390,7 +390,7 @@
 			<div class="tab-pane fade" id="adept">
 				<div class="button-groups">
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchadept" onclick="$('[name=file_best_adept_student_tracker]').click();">Batch Upload</button>
-					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
+					<button class="btn btn-warning" data-toggle="modal" data-target="#searchAdept">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>
 				<table class="table table-striped table-area">
@@ -418,7 +418,7 @@
 			<div class="tab-pane fade" id="best_t3">
 				<div class="button-groups">
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchBESTT3" onclick="$('[name=file_best_tracker]').click();">Batch Upload</button>
-					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
+					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestT3">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>
 				<table class="table table-striped table-area">
@@ -457,7 +457,7 @@
 			<div class="tab-pane fade" id="adept_t3">
 				<div class="button-groups">
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchBESTT3" onclick="$('[name=file_adept_tracker]').click();">Batch Upload</button>
-					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestAdept">Search</button>
+					<button class="btn btn-warning" data-toggle="modal" data-target="#searchAdeptT3">Search</button>
 					<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 				</div>
 				<table class="table table-striped table-area">
@@ -690,7 +690,9 @@
 							<div class="form-group">
 								<label for="school">School</label>
 								<select class="form-control" name="student_school">
+									<?php if($this->session->userdata('logged_in')['type'] == 'admin'): ?>
 									<option></option>
+									<?php endif; ?>
 									<?php if ($schools) foreach ($schools as $school): ?>
 									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('student_school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
 									<?php endforeach; ?>
@@ -731,7 +733,9 @@
 							<div class="form-group">
 								<label for="school">School</label>
 								<select class="form-control" name="teacher_school">
+									<?php if($this->session->userdata('logged_in')['type'] == 'admin'): ?>
 									<option></option>
+									<?php endif; ?>
 									<?php if ($schools) foreach ($schools as $school): ?>
 									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('teacher_school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
 									<?php endforeach; ?>
@@ -772,7 +776,9 @@
 							<div class="form-group">
 								<label for="school">School</label>
 								<select class="form-control" name="proctor_school">
+									<?php if($this->session->userdata('logged_in')['type'] == 'admin'): ?>
 									<option></option>
+									<?php endif; ?>
 									<?php if ($schools) foreach ($schools as $school): ?>
 									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('proctor_school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
 									<?php endforeach; ?>
@@ -813,7 +819,9 @@
 							<div class="form-group">
 								<label for="school">School</label>
 								<select class="form-control" name="mastertrainer_school">
+									<?php if($this->session->userdata('logged_in')['type'] == 'admin'): ?>
 									<option></option>
+									<?php endif; ?>
 									<?php if ($schools) foreach ($schools as $school): ?>
 									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('mastertrainer_school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
 									<?php endforeach; ?>
@@ -855,7 +863,9 @@
 							<div class="form-group">
 								<label for="name">School</label>
 								<select class="form-control" name="class_school">
+									<?php if($this->session->userdata('logged_in')['type'] == 'admin'): ?>
 									<option></option>
+									<?php endif; ?>
 									<?php if ($schools) foreach ($schools as $school): ?>
 									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('class_school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
 									<?php endforeach; ?>
@@ -918,7 +928,9 @@
 							<div class="form-group">
 								<label for="name">School</label>
 								<select class="form-control" name="t3_class_school">
+									<?php if($this->session->userdata('logged_in')['type'] == 'admin'): ?>
 									<option></option>
+									<?php endif; ?>
 									<?php if ($schools) foreach ($schools as $school): ?>
 									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('t3_class_school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
 									<?php endforeach; ?>
@@ -953,45 +965,282 @@
 						<button type="submit" class="btn btn-primary" name="search_t3_class" value="search_t3_class">Search</button>
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 					</div>
-				</form>
+				</div>
 			</form>
 		</div>
 	</div>
 </div>
 
-<div class="modal fade" id="searchBestAdept" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="searchSMP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
+				<h4 class="modal-title" id="myModalLabel">Search SMP Students</h4>
 			</div>
-			<div class="modal-body">
-				<div class="student-button-groups">
-					<form class="form" role="form">
-						<div class="form-group">
-							<label for="name">Date</label>
-							<input type="date" class="form-control" id="sdate">
+			<form class="form" role="form" action="<?php echo base_url('dbms'); ?>" method="post">
+				<div class="modal-body">
+					<div class="student-button-groups">
+						<div class="form" role="form">
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" class="form-control" name="smp_name" value="<?php echo set_value('smp_name'); ?>">
+							</div>
+							<div class="form-group">
+								<label for="name">School</label>
+								<select class="form-control" name="smp_school">
+									<?php if($this->session->userdata('logged_in')['type'] == 'admin'): ?>
+									<option></option>
+									<?php endif; ?>
+									<?php if ($schools) foreach ($schools as $school): ?>
+									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('smp_school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="programs">Subjects</label><br />
+								<input type="checkbox" name="smp_subjects[]" value="bizcom" <?php echo set_checkbox('smp_subjects[]', 'bizcom'); ?>> BizCom<br />
+								<input type="checkbox" name="smp_subjects[]" value="bpo101" <?php echo set_checkbox('smp_subjects[]', 'bpo101'); ?>> BPO101<br />
+								<input type="checkbox" name="smp_subjects[]" value="bpo102" <?php echo set_checkbox('smp_subjects[]', 'bpo102'); ?>> BPO102<br />
+								<input type="checkbox" name="smp_subjects[]" value="sc101" <?php echo set_checkbox('smp_subjects[]', 'sc101'); ?>> Service Culture<br />
+								<input type="checkbox" name="smp_subjects[]" value="systh101" <?php echo set_checkbox('smp_subjects[]', 'systh101'); ?>> Systems Thinking<br />
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="name">School</label>
-							<input type="text" class="form-control" id="sschool">
-						</div>
-						<div class="form-group">
-							<label for="school">Campus</label>
-							<input type="text" class="form-control" id="scampus">
-						</div>
-						<div class="form-group">
-							<label for="school">Students <span class="help-block">separated by a comma</span></label>
-							<input type="text" class="form-control" id="sstudents">
-						</div>
-					</form>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary" name="search_smp" value="search_smp">Search</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					</div>
 				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="searchSMPInternship" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Search SMP Internship Students</h4>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+			<form class="form" role="form" action="<?php echo base_url('dbms'); ?>" method="post">
+				<div class="modal-body">
+					<div class="student-button-groups">
+						<div class="form" role="form">
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" class="form-control" name="internship_name" value="<?php echo set_value('internship_name'); ?>">
+							</div>
+							<div class="form-group">
+								<label for="name">School</label>
+								<select class="form-control" name="internship_school">
+									<?php if($this->session->userdata('logged_in')['type'] == 'admin'): ?>
+									<option></option>
+									<?php endif; ?>
+									<?php if ($schools) foreach ($schools as $school): ?>
+									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('internship_school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary" name="search_internship" value="search_smp">Search</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="searchGcat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Search GCAT Students</h4>
 			</div>
+			<form class="form" role="form" action="<?php echo base_url('dbms'); ?>" method="post">
+				<div class="modal-body">
+					<div class="student-button-groups">
+						<div class="form" role="form">
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" class="form-control" name="gcat_name" value="<?php echo set_value('gcat_name'); ?>">
+							</div>
+							<div class="form-group">
+								<label for="name">School</label>
+								<select class="form-control" name="gcat_school">
+									<?php if($this->session->userdata('logged_in')['type'] == 'admin'): ?>
+									<option></option>
+									<?php endif; ?>
+									<?php if ($schools) foreach ($schools as $school): ?>
+									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('gcat_school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary" name="search_gcat" value="search_gcat">Search</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="searchBest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Search BEST Students</h4>
+			</div>
+			<form class="form" role="form" action="<?php echo base_url('dbms'); ?>" method="post">
+				<div class="modal-body">
+					<div class="student-button-groups">
+						<div class="form" role="form">
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" class="form-control" name="best_name" value="<?php echo set_value('best_name'); ?>">
+							</div>
+							<div class="form-group">
+								<label for="name">School</label>
+								<select class="form-control" name="best_school">
+									<?php if($this->session->userdata('logged_in')['type'] == 'admin'): ?>
+									<option></option>
+									<?php endif; ?>
+									<?php if ($schools) foreach ($schools as $school): ?>
+									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('best_school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary" name="search_best" value="search_best">Search</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="searchAdept" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Search AdEPT Students</h4>
+			</div>
+			<form class="form" role="form" action="<?php echo base_url('dbms'); ?>" method="post">
+				<div class="modal-body">
+					<div class="student-button-groups">
+						<div class="form" role="form">
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" class="form-control" name="adept_name" value="<?php echo set_value('adept_name'); ?>">
+							</div>
+							<div class="form-group">
+								<label for="name">School</label>
+								<select class="form-control" name="adept_school">
+									<?php if($this->session->userdata('logged_in')['type'] == 'admin'): ?>
+									<option></option>
+									<?php endif; ?>
+									<?php if ($schools) foreach ($schools as $school): ?>
+									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('adept_school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary" name="search_adept" value="search_adept">Search</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="searchBestT3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Search BEST T3 Teachers</h4>
+			</div>
+			<form class="form" role="form" action="<?php echo base_url('dbms'); ?>" method="post">
+				<div class="modal-body">
+					<div class="student-button-groups">
+						<div class="form" role="form">
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" class="form-control" name="best_t3_name" value="<?php echo set_value('best_t3_name'); ?>">
+							</div>
+							<div class="form-group">
+								<label for="name">School</label>
+								<select class="form-control" name="best_t3_school">
+									<?php if($this->session->userdata('logged_in')['type'] == 'admin'): ?>
+									<option></option>
+									<?php endif; ?>
+									<?php if ($schools) foreach ($schools as $school): ?>
+									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('best_t3_school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary" name="search_best_t3" value="search_best_t3">Search</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="searchAdeptT3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Search AdEPT T3 Teachers</h4>
+			</div>
+			<form class="form" role="form" action="<?php echo base_url('dbms'); ?>" method="post">
+				<div class="modal-body">
+					<div class="student-button-groups">
+						<div class="form" role="form">
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" class="form-control" name="adept_t3_name" value="<?php echo set_value('adept_t3_name'); ?>">
+							</div>
+							<div class="form-group">
+								<label for="name">School</label>
+								<select class="form-control" name="adept_t3_school">
+									<?php if($this->session->userdata('logged_in')['type'] == 'admin'): ?>
+									<option></option>
+									<?php endif; ?>
+									<?php if ($schools) foreach ($schools as $school): ?>
+									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('adept_t3_school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary" name="search_adept_t3" value="search_adept_t3">Search</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
@@ -1029,109 +1278,6 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="modal fade" id="searchGCAT" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
-			</div>
-			<div class="modal-body">
-				<div class="student-button-groups">
-					<form class="form" role="form">
-						<div class="form-group">
-							<label for="name">Proctor</label>
-							<input type="text" class="form-control" id="sproctor">
-						</div>
-						<div class="form-group">
-							<label for="school">School</label>
-							<input type="text" class="form-control" id="sschool">
-						</div>
-						<div class="form-group">
-							<label for="school">Campus</label>
-							<input type="text" class="form-control" id="scampus">
-						</div>
-						<div class="form-group">
-							<label for="school">Subject</label>
-							<input type="text" class="form-control" id="ssubject">
-						</div>
-						<div class="form-group">
-							<label for="school">Semester</label>
-							<input type="number" class="form-control" id="ssemester">
-						</div>
-						<div class="form-group">
-							<label for="school">Year</label>
-							<input type="number" class="form-control" id="syear">
-						</div>
-						<div class="form-group">
-							<label for="school">Section</label>
-							<input type="number" class="form-control" id="ssection">
-						</div>
-						<div class="form-group">
-							<label for="school">Students <span class="help-block">separated by a comma</span></label>
-							<input type="text" class="form-control" id="sstudents">
-						</div>
-					</form>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="modal fade" id="searchSMP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
-			</div>
-			<div class="modal-body">
-				<div class="student-button-groups">
-					<form class="form" role="form">
-						<div class="form-group">
-							<label for="name">ID Number</label>
-							<input type="text" class="form-control" id="sid">
-						</div>
-						<div class="form-group">
-							<label for="school">Name</label>
-							<input type="text" class="form-control" id="sname">
-						</div>
-						<div class="form-group">
-							<label for="school">School </label>
-							<input type="text" class="form-control" id="sschool">
-						</div>
-						<div class="form-group">
-							<label for="school">Year </label>
-							<input type="text" class="form-control" id="syear">
-						</div>
-						<div class="form-group">
-							<label for="school">Course</label>
-							<input type="text" class="form-control" id="scourse">
-						</div>
-						<div class="form-group">
-							<label for="school">Subjects Passed</label><br />
-							<input type="checkbox" value="bc" name="ssubjects"> Business Communication<br />				
-							<input type="checkbox" value="bpo101" name="ssubjects"> BPO101<br />	
-							<input type="checkbox" value="bpo102" name="ssubjects"> BPO102<br />	
-							<input type="checkbox" value="sc" name="ssubjects"> Service Culture<br />	
-							<input type="checkbox" value="st" name="ssubjects"> Systems Thinking<br />	
-							<input type="checkbox" value="st" name="ssubjects"> Internship<br />
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-				</div>
 			</div>
 		</div>
 	</div>

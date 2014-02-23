@@ -12,7 +12,9 @@ $year = date('Y');
 	<li class="active"><a href="#program_ched" data-toggle="tab">CHED Program</a></li>
 	<li><a href="#program_sei" data-toggle="tab">SEI Program</a></li>
 	<li><a href="#SUC" data-toggle="tab">SUC</a></li>
+	<?php if($this->session->userdata('logged_in')['type'] == 'admin'): ?>
 	<li><a href="#MandE" data-toggle="tab">Monitoring and Evaluation</a></li>
+	<?php endif; ?>	
 </ul>
 
 <div class="tab-content">
@@ -1143,9 +1145,11 @@ $year = date('Y');
 
 <!-- MandE Report-->
 	<div class="tab-pane" id="MandE">
+		<?php if($this->session->userdata('logged_in')['type'] == 'admin'): ?>
 		<div class="button-groups">
 			<a href="<?php echo base_url('reports/reportTargetConfigurationQuarterly'); ?>"><button type="submit" class="btn btn-primary">Set Targets</button></a>
 		</div><br/>
+		<?php endif; ?>
 		
 		<div class="panel-group" id="accordion3">
 		

@@ -33,7 +33,7 @@
 				<label>School</label>
 				<select class="form-control" name="school" disabled="true">
 				<?php foreach ($schools as $school): ?>
-					<option value="<?php echo $school->School_ID ?>" <?php if ($gcat_student->School_ID == $school->School_ID) echo 'selected="selected"'; ?>><?php echo $school->Name . " - " . $school->Branch ?></option>
+					<option value="<?php echo $school->School_ID ?>" <?php if ($gcat_student->School == $school->School_ID) echo 'selected="selected"'; ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
 				<?php endforeach; ?>
 				</select>
 			</div>

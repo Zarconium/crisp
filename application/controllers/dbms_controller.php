@@ -41,21 +41,41 @@ class Dbms_Controller extends CI_Controller
 		
 		$data['links'] = $this->pagination->create_links();
 		
-		$data['schools'] = $this->school->getAllSchools();
-		$data['students'] = $this->student->getAllStudentsFormatted();
-		$data['teachers'] = $this->teacher->getAllTeachersFormatted();
-		$data['proctors'] = $this->proctor->getAllProctorsFormatted();
-		$data['mastertrainers'] = $this->mastertrainer->getAllMasterTrainersFormatted();
-		$data['student_classes'] = $this->classes->getAllStudentClasses();
-		$data['t3_classes'] = $this->classes->getAllT3Classes();
-		$data['smp_students'] = $this->student->getAllSmpStudents();
-		$data['internship_students'] = $this->student->getAllInternshipStudents();
-		// $data['gcat_classes'] = $this->classes->getAllGcatClassesFormatted();
-		$data['gcat_students'] = $this->student->getAllGcatStudents();
-		$data['best_students'] = $this->student->getAllBestStudents();
-		$data['adept_students'] = $this->student->getAllAdeptStudents();
-		$data['best_t3_trackers'] = $this->teacher->getAllBestT3Trackers();
-		$data['adept_t3_trackers'] = $this->teacher->getAllAdeptT3Trackers();
+		if($this->session->userdata('logged_in')['type'] == 'encoder')
+		{
+			$data['schools'] = $this->school->getEncoderSchool();
+			$data['students'] = $this->student->getAllStudentsFormattedEncoder();
+			$data['teachers'] = $this->teacher->getAllTeachersFormattedEncoder();
+			$data['proctors'] = $this->proctor->getAllProctorsFormattedEncoder();
+			$data['mastertrainers'] = $this->mastertrainer->getAllMasterTrainersFormattedEncoder();
+			$data['student_classes'] = $this->classes->getAllStudentClassesEncoder();
+			$data['t3_classes'] = $this->classes->getAllT3ClassesEncoder();
+			$data['smp_students'] = $this->student->getAllSmpStudentsEncoder();
+			$data['internship_students'] = $this->student->getAllInternshipStudentsEncoder();
+			$data['gcat_students'] = $this->student->getAllGcatStudentsEncoder();
+			$data['best_students'] = $this->student->getAllBestStudentsEncoder();
+			$data['adept_students'] = $this->student->getAllAdeptStudentsEncoder();
+			$data['best_t3_trackers'] = $this->teacher->getAllBestT3TrackersEncoder();
+			$data['adept_t3_trackers'] = $this->teacher->getAllAdeptT3TrackersEncoder();
+		}
+		else
+		{
+			$data['schools'] = $this->school->getAllSchools();
+			$data['students'] = $this->student->getAllStudentsFormatted();
+			$data['teachers'] = $this->teacher->getAllTeachersFormatted();
+			$data['proctors'] = $this->proctor->getAllProctorsFormatted();
+			$data['mastertrainers'] = $this->mastertrainer->getAllMasterTrainersFormatted();
+			$data['student_classes'] = $this->classes->getAllStudentClasses();
+			$data['t3_classes'] = $this->classes->getAllT3Classes();
+			$data['smp_students'] = $this->student->getAllSmpStudents();
+			$data['internship_students'] = $this->student->getAllInternshipStudents();
+			// $data['gcat_classes'] = $this->classes->getAllGcatClassesFormatted();
+			$data['gcat_students'] = $this->student->getAllGcatStudents();
+			$data['best_students'] = $this->student->getAllBestStudents();
+			$data['adept_students'] = $this->student->getAllAdeptStudents();
+			$data['best_t3_trackers'] = $this->teacher->getAllBestT3Trackers();
+			$data['adept_t3_trackers'] = $this->teacher->getAllAdeptT3Trackers();
+		}
 
 		if ($this->input->post())
 		{
@@ -412,7 +432,193 @@ class Dbms_Controller extends CI_Controller
 						}
 					}
 
-					$data['t3_classes'] = $this->classes->getT3ClassSearchResults($params);
+					$data['t3_classes'] = $this->classes->getClassSearchResults($params);
+				}
+			}
+
+			if ($this->input->post('search_smp'))
+			{
+				$this->form_validation->set_rules('smp_name', 'Name', 'trim|xss_clean');
+				$this->form_validation->set_rules('smp_school', 'School', 'trim|xss_clean');
+				$this->form_validation->set_rules('smp_subjects[]', 'Subjects', 'trim|xss_clean');
+
+				if ($this->form_validation->run())
+				{
+					$params = FALSE;
+
+					if ($this->input->post('smp_name'))
+					{
+						$params['name'] = $this->input->post('smp_name');
+					}
+					if ($this->input->post('smp_school'))
+					{
+						$params['school'] = $this->input->post('smp_school');
+					}
+					if ($this->input->post('smp_subjects'))
+					{
+						foreach ($this->input->post('smp_subjects') as $program)
+						{
+							switch ($program)
+							{
+								case 'bizcom':
+									$params['bizcom'] = TRUE;
+									break;
+
+								case 'bpo101':
+									$params['bpo101'] = TRUE;
+									break;
+
+								case 'bpo102':
+									$params['bpo102'] = TRUE;
+									break;
+
+								case 'sc101':
+									$params['sc101'] = TRUE;
+									break;
+
+								case 'systh101':
+									$params['systh101'] = TRUE;
+									break;
+								
+								default:
+									break;
+							}
+						}
+					}
+
+					$data['smp_students'] = $this->student->getSmpStudentSearchResults($params);
+				}
+			}
+
+			if ($this->input->post('search_internship'))
+			{
+				$this->form_validation->set_rules('internship_name', 'Name', 'trim|xss_clean');
+				$this->form_validation->set_rules('internship_school', 'School', 'trim|xss_clean');
+
+				if ($this->form_validation->run())
+				{
+					$params = FALSE;
+
+					if ($this->input->post('internship_name'))
+					{
+						$params['name'] = $this->input->post('internship_name');
+					}
+					if ($this->input->post('internship_school'))
+					{
+						$params['school'] = $this->input->post('internship_school');
+					}
+
+					$data['internship_students'] = $this->student->getInternshipStudentSearchResults($params);
+				}
+			}
+
+			if ($this->input->post('search_gcat'))
+			{
+				$this->form_validation->set_rules('gcat_name', 'Name', 'trim|xss_clean');
+				$this->form_validation->set_rules('gcat_school', 'School', 'trim|xss_clean');
+
+				if ($this->form_validation->run())
+				{
+					$params = FALSE;
+
+					if ($this->input->post('gcat_name'))
+					{
+						$params['name'] = $this->input->post('gcat_name');
+					}
+					if ($this->input->post('gcat_school'))
+					{
+						$params['school'] = $this->input->post('gcat_school');
+					}
+
+					$data['gcat_students'] = $this->student->getGcatStudentSearchResults($params);
+				}
+			}
+
+			if ($this->input->post('search_best'))
+			{
+				$this->form_validation->set_rules('best_name', 'Name', 'trim|xss_clean');
+				$this->form_validation->set_rules('best_school', 'School', 'trim|xss_clean');
+
+				if ($this->form_validation->run())
+				{
+					$params = FALSE;
+
+					if ($this->input->post('best_name'))
+					{
+						$params['name'] = $this->input->post('best_name');
+					}
+					if ($this->input->post('best_school'))
+					{
+						$params['school'] = $this->input->post('best_school');
+					}
+
+					$data['best_students'] = $this->student->getBestStudentSearchResults($params);
+				}
+			}
+
+			if ($this->input->post('search_adept'))
+			{
+				$this->form_validation->set_rules('adept_name', 'Name', 'trim|xss_clean');
+				$this->form_validation->set_rules('adept_school', 'School', 'trim|xss_clean');
+
+				if ($this->form_validation->run())
+				{
+					$params = FALSE;
+
+					if ($this->input->post('adept_name'))
+					{
+						$params['name'] = $this->input->post('adept_name');
+					}
+					if ($this->input->post('adept_school'))
+					{
+						$params['school'] = $this->input->post('adept_school');
+					}
+
+					$data['adept_students'] = $this->student->getAdeptStudentSearchResults($params);
+				}
+			}
+
+			if ($this->input->post('search_best_t3'))
+			{
+				$this->form_validation->set_rules('best_t3_name', 'Name', 'trim|xss_clean');
+				$this->form_validation->set_rules('best_t3_school', 'School', 'trim|xss_clean');
+
+				if ($this->form_validation->run())
+				{
+					$params = FALSE;
+
+					if ($this->input->post('best_t3_name'))
+					{
+						$params['name'] = $this->input->post('best_t3_name');
+					}
+					if ($this->input->post('best_t3_school'))
+					{
+						$params['school'] = $this->input->post('best_t3_school');
+					}
+
+					$data['best_t3_trackers'] = $this->teacher->getBestT3SearchResults($params);
+				}
+			}
+
+			if ($this->input->post('search_adept_t3'))
+			{
+				$this->form_validation->set_rules('adept_t3_name', 'Name', 'trim|xss_clean');
+				$this->form_validation->set_rules('adept_t3_school', 'School', 'trim|xss_clean');
+
+				if ($this->form_validation->run())
+				{
+					$params = FALSE;
+
+					if ($this->input->post('adept_t3_name'))
+					{
+						$params['name'] = $this->input->post('adept_t3_name');
+					}
+					if ($this->input->post('adept_t3_school'))
+					{
+						$params['school'] = $this->input->post('adept_t3_school');
+					}
+
+					$data['adept_t3_trackers'] = $this->teacher->getAdeptT3SearchResults($params);
 				}
 			}
 		}
@@ -424,15 +630,21 @@ class Dbms_Controller extends CI_Controller
 
 	function delete_student($id)
 	{
+		$this->db->trans_start();
 		$this->student->deleteStudentById($id);
+		$this->student->deleteTrackers();
 		$this->log->addLog('Deleted Student');
+		$this->db->trans_complete();
 		redirect('dbms');
 	}
 
 	function delete_teacher($id)
 	{
+		$this->db->trans_start();
 		$this->teacher->deleteTeacherById($id);
+		$this->teacher->deleteT3Trackers();
 		$this->log->addLog('Deleted Teacher');
+		$this->db->trans_complete();
 		redirect('dbms');
 	}
 
@@ -453,14 +665,14 @@ class Dbms_Controller extends CI_Controller
 	function delete_class($id)
 	{
 		$this->classes->deleteStudentClassById($id);
-		$this->log->addLog('Deleted Master Trainer');
+		$this->log->addLog('Deleted Student Class');
 		redirect('dbms');
 	}
 
 	function delete_t3_class($id)
 	{
 		$this->classes->deleteT3ClassById($id);
-		$this->log->addLog('Deleted Master Trainer');
+		$this->log->addLog('Deleted T3 Class');
 		redirect('dbms');
 	}
 
@@ -687,7 +899,7 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['statuses'] = $this->status->getAllStatuses();
-		$data['student'] = $this->student->getStudentById($id);
+		if (!$data['student'] = $this->student->getStudentById($id)) redirect('dbms');
 		$data['gcat_tracker'] = $this->student->getGcatStudentByStudentIdOrCode($id);
 		$data['best_tracker'] = $this->student->getBestStudentByStudentIdOrCode($id);
 		$data['adept_tracker'] = $this->student->getAdeptStudentByStudentIdOrCode($id);
@@ -698,6 +910,11 @@ class Dbms_Controller extends CI_Controller
 		$data['bpo102'] = $this->student->getBpo102ByStudentId($id);
 		$data['sc101'] = $this->student->getSc101ByStudentId($id);
 		$data['systh101'] = $this->student->getSysth101ByStudentId($id);
+
+		if ($this->session->userdata('logged_in')['type'] == 'encoder')
+		{
+			if ($data['student']->School_ID != $this->session->userdata('logged_in')['School_ID']) redirect('dbms');
+		}
 
 		if($this->input->post()) //trim at xss clean dapat meron, 
 		{
@@ -1292,7 +1509,7 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['subjects'] = $this->subject->getAllSubjects();
-		$data['teacher'] = $this->teacher->getTeacherById($id);
+		if (!$data['teacher'] = $this->teacher->getTeacherById($id)) redirect('dbms');
 		$data['training_experiences'] = $this->teacher->getTrainingExperiencesByTeacherId($id);
 		$data['certifications'] = $this->teacher->getCertificationsByTeacherId($id);
 		$data['awards'] = $this->teacher->getAwardsByTeacherId($id);
@@ -1306,6 +1523,11 @@ class Dbms_Controller extends CI_Controller
 		$data['best_adept_application'] = $this->teacher->getBestAdeptT3ApplicationByTeacherIdOrCode($id);
 		$data['smp_application'] = $this->teacher->getSmpT3ApplicationByTeacherIdOrCode($id);
 		$data['related_trainings'] = $this->teacher->getRelatedTrainingsByTeacherId($id);
+
+		if ($this->session->userdata('logged_in')['type'] == 'encoder')
+		{
+			if ($data['teacher']->School_ID != $this->session->userdata('logged_in')['School_ID']) redirect('dbms');
+		}
 
 		if($this->input->post())
 		{
@@ -2012,7 +2234,12 @@ class Dbms_Controller extends CI_Controller
 
 	function form_proctor_profile($id)
 	{
-		$data['proctor'] = $this->proctor->getProctorById($id);
+		if (!$data['proctor'] = $this->proctor->getProctorById($id)) redirect('dbms');
+
+		/*if ($this->session->userdata('logged_in')['type'] == 'encoder')
+		{
+			if ($data['proctor']->School_ID != $this->session->userdata('logged_in')['School_ID']) redirect('dbms');
+		}*/
 
 		if ($this->input->post())
 		{
@@ -2200,7 +2427,12 @@ class Dbms_Controller extends CI_Controller
 
 	function form_mastertrainer_profile($id)
 	{
-		$data['mastertrainer'] = $this->mastertrainer->getMasterTrainerById($id);
+		if (!$data['mastertrainer'] = $this->mastertrainer->getMasterTrainerById($id)) redirect('dbms');
+
+		/*if ($this->session->userdata('logged_in')['type'] == 'encoder')
+		{
+			if ($data['mastertrainer']->School_ID != $this->session->userdata('logged_in')['School_ID']) redirect('dbms');
+		}*/
 
 		if ($this->input->post())
 		{
@@ -2430,8 +2662,13 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['subjects'] = $this->subject->getAllSubjects();
-		$data['class'] = $this->classes->getOtherClassById($id);
+		if (!$data['class'] = $this->classes->getOtherClassById($id)) redirect('dbms');
 		$data['students'] = $this->classes->getOtherClassStudentsById($id);
+
+		if ($this->session->userdata('logged_in')['type'] == 'encoder')
+		{
+			if ($data['class']->School_ID != $this->session->userdata('logged_in')['School_ID']) redirect('dbms');
+		}
 
 		if ($this->input->post())
 		{
@@ -2660,8 +2897,13 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['subjects'] = $this->subject->getAllSubjects();
-		$data['t3_class'] = $this->classes->getT3ClassById($id);
+		if (!$data['t3_class'] = $this->classes->getT3ClassById($id)) redirect('dbms');
 		$data['teachers'] = $this->classes->getT3ClassTeachersById($id);
+
+		if ($this->session->userdata('logged_in')['type'] == 'encoder')
+		{
+			if ($data['t3_class']->School_ID != $this->session->userdata('logged_in')['School_ID']) redirect('dbms');
+		}
 
 		if ($this->input->post())
 		{
@@ -2772,12 +3014,17 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['statuses'] = $this->status->getAllStatuses();
-		$data['smp_tracker'] = $this->student->getSmpStudentByStudentIdOrCode($id);
+		if (!$data['smp_tracker'] = $this->student->getSmpStudentByStudentIdOrCode($id)) redirect('dbms');
 		$data['bizcom'] = $this->student->getBizComByStudentId($id);
 		$data['bpo101'] = $this->student->getBpo101ByStudentId($id);
 		$data['bpo102'] = $this->student->getBpo102ByStudentId($id);
 		$data['sc101'] = $this->student->getSc101ByStudentId($id);
 		$data['systh101'] = $this->student->getSysth101ByStudentId($id);
+
+		if ($this->session->userdata('logged_in')['type'] == 'encoder')
+		{
+			if ($data['smp_tracker']->School_ID != $this->session->userdata('logged_in')['School_ID']) redirect('dbms');
+		}
 
 		if ($this->input->post())
 		{
@@ -2897,7 +3144,12 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['statuses'] = $this->status->getAllStatuses();
-		$data['internship'] = $this->student->getInternshipByStudentIdOrCode($id);
+		if (!$data['internship'] = $this->student->getInternshipByStudentIdOrCode($id)) redirect('dbms');
+
+		if ($this->session->userdata('logged_in')['type'] == 'encoder')
+		{
+			if ($data['internship']->School_ID != $this->session->userdata('logged_in')['School_ID']) redirect('dbms');
+		}
 
 		if ($this->input->post())
 		{
@@ -2994,7 +3246,12 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['statuses'] = $this->status->getAllStatuses();
-		$data['gcat_student'] = $this->student->getGcatStudentByStudentIdOrCode($id);
+		if (!$data['gcat_student'] = $this->student->getGcatStudentByStudentIdOrCode($id)) redirect('dbms');
+
+		if ($this->session->userdata('logged_in')['type'] == 'encoder')
+		{
+			if ($data['gcat_student']->School != $this->session->userdata('logged_in')['School_ID']) redirect('dbms');
+		}
 
 		if($this->input->post())
 		{
@@ -3071,16 +3328,18 @@ class Dbms_Controller extends CI_Controller
 			$this->load->view('forms/form-program-gcat-tracker', $data);
 			$this->load->view('footer');
 		}
-			$this->load->view('header');
-			$this->load->view('forms/form-program-gcat-tracker', $data);
-			$this->load->view('footer');
 	}
 	
 	function form_program_best_tracker($id)
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['statuses'] = $this->status->getAllStatuses();
-		$data['best_student'] = $this->student->getBestStudentByStudentIdOrCode($id);
+		if (!$data['best_student'] = $this->student->getBestStudentByStudentIdOrCode($id)) redirect('dbms');
+
+		if ($this->session->userdata('logged_in')['type'] == 'encoder')
+		{
+			if ($data['best_student']->School_ID != $this->session->userdata('logged_in')['School_ID']) redirect('dbms');
+		}
 
 		if($this->input->post())
 		{
@@ -3164,7 +3423,12 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['statuses'] = $this->status->getAllStatuses();
-		$data['adept_student'] = $this->student->getAdeptStudentByStudentIdOrCode($id);
+		if (!$data['adept_student'] = $this->student->getAdeptStudentByStudentIdOrCode($id)) redirect('dbms');
+
+		if ($this->session->userdata('logged_in')['type'] == 'encoder')
+		{
+			if ($data['adept_student']->School_ID != $this->session->userdata('logged_in')['School_ID']) redirect('dbms');
+		}
 
 		if($this->input->post())
 		{
@@ -3248,7 +3512,12 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['statuses'] = $this->status->getAllStatuses();
-		$data['best_teacher'] = $this->teacher->getBestT3TrackerByTeacherCode($this->teacher->getTeacherById($id)->Code);
+		if (!$data['best_teacher'] = $this->teacher->getBestT3TrackerByTeacherCode($this->teacher->getTeacherById($id)->Code)) redirect('dbms');
+
+		if ($this->session->userdata('logged_in')['type'] == 'encoder')
+		{
+			if ($data['best_teacher']->School_ID != $this->session->userdata('logged_in')['School_ID']) redirect('dbms');
+		}
 
 		if($this->input->post())
 		{
@@ -3350,7 +3619,12 @@ class Dbms_Controller extends CI_Controller
 	{
 		$data['schools'] = $this->school->getAllSchools();
 		$data['statuses'] = $this->status->getAllStatuses();
-		$data['adept_teacher'] = $this->teacher->getAdeptT3TrackerByTeacherCode($this->teacher->getTeacherById($id)->Code);
+		if (!$data['adept_teacher'] = $this->teacher->getAdeptT3TrackerByTeacherCode($this->teacher->getTeacherById($id)->Code)) redirect('dbms');
+
+		if ($this->session->userdata('logged_in')['type'] == 'encoder')
+		{
+			if ($data['adept_teacher']->School_ID != $this->session->userdata('logged_in')['School_ID']) redirect('dbms');
+		}
 
 		if($this->input->post())
 		{

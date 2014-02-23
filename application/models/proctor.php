@@ -39,6 +39,31 @@ Class Proctor extends CI_Model
 		}	
 	}
 
+	function getAllProctorsFormattedEncoder()
+	{
+		$this->db->distinct();
+		$this->db->select('proctor.Proctor_ID, CONCAT_WS("", IF(LENGTH(proctor.Last_Name), proctor.Last_Name, NULL), ", ", IF(LENGTH(proctor.First_Name), proctor.First_Name, NULL), " ", IF(LENGTH(proctor.Middle_Initial), proctor.Middle_Initial, NULL), ". ", IF(LENGTH(proctor.Name_Suffix), proctor.Name_Suffix, NULL)) as Full_Name, GROUP_CONCAT(school.Name, " - ", school.Branch SEPARATOR ", ") as School_Name, GROUP_CONCAT(DISTINCT subject.Subject_Code SEPARATOR ", ") as Subject_Code', false);
+		$this->db->from('proctor');
+		$this->db->join('gcat_class', 'proctor.Proctor_ID = gcat_class.Proctor_ID', 'left');
+		$this->db->join('class', 'gcat_class.Class_ID = class.Class_ID', 'left');
+		$this->db->join('school', 'class.School_ID = school.School_ID', 'left');
+		$this->db->join('subject', 'class.Subject_ID = subject.Subject_ID', 'left');
+		$this->db->where('school.School_ID', $this->session->userdata('logged_in')['School_ID']);
+		$this->db->group_by('Full_Name');
+		$this->db->order_by('proctor.Proctor_ID', 'asc');
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}	
+	}
+
 	function getProctorSearchResults($params)
 	{
 		$this->db->distinct();
@@ -48,15 +73,14 @@ Class Proctor extends CI_Model
 		$this->db->join('class', 'gcat_class.Class_ID = class.Class_ID', 'left');
 		$this->db->join('school', 'class.School_ID = school.School_ID', 'left');
 		$this->db->join('subject', 'class.Subject_ID = subject.Subject_ID', 'left');
+		$this->db->group_by('Full_Name');
+		$this->db->order_by('proctor.Proctor_ID', 'asc');
 
 		if ($params)
 		{
 			if (isset($params['name']))
 			{
-				$this->db->like('proctor.Last_Name', $params['name']);
-				$this->db->or_like('proctor.First_Name', $params['name']);
-				$this->db->or_like('proctor.Middle_Initial', $params['name']);
-				$this->db->or_like('proctor.Name_Suffix', $params['name']);
+				$this->db->like('CONCAT_WS("", IF(LENGTH(proctor.Last_Name), proctor.Last_Name, NULL), ", ", IF(LENGTH(proctor.First_Name), proctor.First_Name, NULL), " ", IF(LENGTH(proctor.Middle_Initial), proctor.Middle_Initial, NULL), ". ", IF(LENGTH(proctor.Name_Suffix), proctor.Name_Suffix, NULL))', $params['name']);
 			}
 			if (isset($params['school']))
 			{
@@ -91,9 +115,6 @@ Class Proctor extends CI_Model
 				$this->db->where_in('subject.Subject_ID', $programs);
 			}
 		}
-
-		$this->db->group_by('Full_Name');
-		$this->db->order_by('proctor.Proctor_ID', 'asc');
 
 		$query = $this->db->get();
 		
