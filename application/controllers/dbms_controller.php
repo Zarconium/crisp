@@ -138,16 +138,16 @@ class Dbms_Controller extends CI_Controller
 									break;
 
 								case 'best':
-								$params['best'] = TRUE;
-								break;
+									$params['best'] = TRUE;
+									break;
 
 								case 'adept':
-								$params['adept'] = TRUE;
-								break;
+									$params['adept'] = TRUE;
+									break;
 
 								case 'smp':
-								$params['smp'] = TRUE;
-								break;
+									$params['smp'] = TRUE;
+									break;
 								
 								default:
 									break;
@@ -188,16 +188,16 @@ class Dbms_Controller extends CI_Controller
 									break;
 
 								case 'best':
-								$params['best'] = TRUE;
-								break;
+									$params['best'] = TRUE;
+									break;
 
 								case 'adept':
-								$params['adept'] = TRUE;
-								break;
+									$params['adept'] = TRUE;
+									break;
 
 								case 'smp':
-								$params['smp'] = TRUE;
-								break;
+									$params['smp'] = TRUE;
+									break;
 								
 								default:
 									break;
@@ -238,16 +238,16 @@ class Dbms_Controller extends CI_Controller
 									break;
 
 								case 'best':
-								$params['best'] = TRUE;
-								break;
+									$params['best'] = TRUE;
+									break;
 
 								case 'adept':
-								$params['adept'] = TRUE;
-								break;
+									$params['adept'] = TRUE;
+									break;
 
 								case 'smp':
-								$params['smp'] = TRUE;
-								break;
+									$params['smp'] = TRUE;
+									break;
 								
 								default:
 									break;
@@ -256,6 +256,87 @@ class Dbms_Controller extends CI_Controller
 					}
 
 					$data['mastertrainers'] = $this->mastertrainer->getMasterTrainerSearchResults($params);
+				}
+			}
+
+			if ($this->input->post('search_class'))
+			{
+				$this->form_validation->set_rules('class_teacher', 'Teacher', 'trim|xss_clean');
+				$this->form_validation->set_rules('class_school', 'School', 'trim|xss_clean');
+				$this->form_validation->set_rules('class_semester', 'Semester', 'trim|xss_clean');
+				$this->form_validation->set_rules('class_year', 'Year', 'trim|xss_clean');
+				$this->form_validation->set_rules('class_section', 'Section', 'trim|xss_clean');
+				$this->form_validation->set_rules('class_program[]', 'Programs', 'trim|xss_clean');
+
+				if ($this->form_validation->run())
+				{
+					$params = FALSE;
+
+					if ($this->input->post('class_teacher'))
+					{
+						$params['name'] = $this->input->post('class_teacher');
+					}
+					if ($this->input->post('class_school'))
+					{
+						$params['school'] = $this->input->post('class_school');
+					}
+					if ($this->input->post('class_semester'))
+					{
+						$params['semester'] = $this->input->post('class_semester');
+					}
+					if ($this->input->post('class_year'))
+					{
+						$params['year'] = $this->input->post('class_year');
+					}
+					if ($this->input->post('class_section'))
+					{
+						$params['section'] = $this->input->post('class_section');
+					}
+					if ($this->input->post('class_program'))
+					{
+						foreach ($this->input->post('class_program') as $program)
+						{
+							switch ($program)
+							{
+								/*case 'gcat':
+									$params['gcat'] = TRUE;
+									break;*/
+
+								case 'best':
+									$params['best'] = TRUE;
+									break;
+
+								case 'adept':
+									$params['adept'] = TRUE;
+									break;
+
+								case 'bizcom':
+									$params['bizcom'] = TRUE;
+									break;
+
+								case 'bpo101':
+									$params['bpo101'] = TRUE;
+									break;
+
+								case 'bpo102':
+									$params['bpo102'] = TRUE;
+									break;
+
+								case 'sc101':
+									$params['sc101'] = TRUE;
+									break;
+
+								case 'systh101':
+									$params['systh101'] = TRUE;
+									break;
+								
+								default:
+									break;
+							}
+						}
+					}
+
+					$data['student_classes'] = $this->classes->getClassSearchResults($params);
 				}
 			}
 		}

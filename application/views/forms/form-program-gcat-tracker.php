@@ -62,7 +62,7 @@
 				<label>Test Date</label><br/>
 				<input class="form-control" type="date" name="test_date" value="<?php if ($gcat_student->Test_Date) echo date('Y-m-d', strtotime($gcat_student->Test_Date)); ?>">
 				<?php echo form_error('test_date'); ?>
-			</div>		
+			</div>
 
 			<div class="form-group">
 				<label>Status</label>
