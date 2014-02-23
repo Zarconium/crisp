@@ -4,29 +4,27 @@
 <div class="report-form-long">
 
 <legend>Teachers Trained</legend>
-<div class="front-whisper">Legends: T - Target, LFAT - LFA Target, Q1 - Quarter 1, Q2 - Quarter 2, Q3 - Quarter 3, Q4 - Quarter 4, T - Target, A - Annual, AT - Annual Target, A% - Annual Percent, C - Cumulative</div>
-<br/>
 <table class="table table-bordered table-striped">
 <thead>
 <tr>
 	<th>Description</th>
 	<th>Q1</th>
-	<th>T</th>
+	<th>Target</th>
 	<th>%</th>
 	<th>Q2</th>
-	<th>T</th>
+	<th>Target</th>
 	<th>%</th>
 	<th>Q3</th>
-	<th>T</th>
+	<th>Target</th>
 	<th>%</th>
 	<th>Q4</th>
-	<th>T</th>
+	<th>Target</th>
 	<th>%</th>
-	<th>A</th>
-	<th>AT</th>
-	<th>A%</th>
-	<th>C</th>
-	<th>T</th>
+	<th>Annual</th>
+	<th>Annual Target</th>
+	<th>Annual %</th>
+	<th>Cumulative</th>
+	<th>Target</th>
 </tr>
 </thead>
 <tbody>
@@ -384,29 +382,27 @@
 </table>
 
 <legend>Students in Programs</legend>
-<div class="front-whisper">Legends: T - Target, LFAT - LFA Target, Q1 - Quarter 1, Q2 - Quarter 2, Q3 - Quarter 3, Q4 - Quarter 4, T - Target, A - Annual, AT - Annual Target, A% - Annual Percent, C - Cumulative</div>
-<br/>
 <table class="table table-striped table-bordered">
 <thead>
 <tr>
 	<th>Description</th>
 	<th>Q1</th>
-	<th>T</th>
+	<th>Target</th>
 	<th>%</th>
 	<th>Q2</th>
-	<th>T</th>
+	<th>Target</th>
 	<th>%</th>
 	<th>Q3</th>
-	<th>T</th>
+	<th>Target</th>
 	<th>%</th>
 	<th>Q4</th>
-	<th>T</th>
+	<th>Target</th>
 	<th>%</th>
-	<th>A</th>
-	<th>AT</th>
-	<th>A%</th>
-	<th>C</th>
-	<th>T</th>
+	<th>Annual</th>
+	<th>Annual Target</th>
+	<th>Annual %</th>
+	<th>Cumulative</th>
+	<th>Target</th>
 </tr>
 </thead>
 <tbody>
