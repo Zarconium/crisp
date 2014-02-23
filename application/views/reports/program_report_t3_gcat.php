@@ -29,9 +29,9 @@ $female = 0;
 	<?php if($t3_total) foreach ($t3_total as $count): ?>
 	<tr>
 		<td>TOTAL</td>
-		<td><?php echo $count->Total; ?></td>
 		<td><?php echo $male; ?></td>
 		<td><?php echo $female; ?></td>
+		<td><?php echo $count->Total; ?></td>
 	</tr>
 	<?php endforeach; ?>
 </tfoot>
