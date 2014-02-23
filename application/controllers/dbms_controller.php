@@ -324,8 +324,8 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('birthplace', 'Birthplace', 'trim|required|max_length[45]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|exact_length[1]|xss_clean');
 			$this->form_validation->set_rules('nationality', 'Nationality', 'trim|required|max_length[45]|alpha|xss_clean');
-			$this->form_validation->set_rules('current_street_number', 'Street Number', 'trim|required|max_length[5]|alpha_dash|xss_clean');
-			$this->form_validation->set_rules('current_street_name', 'Street Name', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('current_street_number', 'Street Number', 'trim|required|max_length[5]|xss_clean');
+			$this->form_validation->set_rules('current_street_name', 'Street Name', 'trim|required|max_length[45]|xss_clean');
 			$this->form_validation->set_rules('current_city', 'City', 'trim|required|max_length[45]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('current_province', 'Province', 'trim|required|max_length[45]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('current_region', 'Region', 'trim|required|max_length[45]|alpha_dash|xss_clean');
@@ -554,8 +554,8 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('birthplace', 'Birthplace', 'trim|required|max_length[45]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|exact_length[1]|xss_clean');
 			$this->form_validation->set_rules('nationality', 'Nationality', 'trim|required|max_length[45]|alpha|xss_clean');
-			$this->form_validation->set_rules('street_number', 'Street Number', 'trim|required|max_length[5]|alpha_dash|xss_clean');
-			$this->form_validation->set_rules('street_name', 'Street Name', 'trim|required|max_length[45]|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('street_number', 'Street Number', 'trim|required|max_length[5]|xss_clean');
+			$this->form_validation->set_rules('street_name', 'Street Name', 'trim|required|max_length[45]|xss_clean');
 			$this->form_validation->set_rules('city', 'City', 'trim|required|max_length[45]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('province', 'Province', 'trim|required|max_length[45]|alpha_dash|xss_clean');
 			$this->form_validation->set_rules('region', 'Region', 'trim|required|max_length[45]|alpha_dash|xss_clean');
@@ -686,8 +686,8 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('desktop', 'Desktop', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('laptop', 'Laptop', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('access', 'Access', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('street_number', 'Street Number', 'trim|required|xss_clean|max_length[5]|alpha_dash');
-			$this->form_validation->set_rules('street_name', 'Street Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+			$this->form_validation->set_rules('street_number', 'Street Number', 'trim|required|xss_clean|max_length[5]');
+			$this->form_validation->set_rules('street_name', 'Street Name', 'trim|required|xss_clean|max_length[45]');
 			$this->form_validation->set_rules('city', 'City', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 			$this->form_validation->set_rules('province', 'Province', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 			$this->form_validation->set_rules('region', 'Region', 'trim|required|xss_clean|max_length[45]|alpha_dash');
@@ -1170,8 +1170,8 @@ class Dbms_Controller extends CI_Controller
 				$this->form_validation->set_rules('desktop', 'Desktop', 'trim|required|xss_clean|max_length[1]');
 				$this->form_validation->set_rules('laptop', 'Laptop', 'trim|required|xss_clean|max_length[1]');
 				$this->form_validation->set_rules('access', 'Access', 'trim|required|xss_clean|max_length[1]');
-				$this->form_validation->set_rules('street_number', 'Street Number', 'trim|required|xss_clean|max_length[5]|alpha_dash');
-				$this->form_validation->set_rules('street_name', 'Street Name', 'trim|required|xss_clean|max_length[45]|alpha_dash');
+				$this->form_validation->set_rules('street_number', 'Street Number', 'trim|required|xss_clean|max_length[5]');
+				$this->form_validation->set_rules('street_name', 'Street Name', 'trim|required|xss_clean|max_length[45]');
 				$this->form_validation->set_rules('city', 'City', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 				$this->form_validation->set_rules('province', 'Province', 'trim|required|xss_clean|max_length[45]|alpha_dash');
 				$this->form_validation->set_rules('region', 'Region', 'trim|required|xss_clean|max_length[45]|alpha_dash');
