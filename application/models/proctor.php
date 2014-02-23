@@ -39,6 +39,74 @@ Class Proctor extends CI_Model
 		}	
 	}
 
+	function getProctorSearchResults($params)
+	{
+		$this->db->distinct();
+		$this->db->select('proctor.Proctor_ID, proctor.Code, CONCAT_WS("", IF(LENGTH(proctor.Last_Name), proctor.Last_Name, NULL), ", ", IF(LENGTH(proctor.First_Name), proctor.First_Name, NULL), " ", IF(LENGTH(proctor.Middle_Initial), proctor.Middle_Initial, NULL), ". ", IF(LENGTH(proctor.Name_Suffix), proctor.Name_Suffix, NULL)) as Full_Name, CONCAT(school.name, " - ", school.Branch) as School_Name, GROUP_CONCAT(subject.Subject_Code SEPARATOR ", ") as Subject_Codes', false);
+		$this->db->from('proctor');
+		$this->db->join('gcat_class', 'proctor.Proctor_ID = gcat_class.Proctor_ID', 'left');
+		$this->db->join('class', 'gcat_class.Class_ID = class.Class_ID', 'left');
+		$this->db->join('school', 'class.School_ID = school.School_ID', 'left');
+		$this->db->join('subject', 'class.Subject_ID = subject.Subject_ID', 'left');
+
+		if ($params)
+		{
+			if (isset($params['name']))
+			{
+				$this->db->like('proctor.Last_Name', $params['name']);
+				$this->db->or_like('proctor.First_Name', $params['name']);
+				$this->db->or_like('proctor.Middle_Initial', $params['name']);
+				$this->db->or_like('proctor.Name_Suffix', $params['name']);
+			}
+			if (isset($params['school']))
+			{
+				$this->db->where('proctor.School_ID', $params['school']);
+			}
+			$programs = FALSE;
+			if (isset($params['gcat']))
+			{
+				$programs[] = 1;
+			}
+			if (isset($params['best']))
+			{
+				$programs[] = 2;
+				$programs[] = 8;
+			}
+			if (isset($params['adept']))
+			{
+				$programs[] = 3;
+				$programs[] = 8;
+			}
+			if (isset($params['smp']))
+			{
+				$programs[] = 4;
+				$programs[] = 5;
+				$programs[] = 6;
+				$programs[] = 7;
+				$programs[] = 10;
+				$programs[] = 11;
+			}
+			if ($programs)
+			{
+				$this->db->where_in('t3_tracker.Subject_ID', $programs);
+			}
+		}
+
+		$this->db->group_by('Full_Name');
+		$this->db->order_by('proctor.Teacher_ID', 'asc');
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function getProctorByCode($code)
 	{
 		$this->db->select('*');

@@ -3,7 +3,11 @@ Class School extends CI_Model
 {
 	function getAllSchools()
 	{
-		$query = $this->db->get('school');
+		$this->db->select('*');
+		$this->db->from('school');
+		$this->db->order_by('school.Code', 'asc');
+
+		$query = $this->db->get();
 		
 		if($query->num_rows() > 0)
 		{

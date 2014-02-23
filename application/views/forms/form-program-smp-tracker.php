@@ -16,6 +16,7 @@
 		<legend>General Information</legend>
 
 		<input type="hidden" class="form-control" name="code" value="<?php if($smp_tracker->Code) echo $smp_tracker->Code; ?>">
+		<?php echo form_error('code'); ?>
 
 		<div class="form-inline">
 			<div class="form-group">

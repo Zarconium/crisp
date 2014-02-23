@@ -1,11 +1,11 @@
 <div class="info-form">
 	<?php if (isset($draft_saved)) { echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Draft saved.</div>';} ?>
-	<?php if (isset($form_success)) { echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Student successfully added.</div>';} ?>
+	<?php if (isset($form_success)) { echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>AdEPT T3 Tracker successfully updated.</div>';} ?>
 	<?php if (isset($form_error)) { echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>There were errors in your input. Please check the fields and try again.</div>';} ?>
 
-	<h1>ADEPT T3 Tracker</h1>
-	<?php echo form_open('/dbms/form_program_t3_adept_tracker'); ?>
-		<!-- BUTTONS DIV -->
+	<h1>AdEPT T3 Tracker</h1>
+
+	<?php echo form_open('/dbms/form_program_t3_adept_tracker/' . $adept_teacher->Teacher_ID); ?>
 		<div class="save">
 			<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
 			<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
@@ -13,128 +13,134 @@
 			<a href="<?php echo base_url('dbms'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
 		</div>
 
-		
-	<legend>Personal Information</legend>
-<div class="form-inline">
-	<form>
+		<legend>Personal Information</legend>
 
-	<div class="form-group">
-		<label>Last Name</label>
-		<input class="form-control" type="text" name="last_name" value="<?php echo set_value('last_name'); ?>">		
-		<?php echo form_error('last_name', '<div class="text-danger">', '</div>'); ?>
-	</div>
-	<div class="form-group">
-		<label>First Name</label>
-		<input class="form-control" type="text" name="first_name" value="<?php echo set_value('first_name'); ?>">		
-		<?php echo form_error('first_name', '<div class="text-danger">', '</div>'); ?>	
-	</div>
-	<div class="form-group">
-		<label>Middle Initial</label>
-		<input class="form-control" type="text" name="middle_initial" value="<?php echo set_value('middle_initial'); ?>">		
-		<?php echo form_error('middle_initial', '<div class="text-danger">', '</div>'); ?>	
-	</div>
-	<div class="form-group">
-		<label>School</label>
-		<input class="form-control" type="text" name="school" value="<?php echo set_value('school'); ?>">		
-		<?php echo form_error('school', '<div class="text-danger">', '</div>'); ?>	
-	
-	</div>
-	<div class="form-group">
-		<label>Birthday</label>
-		<input class="form-control" type="date" name="birthday" value="<?php echo set_value('birthday'); ?>">		
-		<?php echo form_error('birthday', '<div class="text-danger">', '</div>'); ?>
-	
-	</div>
-	<div class="form-group">
-		<label>Status</label>
-		<select name="status" class="form-control">
-			<option value="passed"> Passed
-			<option value="failed"> Failed
-			<option value="complete"> Complete
-			<option value="incomplete"> Incomplete
-			<option value="dropped"> Dropped
-		</select>
-		<?php echo form_error('status', '<div class="text-danger">', '</div>'); ?>
-	
-	</div>
-	<legend>Submitted Documents</legend>
-	<div class="form-group"></label>
-		<label>Contract</label><br/>
-			<input type="radio" name="contract" value="yes"> Yes
-			<input type="radio" name="contract" value="no"> No
-		<?php echo form_error('contract', '<div class="text-danger">', '</div>'); ?>
-	</div><br/>
-	<div class="form-group">
-		<label>Interview Form</label><br/>
-		<input type="radio" name="interview_form" value="yes"> Yes
-		<input type="radio" name="interview_form" value="no"> No
-		<?php echo form_error('interview_form', '<div class="text-danger">', '</div>'); ?>
-	</div><br/>
-	<div class="form-group">
-		<label>Site Visit Form</label><br/>
-		<input type="radio" name="site_visit_form" value="yes"> Yes
-		<input type="radio" name="site_visit_form" value="no"> No
-		<?php echo form_error('', '<div class="text-danger">', '</div>'); ?>
-	
-	</div><br/>
-	<div class="form-group">
-		<label>Adept E-Learning Feedback</label><br/>
-		<input type="radio" name="adept_elearning_feedback" value="yes"> Yes
-		<input type="radio" name="adept_elearning_feedback" value="no"> No
-		<?php echo form_error('adept_elearning_feedback', '<div class="text-danger">', '</div>'); ?>
-	</div><br/>
-	<div class="form-group">
-		<label>Adept T3 Feedback</label><br/>
-		<input type="radio" name="adept_t3_feedback" value="yes"> Yes
-		<input type="radio" name="adept_t3_feedback" value="no"> No
-		<?php echo form_error('adept_t3_feedback', '<div class="text-danger">', '</div>'); ?>
-	
-	</div><br/>
-	<div class="form-group">
-		<label>Manual and Kit</label><br/>
-		<input type="radio" name="manual_kit" value="yes"> Yes
-		<input type="radio" name="manual_kit" value="no"> No
-		<?php echo form_error('manual_kit', '<div class="text-danger">', '</div>'); ?>
-	
-	</div><br/>
-	<div class="form-group">
-		<label>Certificate of Attendance</label><br/>
-		<input type="radio" name="certificate_attendance" value="yes"> Yes
-		<input type="radio" name="certificate_attendance" value="no"> No
-		<?php echo form_error('certificate_attendance', '<div class="text-danger">', '</div>'); ?>
-	
-	</div><br/>
-	<div class="form-group">
-		<label>Adept Certified Trainers</label><br/>
-		<input type="radio" name="certificatied_trainers" value="yes"> Yes
-		<input type="radio" name="certificatied_trainers" value="no"> No
-	
-	</div>
-	<legend>Grade of Tasks</legend>
-	<div class="form-group">
-		<label>Lesson Plan	Demo</label><br/>
-		<input class="form-control" type="number" name="lesson_plan_demo" value="<?php echo set_value('lesson_plan'); ?>">		
-		<?php echo form_error('lesson_plan', '<div class="text-danger">', '</div>'); ?>	
-	
-	</div>
-	<div class="form-group">
-		<label>Total Weighted</label><br/>
-		<input class="form-control" type="number" name="total_weighted" value="<?php echo set_value('total_weighted'); ?>">		
-		<?php echo form_error('total_weighted', '<div class="text-danger">', '</div>'); ?>	
-	
-	</div>
-	<div class="form-group">
-		<label>Training Portfolio</label><br/>
-		<input class="form-control" type="number" name="training_portfolio" value="<?php echo set_value('training_portfolio'); ?>">		
-		<?php echo form_error('training_portfolio', '<div class="text-danger">', '</div>'); ?>	
-	
-	</div>
-	<legend>Miscellaneous</legend>
-	<div class="form-group">
-		<label>Remarks</label><br/>
-		<input class="form-control" type="text" name="remarks" value="<?php echo set_value('remarks'); ?>">		
-		<?php echo form_error('remarks', '<div class="text-danger">', '</div>'); ?>
-	</div>
-</form>
-</div>
+		<input type="hidden" class="form-control" name="code" value="<?php if ($adept_teacher->Code) echo $adept_teacher->Code; ?>">
+		<?php echo form_error('code'); ?>
+
+		<div class="form-inline">
+			<div class="form-group">
+				<label>Name</label>
+				<input class="form-control" type="text" name="last_name" value="<?php if ($adept_teacher->Full_Name) echo $adept_teacher->Full_Name; ?>" readonly="true">
+			</div>
+
+			<div class="form-group">
+				<label>School</label>
+				<select class="form-control" name="school" disabled="true">
+				<?php foreach ($schools as $school): ?>
+					<option value="<?php echo $school->School_ID ?>" <?php if ($adept_teacher->School_ID == $school->School_ID) echo 'selected="selected"';?>><?php echo $school->Name . " - " . $school->Branch ?></option>
+				<?php endforeach; ?>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label>Birthdate</label>
+				<input class="form-control" type="date" name="birthdate" value="<?php if ($adept_teacher->Birthdate) echo date('Y-m-d', strtotime($adept_teacher->Birthdate)); ?>" readonly="true">
+			</div>
+
+			<legend>Submitted Documents</legend>
+
+			<div class="form-group">
+				<label>Contract</label><br/>
+					<input type="radio" name="contract" value="1" <?php if ($adept_teacher->Contract == 1) echo 'checked="checked"'; ?>> Yes
+					<input type="radio" name="contract" value="0" <?php if ($adept_teacher->Contract == 0) echo 'checked="checked"'; ?>> No
+				<?php echo form_error('contract'); ?>
+			</div><br/>
+
+			<div class="form-group">
+				<label>Interview Form</label><br/>
+				<input type="radio" name="interview_form" value="1" <?php if ($adept_teacher->Interview_Form == 1) echo 'checked="checked"'; ?>> Yes
+				<input type="radio" name="interview_form" value="0" <?php if ($adept_teacher->Interview_Form == 0) echo 'checked="checked"'; ?>> No
+				<?php echo form_error('interview_form'); ?>
+			</div><br/>
+
+			<div class="form-group">
+				<label>Site Visit Form</label><br/>
+				<input type="radio" name="site_visit_form" value="1" <?php if ($adept_teacher->Site_Visit_Form == 1) echo 'checked="checked"'; ?>> Yes
+				<input type="radio" name="site_visit_form" value="0" <?php if ($adept_teacher->Site_Visit_Form == 0) echo 'checked="checked"'; ?>> No
+				<?php echo form_error('site_visit_form'); ?>
+			</div><br/>
+
+			<div class="form-group">
+				<label>AdEPT E-Learning Feedback</label><br/>
+				<input type="radio" name="adept_elearning_feedback" value="1" <?php if ($adept_teacher->Adept_ELearning_Feedback == 1) echo 'checked="checked"'; ?>> Yes
+				<input type="radio" name="adept_elearning_feedback" value="0" <?php if ($adept_teacher->Adept_ELearning_Feedback == 0) echo 'checked="checked"'; ?>> No
+				<?php echo form_error('adept_elearning_feedback'); ?>
+			</div><br/>
+
+			<div class="form-group">
+				<label>AdEPT T3 Feedback</label><br/>
+				<input type="radio" name="adept_t3_feedback" value="1" <?php if ($adept_teacher->Adept_T3_Feedback == 1) echo 'checked="checked"'; ?>> Yes
+				<input type="radio" name="adept_t3_feedback" value="0" <?php if ($adept_teacher->Adept_T3_Feedback == 0) echo 'checked="checked"'; ?>> No
+				<?php echo form_error('adept_t3_feedback'); ?>
+			</div><br/>
+
+			<div class="form-group">
+				<label>Manual &amp; Kit</label><br/>
+				<input type="radio" name="manual_and_kit" value="1" <?php if ($adept_teacher->Manual_and_Kit == 1) echo 'checked="checked"'; ?>> Yes
+				<input type="radio" name="manual_and_kit" value="0" <?php if ($adept_teacher->Manual_and_Kit == 0) echo 'checked="checked"'; ?>> No
+				<?php echo form_error('manual_and_kit'); ?>
+			</div><br/>
+
+			<div class="form-group">
+				<label>Certificate of Attendance</label><br/>
+				<input type="radio" name="certificate_of_attendance" value="1" <?php if ($adept_teacher->Certificate_Of_Attendance == 1) echo 'checked="checked"'; ?>> Yes
+				<input type="radio" name="certificate_of_attendance" value="0" <?php if ($adept_teacher->Certificate_Of_Attendance == 0) echo 'checked="checked"'; ?>> No
+				<?php echo form_error('certificate_of_attendance'); ?>
+			</div><br/>
+
+			<div class="form-group">
+				<label>AdEPT Certified Trainers</label><br/>
+				<input type="radio" name="certified_trainers" value="1" <?php if ($adept_teacher->Adept_Certified_Trainers == 1) echo 'checked="checked"'; ?>> Yes
+				<input type="radio" name="certified_trainers" value="0" <?php if ($adept_teacher->Adept_Certified_Trainers == 0) echo 'checked="checked"'; ?>> No
+				<?php echo form_error('certified_trainers'); ?>
+			</div><br/>
+
+			<legend>Grade of Tasks</legend>
+
+			<div class="form-group">
+				<label>Lesson Plan</label>
+				<input class="form-control" type="text" name="lesson_plan" value="<?php if ($adept_teacher->Lesson_Plan) echo $adept_teacher->Lesson_Plan; ?>">
+				<?php echo form_error('lesson_plan'); ?>	
+			</div>
+
+			<div class="form-group">
+				<label>Demo</label>
+				<input class="form-control" type="text" name="demo" value="<?php if ($adept_teacher->Demo) echo $adept_teacher->Demo; ?>">
+				<?php echo form_error('demo'); ?>	
+			</div>
+
+			<div class="form-group">
+				<label>Total Weighted</label>
+				<input class="form-control" type="text" name="total_weighted" value="<?php if ($adept_teacher->Total_Weighted) echo $adept_teacher->Total_Weighted; ?>">
+				<?php echo form_error('total_weighted'); ?>	
+			</div>
+
+			<div class="form-group">
+				<label>Training Portfolio</label>
+				<input class="form-control" type="text" name="training_portfolio" value="<?php if ($adept_teacher->Training_Portfolio) echo $adept_teacher->Training_Portfolio; ?>">
+				<?php echo form_error('training_portfolio'); ?>	
+			</div>
+		</div>
+
+		<div class="form">
+			<legend>Miscellaneous</legend>
+
+			<div class="form-group">
+				<label>Status</label>
+				<select class="form-control" name="status">
+				<?php foreach ($statuses as $status): ?>
+					<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($adept_teacher->Status_ID)) if ($status->Status_ID == $adept_teacher->Status_ID) echo 'selected="selected"'; ?>><?php echo $status->Name; ?></option>
+				<?php endforeach; ?>
+				</select>
+				<?php echo form_error('status'); ?>
+			</div>
+
+			<div class="form-group">
+				<label>Remarks</label>
+				<input class="form-control" type="text" name="remarks" value="<?php if ($adept_teacher->Remarks) echo $adept_teacher->Remarks; ?>">
+				<?php echo form_error('remarks'); ?>
+			</div>
+		</div>
+	</form>
 </div>

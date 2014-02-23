@@ -5,7 +5,7 @@
 
 	<h1>SMP Internship Tracker</h1>
 
-	<?php echo form_open('/dbms/form_program_smp_tracker/' . $internship->Student_ID); ?>
+	<?php echo form_open('/dbms/form_program_smp_internship_tracker/' . $internship->Student_ID); ?>
 		<div class="save">
 			<button type="button" class="btn btn-default" onclick="$('html, body').animate({ scrollTop:0 }, 300);">Back to Top</button>
 			<button type="submit" class="btn btn-success" name="save_draft" value="save_draft">Save Draft</button>
@@ -14,17 +14,19 @@
 		</div>
 
 		<legend>General Information</legend>
+
+		<input type="hidden" class="form-control" name="code" value="<?php if ($internship->Code) echo $internship->Code; ?>">
+		<?php echo form_error('code'); ?>
 		
 		<div class="form-inline">
 			<div class="form-group">
 				<label>ID Number</label>
 				<input type="text" class="form-control" name="id_number" value="<?php if ($internship->Student_ID_Number) echo $internship->Student_ID_Number; ?>" readonly="true">
 			</div>
-					
-			<div class="form-group">		
-				<label>Name</label>			
+
+			<div class="form-group">
+				<label>Name</label>
 				<input class="form-control" type="text" name="name" value="<?php if ($internship->Full_Name) echo $internship->Full_Name; ?>" readonly="true">
-				<?php echo form_error('name'); ?>
 			</div>
 
 			<div class="form-group">
@@ -45,7 +47,6 @@
 				<label>Course</label>
 				<input type="text" class="form-control" name="course" value="<?php if($internship->Course) echo $internship->Course; ?>" readonly="true">
 			</div>
-		
 		</div>
 		
 		<div class="form">
@@ -53,12 +54,12 @@
 
 			<div class="form-group">
 				<label>Status</label><br />
-				<select class="form-control" name="intern_stat" value="<?php if ($internship->Student_ID_Number) echo $internship->Student_ID_Number; ?>">
+				<select class="form-control" name="status" value="<?php if ($internship->Student_ID_Number) echo $internship->Student_ID_Number; ?>">
 				<?php foreach ($statuses as $status): ?>
 					<option value="<?php echo $status->Status_ID; ?>" <?php if(isset($internship->Status_ID)) if ($status->Status_ID == $internship->Status_ID) echo 'selected="selected"'; ?>><?php echo $status->Name; ?></option>
 				<?php endforeach; ?>
 				</select>
-				<?php echo form_error('intern_stat'); ?>
+				<?php echo form_error('status'); ?>
 			</div>
 
 			<div class="form-group">
@@ -117,8 +118,8 @@
 
 			<div class="form-group">
 				<label>Evaluation Form</label><br />
-				<input type="radio" name="evaluation_form" value="1" <?php if ($internship->Meet_Standards == 1) echo 'selected="selected"'; ?>> Yes
-				<input type="radio" name="evaluation_form" value="0" <?php if ($internship->Meet_Standards == 0) echo 'selected="selected"'; ?>> No
+				<input type="radio" name="evaluation_form" value="1" <?php if ($internship->Meet_Standards == 1) echo 'checked="checked"'; ?>> Yes
+				<input type="radio" name="evaluation_form" value="0" <?php if ($internship->Meet_Standards == 0) echo 'checked="checked"'; ?>> No
 				<?php echo form_error('evaluation_form'); ?>
 			</div>
 		</div>
