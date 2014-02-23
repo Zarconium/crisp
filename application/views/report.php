@@ -406,7 +406,7 @@ $year = date('Y');
 				</div>
 				<div id="program_t3_sei" class="panel-collapse collapse">
 					<div class="panel-body">
-						<form class="form" role="form" action="<?php echo base_url('reports/t3ProgramReportGCAT'); ?>" method="post" target="_blank">
+						<form class="form" role="form" action="<?php echo base_url('reports/t3ProgramReportGCATSei'); ?>" method="post" target="_blank">
 							<div class="form-group">
 								<label>Date Start</label>
 								<input type="date" value="1990-01-01" class="form-control" name="program_t3_start_date_sei">

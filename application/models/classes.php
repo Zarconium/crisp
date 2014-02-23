@@ -20,7 +20,7 @@ Class Classes extends CI_Model
 
 	function getAllStudentClasses()
 	{
-		$this->db->select('*, CONCAT_WS("", IF(LENGTH(teacher.Last_Name), teacher.Last_Name, NULL), ", ", IF(LENGTH(teacher.First_Name), teacher.First_Name, NULL), " ", IF(LENGTH(teacher.Middle_Initial), teacher.Middle_Initial, NULL), ". ", IF(LENGTH(teacher.Name_Suffix), teacher.Name_Suffix, NULL)) as Full_Name, school.Name as School_Name, school.Branch as School_Branch, class.Name as Section', false);
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(teacher.Last_Name), teacher.Last_Name, NULL), ", ", IF(LENGTH(teacher.First_Name), teacher.First_Name, NULL), " ", IF(LENGTH(teacher.Middle_Initial), teacher.Middle_Initial, NULL), ". ", IF(LENGTH(teacher.Name_Suffix), teacher.Name_Suffix, NULL)) as Full_Name, CONCAT(school.Name, " - ", school.Branch) as School_Name, class.Name as Section', false);
 		$this->db->from('other_class');
 		$this->db->join('teacher', 'other_class.Teacher_ID = teacher.Teacher_ID', 'left');
 		$this->db->join('class', 'other_class.Class_ID = class.Class_ID', 'left');
@@ -41,7 +41,7 @@ Class Classes extends CI_Model
 
 	function getAllT3Classes()
 	{
-		$this->db->select('*, CONCAT_WS("", IF(LENGTH(master_trainer.Last_Name), master_trainer.Last_Name, NULL), ", ", IF(LENGTH(master_trainer.First_Name), master_trainer.First_Name, NULL), " ", IF(LENGTH(master_trainer.Middle_Initial), master_trainer.Middle_Initial, NULL), ". ", IF(LENGTH(master_trainer.Name_Suffix), master_trainer.Name_Suffix, NULL)) as Full_Name, school.Name as School_Name, school.Branch as School_Branch, t3_class.Name as Section', false);
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(master_trainer.Last_Name), master_trainer.Last_Name, NULL), ", ", IF(LENGTH(master_trainer.First_Name), master_trainer.First_Name, NULL), " ", IF(LENGTH(master_trainer.Middle_Initial), master_trainer.Middle_Initial, NULL), ". ", IF(LENGTH(master_trainer.Name_Suffix), master_trainer.Name_Suffix, NULL)) as Full_Name, CONCAT(school.Name, " - ", school.Branch) as School_Name, t3_class.Name as Section', false);
 		$this->db->from('t3_class');
 		$this->db->join('master_trainer', 't3_class.Master_Trainer_ID = master_trainer.Master_Trainer_ID', 'left');
 		$this->db->join('school', 't3_class.School_ID = school.School_ID', 'left');
@@ -307,14 +307,14 @@ Class Classes extends CI_Model
 
 	function deleteStudentClassById($id)
 	{
-		$this->db->where('Student_Class_ID', $id);
-		return $this->db->delete('student_class');
+		$this->db->where('Class_ID', $id);
+		return $this->db->delete('class');
 	}
 
 	function deleteT3ClassById($id)
 	{
-		$this->db->where('Teacher_Class_ID', $id);
-		return $this->db->delete('teacher_class');
+		$this->db->where('T3_Class_ID', $id);
+		return $this->db->delete('t3_class');
 	}
 }
 ?>

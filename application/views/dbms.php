@@ -181,7 +181,6 @@
 						<th>Action</th>
 						<th>Teacher's Name</th>
 						<th>School</th>
-						<th>Campus</th>
 						<th>Subject</th>
 						<th>Semester</th>
 						<th>Year</th>
@@ -195,7 +194,6 @@
 						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_class/' . $student_class->Class_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_class/' . $student_class->Class_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
 						<td><?php echo $student_class->Full_Name; ?></td>
 						<td><?php echo $student_class->School_Name; ?></td>
-						<td><?php echo $student_class->School_Branch; ?></td>
 						<td><?php echo $student_class->Subject_Code; ?></td>
 						<td><?php echo $student_class->Semester; ?></td>
 						<td><?php echo $student_class->School_Year; ?></td>
@@ -219,16 +217,22 @@
 						<th>Check</th>
 						<th>Action</th>
 						<th>Trainer's Name</th>
+						<th>School</th>
 						<th>Subject</th>
+						<th>Year</th>
+						<th>Section</th>
 						<!--<th>Teachers</th>-->
 					</thead>
 					</tr>
 					<?php if ($t3_classes) foreach ($t3_classes as $t3_class): ?>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_mastertrainer_classlist/' . $t3_class->T3_Class_ID); ?>">View</a>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_mastertrainer_classlist/' . $t3_class->T3_Class_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_t3_class/' . $t3_class->T3_Class_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
 						<td><?php echo $t3_class->Full_Name; ?></td>
+						<td><?php echo $t3_class->School_Name; ?></td>
 						<td><?php echo $t3_class->Subject_Code; ?></td>
+						<td><?php echo $t3_class->School_Year; ?></td>
+						<td><?php echo $t3_class->Section; ?></td>
 						<!--<td><button class="btn btn-default" data-toggle="modal" data-target="#viewListOfStudents">View List</button></td>-->
 					</tr>
 					<?php endforeach; ?>
@@ -840,54 +844,53 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title" id="myModalLabel">Search Student Classes</h4>
 			</div>
-			<div class="modal-body">
-				<div class="student-button-groups">
-					<form class="form" role="form">
-						<div class="form-group">
-							<label for="name">Teacher's Name</label>
-							<input type="text" class="form-control" id="steachername">
-						</div>
-						<div class="form-group">
-							<label for="name">School</label>
-							<input type="text" class="form-control" id="school">
-						</div>
-						<div class="form-group">
-							<label for="school">Campus</label>
-							<input type="text" class="form-control" id="scampus">
-						</div>
-						<div class="form-group">
-							<label for="school">Semester</label>
-							<input type="number" class="form-control" id="semester">
-						</div>
-						<div class="form-group">
-							<label for="school">Year</label>
-							<input type="number" class="form-control" id="syear">
-						</div>
-						<div class="form-group">
-							<label for="school">Section</label>
-							<input type="text" class="form-control" id="ssection">
-						</div>
-						<div class="form-group">
-							<label for="programs">Subjects</label><br />
-							<input type="checkbox" name="ssubjects" value="best"> BEST<br />	
-							<input type="checkbox" name="ssubjects" value="adept"> ADEPT<br />
-							<input type="checkbox" name="ssubjects" value="bpo101"> BPO101<br />	
-							<input type="checkbox" name="ssubjects" value="bpo102"> BPO102<br />	
-							<input type="checkbox" name="ssubjects" value="sc"> Service Culture<br />	
-							<input type="checkbox" name="ssubjects" value="st"> Systems Thinking<br />	
-							<input type="checkbox" name="ssubjects" value="gcat"> GCAT<br />
-						</div>
-						<div class="form-group">
-							<label for="school">Students <span class="help-block">separated by a comma</span></label>
-							<input type="text" class="form-control" id="school">
-						</div>
-					</form>
+			<form class="form" role="form" action="<?php echo base_url('dbms'); ?>" method="post">
+				<div class="modal-body">
+					<div class="student-button-groups">
+						<form class="form" role="form">
+							<div class="form-group">
+								<label for="name">Teacher's Name</label>
+								<input type="text" class="form-control" name="class_teacher">
+							</div>
+							<div class="form-group">
+								<label for="name">School</label>
+								<input type="text" class="form-control" name="class_school">
+							</div>
+							<div class="form-group">
+								<label for="school">Semester</label>
+								<input type="number" class="form-control" name="class_semester">
+							</div>
+							<div class="form-group">
+								<label for="school">Year</label>
+								<input type="number" class="form-control" name="class_year">
+							</div>
+							<div class="form-group">
+								<label for="school">Section</label>
+								<input type="text" class="form-control" name="class_section">
+							</div>
+							<div class="form-group">
+								<label for="programs">Subjects</label><br />
+								<!-- <input type="checkbox" name="class_subjects[]" value="gcat"> GCAT<br /> -->
+								<input type="checkbox" name="class_subjects[]" value="best"> BEST<br />
+								<input type="checkbox" name="class_subjects[]" value="adept"> ADEPT<br />
+								<input type="checkbox" name="class_subjects[]" value="bizcom"> BizCom<br />
+								<input type="checkbox" name="class_subjects[]" value="bpo101"> BPO101<br />
+								<input type="checkbox" name="class_subjects[]" value="bpo102"> BPO102<br />
+								<input type="checkbox" name="class_subjects[]" value="sc101"> Service Culture<br />
+								<input type="checkbox" name="class_subjects[]" value="systh101"> Systems Thinking<br />
+							</div>
+							<!-- <div class="form-group">
+								<label for="school">Students <span class="help-block">separated by a comma</span></label>
+								<input type="text" class="form-control" name="school">
+							</div> -->
+						</form>
+					</div>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-			</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" name="search_class" value="search_class">Search</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
