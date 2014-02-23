@@ -17,11 +17,6 @@
 		</div>
 			
 		<div class="form-inline">
-			<div class="form-group">
-				<label>Name Suffix</label>
-				<input type="text" class="form-control" name="name_suffix" value="<?php echo set_value('name_suffix'); ?>">
-				<?php echo form_error('name_suffix'); ?>
-			</div>
 			
 			<div class="form-group">
 				<label>Last Name</label>
@@ -35,8 +30,14 @@
 			</div>
 
 			<div class="form-group"><label>Middle Initial</label>
-				<input type="text" class="form-control" name="middle_initial" value="<?php echo set_value('middle_initial'); ?>">
+				<input type="text" class="form-control" name="middle_initial" placeholder="Please put a '-' if there is no MI" value="<?php echo set_value('middle_initial'); ?>">
 				<?php echo form_error('middle_initial'); ?>
+			</div>
+			
+			<div class="form-group">
+				<label>Name Suffix</label>
+				<input type="text" class="form-control" name="name_suffix" value="<?php echo set_value('name_suffix'); ?>">
+				<?php echo form_error('name_suffix'); ?>
 			</div>
 		</div>
 		
