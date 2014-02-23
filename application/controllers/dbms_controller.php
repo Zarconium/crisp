@@ -293,6 +293,20 @@ class Dbms_Controller extends CI_Controller
 		redirect('dbms');
 	}
 
+	function delete_class($id)
+	{
+		$this->classes->deleteStudentClassById($id);
+		$this->log->addLog('Deleted Master Trainer');
+		redirect('dbms');
+	}
+
+	function delete_t3_class($id)
+	{
+		$this->classes->deleteT3ClassById($id);
+		$this->log->addLog('Deleted Master Trainer');
+		redirect('dbms');
+	}
+
 	function form_student_application()
 	{
 		$data['schools'] = $this->school->getAllSchools();

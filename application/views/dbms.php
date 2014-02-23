@@ -163,7 +163,7 @@
 	<div class="tab-pane fade" id="class">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#class_student" data-toggle="tab">Student Classes</a></li>
-			<li><a href="#class_mastertrainer" data-toggle="tab">Master Trainer's Classes</a></li>
+			<li><a href="#class_mastertrainer" data-toggle="tab">Teacher Classes</a></li>
 		</ul>
 		
 		<div class="tab-content">
@@ -192,7 +192,7 @@
 					<?php if ($student_classes) foreach ($student_classes as $student_class): ?>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_class/' . $student_class->Class_ID); ?>">View</a> | <a href="#">Delete</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_class/' . $student_class->Class_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_class/' . $student_class->Class_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
 						<td><?php echo $student_class->Full_Name; ?></td>
 						<td><?php echo $student_class->School_Name; ?></td>
 						<td><?php echo $student_class->School_Branch; ?></td>
@@ -838,7 +838,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
+				<h4 class="modal-title" id="myModalLabel">Search Student Classes</h4>
 			</div>
 			<div class="modal-body">
 				<div class="student-button-groups">
@@ -897,7 +897,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
+				<h4 class="modal-title" id="myModalLabel">Search Teacher Classes</h4>
 			</div>
 			<div class="modal-body">
 				<div class="student-button-groups">
