@@ -2770,6 +2770,9 @@ class Dbms_Controller extends CI_Controller
 			$this->load->view('forms/form-program-gcat-tracker', $data);
 			$this->load->view('footer');*/
 		}
+			$this->load->view('header');
+			$this->load->view('forms/form-program-gcat-tracker', $data);
+			$this->load->view('footer');
 	}
 	
 	function form_program_best_tracker()
