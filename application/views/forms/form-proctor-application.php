@@ -34,6 +34,7 @@
 				<input type="text" class="form-control" name="middle_initial" placeholder="Please put a '-' if there is no MI" value="<?php echo set_value('middle_initial'); ?>">
 				<?php echo form_error('middle_initial'); ?>
 			</div>
+			
 			<div class="form-group">
 				<label>Name Suffix</label>
 				<input type="text" class="form-control" name="name_suffix" value="<?php echo set_value('name_suffix'); ?>">
