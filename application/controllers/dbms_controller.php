@@ -5566,7 +5566,7 @@ class Dbms_Controller extends CI_Controller
 
 				if (!$this->teacher->getTeacherProfessionalReferenceByTeacherCode($code))
 				{	
-					$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Teacher Professional Reference does not exist');
+					$this->session->set_flashdata('upload_error', 'AdEPT Attendance Tracker upload failed. Invalid data at row ' . $counter . '. Teacher Professional Reference does not exist, please fill up Teacher Professional Reference section.');
 					$this->db->trans_rollback();
 					redirect('dbms');					
 				}
