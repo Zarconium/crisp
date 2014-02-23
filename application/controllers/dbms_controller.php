@@ -50,7 +50,8 @@ class Dbms_Controller extends CI_Controller
 		$data['t3_classes'] = $this->classes->getAllT3Classes();
 		$data['smp_students'] = $this->student->getAllSmpStudents();
 		$data['internship_students'] = $this->student->getAllInternshipStudents();
-		$data['gcat_classes'] = $this->classes->getAllGcatClassesFormatted();
+		// $data['gcat_classes'] = $this->classes->getAllGcatClassesFormatted();
+		$data['gcat_students'] = $this->student->getAllGcatStudents();
 		$data['best_students'] = $this->student->getAllBestStudents();
 		$data['adept_students'] = $this->student->getAllAdeptStudents();
 		$data['best_t3_trackers'] = $this->teacher->getAllBestT3Trackers();
@@ -58,27 +59,27 @@ class Dbms_Controller extends CI_Controller
 
 		if ($this->input->post())
 		{
-			if ($this->input->post('search_student') || $this->input->post('search_teacher'))
+			if ($this->input->post('search_student'))
 			{
-				$this->form_validation->set_rules('name', 'Name', 'trim|xss_clean');
-				$this->form_validation->set_rules('school', 'School', 'trim|xss_clean');
-				$this->form_validation->set_rules('program[]', 'Programs', 'trim|xss_clean');
+				$this->form_validation->set_rules('student_name', 'Name', 'trim|xss_clean');
+				$this->form_validation->set_rules('student_school', 'School', 'trim|xss_clean');
+				$this->form_validation->set_rules('student_program[]', 'Programs', 'trim|xss_clean');
 
 				if ($this->form_validation->run())
 				{
 					$params = FALSE;
 
-					if ($this->input->post('name'))
+					if ($this->input->post('student_name'))
 					{
-						$params['name'] = $this->input->post('name');
+						$params['name'] = $this->input->post('student_name');
 					}
-					if ($this->input->post('school'))
+					if ($this->input->post('student_school'))
 					{
-						$params['school'] = $this->input->post('school');
+						$params['school'] = $this->input->post('student_school');
 					}
-					if ($this->input->post('program'))
+					if ($this->input->post('student_program'))
 					{
-						foreach ($this->input->post('program') as $program)
+						foreach ($this->input->post('student_program') as $program)
 						{
 							switch ($program)
 							{
@@ -104,14 +105,57 @@ class Dbms_Controller extends CI_Controller
 						}
 					}
 
-					if ($this->input->post('search_student'))
+					$data['students'] = $this->student->getStudentSearchResults($params);
+				}
+			}
+
+			if ($this->input->post('search_teacher'))
+			{
+				$this->form_validation->set_rules('teacher_name', 'Name', 'trim|xss_clean');
+				$this->form_validation->set_rules('teacher_school', 'School', 'trim|xss_clean');
+				$this->form_validation->set_rules('teacher_program[]', 'Programs', 'trim|xss_clean');
+
+				if ($this->form_validation->run())
+				{
+					$params = FALSE;
+
+					if ($this->input->post('teacher_name'))
 					{
-						$data['students'] = $this->student->getStudentSearchResults($params);
+						$params['name'] = $this->input->post('teacher_name');
 					}
-					elseif ($this->input->post('search_teacher'))
+					if ($this->input->post('teacher_school'))
 					{
-						$data['teachers'] = $this->teacher->getTeacherSearchResults($params);
+						$params['school'] = $this->input->post('teacher_school');
 					}
+					if ($this->input->post('teacher_program'))
+					{
+						foreach ($this->input->post('teacher_program') as $program)
+						{
+							switch ($program)
+							{
+								case 'gcat':
+									$params['gcat'] = TRUE;
+									break;
+
+								case 'best':
+								$params['best'] = TRUE;
+								break;
+
+								case 'adept':
+								$params['adept'] = TRUE;
+								break;
+
+								case 'smp':
+								$params['smp'] = TRUE;
+								break;
+								
+								default:
+									break;
+							}
+						}
+					}
+
+					$data['teachers'] = $this->teacher->getTeacherSearchResults($params);
 				}
 			}
 		}
@@ -598,7 +642,7 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('proof', 'Proof of Certification', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('diploma', 'Diploma/TOR', 'trim|required|xss_clean');
 
-			$this->form_validation->set_rules('program[]', 'Programs Applied For', 'trim|xss_clean');
+			$this->form_validation->set_rules('program[]', 'Programs Applied For', 'trim|required|xss_clean');
 			if ($this->input->post('program'))
 			{
 				foreach ($this->input->post('program') as $program)
@@ -2679,12 +2723,13 @@ class Dbms_Controller extends CI_Controller
 		}
 	}
 
-	function form_program_gcat_tracker()
+	function form_program_gcat_tracker($id)
 	{
 		$data['proctors'] = $this->proctor->getAllProctorsFormatted();
 		$data['schools'] = $this->school->getAllSchools();
 		$data['subjects'] = $this->subject->getAllSubjects();
 		$data['statuses'] = $this->status->getAllStatuses();
+		$data['gcat_student'] = $this->student->getGcatStudentByStudentIdOrCode($id);
 
 		if($this->input->post())
 		{
@@ -2702,9 +2747,8 @@ class Dbms_Controller extends CI_Controller
 			$this->form_validation->set_rules('student_status[]', 'Status', 'trim|xss_clean');
 			$this->form_validation->set_rules('student_remarks[]', 'Remarks', 'trim|xss_clean');
 
-			// $this->form_validation->set_message('is_unique', 'Teacher already exists.');
 			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
-			/*
+			
 			if($this->input->post('submit'))
 			{
 				if($this->form_validation->run() == FALSE)
@@ -2764,7 +2808,7 @@ class Dbms_Controller extends CI_Controller
 		{
 			$this->load->view('header');
 			$this->load->view('forms/form-program-gcat-tracker', $data);
-			$this->load->view('footer');*/
+			$this->load->view('footer');
 		}
 	}
 	

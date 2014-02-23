@@ -315,6 +315,26 @@
 					<thead>
 					<tr>
 						<th>Action</th>
+						<th>ID Number</th>
+						<th>Name</th>
+						<th>Year</th>
+						<th>Course</th>
+					</tr>
+					</thead>
+					<?php if ($gcat_students) foreach ($gcat_students as $gcat_student): ?>
+					<tr>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_gcat_tracker/' . $gcat_student->Student_ID); ?>">View</a></td>
+						<td><?php echo $gcat_student->Student_ID_Number; ?></td>
+						<td><?php echo $gcat_student->Full_Name; ?></td>
+						<td><?php echo $gcat_student->Year; ?></td>
+						<td><?php echo $gcat_student->Course; ?></td>
+					</tr>
+					<?php endforeach; ?>
+				</table>
+				<!-- <table class="table table-striped table-area">
+					<thead>
+					<tr>
+						<th>Action</th>
 						<th>Proctor</th>
 						<th>School</th>
 						<th>Semester</th>
@@ -322,17 +342,17 @@
 						<th>Section</th>
 					</tr>
 					</thead>
-					<?php if ($gcat_classes) foreach ($gcat_classes as $gcat_class): ?>
+					<?//php if ($gcat_classes) foreach ($gcat_classes as $gcat_class): ?>
 					<tr>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_gcat_tracker/' . $gcat_class->Class_ID); ?>">View</a></td>
-						<td><?php echo $gcat_class->Full_Name; ?></td>
-						<td><?php echo $gcat_class->School_Name; ?></td>
-						<td><?php echo $gcat_class->Semester; ?></td>
-						<td><?php echo $gcat_class->School_Year; ?></td>
-						<td><?php echo $gcat_class->Section; ?></td>
+						<td nowrap="nowrap"><a href="<?//php echo base_url('dbms/form_program_gcat_tracker/' . $gcat_class->Class_ID); ?>">View</a></td>
+						<td><?//php echo $gcat_class->Full_Name; ?></td>
+						<td><?//php echo $gcat_class->School_Name; ?></td>
+						<td><?//php echo $gcat_class->Semester; ?></td>
+						<td><?//php echo $gcat_class->School_Year; ?></td>
+						<td><?//php echo $gcat_class->Section; ?></td>
 					</tr>
-					<?php endforeach; ?>
-				</table>
+					<?//php endforeach; ?>
+				</table> -->
 			</div>
 			
 			<div class="tab-pane fade" id="best">
@@ -403,7 +423,6 @@
 						<th>Action</th>
 						<th>Name</th>
 						<th>School</th>
-						<th>Birthday</th>
 						<th>Status</th>
 						<th>Unsubmitted Documents</th>
 					</tr>
@@ -413,7 +432,6 @@
 						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_t3_best_tracker/' . $best_t3_tracker->Teacher_ID); ?>">View</a></td>
 						<td><?php echo $best_t3_tracker->Full_Name; ?></td>
 						<td><?php echo $best_t3_tracker->School_Name; ?></td>
-						<td><?php echo date("m/d/Y", strtotime($best_t3_tracker->Birthdate)); ?></td>
 						<td><?php echo $best_t3_tracker->Status; ?></td>
 						<td>
 							<?php 
@@ -444,7 +462,6 @@
 						<th>Action</th>
 						<th>Name</th>
 						<th>School</th>
-						<th>Birthday</th>
 						<th>Status</th>
 						<th>Unsubmitted Documents</th>
 					</tr>
@@ -454,7 +471,6 @@
 						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_program_t3_adept_tracker/' . $adept_t3_tracker->Teacher_ID); ?>">View</a></td>
 						<td><?php echo $adept_t3_tracker->Full_Name; ?></td>
 						<td><?php echo $adept_t3_tracker->School_Name; ?></td>
-						<td><?php echo date("m/d/Y", strtotime($adept_t3_tracker->Birthdate)); ?></td>
 						<td><?php echo $adept_t3_tracker->Status; ?></td>
 						<td>
 							<?php 
@@ -665,23 +681,23 @@
 					<div class="student-button-groups">
 							<div class="form-group">
 								<label for="name">Name</label>
-								<input type="text" class="form-control" name="name" value="<?php echo set_value('name'); ?>">
+								<input type="text" class="form-control" name="student_name" value="<?php echo set_value('student_name'); ?>">
 							</div>
 							<div class="form-group">
 								<label for="school">School</label>
-								<select class="form-control" name="school">
+								<select class="form-control" name="student_school">
 									<option></option>
 									<?php if ($schools) foreach ($schools as $school): ?>
-									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('student_school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
 									<?php endforeach; ?>
 								</select>
 							</div>
 							<div class="form-group">
 								<label for="programs">Programs</label><br />
-								<input type="checkbox" name="program[]" value="gcat" <?php echo set_checkbox('program[]', 'gcat'); ?>> GCAT<br />
-								<input type="checkbox" name="program[]" value="best" <?php echo set_checkbox('program[]', 'best'); ?>> BEST<br />	
-								<input type="checkbox" name="program[]" value="adept" <?php echo set_checkbox('program[]', 'adept'); ?>> ADEPT<br />
-								<input type="checkbox" name="program[]" value="smp" <?php echo set_checkbox('program[]', 'smp'); ?>> SMP<br />	
+								<input type="checkbox" name="student_program[]" value="gcat" <?php echo set_checkbox('student_program[]', 'gcat'); ?>> GCAT<br />
+								<input type="checkbox" name="student_program[]" value="best" <?php echo set_checkbox('student_program[]', 'best'); ?>> BEST<br />	
+								<input type="checkbox" name="student_program[]" value="adept" <?php echo set_checkbox('student_program[]', 'adept'); ?>> ADEPT<br />
+								<input type="checkbox" name="student_program[]" value="smp" <?php echo set_checkbox('student_program[]', 'smp'); ?>> SMP<br />	
 							</div>
 					</div>
 				</div>
@@ -706,23 +722,23 @@
 					<div class="student-button-groups">
 							<div class="form-group">
 								<label for="name">Name</label>
-								<input type="text" class="form-control" name="name" <?php echo set_value('name'); ?>>
+								<input type="text" class="form-control" name="teacher_name" <?php echo set_value('teacher_name'); ?>>
 							</div>
 							<div class="form-group">
 								<label for="school">School</label>
-								<select class="form-control" name="school">
+								<select class="form-control" name="teacher_school">
 									<option></option>
 									<?php if ($schools) foreach ($schools as $school): ?>
-									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('teacher_school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
 									<?php endforeach; ?>
 								</select>
 							</div>
 							<div class="form-group">
 								<label for="programs">Programs</label><br />
-								<input type="checkbox" name="program[]" value="gcat" <?php echo set_checkbox('program[]', 'gcat'); ?>> GCAT<br />
-								<input type="checkbox" name="program[]" value="best" <?php echo set_checkbox('program[]', 'best'); ?>> BEST<br />	
-								<input type="checkbox" name="program[]" value="adept" <?php echo set_checkbox('program[]', 'adept'); ?>> ADEPT<br />
-								<input type="checkbox" name="program[]" value="smp" <?php echo set_checkbox('program[]', 'smp'); ?>> SMP<br />	
+								<input type="checkbox" name="teacher_program[]" value="gcat" <?php echo set_checkbox('teacher_program[]', 'gcat'); ?>> GCAT<br />
+								<input type="checkbox" name="teacher_program[]" value="best" <?php echo set_checkbox('teacher_program[]', 'best'); ?>> BEST<br />	
+								<input type="checkbox" name="teacher_program[]" value="adept" <?php echo set_checkbox('teacher_program[]', 'adept'); ?>> ADEPT<br />
+								<input type="checkbox" name="teacher_program[]" value="smp" <?php echo set_checkbox('teacher_program[]', 'smp'); ?>> SMP<br />	
 							</div>
 					</div>
 				</div>

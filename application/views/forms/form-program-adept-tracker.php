@@ -37,6 +37,16 @@
 				<?php endforeach; ?>
 				</select>
 			</div>
+
+			<div class="form-group">
+				<label>Year</label>
+				<input type="text" class="form-control" name="year" value="<?php if($adept_student->Year) echo $adept_student->Year; ?>" readonly="true">
+			</div>
+
+			<div class="form-group">
+				<label>Course</label>
+				<input type="text" class="form-control" name="course" value="<?php if($adept_student->Course) echo $adept_student->Course; ?>" readonly="true">
+			</div>
 		</div>
 
 		<legend>AdEPT</legend>
