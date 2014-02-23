@@ -3,7 +3,7 @@
 <legend>CHED-LFA</legend>
 	
 <div class="report-form-long">
-<legend>T3</legend>
+<legend>Teachers Trained</legend>
 <table class="table table-striped table-bordered">
 <thead>
 <tr>
@@ -53,7 +53,7 @@
 </thead>
 <tbody>
 	<tr>
-		<td>Teachers Trained in GCAT</td>
+		<td> Trained in GCAT</td>
 		<td><?php echo $lfa_targets[0]->LFA; ?></td>
 		<?php foreach ($getMonthlyTeachersCompletedGcat as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -125,7 +125,7 @@
 		<?php endforeach; ?>
 	</tr>
 	<tr>
-		<td>Teachers Trained in Best</td>
+		<td> Trained in Best</td>
 		<td><?php echo $lfa_targets[1]->LFA; ?></td>
 		<?php foreach ($getMonthlyTeachersTrainedInBest as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -198,7 +198,7 @@
 	</tr>
 
 	<tr>
-		<td>Teachers Trained in AdEPT</td>
+		<td> Trained in AdEPT</td>
 		<td><?php echo $lfa_targets[2]->LFA; ?></td>
 		<?php foreach ($getMonthlyTeachersTrainedInAdept as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -271,7 +271,7 @@
 	</tr>
 
 	<tr>
-		<td>Teachers Trained in SMP Subjects</td>
+		<td> Trained in SMP Subjects</td>
 		<td><?php echo $lfa_targets[3]->LFA; ?></td>
 		<?php foreach ($getMonthlyTeachersTrainedInAnySmp as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -344,7 +344,7 @@
 	</tr>
 
 	<tr>
-		<td>Teachers Trained in BPO101</td>
+		<td> Trained in BPO101</td>
 		<td><?php echo $lfa_targets[4]->LFA; ?></td>
 		<?php foreach ($getMonthlyTeachersTrainedInBpo101 as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -417,7 +417,7 @@
 	</tr>
 
 	<tr>
-		<td>Teachers Trained in BPO102</td>
+		<td> Trained in BPO102</td>
 		<td><?php echo $lfa_targets[5]->LFA; ?></td>
 		<?php foreach ($getMonthlyTeachersTrainedInBpo102 as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -490,7 +490,7 @@
 	</tr>
 
 	<tr>
-		<td>Teachers Trained in Service Culture</td>
+		<td>Trained in Service Culture</td>
 		<td><?php echo $lfa_targets[6]->LFA; ?></td>
 		<?php foreach ($getMonthlyTeachersTrainedInServiceCulture as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -563,7 +563,7 @@
 	</tr>
 
 	<tr>
-		<td>Teachers Trained in Business Communication</td>
+		<td> Trained in Business Communication</td>
 		<td><?php echo $lfa_targets[7]->LFA; ?></td>
 		<?php foreach ($getMonthlyTeachersTrainedInBusinessCommunication as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -636,7 +636,7 @@
 	</tr>
 
 	<tr>
-		<td>Teachers Trained in Systems Thinking</td>
+		<td> Trained in Systems Thinking</td>
 		<td><?php echo $lfa_targets[8]->LFA; ?></td>
 		<?php foreach ($getMonthlyTeachersTrainedInSystemsThinking as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -784,8 +784,7 @@
 </tbody>
 </table>
 
-
-<legend>GCAT, BEST, AdEPT</legend>
+<legend>Students in Programs</legend>
 <table class="table table-striped table-bordered"><thead>
 <tr>
 	<th>Description</th>
@@ -834,7 +833,7 @@
 </thead>
 <tbody>
 	<tr>
-		<td>Students completed in GCAT</td>
+		<td>Completed in GCAT</td>
 		<td><?php echo $lfa_targets[10]->LFA; ?></td>
 		<?php foreach ($getMonthlyStudentsAdministeredGcat as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -907,7 +906,7 @@
 	</tr>
 
 	<tr>
-		<td>Students completed in BEST</td>
+		<td>Completed in BEST</td>
 		<td><?php echo $lfa_targets[11]->LFA; ?></td>
 		<?php foreach ($getMonthlyStudentsCompletedBest as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -980,7 +979,7 @@
 	</tr>
 
 	<tr>
-		<td>Students completed in AdEPT</td>
+		<td>Completed in AdEPT</td>
 		<td><?php echo $lfa_targets[12]->LFA; ?></td>
 		<?php foreach ($getMonthlyStudentsCompletedAdept as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -1052,10 +1051,8 @@
 		<?php endforeach; ?>
 	</tr>
 
-	<tr><td>SMP Running</td></tr>
-	
 	<tr>
-		<td>Students enrolled in any SMP</td>
+		<td>Enrolled in any SMP</td>
 		<td><?php echo $lfa_targets[13]->LFA; ?></td>
 		<?php foreach ($getMonthlyStudentsEnrolledInAnySmpSubject as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -1128,7 +1125,7 @@
 	</tr>
 
 	<tr>
-		<td>Students enrolled in BPO101</td>
+		<td>Enrolled in BPO101</td>
 		<td><?php echo $lfa_targets[14]->LFA; ?></td>
 		<?php foreach ($getMonthlyStudentsEnrolledInBpo101 as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -1201,7 +1198,7 @@
 	</tr>
 
 	<tr>
-		<td>Students enrolled in BPO102</td>
+		<td>Enrolled in BPO102</td>
 		<td><?php echo $lfa_targets[15]->LFA; ?></td>
 		<?php foreach ($getMonthlyStudentsEnrolledInBpo102 as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -1274,7 +1271,7 @@
 	</tr>
 
 	<tr>
-		<td>Students enrolled in Service Culture</td>
+		<td>Enrolled in Service Culture</td>
 		<td><?php echo $lfa_targets[16]->LFA; ?></td>
 		<?php foreach ($getMonthlyStudentsEnrolledInServiceCulture as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -1347,7 +1344,7 @@
 	</tr>
 
 	<tr>
-		<td>Students enrolled in Business Communication</td>
+		<td>Enrolled in Business Communication</td>
 		<td><?php echo $lfa_targets[17]->LFA; ?></td>
 		<?php foreach ($getMonthlyStudentsEnrolledInBusinessCommunication as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -1420,7 +1417,7 @@
 	</tr>
 
 	<tr>
-		<td>Students enrolled in Systems Thinking</td>
+		<td>Enrolled in Systems Thinking</td>
 		<td><?php echo $lfa_targets[18]->LFA; ?></td>
 		<?php foreach ($getMonthlyStudentsEnrolledInSystemsThinking as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -1492,60 +1489,8 @@
 		<?php endforeach; ?>
 	</tr>
 
-</tbody>
-</table>
-
-
-<legend>SMP Completion</legend>
-<table class="table table-striped table-bordered"><thead>
-<tr>
-	<th>Description</th>
-	<th>LFA Targets</th>
-	<th>January</th>
-	<th>Target</th>
-	<th>%</th>
-	<th>February</th>
-	<th>Target</th>
-	<th>%</th>
-	<th>March</th>
-	<th>Target</th>
-	<th>%</th>
-	<th>April</th>
-	<th>Target</th>
-	<th>%</th>
-	<th>May</th>
-	<th>Target</th>
-	<th>%</th>
-	<th>June</th>
-	<th>Target</th>
-	<th>%</th>
-	<th>July</th>
-	<th>Target</th>
-	<th>%</th>
-	<th>August</th>
-	<th>Target</th>
-	<th>%</th>
-	<th>September</th>
-	<th>Target</th>
-	<th>%</th>
-	<th>October</th>
-	<th>Target</th>
-	<th>%</th>
-	<th>November</th>
-	<th>Target</th>
-	<th>%</th>
-	<th>December</th>
-	<th>Target</th>
-	<th>%</th>
-	<th>Annual</th>
-	<th>Annual Target</th>
-	<th>Annual %</th>
-	<th>Cumulative</th>
-</tr>
-</thead>
-<tbody>
 	<tr>
-		<td>Students Completed in any SMP</td>
+		<td>Completed in any SMP</td>
 		<td><?php echo $lfa_targets[19]->LFA; ?></td>
 		<?php foreach ($getMonthlyCompletedAnySmpSubject as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -1618,7 +1563,7 @@
 	</tr>
 
 	<tr>
-		<td>Students Completed in BPO101</td>
+		<td>Completed in BPO101</td>
 		<td><?php echo $lfa_targets[20]->LFA; ?></td>
 		<?php foreach ($getMonthlyCompletedBpo101 as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -1691,7 +1636,7 @@
 	</tr>
 
 	<tr>
-		<td>Students Completed in BPO102</td>
+		<td>Completed in BPO102</td>
 		<td><?php echo $lfa_targets[21]->LFA; ?></td>
 		<?php foreach ($getMonthlyCompletedBpo102 as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -1764,7 +1709,7 @@
 	</tr>
 
 	<tr>
-		<td>Students Completed in Service Culture</td>
+		<td>Completed in Service Culture</td>
 		<td><?php echo $lfa_targets[22]->LFA; ?></td>
 		<?php foreach ($getMonthlyCompletedServiceCulture as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -1837,7 +1782,7 @@
 	</tr>
 
 	<tr>
-		<td>Students Completed in Business Communication</td>
+		<td>Completed in Business Communication</td>
 		<td><?php echo $lfa_targets[23]->LFA; ?></td>
 		<?php foreach ($getMonthlyCompletedBusinessCommunication as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -1910,7 +1855,7 @@
 	</tr>
 
 	<tr>
-		<td>Students Completed in Systems Thinking</td>
+		<td>Completed in Systems Thinking</td>
 		<td><?php echo $lfa_targets[24]->LFA; ?></td>
 		<?php foreach ($getMonthlyCompletedSystemsThinking as $count): ?>
 			<td><?php echo $count->January; ?></td>
@@ -1983,7 +1928,8 @@
 	</tr>
 
 	<tr>
-		<td>Students Completed in Internship</td>
+		<td>Completed in Internship</td>
+		<td>Completed in Internship</td>
 		<td><?php echo $lfa_targets[25]->LFA; ?></td>
 		<?php foreach ($getMonthlyStudentsUndergoneInternship as $count): ?>
 			<td><?php echo $count->January; ?></td>
