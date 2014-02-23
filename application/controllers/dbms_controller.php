@@ -2596,8 +2596,6 @@ class Dbms_Controller extends CI_Controller
 				}
 				else
 				{
-					$this->form_validation->run();
-
 					$data['form_error'] = TRUE;
 
 					$this->load->view('header');
@@ -2677,7 +2675,7 @@ class Dbms_Controller extends CI_Controller
 						$data['form_error'] = TRUE;
 
 						$this->load->view('header');
-						$this->load->view('forms/form-program-smp-tracker', $data);
+						$this->load->view('forms/form-program-smp-internship-tracker', $data);
 						$this->load->view('footer');
 					}
 					else
@@ -2695,8 +2693,6 @@ class Dbms_Controller extends CI_Controller
 				}
 				else
 				{
-					$this->form_validation->run();
-
 					$data['form_error'] = TRUE;
 
 					$this->load->view('header');
@@ -2725,68 +2721,62 @@ class Dbms_Controller extends CI_Controller
 
 	function form_program_gcat_tracker($id)
 	{
-		$data['proctors'] = $this->proctor->getAllProctorsFormatted();
 		$data['schools'] = $this->school->getAllSchools();
-		$data['subjects'] = $this->subject->getAllSubjects();
 		$data['statuses'] = $this->status->getAllStatuses();
 		$data['gcat_student'] = $this->student->getGcatStudentByStudentIdOrCode($id);
 
 		if($this->input->post())
 		{
-			$this->form_validation->set_rules('proctor', 'Proctor', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('school', 'School', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('subject', 'Subject', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('semester', 'Semester', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('year', 'Year Level', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('section', 'Section', 'trim|required|xss_clean');
-			// Student list
-			$this->form_validation->set_rules('student_full_name[]', 'Student Full Name', 'trim|xss_clean');
-			$this->form_validation->set_rules('student_student_number[]', 'Student Number', 'trim|xss_clean');
-			$this->form_validation->set_rules('student_session_id[]', 'Session ID', 'trim|xss_clean');
-			$this->form_validation->set_rules('student_test_date[]', 'Test Date', 'trim|xss_clean');
-			$this->form_validation->set_rules('student_status[]', 'Status', 'trim|xss_clean');
-			$this->form_validation->set_rules('student_remarks[]', 'Remarks', 'trim|xss_clean');
+			$this->form_validation->set_rules('code', 'Code', 'trim|required|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('session_id', 'Session ID', 'trim|required|alpha_dash|xss_clean');
+			$this->form_validation->set_rules('test_date', 'Test Date', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('status', 'Status', 'trim|required||xss_clean');
+			$this->form_validation->set_rules('remarks', 'Remarks', 'trim|required|xss_clean');
 
 			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
 			
-			if($this->input->post('submit'))
+			if ($this->input->post('submit'))
 			{
-				if($this->form_validation->run() == FALSE)
+				if ($this->form_validation->run())
 				{
-					$data['form_error'] = TRUE;
+					$this->db->trans_begin();
 
-					$this->load->view('header');
-					$this->load->view('forms/form-program-gcat-tracker', $data);
-					$this->load->view('footer');
+					$student_code = $this->input->post('code');
+
+					$gcat_student = array
+					(
+						'tracker.Status_ID' => $this->input->post('status'),
+						'tracker.Remarks' => $this->input->post('remarks'),
+						'gcat_student.Session_ID' => $this->input->post('session_id'),
+						'gcat_student.Test_Date' => $this->input->post('test_date')
+					);
+
+					if ($this->student->updateGcatStudent($student_code, 'GCAT', $gcat_student))
+					{
+						$this->db->trans_rollback();
+
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-program-gcat-tracker', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$this->db->trans_commit();
+
+						$data['gcat_student'] = $this->student->getGcatStudentByStudentIdOrCode($id);
+						$data['form_success'] = TRUE;
+						$this->log->addLog('Updated GCAT Tracker');
+
+						$this->load->view('header');
+						$this->load->view('forms/form-program-gcat-tracker', $data);
+						$this->load->view('footer');
+					}
 				}
 				else
 				{
-					$t3_tracker = array
-					(
-						'Status_ID' => $this->input->post('status'),
-						'Contract' => $this->input->post('contract'),
-						'Remarks' => $this->input->post('remarks'),
-						'Subject_ID' => $this->input->post('subject')
-					);
-					$t3_tracker_id = $this->teacher->addTeacher($t3_tracker);
-
-					for ($i = 0; $i < count($this->input->post('institutions_worked_institution')); $i++)
-					{ 
-						$teacher_training_experience = array
-						(
-							'Teacher_ID' => $teacher_id,
-							'Institution' => $this->input->post('institutions_worked_institution')[$i],
-							'Position' => $this->input->post('institutions_worked_position')[$i],
-							'Date' => $this->input->post('institutions_worked_year_started')[$i],
-							'Level_Taught' => $this->input->post('institutions_worked_level_taught')[$i],
-							'Courses_Taught' => $this->input->post('institutions_worked_courses_taught')[$i],
-							'Number_of_Years_in_Institution' => $this->input->post('institutions_worked_number_of_years_in_institution')[$i]
-						);
-						$this->teacher->addTeacherTrainingExperience($teacher_training_experience);
-					}
-
-					$data['form_success'] = TRUE;
-					$this->log->addLog('Program GCAT Tracker Added');
+					$data['form_error'] = TRUE;
 
 					$this->load->view('header');
 					$this->load->view('forms/form-program-gcat-tracker', $data);
