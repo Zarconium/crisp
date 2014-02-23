@@ -5269,7 +5269,6 @@ CREATE TABLE IF NOT EXISTS `teacher_t3_application` (
   `Teacher_ID` int(11) NOT NULL,
   `T3_Application_ID` int(11) NOT NULL,
   PRIMARY KEY (`Teacher_T3_Application_ID`),
-  UNIQUE KEY `Teacher_ID_UNIQUE` (`Teacher_ID`),
   KEY `fk_Teacher_T3_Application_Teacher1_idx` (`Teacher_ID`),
   KEY `fk_Teacher_T3_Application_T3_Application1_idx` (`T3_Application_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;

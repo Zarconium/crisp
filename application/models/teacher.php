@@ -826,7 +826,7 @@ Class Teacher extends CI_Model
 
 	function getBestT3TrackerByTeacherCode($Code)
 	{
-		$this->db->select('*');
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(teacher.Last_Name), teacher.Last_Name, NULL), ", ", IF(LENGTH(teacher.First_Name), teacher.First_Name, NULL), " ", IF(LENGTH(teacher.Middle_Initial), teacher.Middle_Initial, NULL), ". ", IF(LENGTH(teacher.Name_Suffix), teacher.Name_Suffix, NULL)) as Full_Name', false);
 		$this->db->from('teacher');
 		$this->db->join('teacher_t3_tracker', 'teacher.teacher_ID = teacher_t3_tracker.Teacher_ID', 'right');
 		$this->db->join('t3_tracker', 'teacher_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'right');
@@ -846,7 +846,7 @@ Class Teacher extends CI_Model
 	}
 	function getAdeptT3TrackerByTeacherCode($Code)
 	{
-		$this->db->select('*');
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(teacher.Last_Name), teacher.Last_Name, NULL), ", ", IF(LENGTH(teacher.First_Name), teacher.First_Name, NULL), " ", IF(LENGTH(teacher.Middle_Initial), teacher.Middle_Initial, NULL), ". ", IF(LENGTH(teacher.Name_Suffix), teacher.Name_Suffix, NULL)) as Full_Name', false);
 		$this->db->from('teacher');
 		$this->db->join('teacher_t3_tracker', 'teacher.teacher_ID = teacher_t3_tracker.Teacher_ID', 'right');
 		$this->db->join('t3_tracker', 'teacher_t3_tracker.T3_Tracker_ID = t3_tracker.T3_Tracker_ID', 'right');
