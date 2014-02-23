@@ -32,3 +32,10 @@ Change Apache timezone in **php.ini**
 ```
 date.timezone=Asia/Manila
 ```
+
+##Production Deployment
+Change application environment to in **index.php**
+```php
+//define('ENVIRONMENT', 'development');
+define('ENVIRONMENT', 'production'); 
+```
