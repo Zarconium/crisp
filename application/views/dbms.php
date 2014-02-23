@@ -101,7 +101,7 @@
 				<a href="<?php echo base_url('dbms/form_proctor_application'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
 				<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 				<button class="btn btn-success disabled" data-toggle="modal" data-target="#batchProctor">Batch Upload</button>
-				<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
+				<button class="btn btn-warning" data-toggle="modal" data-target="#searchProctor">Search</button>
 				<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 			</div>
 			<table class="table table-striped table-area">
@@ -134,7 +134,7 @@
 				<a href="<?php echo base_url('dbms/form_mastertrainer_application'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
 				<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 				<button class="btn btn-success disabled" data-toggle="modal" data-target="#batchTrainer">Batch Upload</button>
-				<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
+				<button class="btn btn-warning" data-toggle="modal" data-target="#searchMasterTrainer">Search</button>
 				<button class="btn btn-info" data-toggle="modal" data-target="#printList">Print List</button>
 		 	</div>
 			<table class="table table-striped table-area">
@@ -163,7 +163,7 @@
 	<div class="tab-pane fade" id="class">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#class_student" data-toggle="tab">Student Classes</a></li>
-			<li><a href="#class_mastertrainer" data-toggle="tab">Master Trainer's Classes</a></li>
+			<li><a href="#class_mastertrainer" data-toggle="tab">Teacher Classes</a></li>
 		</ul>
 		
 		<div class="tab-content">
@@ -192,7 +192,7 @@
 					<?php if ($student_classes) foreach ($student_classes as $student_class): ?>
 					<tr>
 						<td><input type="checkbox"></td>
-						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_class/' . $student_class->Class_ID); ?>">View</a> | <a href="#">Delete</a></td>
+						<td nowrap="nowrap"><a href="<?php echo base_url('dbms/form_class/' . $student_class->Class_ID); ?>">View</a> | <a href="<?php echo base_url('dbms/delete_class/' . $student_class->Class_ID); ?>" onClick="return confirm('Delete record?');">Delete</a></td>
 						<td><?php echo $student_class->Full_Name; ?></td>
 						<td><?php echo $student_class->School_Name; ?></td>
 						<td><?php echo $student_class->School_Branch; ?></td>
@@ -674,7 +674,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
+				<h4 class="modal-title" id="myModalLabel">Search Students</h4>
 			</div>
 			<form class="form" role="form" action="<?php echo base_url('dbms'); ?>" method="post">
 				<div class="modal-body">
@@ -715,7 +715,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
+				<h4 class="modal-title" id="myModalLabel">Search Teachers</h4>
 			</div>
 			<form class="form" role="form" action="<?php echo base_url('dbms'); ?>" method="post">
 				<div class="modal-body">
@@ -743,7 +743,89 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" name="search_teacher" value="search_student">Search</button>
+					<button type="submit" class="btn btn-primary" name="search_teacher" value="search_teacher">Search</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="searchProctor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Search Proctors</h4>
+			</div>
+			<form class="form" role="form" action="<?php echo base_url('dbms'); ?>" method="post">
+				<div class="modal-body">
+					<div class="student-button-groups">
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" class="form-control" name="proctor_name" <?php echo set_value('proctor_name'); ?>>
+							</div>
+							<div class="form-group">
+								<label for="school">School</label>
+								<select class="form-control" name="proctor_school">
+									<option></option>
+									<?php if ($schools) foreach ($schools as $school): ?>
+									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('proctor_school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="programs">Programs</label><br />
+								<input type="checkbox" name="proctor_program[]" value="gcat" <?php echo set_checkbox('proctor_program[]', 'gcat'); ?>> GCAT<br />
+								<input type="checkbox" name="proctor_program[]" value="best" <?php echo set_checkbox('proctor_program[]', 'best'); ?>> BEST<br />	
+								<input type="checkbox" name="proctor_program[]" value="adept" <?php echo set_checkbox('proctor_program[]', 'adept'); ?>> ADEPT<br />
+								<input type="checkbox" name="proctor_program[]" value="smp" <?php echo set_checkbox('proctor_program[]', 'smp'); ?>> SMP<br />	
+							</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" name="search_proctor" value="search_proctor">Search</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="searchMasterTrainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Search Master Trainers</h4>
+			</div>
+			<form class="form" role="form" action="<?php echo base_url('dbms'); ?>" method="post">
+				<div class="modal-body">
+					<div class="student-button-groups">
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" class="form-control" name="mastertrainer_name" <?php echo set_value('mastertrainer_name'); ?>>
+							</div>
+							<div class="form-group">
+								<label for="school">School</label>
+								<select class="form-control" name="mastertrainer_school">
+									<option></option>
+									<?php if ($schools) foreach ($schools as $school): ?>
+									<option value="<?php echo $school->School_ID;?>" <?php echo set_select('mastertrainer_school', $school->School_ID); ?>><?php echo $school->Name . " - " . $school->Branch; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="programs">Programs</label><br />
+								<input type="checkbox" name="mastertrainer_program[]" value="gcat" <?php echo set_checkbox('mastertrainer_program[]', 'gcat'); ?>> GCAT<br />
+								<input type="checkbox" name="mastertrainer_program[]" value="best" <?php echo set_checkbox('mastertrainer_program[]', 'best'); ?>> BEST<br />	
+								<input type="checkbox" name="mastertrainer_program[]" value="adept" <?php echo set_checkbox('mastertrainer_program[]', 'adept'); ?>> ADEPT<br />
+								<input type="checkbox" name="mastertrainer_program[]" value="smp" <?php echo set_checkbox('mastertrainer_program[]', 'smp'); ?>> SMP<br />	
+							</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" name="search_mastertrainer" value="search_mastertrainer">Search</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 				</div>
 			</form>
@@ -756,7 +838,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
+				<h4 class="modal-title" id="myModalLabel">Search Student Classes</h4>
 			</div>
 			<div class="modal-body">
 				<div class="student-button-groups">
@@ -815,7 +897,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Filter Search</h4>
+				<h4 class="modal-title" id="myModalLabel">Search Teacher Classes</h4>
 			</div>
 			<div class="modal-body">
 				<div class="student-button-groups">

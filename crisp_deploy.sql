@@ -783,8 +783,8 @@ CREATE TABLE IF NOT EXISTS `smp_t3_application` (
   `Support_Offices_Available` text,
   `Instructional_Materials_Support` text,
   `Technology_Support` text,
-  `Readily_Use_Lab` tinyint(1) NOT NULL DEFAULT '0',
-  `Internet_Services` tinyint(1) NOT NULL DEFAULT '0',
+  `Readily_Use_Lab` text,
+  `Internet_Services` text,
   `Self_Assessment_Form_Business_Communication` tinyint(1) NOT NULL DEFAULT '0',
   `Self_Assessment_Form_Service_Culture` tinyint(1) NOT NULL DEFAULT '0',
   `Contract` tinyint(1) NOT NULL DEFAULT '0',
@@ -1084,7 +1084,7 @@ CREATE TABLE IF NOT EXISTS `subject` (
 --
 
 INSERT INTO `subject` (`Subject_ID`, `Subject_Name`, `Subject_Code`) VALUES
-(1, 'Global Competitiive Assessment Test', 'GCAT'),
+(1, 'Global Competitive Assessment Test', 'GCAT'),
 (2, 'Basic English Skills Test', 'BEST'),
 (3, 'Advanced English Proficiency Test', 'AdEPT'),
 (4, 'Service Culture', 'SC101'),
@@ -1503,7 +1503,7 @@ INSERT INTO `users_targets` (`Users_Targets_ID`, `Target_For`, `LFA`, `QTR_1`, `
 (7, 'Teachers Trained in Service Culture', 2000, 400, 400, 400, 400, 2011, '2014-02-14 06:58:31', '2014-02-22 07:15:28', 3),
 (8, 'Teachers Trained in Business Communication', 2000, 400, 400, 400, 400, 2011, '2014-02-14 06:58:31', '2014-02-22 07:15:28', 3),
 (9, 'Teachers Trained in Systems Thinking', 2000, 400, 400, 400, 400, 2011, '2014-02-14 06:58:31', '2014-02-22 07:15:28', 3),
-(10, 'SUC''s with complete SMP Subjects and Trained TSeachers', 17, 1, 1, 1, 1, 2011, '2014-02-14 06:58:31', '2014-02-22 07:15:28', 3),
+(10, 'SUC''s with complete SMP Subjects and Trained Teachers', 17, 1, 1, 1, 1, 2011, '2014-02-14 06:58:31', '2014-02-22 07:15:28', 3),
 (11, 'Students completed in GCAT', 20000, 1200, 1200, 1200, 1200, 2011, '2014-02-14 06:58:31', '2014-02-22 07:15:28', 3),
 (12, 'Students completed in BEST', 20000, 1200, 1200, 1200, 1200, 2011, '2014-02-14 06:58:31', '2014-02-22 07:15:28', 3),
 (13, 'Students completed in AdEPT', 20000, 1200, 1200, 1200, 1200, 2011, '2014-02-14 06:58:31', '2014-02-22 07:15:28', 3),
