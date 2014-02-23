@@ -8,6 +8,7 @@
 <thead>
 <tr>
 	<th>Description</th>
+	<th>LFA Target</th>
 	<th>Q1</th>
 	<th>Target</th>
 	<th>%</th>
@@ -24,7 +25,6 @@
 	<th>Annual Target</th>
 	<th>Annual %</th>
 	<th>Cumulative</th>
-	<th>Target</th>
 </tr>
 </thead>
 <tbody>
@@ -386,6 +386,7 @@
 <thead>
 <tr>
 	<th>Description</th>
+	<th>LFA Target</th>
 	<th>Q1</th>
 	<th>Target</th>
 	<th>%</th>
@@ -402,7 +403,6 @@
 	<th>Annual Target</th>
 	<th>Annual %</th>
 	<th>Cumulative</th>
-	<th>Target</th>
 </tr>
 </thead>
 <tbody>
