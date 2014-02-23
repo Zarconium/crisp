@@ -1189,7 +1189,7 @@ $year = date('Y');
 						<form class="form" role="form" action="<?php echo base_url('reports/mneMonthlyReport'); ?>" method="post" target="_blank">
 							<div class="form-group">
 								<label>Year</label>
-								<select class="form-control" name="mande_month_year">
+								<select class="form-control" name="mande_monthly_year">
 								<?php foreach ($mne_years as $year): ?>
 										<option value="<?php echo $year->Year; ?>"><?php echo $year->Year; ?></option>
 								<?php endforeach; ?>
