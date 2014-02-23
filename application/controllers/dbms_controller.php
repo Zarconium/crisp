@@ -88,16 +88,16 @@ class Dbms_Controller extends CI_Controller
 									break;
 
 								case 'best':
-								$params['best'] = TRUE;
-								break;
+									$params['best'] = TRUE;
+									break;
 
 								case 'adept':
-								$params['adept'] = TRUE;
-								break;
+									$params['adept'] = TRUE;
+									break;
 
 								case 'smp':
-								$params['smp'] = TRUE;
-								break;
+									$params['smp'] = TRUE;
+									break;
 								
 								default:
 									break;
@@ -298,9 +298,9 @@ class Dbms_Controller extends CI_Controller
 						{
 							switch ($program)
 							{
-								/*case 'gcat':
+								case 'gcat':
 									$params['gcat'] = TRUE;
-									break;*/
+									break;
 
 								case 'best':
 									$params['best'] = TRUE;
@@ -337,6 +337,82 @@ class Dbms_Controller extends CI_Controller
 					}
 
 					$data['student_classes'] = $this->classes->getClassSearchResults($params);
+				}
+			}
+
+			if ($this->input->post('search_t3_class'))
+			{
+				$this->form_validation->set_rules('t3_class_teacher', 'Teacher', 'trim|xss_clean');
+				$this->form_validation->set_rules('t3_class_school', 'School', 'trim|xss_clean');
+				$this->form_validation->set_rules('t3_class_year', 'Year', 'trim|xss_clean');
+				$this->form_validation->set_rules('t3_class_section', 'Section', 'trim|xss_clean');
+				$this->form_validation->set_rules('t3_class_program[]', 'Programs', 'trim|xss_clean');
+
+				if ($this->form_validation->run())
+				{
+					$params = FALSE;
+
+					if ($this->input->post('t3_class_teacher'))
+					{
+						$params['name'] = $this->input->post('t3_class_teacher');
+					}
+					if ($this->input->post('t3_class_school'))
+					{
+						$params['school'] = $this->input->post('t3_class_school');
+					}
+					if ($this->input->post('t3_class_year'))
+					{
+						$params['year'] = $this->input->post('t3_class_year');
+					}
+					if ($this->input->post('t3_class_section'))
+					{
+						$params['section'] = $this->input->post('t3_class_section');
+					}
+					if ($this->input->post('t3_class_program'))
+					{
+						foreach ($this->input->post('t3_class_program') as $program)
+						{
+							switch ($program)
+							{
+								case 'gcat':
+									$params['gcat'] = TRUE;
+									break;
+
+								case 'best':
+									$params['best'] = TRUE;
+									break;
+
+								case 'adept':
+									$params['adept'] = TRUE;
+									break;
+
+								case 'bizcom':
+									$params['bizcom'] = TRUE;
+									break;
+
+								case 'bpo101':
+									$params['bpo101'] = TRUE;
+									break;
+
+								case 'bpo102':
+									$params['bpo102'] = TRUE;
+									break;
+
+								case 'sc101':
+									$params['sc101'] = TRUE;
+									break;
+
+								case 'systh101':
+									$params['systh101'] = TRUE;
+									break;
+								
+								default:
+									break;
+							}
+						}
+					}
+
+					$data['t3_classes'] = $this->classes->getT3ClassSearchResults($params);
 				}
 			}
 		}

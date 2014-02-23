@@ -170,6 +170,131 @@ Class Classes extends CI_Model
 		$this->db->join('school', 'class.School_ID = school.School_ID', 'left');
 		$this->db->join('subject', 'class.Subject_ID = subject.Subject_ID', 'left');
 
+		if ($params)
+		{
+			if (isset($params['name']))
+			{
+				$this->db->like('teacher.Last_Name', $params['name']);
+				$this->db->or_like('teacher.First_Name', $params['name']);
+				$this->db->or_like('teacher.Middle_Initial', $params['name']);
+				$this->db->or_like('teacher.Name_Suffix', $params['name']);
+			}
+			if (isset($params['school']))
+			{
+				$this->db->where('school.School_ID', $params['school']);
+			}
+			$programs = FALSE;
+			if (isset($params['gcat']))
+			{
+				$programs[] = 1;
+			}
+			if (isset($params['best']))
+			{
+				$programs[] = 2;
+			}
+			if (isset($params['adept']))
+			{
+				$programs[] = 3;
+			}
+			if (isset($params['bizcom']))
+			{
+				$programs[] = 10;
+			}
+			if (isset($params['bpo101']))
+			{
+				$programs[] = 6;
+			}
+			if (isset($params['bpo102']))
+			{
+				$programs[] = 7;
+			}
+			if (isset($params['sc101']))
+			{
+				$programs[] = 4;
+			}
+			if (isset($params['systh101']))
+			{
+				$programs[] = 5;
+			}
+			if ($programs)
+			{
+				$this->db->where_in('subject.Subject_ID', $programs);
+			}
+		}
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function getT3ClassSearchResults($params)
+	{
+		$this->db->select('*, CONCAT_WS("", IF(LENGTH(teacher.Last_Name), teacher.Last_Name, NULL), ", ", IF(LENGTH(teacher.First_Name), teacher.First_Name, NULL), " ", IF(LENGTH(teacher.Middle_Initial), teacher.Middle_Initial, NULL), ". ", IF(LENGTH(teacher.Name_Suffix), teacher.Name_Suffix, NULL)) as Full_Name, school.Name as School_Name, school.Branch as School_Branch, class.Name as Section', false);
+		$this->db->from('other_class');
+		$this->db->join('teacher', 'other_class.Teacher_ID = teacher.Teacher_ID', 'left');
+		$this->db->join('class', 'other_class.Class_ID = class.Class_ID', 'left');
+		$this->db->join('school', 'class.School_ID = school.School_ID', 'left');
+		$this->db->join('subject', 'class.Subject_ID = subject.Subject_ID', 'left');
+
+		if ($params)
+		{
+			if (isset($params['name']))
+			{
+				$this->db->like('teacher.Last_Name', $params['name']);
+				$this->db->or_like('teacher.First_Name', $params['name']);
+				$this->db->or_like('teacher.Middle_Initial', $params['name']);
+				$this->db->or_like('teacher.Name_Suffix', $params['name']);
+			}
+			if (isset($params['school']))
+			{
+				$this->db->where('school.School_ID', $params['school']);
+			}
+			$programs = FALSE;
+			if (isset($params['gcat']))
+			{
+				$programs[] = 1;
+			}
+			if (isset($params['best']))
+			{
+				$programs[] = 2;
+			}
+			if (isset($params['adept']))
+			{
+				$programs[] = 3;
+			}
+			if (isset($params['bizcom']))
+			{
+				$programs[] = 10;
+			}
+			if (isset($params['bpo101']))
+			{
+				$programs[] = 6;
+			}
+			if (isset($params['bpo102']))
+			{
+				$programs[] = 7;
+			}
+			if (isset($params['sc101']))
+			{
+				$programs[] = 4;
+			}
+			if (isset($params['systh101']))
+			{
+				$programs[] = 5;
+			}
+			if ($programs)
+			{
+				$this->db->where_in('subject.Subject_ID', $programs);
+			}
+		}
+
 		$query = $this->db->get();
 		
 		if($query->num_rows() > 0)

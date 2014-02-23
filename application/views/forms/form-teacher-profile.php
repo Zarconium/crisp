@@ -95,8 +95,8 @@
 					<div class="form-inline">
 						<div class="form-group">
 							<label>Gender</label><br/>
-							<input type="radio" name="gender" value="male" <?php if (!strcasecmp($teacher->Gender, 'm')) { echo 'checked="checked"'; }?>> Male
-							<input type="radio" name="gender" value="female" <?php if (!strcasecmp($teacher->Gender, 'f')) { echo 'checked="checked"'; }?>> Female
+							<input type="radio" name="gender" value="M" <?php if (!strcasecmp($teacher->Gender, 'm')) { echo 'checked="checked"'; }?>> Male
+							<input type="radio" name="gender" value="F" <?php if (!strcasecmp($teacher->Gender, 'f')) { echo 'checked="checked"'; }?>> Female
 							<?php echo form_error('gender'); ?>
 						</div>
 					</div>	
