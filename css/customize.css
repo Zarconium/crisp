@@ -173,13 +173,12 @@ height: 500px;
 
 .report-form th, .report-form td{
 width: 300px !important;
+overflow: hidden;
 }
 
 .report-form table{
 table-layout: fixed !important;
 }
-
-
 
 .header{
 text-align: center;

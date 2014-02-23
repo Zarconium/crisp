@@ -1161,7 +1161,11 @@ $year = date('Y');
 						<form class="form" role="form" action="<?php echo base_url('reports/mneQuarterlyReport'); ?>" method="post" target="_blank">
 							<div class="form-group">
 								<label>Year</label>
-								<input class="form-control" type="number" name="mande_quarter_year" min="1990" value="<?php echo $year; ?>">
+								<select class="form-control" name="mande_quarter_year">
+								<?php foreach ($mne_years as $year): ?>
+										<option value="<?php echo $year->Year; ?>"><?php echo $year->Year; ?></option>
+								<?php endforeach; ?>
+								</select>
 							</div>
 							<div class="button-groups">
 								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
@@ -1185,7 +1189,12 @@ $year = date('Y');
 						<form class="form" role="form" action="<?php echo base_url('reports/mneMonthlyReport'); ?>" method="post" target="_blank">
 							<div class="form-group">
 								<label>Year</label>
-								<input class="form-control" type="number" name="mande_month_year" min="1990" value="<?php echo $year; ?>">
+								<select class="form-control" name="mande_month_year">
+								<?php foreach ($mne_years as $year): ?>
+										<option value="<?php echo $year->Year; ?>"><?php echo $year->Year; ?></option>
+								<?php endforeach; ?>
+								</select>
+
 							</div>		
 							
 							<div class="button-groups">
