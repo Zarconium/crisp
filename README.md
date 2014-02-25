@@ -32,6 +32,10 @@ Change Apache timezone in **php.ini**
 ```
 date.timezone=Asia/Manila
 ```
+Linux server platforms must do an additional step in configuring MySQL.
+```
+lower_case_table_names = 1
+```
 
 ##Production Deployment
 Change application environment to in **index.php**
