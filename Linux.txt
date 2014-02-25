@@ -1,0 +1,18 @@
+# Install XAMPP
+chmod 755 xampp-linux-x64-installer.run
+
+sudo ./xampp-linux-x64-installer.run
+
+# Start XAMPP
+cd /opt/lampp
+sudo ./manager-linux-x64.run
+
+# Configure security
+sudo /opt/lampp/lampp security
+
+# Configure autostart
+sudo ln -s /opt/lampp/lampp /etc/init.d/lampp
+sudo update-rc.d lampp start 80 2 3 4 5 . stop 30 0 1 6 .
+
+# set htdocs permissions
+sudo chown -R <username> htdocs
