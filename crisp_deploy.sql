@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.9
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 19, 2014 at 12:01 AM
--- Server version: 5.6.14
--- PHP Version: 5.5.6
+-- Host: localhost
+-- Generation Time: Feb 25, 2014 at 07:41 AM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `crisp`
 --
+CREATE DATABASE IF NOT EXISTS `crisp` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `crisp`;
 
 -- --------------------------------------------------------
 
@@ -26,6 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `adept_student`
 --
 
+DROP TABLE IF EXISTS `adept_student`;
 CREATE TABLE IF NOT EXISTS `adept_student` (
   `Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Control_Number` varchar(5) DEFAULT NULL,
@@ -41,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `adept_student` (
   UNIQUE KEY `Tracker_ID_UNIQUE` (`Tracker_ID`),
   UNIQUE KEY `Control_Number_UNIQUE` (`Control_Number`),
   UNIQUE KEY `Username_UNIQUE` (`Username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -49,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `adept_student` (
 -- Table structure for table `adept_t3_attendance`
 --
 
+DROP TABLE IF EXISTS `adept_t3_attendance`;
 CREATE TABLE IF NOT EXISTS `adept_t3_attendance` (
   `Adept_T3_Attendance_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Orientation_Day` datetime DEFAULT NULL,
@@ -64,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `adept_t3_attendance` (
   `Updated_At` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Adept_T3_Attendance_ID`),
   UNIQUE KEY `Adept_T3_Attendance_ID_UNIQUE` (`Adept_T3_Attendance_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -72,6 +76,7 @@ CREATE TABLE IF NOT EXISTS `adept_t3_attendance` (
 -- Table structure for table `adept_t3_grades`
 --
 
+DROP TABLE IF EXISTS `adept_t3_grades`;
 CREATE TABLE IF NOT EXISTS `adept_t3_grades` (
   `Adept_T3_Grades_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Oral` decimal(10,1) DEFAULT NULL,
@@ -82,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `adept_t3_grades` (
   `Summary_Scores` decimal(10,1) DEFAULT NULL,
   PRIMARY KEY (`Adept_T3_Grades_ID`),
   UNIQUE KEY `Adept_T3_Grades_ID_UNIQUE` (`Adept_T3_Grades_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -90,6 +95,7 @@ CREATE TABLE IF NOT EXISTS `adept_t3_grades` (
 -- Table structure for table `adept_t3_tracker`
 --
 
+DROP TABLE IF EXISTS `adept_t3_tracker`;
 CREATE TABLE IF NOT EXISTS `adept_t3_tracker` (
   `T3_Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Adept_T3_Grades_ID` int(11) NOT NULL,
@@ -114,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `adept_t3_tracker` (
   KEY `fk_Adept_T3_Tracker_Adept_T3_Grades1_idx` (`Adept_T3_Grades_ID`),
   KEY `fk_Adept_T3_Tracker_Adept_T3_Attendance1_idx` (`Adept_T3_Attendance_ID`),
   KEY `fk_Adept_T3_Tracker_Teacher_Tracker1_idx` (`T3_Tracker_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -122,6 +128,7 @@ CREATE TABLE IF NOT EXISTS `adept_t3_tracker` (
 -- Table structure for table `best_adept_t3_application`
 --
 
+DROP TABLE IF EXISTS `best_adept_t3_application`;
 CREATE TABLE IF NOT EXISTS `best_adept_t3_application` (
   `T3_Application_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Answer_1` text,
@@ -131,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `best_adept_t3_application` (
   PRIMARY KEY (`T3_Application_ID`),
   UNIQUE KEY `T3_Application_ID_UNIQUE` (`T3_Application_ID`),
   KEY `fk_Best_Adept_T3_Application_Teacher_Application1_idx` (`T3_Application_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -139,6 +146,7 @@ CREATE TABLE IF NOT EXISTS `best_adept_t3_application` (
 -- Table structure for table `best_student`
 --
 
+DROP TABLE IF EXISTS `best_student`;
 CREATE TABLE IF NOT EXISTS `best_student` (
   `Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Control_Number` varchar(5) DEFAULT NULL,
@@ -152,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `best_student` (
   `Summary_Scores` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`Tracker_ID`),
   UNIQUE KEY `Tracker_ID_UNIQUE` (`Tracker_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -160,6 +168,7 @@ CREATE TABLE IF NOT EXISTS `best_student` (
 -- Table structure for table `best_t3_attendance`
 --
 
+DROP TABLE IF EXISTS `best_t3_attendance`;
 CREATE TABLE IF NOT EXISTS `best_t3_attendance` (
   `Best_T3_Attendance_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Orientation_Day` datetime DEFAULT NULL,
@@ -171,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `best_t3_attendance` (
   `Updated_At` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Best_T3_Attendance_ID`),
   UNIQUE KEY `Best_T3_Attendance_ID_UNIQUE` (`Best_T3_Attendance_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -179,6 +188,7 @@ CREATE TABLE IF NOT EXISTS `best_t3_attendance` (
 -- Table structure for table `best_t3_grades`
 --
 
+DROP TABLE IF EXISTS `best_t3_grades`;
 CREATE TABLE IF NOT EXISTS `best_t3_grades` (
   `Best_T3_Grades_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Oral` decimal(10,1) DEFAULT NULL,
@@ -189,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `best_t3_grades` (
   `Summary_Scores` decimal(10,1) DEFAULT NULL,
   PRIMARY KEY (`Best_T3_Grades_ID`),
   UNIQUE KEY `Best_T3_Grades_ID_UNIQUE` (`Best_T3_Grades_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -197,6 +207,7 @@ CREATE TABLE IF NOT EXISTS `best_t3_grades` (
 -- Table structure for table `best_t3_tracker`
 --
 
+DROP TABLE IF EXISTS `best_t3_tracker`;
 CREATE TABLE IF NOT EXISTS `best_t3_tracker` (
   `T3_Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Best_T3_Attendance_ID` int(11) NOT NULL,
@@ -221,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `best_t3_tracker` (
   KEY `fk_Adept_T3_Tracker_Best_T3_Attendance1_idx` (`Best_T3_Attendance_ID`),
   KEY `fk_Adept_T3_Tracker_Best_T3_Grades1_idx` (`Best_T3_Grades_ID`),
   KEY `fk_Best_T3_Tracker_Teacher_Tracker1_idx` (`T3_Tracker_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -229,6 +240,7 @@ CREATE TABLE IF NOT EXISTS `best_t3_tracker` (
 -- Table structure for table `class`
 --
 
+DROP TABLE IF EXISTS `class`;
 CREATE TABLE IF NOT EXISTS `class` (
   `Class_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(45) NOT NULL,
@@ -240,7 +252,7 @@ CREATE TABLE IF NOT EXISTS `class` (
   UNIQUE KEY `Class_ID_UNIQUE` (`Class_ID`),
   KEY `fk_Section_School2_idx` (`School_ID`),
   KEY `fk_Class_Subject1_idx` (`Subject_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -248,6 +260,7 @@ CREATE TABLE IF NOT EXISTS `class` (
 -- Table structure for table `computer_skills`
 --
 
+DROP TABLE IF EXISTS `computer_skills`;
 CREATE TABLE IF NOT EXISTS `computer_skills` (
   `Computer_Skills_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(100) NOT NULL,
@@ -271,6 +284,7 @@ INSERT INTO `computer_skills` (`Computer_Skills_ID`, `Name`) VALUES
 -- Table structure for table `gcat_class`
 --
 
+DROP TABLE IF EXISTS `gcat_class`;
 CREATE TABLE IF NOT EXISTS `gcat_class` (
   `Class_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Proctor_ID` int(11) NOT NULL,
@@ -278,7 +292,7 @@ CREATE TABLE IF NOT EXISTS `gcat_class` (
   UNIQUE KEY `Class_ID_UNIQUE` (`Class_ID`),
   KEY `fk_GCAT_Class_Proctor1_idx` (`Proctor_ID`),
   KEY `fk_GCAT_Class_Class1_idx` (`Class_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -286,6 +300,7 @@ CREATE TABLE IF NOT EXISTS `gcat_class` (
 -- Table structure for table `gcat_student`
 --
 
+DROP TABLE IF EXISTS `gcat_student`;
 CREATE TABLE IF NOT EXISTS `gcat_student` (
   `Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `GCAT_Total_Cognitive` int(11) NOT NULL DEFAULT '0',
@@ -304,7 +319,7 @@ CREATE TABLE IF NOT EXISTS `gcat_student` (
   `Test_Date` datetime DEFAULT NULL,
   PRIMARY KEY (`Tracker_ID`),
   UNIQUE KEY `Session_ID_UNIQUE` (`Session_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -312,6 +327,7 @@ CREATE TABLE IF NOT EXISTS `gcat_student` (
 -- Table structure for table `gcat_tracker`
 --
 
+DROP TABLE IF EXISTS `gcat_tracker`;
 CREATE TABLE IF NOT EXISTS `gcat_tracker` (
   `T3_Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `GCAT_Basic_Skills_Test_Overall_Score` int(11) NOT NULL DEFAULT '0',
@@ -331,7 +347,7 @@ CREATE TABLE IF NOT EXISTS `gcat_tracker` (
   UNIQUE KEY `Session_ID_UNIQUE` (`Session_ID`),
   UNIQUE KEY `T3_Tracker_ID_UNIQUE` (`T3_Tracker_ID`),
   KEY `fk_GCAT_T3_Tracker_Teacher_Tracker1_idx` (`T3_Tracker_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -339,6 +355,7 @@ CREATE TABLE IF NOT EXISTS `gcat_tracker` (
 -- Table structure for table `internship_student`
 --
 
+DROP TABLE IF EXISTS `internship_student`;
 CREATE TABLE IF NOT EXISTS `internship_student` (
   `Tracker_ID` int(11) NOT NULL,
   `Supervisor_Name` varchar(250) DEFAULT NULL,
@@ -369,6 +386,7 @@ CREATE TABLE IF NOT EXISTS `internship_student` (
 -- Table structure for table `log`
 --
 
+DROP TABLE IF EXISTS `log`;
 CREATE TABLE IF NOT EXISTS `log` (
   `Log_ID` int(11) NOT NULL AUTO_INCREMENT,
   `User_ID` int(11) NOT NULL,
@@ -377,7 +395,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   PRIMARY KEY (`Log_ID`),
   UNIQUE KEY `Log_ID_UNIQUE` (`Log_ID`),
   KEY `fk_Log_Users1_idx` (`User_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -385,6 +403,7 @@ CREATE TABLE IF NOT EXISTS `log` (
 -- Table structure for table `master_trainer`
 --
 
+DROP TABLE IF EXISTS `master_trainer`;
 CREATE TABLE IF NOT EXISTS `master_trainer` (
   `Master_Trainer_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Last_Name` varchar(45) NOT NULL,
@@ -402,7 +421,7 @@ CREATE TABLE IF NOT EXISTS `master_trainer` (
   `Position` varchar(45) NOT NULL,
   PRIMARY KEY (`Master_Trainer_ID`),
   UNIQUE KEY `Master_Trainer_ID_UNIQUE` (`Master_Trainer_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -410,6 +429,7 @@ CREATE TABLE IF NOT EXISTS `master_trainer` (
 -- Table structure for table `organization_affiliations`
 --
 
+DROP TABLE IF EXISTS `organization_affiliations`;
 CREATE TABLE IF NOT EXISTS `organization_affiliations` (
   `Organization_Affiliations_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) NOT NULL,
@@ -418,7 +438,7 @@ CREATE TABLE IF NOT EXISTS `organization_affiliations` (
   `Description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Organization_Affiliations_ID`),
   UNIQUE KEY `Organization_Affiliations_ID_UNIQUE` (`Organization_Affiliations_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -426,6 +446,7 @@ CREATE TABLE IF NOT EXISTS `organization_affiliations` (
 -- Table structure for table `other_class`
 --
 
+DROP TABLE IF EXISTS `other_class`;
 CREATE TABLE IF NOT EXISTS `other_class` (
   `Class_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Teacher_ID` int(11) NOT NULL,
@@ -433,7 +454,7 @@ CREATE TABLE IF NOT EXISTS `other_class` (
   UNIQUE KEY `Class_ID_UNIQUE` (`Class_ID`),
   KEY `fk_Other_Class_Class1_idx` (`Class_ID`),
   KEY `fk_Other_Class_Teacher1_idx` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -441,6 +462,7 @@ CREATE TABLE IF NOT EXISTS `other_class` (
 -- Table structure for table `proctor`
 --
 
+DROP TABLE IF EXISTS `proctor`;
 CREATE TABLE IF NOT EXISTS `proctor` (
   `Proctor_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Last_Name` varchar(45) NOT NULL,
@@ -458,7 +480,7 @@ CREATE TABLE IF NOT EXISTS `proctor` (
   `Position` varchar(45) NOT NULL,
   PRIMARY KEY (`Proctor_ID`),
   UNIQUE KEY `Proctor_ID_UNIQUE` (`Proctor_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -466,6 +488,7 @@ CREATE TABLE IF NOT EXISTS `proctor` (
 -- Table structure for table `project`
 --
 
+DROP TABLE IF EXISTS `project`;
 CREATE TABLE IF NOT EXISTS `project` (
   `Project_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(250) NOT NULL,
@@ -489,6 +512,7 @@ INSERT INTO `project` (`Project_ID`, `Name`, `Institution`, `Year_Implemented`) 
 -- Table structure for table `related_trainings_attended`
 --
 
+DROP TABLE IF EXISTS `related_trainings_attended`;
 CREATE TABLE IF NOT EXISTS `related_trainings_attended` (
   `Related_Trainings_Attended_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Training` varchar(45) NOT NULL,
@@ -498,7 +522,7 @@ CREATE TABLE IF NOT EXISTS `related_trainings_attended` (
   PRIMARY KEY (`Related_Trainings_Attended_ID`),
   UNIQUE KEY `Related_Trainings_Attended_ID_UNIQUE` (`Related_Trainings_Attended_ID`),
   KEY `fk_Related_Trainings_Attended_Teacher1` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -506,6 +530,7 @@ CREATE TABLE IF NOT EXISTS `related_trainings_attended` (
 -- Table structure for table `school`
 --
 
+DROP TABLE IF EXISTS `school`;
 CREATE TABLE IF NOT EXISTS `school` (
   `School_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(100) NOT NULL,
@@ -608,6 +633,7 @@ INSERT INTO `school` (`School_ID`, `Name`, `Address`, `Landline`, `Email`, `Poin
 -- Table structure for table `school_project`
 --
 
+DROP TABLE IF EXISTS `school_project`;
 CREATE TABLE IF NOT EXISTS `school_project` (
   `School_Project_ID` int(11) NOT NULL,
   `School_ID` int(11) NOT NULL,
@@ -704,6 +730,7 @@ INSERT INTO `school_project` (`School_Project_ID`, `School_ID`, `Project_ID`) VA
 -- Table structure for table `school_subject`
 --
 
+DROP TABLE IF EXISTS `school_subject`;
 CREATE TABLE IF NOT EXISTS `school_subject` (
   `School_Subject_ID` int(11) NOT NULL,
   `School_ID` int(11) NOT NULL,
@@ -719,6 +746,7 @@ CREATE TABLE IF NOT EXISTS `school_subject` (
 -- Table structure for table `skills`
 --
 
+DROP TABLE IF EXISTS `skills`;
 CREATE TABLE IF NOT EXISTS `skills` (
   `Skills_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(100) NOT NULL,
@@ -742,13 +770,14 @@ INSERT INTO `skills` (`Skills_ID`, `Name`) VALUES
 -- Table structure for table `smp_student`
 --
 
+DROP TABLE IF EXISTS `smp_student`;
 CREATE TABLE IF NOT EXISTS `smp_student` (
   `Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Grade` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`Tracker_ID`),
   UNIQUE KEY `Tracker_ID_UNIQUE` (`Tracker_ID`),
   KEY `fk_SMP_Student_Tracker1_idx` (`Tracker_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -756,6 +785,7 @@ CREATE TABLE IF NOT EXISTS `smp_student` (
 -- Table structure for table `smp_student_courses_taken`
 --
 
+DROP TABLE IF EXISTS `smp_student_courses_taken`;
 CREATE TABLE IF NOT EXISTS `smp_student_courses_taken` (
   `SMP_Student_Courses_Taken_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Student_Class_ID` int(11) DEFAULT NULL,
@@ -764,7 +794,7 @@ CREATE TABLE IF NOT EXISTS `smp_student_courses_taken` (
   UNIQUE KEY `Student_Class_Student_Class_ID_UNIQUE` (`Student_Class_ID`),
   KEY `fk_SMP_Student_Courses_Taken_Student_Class1_idx` (`Student_Class_ID`),
   KEY `fk_SMP_Student_Courses_Taken_SMP_Student1_idx` (`Tracker_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -772,6 +802,7 @@ CREATE TABLE IF NOT EXISTS `smp_student_courses_taken` (
 -- Table structure for table `smp_t3_application`
 --
 
+DROP TABLE IF EXISTS `smp_t3_application`;
 CREATE TABLE IF NOT EXISTS `smp_t3_application` (
   `T3_Application_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Answer_1` text,
@@ -791,7 +822,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_application` (
   PRIMARY KEY (`T3_Application_ID`),
   UNIQUE KEY `T3_Application_ID_UNIQUE` (`T3_Application_ID`),
   KEY `fk_SMP_T3_Application_Teacher_Application1_idx` (`T3_Application_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -799,6 +830,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_application` (
 -- Table structure for table `smp_t3_attendance`
 --
 
+DROP TABLE IF EXISTS `smp_t3_attendance`;
 CREATE TABLE IF NOT EXISTS `smp_t3_attendance` (
   `SMP_T3_Attendance_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Time_In` tinyint(1) NOT NULL DEFAULT '0',
@@ -811,7 +843,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_attendance` (
   `Updated_At` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`SMP_T3_Attendance_ID`),
   UNIQUE KEY `SMP_T3_Attendance_ID_UNIQUE` (`SMP_T3_Attendance_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -819,6 +851,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_attendance` (
 -- Table structure for table `smp_t3_attendance_tracking`
 --
 
+DROP TABLE IF EXISTS `smp_t3_attendance_tracking`;
 CREATE TABLE IF NOT EXISTS `smp_t3_attendance_tracking` (
   `SMP_T3_Attendance_Tracking_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Event` varchar(100) NOT NULL,
@@ -828,7 +861,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_attendance_tracking` (
   UNIQUE KEY `SMP_T3_Attendance_Tracking_ID_UNIQUE` (`SMP_T3_Attendance_Tracking_ID`),
   KEY `fk_SMP_T3_Attendance_Tracking_SMP_T3_Attendance1_idx` (`SMP_T3_Attendance_ID`),
   KEY `fk_SMP_T3_Attendance_Tracking_SMP_T3_Tracker1_idx` (`T3_Tracker_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -836,6 +869,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_attendance_tracking` (
 -- Table structure for table `smp_t3_site_visit`
 --
 
+DROP TABLE IF EXISTS `smp_t3_site_visit`;
 CREATE TABLE IF NOT EXISTS `smp_t3_site_visit` (
   `SMP_T3_Site_Visit_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Training_Location` varchar(45) NOT NULL,
@@ -846,7 +880,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_site_visit` (
   `Updated_At` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`SMP_T3_Site_Visit_ID`),
   UNIQUE KEY `SMP_T3_Site_Visit_ID_UNIQUE` (`SMP_T3_Site_Visit_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -854,6 +888,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_site_visit` (
 -- Table structure for table `smp_t3_tracker`
 --
 
+DROP TABLE IF EXISTS `smp_t3_tracker`;
 CREATE TABLE IF NOT EXISTS `smp_t3_tracker` (
   `T3_Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `SMP_T3_Site_Visit_ID` int(11) NOT NULL,
@@ -861,7 +896,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_tracker` (
   UNIQUE KEY `T3_Tracker_ID_UNIQUE` (`T3_Tracker_ID`),
   KEY `fk_SMP_T3_Tracker_SMP_T3_Site_Visit1_idx` (`SMP_T3_Site_Visit_ID`),
   KEY `fk_SMP_T3_Tracker_T3_Tracker1_idx` (`T3_Tracker_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -869,6 +904,7 @@ CREATE TABLE IF NOT EXISTS `smp_t3_tracker` (
 -- Table structure for table `status`
 --
 
+DROP TABLE IF EXISTS `status`;
 CREATE TABLE IF NOT EXISTS `status` (
   `Status_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(20) NOT NULL,
@@ -892,6 +928,7 @@ INSERT INTO `status` (`Status_ID`, `Name`) VALUES
 -- Table structure for table `stipend_tracking`
 --
 
+DROP TABLE IF EXISTS `stipend_tracking`;
 CREATE TABLE IF NOT EXISTS `stipend_tracking` (
   `Stipend_Tracking_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Amount` double NOT NULL DEFAULT '0',
@@ -907,6 +944,7 @@ CREATE TABLE IF NOT EXISTS `stipend_tracking` (
 -- Table structure for table `stipend_tracking_list`
 --
 
+DROP TABLE IF EXISTS `stipend_tracking_list`;
 CREATE TABLE IF NOT EXISTS `stipend_tracking_list` (
   `Stipend_Tracking_List_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Date` varchar(45) NOT NULL,
@@ -926,6 +964,7 @@ CREATE TABLE IF NOT EXISTS `stipend_tracking_list` (
 -- Table structure for table `student`
 --
 
+DROP TABLE IF EXISTS `student`;
 CREATE TABLE IF NOT EXISTS `student` (
   `Student_ID` int(11) NOT NULL AUTO_INCREMENT,
   `School_ID` int(11) NOT NULL,
@@ -962,7 +1001,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   UNIQUE KEY `Student_ID_UNIQUE` (`Student_ID`),
   UNIQUE KEY `Code` (`Code`),
   KEY `fk_Student_School1_idx` (`School_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -970,6 +1009,7 @@ CREATE TABLE IF NOT EXISTS `student` (
 -- Table structure for table `student_application`
 --
 
+DROP TABLE IF EXISTS `student_application`;
 CREATE TABLE IF NOT EXISTS `student_application` (
   `Student_Application_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -981,7 +1021,7 @@ CREATE TABLE IF NOT EXISTS `student_application` (
   KEY `fk_Student_Application_Student1_idx` (`Student_ID`),
   KEY `fk_Student_Application_Project1_idx` (`Project_ID`),
   KEY `fk_Student_Application_Subject_ID1_idx` (`Subject_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -989,6 +1029,7 @@ CREATE TABLE IF NOT EXISTS `student_application` (
 -- Table structure for table `student_class`
 --
 
+DROP TABLE IF EXISTS `student_class`;
 CREATE TABLE IF NOT EXISTS `student_class` (
   `Student_Class_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Class_ID` int(11) NOT NULL,
@@ -997,7 +1038,7 @@ CREATE TABLE IF NOT EXISTS `student_class` (
   UNIQUE KEY `Student_Class_ID_UNIQUE` (`Student_Class_ID`),
   KEY `fk_Student_Class_Class1_idx` (`Class_ID`),
   KEY `fk_Student_Class_Student1_idx` (`Student_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1005,6 +1046,7 @@ CREATE TABLE IF NOT EXISTS `student_class` (
 -- Table structure for table `student_computer_skills`
 --
 
+DROP TABLE IF EXISTS `student_computer_skills`;
 CREATE TABLE IF NOT EXISTS `student_computer_skills` (
   `Student_Computer_Skills_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Student_ID` int(11) NOT NULL,
@@ -1022,6 +1064,7 @@ CREATE TABLE IF NOT EXISTS `student_computer_skills` (
 -- Table structure for table `student_organization_affiliations`
 --
 
+DROP TABLE IF EXISTS `student_organization_affiliations`;
 CREATE TABLE IF NOT EXISTS `student_organization_affiliations` (
   `Student_Organization_Affiliations_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Organization_Affiliations_ID` int(11) NOT NULL,
@@ -1038,6 +1081,7 @@ CREATE TABLE IF NOT EXISTS `student_organization_affiliations` (
 -- Table structure for table `student_skills`
 --
 
+DROP TABLE IF EXISTS `student_skills`;
 CREATE TABLE IF NOT EXISTS `student_skills` (
   `Student_Skills_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Student_ID` int(11) NOT NULL,
@@ -1054,6 +1098,7 @@ CREATE TABLE IF NOT EXISTS `student_skills` (
 -- Table structure for table `student_tracker`
 --
 
+DROP TABLE IF EXISTS `student_tracker`;
 CREATE TABLE IF NOT EXISTS `student_tracker` (
   `Student_Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Tracker_ID` int(11) NOT NULL,
@@ -1062,7 +1107,7 @@ CREATE TABLE IF NOT EXISTS `student_tracker` (
   UNIQUE KEY `Student_Tracker_ID_UNIQUE` (`Student_Tracker_ID`),
   KEY `fk_Student_Tracker_Tracker1_idx` (`Tracker_ID`),
   KEY `fk_Student_Tracker_Student1_idx` (`Student_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1070,6 +1115,7 @@ CREATE TABLE IF NOT EXISTS `student_tracker` (
 -- Table structure for table `subject`
 --
 
+DROP TABLE IF EXISTS `subject`;
 CREATE TABLE IF NOT EXISTS `subject` (
   `Subject_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Subject_Name` varchar(45) NOT NULL,
@@ -1102,6 +1148,7 @@ INSERT INTO `subject` (`Subject_ID`, `Subject_Name`, `Subject_Code`) VALUES
 -- Table structure for table `t3_application`
 --
 
+DROP TABLE IF EXISTS `t3_application`;
 CREATE TABLE IF NOT EXISTS `t3_application` (
   `T3_Application_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Date` varchar(45) NOT NULL,
@@ -1111,7 +1158,7 @@ CREATE TABLE IF NOT EXISTS `t3_application` (
   PRIMARY KEY (`T3_Application_ID`),
   UNIQUE KEY `T3_Application_ID_UNIQUE` (`T3_Application_ID`),
   KEY `fk_Teacher_Application_Subject1_idx` (`Subject_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1119,6 +1166,7 @@ CREATE TABLE IF NOT EXISTS `t3_application` (
 -- Table structure for table `t3_class`
 --
 
+DROP TABLE IF EXISTS `t3_class`;
 CREATE TABLE IF NOT EXISTS `t3_class` (
   `T3_Class_ID` int(11) NOT NULL AUTO_INCREMENT,
   `School_ID` int(11) NOT NULL,
@@ -1132,7 +1180,7 @@ CREATE TABLE IF NOT EXISTS `t3_class` (
   KEY `fk_Section_School2` (`School_ID`),
   KEY `fk_Class_Subject1_idx` (`Subject_ID`),
   KEY `fk_T3_Class_Master_Trainer1_idx` (`Master_Trainer_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1140,6 +1188,7 @@ CREATE TABLE IF NOT EXISTS `t3_class` (
 -- Table structure for table `t3_tracker`
 --
 
+DROP TABLE IF EXISTS `t3_tracker`;
 CREATE TABLE IF NOT EXISTS `t3_tracker` (
   `T3_Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Status_ID` int(11) NOT NULL,
@@ -1152,7 +1201,7 @@ CREATE TABLE IF NOT EXISTS `t3_tracker` (
   UNIQUE KEY `T3_Tracker_ID_UNIQUE` (`T3_Tracker_ID`),
   KEY `fk_Teacher_Tracker_Status1_idx` (`Status_ID`),
   KEY `fk_Teacher_Tracker_Subject1_idx` (`Subject_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1160,6 +1209,7 @@ CREATE TABLE IF NOT EXISTS `t3_tracker` (
 -- Table structure for table `teacher`
 --
 
+DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE IF NOT EXISTS `teacher` (
   `Teacher_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Code` varchar(45) NOT NULL,
@@ -1203,7 +1253,7 @@ CREATE TABLE IF NOT EXISTS `teacher` (
   PRIMARY KEY (`Teacher_ID`),
   UNIQUE KEY `Teacher_ID_UNIQUE` (`Teacher_ID`),
   KEY `fk_Teacher_School1_idx` (`School_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1211,6 +1261,7 @@ CREATE TABLE IF NOT EXISTS `teacher` (
 -- Table structure for table `teacher_affiliation_to_organization`
 --
 
+DROP TABLE IF EXISTS `teacher_affiliation_to_organization`;
 CREATE TABLE IF NOT EXISTS `teacher_affiliation_to_organization` (
   `Teacher_Affiliation_to_Organization_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Organization` varchar(45) NOT NULL,
@@ -1220,7 +1271,7 @@ CREATE TABLE IF NOT EXISTS `teacher_affiliation_to_organization` (
   `Teacher_ID` int(11) NOT NULL,
   PRIMARY KEY (`Teacher_Affiliation_to_Organization_ID`),
   KEY `fk_Teacher_Affliation_to_Organization_Teacher1_idx` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1228,6 +1279,7 @@ CREATE TABLE IF NOT EXISTS `teacher_affiliation_to_organization` (
 -- Table structure for table `teacher_awards`
 --
 
+DROP TABLE IF EXISTS `teacher_awards`;
 CREATE TABLE IF NOT EXISTS `teacher_awards` (
   `Teacher_Awards_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Award` varchar(45) NOT NULL,
@@ -1237,7 +1289,7 @@ CREATE TABLE IF NOT EXISTS `teacher_awards` (
   PRIMARY KEY (`Teacher_Awards_ID`),
   UNIQUE KEY `Teacher_Awards_ID_UNIQUE` (`Teacher_Awards_ID`),
   KEY `fk_Teacher_Awards_Teacher1_idx` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1245,6 +1297,7 @@ CREATE TABLE IF NOT EXISTS `teacher_awards` (
 -- Table structure for table `teacher_certification`
 --
 
+DROP TABLE IF EXISTS `teacher_certification`;
 CREATE TABLE IF NOT EXISTS `teacher_certification` (
   `Teacher_Certification_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Certification` varchar(45) NOT NULL,
@@ -1254,7 +1307,7 @@ CREATE TABLE IF NOT EXISTS `teacher_certification` (
   PRIMARY KEY (`Teacher_Certification_ID`),
   UNIQUE KEY `Teacher_Certification_ID_UNIQUE` (`Teacher_Certification_ID`),
   KEY `fk_Teacher_Certification_Teacher1_idx` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1262,6 +1315,7 @@ CREATE TABLE IF NOT EXISTS `teacher_certification` (
 -- Table structure for table `teacher_class`
 --
 
+DROP TABLE IF EXISTS `teacher_class`;
 CREATE TABLE IF NOT EXISTS `teacher_class` (
   `Teacher_Class_ID` int(11) NOT NULL AUTO_INCREMENT,
   `T3_Class_ID` int(11) NOT NULL,
@@ -1278,6 +1332,7 @@ CREATE TABLE IF NOT EXISTS `teacher_class` (
 -- Table structure for table `teacher_computer_familiarity`
 --
 
+DROP TABLE IF EXISTS `teacher_computer_familiarity`;
 CREATE TABLE IF NOT EXISTS `teacher_computer_familiarity` (
   `Teacher_Computer_Familiarity_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Teacher_ID` int(11) NOT NULL,
@@ -1286,7 +1341,7 @@ CREATE TABLE IF NOT EXISTS `teacher_computer_familiarity` (
   UNIQUE KEY `Teacher_Computer_Familiarity_ID_UNIQUE` (`Teacher_Computer_Familiarity_ID`),
   KEY `fk_Teacher_Computer_Familiarity_Teacher1_idx` (`Teacher_ID`),
   KEY `fk_Teacher_Computer_Familiarity_Skills1_idx` (`Computer_Skills_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1294,6 +1349,7 @@ CREATE TABLE IF NOT EXISTS `teacher_computer_familiarity` (
 -- Table structure for table `teacher_computer_profiency`
 --
 
+DROP TABLE IF EXISTS `teacher_computer_profiency`;
 CREATE TABLE IF NOT EXISTS `teacher_computer_profiency` (
   `Teacher_Computer_Profiency_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Computer_Skills_ID` int(11) NOT NULL,
@@ -1302,7 +1358,7 @@ CREATE TABLE IF NOT EXISTS `teacher_computer_profiency` (
   UNIQUE KEY `Teacher_Computer_Profiency_ID_UNIQUE` (`Teacher_Computer_Profiency_ID`),
   KEY `fk_Teacher_Computer_Profiency_Skills1_idx` (`Computer_Skills_ID`),
   KEY `fk_Teacher_Computer_Profiency_Teacher1_idx` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1310,6 +1366,7 @@ CREATE TABLE IF NOT EXISTS `teacher_computer_profiency` (
 -- Table structure for table `teacher_other_skills`
 --
 
+DROP TABLE IF EXISTS `teacher_other_skills`;
 CREATE TABLE IF NOT EXISTS `teacher_other_skills` (
   `Teacher_Other_Skills_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Skills_ID` int(11) NOT NULL,
@@ -1318,7 +1375,7 @@ CREATE TABLE IF NOT EXISTS `teacher_other_skills` (
   UNIQUE KEY `Teacher_Other_Skills_ID_UNIQUE` (`Teacher_Other_Skills_ID`),
   KEY `fk_Teacher_Other_Skills_Skills1_idx` (`Skills_ID`),
   KEY `fk_Teacher_Other_Skills_Teacher1_idx` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1326,6 +1383,7 @@ CREATE TABLE IF NOT EXISTS `teacher_other_skills` (
 -- Table structure for table `teacher_professional_reference`
 --
 
+DROP TABLE IF EXISTS `teacher_professional_reference`;
 CREATE TABLE IF NOT EXISTS `teacher_professional_reference` (
   `Teacher_Professional_Reference_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Email` varchar(45) NOT NULL,
@@ -1336,7 +1394,7 @@ CREATE TABLE IF NOT EXISTS `teacher_professional_reference` (
   `Teacher_ID` int(11) NOT NULL,
   PRIMARY KEY (`Teacher_Professional_Reference_ID`),
   KEY `fk_Teacher_Professional_Reference_Teacher1_idx` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1344,6 +1402,7 @@ CREATE TABLE IF NOT EXISTS `teacher_professional_reference` (
 -- Table structure for table `teacher_relevant_experiences`
 --
 
+DROP TABLE IF EXISTS `teacher_relevant_experiences`;
 CREATE TABLE IF NOT EXISTS `teacher_relevant_experiences` (
   `Teacher_Relevant_Experiences_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Organization` varchar(250) NOT NULL,
@@ -1353,7 +1412,7 @@ CREATE TABLE IF NOT EXISTS `teacher_relevant_experiences` (
   `Teacher_ID` int(11) NOT NULL,
   PRIMARY KEY (`Teacher_Relevant_Experiences_ID`),
   KEY `fk_Teacher_Relevant_Experiences_Teacher1_idx` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1361,6 +1420,7 @@ CREATE TABLE IF NOT EXISTS `teacher_relevant_experiences` (
 -- Table structure for table `teacher_t3_application`
 --
 
+DROP TABLE IF EXISTS `teacher_t3_application`;
 CREATE TABLE IF NOT EXISTS `teacher_t3_application` (
   `Teacher_T3_Application_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Teacher_ID` int(11) NOT NULL,
@@ -1368,7 +1428,7 @@ CREATE TABLE IF NOT EXISTS `teacher_t3_application` (
   PRIMARY KEY (`Teacher_T3_Application_ID`),
   KEY `fk_Teacher_T3_Application_Teacher1_idx` (`Teacher_ID`),
   KEY `fk_Teacher_T3_Application_T3_Application1_idx` (`T3_Application_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1376,6 +1436,7 @@ CREATE TABLE IF NOT EXISTS `teacher_t3_application` (
 -- Table structure for table `teacher_t3_tracker`
 --
 
+DROP TABLE IF EXISTS `teacher_t3_tracker`;
 CREATE TABLE IF NOT EXISTS `teacher_t3_tracker` (
   `Teacher_T3_Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `T3_Tracker_ID` int(11) NOT NULL,
@@ -1384,7 +1445,7 @@ CREATE TABLE IF NOT EXISTS `teacher_t3_tracker` (
   UNIQUE KEY `Teacher_T3_Tracker_ID_UNIQUE` (`Teacher_T3_Tracker_ID`),
   KEY `fk_Teacher_T3_Tracker_T3_Tracker1_idx` (`T3_Tracker_ID`),
   KEY `fk_Teacher_T3_Tracker_Teacher1_idx` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1392,6 +1453,7 @@ CREATE TABLE IF NOT EXISTS `teacher_t3_tracker` (
 -- Table structure for table `teacher_training_experience`
 --
 
+DROP TABLE IF EXISTS `teacher_training_experience`;
 CREATE TABLE IF NOT EXISTS `teacher_training_experience` (
   `Teacher_Training_Experience_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Teacher_ID` int(11) NOT NULL,
@@ -1404,7 +1466,7 @@ CREATE TABLE IF NOT EXISTS `teacher_training_experience` (
   PRIMARY KEY (`Teacher_Training_Experience_ID`),
   UNIQUE KEY `Teacher_Training_Experience_ID_UNIQUE` (`Teacher_Training_Experience_ID`),
   KEY `fk_Teacher_Training_Experience_Teacher_idx` (`Teacher_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1412,6 +1474,7 @@ CREATE TABLE IF NOT EXISTS `teacher_training_experience` (
 -- Table structure for table `tracker`
 --
 
+DROP TABLE IF EXISTS `tracker`;
 CREATE TABLE IF NOT EXISTS `tracker` (
   `Tracker_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Remarks` varchar(255) DEFAULT NULL,
@@ -1424,7 +1487,7 @@ CREATE TABLE IF NOT EXISTS `tracker` (
   UNIQUE KEY `Tracker_ID_UNIQUE` (`Tracker_ID`),
   KEY `fk_Tracker_Status1_idx` (`Status_ID`),
   KEY `fk_Tracker_Subject1_idx` (`Subject_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1432,6 +1495,7 @@ CREATE TABLE IF NOT EXISTS `tracker` (
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `User_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Username` varchar(255) DEFAULT NULL,
@@ -1442,7 +1506,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `School_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`User_ID`),
   KEY `fk_User_School1` (`School_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `users`
@@ -1465,7 +1529,8 @@ INSERT INTO `users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password
 (14, 'arimbao', 'Alecx', 'Rimbao', 'ab38ea8c20eae607665c508887ec7333', 'admin', NULL),
 (15, 'tgerobiese', 'Trishia', 'Gerobiese', '663dfb18f856a06cd996651234c2aa23', 'admin', NULL),
 (16, 'cjaldon', 'Simone', 'Jaldon', '47eb752bac1c08c75e30d9624b3e58b7', 'admin', NULL),
-(17, 'encoder', 'Hi', 'Lol', '5f4dcc3b5aa765d61d8327deb882cf99', 'encoder', 69);
+(17, 'encoder', 'Hi', 'Lol', '5f4dcc3b5aa765d61d8327deb882cf99', 'encoder', 69),
+(18, 'admin', 'Default', 'Administrator', '21232f297a57a5a743894a0e4a801fc3', 'admin', NULL);
 
 -- --------------------------------------------------------
 
@@ -1473,6 +1538,7 @@ INSERT INTO `users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password
 -- Table structure for table `users_targets`
 --
 
+DROP TABLE IF EXISTS `users_targets`;
 CREATE TABLE IF NOT EXISTS `users_targets` (
   `Users_Targets_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Target_For` varchar(250) DEFAULT NULL,
