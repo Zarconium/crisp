@@ -22,7 +22,7 @@
 				<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 				<button class="btn btn-success" data-toggle="modal" data-target="#batchStudent">Batch Upload</button>
 				<button class="btn btn-warning" data-toggle="modal" data-target="#search">Search</button>
-				<button class="btn btn-info disabled" data-toggle="modal" data-target="#printList">Print List</button>
+				
 			</div>
 				<!-- CUT THIS OFF
 				<?php
@@ -70,7 +70,7 @@
 				<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 				<button class="btn btn-success" data-toggle="modal" data-target="#batchTeacher">Batch Upload</button>
 				<button class="btn btn-warning" data-toggle="modal" data-target="#searchTeacher">Search</button>
-				<button class="btn btn-info disabled" data-toggle="modal" data-target="#printList">Print List</button>
+				
 			</div>
 			<table class="table table-striped table-area">
 				<thead>
@@ -102,7 +102,7 @@
 				<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 				<button class="btn btn-success disabled" data-toggle="modal" data-target="#batchProctor">Batch Upload</button>
 				<button class="btn btn-warning" data-toggle="modal" data-target="#searchProctor">Search</button>
-				<button class="btn btn-info disabled" data-toggle="modal" data-target="#printList">Print List</button>
+				
 			</div>
 			<table class="table table-striped table-area">
 				<thead>
@@ -135,7 +135,7 @@
 				<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 				<button class="btn btn-success disabled" data-toggle="modal" data-target="#batchTrainer">Batch Upload</button>
 				<button class="btn btn-warning" data-toggle="modal" data-target="#searchMasterTrainer">Search</button>
-				<button class="btn btn-info disabled" data-toggle="modal" data-target="#printList">Print List</button>
+				
 		 	</div>
 			<table class="table table-striped table-area">
 				<thead>
@@ -172,7 +172,7 @@
 					<a href="<?php echo base_url('dbms/form_class_add'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchClass">Search</button>
-					<button class="btn btn-info disabled" data-toggle="modal" data-target="#printList">Print List</button>
+					
 				</div>
 				<table class="table table-striped table-area">
 					<thead>
@@ -209,7 +209,7 @@
 					<a href="<?php echo base_url('dbms/form_mastertrainer_classlist_add'); ?>"><button type="submit" class="btn btn-primary">Add</button></a>
 					<button class="btn btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchT3Class">Search</button>
-					<button class="btn btn-info disabled" data-toggle="modal" data-target="#printList">Print List</button>
+					
 				</div>
 				<table class="table table-striped table-area">
 					<thead>
@@ -257,7 +257,7 @@
 				<div class="button-groups">
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchSMP">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchSMP">Search</button>
-					<button class="btn btn-info disabled" data-toggle="modal" data-target="#printList">Print List</button>
+					
 				</div>
 				<table class="table table-striped table-area">
 					<thead>
@@ -285,7 +285,7 @@
 				<div class="button-groups">
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchSMP">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchSMPInternship">Search</button>
-					<button class="btn btn-info disabled" data-toggle="modal" data-target="#printList">Print List</button>
+					
 				</div>
 				<table class="table table-striped table-area">
 					<thead>
@@ -313,7 +313,7 @@
 				<div class="button-groups">
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchgcat">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchGcat">Search</button>
-					<button class="btn btn-info disabled" data-toggle="modal" data-target="#printList">Print List</button>
+					
 				</div>
 				<table class="table table-striped table-area">
 					<thead>
@@ -363,7 +363,7 @@
 				<div class="button-groups">
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchbest" onclick="$('[name=file_best_adept_student_tracker]').click();">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBest">Search</button>
-					<button class="btn btn-info disabled" data-toggle="modal" data-target="#printList">Print List</button>
+					
 				</div>
 				<table class="table table-striped table-area">
 					<thead>
@@ -391,7 +391,7 @@
 				<div class="button-groups">
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchadept" onclick="$('[name=file_best_adept_student_tracker]').click();">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchAdept">Search</button>
-					<button class="btn btn-info disabled" data-toggle="modal" data-target="#printList">Print List</button>
+					
 				</div>
 				<table class="table table-striped table-area">
 					<thead>
@@ -419,7 +419,7 @@
 				<div class="button-groups">
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchBESTT3" onclick="$('[name=file_best_tracker]').click();">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchBestT3">Search</button>
-					<button class="btn btn-info disabled" data-toggle="modal" data-target="#printList">Print List</button>
+					
 				</div>
 				<table class="table table-striped table-area">
 					<thead>
@@ -458,7 +458,7 @@
 				<div class="button-groups">
 					<button class="btn btn-success" data-toggle="modal" data-target="#batchBESTT3" onclick="$('[name=file_adept_tracker]').click();">Batch Upload</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#searchAdeptT3">Search</button>
-					<button class="btn btn-info disabled" data-toggle="modal" data-target="#printList">Print List</button>
+					
 				</div>
 				<table class="table table-striped table-area">
 					<thead>
