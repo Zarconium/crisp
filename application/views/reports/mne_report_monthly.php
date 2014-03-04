@@ -1929,7 +1929,6 @@
 
 	<tr>
 		<td>Completed in Internship</td>
-		<td>Completed in Internship</td>
 		<td><?php echo $lfa_targets[25]->LFA; ?></td>
 		<?php foreach ($getMonthlyStudentsUndergoneInternship as $count): ?>
 			<td><?php echo $count->January; ?></td>
