@@ -86,7 +86,7 @@
 
 <!-- Start Hidden Modals -->
 <?php //Dropdown options for global use
-	$input_type_options = array('admin' => 'Administrator', 'encoder' => 'Encoder', 'guest' => 'Guest');
+	$input_type_options = array('admin' => 'Administrator', 'pdt' => 'PDT', 'encoder' => 'Encoder', 'guest' => 'Guest');
 	foreach ($schools as $school)
 	{
 		$input_school_options[$school->School_ID] = $school->Name . " - " . $school->Branch;

@@ -12,7 +12,7 @@ $year = date('Y');
 	<li class="active"><a href="#program_ched" data-toggle="tab">CHED Program</a></li>
 	<li><a href="#program_sei" data-toggle="tab">SEI Program</a></li>
 	<li><a href="#SUC" data-toggle="tab">SUC</a></li>
-	<?php if($this->session->userdata('logged_in')['type'] == 'admin'): ?>
+	<?php if($this->session->userdata('logged_in')['type'] == 'admin' || $this->session->userdata('logged_in')['type'] == 'pdt'): ?>
 	<li><a href="#MandE" data-toggle="tab">Monitoring and Evaluation</a></li>
 	<?php endif; ?>	
 </ul>

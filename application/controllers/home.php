@@ -20,7 +20,8 @@ class Home extends CI_Controller {
 	{
 		$useraccount = $this->session->userdata('logged_in')['type'];
 		
-		if ($useraccount != 'admin'){
+		if ($useraccount != 'admin' && $useraccount != 'pdt')
+		{
 			$this->load->view('header');
 			$this->load->view('home_screen');
 			$this->load->view('footer');

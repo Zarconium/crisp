@@ -1506,31 +1506,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `School_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`User_ID`),
   KEY `fk_User_School1` (`School_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`User_ID`, `Username`, `First_Name`, `Last_Name`, `Password`, `Type`, `School_ID`) VALUES
-(1, 'rcruz', 'Raymond', 'Cruz', '9a73055b9e5a5edbf80c34198e05f0d1', 'admin', NULL),
-(2, 'pluces', 'Paolo', 'Luces', '1532136b72115a3f2c6fcd81bf80e7f4', 'admin', NULL),
-(3, 'jfederico', 'Joy', 'Federico', 'c2c8e798aecbc26d86e4805114b03c51', 'admin', NULL),
-(4, 'pperalta', 'Phil', 'Peralta', 'd14ffd41334ec4b4b3f2c0d55c38be6f', 'admin', NULL),
-(5, 'ffajardo', 'Francis', 'Fajardo', 'd0ab7fe6c314f4fe5b6c18a0157c96b4', 'admin', NULL),
-(6, 'ABC11', 'Aaron', 'Casurao', '65079b006e85a7e798abecb99e47c154', 'admin', NULL),
-(7, 'marmario', 'Mitch', 'Armario', 'fae53351b9effc708e764e871bef3119', 'admin', NULL),
-(8, 'guest', 'Guest', 'User', '084e0343a0486ff05530df6c705c8bb4', 'guest', NULL),
-(9, 'mandogs', 'Manolo', 'Valena', '3c3662bcb661d6de679c636744c66b62', 'encoder', 1),
-(10, 'asimon', 'Dayanara', 'Simon', '3ed1e37160ebb08e46c400d93b1861b6', 'admin', NULL),
-(11, 'etan', 'Evan', 'Tan', '98cc7d37dc7b90c14a59ef0c5caa8995', 'admin', NULL),
-(12, 'guygongco', 'Glu', 'Uygongco', 'ce7d948e963a37f3137c29e77b152fd4', 'admin', NULL),
-(13, 'rcarrillo', 'Raphael', 'Carrillo', 'ea7b6298bf5045f78be77dadbc289142', 'admin', NULL),
-(14, 'arimbao', 'Alecx', 'Rimbao', 'ab38ea8c20eae607665c508887ec7333', 'admin', NULL),
-(15, 'tgerobiese', 'Trishia', 'Gerobiese', '663dfb18f856a06cd996651234c2aa23', 'admin', NULL),
-(16, 'cjaldon', 'Simone', 'Jaldon', '47eb752bac1c08c75e30d9624b3e58b7', 'admin', NULL),
-(17, 'encoder', 'Hi', 'Lol', '5f4dcc3b5aa765d61d8327deb882cf99', 'encoder', 69),
-(18, 'admin', 'Default', 'Administrator', '21232f297a57a5a743894a0e4a801fc3', 'admin', NULL);
+(1, 'admin', 'Default', 'Administrator', '21232f297a57a5a743894a0e4a801fc3', 'admin', NULL),
+(2, 'rcruz', 'Raymond', 'Cruz', '5f4dcc3b5aa765d61d8327deb882cf99', 'admin', NULL),
+(3, 'pluces', 'Paolo', 'Luces', '5f4dcc3b5aa765d61d8327deb882cf99', 'pdt', NULL),
+(4, 'jfederico', 'Joy', 'Federico', '5f4dcc3b5aa765d61d8327deb882cf99', 'encoder', 13),
+(5, 'pperalta', 'Phil', 'Peralta', '5f4dcc3b5aa765d61d8327deb882cf99', 'guest', NULL);
 
 -- --------------------------------------------------------
 
