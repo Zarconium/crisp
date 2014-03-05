@@ -52,7 +52,7 @@ Class Report_Suc extends CI_Model
 		AND class.Semester =' . $semester . '
 		AND tracker.tracker_id = student_tracker.tracker_id
 		AND student_tracker.student_id=student.student_id
-		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
 		group by class.Name
 		UNION
@@ -71,7 +71,7 @@ Class Report_Suc extends CI_Model
 		AND class.Semester =' . $semester . '
 		AND tracker.tracker_id = student_tracker.tracker_id
 		AND student_tracker.student_id=student.student_id
-		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '");
 		');
 
@@ -104,7 +104,7 @@ Class Report_Suc extends CI_Model
 		AND class.Semester =' . $semester . '
 		AND tracker.tracker_id = student_tracker.tracker_id
 		AND student_tracker.student_id=student.student_id
-		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
 		AND class.Name = "' . $class_name . '" 
 		UNION
@@ -123,7 +123,7 @@ Class Report_Suc extends CI_Model
 		AND class.Semester =' . $semester . '
 		AND tracker.tracker_id = student_tracker.tracker_id
 		AND student_tracker.student_id=student.student_id
-		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
 		AND class.Name = "' . $class_name . '";');
 
@@ -148,7 +148,7 @@ Class Report_Suc extends CI_Model
 		 sc.Code="'. $school_code .'")
 		AND t.School_ID = s.School_ID
 		
-		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
+		AND tt.Created_At BETWEEN "' . $date_start . '" AND "' . $date_end . '23:59:59"
 		UNION
 		SELECT "Total" as Control_Number, COUNT(DISTINCT t.teacher_id) as "Teachers"
 		FROM Best_T3_Tracker as btt, T3_Tracker as tt, Teacher_T3_Tracker as ttt, School as s, Teacher as t
@@ -159,7 +159,7 @@ Class Report_Suc extends CI_Model
 		 sc.Code="'. $school_code .'")
 		AND t.School_ID = s.School_ID
 		
-		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
+		AND tt.Created_At BETWEEN "' . $date_start . '" AND "' . $date_end . '23:59:59"
 		');
 
 		if($query->num_rows() > 0)
@@ -183,7 +183,7 @@ Class Report_Suc extends CI_Model
 		 sc.Code="'. $school_code .'")
 		AND t.School_ID = s.School_ID
 		
-		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
+		AND tt.Created_At BETWEEN "' . $date_start . '" AND "' . $date_end . '23:59:59"
 		UNION
 		SELECT "Total" as Control_Number, COUNT(DISTINCT t.teacher_id) as "Teachers"
 		FROM Adept_T3_Tracker as att, T3_Tracker as tt, Teacher_T3_Tracker as ttt, School as s, Teacher as t
@@ -194,7 +194,7 @@ Class Report_Suc extends CI_Model
 		 sc.Code="'. $school_code .'")
 		AND t.School_ID = s.School_ID
 		
-		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
+		AND tt.Created_At BETWEEN "' . $date_start . '" AND "' . $date_end . '23:59:59"
 		');
 
 		if($query->num_rows() > 0)
@@ -218,7 +218,7 @@ Class Report_Suc extends CI_Model
 		 sc.Code="'. $school_code .'")
 		AND t.School_ID = s.School_ID
 		
-		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
+		AND tt.Created_At BETWEEN "' . $date_start . '" AND "' . $date_end . '23:59:59"
 		UNION
 		SELECT "Total" as Control_Number, COUNT(DISTINCT t.teacher_id) as "Teachers"
 		FROM GCAT_Tracker as gt, T3_Tracker as tt, Teacher_T3_Tracker as ttt, School as s, Teacher as t
@@ -229,7 +229,7 @@ Class Report_Suc extends CI_Model
 		 sc.Code="'. $school_code .'")
 		AND t.School_ID = s.School_ID
 		
-		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
+		AND tt.Created_At BETWEEN "' . $date_start . '" AND "' . $date_end . '23:59:59"
 		');
 
 		if($query->num_rows() > 0)
@@ -259,7 +259,7 @@ Class Report_Suc extends CI_Model
 		AND class.Semester =' . $semester . '
 		AND tracker.tracker_id = student_tracker.tracker_id
 		AND student_tracker.student_id=student.student_id
-		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
 		group by class.Name
 		UNION
@@ -278,7 +278,7 @@ Class Report_Suc extends CI_Model
 		AND class.Semester =' . $semester . '
 		AND tracker.tracker_id = student_tracker.tracker_id
 		AND student_tracker.student_id=student.student_id
-		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '");');
 
 
@@ -309,7 +309,7 @@ Class Report_Suc extends CI_Model
 		AND class.Semester = "'.$semester.'"
 		AND tracker.tracker_id = student_tracker.tracker_id
 		AND student_tracker.student_id=student.student_id
-		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "'.$teacher_code.'")
 		AND class.Name = "'.$class_name.'"
 		AND student_tracker.student_id=student.student_id
@@ -330,7 +330,7 @@ Class Report_Suc extends CI_Model
 		AND class.Semester = "'.$semester.'"
 		AND tracker.tracker_id = student_tracker.tracker_id
 		AND student_tracker.student_id=student.student_id
-		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "'.$teacher_code.'")
 		AND class.Name = "'.$class_name.'"
 		AND student_tracker.student_id=student.student_id
@@ -364,7 +364,7 @@ Class Report_Suc extends CI_Model
 		AND class.Semester =' . $semester . '
 		AND tracker.tracker_id = student_tracker.tracker_id
 		AND student_tracker.student_id=student.student_id
-		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '")
 		group by class.Name
 		UNION
@@ -384,7 +384,7 @@ Class Report_Suc extends CI_Model
 		AND class.Semester =' . $semester . '
 		AND tracker.tracker_id = student_tracker.tracker_id
 		AND student_tracker.student_id=student.student_id
-		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "' . $teacher_code . '");');
 
 
@@ -416,7 +416,7 @@ Class Report_Suc extends CI_Model
 		AND class.Semester = "'.$semester.'"
 		AND tracker.tracker_id = student_tracker.tracker_id
 		AND student_tracker.student_id=student.student_id
-		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "'.$teacher_code.'")
 		AND class.Name = "'.$class_name.'"
 		AND student_tracker.student_id=student.student_id
@@ -438,7 +438,7 @@ Class Report_Suc extends CI_Model
 		AND class.Semester = "'.$semester.'"
 		AND tracker.tracker_id = student_tracker.tracker_id
 		AND student_tracker.student_id=student.student_id
-		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59"
 		AND teacher.teacher_id IN (SELECT t.teacher_id FROM teacher AS t WHERE t.Code =  "'.$teacher_code.'")
 		AND class.Name = "'.$class_name.'"
 		AND student_tracker.student_id=student.student_id
@@ -471,7 +471,7 @@ Class Report_Suc extends CI_Model
 		AND class.Semester = "'.$semester.'"
 		AND tracker.tracker_id = student_tracker.tracker_id
 		AND student_tracker.student_id=student.student_id
-		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59"
 		AND Proctor.Proctor_ID = "'.$proctor_id.'"
 		group by class.Name
 		UNION
@@ -490,7 +490,7 @@ Class Report_Suc extends CI_Model
 		AND class.Semester = "'.$semester.'"
 		AND tracker.tracker_id = student_tracker.tracker_id
 		AND student_tracker.student_id=student.student_id
-		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59"
 		AND Proctor.Proctor_ID = "'.$proctor_id.'";');
 
 
@@ -520,7 +520,7 @@ Class Report_Suc extends CI_Model
 		AND class.Semester =' . $semester . '
 		AND tracker.tracker_id = student_tracker.tracker_id
 		AND student_tracker.student_id=student.student_id
-		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59"
 		AND class.Name = "' . $class_name . '" 
 		UNION
 		SELECT CONCAT_WS(" ", "Total:", COUNT(DISTINCT Student.Student_ID)) as "Student_Names"
@@ -537,7 +537,7 @@ Class Report_Suc extends CI_Model
 		AND class.Semester =' . $semester . '
 		AND tracker.tracker_id = student_tracker.tracker_id
 		AND student_tracker.student_id=student.student_id
-		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND tracker.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59"
 		AND Proctor.Proctor_ID = "' . $proctor_id . '"
 		AND class.Name = "' . $class_name . '";');
 
@@ -573,7 +573,7 @@ Class Report_Suc extends CI_Model
 		AND c.Semester = "'.$semester.'"
 		AND tr.tracker_id = st.tracker_id
 		AND st.student_id=sc.student_id
-		AND tr.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'"
+		AND tr.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59"
 		GROUP BY Teacher
 		UNION
 		SELECT CONCAT_WS(" ", "Total: ", COUNT(DISTINCT t.teacher_ID)) AS "Teacher", COUNT( DISTINCT sc.Student_ID ) as "Students", COUNT( DISTINCT oc.Class_ID ) as "Classes"
@@ -591,7 +591,7 @@ Class Report_Suc extends CI_Model
 		AND c.Semester = "'.$semester.'"
 		AND tr.tracker_id = st.tracker_id
 		AND st.student_id=sc.student_id
-		AND tr.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'";');
+		AND tr.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59";');
 
 		if($query->num_rows() > 0)
 		{

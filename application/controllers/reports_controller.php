@@ -793,15 +793,15 @@ class Reports_Controller extends CI_Controller {
 		}
 
 		$qtr1_start = $this->input->post('mande_quarter_year') . "-01-01";
-		$qtr1_end = $this->input->post('mande_quarter_year') . "-03-31";
+		$qtr1_end = $this->input->post('mande_quarter_year') . "-03-31 23:59:59";
 		$qtr2_start=$this->input->post('mande_quarter_year') .  "-04-01";
-		$qtr2_end = $this->input->post('mande_quarter_year') . "-06-30";
+		$qtr2_end = $this->input->post('mande_quarter_year') . "-06-30 23:59:59";
 		$qtr3_start=$this->input->post('mande_quarter_year') . "-07-01";
-		$qtr3_end = $this->input->post('mande_quarter_year') . "-09-30";
+		$qtr3_end = $this->input->post('mande_quarter_year') . "-09-30 23:59:59";
 		$qtr4_start= $this->input->post('mande_quarter_year') . "-10-01";
-		$qtr4_end = $this->input->post('mande_quarter_year') . "-12-31";
+		$qtr4_end = $this->input->post('mande_quarter_year') . "-12-31 23:59:59";
 		$annual_start= $this->input->post('mande_quarter_year') . "-01-01";
-		$annual_end= $this->input->post('mande_quarter_year') . "-12-31";
+		$annual_end= $this->input->post('mande_quarter_year') . "-12-31 23:59:59";
 
 		/*$qtr1_start="1990-01-01"; $qtr1_end = "2020-01-01"; $qtr2_start="1990-01-01"; $qtr2_end = "2020-01-01"; $qtr3_start="1990-01-01"; $qtr3_end = "2020-01-01"; $qtr4_start="1990-01-01"; $qtr4_end = "2020-01-01"; $annual_start="1990-01-01"; $annual_end="2020-01-01";*/
 		$data['annual_start']=$annual_start;
@@ -859,31 +859,31 @@ class Reports_Controller extends CI_Controller {
 		}
 
 		$jan_start=$this->input->post('mande_month_year') . "-01-01";
-		$jan_end= $this->input->post('mande_month_year') . "-01-31";
+		$jan_end= $this->input->post('mande_month_year') . "-01-31 23:59:59";
 		$feb_start=$this->input->post('mande_month_year') . "-02-01";
-		$feb_end= $this->input->post('mande_month_year') . "-02-01"; 
+		$feb_end= $this->input->post('mande_month_year') . "-02-29 23:59:59"; 
 		$mar_start=$this->input->post('mande_month_year') . "-03-01";
-		$mar_end= $this->input->post('mande_month_year') . "-03-31";
+		$mar_end= $this->input->post('mande_month_year') . "-03-31 23:59:59";
 		$apr_start=$this->input->post('mande_month_year') . "-04-01";
-		$apr_end= $this->input->post('mande_month_year') . "-04-30"; 
+		$apr_end= $this->input->post('mande_month_year') . "-04-30 23:59:59"; 
 		$may_start=$this->input->post('mande_month_year') . "-05-01"; 
-		$may_end= $this->input->post('mande_month_year') . "-05-31";
+		$may_end= $this->input->post('mande_month_year') . "-05-31 23:59:59";
 		$jun_start=$this->input->post('mande_month_year') . "-06-01"; 
-		$jun_end= $this->input->post('mande_month_year') . "-06-30"; 
+		$jun_end= $this->input->post('mande_month_year') . "-06-30 23:59:59"; 
 		$jul_start=$this->input->post('mande_month_year') . "-07-01"; 
-		$jul_end= $this->input->post('mande_month_year') . "-07-31"; 
+		$jul_end= $this->input->post('mande_month_year') . "-07-31 23:59:59"; 
 		$aug_start=$this->input->post('mande_month_year') . "-08-01"; 
-		$aug_end= $this->input->post('mande_month_year') . "-08-31"; 
+		$aug_end= $this->input->post('mande_month_year') . "-08-31 23:59:59"; 
 		$sep_start=$this->input->post('mande_month_year') . "-09-01"; 
-		$sep_end= $this->input->post('mande_month_year') . "-09-30"; 
+		$sep_end= $this->input->post('mande_month_year') . "-09-30 23:59:59"; 
 		$oct_start=$this->input->post('mande_month_year') . "-10-01"; 
-		$oct_end= $this->input->post('mande_month_year') . "-10-31";
+		$oct_end= $this->input->post('mande_month_year') . "-10-31 23:59:59";
 		$nov_start=$this->input->post('mande_month_year') . "-11-01"; 
-		$nov_end= $this->input->post('mande_month_year') . "-11-30"; 
+		$nov_end= $this->input->post('mande_month_year') . "-11-30 23:59:59"; 
 		$dec_start=$this->input->post('mande_month_year') . "-12-01"; 
-		$dec_end= $this->input->post('mande_month_year') . "-12-31"; 
+		$dec_end= $this->input->post('mande_month_year') . "-12-31 23:59:59"; 
 		$annual_start=$this->input->post('mande_month_year') . "-01-01"; 
-		$annual_end= $this->input->post('mande_month_year') . "-12-31";
+		$annual_end= $this->input->post('mande_month_year') . "-12-31 23:59:59";
 
 		/*$jan_start="1990-01-01"; $jan_end= "2020-01-01"; $feb_start="1990-01-01"; $feb_end= "2020-01-01"; $mar_start="1990-01-01"; $mar_end= "2020-01-01"; $apr_start="1990-01-01"; $apr_end= "2020-01-01"; $may_start="1990-01-01"; $may_end= "2020-01-01"; $jun_start="1990-01-01"; $jun_end= "2020-01-01"; $jul_start="1990-01-01"; $jul_end= "2020-01-01"; $aug_start="1990-01-01"; $aug_end= "2020-01-01"; $sep_start="1990-01-01"; $sep_end= "2020-01-01"; $oct_start="1990-01-01"; $oct_end= "2020-01-01"; $nov_start="1990-01-01"; $nov_end= "2020-01-01"; $dec_start="1990-01-01"; $dec_end= "2020-01-01"; $annual_start="1990-01-01"; $annual_end= "2020-01-01";*/
 

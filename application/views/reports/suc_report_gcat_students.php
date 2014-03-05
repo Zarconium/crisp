@@ -1,5 +1,5 @@
 <legend>GCAT - Student</legend>
-<h4>Proctor: <?php echo $proctor->First_Name; ?> <?php echo $proctor->Middle_Initial; ?> <?php echo $proctor->Last_Name; ?> <?php echo $proctor->Name_Suffix; ?></h4>
+<h4>Proctor: <?php echo $proctor['First_Name']; ?> <?php echo $proctor['Middle_Initial']; ?> <?php echo $proctor['Last_Name']; ?> <?php echo $proctor['Name_Suffix']; ?></h4>
 <h4>Period: <?php echo date('F j\, Y', strtotime($start_date)); ?> to <?php echo date('F j\, Y', strtotime($end_date)); ?> </h4>
 <h4>Semester: <?php echo $semester; ?></h4>
 <h4>School: <?php echo $school->Name; ?></h4>
