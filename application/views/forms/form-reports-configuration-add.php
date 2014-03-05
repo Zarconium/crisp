@@ -19,11 +19,6 @@
 	<div class="form-group">
 		<label>Target Year</label>
 		<input class="form-control" type="number" name="target_year" value="<?php echo set_value('target_year'); ?>" min="1990" max="9999">
-		<!-- <select class="form-control" name="target_year">
-		<?php foreach ($mne_years as $year): ?>
-			<option value="<?php echo $year->Year; ?>"><?php echo $year->Year; ?></option>
-		<?php endforeach; ?>
-		</select> -->
 		<?php echo form_error('target_year'); ?>
 	</div>
 		

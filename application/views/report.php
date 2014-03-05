@@ -1144,7 +1144,17 @@ $year = date('Y');
 	<div class="tab-pane" id="MandE">
 		<?php if($this->session->userdata('logged_in')['type'] == 'admin'): ?>
 		<div class="button-groups">
-			<a href="<?php echo base_url('reports/reportTargetConfigurationQuarterlyAdd'); ?>"><button type="submit" class="btn btn-primary">Set New Targets</button></a>
+			<?php echo form_open('reports/reportTargetConfigurationQuarterlyEdit') ?>
+				<div class="form-group">
+					<select class="form-control" name="target_year">
+					<?php foreach ($mne_years as $year): ?>
+						<option value="<?php echo $year->Year; ?>"><?php echo $year->Year; ?></option>
+					<?php endforeach; ?>
+					</select>
+				</div>
+				<button type="submit" class="btn btn-success">Edit Targets</button>
+				<a href="<?php echo base_url('reports/reportTargetConfigurationQuarterlyAdd'); ?>"><button type="button" class="btn btn-primary">Set New Targets</button></a>
+			</form>
 		</div><br/>
 		<?php endif; ?>
 		

@@ -1083,7 +1083,7 @@ class Reports_Controller extends CI_Controller {
 					$data['form_error'] = TRUE;
 
 					$this->load->view('header');
-					$this->load->view('forms/form-reports-configuration', $data);
+					$this->load->view('forms/form-reports-configuration-add', $data);
 					$this->load->view('footer');
 				}
 				else
@@ -1410,7 +1410,7 @@ class Reports_Controller extends CI_Controller {
 						$data['form_error'] = TRUE;
 
 						$this->load->view('header');
-						$this->load->view('forms/form-reports-configuration', $data);
+						$this->load->view('forms/form-reports-configuration-add', $data);
 						$this->load->view('footer');
 					}
 					else
@@ -1420,7 +1420,7 @@ class Reports_Controller extends CI_Controller {
 						$this->log->addLog('Added Target');
 
 						$this->load->view('header');
-						$this->load->view('forms/form-reports-configuration', $data);
+						$this->load->view('forms/form-reports-configuration-add', $data);
 						$this->load->view('footer');
 					}
 				}
@@ -1432,15 +1432,581 @@ class Reports_Controller extends CI_Controller {
 				$data['draft_saved'] = TRUE;
 
 				$this->load->view('header');
-				$this->load->view('forms/form-reports-configuration', $data);
+				$this->load->view('forms/form-reports-configuration-add', $data);
 				$this->load->view('footer');
 			}
 		}
 		else
 		{
 			$this->load->view('header');
-			$this->load->view('forms/form-reports-configuration', $data);
+			$this->load->view('forms/form-reports-configuration-add', $data);
 			$this->load->view('footer');
+		}
+	}
+
+	function reportTargetConfigurationQuarterlyEdit()
+	{
+		$target_year = $this->input->post('target_year');
+
+		$data['teacher_lfa_gcat'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_gcat');
+		$data['teacher_lfa_best'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_best');
+		$data['teacher_lfa_adept'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_adept');
+		$data['teacher_lfa_smp'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_smp');
+		$data['teacher_lfa_bpo101'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_bpo101');
+		$data['teacher_lfa_bpo102'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_bpo102');
+		$data['teacher_lfa_sc'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_sc');
+		$data['teacher_lfa_bc'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_bc');
+		$data['teacher_lfa_st'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_st');
+		$data['teacher_lfa_suc_smp'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_suc_smp');
+		$data['student_lfa_gcat'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_gcat');
+		$data['student_lfa_best'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_best');
+		$data['student_lfa_adept'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_adept');
+		$data['student_lfa_smp_running'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_smp_running');
+		$data['student_lfa_bpo101_enrolled'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_bpo101_enrolled');
+		$data['student_lfa_bpo102_enrolled'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_bpo102_enrolled');
+		$data['student_lfa_sc_enrolled'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_sc_enrolled');
+		$data['student_lfa_bc_enrolled'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_bc_enrolled');
+		$data['student_lfa_st_enrolled'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_st_enrolled');
+		$data['student_lfa_smp_completion'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_smp_completion');
+		$data['student_lfa_bpo101_completion'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_bpo101_completion');
+		$data['student_lfa_bpo102_completion'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_bpo102_completion');
+		$data['student_lfa_sc_completion'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_sc_completion');
+		$data['student_lfa_bc_completion'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_bc_completion');
+		$data['student_lfa_st_completion'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_st_completion');
+		$data['student_lfa_internship_completion'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_internship_completion');
+
+		if ($this->input->post())
+		{
+			$this->form_validation->set_rules('target_year', 'Year', 'trim|xss_clean|required|exact_length[4]|is_natural');
+			
+			$this->form_validation->set_rules('teacher_lfa_gcat', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q1_gcat', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q2_gcat', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q3_gcat', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q4_gcat', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_lfa_best', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q1_best', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q2_best', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q3_best', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q4_best', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_lfa_adept', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q1_adept', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q2_adept', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q3_adept', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q4_adept', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_lfa_smp', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q1_smp', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q2_smp', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q3_smp', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q4_smp', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_lfa_bpo101', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q1_bpo101', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q2_bpo101', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q3_bpo101', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q4_bpo101', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_lfa_bpo102', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q1_bpo102', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q2_bpo102', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q3_bpo102', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q4_bpo102', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_lfa_sc', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q1_sc', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q2_sc', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q3_sc', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q4_sc', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_lfa_bc', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q1_bc', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q2_bc', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q3_bc', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q4_bc', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_lfa_st', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q1_st', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q2_st', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q3_st', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q4_st', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_lfa_suc_smp', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q1_suc_smp', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q2_suc_smp', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q3_suc_smp', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('teacher_q4_suc_smp', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_lfa_gcat', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q1_gcat', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q2_gcat', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q3_gcat', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q4_gcat', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_lfa_best', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q1_best', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q2_best', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q3_best', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q4_best', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_lfa_adept', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q1_adept', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q2_adept', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q3_adept', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q4_adept', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_lfa_smp_running', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q1_smp_running', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q2_smp_running', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q3_smp_running', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q4_smp_running', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_lfa_bpo101_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q1_bpo101_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q2_bpo101_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q3_bpo101_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q4_bpo101_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_lfa_bpo102_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q1_bpo102_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q2_bpo102_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q3_bpo102_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q4_bpo102_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_lfa_sc_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q1_sc_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q2_sc_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q3_sc_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q4_sc_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_lfa_bc_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q1_bc_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q2_bc_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q3_bc_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q4_bc_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_lfa_st_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q1_st_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q2_st_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q3_st_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q4_st_enrolled', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_lfa_smp_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q1_smp_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q2_smp_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q3_smp_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q4_smp_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_lfa_bpo101_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q1_bpo101_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q2_bpo101_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q3_bpo101_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q4_bpo101_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_lfa_bpo102_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q1_bpo102_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q2_bpo102_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q3_bpo102_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q4_bpo102_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_lfa_sc_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q1_sc_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q2_sc_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q3_sc_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q4_sc_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_lfa_bc_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q1_bc_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q2_bc_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q3_bc_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q4_bc_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_lfa_st_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q1_st_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q2_st_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q3_st_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q4_st_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_lfa_internship_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q1_internship_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q2_internship_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q3_internship_completion', 'Target', 'trim|xss_clean|required|is_natural');
+			$this->form_validation->set_rules('student_q4_internship_completion', 'Target', 'trim|xss_clean|required|is_natural');
+
+			$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+			if ($this->input->post('submit'))
+			{
+				if (!$this->form_validation->run())
+				{
+					$data['form_error'] = TRUE;
+
+					$this->load->view('header');
+					$this->load->view('forms/form-reports-configuration-edit', $data);
+					$this->load->view('footer');
+				}
+				else
+				{
+					$this->db->trans_begin();
+
+					$teacher_lfa_gcat = array
+					(
+						'Target_For' => 'teacher_lfa_gcat',
+						'LFA' => $this->input->post('teacher_lfa_gcat'),
+						'QTR_1' => $this->input->post('teacher_q1_gcat'),
+						'QTR_2' => $this->input->post('teacher_q2_gcat'),
+						'QTR_3' => $this->input->post('teacher_q3_gcat'),
+						'QTR_4' => $this->input->post('teacher_q4_gcat'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'teacher_lfa_gcat', $teacher_lfa_gcat);
+
+					$teacher_lfa_best = array
+					(
+						'Target_For' => 'teacher_lfa_best',
+						'LFA' => $this->input->post('teacher_lfa_best'),
+						'QTR_1' => $this->input->post('teacher_q1_best'),
+						'QTR_2' => $this->input->post('teacher_q2_best'),
+						'QTR_3' => $this->input->post('teacher_q3_best'),
+						'QTR_4' => $this->input->post('teacher_q4_best'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'teacher_lfa_best', $teacher_lfa_best);
+
+					$teacher_lfa_adept = array
+					(
+						'Target_For' => 'teacher_lfa_adept',
+						'LFA' => $this->input->post('teacher_lfa_adept'),
+						'QTR_1' => $this->input->post('teacher_q1_adept'),
+						'QTR_2' => $this->input->post('teacher_q2_adept'),
+						'QTR_3' => $this->input->post('teacher_q3_adept'),
+						'QTR_4' => $this->input->post('teacher_q4_adept'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'teacher_lfa_adept', $teacher_lfa_adept);
+
+					$teacher_lfa_smp = array
+					(
+						'Target_For' => 'teacher_lfa_smp',
+						'LFA' => $this->input->post('teacher_lfa_smp'),
+						'QTR_1' => $this->input->post('teacher_q1_smp'),
+						'QTR_2' => $this->input->post('teacher_q2_smp'),
+						'QTR_3' => $this->input->post('teacher_q3_smp'),
+						'QTR_4' => $this->input->post('teacher_q4_smp'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'teacher_lfa_smp', $teacher_lfa_smp);
+
+					$teacher_lfa_bpo101 = array
+					(
+						'Target_For' => 'teacher_lfa_bpo101',
+						'LFA' => $this->input->post('teacher_lfa_bpo101'),
+						'QTR_1' => $this->input->post('teacher_q1_bpo101'),
+						'QTR_2' => $this->input->post('teacher_q2_bpo101'),
+						'QTR_3' => $this->input->post('teacher_q3_bpo101'),
+						'QTR_4' => $this->input->post('teacher_q4_bpo101'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'teacher_lfa_bpo101', $teacher_lfa_bpo101);
+
+					$teacher_lfa_bpo102 = array
+					(
+						'Target_For' => 'teacher_lfa_bpo102',
+						'LFA' => $this->input->post('teacher_lfa_bpo102'),
+						'QTR_1' => $this->input->post('teacher_q1_bpo102'),
+						'QTR_2' => $this->input->post('teacher_q2_bpo102'),
+						'QTR_3' => $this->input->post('teacher_q3_bpo102'),
+						'QTR_4' => $this->input->post('teacher_q4_bpo102'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'teacher_lfa_bpo102', $teacher_lfa_bpo102);
+
+					$teacher_lfa_sc = array
+					(
+						'Target_For' => 'teacher_lfa_sc',
+						'LFA' => $this->input->post('teacher_lfa_sc'),
+						'QTR_1' => $this->input->post('teacher_q1_sc'),
+						'QTR_2' => $this->input->post('teacher_q2_sc'),
+						'QTR_3' => $this->input->post('teacher_q3_sc'),
+						'QTR_4' => $this->input->post('teacher_q4_sc'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'teacher_lfa_sc', $teacher_lfa_sc);
+
+					$teacher_lfa_bc = array
+					(
+						'Target_For' => 'teacher_lfa_bc',
+						'LFA' => $this->input->post('teacher_lfa_bc'),
+						'QTR_1' => $this->input->post('teacher_q1_bc'),
+						'QTR_2' => $this->input->post('teacher_q2_bc'),
+						'QTR_3' => $this->input->post('teacher_q3_bc'),
+						'QTR_4' => $this->input->post('teacher_q4_bc'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'teacher_lfa_bc', $teacher_lfa_bc);
+
+					$teacher_lfa_st = array
+					(
+						'Target_For' => 'teacher_lfa_st',
+						'LFA' => $this->input->post('teacher_lfa_st'),
+						'QTR_1' => $this->input->post('teacher_q1_st'),
+						'QTR_2' => $this->input->post('teacher_q2_st'),
+						'QTR_3' => $this->input->post('teacher_q3_st'),
+						'QTR_4' => $this->input->post('teacher_q4_st'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'teacher_lfa_st', $teacher_lfa_st);
+
+					$teacher_lfa_suc_smp = array
+					(
+						'Target_For' => 'teacher_lfa_suc_smp',
+						'LFA' => $this->input->post('teacher_lfa_suc_smp'),
+						'QTR_1' => $this->input->post('teacher_q1_suc_smp'),
+						'QTR_2' => $this->input->post('teacher_q2_suc_smp'),
+						'QTR_3' => $this->input->post('teacher_q3_suc_smp'),
+						'QTR_4' => $this->input->post('teacher_q4_suc_smp'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'teacher_lfa_suc_smp', $teacher_lfa_suc_smp);
+
+					$student_lfa_gcat = array
+					(
+						'Target_For' => 'student_lfa_gcat',
+						'LFA' => $this->input->post('student_lfa_gcat'),
+						'QTR_1' => $this->input->post('student_q1_gcat'),
+						'QTR_2' => $this->input->post('student_q2_gcat'),
+						'QTR_3' => $this->input->post('student_q3_gcat'),
+						'QTR_4' => $this->input->post('student_q4_gcat'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'student_lfa_gcat', $student_lfa_gcat);
+
+					$student_lfa_best = array
+					(
+						'Target_For' => 'student_lfa_best',
+						'LFA' => $this->input->post('student_lfa_best'),
+						'QTR_1' => $this->input->post('student_q1_best'),
+						'QTR_2' => $this->input->post('student_q2_best'),
+						'QTR_3' => $this->input->post('student_q3_best'),
+						'QTR_4' => $this->input->post('student_q4_best'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'student_lfa_best', $student_lfa_best);
+
+					$student_lfa_adept = array
+					(
+						'Target_For' => 'student_lfa_adept',
+						'LFA' => $this->input->post('student_lfa_adept'),
+						'QTR_1' => $this->input->post('student_q1_adept'),
+						'QTR_2' => $this->input->post('student_q2_adept'),
+						'QTR_3' => $this->input->post('student_q3_adept'),
+						'QTR_4' => $this->input->post('student_q4_adept'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'student_lfa_adept', $student_lfa_adept);
+
+					$student_lfa_smp_running = array
+					(
+						'Target_For' => 'student_lfa_smp_running',
+						'LFA' => $this->input->post('student_lfa_smp_running'),
+						'QTR_1' => $this->input->post('student_q1_smp_running'),
+						'QTR_2' => $this->input->post('student_q2_smp_running'),
+						'QTR_3' => $this->input->post('student_q3_smp_running'),
+						'QTR_4' => $this->input->post('student_q4_smp_running'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'student_lfa_smp_running', $student_lfa_smp_running);
+
+					$student_lfa_bpo101_enrolled = array
+					(
+						'Target_For' => 'student_lfa_bpo101_enrolled',
+						'LFA' => $this->input->post('student_lfa_bpo101_enrolled'),
+						'QTR_1' => $this->input->post('student_q1_bpo101_enrolled'),
+						'QTR_2' => $this->input->post('student_q2_bpo101_enrolled'),
+						'QTR_3' => $this->input->post('student_q3_bpo101_enrolled'),
+						'QTR_4' => $this->input->post('student_q4_bpo101_enrolled'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'student_lfa_bpo101_enrolled', $student_lfa_bpo101_enrolled);
+
+					$student_lfa_bpo102_enrolled = array
+					(
+						'Target_For' => 'student_lfa_bpo102_enrolled',
+						'LFA' => $this->input->post('student_lfa_bpo102_enrolled'),
+						'QTR_1' => $this->input->post('student_q1_bpo102_enrolled'),
+						'QTR_2' => $this->input->post('student_q2_bpo102_enrolled'),
+						'QTR_3' => $this->input->post('student_q3_bpo102_enrolled'),
+						'QTR_4' => $this->input->post('student_q4_bpo102_enrolled'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'student_lfa_bpo102_enrolled', $student_lfa_bpo102_enrolled);
+
+					$student_lfa_sc_enrolled = array
+					(
+						'Target_For' => 'student_lfa_sc_enrolled',
+						'LFA' => $this->input->post('student_lfa_sc_enrolled'),
+						'QTR_1' => $this->input->post('student_q1_sc_enrolled'),
+						'QTR_2' => $this->input->post('student_q2_sc_enrolled'),
+						'QTR_3' => $this->input->post('student_q3_sc_enrolled'),
+						'QTR_4' => $this->input->post('student_q4_sc_enrolled'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'student_lfa_sc_enrolled', $student_lfa_sc_enrolled);
+
+					$student_lfa_bc_enrolled = array
+					(
+						'Target_For' => 'student_lfa_bc_enrolled',
+						'LFA' => $this->input->post('student_lfa_bc_enrolled'),
+						'QTR_1' => $this->input->post('student_q1_bc_enrolled'),
+						'QTR_2' => $this->input->post('student_q2_bc_enrolled'),
+						'QTR_3' => $this->input->post('student_q3_bc_enrolled'),
+						'QTR_4' => $this->input->post('student_q4_bc_enrolled'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'student_lfa_bc_enrolled', $student_lfa_bc_enrolled);
+
+					$student_lfa_st_enrolled = array
+					(
+						'Target_For' => 'student_lfa_st_enrolled',
+						'LFA' => $this->input->post('student_lfa_st_enrolled'),
+						'QTR_1' => $this->input->post('student_q1_st_enrolled'),
+						'QTR_2' => $this->input->post('student_q2_st_enrolled'),
+						'QTR_3' => $this->input->post('student_q3_st_enrolled'),
+						'QTR_4' => $this->input->post('student_q4_st_enrolled'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'student_lfa_st_enrolled', $student_lfa_st_enrolled);
+
+					$student_lfa_smp_completion = array
+					(
+						'Target_For' => 'student_lfa_smp_completion',
+						'LFA' => $this->input->post('student_lfa_smp_completion'),
+						'QTR_1' => $this->input->post('student_q1_smp_completion'),
+						'QTR_2' => $this->input->post('student_q2_smp_completion'),
+						'QTR_3' => $this->input->post('student_q3_smp_completion'),
+						'QTR_4' => $this->input->post('student_q4_smp_completion'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'student_lfa_smp_completion', $student_lfa_smp_completion);
+
+					$student_lfa_bpo101_completion = array
+					(
+						'Target_For' => 'student_lfa_bpo101_completion',
+						'LFA' => $this->input->post('student_lfa_bpo101_completion'),
+						'QTR_1' => $this->input->post('student_q1_bpo101_completion'),
+						'QTR_2' => $this->input->post('student_q2_bpo101_completion'),
+						'QTR_3' => $this->input->post('student_q3_bpo101_completion'),
+						'QTR_4' => $this->input->post('student_q4_bpo101_completion'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'student_lfa_bpo101_completion', $student_lfa_bpo101_completion);
+
+					$student_lfa_bpo102_completion = array
+					(
+						'Target_For' => 'student_lfa_bpo102_completion',
+						'LFA' => $this->input->post('student_lfa_bpo102_completion'),
+						'QTR_1' => $this->input->post('student_q1_bpo102_completion'),
+						'QTR_2' => $this->input->post('student_q2_bpo102_completion'),
+						'QTR_3' => $this->input->post('student_q3_bpo102_completion'),
+						'QTR_4' => $this->input->post('student_q4_bpo102_completion'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'student_lfa_bpo102_completion', $student_lfa_bpo102_completion);
+
+					$student_lfa_sc_completion = array
+					(
+						'Target_For' => 'student_lfa_sc_completion',
+						'LFA' => $this->input->post('student_lfa_sc_completion'),
+						'QTR_1' => $this->input->post('student_q1_sc_completion'),
+						'QTR_2' => $this->input->post('student_q2_sc_completion'),
+						'QTR_3' => $this->input->post('student_q3_sc_completion'),
+						'QTR_4' => $this->input->post('student_q4_sc_completion'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'student_lfa_sc_completion', $student_lfa_sc_completion);
+
+					$student_lfa_bc_completion = array
+					(
+						'Target_For' => 'student_lfa_bc_completion',
+						'LFA' => $this->input->post('student_lfa_bc_completion'),
+						'QTR_1' => $this->input->post('student_q1_bc_completion'),
+						'QTR_2' => $this->input->post('student_q2_bc_completion'),
+						'QTR_3' => $this->input->post('student_q3_bc_completion'),
+						'QTR_4' => $this->input->post('student_q4_bc_completion'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'student_lfa_bc_completion', $student_lfa_bc_completion);
+
+					$student_lfa_st_completion = array
+					(
+						'Target_For' => 'student_lfa_st_completion',
+						'LFA' => $this->input->post('student_lfa_st_completion'),
+						'QTR_1' => $this->input->post('student_q1_st_completion'),
+						'QTR_2' => $this->input->post('student_q2_st_completion'),
+						'QTR_3' => $this->input->post('student_q3_st_completion'),
+						'QTR_4' => $this->input->post('student_q4_st_completion'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'student_lfa_st_completion', $student_lfa_st_completion);
+
+					$student_lfa_internship_completion = array
+					(
+						'Target_For' => 'student_lfa_internship_completion',
+						'LFA' => $this->input->post('student_lfa_internship_completion'),
+						'QTR_1' => $this->input->post('student_q1_internship_completion'),
+						'QTR_2' => $this->input->post('student_q2_internship_completion'),
+						'QTR_3' => $this->input->post('student_q3_internship_completion'),
+						'QTR_4' => $this->input->post('student_q4_internship_completion'),
+						'Year' => $this->input->post('target_year')
+					);
+					$this->users_targets->updateTarget($target_year, 'student_lfa_internship_completion', $student_lfa_internship_completion);
+
+					$this->db->trans_commit();
+
+					if ($this->db->_error_message())
+					{
+						$this->db->trans_rollback();
+						$data['form_error'] = TRUE;
+
+						$this->load->view('header');
+						$this->load->view('forms/form-reports-configuration-edit', $data);
+						$this->load->view('footer');
+					}
+					else
+					{
+						$this->db->trans_commit();
+						$data['teacher_lfa_gcat'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_gcat');
+						$data['teacher_lfa_best'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_best');
+						$data['teacher_lfa_adept'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_adept');
+						$data['teacher_lfa_smp'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_smp');
+						$data['teacher_lfa_bpo101'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_bpo101');
+						$data['teacher_lfa_bpo102'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_bpo102');
+						$data['teacher_lfa_sc'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_sc');
+						$data['teacher_lfa_bc'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_bc');
+						$data['teacher_lfa_st'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_st');
+						$data['teacher_lfa_suc_smp'] = $this->users_targets->getLFATarget($target_year, 'teacher_lfa_suc_smp');
+						$data['student_lfa_gcat'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_gcat');
+						$data['student_lfa_best'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_best');
+						$data['student_lfa_adept'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_adept');
+						$data['student_lfa_smp_running'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_smp_running');
+						$data['student_lfa_bpo101_enrolled'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_bpo101_enrolled');
+						$data['student_lfa_bpo102_enrolled'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_bpo102_enrolled');
+						$data['student_lfa_sc_enrolled'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_sc_enrolled');
+						$data['student_lfa_bc_enrolled'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_bc_enrolled');
+						$data['student_lfa_st_enrolled'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_st_enrolled');
+						$data['student_lfa_smp_completion'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_smp_completion');
+						$data['student_lfa_bpo101_completion'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_bpo101_completion');
+						$data['student_lfa_bpo102_completion'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_bpo102_completion');
+						$data['student_lfa_sc_completion'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_sc_completion');
+						$data['student_lfa_bc_completion'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_bc_completion');
+						$data['student_lfa_st_completion'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_st_completion');
+						$data['student_lfa_internship_completion'] = $this->users_targets->getLFATarget($target_year, 'student_lfa_internship_completion');
+						$data['form_success'] = TRUE;
+						$this->log->addLog('Updated Target');
+
+						$this->load->view('header');
+						$this->load->view('forms/form-reports-configuration-edit', $data);
+						$this->load->view('footer');
+					}
+				}
+			}
+			elseif ($this->input->post('save_draft'))
+			{
+				$this->form_validation->run();
+
+				$data['draft_saved'] = TRUE;
+
+				$this->load->view('header');
+				$this->load->view('forms/form-reports-configuration-edit', $data);
+				$this->load->view('footer');
+			}
+			else
+			{
+				$this->load->view('header');
+				$this->load->view('forms/form-reports-configuration-edit', $data);
+				$this->load->view('footer');
+			}
+		}
+		else
+		{
+			redirect('reports');
 		}
 	}
 }
