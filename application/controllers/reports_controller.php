@@ -871,7 +871,7 @@ class Reports_Controller extends CI_Controller {
 		$jan_start=$this->input->post('mande_month_year') . "-01-01";
 		$jan_end= $this->input->post('mande_month_year') . "-01-31 23:59:59";
 		$feb_start=$this->input->post('mande_month_year') . "-02-01";
-		$feb_end= $this->input->post('mande_month_year') . "-02-01"; 
+		$feb_end= $this->input->post('mande_month_year') . "-02-29 23:59:59"; 
 		$mar_start=$this->input->post('mande_month_year') . "-03-01";
 		$mar_end= $this->input->post('mande_month_year') . "-03-31 23:59:59";
 		$apr_start=$this->input->post('mande_month_year') . "-04-01";
