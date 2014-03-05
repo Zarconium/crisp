@@ -148,7 +148,7 @@ Class Report_Suc extends CI_Model
 		 sc.Code="'. $school_code .'")
 		AND t.School_ID = s.School_ID
 		
-		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
+		AND tt.Created_At BETWEEN "' . $date_start . '" AND "' . $date_end . '23:59:59"
 		UNION
 		SELECT "Total" as Control_Number, COUNT(DISTINCT t.teacher_id) as "Teachers"
 		FROM Best_T3_Tracker as btt, T3_Tracker as tt, Teacher_T3_Tracker as ttt, School as s, Teacher as t
@@ -159,7 +159,7 @@ Class Report_Suc extends CI_Model
 		 sc.Code="'. $school_code .'")
 		AND t.School_ID = s.School_ID
 		
-		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
+		AND tt.Created_At BETWEEN "' . $date_start . '" AND "' . $date_end . '23:59:59"
 		');
 
 		if($query->num_rows() > 0)
@@ -183,7 +183,7 @@ Class Report_Suc extends CI_Model
 		 sc.Code="'. $school_code .'")
 		AND t.School_ID = s.School_ID
 		
-		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
+		AND tt.Created_At BETWEEN "' . $date_start . '" AND "' . $date_end . '23:59:59"
 		UNION
 		SELECT "Total" as Control_Number, COUNT(DISTINCT t.teacher_id) as "Teachers"
 		FROM Adept_T3_Tracker as att, T3_Tracker as tt, Teacher_T3_Tracker as ttt, School as s, Teacher as t
@@ -194,7 +194,7 @@ Class Report_Suc extends CI_Model
 		 sc.Code="'. $school_code .'")
 		AND t.School_ID = s.School_ID
 		
-		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
+		AND tt.Created_At BETWEEN "' . $date_start . '" AND "' . $date_end . '23:59:59"
 		');
 
 		if($query->num_rows() > 0)
@@ -218,7 +218,7 @@ Class Report_Suc extends CI_Model
 		 sc.Code="'. $school_code .'")
 		AND t.School_ID = s.School_ID
 		
-		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
+		AND tt.Created_At BETWEEN "' . $date_start . '" AND "' . $date_end . '23:59:59"
 		UNION
 		SELECT "Total" as Control_Number, COUNT(DISTINCT t.teacher_id) as "Teachers"
 		FROM GCAT_Tracker as gt, T3_Tracker as tt, Teacher_T3_Tracker as ttt, School as s, Teacher as t
@@ -229,7 +229,7 @@ Class Report_Suc extends CI_Model
 		 sc.Code="'. $school_code .'")
 		AND t.School_ID = s.School_ID
 		
-		AND tt.Created_At BETWEEN "' . $date_end . '" AND "' . $date_end . '"
+		AND tt.Created_At BETWEEN "' . $date_start . '" AND "' . $date_end . '23:59:59"
 		');
 
 		if($query->num_rows() > 0)
