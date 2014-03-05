@@ -21,7 +21,6 @@ $year = date('Y');
 	<div class="tab-pane active" id="program_ched">
 
 		<div class="panel-group" id="accordion">
-			<!-- Student Program Report GCAT -->
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -30,7 +29,7 @@ $year = date('Y');
 				</div>
 				<div id="program_student_gcat" class="panel-collapse collapse">
 					<div class="panel-body">
-						<!-- CHANGE THIS --><form class="form" role="form" action="<?php echo base_url('reports/studentProgramReportGCAT'); ?>" method="post" target="_blank">
+						<form class="form" role="form" action="<?php echo base_url('reports/studentProgramReportGCAT'); ?>" method="post" target="_blank">
 							<div class="form-group">
 								<label>Date Start</label>
 								<input type="date" value="1990-01-01" class="form-control" name="program_student_gcat_start_date">
@@ -42,9 +41,7 @@ $year = date('Y');
 							</div>
 
 							<div class="button-groups">
-								<!-- CHANGE THIS ALSO --><button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
-								
-								
+								<button type="submit" class="btn btn-primary" name="submit" value="submit">View Report</button>
 							</div>
 						</form>
 					</div>
@@ -1147,7 +1144,7 @@ $year = date('Y');
 	<div class="tab-pane" id="MandE">
 		<?php if($this->session->userdata('logged_in')['type'] == 'admin'): ?>
 		<div class="button-groups">
-			<a href="<?php echo base_url('reports/reportTargetConfigurationQuarterly'); ?>"><button type="submit" class="btn btn-primary">Set Targets</button></a>
+			<a href="<?php echo base_url('reports/reportTargetConfigurationQuarterlyAdd'); ?>"><button type="submit" class="btn btn-primary">Set New Targets</button></a>
 		</div><br/>
 		<?php endif; ?>
 		

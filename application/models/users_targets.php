@@ -49,4 +49,9 @@ Class users_targets extends CI_Model
 		}
 	}
 
+	function addTarget($data)
+	{
+		$data['User_ID'] = $this->session->userdata('logged_in')['id'];
+		return $this->db->insert('users_targets', $data);
+	}
 }

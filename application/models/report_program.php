@@ -466,7 +466,7 @@ Class Report_Program extends CI_Model
 		AND gs.Tracker_ID = stt.Tracker_ID
 		AND gs.Tracker_ID = t.Tracker_ID
 		AND t.Status_ID=1
-		AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.'";');
+		AND t.Created_At BETWEEN "'.$start_date.'" AND "'.$end_date.' 23:59:59";');
 
 
 		$query = $this->db->query('SELECT sc.Code as "School", SUM(IF(stgl.Gender="M",1,0)) as "Male", SUM(IF(stgl.Gender="F",1,0)) as "Female", Count(stgl.student_id) as "Total"
